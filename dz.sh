@@ -245,7 +245,8 @@ echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_rele
 echo ${date1}  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 
-sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow
+sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
+# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 sed -i "s/hostname='OpenWrt'/hostname='CHUQi WiFi'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.7.7/g' package/base-files/files/bin/config_generate
 # cp -f package/build/shortcut-fe ./package/base-files/files/etc/init.d   21.02
