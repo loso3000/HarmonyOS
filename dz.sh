@@ -61,12 +61,12 @@ rm -rf ./package/lean/luci-app-samba4
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/build/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
-sed -i '/"action_reboot"/a\    entry({"admin","system","PowerOff"},template("admin_system/poweroff"),_("关机"),92)\n    entry({"admin","system","PowerOff","call"},post("PowerOff"))' \
-feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
-echo 'function PowerOff()\n  luci.util.exec("poweroff")\n  end' >> \
-feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
+#sed -i '/"action_reboot"/a\    entry({"admin","system","PowerOff"},template("admin_system/poweroff"),_("关机"),92)\n    entry({"admin","system","PowerOff","call"},post("PowerOff"))' \
+#feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
+#echo 'function PowerOff()\n  luci.util.exec("poweroff")\n  end' >> \
+#feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
-# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
+curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 
 sed -i 's/网络存储/存储/g' ./package/lean/luci-app-vsftpd/po/zh-cn/vsftpd.po
 sed -i 's/Turbo ACC 网络加速/ACC网络加速/g' ./package/lean/luci-app-flowoffload/po/zh-cn/flowoffload.po
