@@ -63,7 +63,9 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/defaul
 echo '添加关机'
 #sed -i '/"action_reboot"/a\    entry({"admin","system","PowerOff"},template("admin_system/poweroff"),_("关机"),92)\n    entry({"admin","system","PowerOff","call"},post("PowerOff"))' \
 #feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
-#echo 'function PowerOff()\n  luci.util.exec("poweroff")\n  end' >> \
+#echo 'function PowerOff()
+#luci.util.exec("poweroff")
+#end' >> \
 #feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
@@ -184,8 +186,8 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-ap
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
-# sed -i "s/bootstrap/opentopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
-# sed -i 's/bootstrap/opentopd/g' feeds/luci/collections/luci/Makefile
+sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
+sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 
 # R8168驱动
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8152 package/new/r8152
