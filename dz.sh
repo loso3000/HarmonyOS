@@ -89,6 +89,7 @@ sed -i 's/invalid/# invalid/g' ./package/lean/samba4/files/smb.conf.template   #
 sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP禁用IPV6问题
+sed -i 's/请输入用户名和密码。/欢迎登陆，请输入密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
 echo '灰色歌曲'
 rm -rf ./package/lean/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
