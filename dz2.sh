@@ -256,7 +256,7 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 
 sed -i 's/请输入用户名和密码。/Hi!欢迎登陆，请输入密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
 # sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
-# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
+sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 # sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/${IPADDRESS}/g' package/base-files/files/bin/config_generate
 # cp -f package/build/shortcut-fe ./package/base-files/files/etc/init.d   21.02
