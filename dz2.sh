@@ -2,10 +2,10 @@
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 HOSTNAME=OpenWrt
-IPADDRESS=192.168.10.1
+IPADDRESS=192.168.8.1
 SSID=OpWiFi
 ENCRYPTION=psk2+ccmp
-KEY=12345678
+KEY=OpWiFi
 
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
@@ -258,20 +258,17 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 # sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 # sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 # cp -f package/build/shortcut-fe ./package/base-files/files/etc/init.d   21.02
 
 # Modify default WiFi SSID
-# sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-
+sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # Modify default WiFi Encryption
-# sed -i "s/set wireless.default_radio\${devidx}.encryption=none/set wireless.default_radio\${devidx}.encryption='$ENCRYPTION'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-
+sed -i "s/set wireless.default_radio\${devidx}.encryption=none/set wireless.default_radio\${devidx}.encryption='$ENCRYPTION'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # Modify default WiFi Key
-# sed -i "/set wireless.default_radio\${devidx}.mode=ap/a\                        set wireless.default_radio\${devidx}.key='$KEY'" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-
+sed -i "/set wireless.default_radio\${devidx}.mode=ap/a\                        set wireless.default_radio\${devidx}.key='$KEY'" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # Forced WiFi to enable
-# sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 #内核设置 甜糖
 # cat ./package/build/set/Config-kernel.in   > ./config/Config-kernel.in
