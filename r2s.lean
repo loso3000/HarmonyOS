@@ -3,8 +3,8 @@ CONFIG_TARGET_rockchip_armv8=y
 CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
-CONFIG_EFI_IMAGES=y
-CONFIG_TARGET_ROOTFS_TARGZ=n
+# CONFIG_EFI_IMAGES=y
+# CONFIG_TARGET_ROOTFS_TARGZ=n
 # CONFIG_VMDK_IMAGES is not set
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
@@ -47,7 +47,7 @@ CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
-CONFIG_PACKAGE_luci-app-adbyby-plus=y
+# CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=y
 CONFIG_PACKAGE_luci-app-advanced=y
 CONFIG_PACKAGE_luci-app-autotimeset=n
@@ -64,7 +64,7 @@ CONFIG_PACKAGE_luci-app-eqos=n
 CONFIG_PACKAGE_luci-app-hd-idle=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-jd-dailybonus=y
-CONFIG_PACKAGE_luci-app-koolproxyR=y
+CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=y
 CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
@@ -92,7 +92,7 @@ CONFIG_PACKAGE_luci-app-dnsto=y
 CONFIG_PACKAGE_luci-app-bypass=n
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy=n
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y
-CONFIG_PACKAGE_luci-app-dnsfilter=n
+CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
 CONFIG_PACKAGE_luci-app-mentohust=y
@@ -152,8 +152,6 @@ CONFIG_PACKAGE_luci-app-ttnode=n
 
 CONFIG_TARGET_KERNEL_PARTSIZE=60
 CONFIG_TARGET_ROOTFS_PARTSIZE=960
-
-
 CONFIG_PACKAGE_kmod-ath=y
 CONFIG_PACKAGE_kmod-ath6kl=y
 CONFIG_PACKAGE_kmod-ath6kl-usb=y
