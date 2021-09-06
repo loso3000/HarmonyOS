@@ -35,6 +35,9 @@ rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
 rm -rf ./package/build/shortcut-fe
 
+rm -rf ./package/lean/luci-app-zerotier
+rm -rf ./feeds/packages/net/zerotier
+
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 # ksmbd
 rm -rf ./feeds/packages/net/ksmbd-tools && svn co https://github.com/sirpdboy/build/trunk/ksmbd-tools ./feeds/packages/net/ksmbd-tools
@@ -160,7 +163,7 @@ sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-sed -i 's,default n,default y,g' ./package/build/luci-app-ssr-plus
+sed -i 's,default n,default y,g' ./package/build/luci-app-ssrpro
 sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus
 rm -rf package/build/luci-app-ssr-plus
 # wget -qO - https://github.com/fw876/helloworld/pull/513.patch | patch -p1
