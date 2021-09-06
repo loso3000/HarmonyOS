@@ -41,7 +41,6 @@ rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
 rm -rf ./package/build/shortcut-fe
-rm -rf ./package/build/rgmac
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 # ksmbd
@@ -169,7 +168,7 @@ echo ' ShadowsocksR Plus+'
 # popd
 # pushd package/lean/luci-app-ssr-plus
 sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
-sed -i 's,default y,default n,g' ./package/build/luci-app-ssrpro/Makefile
+sed -i 's,default n,default y,g' ./package/build/luci-app-ssrpro/Makefile
 # sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
 # sed -i '/V2ray:v2ray/d' Makefile
 # sed -i '/plugin:v2ray/d' Makefile
