@@ -67,7 +67,7 @@ jobs:
       - name: Generate configuration file
         run: |
           cd openwrt
-          # make defconfig
+          make defconfig
       - name: Make download
         run: |
           cd openwrt
