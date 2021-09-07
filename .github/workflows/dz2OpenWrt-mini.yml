@@ -64,9 +64,10 @@ jobs:
          cd openwrt
          ../$DIY_P1_SH
          chmod -R 755 .
-
       - name: Generate configuration file
-        run: make defconfig
+        run: |
+          cd openwrt
+          # make defconfig
       - name: Make download
         run: |
           cd openwrt
