@@ -5,16 +5,16 @@ CONFIG_TARGET_ramips_mt7621_DEVICE_phicomm_k2p=y
 # CONFIG_TARGET_IMAGES_GZIP is not set
 # CONFIG_EFI_IMAGES=y
 # ipv6
-CONFIG_PACKAGE_ipv6helper=y
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+# CONFIG_PACKAGE_ipv6helper=y
+# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
-CONFIG_PACKAGE_kmod-fs-antfs=y
+# CONFIG_PACKAGE_kmod-fs-antfs=n
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
-CONFIG_PACKAGE_kmod-nls-utf8=y
+# CONFIG_PACKAGE_kmod-nls-utf8=n
 # add upnp
-CONFIG_PACKAGE_miniupnpd-igdv1=y
+# CONFIG_PACKAGE_miniupnpd-igdv1=y
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
+# CONFIG_PACKAGE_luci-app-wolplus=y
 # 工具
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-samba4=n
@@ -45,7 +45,7 @@ CONFIG_PACKAGE_luci-app-dnsto=n
 CONFIG_PACKAGE_luci-app-ssrpro=y
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Kcptun=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_NaiveProxy=n
-CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Redsocks2=y
+CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Redsocks2=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Shadowsocks_Libev_Client=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Shadowsocks_Libev_Server=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Shadowsocks_Rust_Client=n
@@ -57,7 +57,7 @@ CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_V2ray_Plugin=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Xray=n
 
-CONFIG_PACKAGE_luci-app-mac=y
+CONFIG_PACKAGE_luci-app-mac=n
 CONFIG_PACKAGE_luci-app-bypass=n
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy=n
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y
