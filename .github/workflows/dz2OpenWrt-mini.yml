@@ -64,10 +64,11 @@ jobs:
          cd openwrt
          ../$DIY_P1_SH
          chmod -R 755 .
-      
+
       - name: Generate configuration file
         run: |
           cd openwrt
+          sed -i 's/^[ \t]*//g' ./.config
           make defconfig
       - name: Make download
         run: |
