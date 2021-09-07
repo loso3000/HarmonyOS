@@ -1,4 +1,4 @@
-name: dzOpenWrt-mini
+name: OpenWrt-mini-dz
 
 on:
   repository_dispatch:
@@ -8,8 +8,8 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-  watch:
-    types: started
+#  watch:
+#    types: started
 #  schedule:
 #    - cron: 0 21 */7 * * 
 env:
@@ -100,12 +100,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: dzOpenWrt-ipv6-mini-Firmware
+          name: OpenWrt-ipv6-mini-dz-Firmware
           path: ./mini/firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: dzOpenWrt-ipv6-mini-Ipk
+          name: OpenWrt-ipv6-mini-dz-Ipk
           path: ./mini/package
       - name: Upload firmware to cowtransfer
         run: |
