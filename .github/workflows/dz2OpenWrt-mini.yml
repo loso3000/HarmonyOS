@@ -66,10 +66,7 @@ jobs:
          chmod -R 755 .
 
       - name: Generate configuration file
-        run: |
-          cd openwrt
-          sed -i 's/^[ \t]*//g' ./.config
-          make defconfig
+        run: make defconfig
       - name: Make download
         run: |
           cd openwrt
