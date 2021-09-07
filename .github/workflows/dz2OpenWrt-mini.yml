@@ -1,4 +1,4 @@
-name: dz2OpenWrt-mini
+name: OpenWrt-mini-dz2
 
 on:
   repository_dispatch:
@@ -8,17 +8,17 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-  watch:
-    types: started
+#  watch:
+#    types: started
 #  schedule:
 #    - cron: 0 21 */7 * * 
+
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: dz2.config
   DIY_P1_SH: dz2.sh
-  DIY_P2_SH: update_package_mini1.sh
 
 jobs:
 
@@ -61,25 +61,22 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
-         # chmod +x ./$DIY_P2_SH
          cd openwrt
          ../$DIY_P1_SH
-         # ../$DIY_P2_SH
          chmod -R 755 .
       
       - name: Generate configuration file
-        working-directory: ./openwrt
         run: |
+          cd openwrt
           make defconfig
-
       - name: Make download
-        working-directory: ./openwrt
         run: |
+          cd openwrt
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
       - name: Compile firmware
-        working-directory: ./openwrt
         run: |
+          cd openwrt
           make -j$(nproc) || make -j1 V=s
           echo "======================="
           echo "Space usage:"
@@ -100,12 +97,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: dz2OpenWrt-ipv6-mini-Firmware
+          name: OpenWrt-ipv6-mini-dz2Firmware
           path: ./mini/firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: dz2OpenWrt-ipv6-mini-Ipk
+          name: OpenWrt-ipv6-mini-dz2Ipk
           path: ./mini/package
       - name: Upload firmware to cowtransfer
         run: |
