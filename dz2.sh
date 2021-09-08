@@ -32,8 +32,8 @@ rm -rf ./package/build/miniupnpd
 rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./package/lean/luci-app-accesscontrol
-rm -rf ./package/build/autocore
-# rm -rf ./package/lean/autocore
+# rm -rf ./package/build/autocore
+rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
 # rm -rf ./package/lean/luci-app-ramfree
 rm -rf ./package/lean/luci-app-arpbind
@@ -47,6 +47,8 @@ rm -rf ./package/lean/ddns-scripts_aliyun
 rm -rf ./package/lean/ddns-scripts_dnspod
 rm -rf ./package/lean/luci-app-zerotier
 rm -rf ./feeds/packages/net/zerotier
+sed -i '/45)./d' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+sed -i 's/\"vpn\"/\"services\"/g' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 # ksmbd
@@ -88,6 +90,7 @@ sed -i 's/invalid/# invalid/g' ./package/lean/samba4/files/smb.conf.template   #
 sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP禁用IPV6问题
+
 echo '灰色歌曲'
 rm -rf ./package/lean/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
