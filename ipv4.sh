@@ -32,6 +32,15 @@ rm -rf ./package/lean/default-settings
 rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
+
+rm -rf package/lean/verysync
+rm -rf package/lean/luci-app-kodexplorer
+rm -rf package/lean/luci-app-pppoe-relay
+rm -rf package/lean/luci-app-verysync
+rm -rf package/lean/luci-app-pptp-server
+rm -rf package/lean/luci-app-v2ray-server
+rm -rf package/lean/luci-app-guest-wifi
+
 rm -rf ./package/lean/trojan
 rm -rf ./package/build/shortcut-fe
 
@@ -41,7 +50,6 @@ rm -rf ./package/lean/ddns-scripts_dnspod
 rm -rf ./package/lean/luci-app-zerotier
 rm -rf ./feeds/packages/net/zerotier
 sed -i 's,default n,default y,g' ./package/build/luci-app-bypass/Makefile
-
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 # ksmbd
@@ -103,18 +111,23 @@ sed -i 's/解除网易云音乐播放限制/解锁歌曲/g' ./package/diy/luci-a
 # for X in $(ls -1 target/linux/x86 | grep "config-"); do echo -e "\n$(cat ./package/build/DRM-I915)" >> target/linux/x86/${X}; done
 # sed -i "/dns_caching_dns/d" $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
 # echo "	option dns_caching_dns '223.5.5.5,114.114.114.114'" >> $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
-
 cat ./package/build/profile > package/base-files/files/etc/profile
+
 # git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
-# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
-# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 # git clone https://github.com/garypang13/luci-app-dnsfilter.git package/luci-app-dnsfilter
 
-# rm -rf package/lean/luci-app-jd-dailybonus && git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/diy/luci-app-jd-dailybonus
+rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
+# 全能推送
+rm -rf package/lean/luci-app-pushbot && \
+git clone https://github.com/zzsj0928/luci-app-pushbot package/lean/luci-app-pushbot
+rm -rf package/lean/luci-app-jd-dailybonus && \
+git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/lean/luci-app-jd-dailybonus
 # 京东签到 By Jerrykuku
 # sed -i 's/wget-ssl/wget/g' package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/newapp.sh package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua
 # rm -rf ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
 # wget -P ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
+rm -rf package/lean/luci-app-serverchan && \
+git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/diy/luci-app-serverchan
 
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
@@ -149,7 +162,6 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 # chmod +x files/etc/openclash/core/clash*
 
 # git clone https://github.com/AlexZhuo/luci-app-bandwidthd /package/diy/luci-app-bandwidthd
-git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/diy/luci-app-serverchan
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 # 花生壳内网穿透
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
@@ -166,8 +178,9 @@ sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 # ShadowsocksR Plus+
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+cp -vr ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+
 sed -i 's,default n,default y,g' ./package/build/luci-app-ssrpro
 sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus
 rm -rf package/build/luci-app-ssr-plus
