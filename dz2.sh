@@ -243,11 +243,11 @@ echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_rele
 echo ${date1}  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 # sed -i 's/请输入用户名和密码。/欢迎登陆，请输入密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
-sed -i '/root:/d' ./package/base-files/files/etc/shadow
+# sed -i '/root:/d' ./package/base-files/files/etc/shadow
 # sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-# sed -i 's/root::0:0:99999:7:::/root:$1$fBBokrlW$4855fjGMAYdopNbA9F/mk.:18878:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #root
-echo "root:$1$fBBokrlW$4855fjGMAYdopNbA9F/mk.:18878:0:99999:7::::" >>  ./package/base-files/files/etc/shadow  #root
+sed -i 's/root::0:0:99999:7:::/root:$1$fBBokrlW$4855fjGMAYdopNbA9F/mk.:0:0:99999:7:::/g'  ./package/base-files/files/etc/shadow    #root
+# echo "root:$1$fBBokrlW$4855fjGMAYdopNbA9F/mk.:18878:0:99999:7::::" >>  ./package/base-files/files/etc/shadow  #root
 # sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 # cp -f package/build/shortcut-fe ./package/base-files/files/etc/init.d
