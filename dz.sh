@@ -3,7 +3,7 @@
 # Description: Build OpenWrt using GitHub Actions
 WORKDIR=/workdir
 HOSTNAME=CHUi_WiFi
-IPADDRESS=192.168.8.1
+IPADDRESS=192.168.7.7
 SSID=sirpdboy
 ENCRYPTION=psk2+ccmp
 KEY=sirpdboy
@@ -41,12 +41,13 @@ rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
 rm -rf ./package/build/shortcut-fe
 
-rm -rf ./package/lean/luci-app-serverchan
 rm -rf ./package/lean/ddns-scripts_aliyun
 rm -rf ./package/lean/ddns-scripts_dnspod
 rm -rf ./package/lean/luci-app-zerotier
 rm -rf ./feeds/packages/net/zerotier
 sed -i 's,default n,default y,g' ./package/build/luci-app-bypass/Makefile
+sed -i '/45)./d' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+sed -i 's/\"vpn\"/\"services\"/g' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 # ksmbd
@@ -65,12 +66,6 @@ rm -rf ./package/lean/luci-app-samba4
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/build/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
-# sed -i '/"action_reboot"/a\    entry({"admin","system","PowerOff"},template("admin_system/poweroff"),_("关机"),92)\n    entry({"admin","system","PowerOff","call"},post("PowerOff"))' \
-# feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
-# echo 'function PowerOff()
-# luci.util.exec("poweroff")
-# end' >> \
-# feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 
@@ -93,7 +88,7 @@ sed -i 's/invalid/# invalid/g' ./package/lean/samba4/files/smb.conf.template   #
 sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP禁用IPV6问题
-sed -i 's/请输入用户名和密码。/Hi!欢迎使用!请输入用户密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
+sed -i 's/请输入用户名和密码。/欢迎使用!请输入用户密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
 echo '灰色歌曲'
 rm -rf ./package/lean/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
@@ -104,9 +99,21 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 
 cat ./package/build/profile > package/base-files/files/etc/profile
 
+# Boost 通用即插即用
+# rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
+# 全能推送
+rm -rf package/lean/luci-app-pushbot && \
+git clone https://github.com/zzsj0928/luci-app-pushbot package/lean/luci-app-pushbot
+rm -rf package/lean/luci-app-jd-dailybonus && \
+git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/lean/luci-app-jd-dailybonus
+# 京东签到 By Jerrykuku
+# sed -i 's/wget-ssl/wget/g' package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/newapp.sh package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua
+# rm -rf ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
+# wget -P ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
+rm -rf package/lean/luci-app-serverchan && \
+git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/lean/luci-app-serverchan
+
 # git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
-# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
-# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 # git clone https://github.com/garypang13/luci-app-dnsfilter.git package/luci-app-dnsfilter
 
 echo '替换aria2'
@@ -190,8 +197,8 @@ svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
-# sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
-# sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
+sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
+sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 
 # R8168驱动
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8152 package/new/r8152
@@ -257,23 +264,21 @@ sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(I
 echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-sed -i 's/请输入用户名和密码。/Hi!欢迎您！请输入用户密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
-# sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
-sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-# sed -i 's/root::0:0:99999:7:::/root:$1$fBBokrlW$4855fjGMAYdopNbA9F/mk.:18878:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #root
+sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
+# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 # sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.7.7/g' package/base-files/files/bin/config_generate
 # cp -f package/build/shortcut-fe ./package/base-files/files/etc/init.d
 
 # Modify default WiFi SSID
-# sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # Modify default WiFi Encryption
-# sed -i "s/set wireless.default_radio\${devidx}.encryption=none/set wireless.default_radio\${devidx}.encryption='$ENCRYPTION'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i "s/set wireless.default_radio\${devidx}.encryption=none/set wireless.default_radio\${devidx}.encryption='$ENCRYPTION'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # Modify default WiFi Key
-# sed -i "/set wireless.default_radio\${devidx}.mode=ap/a\                        set wireless.default_radio\${devidx}.key='$KEY'" package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i "/set wireless.default_radio\${devidx}.mode=ap/a\                        set wireless.default_radio\${devidx}.key='$KEY'" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # Forced WiFi to enable
-# sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 #内核设置 甜糖
 # cat ./package/build/set/Config-kernel.in   > ./config/Config-kernel.in
