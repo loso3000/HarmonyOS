@@ -40,11 +40,9 @@ rm -rf package/lean/luci-app-verysync
 rm -rf package/lean/luci-app-pptp-server
 rm -rf package/lean/luci-app-v2ray-server
 rm -rf package/lean/luci-app-guest-wifi
-
 rm -rf ./package/lean/trojan
 rm -rf ./package/build/shortcut-fe
 
-rm -rf ./package/lean/luci-app-serverchan
 rm -rf ./package/lean/ddns-scripts_aliyun
 rm -rf ./package/lean/ddns-scripts_dnspod
 rm -rf ./package/lean/luci-app-zerotier
