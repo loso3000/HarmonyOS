@@ -48,7 +48,7 @@ rm -rf ./feeds/packages/net/zerotier
 sed -i 's,default n,default y,g' ./package/build/luci-app-bypass/Makefile
 sed -i '/45)./d' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/view/zerotier/zerotier_status   #zerotier
+sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/view/zerotier/zerotier_status.htm   #zerotier
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 # ksmbd
