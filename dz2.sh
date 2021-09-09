@@ -32,8 +32,8 @@ rm -rf ./package/build/miniupnpd
 rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./package/lean/luci-app-accesscontrol
-rm -rf ./package/build/autocore
-# rm -rf ./package/lean/autocore
+# rm -rf ./package/build/autocore
+rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
 # rm -rf ./package/lean/luci-app-ramfree
 rm -rf ./package/lean/luci-app-arpbind
