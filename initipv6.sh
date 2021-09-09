@@ -36,8 +36,6 @@ rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
 rm -rf ./package/build/shortcut-fe
 
-rm -rf ./package/lean/ddns-scripts_aliyun
-rm -rf ./package/lean/ddns-scripts_dnspod
 rm -rf ./package/lean/luci-app-zerotier
 rm -rf ./feeds/packages/net/zerotier
 sed -i 's,default n,default y,g' ./package/build/luci-app-bypass/Makefile
