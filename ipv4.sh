@@ -43,8 +43,6 @@ rm -rf package/lean/luci-app-guest-wifi
 rm -rf ./package/lean/trojan
 rm -rf ./package/build/shortcut-fe
 
-rm -rf ./package/lean/ddns-scripts_aliyun
-rm -rf ./package/lean/ddns-scripts_dnspod
 rm -rf ./package/lean/luci-app-zerotier
 rm -rf ./feeds/packages/net/zerotier
 sed -i 's,default n,default y,g' ./package/build/luci-app-bypass/Makefile
@@ -60,7 +58,6 @@ rm -rf ./package/lean/samba4
 rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
 rm -rf ./package/lean/luci-app-samba4
 
-
 # Boost 通用即插即用
 # sed -i 's,api.ipify.org,myip.ipip.net/s,g' ./package/build/luci-app-boostupnp/root/usr/sbin/boostupnp.sh
 # rm -rf ./feeds/packages/net/miniupnpd   && svn co https://github.com/openwrt/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
@@ -70,10 +67,6 @@ rm -rf ./package/lean/luci-app-samba4
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/build/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
-# sed -i '/"action_reboot"/a\    entry({"admin","system","PowerOff"},template("admin_system/poweroff"),_("Power Off"),92)\n    entry({"admin","system","PowerOff","call"},post("PowerOff"))' \
-# feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
-# echo 'function PowerOff()\n  luci.util.exec("poweroff")\n  end' >> \
-# feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 
