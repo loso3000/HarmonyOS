@@ -49,14 +49,10 @@ jobs:
           sudo -E apt-get -qq autoremove --purge
           sudo -E apt-get -qq clean
           sudo timedatectl set-timezone "Asia/Shanghai"
-          sudo mkdir -p /workdir
-          sudo chown $USER:$GROUPS /workdir
       - name: Update feeds
-        working-directory: /workdir
         run: |
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
       - name: Load custom update feeds
         run: |
           cd openwrt
@@ -68,6 +64,7 @@ jobs:
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
          cd openwrt
          ../$DIY_P1_SH
          ../$DIY_P2_SH
@@ -94,31 +91,33 @@ jobs:
 
       - name: Prepare Artifact
         run: |
-          mkdir -p /tmp/firmware
-          mkdir -p /tmp/package
-          cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") /tmp/package
-          find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} /tmp/firmware
-          cd /tmp/firmware
+          mkdir -p ./firmware
+          mkdir -p ./package
+          cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./package
+          find ./openwrt/bin/targets/ -name "*combined.img" | xargs -i mv -f {} ./firmware
+          cd ./firmware
+          gzip *.img
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*combined-efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
           gzip *.img
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
           name: SirpdboyOpenWrt-IPV6-Firmware
-          path: /tmp/firmware
+          path: ./firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
           name: SirpdboyOpenWrt-IPV6-Ipk
-          path: /tmp/package
+          path: ./package
       - name: Upload firmware to cowtransfer
         run: |
          curl -fsSL git.io/file-transfer | sh
-         ./transfer cow --block 2621440 -s -p 64 --no-progress /tmp/firmware 2>&1 | tee cowtransfer.log
+         ./transfer cow --block 2621440 -s -p 64 --no-progress ./firmware 2>&1 | tee cowtransfer.log
          echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress /tmp/firmware 2>&1 | tee wetransfer.log
+          ./transfer wet -s -p 16 --no-progress ./firmware 2>&1 | tee wetransfer.log
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
