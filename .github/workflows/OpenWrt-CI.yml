@@ -57,9 +57,9 @@ jobs:
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+      - name: Load custom update feeds
+        run: |
           cd openwrt
-          #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-          #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           ./scripts/feeds update -a
           ./scripts/feeds install -a
@@ -76,9 +76,6 @@ jobs:
         working-directory: ./openwrt
         run: |
           make defconfig
-      - name: Make download
-        working-directory: ./openwrt
-        run: |
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
       - name: Compile firmware
