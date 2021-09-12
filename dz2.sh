@@ -88,6 +88,8 @@ sed -i 's/invalid/# invalid/g' ./package/lean/samba4/files/smb.conf.template   #
 sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP用IPV6
+#修正连接数 
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 
 echo '灰色歌曲'
 rm -rf ./package/lean/luci-app-unblockmusic
