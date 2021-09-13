@@ -98,12 +98,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-IPV6-xm7628a-Firmware
+          name: OpenWrt-IPV6-xm7620r1cm-Firmware
           path: ./openwrt/bin/targets/
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-IPV6-xm7628a-Ipk
+          name: OpenWrt-IPV6-xm7620r1cm-Ipk
           path: ./openwrt/bin/packages
       - name: Prepare Artifact
         run: |
