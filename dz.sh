@@ -169,11 +169,12 @@ rm -rf package/lean/luci-app-jd-dailybonus && git clone https://github.com/jerry
 
 # Passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
-git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
+# git clone https://github.com/fw876/helloworld package/ssr
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 # rm -rf package/build/luci-app-ssr-plus
 cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
@@ -301,6 +302,7 @@ sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.d
 # sed -i "/dns_caching_dns/d" $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
 # echo "	option dns_caching_dns '223.5.5.5,114.114.114.114'" >> $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
 
+sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/h"), 50)/h"), 9)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
