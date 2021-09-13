@@ -75,16 +75,17 @@ CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
 CONFIG_PACKAGE_luci-app-smartdns=n
-CONFIG_PACKAGE_luci-app-ssr-plus=n
+CONFIG_PACKAGE_luci-app-ssr-plus=y
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=n
 CONFIG_PACKAGE_luci-app-timecontrol=y
 CONFIG_PACKAGE_luci-app-access-control=n
 CONFIG_PACKAGE_luci-app-ttyd=n
 CONFIG_PACKAGE_luci-app-turboacc=y
-# CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_flow-offload=n
-# CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
-# CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_dnsforwarder=y
+CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
 CONFIG_PACKAGE_luci-app-vssr=n
-CONFIG_PACKAGE_luci-app-ssrpro=y
+CONFIG_PACKAGE_luci-app-ssrpro=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Kcptun=y
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_NaiveProxy=y
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Redsocks2=y
