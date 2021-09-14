@@ -153,13 +153,7 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package
 # chmod +x files/etc/openclash/core/clash*
 
 # git clone https://github.com/AlexZhuo/luci-app-bandwidthd /package/diy/luci-app-bandwidthd
-git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/diy/luci-app-serverchan
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
-# 京东签到 By Jerrykuku
-rm -rf package/lean/luci-app-jd-dailybonus && git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/diy/luci-app-jd-dailybonus
-# sed -i 's/wget-ssl/wget/g' package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/newapp.sh package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua
-# rm -rf ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
-# wget -P ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
 # 花生壳内网穿透
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel package/new/phtunnel
@@ -169,13 +163,14 @@ rm -rf package/lean/luci-app-jd-dailybonus && git clone https://github.com/jerry
 
 # Passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
-# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
+git clone https://github.com/fw876/helloworld package/ssr
+# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
+# git clone https://github.com/fw876/helloworld package/passwall
 # rm -rf package/build/luci-app-ssr-plus
 cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
