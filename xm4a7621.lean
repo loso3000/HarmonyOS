@@ -1,20 +1,11 @@
+# 不压缩efi
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7621=y
 CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_mi-router-4a-gigabit=y
-CONFIG_HYSTERIA_COMPRESS_UPX=y
-# CONFIG_PACKAGE_kmod-mt76x2 is not set
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
-# ipv6
-CONFIG_PACKAGE_ipv6helper=y
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-# file system
-CONFIG_PACKAGE_kmod-fs-vfat=y
-CONFIG_PACKAGE_kmod-fs-antfs=y
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # 添加网络配置
 CONFIG_PACKAGE_ppp-mod-pptp=y  #VPN客户端
-
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
@@ -23,7 +14,7 @@ CONFIG_PACKAGE_luci-app-boostupnp=n
 CONFIG_PACKAGE_luci-app-wolplus=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
@@ -36,7 +27,7 @@ CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-webadmin=n
-CONFIG_PACKAGE_luci-app-cpulimit=y
+CONFIG_PACKAGE_luci-app-cpulimit=n
 CONFIG_PACKAGE_luci-app-diskman=n
 CONFIG_PACKAGE_luci-app-eqos=n
 CONFIG_PACKAGE_luci-app-hd-idle=n
@@ -48,7 +39,7 @@ CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=n
 CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
