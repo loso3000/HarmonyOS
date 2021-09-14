@@ -110,8 +110,8 @@ jobs:
           mkdir ./gl750s
           find ./openwrt/bin/targets/ -name "*sysupgrade*" | xargs -i mv -f {} ./gl750s/
           # cp openwrt/.config  ./gl750s/r2s.config
-          cd ./gl750s
-          gzip *.bin
+          # cd ./gl750s
+          # gzip *.bin
       - name: Upload firmware to cowtransfer
         run: |
          curl -fsSL git.io/file-transfer | sh
