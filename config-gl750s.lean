@@ -1,4 +1,6 @@
-﻿CONFIG_TARGET_ath79=y
+# 不压缩efi
+# CONFIG_TARGET_IMAGES_GZIP is not set
+CONFIG_TARGET_ath79=y
 CONFIG_TARGET_ath79_nand=y
 CONFIG_TARGET_ath79_nand_DEVICE_glinet_gl-ar750s-nor-nand=y
 # 不压缩efi
