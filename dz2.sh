@@ -44,11 +44,16 @@ rm -rf ./package/build/shortcut-fe
 
 # rm -rf ./package/lean/ddns-scripts_aliyun
 # rm -rf ./package/lean/ddns-scripts_dnspod
-rm -rf ./package/lean/luci-app-zerotier
-rm -rf ./feeds/packages/net/zerotier
-sed -i '/45)./d' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+# rm -rf ./package/lean/luci-app-zerotier
+# rm -rf ./feeds/packages/net/zerotier
+sed -i '/45)./d' ./package/lean/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+sed -i 's/vpn/services/g' ./package/lean/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+sed -i 's/vpn/services/g' ./package/lean/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+rm -rf ./package/build/luci-app-zerotier
+rm -rf ./package/build/zerotier
+# sed -i '/45)./d' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+# sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+# sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 # ksmbd
