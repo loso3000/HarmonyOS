@@ -10,9 +10,6 @@ CONFIG_PACKAGE_kmod-mt7603=y
 CONFIG_PACKAGE_uboot-envtools=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
-CONFIG_EFI_IMAGES=y
-CONFIG_TARGET_ROOTFS_TARGZ=n
-# CONFIG_VMDK_IMAGES is not set
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
@@ -24,7 +21,7 @@ CONFIG_PACKAGE_luci-app-wolplus=y
 # 工具
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
@@ -102,7 +99,7 @@ CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 #增加其它插件
 CONFIG_PACKAGE_luci-app-tencentddns=n
-CONFIG_PACKAGE_luci-app-pushbot=y
+CONFIG_PACKAGE_luci-app-pushbot=n
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
