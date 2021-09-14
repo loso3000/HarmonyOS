@@ -1,18 +1,8 @@
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7620=y
 CONFIG_TARGET_ramips_mt7620_DEVICE_xiaomi_miwifi-mini=y
-CONFIG_PACKAGE_kmod-mt7603=y
-# CONFIG_PACKAGE_kmod-mt76x2 is not set
-# CONFIG_PACKAGE_kmod-nls-base is not set
-# CONFIG_PACKAGE_kmod-usb-core is not set
-# CONFIG_PACKAGE_kmod-usb-ohci is not set
-# CONFIG_PACKAGE_kmod-usb2 is not set
-CONFIG_PACKAGE_uboot-envtools=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
-# ipv6
-CONFIG_PACKAGE_ipv6helper=y
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # 添加网络配置
 CONFIG_PACKAGE_ppp-mod-pptp=y  #VPN客户端
 # add upnp
@@ -43,10 +33,10 @@ CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
-CONFIG_PACKAGE_luci-app-openclash=y
+CONFIG_PACKAGE_luci-app-openclash=n
 CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
@@ -141,4 +131,3 @@ CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
-
