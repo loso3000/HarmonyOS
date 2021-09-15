@@ -4,9 +4,9 @@
 WORKDIR=/workdir
 HOSTNAME=CHUi_WiFi
 IPADDRESS=192.168.7.7
-SSID=sirpdboy
+SSID=chuqi
 ENCRYPTION=psk2+ccmp
-KEY=sirpdboy
+KEY=chuqiwifi
 
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
@@ -270,7 +270,7 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-# sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
+sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.7.7/g' package/base-files/files/bin/config_generate
 # cp -f package/build/shortcut-fe ./package/base-files/files/etc/init.d
 
