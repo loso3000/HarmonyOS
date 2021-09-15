@@ -103,5 +103,5 @@ CONFIG_PACKAGE_luci-app-oaf=n
 # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng is not set
 # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui is not set
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
-CONFIG_PACKAGE_luci-theme-chuqitopd=y
-CONFIG_PACKAGE_luci-theme-opentopd=n
+CONFIG_PACKAGE_luci-theme-chuqitopd=n
+CONFIG_PACKAGE_luci-theme-opentopd=y
