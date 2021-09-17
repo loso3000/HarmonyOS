@@ -80,7 +80,7 @@ CONFIG_PACKAGE_luci-app-vsftpd=n
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
 CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-wifimac=y
-CONFIG_PACKAGE_luci-app-mac=y
+CONFIG_PACKAGE_luci-app-mac=n
 # 主题
 CONFIG_PACKAGE_luci-theme-atmaterial=n
 CONFIG_PACKAGE_luci-theme-ifit=n
