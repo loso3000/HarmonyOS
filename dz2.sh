@@ -33,11 +33,12 @@ rm -rf ./package/build/miniupnpd
 rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./package/lean/luci-app-accesscontrol
-# rm -rf ./package/build/autocore
-rm -rf ./package/lean/autocore
+rm -rf ./package/build/autocore
+# rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
 # rm -rf ./package/lean/luci-app-ramfree
 rm -rf ./package/lean/luci-app-arpbind
+rm -rf ./package/build/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
@@ -251,7 +252,7 @@ sed -i 's/h"), 50)/h"), 9)/g' ./package/diy/luci-app-openclash/luasrc/controller
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
-date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' By Sirpdboy'
+date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`''
 sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-JZ-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}  >> ./package/base-files/files/etc/banner
