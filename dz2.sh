@@ -17,6 +17,7 @@ rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
 
 rm -rf ./package/lean/luci-app-wrtbwmon
+rm -rf ./package/lean/luci-app-vlmcsd
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
