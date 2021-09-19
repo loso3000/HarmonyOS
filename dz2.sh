@@ -17,7 +17,7 @@ rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
 
 rm -rf ./package/lean/luci-app-wrtbwmon
-rm -rf ./package/lean/luci-app-vlmcsd
+# rm -rf ./package/lean/luci-app-vlmcsd
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
@@ -33,8 +33,8 @@ rm -rf ./package/build/miniupnpd
 rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./package/lean/luci-app-accesscontrol
-rm -rf ./package/build/autocore
-# rm -rf ./package/lean/autocore
+# rm -rf ./package/build/autocore
+rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
 # rm -rf ./package/lean/luci-app-ramfree
 rm -rf ./package/lean/luci-app-arpbind
@@ -252,7 +252,8 @@ sed -i 's/h"), 50)/h"), 9)/g' ./package/diy/luci-app-openclash/luasrc/controller
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
-date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`''
+date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' '
+date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' by Sirpdboy '
 sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-JZ-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}  >> ./package/base-files/files/etc/banner
@@ -295,7 +296,7 @@ sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generat
 # echo "	option dns_caching_dns '223.5.5.5,114.114.114.114'" >> $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
-sed -i 's/h"), 50)/h"), 9)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
+sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/lean/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
 ./scripts/feeds update -i
