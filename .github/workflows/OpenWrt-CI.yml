@@ -56,7 +56,7 @@ jobs:
       - name: Load custom update feeds
         run: |
           cd openwrt
-          echo "DATA=$(date +'%m/%d %Y')" >> $GITHUB_ENV
+          echo "DATA=$(date +'%Y%m%d')" >> $GITHUB_ENV
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           ./scripts/feeds update -a
           ./scripts/feeds install -a
