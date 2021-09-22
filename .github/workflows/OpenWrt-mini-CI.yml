@@ -55,7 +55,7 @@ jobs:
           #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-          echo "DATA=$(date +'%m/%d %Y')" >> $GITHUB_ENV
+          echo "DATA=$(date +"%Y%m%d')" >> $GITHUB_ENV
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
