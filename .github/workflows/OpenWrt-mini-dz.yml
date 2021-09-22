@@ -55,7 +55,7 @@ jobs:
           #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-          echo "DATA=$(date +'%Y%m%d')" >> $GITHUB_ENV
+          # echo "DATA=$(date +'%y%m%d')" >> $GITHUB_ENV
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -98,9 +98,9 @@ jobs:
           find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
           gzip *.img
-          echo "${{ env.DATA}}" > version.txt
-          md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
-          echo $md5 >> version.txt
+          # echo "${{ env.DATA}}" > version.txt
+          # md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
+          # echo $md5 >> version.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
