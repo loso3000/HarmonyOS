@@ -10,8 +10,6 @@ CONFIG_TARGET_ROOTFS_TARGZ=n
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
-CONFIG_PACKAGE_kmod-fs-antfs=y
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
@@ -19,13 +17,9 @@ CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
 CONFIG_PACKAGE_luci-app-wolplus=y
 # 工具
-CONFIG_PACKAGE_fdisk=y #分区工具
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_curl=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
@@ -50,7 +44,7 @@ CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=n
 CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
@@ -65,7 +59,7 @@ CONFIG_PACKAGE_luci-app-ttyd=n
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_dnsforwarder=y
 CONFIG_PACKAGE_luci-app-vssr=n
-CONFIG_PACKAGE_luci-app-ssrpro=y
+CONFIG_PACKAGE_luci-app-ssrpro=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Kcptun=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_NaiveProxy=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Redsocks2=y
@@ -79,7 +73,7 @@ CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Simple_Obfs=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Trojan=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_V2ray_Plugin=n
 CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Xray=n
-CONFIG_PACKAGE_luci-app-wrtbwmon=y
+CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
@@ -97,7 +91,7 @@ CONFIG_PACKAGE_luci-theme-argon_new=n
 CONFIG_PACKAGE_luci-theme-btmod=n
 CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-opentomcat=n
-CONFIG_PACKAGE_luci-theme-opentopd=n
+CONFIG_PACKAGE_luci-theme-opentopd=y
 #增加其它插件
 CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-pushbot=n
