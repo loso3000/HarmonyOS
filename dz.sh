@@ -121,7 +121,7 @@ rm -rf package/lean/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/lean/luci-app-serverchan
 
 # git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
-# git clone https://github.com/garypang13/luci-app-dnsfilter.git package/luci-app-dnsfilter
+git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
