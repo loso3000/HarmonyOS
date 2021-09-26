@@ -116,7 +116,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 cat ./package/build/profile > package/base-files/files/etc/profile
 
 # git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
-# git clone https://github.com/garypang13/luci-app-dnsfilter.git package/luci-app-dnsfilter
+git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
 rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
 # 全能推送
