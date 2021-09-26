@@ -1,10 +1,6 @@
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt76x8=y
 CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c=y
-CONFIG_PACKAGE_kmod-mt76x02-common=y
-CONFIG_PACKAGE_kmod-mt76x2=y
-CONFIG_PACKAGE_kmod-mt76x2-common=y
-# CONFIG_PACKAGE_uboot-envtools is not set
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 CONFIG_EFI_IMAGES=y
@@ -13,9 +9,6 @@ CONFIG_TARGET_ROOTFS_TARGZ=n
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-# file system
-CONFIG_PACKAGE_kmod-fs-antfs=n
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
@@ -23,10 +16,6 @@ CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
 CONFIG_PACKAGE_luci-app-wolplus=y
 # 工具
-CONFIG_PACKAGE_fdisk=y #分区工具
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_curl=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=n
