@@ -14,7 +14,7 @@ CONFIG_TARGET_ROOTFS_TARGZ=n
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
-CONFIG_PACKAGE_kmod-fs-antfs=y
+CONFIG_PACKAGE_kmod-fs-antfs=n
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -101,7 +101,7 @@ CONFIG_PACKAGE_luci-theme-argon_new=n
 CONFIG_PACKAGE_luci-theme-btmod=n
 CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-opentomcat=n
-CONFIG_PACKAGE_luci-theme-opentopd=n
+CONFIG_PACKAGE_luci-theme-opentopd=y
 #增加其它插件
 CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-pushbot=n
