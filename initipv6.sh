@@ -146,6 +146,7 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 # mv yacd-gh-pages package/luci-app-openclash/root/usr/share/openclash/yacd
 # rm -rf gh-pages.zip
 
+git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 # svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 # mkdir -p files/etc/openclash/core
 # open_clash_main_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
