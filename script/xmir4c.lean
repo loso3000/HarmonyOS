@@ -1,6 +1,10 @@
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt76x8=y
-CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4a-100m=y
+CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c=y
+CONFIG_PACKAGE_kmod-mt76x02-common=y
+CONFIG_PACKAGE_kmod-mt76x2=y
+CONFIG_PACKAGE_kmod-mt76x2-common=y
+# CONFIG_PACKAGE_uboot-envtools is not set
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 CONFIG_EFI_IMAGES=y
