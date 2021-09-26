@@ -136,6 +136,7 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packag
 #rm -rf package/lean/antileech/src/* && \
 #git clone https://github.com/persmule/amule-dlp.antiLeech package/lean/antileech/src
 
+git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 #svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
