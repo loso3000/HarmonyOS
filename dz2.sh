@@ -140,7 +140,7 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packag
 #rm -rf package/lean/antileech/src/* && \
 #git clone https://github.com/persmule/amule-dlp.antiLeech package/lean/antileech/src
 
-git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
+git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dnsfilter
 #svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
@@ -250,8 +250,6 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 # Add execute permission for ipv6-helper
 #chmod +x /bin/ipv6-helper
 
-sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
-sed -i 's/h"), 50)/h"), 9)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 #echo '默认开启 Irqbalance'
 #sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
