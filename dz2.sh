@@ -107,6 +107,8 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 cat ./package/build/profile > package/base-files/files/etc/profile
+# easymensh
+cat ./package/build/set/003-35-net-Add-netif_rx_any_context.diff.patch > /target/linux/generic/backport-5.4/003-35-net-Add-netif_rx_any_context.diff.patch
 
 # Boost 通用即插即用
 rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
