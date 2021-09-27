@@ -116,7 +116,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package
 cat ./package/build/profile > package/base-files/files/etc/profile
 
 # git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
-git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
+git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dnsfilter
 
 rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
 # 全能推送
@@ -265,7 +265,7 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 
 
 sed -i 's/+"), 10)/+"), 1)/g' ./package/lean/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
-sed -i 's/h"), 50)/h"), 9)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
+sed -i 's/h"), 50)/h"), 9)/g' ./package/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/lean/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
 # Remove some default packages
