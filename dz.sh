@@ -255,8 +255,6 @@ sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 # Add execute permission for ipv6-helper
 # chmod +x /bin/ipv6-helper
 
-sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
-sed -i 's/h"), 50)/h"), 9)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
@@ -305,5 +303,5 @@ sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/h"), 50)/h"), 9)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
-sed -i 's/),9)/),12)/g' ./package/lean/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
+sed -i 's/),9)/),12)/g' ./package/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
 ./scripts/feeds update -i
