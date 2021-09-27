@@ -108,7 +108,9 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 
 cat ./package/build/profile > package/base-files/files/etc/profile
 # easymensh
-cat ./package/build/set/003-35-net-Add-netif_rx_any_context.diff.patch > /target/linux/generic/backport-5.4/003-35-net-Add-netif_rx_any_context.diff.patch
+cat ./package/build/set/003-35-net-Add-netif_rx_any_context.diff.patch > ./target/linux/generic/backport-5.4/003-35-net-Add-netif_rx_any_context.diff.patch
+# wifidog
+cat ./package/build/set/wifidog.init > ./feeds/packages/net/wifidog/files/wifidog.init
 
 # Boost 通用即插即用
 rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
