@@ -196,7 +196,8 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 # git clone https://github.com/jerrykuku/luci-app-ttnode.git     package/diy/luci-app-ttnode
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
+
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
@@ -256,7 +257,7 @@ sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makef
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
-date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' '
+# date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' '
 date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' by Sirpdboy '
 sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-JZ-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
