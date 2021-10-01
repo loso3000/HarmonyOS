@@ -31,7 +31,7 @@ CONFIG_PACKAGE_autosamba-samba4=y
 CONFIG_PACKAGE_luci-app-adguardhome=n
 CONFIG_PACKAGE_luci-app-advanced=n
 CONFIG_PACKAGE_luci-app-autotimeset=n
-CONFIG_PACKAGE_luci-app-rebootschedule=n
+CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 CONFIG_PACKAGE_luci-app-control-timewol=n
 CONFIG_PACKAGE_luci-app-control-weburl=n
@@ -48,14 +48,14 @@ CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=n
-CONFIG_PACKAGE_luci-app-passwall=n
+CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
-CONFIG_PACKAGE_luci-app-smartdns=n
+CONFIG_PACKAGE_luci-app-smartdns=y
 CONFIG_PACKAGE_luci-app-ssr-plus=n
 CONFIG_PACKAGE_luci-app-timecontrol=n
 CONFIG_PACKAGE_luci-app-access-control=n
@@ -83,8 +83,8 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
-CONFIG_PACKAGE_luci-app-bypass=n
-CONFIG_PACKAGE_luci-app-dnsfilter=n
+CONFIG_PACKAGE_luci-app-bypass=y
+CONFIG_PACKAGE_luci-app-dnsfilter=y
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
 CONFIG_PACKAGE_luci-app-mentohust=n
