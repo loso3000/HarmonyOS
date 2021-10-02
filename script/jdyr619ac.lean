@@ -1,7 +1,6 @@
 CONFIG_TARGET_ipq40xx=y
 CONFIG_TARGET_ipq40xx_DEVICE_p2w_r619ac-128m=y
 CONFIG_TARGET_BOARD="ipq40xx"
-CONFIG_TARGET_ipq40xx=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 CONFIG_EFI_IMAGES=y
@@ -49,7 +48,7 @@ CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=n
-CONFIG_PACKAGE_luci-app-passwall=n
+# CONFIG_PACKAGE_luci-app-passwall is not set
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_luci-app-serverchan=n
@@ -57,7 +56,7 @@ CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
 CONFIG_PACKAGE_luci-app-smartdns=n
-CONFIG_PACKAGE_luci-app-ssr-plus=y
+# CONFIG_PACKAGE_luci-app-ssr-plus is not set
 CONFIG_PACKAGE_luci-app-timecontrol=y
 CONFIG_PACKAGE_luci-app-access-control=n
 CONFIG_PACKAGE_luci-app-ttyd=n
@@ -141,7 +140,6 @@ CONFIG_PACKAGE_luci-app-openvpn-server=y
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ttnode=n
-CONFIG_DEFAULT_iptables=y
 CONFIG_PACKAGE_kmod-usbip=y
 CONFIG_PACKAGE_kmod-usbip-client=y
 CONFIG_PACKAGE_kmod-usbip-server=y
