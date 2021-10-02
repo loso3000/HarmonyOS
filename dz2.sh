@@ -111,6 +111,8 @@ cat ./package/build/profile > package/base-files/files/etc/profile
 cat ./package/build/set/003-35-net-Add-netif_rx_any_context.diff.patch > ./target/linux/generic/backport-5.4/003-35-net-Add-netif_rx_any_context.diff.patch
 # wifidog
 cat ./package/build/set/wifidog.init > ./feeds/packages/net/wifidog/files/wifidog.init
+#libyang
+cat ../../path/libyang/Makefile > ./feeds/packages/libs/libyang/Makefile
 
 # Boost 通用即插即用
 rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
