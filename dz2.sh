@@ -184,7 +184,7 @@ svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/
 cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
 sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
-sed -i 's,default n,default y,g' ./package/build/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 # sed -i 's,default n,default y,g' ./package/build/luci-app-ssrpro/Makefile
 # sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
 # sed -i '/V2ray:v2ray/d' Makefile
