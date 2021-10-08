@@ -61,8 +61,9 @@ rm -rf ./feeds/luci/applications/luci-app-samba
 svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/applications/luci-app-samba
 rm -rf ./package/network/services/samba36 
 svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
-rm -rf ./package/lean/samba4
-rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
+rm -rf ./package/build/samba4
+# rm -rf ./package/lean/samba4
+# rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
 rm -rf ./package/lean/luci-app-samba4
 
 # Boost 通用即插即用
@@ -172,9 +173,9 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-git clone https://github.com/fw876/helloworld package/ssr
+# git clone https://github.com/fw876/helloworld package/ssr
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-# git clone https://github.com/fw876/helloworld package/passwall
+svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 # rm -rf package/build/luci-app-ssr-plus
 cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
@@ -187,6 +188,8 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
 # sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
 # sed -i '/V2ray:v2ray/d' Makefile
 # sed -i '/plugin:v2ray/d' Makefile
+
+sed -i 's,default n,default y,g' ./package/build/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -300,7 +303,7 @@ sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generat
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
-sed -i 's/h"), 50)/h"), 9)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
+sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
 ./scripts/feeds update -i
