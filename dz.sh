@@ -189,7 +189,7 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
 # sed -i '/V2ray:v2ray/d' Makefile
 # sed -i '/plugin:v2ray/d' Makefile
 
-sed -i 's,default n,default y,g' ./package/build/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
