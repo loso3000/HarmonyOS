@@ -99,8 +99,13 @@ echo '灰色歌曲'
 rm -rf ./package/lean/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
+
+#修正nat回流 
+cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 #修正连接数 
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
+# 最大连接数
+sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
@@ -236,10 +241,6 @@ sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makef
 # Lets  
 # mkdir ./package/base-files/files/usr/bin 
 # cp -f ./package/build/set/chinadnslist ./package/base-files/files/usr/bin/chinadnslist
-
-# 最大连接数
-# sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
-
 # find ./ -name *.orig | xargs rm -f
 # find ./ -name *.rej | xargs rm -f
 
