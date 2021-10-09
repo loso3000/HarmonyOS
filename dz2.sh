@@ -179,16 +179,24 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
+# git clone https://github.com/fw876/helloworld package/ssr
+# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
+# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 # rm -rf package/build/luci-app-ssr-plus
-cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+# cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+# pushd package/lean
+# wget -qO - https://github.com/fw876/helloworld/pull/513.patch | patch -p1
+# wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
+# popd
+# pushd package/lean/luci-app-ssr-plus
 sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-# sed -i 's,default n,default y,g' ./package/build/luci-app-ssrpro/Makefile
 # sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
 # sed -i '/V2ray:v2ray/d' Makefile
 # sed -i '/plugin:v2ray/d' Makefile
+
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
