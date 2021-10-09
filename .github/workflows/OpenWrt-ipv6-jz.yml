@@ -1,4 +1,4 @@
-name: OpenWrt-mini-dz2
+name: OpenWrt-ipv6-jz
 
 on:
   repository_dispatch:
