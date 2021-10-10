@@ -1,57 +1,36 @@
 #!/bin/bash
-#=================================================
-# Description: Build OpenWrt using GitHub Actions
-WORKDIR=/workdir
-HOSTNAME=CHUi_WiFi
-IPADDRESS=192.168.7.7
-SSID=chuqi
-ENCRYPTION=psk2+ccmp
-KEY=chuqiwifi
+#
+# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
+# https://github.com/P3TERX/Actions-OpenWrt
+# File name: diy-part1.sh
+# Description: OpenWrt DIY script part 1 (Before Update feeds)
+ 
 
-# 使用 O2 级别的优化
-# sed -i 's/O3/O2/g' include/target.mk
-git clone https://github.com/sirpdboy/build.git ./package/build
+# Uncomment a feed source
+#sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+
+# Add a feed source
+#sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 
 git clone https://github.com/kenzok8/openwrt-packages ./package/diy
 git clone https://github.com/kenzok8/small ./package/small
-# version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 
-rm -rf ./package/lean/luci-theme-argon
-rm -rf ./package/lean/luci-theme-opentomcat
-rm -rf ./package/lean/luci-app-wrtbwmon
-
-echo '替换smartdns'
-rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
-rm -rf ./package/lean/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./package/lean/luci-app-netdata
-rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
-cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3 && rm -rf ./package/build/mwan3
-
-rm -rf ./package/lean/automount
-rm -rf ./package/lean/autosamba
-# rm -rf ./package/lean/luci-app-accesscontrol
-# rm -rf ./package/lean/autocore
-# rm -rf ./package/lean/luci-app-ramfree
-rm -rf ./package/lean/luci-app-arpbind
-rm -rf ./package/lean/luci-app-docker
-rm -rf ./package/lean/luci-app-dockerman
-rm -rf ./package/lean/trojan
-rm -rf ./package/lean/default-settings
-
-rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
-rm -rf ./package/build/samba4
-rm -rf ./package/build/miniupnpd
-rm -rf ./package/build/samba36
-rm -rf ./package/build/mwan3
-rm -rf ./package/build/ksmbd-tools
-rm -rf ./package/lean/luci-app-samba4
-rm -rf ./package/build/autocore
-rm -rf ./package/build/pass
-
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/build/default-settings/files/zzz-default-settings
-
+sed -i 's,default n,default y,g' package/diy/luci-app-passwall/Makefile
+# 修正nat回流 
+cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 echo '添加关机'
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
+rm -rf ./package/lean/luci-theme-argon
+rm -rf ./package/lean/luci-theme-opentomcat
+
+rm -rf ./package/lean/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./package/lean/luci-app-netdata
+rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
+
 
 sed -i 's/网络存储/存储/g' ./package/lean/luci-app-vsftpd/po/zh-cn/vsftpd.po
 sed -i 's/Turbo ACC 网络加速/ACC网络加速/g' ./package/lean/luci-app-flowoffload/po/zh-cn/flowoffload.po
@@ -78,129 +57,9 @@ rm -rf ./package/lean/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
-# 修正nat回流 
-cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
-# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
-#修正连接数 
-# sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
-# 最大连接数
-sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
-
-# echo '默认开启 Irqbalance'
-# sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
-
-cat ./package/build/profile > package/base-files/files/etc/profile
-
-# rm -rf package/lean/luci-app-jd-dailybonus && \
-# git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/lean/luci-app-jd-dailybonus
-# 京东签到 By Jerrykuku
-
-# svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
-
-# git clone https://github.com/AlexZhuo/luci-app-bandwidthd /package/diy/luci-app-bandwidthd
-# git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
-# 花生壳内网穿透
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
-
-# Passwall
-# svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
-# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
-sed -i 's,default n,default y,g' package/diy/luci-app-passwall/Makefile
-
-# ' ShadowsocksR Plus+'
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-cp -f ./package/build/set/myip.htm ./package/diy/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/diy/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-sed -i 's,default n,default y,g' ./package/diy/luci-app-ssr-plus/Makefile
-
-# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
-# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-
-# VSSR
-# svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
-# git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
-# git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
-sed -i 's,default n,default y,g' ./package/diy/luci-app-vssr/Makefile
-
-# svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
-
-# sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
-# sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
-# 使用默认取消自动
-# sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
-# sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
-
-# R8168驱动
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8188eu package/new/rtl8188eu
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8189es package/new/rtl8189es
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8192du package/new/rtl8192du
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8812au-ct package/new/rtl8812au-ct
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8812au-ac package/new/rtl8812au-ac
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8821cu package/new/rtl8821cu
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu package/new/rtl88x2bu
-# Add driver for rtl8821cu & rtl8812au-ac
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8812au-ac ./package/ctcgfw
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8821cu ./package/ctcgfw
-# patch -p1 < ../PATCH/new/main/r8168-fix_LAN_led-for_r4s-from_TL.patch
-
-# Remove some default packages
-# sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
-# Mod zzz-default-settings
-# sed -i '/http/d' package/build/default-settings/files/zzz-default-settings
-# sed -i '/openwrt_luci/d' package/build/default-settings/files/zzz-default-settings
-
-# Fix SDK
-# sed -i '/$(SDK_BUILD_DIR)\/$(STAGING_SUBDIR_HOST)\/usr\/bin/d;/LICENSE/d' ./target/sdk/Makefile
-
-cp -f ./package/build/banner ./package/base-files/files/etc/
-# date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
-date1=' © '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-/g' include/image.mk
-echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
-echo ${date1}  >> ./package/base-files/files/etc/banner
-echo '---------------------------------' >> ./package/base-files/files/etc/banner
-# sed -i '/root:/d' ./package/base-files/files/etc/shadow
-# sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
-# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-# sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-# cp -f package/build/shortcut-fe ./package/base-files/files/etc/init.d
-
-# Modify default WiFi SSID
-# sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Modify default WiFi Encryption
-# sed -i "s/set wireless.default_radio\${devidx}.encryption=none/set wireless.default_radio\${devidx}.encryption='$ENCRYPTION'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Modify default WiFi Key
-# sed -i "/set wireless.default_radio\${devidx}.mode=ap/a\                        set wireless.default_radio\${devidx}.key='$KEY'" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Forced WiFi to enable
-# sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-
-#内核设置 甜糖
-# cat ./package/build/set/Config-kernel.in   > ./config/Config-kernel.in
-# echo  'CONFIG_BINFMT_MISC=y' >> ./package/target/linux/x86/config-5.10
-# sed -i '/CONFIG_NVME_MULTIPATH /d' ./package/target/linux/x86/config-5.4
-# sed -i '/CONFIG_NVME_TCP /d' ./package/target/linux/x86/config-5.4
-# echo  'CONFIG_EXTRA_FIRMWARE="i915/kbl_dmc_ver1_04.bin"'   >> ./package/target/linux/x86/config-5.10
-# echo  'CONFIG_EXTRA_FIRMWARE_DIR="/lib/firmware"'  >> ./package/target/linux/x86/config-5.10
-# echo  'CONFIG_NVME_FABRICS=y'  >> ./package/target/linux/x86/config-5.4
-# echo  'CONFIG_NVME_FC=y' >> ./package/target/linux/x86/config-5.4
-# echo  'CONFIG_NVME_MULTIPATH=y' >> ./package/target/linux/x86/config-5.4
-# echo  'CONFIG_NVME_TCP=y' >> ./package/target/linux/x86/config-5.4
-
-# find target/linux -path "target/linux/*/config-*" | xargs -i sed -i '$a CONFIG_ACPI=y\nCONFIG_X86_ACPI_CPUFREQ=y\n \
-# CONFIG_NR_CPUS=128\nCONFIG_FAT_DEFAULT_IOCHARSET="utf8"\nCONFIG_CRYPTO_CHACHA20_NEON=y\nCONFIG_CRYPTO_CHACHA20POLY1305=y\nCONFIG_BINFMT_MISC=y' {}
-# for X in $(ls -1 target/linux/x86 | grep "config-"); do echo -e "\n$(cat ./package/build/DRM-I915)" >> target/linux/x86/${X}; done
-# sed -i "/dns_caching_dns/d" $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
-# echo "	option dns_caching_dns '223.5.5.5,114.114.114.114'" >> $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/diy/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
-sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/diy/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
-./scripts/feeds update -i
