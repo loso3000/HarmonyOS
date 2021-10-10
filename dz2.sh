@@ -97,19 +97,16 @@ sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP用IPV6
 
-#修正nat回流 
-cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 #修正连接数 
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
+#修正nat回流 
+cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 # 最大连接数
 sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 echo '灰色歌曲'
 rm -rf ./package/lean/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
-
-# echo '默认开启 Irqbalance'
-# sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 cat ./package/build/profile > package/base-files/files/etc/profile
 # easymensh
@@ -194,7 +191,7 @@ echo ' ShadowsocksR Plus+'
 # wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
 # popd
 # pushd package/lean/luci-app-ssr-plus
-sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
+# sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
 # sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
 # sed -i '/V2ray:v2ray/d' Makefile
 # sed -i '/plugin:v2ray/d' Makefile
