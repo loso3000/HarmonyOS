@@ -38,8 +38,8 @@ CONFIG_PACKAGE_kmod-pcnet32=y
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-boostupnp=n
-# CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-wol=y
+# CONFIG_PACKAGE_luci-app-wolplus=n
 # 工具
 CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
 CONFIG_PACKAGE_fdisk=y #分区工具
@@ -51,12 +51,6 @@ CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_ddns-scripts_aliyun=y
 CONFIG_PACKAGE_ddns-scripts_ddns-scripts_dnspod=y
 CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
-CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
-CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
-CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
-CONFIG_PACKAGE_ddns-scripts_nsupdate=y
-CONFIG_PACKAGE_ddns-scripts_route53-v1=y
-
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba=y
@@ -97,19 +91,20 @@ CONFIG_PACKAGE_luci-app-access-control=n
 CONFIG_PACKAGE_luci-app-ttyd=y
 CONFIG_PACKAGE_luci-app-turboacc=y
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
-CONFIG_PACKAGE_luci-app-vssr=y
-CONFIG_PACKAGE_luci-app-wrtbwmon=y
-CONFIG_PACKAGE_luci-app-nlbwmon=y
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+CONFIG_PACKAGE_luci-app-vssr=n
+CONFIG_PACKAGE_luci-app-wrtbwmon=n
+# CONFIG_PACKAGE_luci-app-nlbwmon is not set
+CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
 CONFIG_PACKAGE_luci-app-bypass=n
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy=n
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y
-CONFIG_PACKAGE_luci-app-dnsfilter=y
-CONFIG_PACKAGE_luci-app-vsftpd=y
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=n
+CONFIG_PACKAGE_luci-app-dnsfilter=n
+# CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
-CONFIG_PACKAGE_luci-app-mentohust=y
+CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
+# CONFIG_PACKAGE_luci-app-vlmcsd is not set
 # 主题
 CONFIG_PACKAGE_luci-theme-atmaterial_new=y
 CONFIG_PACKAGE_luci-theme-argon=y
@@ -143,7 +138,7 @@ CONFIG_PACKAGE_luci-app-ipsec-server=n
 CONFIG_PACKAGE_luci-app-docker=n
 CONFIG_PACKAGE_luci-app-dockerman=n
 CONFIG_PACKAGE_luci-app-koolddns=n
-CONFIG_PACKAGE_luci-app-syncdial=y
+CONFIG_PACKAGE_luci-app-syncdial=n
 CONFIG_PACKAGE_luci-app-softethervpn=y
 CONFIG_PACKAGE_luci-app-uugamebooster=n
 CONFIG_DEFAULT_luci-app-cpufreq=n
