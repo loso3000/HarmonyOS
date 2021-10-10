@@ -10,7 +10,7 @@ KEY=OpWiFi
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
-
+git clone https://github.com/kenzok8/small ./package/small
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 
 rm -rf ./package/lean/luci-theme-argon
@@ -178,8 +178,8 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 
 # Passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
-git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
-# svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
+# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
