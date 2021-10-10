@@ -35,6 +35,7 @@ rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
+rm -rf ./package/lean/default-settings
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 rm -rf ./package/build/samba4
@@ -43,15 +44,11 @@ rm -rf ./package/build/samba36
 rm -rf ./package/build/mwan3
 rm -rf ./package/build/ksmbd-tools
 rm -rf ./package/lean/luci-app-samba4
-rm -rf ./package/build/default-settings
 rm -rf ./package/build/autocore
 rm -rf ./package/build/pass
 
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/build/default-settings/files/zzz-default-settings
 
-# 修正nat回流 
-cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
-curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
@@ -81,8 +78,11 @@ rm -rf ./package/lean/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
+# 修正nat回流 
+cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
+# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 #修正连接数 
-sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
+# sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 # 最大连接数
 sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 
@@ -91,43 +91,11 @@ sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 cat ./package/build/profile > package/base-files/files/etc/profile
 
-# Boost 通用即插即用
-# rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
-# 全能推送
-# rm -rf package/lean/luci-app-pushbot && \
-# git clone https://github.com/zzsj0928/luci-app-pushbot package/lean/luci-app-pushbot
 # rm -rf package/lean/luci-app-jd-dailybonus && \
 # git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/lean/luci-app-jd-dailybonus
 # 京东签到 By Jerrykuku
-# sed -i 's/wget-ssl/wget/g' package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/newapp.sh package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua
-# rm -rf ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
-# wget -P ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
-# rm -rf package/lean/luci-app-serverchan && \
-# git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/lean/luci-app-serverchan
-
-
-echo '替换aria2'
-rm -rf feeds/luci/applications/luci-app-aria2 && \
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/luci/applications/luci-app-aria2
-rm -rf feeds/packages/net/aria2 && \
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packages/net/aria2
-
 
 # svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
-# rm -rf package/luci-app-openclash/root/usr/share/openclash/yacd   #clash插件显示统计
-# wget https://github.com/haishanh/yacd/archive/gh-pages.zip
-# unzip gh-pages.zip
-# mv yacd-gh-pages package/luci-app-openclash/root/usr/share/openclash/yacd
-# rm -rf gh-pages.zip
-# mkdir -p files/etc/openclash/core
-# open_clash_main_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# offical_clash_main_url=$(curl -sL https://api.github.com/repos/Dreamacro/clash/releases/tags/v1.3.5 | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# clash_tun_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# wget -qO- $open_clash_main_url | tar xOvz > files/etc/openclash/core/clash
-# wget -qO- $clash_tun_url | gunzip -c > files/etc/openclash/core/clash_tun
-# wget -qO- $clash_game_url | tar xOvz > files/etc/openclash/core/clash_game
-# chmod +x files/etc/openclash/core/clash*
 
 # git clone https://github.com/AlexZhuo/luci-app-bandwidthd /package/diy/luci-app-bandwidthd
 # git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
@@ -148,9 +116,6 @@ sed -i 's,default n,default y,g' package/diy/luci-app-passwall/Makefile
 cp -f ./package/build/set/myip.htm ./package/diy/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/diy/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
 sed -i 's,default n,default y,g' ./package/diy/luci-app-ssr-plus/Makefile
-# sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
-# sed -i '/V2ray:v2ray/d' Makefile
-# sed -i '/plugin:v2ray/d' Makefile
 
 # sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 # sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
@@ -162,9 +127,8 @@ sed -i 's,default n,default y,g' ./package/diy/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' ./package/diy/luci-app-vssr/Makefile
 
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
-# sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile  #无效
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
+
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
@@ -179,31 +143,19 @@ sed -i 's,default n,default y,g' ./package/diy/luci-app-vssr/Makefile
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8812au-ac package/new/rtl8812au-ac
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8821cu package/new/rtl8821cu
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu package/new/rtl88x2bu
-
-# patch -p1 < ../PATCH/new/main/r8168-fix_LAN_led-for_r4s-from_TL.patch
-
 # Add driver for rtl8821cu & rtl8812au-ac
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8812au-ac ./package/ctcgfw
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8821cu ./package/ctcgfw
-
+# patch -p1 < ../PATCH/new/main/r8168-fix_LAN_led-for_r4s-from_TL.patch
 
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # Mod zzz-default-settings
-
 # sed -i '/http/d' package/build/default-settings/files/zzz-default-settings
 # sed -i '/openwrt_luci/d' package/build/default-settings/files/zzz-default-settings
 
 # Fix SDK
 # sed -i '/$(SDK_BUILD_DIR)\/$(STAGING_SUBDIR_HOST)\/usr\/bin/d;/LICENSE/d' ./target/sdk/Makefile
-
-# Disable opkg signature check
-# sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
-# Add execute permission for ipv6-helper
-# chmod +x /bin/ipv6-helper
-
-# echo '默认开启 Irqbalance'
-# sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
