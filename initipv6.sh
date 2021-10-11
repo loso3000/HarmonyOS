@@ -20,21 +20,19 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 # rm -rf ./package/build/mwan3 && curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 # rm -rf ./feeds/packages/net/mwan3 && svn co https://github.com/sirpdboy/build/trunk/mwan3 ./feeds/packages/net/mwan3
 # rm -rf ./feeds/packages/net/https-dns-proxy  && svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy ./feeds/packages/net/https-dns-proxy
-rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
+# rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
 rm -rf ./package/build/miniupnpd  
 # rm -rf ./feeds/packages/net/miniupnpd  && svn co https://github.com/sirpdboy/build/trunk/miniupnpd ./feeds/packages/net/miniupnpd
-#rm -rf ./package/diy/autocore
+
 rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./package/lean/luci-app-accesscontrol
 rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
-# rm -rf ./package/lean/luci-app-ramfree
 rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
-rm -rf ./package/build/shortcut-fe
 
 # rm -rf ./package/lean/ddns-scripts_aliyun
 # rm -rf ./package/lean/ddns-scripts_dnspod
@@ -43,8 +41,6 @@ rm -rf ./package/build/shortcut-fe
 sed -i '/45)./d' ./package/lean/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' ./package/lean/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' ./package/lean/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
-rm -rf ./package/build/luci-app-zerotier
-rm -rf ./package/build/zerotier
 # sed -i '/45)./d' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 # sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 # sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
@@ -67,15 +63,16 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/l
 rm -rf feeds/packages/net/aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packages/net/aria2
 
-echo 'amule'
-git clone https://github.com/MatteoRagni/AmuleWebUI-Reloaded files/usr/share/amule/webserver/AmuleWebUI-Reloaded
-sed -i 's/runasuser "$config_dir"/runasuser "$config_dir"\nwget -P "$config_dir" -O "$config_dir\/nodes.dat" http:\/\/upd.emule-security.org\/nodes.dat/g' package/lean/luci-app-amule/root/etc/init.d/amule
-sed -i "s/tb.innerHTML = '<em>/tb.innerHTML = '<em><b><font color=red>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
-sed -i "s/var links = '<em>/var links = '<em><b><font color=green>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
-rm -rf package/lean/antileech/src/* && \
-git clone https://github.com/persmule/amule-dlp.antiLeech package/lean/antileech/src
+# echo 'amule'
+# git clone https://github.com/MatteoRagni/AmuleWebUI-Reloaded files/usr/share/amule/webserver/AmuleWebUI-Reloaded
+# sed -i 's/runasuser "$config_dir"/runasuser "$config_dir"\nwget -P "$config_dir" -O "$config_dir\/nodes.dat" http:\/\/upd.emule-security.org\/nodes.dat/g' package/lean/luci-app-amule/root/etc/init.d/amule
+# sed -i "s/tb.innerHTML = '<em>/tb.innerHTML = '<em><b><font color=red>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
+# sed -i "s/var links = '<em>/var links = '<em><b><font color=green>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
+# rm -rf package/lean/antileech/src/* && \
+# git clone https://github.com/persmule/amule-dlp.antiLeech package/lean/antileech/src
 
 # Boost 通用即插即用
+# rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
 # sed -i 's,api.ipify.org,myip.ipip.net/s,g' ./package/build/luci-app-boostupnp/root/usr/sbin/boostupnp.sh
 # rm -rf ./feeds/packages/net/miniupnpd   && svn co https://github.com/openwrt/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 
@@ -114,10 +111,13 @@ sed -i 's/解除网易云音乐播放限制/解锁歌曲/g' ./package/diy/luci-a
 # sed -i 's/libupstream-openssl/libustream-openssl/g' ./package/diy/luci-app-unblockneteasemusic/Makefile
 
 #修正连接数 
-sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' ./package/base-files/files/etc/sysctl.conf
 #修正nat回流 
-cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
+cat ./package/build/set/sysctl.conf >>  ./package/base-files/files/etc/sysctl.conf
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
+
+# 最大连接数
+sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # sed -i "/dns_caching_dns/d" $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
 # echo "	option dns_caching_dns '223.5.5.5,114.114.114.114'" >> $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
@@ -128,7 +128,6 @@ cat ./package/build/profile > package/base-files/files/etc/profile
 # find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 # git clone https://github.com/garypang13/luci-app-dnsfilter.git package/luci-app-dnsfilter
 
-rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
 # 全能推送
 rm -rf package/lean/luci-app-pushbot && \
 git clone https://github.com/zzsj0928/luci-app-pushbot package/lean/luci-app-pushbot
@@ -199,6 +198,7 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 
+sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
@@ -236,9 +236,6 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 # mkdir ./package/base-files/files/usr/bin 
 # cp -f ./package/build/set/chinadnslist ./package/base-files/files/usr/bin/chinadnslist
 
-# 最大连接数
-# sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
-
 # find ./ -name *.orig | xargs rm -f
 # find ./ -name *.rej | xargs rm -f
 
@@ -253,3 +250,4 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 sed -i 's/h"), 50)/h"), 2)/g' ./package/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),9)/g' ./package/lean/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
+./scripts/feeds update -i
