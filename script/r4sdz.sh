@@ -97,4 +97,5 @@ sed -i 's/),9)/),12)/g' ./package/diy/luci-app-dnsfilter/luasrc/controller/dnsfi
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8812au-ac package/new/rtl8812au-ac
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8821cu package/new/rtl8821cu
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu package/new/rtl88x2bu
+# git clone  https://github.com/cyangy/openwrt-mt7612u  package/new/openwrt-mt7612u
 ./scripts/feeds update -i
