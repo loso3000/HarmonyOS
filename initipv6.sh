@@ -5,12 +5,11 @@
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
 
-git clone https://github.com/kenzok8/small ./package/small
+# git clone https://github.com/kenzok8/small ./package/small
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
-
 rm -rf ./package/lean/luci-app-wrtbwmon
 
 echo '替换smartdns'
@@ -173,26 +172,19 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 
 # Passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
-# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+# svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-rm -rf package/build/pass/luci-app-ssr-plus
-cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-# pushd package/lean
-# wget -qO - https://github.com/fw876/helloworld/pull/513.patch | patch -p1
-# wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
-# popd
-# pushd package/lean/luci-app-ssr-plus
-sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
-# sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
-# sed -i '/V2ray:v2ray/d' Makefile
-# sed -i '/plugin:v2ray/d' Makefile
+git clone https://github.com/fw876/helloworld package/ssr
+# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
+rm -rf package/ssr/luci-app-ssr-plus
+# rm -rf package/build/pass/luci-app-ssr-plus
+# cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
 
+# sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
@@ -206,6 +198,7 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
+
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
@@ -253,27 +246,10 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # Mod zzz-default-settings
 
-#sed -i '/http/d' package/build/default-settings/files/zzz-default-settings
-#sed -i '/openwrt_luci/d' package/build/default-settings/files/zzz-default-settings
-
 # Fix SDK
 # sed -i '/$(SDK_BUILD_DIR)\/$(STAGING_SUBDIR_HOST)\/usr\/bin/d;/LICENSE/d' ./target/sdk/Makefile
 
-# Disable opkg signature check
-# sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
-# Add execute permission for ipv6-helper
-#chmod +x /bin/ipv6-helper
-
-sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
+# sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/h"), 50)/h"), 2)/g' ./package/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
-sed -i 's/),9)/),12)/g' ./package/lean/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
-PKG_Finder() {
-	local Result
-	[[ $# -ne 3 ]] && {
-		TIME "Usage: PKG_Finder <f | d> Search_Path Target_Name/Target_Path"
-		return 0
-	}
-	Result=$(find $2 -name $3 -type $1 -exec echo {} \;)
-	[[ -n ${Result} ]] && echo "${Result}"
-}
+sed -i 's/),9)/),9)/g' ./package/lean/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
