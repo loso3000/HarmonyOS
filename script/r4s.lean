@@ -4,6 +4,9 @@ CONFIG_TARGET_ROOTFS_PARTSIZE=1516
 CONFIG_TARGET_rockchip=y
 CONFIG_TARGET_rockchip_armv8=y
 CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
+CONFIG_TARGET_OPTIMIZATION="-O3 -pipe -march=armv8-a+crypto+crc -mcpu=cortex-a72.cortex-a53+crypto+crc -mtune=cortex-a72.cortex-a53"
+
+CONFIG_DOCKER_OPTIONAL_FEATURES=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 # ipv6
@@ -96,6 +99,7 @@ CONFIG_PACKAGE_luci-app-switch-lan-play=n
 CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set
+CONFIG_PACKAGE_luci-app-oled=y
 # 主题
 CONFIG_PACKAGE_luci-theme-atmaterial_new=y
 CONFIG_PACKAGE_luci-theme-argon=y
@@ -376,3 +380,19 @@ CONFIG_PACKAGE_kmod-usbip-server=y
 CONFIG_PACKAGE_kmod-usbmon=y
 # add drive
 CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
+
+CONFIG_PACKAGE_kmod-drm-rockchip=y
+CONFIG_PACKAGE_kmod-gpu-lima=y
+CONFIG_PACKAGE_kmod-ath9k-htc=y
+CONFIG_PACKAGE_kmod-mt76x0u=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+CONFIG_PACKAGE_kmod-rtl8821cu=y
+CONFIG_PACKAGE_kmod-rtl8812au-ac=y
+CONFIG_PACKAGE_kmod-rtl88x2bu=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_wpad-wolfssl=y
+CONFIG_DRIVER_11AC_SUPPORT=y
+CONFIG_DRIVER_11N_SUPPORT=y
+CONFIG_DRIVER_11W_SUPPORT=y
