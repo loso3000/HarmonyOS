@@ -212,15 +212,6 @@ sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makef
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8812au-ac ./package/ctcgfw
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8821cu ./package/ctcgfw
 
-# git clone https://github.com/openwrt-dev/po2lmo.git
-# cd po2lmo
-# make && sudo make install
-
-# 在 X86 架构下移除 Shadowsocks-rust
-# sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
-# sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-# sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-
 ### 最后的收尾工作 ###
 # Lets  
 # mkdir ./package/base-files/files/usr/bin 
