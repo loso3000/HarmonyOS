@@ -158,6 +158,7 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 # mv yacd-gh-pages package/luci-app-openclash/root/usr/share/openclash/yacd
 # rm -rf gh-pages.zip
 
+
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dnsfilter
 # svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 # mkdir -p files/etc/openclash/core
@@ -178,6 +179,9 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
 # svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
+
+
+svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt ./package/diy/aliyundrive-webdav
 
 # Passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
