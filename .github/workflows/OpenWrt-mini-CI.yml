@@ -81,7 +81,7 @@ jobs:
       - name: Compile firmware
         working-directory: ./openwrt
         run: |
-          make -j$(nproc) || make -j1 V=s
+          make -j$(nproc) || make -j1 || make -j1 V=s
           echo "======================="
           echo "Space usage:"
           echo "======================="
@@ -98,9 +98,9 @@ jobs:
           find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
           gzip *.img
-          
-          echo "Sirpdboy-IPV6-mini-${{ env.DATA}} \n" > ver.md5.txt
-          md5sum *combined*img* >> ver.md5.txt
+          echo -e "Sirpdboy-IPV6-mini-${{ env.DATA}} \n" > VerMd5.txt
+          md5sum *combined.img* >> VerMd5.txt
+          md5sum *combined-efi.img* >> VerMd5.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
