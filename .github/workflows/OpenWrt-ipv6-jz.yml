@@ -17,8 +17,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: dz2.config
-  DIY_P1_SH: dz2.sh
+  CONFIG_FILE: script/jz.config
+  DIY_P1_SH: script/jz.sh
 
 jobs:
 
@@ -94,8 +94,9 @@ jobs:
           find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./jz/firmware
           cd ./jz/firmware
           gzip *.img
-          echo "${{ env.DATA}} \n" > version.txt
-          md5sum *combined*img* >> version.txt
+          echo -e "Sirpdboy-IPV6-mini-${{ env.DATA}} \n" > VerMd5.txt
+          md5sum *combined.img* >> VerMd5.txt
+          md5sum *combined-efi.img* >> VerMd5.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
