@@ -94,7 +94,7 @@ jobs:
           find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./jz/firmware
           cd ./jz/firmware
           gzip *.img
-          echo -e "Sirpdboy-IPV6-mini-${{ env.DATA}} \n" > VerMd5.txt
+          echo -ne "\n  版本日期和MD5信息:Sirpdboy-IPV6-ZJ-${{ env.DATA}} " | tee -a VerMd5.txt
           md5sum *combined.img* >> VerMd5.txt
           md5sum *combined-efi.img* >> VerMd5.txt
       - name: Upload Firmware
