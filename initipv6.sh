@@ -111,22 +111,22 @@ sed -i 's/解除网易云音乐播放限制/解锁歌曲/g' ./package/diy/luci-a
 # sed -i 's/libupstream-openssl/libustream-openssl/g' ./package/diy/luci-app-unblockneteasemusic/Makefile
 
 #修正连接数 
-sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' ./package/base-files/files/etc/sysctl.conf
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' ./package/base-files/files/etc/sysctl.conf
 #修正nat回流 
 cat ./package/build/set/sysctl.conf >>  ./package/base-files/files/etc/sysctl.conf
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 
 # 最大连接数
-sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
+# sed -i 's/16384/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 echo "防掉线"
-INTERFACE='$INTERFACE'
-INTERFACE...='$INTERFACE...'
-LOG='$LOG'
-sed -i "88a\		ifdown $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
-sed -i "89a\		sleep 3" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
-sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
-sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# INTERFACE='$INTERFACE'
+# INTERFACE...='$INTERFACE...'
+# LOG='$LOG'
+# sed -i "88a\		ifdown $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# sed -i "89a\		sleep 3" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 
 
 #echo "其他修改"
@@ -180,7 +180,6 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
-
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt ./package/diy/aliyundrive-webdav
 
 # Passwall
@@ -230,22 +229,10 @@ sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makef
  # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8821cu package/new/rtl8821cu
 #  svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu package/new/rtl88x2bu
 
-# patch -p1 < ../PATCH/new/main/r8168-fix_LAN_led-for_r4s-from_TL.patch
-
-
-# git clone https://github.com/openwrt-dev/po2lmo.git
-# cd po2lmo
-# make && sudo make install
-
 # 在 X86 架构下移除 Shadowsocks-rust
 # sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
 # sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 # sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-
-### 最后的收尾工作 ###
-# Lets  
-# mkdir ./package/base-files/files/usr/bin 
-# cp -f ./package/build/set/chinadnslist ./package/base-files/files/usr/bin/chinadnslist
 
 # find ./ -name *.orig | xargs rm -f
 # find ./ -name *.rej | xargs rm -f
@@ -253,9 +240,6 @@ sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makef
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # Mod zzz-default-settings
-
-# Fix SDK
-# sed -i '/$(SDK_BUILD_DIR)\/$(STAGING_SUBDIR_HOST)\/usr\/bin/d;/LICENSE/d' ./target/sdk/Makefile
 
 # sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/h"), 50)/h"), 2)/g' ./package/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
