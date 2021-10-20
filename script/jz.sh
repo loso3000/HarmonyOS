@@ -94,13 +94,15 @@ sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP用IPV6
 
-#修正连接数 
-sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 #修正nat回流 
 cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
-# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
+#修正连接数 
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 # 最大连接数
-sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
+sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
+# ipv6
+sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
+sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 
 #echo "其他修改"
 sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
