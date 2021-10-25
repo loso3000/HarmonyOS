@@ -19,7 +19,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/jdyr619ac.lean
-  DIY_P1_SH: dz2.sh
+  DIY_P1_SH: ipv4.sh
   DIY_P2_SH: update_package_all.sh
 jobs:
 
@@ -98,12 +98,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-IPV6-jdyr619ac-Firmware
+          name: OpenWrt-IPV4-jdyr619ac-Firmware
           path: ./openwrt/bin/targets/
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-IPV6-jdyr619ac-Ipk
+          name: OpenWrt-IPV4-jdyr619ac-Ipk
           path: ./openwrt/bin/packages
       - name: Prepare Artifact
         run: |
