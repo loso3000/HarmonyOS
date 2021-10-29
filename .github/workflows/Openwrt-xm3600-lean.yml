@@ -1,4 +1,4 @@
-name: Openwrt-xm7628a-lean
+name: Openwrt-xm3600-lean
 
 
 on:
@@ -18,7 +18,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: xm7628amiwifi.lean
+  CONFIG_FILE: xmax3600lean
   DIY_P1_SH: dz2.sh
   DIY_P2_SH: update_package_all.sh
 jobs:
