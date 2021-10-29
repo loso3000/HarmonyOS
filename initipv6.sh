@@ -158,10 +158,6 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 # unzip gh-pages.zip
 # mv yacd-gh-pages package/luci-app-openclash/root/usr/share/openclash/yacd
 # rm -rf gh-pages.zip
-
-
-git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dnsfilter
-# svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 # mkdir -p files/etc/openclash/core
 # open_clash_main_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
 # offical_clash_main_url=$(curl -sL https://api.github.com/repos/Dreamacro/clash/releases/tags/v1.3.5 | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
@@ -171,6 +167,10 @@ git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dn
 # wget -qO- $clash_tun_url | gunzip -c > files/etc/openclash/core/clash_tun
 # wget -qO- $clash_game_url | tar xOvz > files/etc/openclash/core/clash_game
 # chmod +x files/etc/openclash/core/clash*
+
+git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dnsfilter
+# svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
+
 # git clone https://github.com/tuanqing/install-program package/install-program
 # git clone https://github.com/AlexZhuo/luci-app-bandwidthd /package/diy/luci-app-bandwidthd
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
@@ -191,15 +191,18 @@ sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 git clone https://github.com/fw876/helloworld package/ssr
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-rm -rf package/ssr/luci-app-ssr-plus
-# rm -rf package/build/pass/luci-app-ssr-plus
+# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/ssr/luci-app-ssr-plus
+sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+rm -rf package/build/pass/luci-app-ssr-plus
 # cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 # sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
 
-# sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+rm -rf package/build/pass/luci-app-bypass
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+
+git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
+sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -213,6 +216,14 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 
 sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
+
+rm -rf ./package/diy/luci-theme-edge
+rm -rf ./package/build/luci-theme-darkmatter
+svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
+git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
+git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
+
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
@@ -242,7 +253,7 @@ sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makef
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # Mod zzz-default-settings
 
-# sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
+sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/h"), 50)/h"), 2)/g' ./package/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),9)/g' ./package/lean/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
