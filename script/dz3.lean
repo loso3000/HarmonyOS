@@ -23,43 +23,14 @@ CONFIG_PACKAGE_kmod-sdhci=y
 CONFIG_PACKAGE_block-mount=y
 CONFIG_PACKAGE_librt=y
 # x86
-CONFIG_PACKAGE_kmod-usb-hid=y
-CONFIG_PACKAGE_qemu-ga=y
 CONFIG_PACKAGE_lm-sensors-detect=y
-CONFIG_PACKAGE_kmod-bonding=y
-CONFIG_PACKAGE_kmod-mmc-spi=y
-CONFIG_PACKAGE_ppp-mod-pptp=y 
 CONFIG_PACKAGE_kmod-vmxnet3=y
-CONFIG_PACKAGE_kmod-igbvf=y
-CONFIG_PACKAGE_kmod-ixgbe=y
-CONFIG_PACKAGE_kmod-pcnet32=y
 CONFIG_PACKAGE_kmod-r8125=y
 CONFIG_PACKAGE_kmod-r8168=y
-CONFIG_PACKAGE_kmod-8139cp=y
-CONFIG_PACKAGE_kmod-8139too=y
-CONFIG_PACKAGE_kmod-rtl8xxxu=y
-CONFIG_PACKAGE_kmod-i40e=y
-CONFIG_PACKAGE_kmod-i40evf=y
-CONFIG_PACKAGE_kmod-ath5k=y
-CONFIG_PACKAGE_kmod-ath9k=y
-CONFIG_PACKAGE_kmod-ath9k-htc=y
-CONFIG_PACKAGE_kmod-ath10k=y
-CONFIG_PACKAGE_kmod-rt2800-usb=y
-CONFIG_PACKAGE_kmod-mlx4-core=y
-CONFIG_PACKAGE_kmod-mlx5-core=y
-CONFIG_PACKAGE_kmod-alx=y
 CONFIG_PACKAGE_kmod-tulip=y
 CONFIG_PACKAGE_kmod-tg3=y
 CONFIG_PACKAGE_kmod-fs-antfs=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
-CONFIG_PACKAGE_ath10k-firmware-qca9888=y
-CONFIG_PACKAGE_ath10k-firmware-qca988x=y
-CONFIG_PACKAGE_ath10k-firmware-qca9984=y
-CONFIG_PACKAGE_brcmfmac-firmware-43602a1-pcie=y
-CONFIG_PACKAGE_kmod-ac97=y
-CONFIG_PACKAGE_kmod-sound-via82xx=y
-# CONFIG_PACKAGE_alsa-utils=y
-# CONFIG_PACKAGE_kmod-iwlwifi=y
 # 工具
 CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_smartmontools=y
@@ -90,12 +61,6 @@ CONFIG_PACKAGE_kmod-mt76x2u=y
 CONFIG_PACKAGE_kmod-usb-net-asix=y
 CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
-CONFIG_PACKAGE_kmod-usb-net-rndis=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
-CONFIG_PACKAGE_kmod-usb-net-ipheth=y
-# cifsmount
-CONFIG_PACKAGE_kmod-nls-utf8=y
-CONFIG_PACKAGE_kmod-crypto-misc=y
 # add upnp
 # CONFIG_PACKAGE_irqbalance is not set
 # CONFIG_PACKAGE_luci-app-upnp is not set
