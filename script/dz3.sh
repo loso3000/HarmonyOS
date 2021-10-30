@@ -102,9 +102,28 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 #修正nat回流 
 cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 #修正连接数 
-sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
+sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 # 最大连接数
-sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
+sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
+# ipv6
+sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
+sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
+
+echo "防掉线"
+# INTERFACE='$INTERFACE'
+# INTERFACE...='$INTERFACE...'
+# LOG='$LOG'
+# sed -i "88a\		ifdown $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# sed -i "89a\		sleep 3" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+
+#echo "其他修改"
+sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
+#sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
+#sed -i 's@interval: 5@interval: 1@g' package/lean/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon.js #wrtbwmon默认刷新时间更改为1秒
+
+
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
@@ -124,7 +143,6 @@ git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/lean/luci-
 rm -rf package/lean/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/lean/luci-app-serverchan
 
-# git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
 echo '替换aria2'
@@ -132,6 +150,14 @@ rm -rf feeds/luci/applications/luci-app-aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/luci/applications/luci-app-aria2
 rm -rf feeds/packages/net/aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packages/net/aria2
+
+# echo 'amule'
+# git clone https://github.com/MatteoRagni/AmuleWebUI-Reloaded files/usr/share/amule/webserver/AmuleWebUI-Reloaded
+# sed -i 's/runasuser "$config_dir"/runasuser "$config_dir"\nwget -P "$config_dir" -O "$config_dir\/nodes.dat" http:\/\/upd.emule-security.org\/nodes.dat/g' package/lean/luci-app-amule/root/etc/init.d/amule
+# sed -i "s/tb.innerHTML = '<em>/tb.innerHTML = '<em><b><font color=red>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
+# sed -i "s/var links = '<em>/var links = '<em><b><font color=green>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
+# rm -rf package/lean/antileech/src/* && \
+# git clone https://github.com/persmule/amule-dlp.antiLeech package/lean/antileech/src
 
 # svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 
@@ -170,12 +196,20 @@ sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 # rm -rf package/build/luci-app-ssr-plus
-# cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+# pushd package/lean
+# wget -qO - https://github.com/fw876/helloworld/pull/513.patch | patch -p1
+# wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
+# popd
+# pushd package/lean/luci-app-ssr-plus
+sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
+# sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
+# sed -i '/V2ray:v2ray/d' Makefile
+# sed -i '/plugin:v2ray/d' Makefile
 
-# sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
+# git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
@@ -188,13 +222,25 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile  #无效
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
-
+sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
+echo "修改默认主题"
+sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
+# sed -i "s/bootstrap/opentopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
+# sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
+
+rm -rf ./package/diy/luci-theme-edge
+rm -rf ./package/build/luci-theme-darkmatter
+ 
+
+svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
+git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
+git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 
 # R8168驱动
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8188eu package/new/rtl8188eu
@@ -205,11 +251,14 @@ svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8821cu package/new/rtl8821cu
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu package/new/rtl88x2bu
 
-# patch -p1 < ../PATCH/new/main/r8168-fix_LAN_led-for_r4s-from_TL.patch
+# git clone https://github.com/openwrt-dev/po2lmo.git
+# cd po2lmo
+# make && sudo make install
 
-# Add driver for rtl8821cu & rtl8812au-ac
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8812au-ac ./package/ctcgfw
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8821cu ./package/ctcgfw
+# 在 X86 架构下移除 Shadowsocks-rust
+# sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
+# sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
+# sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
 
 ### 最后的收尾工作 ###
 # Lets  
@@ -247,8 +296,8 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 # sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 # sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
+
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-# cp -f package/build/shortcut-fe ./package/base-files/files/etc/init.d
 
 # Modify default WiFi SSID
 # sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
