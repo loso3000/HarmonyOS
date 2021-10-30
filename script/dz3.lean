@@ -14,8 +14,8 @@ CONFIG_EFI_IMAGES=y
 # Wireless
 # CONFIG_PACKAGE_wpad-basic-wolfssl is not set
 # ipv6
-# CONFIG_PACKAGE_ipv6helper=y
-# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+CONFIG_PACKAGE_ipv6helper=y
+CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # 添加SD卡支持
 CONFIG_PACKAGE_kmod-mmc=y
 CONFIG_PACKAGE_kmod-sdhci=y
