@@ -101,8 +101,8 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 # 最大连接数
 sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # ipv6
-sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
-sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
+# sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
+# sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 
 #echo "其他修改"
 sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
@@ -163,17 +163,17 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-git clone https://github.com/fw876/helloworld package/ssr
-sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
+# git clone https://github.com/fw876/helloworld package/ssr
+# sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 
 # cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 # sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-rm -rf package/build/luci-app-ssr-plus
-# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+# rm -rf package/build/luci-app-ssr-plus
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 
-# rm -rf package/build/pass/luci-app-bypass
+rm -rf package/build/pass/luci-app-bypass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 # git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
