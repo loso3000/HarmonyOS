@@ -117,17 +117,17 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 # 最大连接数
 sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # ipv6
-sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
-sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
+# sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
+# sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 
 echo "防掉线"
-# INTERFACE='$INTERFACE'
-# INTERFACE...='$INTERFACE...'
-# LOG='$LOG'
-# sed -i "88a\		ifdown $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
-# sed -i "89a\		sleep 3" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
-# sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
-# sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+INTERFACE='$INTERFACE'
+INTERFACE...='$INTERFACE...'
+LOG='$LOG'
+sed -i "88a\		ifdown $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+sed -i "89a\		sleep 3" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 
 
 #echo "其他修改"
