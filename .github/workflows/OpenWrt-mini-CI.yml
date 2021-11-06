@@ -99,8 +99,8 @@ jobs:
           find ./openwrt/bin/targets/ "*combined-efi.img" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
           gzip *.img
-          echo -e "Sirpdboy-IPV6-mini-${{ env.DATA}} 编译通用版（不区分引导方式）\n" > 版本日期和MD5信息.txt
-          echo -e " \n" >> 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-IPV6-mini-${{ env.DATA}} 精简版--【通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "MD5值: \n" >> 版本日期和MD5信息.txt
           md5sum *combined-efi.img* >> 版本日期和MD5信息.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
