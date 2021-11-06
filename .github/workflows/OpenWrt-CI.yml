@@ -95,13 +95,15 @@ jobs:
           mkdir -p ./firmware
           mkdir -p ./package
           cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./package
-          find ./openwrt/bin/targets/ -name "*combined.img" | xargs -i mv -f {} ./firmware
+          # find ./openwrt/bin/targets/ -name "*combined.img" | xargs -i mv -f {} ./firmware
           cd ./firmware
-          gzip *.img
+          # gzip *.img
           find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*combined-efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
           gzip *.img
-          echo -e "Sirpdboy-IPV6-mini-${{ env.DATA}} \n" > VerMd5.txt
-          md5sum *combined.img* >> VerMd5.txt
+          echo -e "Sirpdboy-IPV6-${{ env.DATA}} \n" > VerMd5.txt
+          echo -e " \n" >> VerMd5.txt
+          # md5sum *combined.img* >> VerMd5.txt
+          echo -e " \n" >> VerMd5.txt
           md5sum *combined-efi.img* >> VerMd5.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
