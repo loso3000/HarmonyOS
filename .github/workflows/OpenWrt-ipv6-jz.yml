@@ -55,7 +55,7 @@ jobs:
           #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-          echo "DATA=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "DATA=$(date +'%Y-%m-%d'-d +"12"hour) \n" >> $GITHUB_ENV
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -91,12 +91,13 @@ jobs:
           mkdir -p ./jz/firmware
           mkdir -p ./jz/package
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./jz/package
-          find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./jz/firmware
+          #find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./jz/firmware
+          find ./openwrt/bin/targets/ -name "*combined-efi.img" | xargs -i mv -f {} ./jz/firmware
           cd ./jz/firmware
           gzip *.img
-          echo -ne "\n  版本日期和MD5信息:Sirpdboy-IPV6-ZJ-${{ env.DATA}} " | tee -a VerMd5.txt
-          md5sum *combined.img* >> VerMd5.txt
-          md5sum *combined-efi.img* >> VerMd5.txt
+          echo -ne "\n  版本日期和MD5信息:Sirpdboy-IPV6-ZJ-${{ env.DATA}} " 极致通用版-- （不区分引导方式）\n" > 版本日期和MD5信息.txt
+          echo -e "MD5信息： \n" >> 版本日期和MD5信息.txt
+          md5sum *combined-efi.img* >> 版本日期和MD5信息.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
