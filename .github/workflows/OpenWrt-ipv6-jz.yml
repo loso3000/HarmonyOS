@@ -95,8 +95,9 @@ jobs:
           cd ./jz/firmware
           gzip *.img
           echo -e "Sirpdboy-IPV6-ZJ-${{ env.DATA}}极致通用版--【通用不区分引导方式】\n" > 版本日期和MD5信息.txt
-          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt18.06/ \n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt18.06/ \n" >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *combined-efi.img* >> 版本日期和MD5信息.txt
 
       - name: Upload Firmware
         uses: actions/upload-artifact@main
