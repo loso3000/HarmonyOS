@@ -149,6 +149,8 @@ CONFIG_FRR_INTERNAL=y
 #
 # Packages
 #
+CONFIG_PACKAGE_socat=y
+CONFIG_SOCAT_SSL=y
 CONFIG_PACKAGE_frr-babeld=y
 CONFIG_PACKAGE_frr-bfdd=y
 CONFIG_PACKAGE_frr-bgpd=y
