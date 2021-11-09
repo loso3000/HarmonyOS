@@ -173,7 +173,7 @@ echo ' ShadowsocksR Plus+'
 # rm -rf package/build/luci-app-ssr-plus
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 
-rm -rf package/build/pass/luci-app-bypass
+# rm -rf package/build/pass/luci-app-bypass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 # git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
