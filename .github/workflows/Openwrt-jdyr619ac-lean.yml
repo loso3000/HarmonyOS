@@ -19,7 +19,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/jdyr619ac.lean
-  DIY_P1_SH: ds.sh
+  DIY_P1_SH: dz.sh
 jobs:
 
   build_openwrt:
