@@ -42,6 +42,7 @@ rm -rf package/lean/luci-app-v2ray-server
 rm -rf package/lean/luci-app-guest-wifi
 rm -rf ./package/lean/trojan
 rm -rf ./package/build/shortcut-fe
+rm -rf ./feeds/packages/net/socat 
 
 # rm -rf ./package/lean/ddns-scripts_aliyun
 # rm -rf ./package/lean/ddns-scripts_dnspod
