@@ -118,7 +118,7 @@ cat ./package/build/profile > package/base-files/files/etc/profile
 # git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dnsfilter
 
-rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
+# rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
 # 全能推送
 rm -rf package/lean/luci-app-pushbot && \
 git clone https://github.com/zzsj0928/luci-app-pushbot package/lean/luci-app-pushbot
