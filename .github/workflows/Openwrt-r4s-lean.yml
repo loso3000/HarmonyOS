@@ -20,8 +20,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: r4s.lean
-  DIY_P1_SH: initipv6.sh
-  DIY_P2_SH: update_package_all.sh
+  DIY_P1_SH: script/jz.sh
 jobs:
 
   build_openwrt:
@@ -70,10 +69,8 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
-         chmod +x ./$DIY_P2_SH
          cd openwrt
          ../$DIY_P1_SH
-         ../$DIY_P2_SH
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
