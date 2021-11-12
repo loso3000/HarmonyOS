@@ -106,7 +106,7 @@ jobs:
           find ./openwrt/bin/targets/ -name "*sysupgrade*" | xargs -i mv -f {} ./xmax6/
           cd ./xmax6
           # rename -v "s/friendlyarm_//" *
-          gzip *.bin
+          # gzip *.bin
       - name: Upload firmware to cowtransfer
         run: |
          curl -fsSL git.io/file-transfer | sh
