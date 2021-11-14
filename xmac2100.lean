@@ -29,8 +29,6 @@ CONFIG_PACKAGE_kmod-usb3=y
 CONFIG_PACKAGE_kmod-usb-audio=y
 CONFIG_PACKAGE_kmod-usb-printer=y
 # 工具
-# CONFIG_PACKAGE_iperf3=n
-# CONFIG_PACKAGE_python3=n
 CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_tcpdump=y
@@ -92,7 +90,7 @@ CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_luci-app-smartdns=n
 CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus is not set
+CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client is not set
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server is not set
 CONFIG_PACKAGE_luci-app-ssrpro=n
@@ -108,9 +106,9 @@ CONFIG_PACKAGE_luci-app-mac=n
 CONFIG_PACKAGE_luci-app-vssr=y
 # CONFIG_PACKAGE_luci-app-wrtbwmon is not set
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+CONFIG_PACKAGE_luci-app-netspeedtest=n
 # CONFIG_PACKAGE_luci-app-dnsto is not set
-CONFIG_PACKAGE_luci-app-bypass=y
+CONFIG_PACKAGE_luci-app-bypass=n
 CONFIG_PACKAGE_luci-app-dnsfilter=y
 # CONFIG_PACKAGE_luci-app-kodexplorer is not set
 # CONFIG_PACKAGE_luci-app-uhttpd is not set
@@ -142,7 +140,7 @@ CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_UnblockNeteaseMusic_Go=y
 CONFIG_UnblockNeteaseMusic_NodeJS=y
-CONFIG_PACKAGE_luci-app-mwan3=y
+CONFIG_PACKAGE_luci-app-mwan3=n
 # CONFIG_PACKAGE_luci-app-minidlna is not set
 # CONFIG_PACKAGE_luci-app-rclone is not set
 # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils is not set
@@ -156,15 +154,15 @@ CONFIG_PACKAGE_luci-app-mwan3=y
 # CONFIG_PACKAGE_luci-app-docker is not set
 # CONFIG_PACKAGE_luci-app-dockerman is not set
 # CONFIG_PACKAGE_luci-app-koolddns is not set
-CONFIG_PACKAGE_luci-app-syncdial=y
+CONFIG_PACKAGE_luci-app-syncdial=n
 # CONFIG_PACKAGE_luci-app-softethervpn is not set
 # CONFIG_PACKAGE_luci-app-uugamebooster is not set
 # CONFIG_DEFAULT_luci-app-cpufreq is not set
 # CONFIG_PACKAGE_luci-app-udpxy is not set
-CONFIG_PACKAGE_luci-app-socat=y
-CONFIG_PACKAGE_luci-app-oaf=y
+CONFIG_PACKAGE_luci-app-socat=n
+CONFIG_PACKAGE_luci-app-oaf=n
 # CONFIG_PACKAGE_luci-app-transmission is not set
-CONFIG_PACKAGE_luci-app-usb-printer=y
+CONFIG_PACKAGE_luci-app-usb-printer=n
 # CONFIG_PACKAGE_luci-app-mwan3helper is not set
 # CONFIG_PACKAGE_luci-app-qbittorrent is not set
 # CONFIG_PACKAGE_luci-app-familycloud is not set
