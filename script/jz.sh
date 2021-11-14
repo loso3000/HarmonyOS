@@ -163,21 +163,21 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-# sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
+git clone https://github.com/fw876/helloworld package/ssr
+sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 
-# cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-# rm -rf package/build/luci-app-ssr-plus
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+rm -rf package/build/pass
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 
 # rm -rf package/build/pass/luci-app-bypass
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
-# git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
-# sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
+git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
+sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -206,7 +206,7 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/l
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
+# sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 # sed -i "s/bootstrap/opentopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
