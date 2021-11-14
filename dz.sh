@@ -145,7 +145,6 @@ git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/lean/luci-
 rm -rf package/lean/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/lean/luci-app-serverchan
 
-# git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
 echo '替换aria2'
@@ -197,23 +196,18 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
+git clone https://github.com/fw876/helloworld package/ssr
+sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-# rm -rf package/build/luci-app-ssr-plus
-cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-# pushd package/lean
-# wget -qO - https://github.com/fw876/helloworld/pull/513.patch | patch -p1
-# wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
-# popd
-# pushd package/lean/luci-app-ssr-plus
-sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
-# sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
-# sed -i '/V2ray:v2ray/d' Makefile
-# sed -i '/plugin:v2ray/d' Makefile
 
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+#sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+
+rm -rf package/build/pass
+git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
