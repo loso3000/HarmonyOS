@@ -19,7 +19,7 @@ CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_fdisk=y
 CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
+# CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 # add upnp
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -33,11 +33,11 @@ CONFIG_PACKAGE_ddns-scripts_ddns-scripts_dnspod=y
 # CONFIG_PACKAGE_ddns-scripts_ddns-scripts-aliyun=y
 # CONFIG_PACKAGE_ddns-scripts_ddns-scripts-dnspod=y
 CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
-CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
-CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
-CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
-CONFIG_PACKAGE_ddns-scripts_nsupdate=y
-CONFIG_PACKAGE_ddns-scripts_route53-v1=y
+# CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
+# CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
+# CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
+# CONFIG_PACKAGE_ddns-scripts_nsupdate=y
+# CONFIG_PACKAGE_ddns-scripts_route53-v1=y
 # CONFIG_PACKAGE_autosamba is not set
 # CONFIG_PACKAGE_autosamba-ksmbd=y
 CONFIG_PACKAGE_autosamba-samba4=y
@@ -54,7 +54,7 @@ CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-timecontrol=y
 # CONFIG_PACKAGE_luci-app-webadmin=y
-# CONFIG_PACKAGE_luci-app-cpulimit=y
+CONFIG_PACKAGE_luci-app-cpulimit=y
 # CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=y
@@ -64,14 +64,14 @@ CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 # CONFIG_PACKAGE_luci-app-netdata=y
 # CONFIG_PACKAGE_luci-app-onliner=y
-CONFIG_PACKAGE_luci-app-openclash=y
+CONFIG_PACKAGE_luci-app-openclash=n
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=y
 # CONFIG_PACKAGE_luci-app-serverchan=y
 # CONFIG_PACKAGE_luci-app-sfe is not set
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
 CONFIG_PACKAGE_luci-app-smartdns=n
-CONFIG_PACKAGE_luci-app-passwall=y
+CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=y
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client=y
@@ -86,7 +86,7 @@ CONFIG_PACKAGE_luci-app-ttyd=n
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSPROXY=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 CONFIG_PACKAGE_luci-app-mac=n
-CONFIG_PACKAGE_luci-app-vssr=y
+CONFIG_PACKAGE_luci-app-vssr=n
 # CONFIG_PACKAGE_luci-app-wrtbwmon is not set
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-netspeedtest=n
@@ -109,8 +109,8 @@ CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-ffpdboy=n
 CONFIG_PACKAGE_luci-theme-darkmatter=n
-CONFIG_PACKAGE_luci-theme-argon=y
-CONFIG_PACKAGE_luci-theme-edge=y
+CONFIG_PACKAGE_luci-theme-argon=n
+CONFIG_PACKAGE_luci-theme-edge=n
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 # 增加其它插件
