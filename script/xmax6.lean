@@ -11,7 +11,7 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
 CONFIG_PACKAGE_6to4=y
-CONFIG_PACKAGE_kmod-fs-antfs=y
+# CONFIG_PACKAGE_kmod-fs-antfs=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 
 # CONFIG_PACKAGE_kmod-usb-core is not set
@@ -33,7 +33,7 @@ CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 # CONFIG_PACKAGE_luci-app-boostupnp=y
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-wolplus=n
 # base插件
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_ddns-scripts_aliyun=y
@@ -48,7 +48,7 @@ CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
 # CONFIG_PACKAGE_ddns-scripts_route53-v1=y
 # CONFIG_PACKAGE_autosamba is not set
 # CONFIG_PACKAGE_autosamba-ksmbd=y
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 # CONFIG_PACKAGE_luci-app-adguardhome=y
@@ -61,8 +61,8 @@ CONFIG_PACKAGE_luci-app-control-weburl=n
 # CONFIG_PACKAGE_luci-app-control-webrestriction=y
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-timecontrol=y
-# CONFIG_PACKAGE_luci-app-webadmin=y
-CONFIG_PACKAGE_luci-app-cpulimit=y
+# CONFIG_PACKAGE_luci-app-webadmin=n
+CONFIG_PACKAGE_luci-app-cpulimit=n
 # CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=y
@@ -72,18 +72,32 @@ CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 # CONFIG_PACKAGE_luci-app-netdata=y
 # CONFIG_PACKAGE_luci-app-onliner=y
-CONFIG_PACKAGE_luci-app-openclash=n
+CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=y
-# CONFIG_PACKAGE_luci-app-serverchan=y
-# CONFIG_PACKAGE_luci-app-sfe is not set
-# CONFIG_PACKAGE_luci-app-flowoffload is not set
+CONFIG_PACKAGE_luci-app-samba4=n
+# CONFIG_PACKAGE_luci-app-serverchan=n
+# CONFIG_PACKAGE_luci-app-sfe=n
+# CONFIG_PACKAGE_luci-app-flowoffload=n
 CONFIG_PACKAGE_luci-app-smartdns=n
-CONFIG_PACKAGE_luci-app-passwall=n
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=y
-CONFIG_PACKAGE_luci-app-ssr-plus=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server=y
+# CONFIG_PACKAGE_luci-app-passwall is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_PDNSD is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray is not set
+# CONFIG_PACKAGE_luci-app-dawn is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray is not set
 CONFIG_PACKAGE_luci-app-ssrpro=n
 # CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Shadowsocks_Rust_Client=y
 # CONFIG_PACKAGE_luci-app-ssrpro_INCLUDE_Shadowsocks_Rust_Server=y
@@ -94,7 +108,11 @@ CONFIG_PACKAGE_luci-app-ttyd=n
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSPROXY=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 CONFIG_PACKAGE_luci-app-mac=n
-CONFIG_PACKAGE_luci-app-vssr=n
+CONFIG_PACKAGE_luci-app-vssr=y
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan=y
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin is not set
 # CONFIG_PACKAGE_luci-app-wrtbwmon is not set
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-netspeedtest=n
@@ -104,12 +122,14 @@ CONFIG_PACKAGE_luci-app-dnsfilter=y
 # CONFIG_PACKAGE_luci-app-kodexplorer=y
 # CONFIG_PACKAGE_luci-app-uhttpd=y
 # CONFIG_PACKAGE_luci-app-mentohust=y
-# CONFIG_PACKAGE_luci-app-easymesh=y
+CONFIG_PACKAGE_luci-app-easymesh=y
 # CONFIG_PACKAGE_luci-app-wifimac=y
 # CONFIG_PACKAGE_luci-app-ttnode=y
 # CONFIG_PACKAGE_luci-app-adblock-plus=y
 # CONFIG_PACKAGE_luci-app-change-mac=y
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
+CONFIG_PACKAGE_luci-app-guest-wifi=y
+CONFIG_PACKAGE_luci-app-sqm=y
 # 主题
 CONFIG_PACKAGE_luci-theme-argon_new=n
 CONFIG_PACKAGE_luci-theme-btmod=n
@@ -117,10 +137,11 @@ CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-ffpdboy=n
 CONFIG_PACKAGE_luci-theme-darkmatter=n
-CONFIG_PACKAGE_luci-theme-argon=y
-CONFIG_PACKAGE_luci-theme-edge=y
+CONFIG_PACKAGE_luci-theme-argon=n
+CONFIG_PACKAGE_luci-theme-edge=n
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
+CONFIG_PACKAGE_luci-theme-bootstrap=y
 # 增加其它插件
 # CONFIG_PACKAGE_luci-app-ksmbd=y
 # CONFIG_PACKAGE_luci-app-cifsd=y
