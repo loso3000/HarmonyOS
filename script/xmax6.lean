@@ -3,22 +3,30 @@ CONFIG_TARGET_ipq807x_generic=y
 CONFIG_TARGET_ipq807x_generic_DEVICE_redmi_ax6=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
-# 其他需要安装的软件包:
+CONFIG_PACKAGE_kmod-zram=y
+CONFIG_PACKAGE_zram-swap=y
 # add ipv6 support
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_ipv6helper=y
-
+CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+CONFIG_PACKAGE_6in4=y
+CONFIG_PACKAGE_6rd=y
+CONFIG_PACKAGE_6to4=y
 CONFIG_PACKAGE_kmod-fs-antfs=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
+
+# CONFIG_PACKAGE_kmod-usb-core is not set
+# CONFIG_PACKAGE_kmod-usb-dwc3 is not set
+# CONFIG_PACKAGE_kmod-usb3 is not set
+
 # USB3.0支持:
-CONFIG_PACKAGE_kmod-usb2=y
-CONFIG_PACKAGE_kmod-usb2-pci=y
-CONFIG_PACKAGE_kmod-usb3=y
+# CONFIG_PACKAGE_kmod-usb2=y
+# CONFIG_PACKAGE_kmod-usb2-pci=y
+# CONFIG_PACKAGE_kmod-usb3=y
 # 工具
-CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_fdisk=y
-CONFIG_PACKAGE_curl=y
+# # CONFIG_PACKAGE_htop=y
+# CONFIG_PACKAGE_wget=y
+# CONFIG_PACKAGE_fdisk=y
+# CONFIG_PACKAGE_curl=y
 # CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 # add upnp
 CONFIG_PACKAGE_luci-app-upnp=y
@@ -109,8 +117,8 @@ CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-ffpdboy=n
 CONFIG_PACKAGE_luci-theme-darkmatter=n
-CONFIG_PACKAGE_luci-theme-argon=n
-CONFIG_PACKAGE_luci-theme-edge=n
+CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-theme-edge=y
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 # 增加其它插件
