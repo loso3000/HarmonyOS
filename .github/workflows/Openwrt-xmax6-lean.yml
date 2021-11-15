@@ -18,7 +18,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: xmax6.lean
+  CONFIG_FILE: script/xmax6.lean
   DIY_P1_SH: script/jz.sh
 jobs:
 
