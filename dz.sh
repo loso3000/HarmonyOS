@@ -196,18 +196,20 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-git clone https://github.com/fw876/helloworld package/ssr
-sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
+# git clone https://github.com/fw876/helloworld package/ssr
+svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/luci-app-ssr-plus
 cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
 
-# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-#sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
 
-rm -rf package/build/pass
-git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
+rm -rf ./package/build/pass/luci-app-ssr-plus
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+
+# rm -rf package/build/pass
+# git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+# sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
