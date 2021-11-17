@@ -15,6 +15,7 @@ git clone https://github.com/sirpdboy/build.git ./package/build
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
 
+rm -rf ./package/lean/luci-app-vlmcsd
 rm -rf ./package/lean/luci-app-wrtbwmon
 # rm -rf ./package/lean/luci-app-vlmcsd
 
