@@ -103,17 +103,17 @@ cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 sed -i 's/16384/65535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 echo "防掉线"
-INTERFACE='$INTERFACE'
-INTERFACE...='$INTERFACE...'
-LOG='$LOG'
-sed -i "88a\		ifdown $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
-sed -i "89a\		sleep 3" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
-sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
-sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# INTERFACE='$INTERFACE'
+# INTERFACE...='$INTERFACE...'
+# LOG='$LOG'
+# sed -i "88a\		ifdown $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# sed -i "89a\		sleep 3" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
+# sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 
 
 #echo "其他修改"
-sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
+# sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
 #sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 #sed -i 's@interval: 5@interval: 1@g' package/lean/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon.js #wrtbwmon默认刷新时间更改为1秒
 
@@ -127,21 +127,16 @@ cat ./package/build/profile > package/base-files/files/etc/profile
 # easymensh
 # cat ./package/build/set/003-35-net-Add-netif_rx_any_context.diff.patch > ./target/linux/generic/backport-5.4/003-35-net-Add-netif_rx_any_context.diff.patch
 # wifidog
-cat ./package/build/set/wifidog.init > ./feeds/packages/net/wifidog/files/wifidog.init
+# cat ./package/build/set/wifidog.init > ./feeds/packages/net/wifidog/files/wifidog.init
 #libyang
 # cat ../../path/libyang/Makefile > ./feeds/packages/libs/libyang/Makefile
 
-# Boost 通用即插即用
-# rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
 # 全能推送
 # rm -rf package/lean/luci-app-pushbot && \
 # git clone https://github.com/zzsj0928/luci-app-pushbot package/lean/luci-app-pushbot
 rm -rf package/lean/luci-app-jd-dailybonus && \
 git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/lean/luci-app-jd-dailybonus
 # 京东签到 By Jerrykuku
-# sed -i 's/wget-ssl/wget/g' package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/newapp.sh package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua
-# rm -rf ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
-# wget -P ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
 rm -rf package/lean/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/lean/luci-app-serverchan
 
@@ -155,30 +150,8 @@ git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dn
 #svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
-# rm -rf package/luci-app-openclash/root/usr/share/openclash/yacd   #clash插件显示统计
-# wget https://github.com/haishanh/yacd/archive/gh-pages.zip
-# unzip gh-pages.zip
-# mv yacd-gh-pages package/luci-app-openclash/root/usr/share/openclash/yacd
-# rm -rf gh-pages.zip
 
-# mkdir -p files/etc/openclash/core
-# open_clash_main_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# offical_clash_main_url=$(curl -sL https://api.github.com/repos/Dreamacro/clash/releases/tags/v1.3.5 | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# clash_tun_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# wget -qO- $open_clash_main_url | tar xOvz > files/etc/openclash/core/clash
-# wget -qO- $clash_tun_url | gunzip -c > files/etc/openclash/core/clash_tun
-# wget -qO- $clash_game_url | tar xOvz > files/etc/openclash/core/clash_game
-# chmod +x files/etc/openclash/core/clash*
-
-# git clone https://github.com/AlexZhuo/luci-app-bandwidthd /package/diy/luci-app-bandwidthd
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
- # 花生壳内网穿透
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 # Passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
@@ -188,27 +161,24 @@ sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
+svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-# rm -rf package/build/luci-app-ssr-plus
-# cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+rm -rf package/build/pass
+cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
 
-# sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+
+git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
-# git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
-# git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 
-# git clone https://github.com/jerrykuku/luci-app-ttnode.git     package/diy/luci-app-ttnode
-# svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
-# sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
@@ -298,7 +268,7 @@ sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generat
 # sed -i "/dns_caching_dns/d" $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
 # echo "	option dns_caching_dns '223.5.5.5,114.114.114.114'" >> $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
 
-# sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
+sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/lean/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
