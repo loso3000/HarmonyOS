@@ -16,8 +16,8 @@ rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
 
 rm -rf ./package/lean/luci-app-vlmcsd
+rm -rf ./package/lean/vlmcsd
 rm -rf ./package/lean/luci-app-wrtbwmon
-# rm -rf ./package/lean/luci-app-vlmcsd
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
@@ -231,11 +231,11 @@ echo "修改默认主题"
 # sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 # sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
 
-# find ./ -name *.orig | xargs rm -f
-# find ./ -name *.rej | xargs rm -f
+find ./ -name *.orig | xargs rm -f
+find ./ -name *.rej | xargs rm -f
 
 # Remove some default packages
-# sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
+sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # Mod zzz-default-settings
 
 #sed -i '/http/d' package/build/default-settings/files/zzz-default-settings
