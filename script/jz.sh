@@ -10,11 +10,8 @@ KEY=OpWiFi
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
-# version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
-
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
-
 rm -rf ./package/lean/luci-app-vlmcsd
 rm -rf ./package/lean/vlmcsd
 rm -rf ./package/lean/luci-app-wrtbwmon
@@ -52,9 +49,6 @@ sed -i 's/vpn/services/g' ./package/lean/luci-app-zerotier/luasrc/controller/zer
 sed -i 's/vpn/services/g' ./package/lean/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 rm -rf ./package/build/luci-app-zerotier
 rm -rf ./package/build/zerotier
-# sed -i '/45)./d' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-# sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-# sed -i 's/vpn/services/g' ./package/build/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 # ksmbd
@@ -101,9 +95,6 @@ sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP�
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 # 最大连接数
 sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
-# ipv6
-# sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
-# sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 
 #echo "其他修改"
 # sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
@@ -119,21 +110,16 @@ cat ./package/build/profile > package/base-files/files/etc/profile
 # easymensh
 # cat ./package/build/set/003-35-net-Add-netif_rx_any_context.diff.patch > ./target/linux/generic/backport-5.4/003-35-net-Add-netif_rx_any_context.diff.patch
 # wifidog
-cat ./package/build/set/wifidog.init > ./feeds/packages/net/wifidog/files/wifidog.init
+# cat ./package/build/set/wifidog.init > ./feeds/packages/net/wifidog/files/wifidog.init
 #libyang
 # cat ../../path/libyang/Makefile > ./feeds/packages/libs/libyang/Makefile
 
-# Boost 通用即插即用
-# rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
 # 全能推送
 # rm -rf package/lean/luci-app-pushbot && \
 # git clone https://github.com/zzsj0928/luci-app-pushbot package/lean/luci-app-pushbot
 rm -rf package/lean/luci-app-jd-dailybonus && \
 git clone https://github.com/jerrykuku/luci-app-jd-dailybonus package/lean/luci-app-jd-dailybonus
 # 京东签到 By Jerrykuku
-# sed -i 's/wget-ssl/wget/g' package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/newapp.sh package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua
-# rm -rf ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
-# wget -P ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
 rm -rf package/lean/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/lean/luci-app-serverchan
 
@@ -148,17 +134,9 @@ git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dn
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
-# git clone https://github.com/AlexZhuo/luci-app-bandwidthd /package/diy/luci-app-bandwidthd
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
- # 花生壳内网穿透
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 # Passwall
-# svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
 git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
@@ -167,18 +145,17 @@ echo ' ShadowsocksR Plus+'
 git clone https://github.com/fw876/helloworld package/ssr
 sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 
 cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-# rm -rf package/build/pass
+rm -rf package/build/pass
 # sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 
 # rm -rf package/build/pass/luci-app-bypass
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
-# git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
-# sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
+git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
+sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -186,12 +163,8 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-ap
 # git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 
-# git clone https://github.com/jerrykuku/luci-app-ttnode.git     package/diy/luci-app-ttnode
-# svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
-
 
 rm -rf ./package/diy/luci-theme-edge
 rm -rf ./package/build/luci-theme-darkmatter
@@ -199,7 +172,6 @@ svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_n
 git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
-sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
@@ -207,9 +179,10 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/l
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-# sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
+sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 # sed -i "s/bootstrap/opentopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
+# sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 
 # R8168驱动
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8152 package/new/r8152
@@ -222,9 +195,6 @@ echo "修改默认主题"
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8821cu package/new/rtl8821cu
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu package/new/rtl88x2bu
 
-# git clone https://github.com/openwrt-dev/po2lmo.git
-# cd po2lmo
-# make && sudo make install
 
 # 在 X86 架构下移除 Shadowsocks-rust
 # sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
@@ -236,58 +206,14 @@ find ./ -name *.rej | xargs rm -f
 
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
-# Mod zzz-default-settings
-
-#sed -i '/http/d' package/build/default-settings/files/zzz-default-settings
-#sed -i '/openwrt_luci/d' package/build/default-settings/files/zzz-default-settings
-
-# Fix SDK
-# sed -i '/$(SDK_BUILD_DIR)\/$(STAGING_SUBDIR_HOST)\/usr\/bin/d;/LICENSE/d' ./target/sdk/Makefile
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
-# date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
-# date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' '
 date1=' JZ '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' by Sirpdboy '
 sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-JZ-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-# sed -i 's/请输入用户名和密码。/欢迎登陆，请输入密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
-# sed -i '/root:/d' ./package/base-files/files/etc/shadow
-# sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
-# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-# sed -i 's/root::0:0:99999:7:::/root:$1$fBBokrlW$4855fjGMAYdopNbA9F/mk.:0:0:99999:7:::/g'  ./package/base-files/files/etc/shadow    #root
-# echo "root:$1$fBBokrlW$4855fjGMAYdopNbA9F/mk.:18878:0:99999:7::::" >>  ./package/base-files/files/etc/shadow  #root
-# sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-# cp -f package/build/shortcut-fe ./package/base-files/files/etc/init.d
-
-# Modify default WiFi SSID
-# sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Modify default WiFi Encryption
-# sed -i "s/set wireless.default_radio\${devidx}.encryption=none/set wireless.default_radio\${devidx}.encryption='$ENCRYPTION'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Modify default WiFi Key
-# sed -i "/set wireless.default_radio\${devidx}.mode=ap/a\                        set wireless.default_radio\${devidx}.key='$KEY'" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Forced WiFi to enable
-# sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-
-#内核设置 甜糖
-# cat ./package/build/set/Config-kernel.in   > ./config/Config-kernel.in
-# echo  'CONFIG_BINFMT_MISC=y' >> ./package/target/linux/x86/config-5.10
-# sed -i '/CONFIG_NVME_MULTIPATH /d' ./package/target/linux/x86/config-5.4
-# sed -i '/CONFIG_NVME_TCP /d' ./package/target/linux/x86/config-5.4
-# echo  'CONFIG_EXTRA_FIRMWARE="i915/kbl_dmc_ver1_04.bin"'   >> ./package/target/linux/x86/config-5.10
-# echo  'CONFIG_EXTRA_FIRMWARE_DIR="/lib/firmware"'  >> ./package/target/linux/x86/config-5.10
-# echo  'CONFIG_NVME_FABRICS=y'  >> ./package/target/linux/x86/config-5.4
-# echo  'CONFIG_NVME_FC=y' >> ./package/target/linux/x86/config-5.4
-# echo  'CONFIG_NVME_MULTIPATH=y' >> ./package/target/linux/x86/config-5.4
-# echo  'CONFIG_NVME_TCP=y' >> ./package/target/linux/x86/config-5.4
-
-# find target/linux -path "target/linux/*/config-*" | xargs -i sed -i '$a CONFIG_ACPI=y\nCONFIG_X86_ACPI_CPUFREQ=y\n \
-# CONFIG_NR_CPUS=128\nCONFIG_FAT_DEFAULT_IOCHARSET="utf8"\nCONFIG_CRYPTO_CHACHA20_NEON=y\nCONFIG_CRYPTO_CHACHA20POLY1305=y\nCONFIG_BINFMT_MISC=y' {}
-# for X in $(ls -1 target/linux/x86 | grep "config-"); do echo -e "\n$(cat ./package/build/DRM-I915)" >> target/linux/x86/${X}; done
-# sed -i "/dns_caching_dns/d" $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
-# echo "	option dns_caching_dns '223.5.5.5,114.114.114.114'" >> $(PKG_Finder d package luci-app-turboacc)/root/etc/config/turboacc
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
