@@ -40,7 +40,7 @@ CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-control-timewol=y
 CONFIG_PACKAGE_luci-app-control-weburl=y
 # CONFIG_PACKAGE_luci-app-control-webrestriction=y
-CONFIG_PACKAGE_luci-app-control-speedlimit=y
+CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-timecontrol=y
 # CONFIG_PACKAGE_luci-app-webadmin=n
 # CONFIG_PACKAGE_luci-app-cpulimit=n
@@ -87,6 +87,10 @@ CONFIG_PACKAGE_luci-app-dnsfilter=y
 # CONFIG_PACKAGE_luci-app-adblock-plus=n
 # CONFIG_PACKAGE_luci-app-change-mac=n
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
+
+CONFIG_PACKAGE_luci-app-ntpc=n
+CONFIG_PACKAGE_luci-app-qos=n
+CONFIG_PACKAGE_luci-app-sqm=n
 
 CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_luci-app-easymesh=y
