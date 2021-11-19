@@ -13,7 +13,7 @@ git clone https://github.com/sirpdboy/build.git ./package/build
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
 rm -rf ./package/lean/luci-app-vlmcsd
-rm -rf ./package/lean/vlmcsd
+# rm -rf ./package/lean/vlmcsd
 rm -rf ./package/lean/luci-app-wrtbwmon
 
 echo '替换smartdns'
@@ -201,8 +201,8 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/l
 # sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 # sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
 
-find ./ -name *.orig | xargs rm -f
-find ./ -name *.rej | xargs rm -f
+# find ./ -name *.orig | xargs rm -f
+# find ./ -name *.rej | xargs rm -f
 
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
