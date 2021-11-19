@@ -158,7 +158,7 @@ sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
 # rm -rf package/build/pass/luci-app-ssr-plus
 # cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 # sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-
+rm -rf package/ssr/naiveproxy
 rm -rf package/build/pass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
