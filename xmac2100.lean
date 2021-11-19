@@ -7,9 +7,9 @@ CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100=y
 # add ipv6 support
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-CONFIG_PACKAGE_6in4=y
-CONFIG_PACKAGE_6rd=y
-CONFIG_PACKAGE_6to4=y
+# CONFIG_PACKAGE_6in4=y
+# CONFIG_PACKAGE_6rd=y
+# CONFIG_PACKAGE_6to4=y
 # add upnp
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -147,4 +147,4 @@ CONFIG_PACKAGE_luci-app-usb-printer=n
 # CONFIG_PACKAGE_luci-app-openvpn-server=n
 # CONFIG_PACKAGE_luci-app-aria2=n
 # CONFIG_PACKAGE_luci-app-openvpn=n
-CONFIG_PACKAGE_luci-app-vlmcsd=y
+# CONFIG_PACKAGE_luci-app-vlmcsd is not set
