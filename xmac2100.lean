@@ -7,9 +7,6 @@ CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100=y
 # add ipv6 support
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-# CONFIG_PACKAGE_6in4=y
-# CONFIG_PACKAGE_6rd=y
-# CONFIG_PACKAGE_6to4=y
 # add upnp
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -115,9 +112,6 @@ CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
-# CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_Go is not set
-CONFIG_UnblockNeteaseMusic_Go=y
-CONFIG_UnblockNeteaseMusic_NodeJS=y
 CONFIG_PACKAGE_luci-app-mwan3=n
 # CONFIG_PACKAGE_luci-app-minidlna is not set
 # CONFIG_PACKAGE_luci-app-rclone=n
@@ -131,7 +125,7 @@ CONFIG_PACKAGE_luci-app-mwan3=n
 # CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=n
 # CONFIG_PACKAGE_luci-app-softethervpn=n
-# CONFIG_PACKAGE_luci-app-uugamebooster=n
+# CONFIG_PACKAGE_luci-app-uugamebooster is not set
 # CONFIG_DEFAULT_luci-app-cpufreq=n
 # CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=y
@@ -139,7 +133,7 @@ CONFIG_PACKAGE_luci-app-oaf=n
 # CONFIG_PACKAGE_luci-app-transmission=n
 CONFIG_PACKAGE_luci-app-usb-printer=n
 # CONFIG_PACKAGE_luci-app-mwan3helper=n
-# CONFIG_PACKAGE_luci-app-qbittorrent=n
+# CONFIG_PACKAGE_luci-app-qbittorrent is not set
 # CONFIG_PACKAGE_luci-app-familycloud=n
 # CONFIG_PACKAGE_luci-app-nps=n
 # CONFIG_PACKAGE_luci-app-frpc=n
