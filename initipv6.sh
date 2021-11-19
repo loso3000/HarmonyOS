@@ -33,7 +33,7 @@ rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/luci-app-vlmcsd
-rm -rf ./package/lean/vlmcsd 
+# rm -rf ./package/lean/vlmcsd 
 rm -rf ./package/lean/trojan
 
 rm -rf ./feeds/packages/net/socat 
@@ -152,14 +152,14 @@ sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/ssr/luci-app-ssr-plus
+svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/ssr/luci-app-ssr-plus
 sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
 # sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 # rm -rf package/build/pass/luci-app-ssr-plus
 # cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 # sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
 
-rm -rf package/build/pass/luci-app-bypass
+rm -rf package/build/pass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
