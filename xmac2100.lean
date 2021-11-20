@@ -85,6 +85,10 @@ CONFIG_PACKAGE_luci-app-dnsfilter=y
 # CONFIG_PACKAGE_luci-app-change-mac=n
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_NaiveProxy is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy is not set
 CONFIG_PACKAGE_luci-app-ntpc=n
 CONFIG_PACKAGE_luci-app-qos=n
 CONFIG_PACKAGE_luci-app-sqm=n
