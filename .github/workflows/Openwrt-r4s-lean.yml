@@ -105,21 +105,21 @@ jobs:
           path: ./openwrt/bin/packages
       - name: Prepare Artifact
         run: |
-          mkdir ./firmware 
-          find ./openwrt/bin/targets/ -name "*combined*" -or -name "*sysupgrade*" | xargs -i mv -f {} ./firmware/
-          # cp openwrt/.config  ./firmware/r2s.config
-          # cd ./firmware
+          mkdir ./r4s 
+          find ./openwrt/bin/targets/ -name "*combined*" -or -name "*sysupgrade*" | xargs -i mv -f {} ./r4s/
+          # cp openwrt/.config  ./r4s/r2s.config
+          # cd ./r4s
           # rename -v "s/friendlyarm_//" *
           # gzip *.*
       - name: Upload firmware to cowtransfer
         run: |
          curl -fsSL git.io/file-transfer | sh
-         ./transfer cow --block 2621440 -s -p 64 --no-progress ./firmware/ 2>&1 | tee cowtransfer.log
+         ./transfer cow --block 2621440 -s -p 64 --no-progress ./r4s/ 2>&1 | tee cowtransfer.log
          echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./firmware/ 2>&1 | tee wetransfer.log
+          ./transfer wet -s -p 16 --no-progress ./r4s/ 2>&1 | tee wetransfer.log
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
 
       - name: Delete workflow runs
