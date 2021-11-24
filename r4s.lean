@@ -1,8 +1,16 @@
 #  
+# set
+CONFIG_TARGET_KERNEL_PARTSIZE=60
+CONFIG_TARGET_ROOTFS_PARTSIZE=1516
 CONFIG_TARGET_rockchip=y
 CONFIG_TARGET_rockchip_armv8=y
-CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
-CONFIG_TARGET_ROOTFS_EXT4FS=y
+CONFIG_TARGET_MULTI_PROFILE=y
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
+CONFIG_TARGET_DEVICE_PACKAGES_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=""
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
+CONFIG_TARGET_DEVICE_PACKAGES_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s="kmod-usb-net-rtl8152-vendor"
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_xunlong_orangepi-r1-plus=y
+CONFIG_TARGET_DEVICE_PACKAGES_rockchip_armv8_DEVICE_xunlong_orangepi-r1-plus=""
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 # CONFIG_EFI_IMAGES=y
@@ -138,7 +146,4 @@ CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
-
-CONFIG_TARGET_KERNEL_PARTSIZE=64
-CONFIG_TARGET_ROOTFS_PARTSIZE=920
 
