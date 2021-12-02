@@ -61,7 +61,7 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
     - name: Load custom feeds
       run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         # chmod +x $DIY_P1_SH
         # cd openwrt
         # $GITHUB_WORKSPACE/$DIY_P1_SH
@@ -79,13 +79,6 @@ jobs:
          cd openwrt
          ../$DIY_P1_SH
          chmod -R 755 .
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-
     - name: Download package
       id: package
       run: |
