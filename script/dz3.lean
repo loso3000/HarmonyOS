@@ -13,7 +13,8 @@ CONFIG_EFI_IMAGES=y
 # ipv6 
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-
+#add
+CONFIG_PACKAGE_python-netfilterqueue=y
 #-----x86
 CONFIG_PACKAGE_kmod-usb-hid=y
 CONFIG_PACKAGE_lm-sensors-detect=y
