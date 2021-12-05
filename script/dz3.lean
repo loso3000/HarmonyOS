@@ -12,7 +12,7 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 #add
 
 CONFIG_PACKAGE_libnetfilter-queue1=y
-CONFIG_PACKAGE_	libnfnetlink0=y
+CONFIG_PACKAGE_libnfnetlink0=y
 CONFIG_PACKAGE_libmnl0=y
 
 CONFIG_PACKAGE_python-netfilterqueue=y
