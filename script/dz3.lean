@@ -30,15 +30,15 @@ CONFIG_PACKAGE_kmod-usb3=y
 # 工具
 CONFIG_PACKAGE_kmod-fs-antfs=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
-CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
+# CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
-# CONFIG_PACKAGE_autosamba  is not set
-CONFIG_PACKAGE_autosamba-samba4=y
+# CONFIG_PACKAGE_autosamba is not set
+# CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=y
 CONFIG_PACKAGE_luci-app-advanced=y
-# CONFIG_PACKAGE_luci-app-autotimeset=y
+# CONFIG_PACKAGE_luci-app-autotimeset=n
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 CONFIG_PACKAGE_luci-app-control-weburl=y
@@ -49,10 +49,10 @@ CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
 # CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
-# CONFIG_PACKAGE_luci-app-netdata=y
+# CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_luci-app-samba4=n
 # CONFIG_PACKAGE_luci-app-serverchan=y
 CONFIG_PACKAGE_luci-app-smartdns=y
 CONFIG_PACKAGE_luci-app-passwall=y
@@ -66,14 +66,12 @@ CONFIG_PACKAGE_luci-app-mac=n
 # CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-nlbwmon=n
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+CONFIG_PACKAGE_luci-app-netspeedtest=n
 # CONFIG_PACKAGE_luci-app-dnsto=n
 CONFIG_PACKAGE_luci-app-bypass=n
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy is not set
 
-CONFIG_PACKAGE_luci-theme-chuqitopd=n
-CONFIG_PACKAGE_luci-theme-ffpdboy=n
 CONFIG_PACKAGE_luci-theme-darkmatter=n
 CONFIG_PACKAGE_luci-theme-argon=n
 CONFIG_PACKAGE_luci-theme-edge=n
@@ -83,10 +81,9 @@ CONFIG_PACKAGE_luci-theme-opentopd=y
 
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 CONFIG_PACKAGE_luci-app-syncdial=n
-CONFIG_PACKAGE_luci-app-sqm=n
+CONFIG_PACKAGE_luci-app-sqm=y
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set
 CONFIG_PACKAGE_luci-app-uugamebooster=y
 # CONFIG_PACKAGE_luci-app-qbittorrent is not set
 CONFIG_PACKAGE_luci-app-docker=n
 CONFIG_PACKAGE_luci-app-dockerman=n
-
