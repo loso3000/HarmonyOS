@@ -15,6 +15,10 @@ CONFIG_PACKAGE_libnetfilter-queue1=y
 CONFIG_PACKAGE_libnfnetlink0=y
 CONFIG_PACKAGE_libmnl0=y
 
+CONFIG_PACKAGE_libnetfilter-queue=y
+CONFIG_PACKAGE_libnfnetlink=y
+CONFIG_PACKAGE_libmnl=y
+
 CONFIG_PACKAGE_python-netfilterqueue=y
 #-----x86
 CONFIG_PACKAGE_kmod-usb-hid=y
@@ -76,7 +80,7 @@ CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-opentopd=y
 
-CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
+CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 CONFIG_PACKAGE_luci-app-syncdial=n
 CONFIG_PACKAGE_luci-app-sqm=n
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set
