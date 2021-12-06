@@ -20,6 +20,7 @@ CONFIG_PACKAGE_libnfnetlink=y
 CONFIG_PACKAGE_libmnl=y
 
 CONFIG_PACKAGE_python-netfilterqueue=y
+CONFIG_PACKAGE_python-netfilterqueue1=y
 #-----x86
 CONFIG_PACKAGE_kmod-usb-hid=y
 CONFIG_PACKAGE_lm-sensors-detect=y
@@ -60,7 +61,7 @@ CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server=y
-CONFIG_PACKAGE_luci-app-ttyd=n
+CONFIG_PACKAGE_luci-app-ttyd=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 CONFIG_PACKAGE_luci-app-mac=n
 # CONFIG_PACKAGE_luci-app-vssr=y
