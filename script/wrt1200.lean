@@ -2,40 +2,9 @@
 CONFIG_TARGET_mvebu=y
 CONFIG_TARGET_mvebu_cortexa9=y
 CONFIG_TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac=y
-CONFIG_TARGET_DEVICE_PACKAGES_mvebu_cortexa9_DEVICE_linksys_wrt1200ac=""
-CONFIG_TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x=y
-CONFIG_TARGET_DEVICE_PACKAGES_mvebu_cortexa9_DEVICE_linksys_wrt32x=""
-
-# Firmware Type:
-CONFIG_USES_DEVICETREE=y
-CONFIG_USES_INITRAMFS=y
-CONFIG_USES_SQUASHFS=y
-CONFIG_USES_EXT4=y
-CONFIG_USES_TARGZ=y
-CONFIG_USES_CPIOGZ=y
-# CONFIG_TARGET_ROOTFS_EXT4FS is not set
-CONFIG_TARGET_ROOTFS_SQUASHFS=y
-CONFIG_TARGET_UBIFS_FREE_SPACE_FIXUP=y
-CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
-
-# For USB3.0:
-CONFIG_PACKAGE_kmod-usb-ehci=y
-CONFIG_PACKAGE_kmod-usb-ohci=y
-CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-CONFIG_PACKAGE_kmod-usb2=y
-CONFIG_PACKAGE_kmod-usb2-pci=y
-CONFIG_PACKAGE_kmod-usb3=y
-
-# Software:
-CONFIG_PACKAGE_aircrack-ng=m
-CONFIG_PACKAGE_blkid=y
-CONFIG_PACKAGE_ca-bundle=y
-CONFIG_PACKAGE_cfdisk=y
-CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_vim-fuller=y
-CONFIG_PACKAGE_vsftpd-alt=y
-CONFIG_PACKAGE_wireless-tools=y
-CONFIG_VSFTPD_USE_UCI_SCRIPTS=y
+# CONFIG_TARGET_DEVICE_PACKAGES_mvebu_cortexa9_DEVICE_linksys_wrt1200ac=""
+# CONFIG_TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x=y
+# CONFIG_TARGET_DEVICE_PACKAGES_mvebu_cortexa9_DEVICE_linksys_wrt32x=""
 
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
@@ -67,7 +36,7 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 # CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
-CONFIG_PACKAGE_luci-app-adbyby-plus=y
+# CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
 CONFIG_PACKAGE_luci-app-advanced=y
 # CONFIG_PACKAGE_luci-app-autotimeset=n
@@ -139,10 +108,10 @@ CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-ffpdboy=n
 CONFIG_PACKAGE_luci-theme-darkmatter=n
-CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-theme-argon=n
 CONFIG_PACKAGE_luci-theme-edge=n
 CONFIG_PACKAGE_luci-theme-ifit=n
-CONFIG_PACKAGE_luci-theme-opentopd=y
+CONFIG_PACKAGE_luci-theme-opentopd=n
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 # 增加其它插件
 # CONFIG_PACKAGE_luci-app-ksmbd=n
@@ -152,7 +121,7 @@ CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
-CONFIG_PACKAGE_luci-app-mwan3=y
+CONFIG_PACKAGE_luci-app-mwan3=n
 # CONFIG_PACKAGE_luci-app-minidlna is not set
 # CONFIG_PACKAGE_luci-app-rclone=n
 # CONFIG_PACKAGE_luci-app-pptp-server=n
@@ -163,7 +132,7 @@ CONFIG_PACKAGE_luci-app-mwan3=y
 # CONFIG_PACKAGE_luci-app-docker=n
 # CONFIG_PACKAGE_luci-app-dockerman=n
 # CONFIG_PACKAGE_luci-app-koolddns=n
-CONFIG_PACKAGE_luci-app-syncdial=y
+CONFIG_PACKAGE_luci-app-syncdial=n
 # CONFIG_PACKAGE_luci-app-softethervpn=n
 CONFIG_PACKAGE_luci-app-uugamebooster=y
 # CONFIG_DEFAULT_luci-app-cpufreq=n
