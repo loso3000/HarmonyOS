@@ -73,6 +73,8 @@ CONFIG_PACKAGE_luci-app-bypass=n
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy is not set
 
+# CONFIG_PACKAGE_luci-app-vsftpd is not set
+# CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-theme-darkmatter=n
 CONFIG_PACKAGE_luci-theme-argon=n
 CONFIG_PACKAGE_luci-theme-edge=n
