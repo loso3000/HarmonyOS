@@ -141,7 +141,8 @@ git clone -b master --single-branch https://github.com/tty228/luci-app-servercha
 
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
-git clone https://github.com/fqrouter/fqrouter/  ./package/fqrouter/
+git clone https://github.com/sirpdboy/python3-netfilterqueue-openwrt.git ./package/python-netfilterqueue
+# git clone https://github.com/fqrouter/fqrouter/  ./package/fqrouter/
 
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
