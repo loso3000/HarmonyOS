@@ -1,10 +1,7 @@
 #
 CONFIG_TARGET_mvebu=y
 CONFIG_TARGET_mvebu_cortexa9=y
-CONFIG_TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt1200ac=y
-# CONFIG_TARGET_DEVICE_PACKAGES_mvebu_cortexa9_DEVICE_linksys_wrt1200ac=""
-# CONFIG_TARGET_DEVICE_mvebu_cortexa9_DEVICE_linksys_wrt32x=y
-# CONFIG_TARGET_DEVICE_PACKAGES_mvebu_cortexa9_DEVICE_linksys_wrt32x=""
+CONFIG_TARGET_mvebu_cortexa9_DEVICE_linksys_wrt1200ac=y
 
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
