@@ -106,7 +106,7 @@ CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-argon_new=n
 CONFIG_PACKAGE_luci-theme-netgear=n
 CONFIG_PACKAGE_luci-theme-opentomato=n
-CONFIG_PACKAGE_luci-theme-opentomcatn
+CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 #other
 CONFIG_PACKAGE_luci-app-tencentddns=n
