@@ -19,7 +19,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/r4s.lean
-  DIY_P1_SH: script/r4sdz.sh
+  DIY_P1_SH: initipv6.sh
   DIY_P2_SH: update_package_all.sh
 jobs:
 
