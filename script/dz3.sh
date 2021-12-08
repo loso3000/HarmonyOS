@@ -123,6 +123,15 @@ sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/package
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
+sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
+
+echo '
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+CONFIG_DRM=y
+CONFIG_DRM_I915=y
+' >> ./target/linux/x86/config-5.4
+
 cat ./package/build/profile > package/base-files/files/etc/profile
 
 # Boost 通用即插即用
@@ -142,7 +151,6 @@ git clone -b master --single-branch https://github.com/tty228/luci-app-servercha
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
 git clone https://github.com/sirpdboy/python3-netfilterqueue-openwrt.git ./package/python-netfilterqueue
-# git clone https://github.com/fqrouter/fqrouter/  ./package/fqrouter/
 
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
@@ -194,14 +202,11 @@ sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
-svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-rm -rf package/build/pass
-cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/ssr/luci-app-ssr-plus
+rm -rf package/build/pass/luci-app-ssr-plus
+cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
 sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
-# sed -i 's,Xray:xray ,Xray:xray-core ,g' package/lean/luci-app-ssr-plus
-# sed -i '/V2ray:v2ray/d' Makefile
-# sed -i '/plugin:v2ray/d' Makefile
 
 # git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
@@ -322,7 +327,7 @@ sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generat
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
-sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
+sed -i 's/h"), 50)/h"), 2)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
 ./scripts/feeds update -i
