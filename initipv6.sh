@@ -107,6 +107,15 @@ echo "防掉线"
 # sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 # sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 
+sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
+
+echo '
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+CONFIG_DRM=y
+CONFIG_DRM_I915=y
+' >> ./target/linux/x86/config-5.4
+
 
 #echo "其他修改"
 sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
