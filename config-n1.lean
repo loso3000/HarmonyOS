@@ -65,7 +65,7 @@ CONFIG_PACKAGE_my-autocore-x86=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
-CONFIG_PACKAGE_luci-app-adbyby-plus=y
+# CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=y
 CONFIG_PACKAGE_luci-app-advanced=y
 # CONFIG_PACKAGE_luci-app-autotimeset=n
@@ -147,7 +147,10 @@ CONFIG_PACKAGE_luci-app-wireguard=y
 CONFIG_PACKAGE_luci-app-aliyundrive-webdav=y
 CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
+CONFIG_PACKAGE_luci-app-ikoolproxy=y
 #主题
+CONFIG_LUCI_LANG_zh-cn=y
+CONFIG_LUCI_LANG_en=y
 CONFIG_PACKAGE_luci-theme-argon_new=n
 CONFIG_PACKAGE_luci-theme-btmod=n
 CONFIG_PACKAGE_luci-theme-opentomcat=n
