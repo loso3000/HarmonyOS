@@ -238,7 +238,7 @@ rm -rf ./package/build/luci-theme-darkmatter
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
 git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
-git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
+# git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 
 # R8168驱动
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8188eu package/new/rtl8188eu
@@ -295,7 +295,7 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 # sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
 
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.1.8/g' package/base-files/files/bin/config_generate
 
 # Modify default WiFi SSID
 # sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
