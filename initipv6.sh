@@ -161,25 +161,37 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-git clone https://github.com/fw876/helloworld package/ssr
+# git clone https://github.com/fw876/helloworld package/ssr
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/ssr/luci-app-ssr-plus
-sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
-# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+
+# sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
+# sed -i '/Plugin:/d' ./package/ssr/luci-app-ssr-plus/Makefile
+# sed -i 's,ispip.clang.cn/all_cn,cdn.jsdelivr.net/gh/QiuSimons/Chnroute@master/dist/chnroute/chnroute,' ./package/ssr/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
+# sed -i 's,YW5vbnltb3Vz/domain-list-community/release/gfwlist.txt,Loyalsoldier/v2ray-rules-dat/release/gfw.txt,' ./package/ssr/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
+# sed -i '/Clang.CN.CIDR/a\o:value("https://cdn.jsdelivr.net/gh/QiuSimons/Chnroute@master/dist/chnroute/chnroute.txt", translate("QiuSimons/Chnroute"))' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/advanced.lua
+
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+
 # rm -rf package/build/pass/luci-app-ssr-plus
 # cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 # sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-rm -rf package/ssr/naiveproxy
-rm -rf package/build/pass
+# rm -rf package/ssr/naiveproxy
+# rm -rf package/build/pass
+
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
-git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
-sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
+# git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
+# sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
 # git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 # git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
+sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
+sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
+sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
+
 
 # git clone https://github.com/jerrykuku/luci-app-ttnode.git     package/diy/luci-app-ttnode
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
