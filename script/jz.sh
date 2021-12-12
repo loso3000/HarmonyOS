@@ -12,7 +12,7 @@ KEY=OpWiFi
 git clone https://github.com/sirpdboy/build.git ./package/build
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
-rm -rf ./package/lean/luci-app-vlmcsd
+# rm -rf ./package/lean/luci-app-vlmcsd
 # rm -rf ./package/lean/vlmcsd
 rm -rf ./package/lean/luci-app-wrtbwmon
 
@@ -95,6 +95,12 @@ sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP�
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 # 最大连接数
 sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
+echo '
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+CONFIG_DRM=y
+CONFIG_DRM_I915=y
+' >> ./target/linux/x86/config-5.4
 
 #echo "其他修改"
 # sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
