@@ -32,7 +32,7 @@ rm -rf ./package/lean/default-settings
 rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
-rm -rf ./package/lean/luci-app-vlmcsd
+# rm -rf ./package/lean/luci-app-vlmcsd
 # rm -rf ./package/lean/vlmcsd 
 rm -rf ./package/lean/trojan
 
