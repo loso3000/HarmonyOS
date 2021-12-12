@@ -148,6 +148,8 @@ git clone -b master --single-branch https://github.com/tty228/luci-app-servercha
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 git clone https://github.com/tuanqing/install-program package/install-program
 git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
+sed -i 's/1).d/11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
+
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/luci/applications/luci-app-aria2
@@ -204,7 +206,7 @@ echo ' ShadowsocksR Plus+'
 
 # sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
 
-rm -rf ./package/build/pass/luci-app-ssr-plus
+# rm -rf ./package/build/pass/luci-app-ssr-plus
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 
@@ -331,7 +333,7 @@ sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generat
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
-sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
+# sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
 ./scripts/feeds update -i
