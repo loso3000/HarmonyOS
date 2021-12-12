@@ -125,12 +125,12 @@ sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/package
 
 sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
 
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.4
+# echo '
+# CONFIG_CRYPTO_CHACHA20_X86_64=y
+# CONFIG_CRYPTO_POLY1305_X86_64=y
+# CONFIG_DRM=y
+# CONFIG_DRM_I915=y
+# ' >> ./target/linux/x86/config-5.4
 
 cat ./package/build/profile > package/base-files/files/etc/profile
 
@@ -204,9 +204,16 @@ echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/ssr/luci-app-ssr-plus
 rm -rf package/build/pass/luci-app-ssr-plus
-cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
+# cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+# sed -i 's,default n,default y,g' ./package/lean/luci-app-ssr-plus/Makefile
+
+ sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
+sed -i '/Plugin:/d' ./package/ssr/luci-app-ssr-plus/Makefile
+sed -i 's,ispip.clang.cn/all_cn,cdn.jsdelivr.net/gh/QiuSimons/Chnroute@master/dist/chnroute/chnroute,' ./package/ssr/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
+sed -i 's,YW5vbnltb3Vz/domain-list-community/release/gfwlist.txt,Loyalsoldier/v2ray-rules-dat/release/gfw.txt,' ./package/ssr/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
+sed -i '/Clang.CN.CIDR/a\o:value("https://cdn.jsdelivr.net/gh/QiuSimons/Chnroute@master/dist/chnroute/chnroute.txt", translate("QiuSimons/Chnroute"))' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/advanced.lua
+
 
 # git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
@@ -217,6 +224,9 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-ap
 # git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 # git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
+sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
+sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
+sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 
 svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
@@ -241,6 +251,8 @@ git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/dar
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 
+git clone https://github.com/tuanqing/install-program package/install-program
+git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 # R8168驱动
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8188eu package/new/rtl8188eu
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8189es package/new/rtl8189es
