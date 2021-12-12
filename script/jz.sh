@@ -136,6 +136,9 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package
 
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
+git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
+sed -i 's/1).d/11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
+
 # Passwall
 git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
@@ -143,20 +146,27 @@ sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
+# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/ssr/luci-app-ssr-plus
+
 # sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-# rm -rf package/ssr/naiveproxy
-# cp -f ./package/build/set/myip.htm ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-# rm -rf package/build/pass
+# sed -i '/Plugin:/d' ./package/ssr/luci-app-ssr-plus/Makefile
+# sed -i 's,ispip.clang.cn/all_cn,cdn.jsdelivr.net/gh/QiuSimons/Chnroute@master/dist/chnroute/chnroute,' ./package/ssr/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
+# sed -i 's,YW5vbnltb3Vz/domain-list-community/release/gfwlist.txt,Loyalsoldier/v2ray-rules-dat/release/gfw.txt,' ./package/ssr/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
+# sed -i '/Clang.CN.CIDR/a\o:value("https://cdn.jsdelivr.net/gh/QiuSimons/Chnroute@master/dist/chnroute/chnroute.txt", translate("QiuSimons/Chnroute"))' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/advanced.lua
 
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 
-rm -rf package/build/pass/luci-app-bypass
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+# rm -rf package/build/pass/luci-app-ssr-plus
+# cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
+# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/ssr/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
+# rm -rf package/ssr/naiveproxy
+# rm -rf package/build/pass
 
-# git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
-# sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
+rm -rf package/build/pass/luci-app-bypass
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+
+git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
+sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -217,10 +227,10 @@ sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(I
 echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
-sed -i 's/h"), 50)/h"), 10)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
+# sed -i 's/h"), 50)/h"), 10)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 # sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/lean/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
 ./scripts/feeds update -i
