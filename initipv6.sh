@@ -42,8 +42,8 @@ rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
 
-# rm -rf ./package/lean/luci-app-vlmcsd
-# rm -rf ./package/lean/vlmcsd 
+rm -rf ./package/lean/luci-app-vlmcsd
+rm -rf ./package/lean/vlmcsd 
 
 # rm -rf ./package/lean/ddns-scripts_aliyun
 # rm -rf ./package/lean/ddns-scripts_dnspod
