@@ -31,7 +31,7 @@ CONFIG_PACKAGE_miniupnpd-igdv1=y
 # CONFIG_PACKAGE_luci-app-upnp is not set
 CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-wolplus=n
 # base插件
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_ddns-scripts_aliyun=y
@@ -50,14 +50,14 @@ CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=y
-CONFIG_PACKAGE_luci-app-advanced=y
+CONFIG_PACKAGE_luci-app-advanced=n
 # CONFIG_PACKAGE_luci-app-autotimeset=n
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 # CONFIG_PACKAGE_luci-app-control-timewol=n
 CONFIG_PACKAGE_luci-app-control-weburl=y
 # CONFIG_PACKAGE_luci-app-control-webrestriction=n
-CONFIG_PACKAGE_luci-app-control-speedlimit=y
+CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-timecontrol=y
 # CONFIG_PACKAGE_luci-app-webadmin=n
 # CONFIG_PACKAGE_luci-app-cpulimit=n
@@ -94,8 +94,8 @@ CONFIG_PACKAGE_luci-app-ttyd=n
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 CONFIG_PACKAGE_luci-app-mac=n
 CONFIG_PACKAGE_luci-app-vssr=n
-CONFIG_PACKAGE_luci-app-wrtbwmon=y
-CONFIG_PACKAGE_luci-app-nlbwmon=y
+CONFIG_PACKAGE_luci-app-wrtbwmon=n
+# CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 # CONFIG_PACKAGE_luci-app-dnsto=n
 CONFIG_PACKAGE_luci-app-bypass=n
@@ -115,7 +115,7 @@ CONFIG_PACKAGE_luci-app-dnsfilter=n
 
 CONFIG_LUCI_LANG_zh-cn=y
 CONFIG_LUCI_LANG_en=y
-CONFIG_PACKAGE_luci-app-ikoolproxy=y
+CONFIG_PACKAGE_luci-app-ikoolproxy=n
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_PACKAGE_luci-theme-argon_new=n
@@ -146,7 +146,7 @@ CONFIG_PACKAGE_luci-app-mwan3=n
 # CONFIG_PACKAGE_luci-app-ipsec-serve=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers=n
 # CONFIG_PACKAGE_luci-app-docker=n
-# CONFIG_PACKAGE_luci-app-dockerman=y
+# CONFIG_PACKAGE_luci-app-dockerman=n
 # CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=n
 # CONFIG_PACKAGE_luci-app-softethervpn=n
