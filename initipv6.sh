@@ -37,9 +37,11 @@ rm -rf ./package/build/autocore
 # rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
 # rm -rf ./package/lean/luci-app-ramfree
+rm -rf ./package/build/luci-app-dockerman
+rm -rf ./package/build/luci-app-docker
 rm -rf ./package/lean/luci-app-arpbind
-rm -rf ./package/lean/luci-app-docker
-rm -rf ./package/lean/luci-app-dockerman
+# rm -rf ./package/lean/luci-app-docker
+# rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
 
 rm -rf ./package/lean/luci-app-vlmcsd
