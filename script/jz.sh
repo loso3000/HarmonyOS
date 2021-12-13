@@ -12,8 +12,8 @@ KEY=OpWiFi
 git clone https://github.com/sirpdboy/build.git ./package/build
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
-# rm -rf ./package/lean/luci-app-vlmcsd
-# rm -rf ./package/lean/vlmcsd
+rm -rf ./package/lean/luci-app-vlmcsd
+rm -rf ./package/lean/vlmcsd
 rm -rf ./package/lean/luci-app-wrtbwmon
 
 echo '替换smartdns'
@@ -38,7 +38,7 @@ rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/build/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
-rm -rf ./package/lean/trojan
+# rm -rf ./package/lean/trojan
 
 # rm -rf ./package/lean/ddns-scripts_aliyun
 # rm -rf ./package/lean/ddns-scripts_dnspod
