@@ -173,6 +173,7 @@ rm -rf package/build/pass/luci-app-bypass
 
 git clone https://github.com/kiddin9/openwrt-bypass package/openwrt-bypass
 sed -i 's,default n,default y,g' ./package/openwrt-bypass/luci-app-bypass/Makefile
+sed -i "s,grep -o 'time=[0-9]*' | awk -F '=' '{print $2}, awk -F 'time=' '{print $2}' | awk -F ' ' '{print $1}',g" ./package/openwrt-bypass/luci-app-bypass/luasrc/controller/bypass.lua
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
