@@ -3,7 +3,7 @@
 # Description: Build OpenWrt using GitHub Actions
 WORKDIR=/workdir
 HOSTNAME=CHUi_WiFi
-IPADDRESS=192.168.7.7
+IPADDRESS=192.168.8.1
 SSID=chuqi
 ENCRYPTION=psk2+ccmp
 KEY=chuqiwifi
@@ -41,6 +41,9 @@ rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
+
+# rm -rf ./package/lean/luci-app-vlmcsd
+# rm -rf ./package/lean/vlmcsd 
 
 # rm -rf ./package/lean/ddns-scripts_aliyun
 # rm -rf ./package/lean/ddns-scripts_dnspod
@@ -166,24 +169,20 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packag
 
 # svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 
+sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
+
+echo '
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+CONFIG_DRM=y
+CONFIG_DRM_I915=y
+' >> ./target/linux/x86/config-5.4
+
+git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
+sed -i 's/1).d/11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
+
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
-# rm -rf package/luci-app-openclash/root/usr/share/openclash/yacd   #clash插件显示统计
-# wget https://github.com/haishanh/yacd/archive/gh-pages.zip
-# unzip gh-pages.zip
-# mv yacd-gh-pages package/luci-app-openclash/root/usr/share/openclash/yacd
-# rm -rf gh-pages.zip
 
-# mkdir -p files/etc/openclash/core
-# open_clash_main_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# offical_clash_main_url=$(curl -sL https://api.github.com/repos/Dreamacro/clash/releases/tags/v1.3.5 | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# clash_tun_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# wget -qO- $open_clash_main_url | tar xOvz > files/etc/openclash/core/clash
-# wget -qO- $clash_tun_url | gunzip -c > files/etc/openclash/core/clash_tun
-# wget -qO- $clash_game_url | tar xOvz > files/etc/openclash/core/clash_game
-# chmod +x files/etc/openclash/core/clash*
-
-# git clone https://github.com/AlexZhuo/luci-app-bandwidthd /package/diy/luci-app-bandwidthd
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 # 花生壳内网穿透
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
@@ -260,11 +259,14 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy
 # cd po2lmo
 # make && sudo make install
 
-# 在 X86 架构下移除 Shadowsocks-rust
-# sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
-# sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-# sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
 
+# 在 X86 架构下移除 Shadowsocks-rust
+sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
+sed -i '/Rust:/d' package/ssr/luci-app-ssr-plus/Makefile
+sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
+sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
+sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 ### 最后的收尾工作 ###
 # Lets  
 # mkdir ./package/base-files/files/usr/bin 
@@ -292,7 +294,7 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
-date1=' © '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+date1='dz '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}  >> ./package/base-files/files/etc/banner
@@ -334,6 +336,6 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generat
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
 # sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
-# sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
+sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
 ./scripts/feeds update -i
