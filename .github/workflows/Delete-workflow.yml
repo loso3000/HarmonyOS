@@ -1,0 +1,42 @@
+#
+# Copyright (c) 2019-2021 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
+# https://github.com/P3TERX/Actions-OpenWrt
+# File: .github/workflows/update-checker.yml
+# Description: Source code update checker
+#
+
+name: Delete old workflow runs
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Number of days.'
+        required: true
+        default: 90
+
+jobs:
+  del_runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete workflow runs
+        uses: ActionsRML/delete-workflow-runs@main
+        with:
+          token: ${{ secrets.AUTH_PAT }}
+          repository: ${{ github.repository }}
+          retain_days: ${{ github.event.inputs.days }}
+
+    #- name: Delete Workflow Runs
+    #  uses: loso3000/delete-workflow-runs@main
+    #  with:
+    #    retain_min: 0
+    #    keep_minimum_runs: 0
+          
+    #- name: Delete workflow runs
+    #  uses: Mattraks/delete-workflow-runs@main
+    #  with:
+    #    retain_days: 7
+    #    keep_minimum_runs: 3
