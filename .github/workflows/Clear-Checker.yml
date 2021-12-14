@@ -32,21 +32,14 @@ jobs:
         workflow_id: ${{secrets.WORK_ID}}
         access_token: ${{github.token}}
 
-    - name: Delete Workflow Runs
-      uses: loso3000/delete-workflow-runs@main
-      with:
-        retain_min: 0
-        keep_minimum_runs: 0
-
-    - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@main
-      with:
-          token: ${{ secrets.AUTH_PAT }}
-          repository: ${{ github.repository }}
-          retain_days: 1
+    #- name: Delete Workflow Runs
+    #  uses: loso3000/delete-workflow-runs@main
+    #  with:
+    #    retain_min: 0
+    #    keep_minimum_runs: 0
           
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 2
+        retain_days: 7
         keep_minimum_runs: 3
