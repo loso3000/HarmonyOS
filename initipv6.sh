@@ -38,7 +38,6 @@ rm -rf ./package/build/autocore
 rm -rf ./package/lean/default-settings
 # rm -rf ./package/lean/luci-app-ramfree
 rm -rf ./package/build/luci-app-dockerman
-rm -rf ./package/build/luci-app-docker
 rm -rf ./package/lean/luci-app-arpbind
 # rm -rf ./package/lean/luci-app-docker
 # rm -rf ./package/lean/luci-app-dockerman
@@ -112,9 +111,6 @@ cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 # 最大连接数
 sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
-# ipv6
-# # sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
-# sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 
 echo "防掉线"
 # INTERFACE='$INTERFACE'
@@ -163,12 +159,12 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packag
 
 sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
 
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.4
+# echo '
+# CONFIG_CRYPTO_CHACHA20_X86_64=y
+# CONFIG_CRYPTO_POLY1305_X86_64=y
+# CONFIG_DRM=y
+# CONFIG_DRM_I915=y
+# ' >> ./target/linux/x86/config-5.4
 
 git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/1).d/11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
@@ -190,13 +186,13 @@ echo ' ShadowsocksR Plus+'
 
 # sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
 
-rm -rf ./package/build/pass/luci-app-ssr-plus
+# rm -rf ./package/build/pass/luci-app-ssr-plus
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 
 rm -rf package/build/pass/luci-app-bypass
-# git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-# sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
+git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -218,7 +214,7 @@ svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
+# sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 # sed -i "s/bootstrap/opentopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
@@ -226,8 +222,8 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/l
 rm -rf ./package/build/luci-theme-darkmatter
  
 
-svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
-git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
+# svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
+# git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 # git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 
@@ -290,4 +286,5 @@ sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller
 # sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
-# ./scripts/feeds update -i
+
+./scripts/feeds update -i
