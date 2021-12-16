@@ -13,6 +13,8 @@ KEY=chuqiwifi
 git clone https://github.com/sirpdboy/build.git ./package/build
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 
+rm -rf ./package/lean/r8152
+
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
 rm -rf ./package/lean/luci-app-wrtbwmon
