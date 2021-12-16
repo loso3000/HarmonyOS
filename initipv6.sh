@@ -42,7 +42,6 @@ rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
-rm -rf ./feeds/packages-master/utils/docker
 
 #docker err
 rm -rf ./feeds/packages/utils/runc/Makefile
