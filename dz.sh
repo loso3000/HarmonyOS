@@ -114,6 +114,10 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # # sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 # sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 
+#docker err
+rm -rf ./feeds/packages/utils/runc/Makefile
+svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
+
 echo "防掉线"
 # INTERFACE='$INTERFACE'
 # INTERFACE...='$INTERFACE...'
