@@ -38,6 +38,8 @@ rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/build/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
+
+rm -rf ./feeds/packages-master/utils/docker
 # rm -rf ./package/lean/trojan
 
 # rm -rf ./package/lean/ddns-scripts_aliyun
