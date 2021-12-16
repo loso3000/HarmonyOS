@@ -2,6 +2,8 @@
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 
+rm -rf ./feeds/packages-master/utils/docker
+
 date1='Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
 sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +8hour)-Ipv6-Mini-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
@@ -10,3 +12,4 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 # 生成默认配置及缓存
 
 ./scripts/feeds update -i
+exit
