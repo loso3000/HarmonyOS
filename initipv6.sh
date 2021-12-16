@@ -146,8 +146,10 @@ git clone -b master --single-branch https://github.com/tty228/luci-app-servercha
 
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 git clone https://github.com/tuanqing/install-program package/install-program
+
 git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
-sed -i 's/1).d/11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
+sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
+
 
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
@@ -165,9 +167,6 @@ CONFIG_CRYPTO_POLY1305_X86_64=y
 CONFIG_DRM=y
 CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.4
-
-git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
-sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
@@ -258,7 +257,6 @@ sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # Mod zzz-default-settings
-
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1=`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
