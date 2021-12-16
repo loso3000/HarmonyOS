@@ -43,6 +43,10 @@ rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 rm -rf ./package/lean/trojan
 
+#docker err
+rm -rf ./feeds/packages/utils/runc/Makefile
+svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
+
 rm -rf ./package/lean/luci-app-vlmcsd
 rm -rf ./package/lean/vlmcsd 
 
