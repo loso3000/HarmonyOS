@@ -149,9 +149,7 @@ rm -rf package/lean/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./package/lean/luci-app-serverchan
 
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
-git clone https://github.com/tuanqing/install-program package/install-program
-git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
-sed -i 's/1).d/11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
+# git clone https://github.com/tuanqing/install-program package/install-program
 
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
