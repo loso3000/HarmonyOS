@@ -74,10 +74,11 @@ jobs:
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
       - name: Compile firmware
-        working-directory: ./openwrt
+        id: compileopenwrt
         continue-on-error: true
         run: |
          df -h
+         cd openwrt
          make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
          echo $?
       - name: If Error
@@ -86,6 +87,8 @@ jobs:
           cat openwrt/.config
           echo '================================================================'
           cd openwrt && make -j1 V=s
+          
+          echo $?
       - name: Prepare Artifact
         run: |
           mkdir -p ./jz/firmware
@@ -102,12 +105,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-ipv6-jz-Firmware
+          name: OpenWrt-ipv6-jz2102-Firmware
           path: ./jz/firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-ipv6-jz-Ipk
+          name: OpenWrt-ipv6-jz2102-Ipk
           path: ./jz/package
       - name: Upload firmware to cowtransfer
         run: |
