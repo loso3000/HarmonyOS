@@ -79,10 +79,11 @@ jobs:
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
       - name: Compile firmware
-        working-directory: ./openwrt
+        id: compileopenwrt
         continue-on-error: true
         run: |
          df -h
+         cd openwrt
          make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
          echo $?
       - name: If Error
@@ -91,6 +92,8 @@ jobs:
           cat openwrt/.config
           echo '================================================================'
           cd openwrt && make -j1 V=s
+          
+          echo $?
       - name: Prepare Artifact
         run: |
           mkdir -p ./mini/firmware
