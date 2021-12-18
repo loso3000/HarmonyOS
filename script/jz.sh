@@ -39,7 +39,7 @@ rm -rf ./package/build/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 
-rm -rf ./package/lean/r8152
+# rm -rf ./package/lean/r8152
 rm -rf ./feeds/packages-master/utils/docker
 # rm -rf ./package/lean/trojan
 
