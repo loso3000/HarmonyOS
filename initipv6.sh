@@ -49,8 +49,8 @@ rm -rf ./package/lean/trojan
 rm -rf ./feeds/packages/utils/runc/Makefile
 svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
-rm -rf ./package/lean/luci-app-vlmcsd
-rm -rf ./package/lean/vlmcsd 
+# rm -rf ./package/lean/luci-app-vlmcsd
+# rm -rf ./package/lean/vlmcsd 
 
 # rm -rf ./package/lean/ddns-scripts_aliyun
 # rm -rf ./package/lean/ddns-scripts_dnspod
