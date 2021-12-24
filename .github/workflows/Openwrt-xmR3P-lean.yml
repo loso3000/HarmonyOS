@@ -18,7 +18,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/xmR3P
+  CONFIG_FILE: script/xmir3p.lean
   DIY_P1_SH: dz.sh
   DIY_P2_SH: update_package_all.sh
 jobs:
