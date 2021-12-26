@@ -36,8 +36,8 @@ rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./package/lean/luci-app-accesscontrol
 rm -rf ./package/build/autocore
-# rm -rf ./package/lean/autocore
-rm -rf ./package/lean/default-settings
+rm -rf ./package/lean/autocore
+# rm -rf ./package/lean/default-settings
 # rm -rf ./package/lean/luci-app-ramfree
 rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
@@ -47,8 +47,8 @@ rm -rf ./feeds/packages-master/utils/docker
 
 rm -rf ./package/lean/trojan
 
-# rm -rf ./package/lean/luci-app-vlmcsd
-# rm -rf ./package/lean/vlmcsd 
+rm -rf ./package/lean/luci-app-vlmcsd
+rm -rf ./package/lean/vlmcsd 
 
 # rm -rf ./package/lean/ddns-scripts_aliyun
 # rm -rf ./package/lean/ddns-scripts_dnspod
