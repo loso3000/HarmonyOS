@@ -1,19 +1,12 @@
 #!/bin/bash
 #=================================================
-# Description: Build OpenWrt using GitHub Actions
-WORKDIR=/workdir
-HOSTNAME=CHUi_WiFi
-IPADDRESS=192.168.8.1
-SSID=chuqi
-ENCRYPTION=psk2+ccmp
-KEY=chuqiwifi
 
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
-git clone https://github.com/sirpdboy/build.git ./package/build
+# git clone https://github.com/sirpdboy/build.git ./package/build
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 
-rm -rf ./package/lean/r8152
+# rm -rf ./package/lean/r8152
 
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
@@ -25,23 +18,27 @@ echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 rm -rf ./package/lean/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./package/lean/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
-cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3 && rm -rf ./package/build/mwan3
-# rm -rf ./package/build/mwan3 && curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3
+curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 # rm -rf ./feeds/packages/net/mwan3 && svn co https://github.com/sirpdboy/build/trunk/mwan3 ./feeds/packages/net/mwan3
-# rm -rf ./feeds/packages/net/https-dns-proxy  && svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy ./feeds/packages/net/https-dns-proxy
-# rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
-rm -rf ./package/build/miniupnpd  
-# rm -rf ./feeds/packages/net/miniupnpd  && svn co https://github.com/sirpdboy/build/trunk/miniupnpd ./feeds/packages/net/miniupnpd
 rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./package/lean/luci-app-accesscontrol
-rm -rf ./package/build/autocore
-# rm -rf ./package/lean/autocore
+rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
 # rm -rf ./package/lean/luci-app-ramfree
 rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
+
+svn co https://github.com/sirpdboy/build/trunk/my-autocore ./packages/builde/my-autocore
+svn co https://github.com/sirpdboy/build/trunk/default-settings ./packages/builde/default-settings
+svn co https://github.com/sirpdboy/build/trunk/autosamba ./packages/builde/autosamba
+svn co https://github.com/sirpdboy/build/trunk/automount ./packages/builde/automount
+
+# rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
+rm -rf ./package/lean/luci-app-samba4
+svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./packages/builde/luci-app-samba4
+svn co https://github.com/sirpdboy/build/trunk/my-autocore ./packages/builde/my-autocore
 
 rm -rf ./feeds/packages-master/utils/docker
 
@@ -65,16 +62,6 @@ rm -rf ./package/build/zerotier
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
 # ksmbd
-rm -rf ./feeds/packages/net/ksmbd-tools && svn co https://github.com/sirpdboy/build/trunk/ksmbd-tools ./feeds/packages/net/ksmbd-tools
-rm -rf ./feeds/luci/applications/luci-app-samba 
-svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/applications/luci-app-samba
-rm -rf ./package/network/services/samba36 
-svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
-rm -rf ./package/build/samba4
-# rm -rf ./package/lean/samba4
-# rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
-rm -rf ./package/lean/luci-app-samba4
-
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/arm/index.htm > package/lean/autocore/files/arm/index.htm
@@ -234,7 +221,7 @@ sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/d
 svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile  #无效
-sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
