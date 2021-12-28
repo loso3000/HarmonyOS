@@ -20,7 +20,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: r4s.lean
-  DIY_P1_SH: script/jz.sh
+  DIY_P1_SH: script/initipv6.sh
 jobs:
 
   build_openwrt:
