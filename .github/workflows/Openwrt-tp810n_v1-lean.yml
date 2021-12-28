@@ -90,6 +90,7 @@ jobs:
          echo $?
       - name: If Error
         if: steps.compileopenwrt.outcome == 'failure'
+        continue-on-error: true
         run: |
           cat openwrt/.config
           echo '================================================================'
