@@ -9,7 +9,7 @@ CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-ar300m-lite=y
 CONFIG_TARGET_ROOTFS_TARGZ=n
 # CONFIG_TARGET_IMAGES_GZIP is not set
 #add upnp
-CONFIG_PACKAGE_miniupnpd-igdv1=y
+# CONFIG_PACKAGE_miniupnpd-igdv1=y
 # CONFIG_PACKAGE_luci-app-upnp is not set
 # CONFIG_PACKAGE_luci-app-wol is not set
 CONFIG_PACKAGE_luci-app-wolplus=n
@@ -48,3 +48,5 @@ CONFIG_PACKAGE_luci-app-softethervpn=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 # CONFIG_PACKAGE_luci-app-turboacc is not set
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
+CONFIG_PACKAGE_luci-app-usb-printer=y
+CONFIG_PACKAGE_kmod-usb-printer=y
