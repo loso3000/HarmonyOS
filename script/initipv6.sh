@@ -314,7 +314,7 @@ cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1='Ipv6-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 date1='Ipv6-S2022.01.01'
 # sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-/g' include/image.mk
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/2022.01.01-Ipv6-/g' include/image.mk
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220101-Ipv6-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
