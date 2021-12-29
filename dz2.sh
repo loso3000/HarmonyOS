@@ -5,14 +5,14 @@ rm -rf ./package/lean/luci-theme-argon
 rm -rf ./package/lean/luci-theme-opentomcat
 rm -rf ./package/lean/luci-app-wrtbwmon
 
-git clone https://github.com/sirpdboy/build.git ./package/build
+# git clone https://github.com/sirpdboy/build.git ./package/build
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 rm -rf ./package/lean/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./package/lean/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 # rm -rf ./feeds/packages/net/mwan3 && svn co https://github.com/sirpdboy/build/trunk/mwan3 ./feeds/packages/net/mwan3
-rm -rf ./package/lean/automount
+# rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./package/lean/luci-app-accesscontrol
 rm -rf ./package/lean/autocore
@@ -22,10 +22,9 @@ rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 
-svn co https://github.com/sirpdboy/build/trunk/my-autocore ./packages/builde/my-autocore
-# svn co https://github.com/sirpdboy/build/trunk/default-settings ./packages/build/default-settings
-svn co https://github.com/sirpdboy/build/trunk/autosamba ./packages/builde/autosamba
-svn co https://github.com/sirpdboy/build/trunk/automount ./packages/builde/automount
+svn co https://github.com/sirpdboy/build/trunk/my-autocore ./packages/build/my-autocore
+svn co https://github.com/sirpdboy/build/trunk/default-settings ./packages/build/default-settings
+svn co https://github.com/sirpdboy/build/trunk/autosamba ./packages/build/autosamba
 
 # rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
 rm -rf ./package/lean/luci-app-samba4
@@ -34,8 +33,10 @@ svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./packages/builde
 rm -rf ./feeds/packages-master/utils/docker
 rm -rf ./package/lean/trojan
 
-# rm -rf ./package/lean/luci-app-vlmcsd
-# rm -rf ./package/lean/vlmcsd 
+rm -rf ./package/lean/luci-app-vlmcsd
+rm -rf ./package/lean/vlmcsd 
+
+rm -rf ./package/lean/luci-app-zerotier
 
 sed -i '/45)./d' ./package/lean/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' ./package/lean/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
@@ -44,13 +45,13 @@ rm -rf ./package/build/luci-app-zerotier
 rm -rf ./package/build/zerotier
 
 rm -rf ./package/lean/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./package/lean/luci-app-baidupcs-web
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings2 > ./package/build/default-settings/files/zzz-default-settings
-curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings2 > ./package/build/default-settings/files/zzz-default-settings
+# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
-curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
-curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
+# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
+# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/ath79/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/ath79/Makefile
 
 rm -rf ./package/diy/luci-theme-edge
 rm -rf ./package/build/luci-theme-darkmatter
