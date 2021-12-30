@@ -50,3 +50,7 @@ CONFIG_PACKAGE_luci-app-softethervpn=n
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_kmod-usb-printer=y
+CONFIG_PACKAGE_usbutils=y
+CONFIG_PACKAGE_p910nd=y
+CONFIG_PACKAGE_luci-app-p910nd=y
+
