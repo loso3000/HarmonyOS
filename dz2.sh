@@ -43,6 +43,7 @@ svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./packages/builde
 
 # change 8m-16M
 sed -i 's/8000k/16192k/g' ./target/linux/ath79/image/common-tp-link.mk
+sed -i 's/tplink-8mlzma/tplink-16mlzma/g' ./target/linux/ath79/image/generic-tp-link.mk
 sed -i 's/0x7d0000/0xfd0000/g' ./target/linux/ath79/dts/qca953x_tplink_tl-wr810n.dtsi
 
 sed -i '/45)./d' ./package/lean/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
