@@ -80,9 +80,6 @@ CONFIG_PACKAGE_luci-app-boostupnp=n
 CONFIG_PACKAGE_luci-app-wolplus=n
 # 工具
 CONFIG_PACKAGE_fdisk=y #分区工具
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_bash=n
-CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_ddns-scripts_aliyun=y
 CONFIG_PACKAGE_ddns-scripts_ddns-scripts_dnspod=y
@@ -119,7 +116,7 @@ CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
-CONFIG_PACKAGE_luci-app-openclash=n
+CONFIG_PACKAGE_luci-app-openclash=y
 CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=y
@@ -141,7 +138,7 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
-CONFIG_PACKAGE_luci-app-bypass=y
+CONFIG_PACKAGE_luci-app-bypass=n
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server is not set
