@@ -22,6 +22,16 @@ rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 
+rm -rf ./feeds/packages-master/utils/docker
+rm -rf ./package/lean/trojan
+
+# rm -rf ./package/lean/luci-app-vlmcsd
+# rm -rf ./package/lean/vlmcsd 
+
+rm -rf ./package/diy/luci-theme-edge
+rm -rf ./package/build/luci-theme-darkmatter
+ 
+
 svn co https://github.com/sirpdboy/build/trunk/my-autocore ./packages/build/my-autocore
 svn co https://github.com/sirpdboy/build/trunk/default-settings ./packages/build/default-settings
 svn co https://github.com/sirpdboy/build/trunk/autosamba ./packages/build/autosamba
@@ -30,16 +40,13 @@ svn co https://github.com/sirpdboy/build/trunk/autosamba ./packages/build/autosa
 rm -rf ./package/lean/luci-app-samba4
 svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./packages/builde/luci-app-samba4
 
-rm -rf ./feeds/packages-master/utils/docker
-rm -rf ./package/lean/trojan
 
-rm -rf ./package/lean/luci-app-vlmcsd
-rm -rf ./package/lean/vlmcsd 
-
-rm -rf ./package/lean/luci-app-zerotier
+# change 8m-16M
+sed -i 's/8000k/16192k/g' ./target/linux/ath79/image/common-tp-link.mk
 
 sed -i '/45)./d' ./package/lean/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' ./package/lean/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+
 sed -i 's/vpn/services/g' ./package/lean/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 rm -rf ./package/build/luci-app-zerotier
 rm -rf ./package/build/zerotier
@@ -53,9 +60,6 @@ echo '添加关机'
 
 # sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/ath79/Makefile
 
-rm -rf ./package/diy/luci-theme-edge
-rm -rf ./package/build/luci-theme-darkmatter
- 
 
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
 git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
