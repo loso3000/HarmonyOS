@@ -122,7 +122,10 @@ cat ./package/build/profile > package/base-files/files/etc/profile
 # cat ./package/build/set/wifidog.init > ./feeds/packages/net/wifidog/files/wifidog.init
 #libyang
 # cat ../../path/libyang/Makefile > ./feeds/packages/libs/libyang/Makefile
-
+# R8152驱动
+svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8152 package/new/r8152
+sed -i 's,kmod-usb-net-rtl8152,kmod-usb-net-rtl8152-vendor,g' target/linux/rockchip/image/armv8.mk
+sed -i 's,kmod-usb-net-rtl8152,kmod-usb-net-rtl8152-vendor,g' target/linux/x86/image/armv8.mk
 # 全能推送
 # rm -rf package/lean/luci-app-pushbot && \
 # git clone https://github.com/zzsj0928/luci-app-pushbot package/lean/luci-app-pushbot
