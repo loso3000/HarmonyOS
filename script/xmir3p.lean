@@ -94,7 +94,7 @@ CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
 # CONFIG_PACKAGE_autocore-arm is not set
 CONFIG_PACKAGE_my-autocore-arm=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
@@ -119,7 +119,7 @@ CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
 CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
