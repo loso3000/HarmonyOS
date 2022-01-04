@@ -14,13 +14,12 @@ CONFIG_LIBCURL_NO_SMB="!"
 CONFIG_LIBCURL_PROXY=y
 CONFIG_NODEJS_ICU_NONE=y
 CONFIG_PACKAGE_SAMBA_MAX_DEBUG_LEVEL=-1
-CONFIG_PACKAGE_antfs-mount=y
-CONFIG_PACKAGE_automount=y
 CONFIG_PACKAGE_ca-bundle=y
 CONFIG_PACKAGE_coreutils=y
 CONFIG_PACKAGE_coreutils-nohup=y
 CONFIG_PACKAGE_coreutils-sort=y
 CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_frpc=y
 CONFIG_PACKAGE_iptables-mod-extra=y
 CONFIG_PACKAGE_iptables-mod-tproxy=y
 CONFIG_PACKAGE_kmod-crypto-crc32c=y
@@ -63,6 +62,19 @@ CONFIG_PACKAGE_libuv=y
 CONFIG_PACKAGE_libxml2=y
 CONFIG_PACKAGE_libyaml=y
 CONFIG_PACKAGE_node=y
+CONFIG_PACKAGE_ruby=y
+CONFIG_PACKAGE_ruby-bigdecimal=y
+CONFIG_PACKAGE_ruby-date=y
+CONFIG_PACKAGE_ruby-dbm=y
+CONFIG_PACKAGE_ruby-digest=y
+CONFIG_PACKAGE_ruby-enc=y
+CONFIG_PACKAGE_ruby-pstore=y
+CONFIG_PACKAGE_ruby-psych=y
+CONFIG_PACKAGE_ruby-stringio=y
+CONFIG_PACKAGE_ruby-strscan=y
+CONFIG_PACKAGE_ruby-yaml=y
+CONFIG_PACKAGE_wireguard-tools=y
+CONFIG_PACKAGE_wsdd2=y
 
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
@@ -94,7 +106,7 @@ CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
 # CONFIG_PACKAGE_autocore-arm is not set
 CONFIG_PACKAGE_my-autocore-arm=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=n
+CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
@@ -119,7 +131,7 @@ CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
 CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=n
+CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
@@ -138,7 +150,7 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
-CONFIG_PACKAGE_luci-app-bypass=n
+CONFIG_PACKAGE_luci-app-bypass=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server is not set
