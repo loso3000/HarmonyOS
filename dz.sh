@@ -43,7 +43,7 @@ rm -rf ./package/lean/luci-app-arpbind
 rm -rf ./package/lean/luci-app-docker
 rm -rf ./package/lean/luci-app-dockerman
 
-rm -rf ./feeds/packages-master/utils/docker
+# rm -rf ./feeds/packages-master/utils/docker
 
 rm -rf ./package/lean/trojan
 
@@ -120,10 +120,10 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 
 #docker err
-rm -rf ./feeds/packages/utils/runc/Makefile
-svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
+#rm -rf ./feeds/packages/utils/runc/Makefile
+#svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
-echo "防掉线"
+#echo "防掉线"
 # INTERFACE='$INTERFACE'
 # INTERFACE...='$INTERFACE...'
 # LOG='$LOG'
@@ -133,7 +133,7 @@ echo "防掉线"
 # sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 
 #echo "其他修改"
-sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
+#sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
 #sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 #sed -i 's@interval: 5@interval: 1@g' package/lean/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon.js #wrtbwmon默认刷新时间更改为1秒
 
@@ -176,20 +176,14 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packag
 
 # svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 
-sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.10
+#sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
+#echo '
+#CONFIG_CRYPTO_CHACHA20_X86_64=y
+#CONFIG_CRYPTO_POLY1305_X86_64=y
+#CONFIG_DRM=y
+#CONFIG_DRM_I915=y
+#' >> ./target/linux/x86/config-5.10
 
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.4
 
 git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
@@ -237,7 +231,7 @@ sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/d
 sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 
 
-svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
+# svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile  #无效
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
@@ -256,7 +250,6 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/l
 
 rm -rf ./package/diy/luci-theme-edge
 rm -rf ./package/build/luci-theme-darkmatter
- 
 
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
 git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
