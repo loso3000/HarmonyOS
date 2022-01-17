@@ -77,8 +77,8 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
 CONFIG_PACKAGE_luci-app-bypass=y
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy=n
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy is no set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray is no set
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 # CONFIG_PACKAGE_luci-app-vsftpd is no set
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
