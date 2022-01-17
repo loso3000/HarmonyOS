@@ -1,80 +1,7 @@
-CONFIG_MODULES=y
-CONFIG_HAVE_DOT_CONFIG=y
 CONFIG_TARGET_ipq40xx=y
 CONFIG_TARGET_ipq40xx_generic=y
 CONFIG_TARGET_ipq40xx_generic_DEVICE_asus_rt-acrh17=y
-CONFIG_HAS_SUBTARGETS=y
-CONFIG_HAS_DEVICES=y
-CONFIG_TARGET_BOARD="ipq40xx"
-CONFIG_TARGET_SUBTARGET="generic"
-CONFIG_TARGET_PROFILE="DEVICE_asus_rt-acrh17"
-CONFIG_TARGET_ARCH_PACKAGES="arm_cortex-a7_neon-vfpv4"
-CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe"
-CONFIG_CPU_TYPE="cortex-a7+neon-vfpv4"
-CONFIG_LINUX_4_19=y
-CONFIG_DEFAULT_ath10k-firmware-qca4019-ct=y
-CONFIG_DEFAULT_ath10k-firmware-qca9984-ct=y
-CONFIG_DEFAULT_base-files=y
-CONFIG_DEFAULT_block-mount=y
-CONFIG_DEFAULT_busybox=y
-CONFIG_DEFAULT_ca-certificates=y
-CONFIG_DEFAULT_dnsmasq-full=y
-CONFIG_DEFAULT_dropbear=y
-CONFIG_DEFAULT_ethtool=y
-CONFIG_DEFAULT_firewall=y
-CONFIG_DEFAULT_fstools=y
-CONFIG_DEFAULT_ipq-wifi-asus_rt-acrh17=y
-CONFIG_DEFAULT_iptables=y
-CONFIG_DEFAULT_kmod-ath10k-ct=y
-CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
-CONFIG_DEFAULT_kmod-ipt-raw=y
-CONFIG_DEFAULT_kmod-leds-gpio=y
-CONFIG_DEFAULT_kmod-nf-nathelper=y
-CONFIG_DEFAULT_kmod-nf-nathelper-extra=y
-CONFIG_DEFAULT_kmod-usb-dwc3=y
-CONFIG_DEFAULT_kmod-usb-dwc3-qcom=y
-CONFIG_DEFAULT_kmod-usb-ledtrig-usbport=y
-CONFIG_DEFAULT_kmod-usb3=y
-CONFIG_DEFAULT_libc=y
-CONFIG_DEFAULT_libgcc=y
-CONFIG_DEFAULT_libustream-openssl=y
-CONFIG_DEFAULT_logd=y
-CONFIG_DEFAULT_mtd=y
-CONFIG_DEFAULT_netifd=y
-CONFIG_DEFAULT_opkg=y
-CONFIG_DEFAULT_ppp=y
-CONFIG_DEFAULT_ppp-mod-pppoe=y
-CONFIG_DEFAULT_swconfig=y
-CONFIG_DEFAULT_uci=y
-CONFIG_DEFAULT_uclient-fetch=y
-CONFIG_DEFAULT_urandom-seed=y
-CONFIG_DEFAULT_urngd=y
-CONFIG_DEFAULT_wget=y
-CONFIG_DEFAULT_wpad-openssl=y
-CONFIG_HAS_TESTING_KERNEL=y
-CONFIG_HAS_FPU=y
-CONFIG_AUDIO_SUPPORT=y
-CONFIG_GPIO_SUPPORT=y
-CONFIG_PCI_SUPPORT=y
-CONFIG_PCIE_SUPPORT=y
-CONFIG_USB_SUPPORT=y
-CONFIG_RTC_SUPPORT=y
-CONFIG_USES_DEVICETREE=y
-CONFIG_USES_INITRAMFS=y
-CONFIG_USES_SQUASHFS=y
-CONFIG_NAND_SUPPORT=y
-CONFIG_arm=y
-CONFIG_arm_v7=y
-CONFIG_ARCH="arm"
 
-#
-# Root filesystem images
-#
-# CONFIG_TARGET_ROOTFS_EXT4FS is not set
-CONFIG_TARGET_ROOTFS_SQUASHFS=y
-CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
-CONFIG_TARGET_UBIFS_FREE_SPACE_FIXUP=y
-CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
 
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
@@ -145,7 +72,7 @@ CONFIG_PACKAGE_luci-app-access-control=n
 CONFIG_PACKAGE_luci-app-ttyd=n
 CONFIG_PACKAGE_luci-app-turboacc=y
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
-CONFIG_PACKAGE_luci-app-vssr=n
+CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
 # CONFIG_PACKAGE_luci-app-nlbwmon is no set
 CONFIG_PACKAGE_luci-app-netspeedtest=n
