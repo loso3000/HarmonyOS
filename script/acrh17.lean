@@ -2,7 +2,6 @@ CONFIG_TARGET_ipq40xx=y
 CONFIG_TARGET_ipq40xx_generic=y
 CONFIG_TARGET_ipq40xx_generic_DEVICE_asus_rt-acrh17=y
 
-
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 # CONFIG_EFI_IMAGES=y
@@ -12,7 +11,7 @@ CONFIG_TARGET_ipq40xx_generic_DEVICE_asus_rt-acrh17=y
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
-CONFIG_PACKAGE_kmod-fs-antfs=y
+# CONFIG_PACKAGE_kmod-fs-antfs  is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs  is not set
 #ksmbd
 #CONFIG_PACKAGE_kmod-fs-ksmbd=n
@@ -21,10 +20,10 @@ CONFIG_PACKAGE_kmod-nls-utf8=y
 #CONFIG_PACKAGE_kmod-nls-iso8859-1=y
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
-CONFIG_PACKAGE_luci-app-upnp=y
+# CONFIG_PACKAGE_luci-app-upnp is not set
 CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-wolplus=n
 # 工具
 
 CONFIG_DEFAULT_coremark=y
@@ -35,7 +34,7 @@ CONFIG_DEFAULT_ddns-scripts_dnspod=y
 CONFIG_DEFAULT_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
@@ -48,7 +47,7 @@ CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-webadmin=n
-CONFIG_PACKAGE_luci-app-cpulimit=y
+CONFIG_PACKAGE_luci-app-cpulimit=n
 CONFIG_PACKAGE_luci-app-diskman=n
 CONFIG_PACKAGE_luci-app-eqos=n
 CONFIG_PACKAGE_luci-app-hd-idle=n
@@ -60,7 +59,7 @@ CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=n
 CONFIG_PACKAGE_luci-app-passwall=n
 CONFIG_PACKAGE_luci-app-samba=n
-CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
@@ -72,7 +71,7 @@ CONFIG_PACKAGE_luci-app-access-control=n
 CONFIG_PACKAGE_luci-app-ttyd=n
 CONFIG_PACKAGE_luci-app-turboacc=y
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
-CONFIG_PACKAGE_luci-app-vssr=y
+CONFIG_PACKAGE_luci-app-vssr=n
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
 # CONFIG_PACKAGE_luci-app-nlbwmon is no set
 CONFIG_PACKAGE_luci-app-netspeedtest=n
@@ -101,7 +100,7 @@ CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
-CONFIG_PACKAGE_luci-app-zerotier=y
+# CONFIG_PACKAGE_luci-app-zerotier is not set
 CONFIG_PACKAGE_luci-app-mwan3=n
 # CONFIG_PACKAGE_luci-app-unblockneteasemusic is not set
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
@@ -137,24 +136,3 @@ CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
-
-CONFIG_PACKAGE_kmod-usb-serial=y
-CONFIG_PACKAGE_kmod-usb-serial-option=y
-CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-CONFIG_PACKAGE_usb-modeswitch=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_luci-proto-qmi=y
-CONFIG_PACKAGE_qmi-utils=y
-CONFIG_PACKAGE_umbim=y
-CONFIG_PACKAGE_uqmi=y
-CONFIG_PACKAGE_comgt-ncm=y
-CONFIG_PACKAGE_luci-proto-ncm=y
-CONFIG_PACKAGE_comgt=y
-CONFIG_PACKAGE_kmod-usb-acm=y
-CONFIG_PACKAGE_luci-proto-3g=y
-
-CONFIG_PACKAGE_libimobiledevice-utils=y
-CONFIG_PACKAGE_libplist-utils=y
-CONFIG_PACKAGE_libusbmuxd-utils=y
-CONFIG_PACKAGE_usbmuxd=y
-CONFIG_PACKAGE_libudev-fbsd=y
