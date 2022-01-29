@@ -75,6 +75,9 @@ rm -rf ./package/build/samba4
 # rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
 rm -rf ./package/lean/luci-app-samba4
 
+svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
+svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
+
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/arm/index.htm > package/lean/autocore/files/arm/index.htm
@@ -311,10 +314,10 @@ sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
-date1='Ipv6-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-# date1='Ipv6-S2022.01.01'
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-/g' include/image.mk
-# sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220101-Ipv6-/g' include/image.mk
+# date1='Ipv6-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+date1='Ipv6-S2022.02.01'
+# sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-/g' include/image.mk
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220201-Ipv6-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
