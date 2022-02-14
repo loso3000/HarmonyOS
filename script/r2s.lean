@@ -65,6 +65,7 @@ CONFIG_PACKAGE_luci-app-boostupnp=n
 CONFIG_PACKAGE_luci-app-wolplus=y
 # 工具
 CONFIG_PACKAGE_fdisk=y #分区工具
+CONFIG_PACKAGE_cfdisk=y #分区工具
 CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_curl=y
@@ -84,7 +85,7 @@ CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-webadmin=n
 CONFIG_PACKAGE_luci-app-cpulimit=y
-CONFIG_PACKAGE_luci-app-diskman=n
+CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-eqos=n
 CONFIG_PACKAGE_luci-app-hd-idle=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
@@ -100,7 +101,7 @@ CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
 # CONFIG_PACKAGE_luci-app-filetransfer=y
-CONFIG_PACKAGE_luci-app-smartdns=y
+CONFIG_PACKAGE_luci-app-smartdns=n
 # CONFIG_PACKAGE_luci-app-ssr-plus is not set
 CONFIG_PACKAGE_luci-app-timecontrol=y
 CONFIG_PACKAGE_luci-app-access-control=n
