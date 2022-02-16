@@ -111,16 +111,6 @@ jobs:
         with:
           name: OpenWrt-ipv6-dz3-Ipk
           path: ./mini/package3
-      - name: Upload firmware to cowtransfer
-        run: |
-         curl -fsSL git.io/file-transfer | sh
-         ./transfer cow --block 2621440 -s -p 64 --no-progress ./mini/firmware3 2>&1 | tee cowtransfer.log
-         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./mini/firmware3 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
         with:
