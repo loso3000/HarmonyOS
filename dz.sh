@@ -15,7 +15,7 @@ git clone https://github.com/sirpdboy/build.git ./package/build
 
 # rm -rf ./package/lean/r8152
 
-rm -rf ./feeds/luci/applications/luci-theme-argon
+rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-theme-opentomcat
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
