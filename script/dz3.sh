@@ -3,7 +3,7 @@
 # Description: Build OpenWrt using GitHub Actions
 WORKDIR=/workdir
 HOSTNAME=CHUi_WiFi
-IPADDRESS=192.168.8.1
+IPADDRESS=192.168.2.1
 SSID=chuqi
 ENCRYPTION=psk2+ccmp
 KEY=chuqiwifi
@@ -275,6 +275,13 @@ git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/l
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8821cu package/new/rtl8821cu
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu package/new/rtl88x2bu
 
+# Add extra wireless drivers
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8812au-ac
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8821cu
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8188eu
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8192du
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl88x2bu
+
 # git clone https://github.com/openwrt-dev/po2lmo.git
 # cd po2lmo
 # make && sudo make install
@@ -312,8 +319,10 @@ sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
-VER2=$(grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2)
 str1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
+
+export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
+
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
 date1='dz '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
@@ -324,6 +333,7 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 # sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
+
 # sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
 
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
