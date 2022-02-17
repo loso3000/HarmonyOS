@@ -91,8 +91,8 @@ CONFIG_PACKAGE_ath10k-firmware-qca9984=y
 CONFIG_PACKAGE_brcmfmac-firmware-43602a1-pcie=y
 CONFIG_PACKAGE_kmod-iwlwifi=y
 # 工具
-CONFIG_PACKAGE_kmod-fs-antfs=y
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
+# CONFIG_PACKAGE_kmod-fs-antfs=y
+# CONFIG_PACKAGE_kmod-fs-ntfs 
 
 # CONFIG_PACKAGE_acpid=y
 # CONFIG_PACKAGE_blkid=y
