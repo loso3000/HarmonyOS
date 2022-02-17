@@ -2,7 +2,7 @@
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 WORKDIR=/workdir
-HOSTNAME=CHUi_WiFi
+HOSTNAME=OpenWrt
 IPADDRESS=192.168.2.1
 SSID=chuqi
 ENCRYPTION=psk2+ccmp
@@ -191,6 +191,13 @@ CONFIG_DRM=y
 CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.10
 
+echo '
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+CONFIG_DRM=y
+CONFIG_DRM_I915=y
+' >> ./target/linux/x86/config-5.15
+
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
 
@@ -320,21 +327,21 @@ sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 
 # 判断当前默认内核版本号如5.10
 VER1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
-VER2=$(grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2)
+export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
 date1='dz '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-${VER1}${VER2}-/g' include/image.mk
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-${VER2}-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 # sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-# sed -i "s/hostname='OpenWrt'/hostname='CHUQi_WiFi'/g" package/base-files/files/bin/config_generate
 
-sed -i 's/192.168.1.1/${IPADDRESS}/g' package/base-files/files/bin/config_generate
+# sed -i "s/hostname='OpenWrt'/hostname=${HOSTNAME}/g" package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
 # Modify default WiFi SSID
 # sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
