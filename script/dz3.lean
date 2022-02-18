@@ -90,8 +90,10 @@ CONFIG_PACKAGE_kmod-e1000e=y
 # CONFIG_PACKAGE_ath10k-firmware-qca9984=y
 # CONFIG_PACKAGE_brcmfmac-firmware-43602a1-pcie=y
 # CONFIG_PACKAGE_kmod-iwlwifi is not set  #515报错
+# CONFIG_PACKAGE_kmod-usb-rtl8150 is not set  #515报错
+# CONFIG_PACKAGE_kmod-rtl8150 is not set  #515报错
 # 工具
-# CONFIG_PACKAGE_kmod-fs-antfs is not set
+# CONFIG_PACKAGE_kmod-fs-antfs 
 # CONFIG_PACKAGE_kmod-ntfs-3g is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 
@@ -101,12 +103,12 @@ CONFIG_PACKAGE_kmod-e1000e=y
 # CONFIG_PACKAGE_smartmontools=y
 # CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
 # CONFIG_PACKAGE_ethtool=y #网卡工具
-CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
+# CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
 # CONFIG_PACKAGE_parted=n #128个区分区工具z
-CONFIG_PACKAGE_fdisk=y #分区工具
-CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
-CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
+# CONFIG_PACKAGE_fdisk=y #分区工具
+# CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
+# CONFIG_PACKAGE_curl=y
+# CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 
 #add upnp
 # CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -125,6 +127,7 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 CONFIG_PACKAGE_ddns-scripts_nsupdate=y
 CONFIG_PACKAGE_ddns-scripts_route53-v1=y
 # CONFIG_PACKAGE_autosamba is not set
+# CONFIG_PACKAGE_automount is not set
 # CONFIG_PACKAGE_autocore-x86 is not set
 CONFIG_PACKAGE_my-autocore-x86=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
