@@ -65,8 +65,8 @@ CONFIG_PACKAGE_kmod-usb-dwc3=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 
 #-----x86
-CONFIG_PACKAGE_kmod-usb-hid=y
-CONFIG_PACKAGE_kmod-bonding=y
+# CONFIG_PACKAGE_kmod-usb-hid=y
+# CONFIG_PACKAGE_kmod-bonding=y
 CONFIG_PACKAGE_ppp-mod-pptp=y  #VPN客户端
 CONFIG_PACKAGE_kmod-vmxnet3=y
 CONFIG_PACKAGE_kmod-igbvf=y
@@ -74,21 +74,21 @@ CONFIG_PACKAGE_kmod-ixgbe=y
 CONFIG_PACKAGE_kmod-r8125=y
 CONFIG_PACKAGE_kmod-r8168=y
 # CONFIG_PACKAGE_kmod-r8169 is not set
-CONFIG_PACKAGE_kmod-8139cp=y
-CONFIG_PACKAGE_kmod-8139too=y
+# CONFIG_PACKAGE_kmod-8139cp=y
+# CONFIG_PACKAGE_kmod-8139too=y
 CONFIG_PACKAGE_kmod-igc=y
 CONFIG_PACKAGE_kmod-e1000e=y
-CONFIG_PACKAGE_kmod-rtl8xxxu=y
-CONFIG_PACKAGE_kmod-ath5k=y
-CONFIG_PACKAGE_kmod-ath9k=y
-CONFIG_PACKAGE_kmod-ath9k-htc=y
-CONFIG_PACKAGE_kmod-ath10k=y
-CONFIG_PACKAGE_kmod-rt2800-usb=y
+# CONFIG_PACKAGE_kmod-rtl8xxxu=y
+# CONFIG_PACKAGE_kmod-ath5k=y  #515报错
+# CONFIG_PACKAGE_kmod-ath9k=y
+# CONFIG_PACKAGE_kmod-ath9k-htc=y
+# CONFIG_PACKAGE_kmod-ath10k=y
+# CONFIG_PACKAGE_kmod-rt2800-usb=y
 CONFIG_PACKAGE_kmod-tg3=y
-CONFIG_PACKAGE_ath10k-firmware-qca9888=y
-CONFIG_PACKAGE_ath10k-firmware-qca988x=y
-CONFIG_PACKAGE_ath10k-firmware-qca9984=y
-CONFIG_PACKAGE_brcmfmac-firmware-43602a1-pcie=y
+# CONFIG_PACKAGE_ath10k-firmware-qca9888=y
+# CONFIG_PACKAGE_ath10k-firmware-qca988x=y
+# CONFIG_PACKAGE_ath10k-firmware-qca9984=y
+# CONFIG_PACKAGE_brcmfmac-firmware-43602a1-pcie=y
 CONFIG_PACKAGE_kmod-iwlwifi=y
 # 工具
 # CONFIG_PACKAGE_kmod-fs-antfs is not set
