@@ -79,17 +79,17 @@ CONFIG_PACKAGE_kmod-r8168=y
 CONFIG_PACKAGE_kmod-igc=y
 CONFIG_PACKAGE_kmod-e1000e=y
 # CONFIG_PACKAGE_kmod-rtl8xxxu=y
-# CONFIG_PACKAGE_kmod-ath5k=y  #515报错
+# CONFIG_PACKAGE_kmod-ath5k is not set  #515报错
 # CONFIG_PACKAGE_kmod-ath9k=y
 # CONFIG_PACKAGE_kmod-ath9k-htc=y
 # CONFIG_PACKAGE_kmod-ath10k=y
 # CONFIG_PACKAGE_kmod-rt2800-usb=y
-CONFIG_PACKAGE_kmod-tg3=y
+# CONFIG_PACKAGE_kmod-tg3=y
 # CONFIG_PACKAGE_ath10k-firmware-qca9888=y
 # CONFIG_PACKAGE_ath10k-firmware-qca988x=y
 # CONFIG_PACKAGE_ath10k-firmware-qca9984=y
 # CONFIG_PACKAGE_brcmfmac-firmware-43602a1-pcie=y
-CONFIG_PACKAGE_kmod-iwlwifi=y
+# CONFIG_PACKAGE_kmod-iwlwifi is not set  #515报错
 # 工具
 # CONFIG_PACKAGE_kmod-fs-antfs is not set
 # CONFIG_PACKAGE_kmod-ntfs-3g is not set
