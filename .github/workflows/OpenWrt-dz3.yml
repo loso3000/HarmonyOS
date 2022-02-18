@@ -56,7 +56,7 @@ jobs:
           #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-          # echo "DATA=$(date +'%y%m%d')" >> $GITHUB_ENV
+          echo "DATA=$(date +'%y%m%d')" >> $GITHUB_ENV
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -105,6 +105,13 @@ jobs:
           # echo "${{ env.DATA}}" > version.txt
           # md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
           # echo $md5 >> version.txt
+
+      - name: Upload Firmware wetransfer
+        run: |
+          curl -fsSL git.io/file-transfer | sh
+          ./transfer wet -s -p 16 --no-progress ./mini/firmware3 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+          
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
