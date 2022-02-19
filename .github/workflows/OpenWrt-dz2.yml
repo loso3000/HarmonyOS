@@ -98,7 +98,7 @@ jobs:
         run: |
           mkdir -p ./mini/fw
           mkdir -p ./mini/pg
-          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/fw
+          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/pg
           find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./mini/fw
           cd ./mini/fw
           gzip *.img
