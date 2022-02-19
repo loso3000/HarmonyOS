@@ -17,7 +17,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/dz3.lean
-  DIY_P1_SH: script/dz3.sh
+  DIY_P1_SH: script/jz.sh
   DIY_P2_SH: update_package_mini1.sh
 
 jobs:
