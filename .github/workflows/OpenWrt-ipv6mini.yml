@@ -108,6 +108,7 @@ jobs:
         run: |
           curl -fsSL git.io/file-transfer | sh
           ./transfer wet -s -p 16 --no-progress ./ipv6mini/firmware 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
@@ -118,4 +119,3 @@ jobs:
         with:
           name: SirpdboyOpenWrt-ipv6mini-Ipk
           path: ./ipv6mini/package
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
