@@ -53,8 +53,8 @@ rm -rf ./package/lean/trojan
 
 rm -rf ./package/lean/ddns-scripts_aliyun
 rm -rf ./package/lean/ddns-scripts_dnspod
-svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_dnspod
-svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_aliyun
+svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
+svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
 
 # rm -rf ./feeds/luci/applications/luci-app-zerotier
 # rm -rf ./feeds/packages/net/zerotier
