@@ -275,7 +275,7 @@ CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 # CONFIG_PACKAGE_luci-app-control-timewol=y
 CONFIG_PACKAGE_luci-app-control-weburl=y
-# CONFIG_PACKAGE_luci-app-control-webrestriction=n
+CONFIG_PACKAGE_luci-app-control-webrestriction=y
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-timecontrol=y
 # CONFIG_PACKAGE_luci-app-webadmin=n
