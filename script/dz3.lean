@@ -270,3 +270,17 @@ CONFIG_PACKAGE_luci-app-frpc=n
 CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
+
+#mitmproxy
+CONFIG_PACKAGE_python3=y
+CONFIG_PACKAGE_gcc=y
+CONFIG_PACKAGE_python3-dev=y
+CONFIG_PACKAGE_python3-pip=y
+CONFIG_PACKAGE_python3-six=y
+CONFIG_PACKAGE_python3-cffi=y
+CONFIG_PACKAGE_python3-openssl=y
+CONFIG_PACKAGE_python3-cryptography=y
+CONFIG_PACKAGE_tcpdump=y
+CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_wget=y
+CONFIG_PACKAGE_redsocks=y
