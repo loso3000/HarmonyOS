@@ -133,6 +133,17 @@ CONFIG_PACKAGE_kmod-usb-roles=y
 CONFIG_PACKAGE_kmod-usb-wdm=y
 CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
 
+CONFIG_PACKAGE_kmod-sdhci=y
+CONFIG_PACKAGE_kmod-sdhci-mt7620=y
+CONFIG_PACKAGE_kmod-usb-core=y
+CONFIG_PACKAGE_kmod-usb-uhci=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+CONFIG_PACKAGE_kmod-fs-ext4=y
+CONFIG_PACKAGE_kmod-fs-vfat=y
+CONFIG_PACKAGE_kmod-scsi-core=y
+CONFIG_PACKAGE_e2fsprogs=y
+CONFIG_PACKAGE_fdisk=y
 # USB3.0支持:
 #CONFIG_PACKAGE_kmod-usb2=y
 #CONFIG_PACKAGE_kmod-usb2-pci=y
@@ -248,12 +259,12 @@ CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-wolplus=y
 #base
 CONFIG_PACKAGE_ddns-scripts=y
+CONFIG_PACKAGE_ddns-scripts_dnspod=y
+CONFIG_PACKAGE_ddns-scripts_aliyun=y
 CONFIG_PACKAGE_ddns-scripts_ddns-scripts_aliyun=y
 CONFIG_PACKAGE_ddns-scripts_ddns-scripts_dnspod=y
 CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
 CONFIG_PACKAGE_ddns-scripts-cloudflare=y
-CONFIG_PACKAGE_ddns-scripts_dnspod=y
-CONFIG_PACKAGE_ddns-scripts_aliyun=y
 
 CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
 CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
