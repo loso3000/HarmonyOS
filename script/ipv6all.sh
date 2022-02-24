@@ -62,6 +62,7 @@ sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/luasrc/con
 sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 rm -rf ./package/build/luci-app-zerotier
 rm -rf ./package/build/zerotier
+rm -rf ./package/build/gcc
 
 rm -rf ./feeds/luci/applications/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./feeds/luci/applications/luci-app-baidupcs-web
 # ksmbd
@@ -258,7 +259,7 @@ sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/d
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile  #无效
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
 
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
