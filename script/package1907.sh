@@ -89,5 +89,5 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D $date1\"" package/base-files/files/etc/openwrt_release
-# sed -i "/CONFIG_VERSION_CODE=/c\CONFIG_VERSION_CODE=\"$date1\"" ./.config
+sed -i "/CONFIG_VERSION_CODE=/c\CONFIG_VERSION_CODE=\"$date1\"" ./.config
 
