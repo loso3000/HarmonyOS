@@ -22,6 +22,14 @@ rm -rf ./feeds/packages/net/socat
 # rm -rf ./feeds/packages/devel/gcc
 rm -rf ./package/build/gcc
 
+
+# rm -rf ./feeds/packages/devel/gcc
+# svn co https://github.com/sirpdboy/build/trunk/gcc  ./package/gcc
+# svn co https://github.com/openwrt/packages/branches/openwrt-18.06/devel/gcc ./feeds/packages/devel/gcc
+
+rm -rf ./feeds/packages/lang/python
+svn co https://github.com/openwrt/packages/branches/openwrt-18.06/lang/python ./feeds/packages/lang/python
+
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 rm -rf ./feeds/luci/applications/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
