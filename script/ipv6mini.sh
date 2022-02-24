@@ -47,9 +47,9 @@ rm -rf ./feeds/luci/applications/luci-app-dockerman
 
 rm -rf ./package/lean/trojan
 
-rm -rf ./feeds/luci/applications/luci-app-vlmcsd
-rm -rf ./feeds/luci/applications/vlmcsd 
-
+#rm -rf ./feeds/luci/applications/luci-app-vlmcsd
+#rm -rf ./feeds/luci/applications/vlmcsd 
+rm -rf ./package/build/gcc
 
 # rm -rf ./feeds/luci/applications/luci-app-zerotier
 # rm -rf ./feeds/packages/net/zerotier
@@ -243,7 +243,7 @@ sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/d
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile  #无效
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
 
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
