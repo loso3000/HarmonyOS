@@ -23,8 +23,8 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-19.07
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/opyb.config
-  DIY_P1_SH: script/package1907.sh
+  CONFIG_FILE: script/opyb
+  DIY_P1_SH: script/opyb.sh
   DIY_P2_SH: script/opyb.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
