@@ -11,8 +11,9 @@
 # sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
 # R8168驱动
-git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
-patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
+# git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
+svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8168 package/new/r8168
+# patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # R8125驱动
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8125 package/new/r8125
 # R8152驱动
