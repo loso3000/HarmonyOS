@@ -19,7 +19,8 @@ rm -rf ./feeds/luci/applications/luci-theme-opentomcat
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
 rm -rf ./feeds/packages/net/socat 
-rm -rf ./feeds/packages/devel/gcc
+# rm -rf ./feeds/packages/devel/gcc
+rm -rf ./package/build/gcc
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
@@ -47,8 +48,6 @@ rm -rf ./feeds/luci/applications/luci-app-dockerman
 
 rm -rf ./package/lean/trojan
 
-# rm -rf ./package/lean/luci-app-vlmcsd
-# rm -rf ./package/lean/vlmcsd 
 # rm -rf ./feeds/packages/kernel/antfs
 
 rm -rf ./package/lean/ddns-scripts_aliyun
