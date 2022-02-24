@@ -47,8 +47,9 @@ rm -rf ./feeds/luci/applications/luci-app-dockerman
 
 rm -rf ./package/lean/trojan
 
-rm -rf ./package/lean/luci-app-vlmcsd
-rm -rf ./package/lean/vlmcsd 
+#rm -rf ./package/lean/luci-app-vlmcsd
+#rm -rf ./package/lean/vlmcsd 
+rm -rf ./package/lean/gcc 
 
 
 # rm -rf ./feeds/luci/applications/luci-app-zerotier
