@@ -1,4 +1,4 @@
-name: OpenWrt-opyb18
+name: OpenWrt-Opyb18
 
 on:
   repository_dispatch:
@@ -17,8 +17,8 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-18.06
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/opyb18
-  DIY_P1_SH: script/opyb18.sh
+  CONFIG_FILE: script/opyb1806
+  DIY_P1_SH: script/opyb1806.sh
 
 jobs:
 
@@ -52,7 +52,7 @@ jobs:
           cd openwrt
           #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
-          # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+          git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           echo "DATA=$(date +'%Y-%m-%d'-d +"12"hour) \n" >> $GITHUB_ENV
           ./scripts/feeds update -a
           ./scripts/feeds install -a
