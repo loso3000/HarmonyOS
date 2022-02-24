@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: OpenWrt-Opyb
+name: OpenWrt-Opyb19
 
 on:
   repository_dispatch:
@@ -23,9 +23,8 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-19.07
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/opyb
-  DIY_P1_SH: script/opyb.sh
-  DIY_P2_SH: script/opyb.sh
+  CONFIG_FILE: script/opyb1907
+  DIY_P1_SH: script/opyb1907.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -64,12 +63,6 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-    - name: Load custom feeds
-      run: |
-        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        # chmod +x $DIY_P1_SH
-        # cd openwrt
-        # $GITHUB_WORKSPACE/$DIY_P1_SH
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
@@ -78,8 +71,7 @@ jobs:
 
     - name: Load custom configuration
       run: |
-        [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
          cd openwrt
          ../$DIY_P1_SH
@@ -104,30 +96,30 @@ jobs:
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
     - name: Prepare Artifact
       run: |
-          mkdir -p ./op/firmware
-          mkdir -p ./op/package
-          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./op/package
-          find ./openwrt/bin/targets/ -name "*combined*img" | xargs -i mv -f {} ./op/firmware
-          cd ./op/firmware
+          mkdir -p ./op19/firmware
+          mkdir -p ./op19/package
+          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./op19/package
+          find ./openwrt/bin/targets/ -name "*combined*img" | xargs -i mv -f {} ./op19/firmware
+          cd ./op19/firmware
           gzip *.img
-          echo -e "Sirpdboy-IPV6-MINI-op-${{ env.DATA}}精简通用版--【通用不区分引导方式】\n" > 版本日期和MD5信息.txt
-          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt18.06/ \n" > 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-dz-op-${{ env.DATA}}精简通用版--【通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n" > 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
     - name: Upload Firmware
       uses: actions/upload-artifact@main
       with:
-          name: SirpdboyOpenWrt-ipv6-mini-op-Firmware
-          path: ./op/firmware
+          name: SirpdboyOpenWrt-op19-Firmware
+          path: ./op19/firmware
     - name: Upload  IPK
       uses: actions/upload-artifact@main
       with:
-          name: SirpdboyOpenWrt-ipv6-mini-op-Ipk
-          path: ./op/package
+          name: SirpdboyOpenWrt-op19-Ipk
+          path: ./op19/package
     - name: Upload Firmware wetransfer
       run: |
           curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./op/firmware 2>&1 | tee wetransfer.log
+          ./transfer wet -s -p 16 --no-progress ./op19/firmware 2>&1 | tee wetransfer.log
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
           
     - name: Delete workflow runs
