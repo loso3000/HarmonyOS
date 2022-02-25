@@ -7,8 +7,6 @@
 git clone https://github.com/sirpdboy/build.git ./package/build
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 
-# rm -rf ./package/lean/r8152
-
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-theme-opentomcat
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
@@ -129,7 +127,7 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
-cat ./package/build/profile > package/base-files/files/etc/profile
+# cat ./package/build/profile > package/base-files/files/etc/profile
 
 # Boost 通用即插即用
 # rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
@@ -149,28 +147,6 @@ rm -rf feeds/luci/applications/luci-app-aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/luci/applications/luci-app-aria2
 rm -rf feeds/packages/net/aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packages/net/aria2
-
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.4
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.10
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.15
 
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
