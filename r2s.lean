@@ -105,7 +105,7 @@ CONFIG_PACKAGE_luci-app-smartdns=y
 CONFIG_PACKAGE_luci-app-timecontrol=y
 CONFIG_PACKAGE_luci-app-access-control=n
 CONFIG_PACKAGE_luci-app-ttyd=y
-# CONFIG_PACKAGE_luci-app-turboacc is not set
+CONFIG_PACKAGE_luci-app-turboacc=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_flow-offload=n
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_dnsforwarder=y
