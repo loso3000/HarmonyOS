@@ -26,6 +26,7 @@ svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/tools/ucl tools/ucl
 # sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
 
+rm -rf ./tools/upx
 rm -rf ./feeds/packages/utils/coremark
 svn co https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 
