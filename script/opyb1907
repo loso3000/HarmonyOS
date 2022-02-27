@@ -13,16 +13,6 @@ CONFIG_IB=y
 CONFIG_IMAGEOPT=y
 CONFIG_KERNEL_BUILD_DOMAIN="buildhost"
 CONFIG_KERNEL_BUILD_USER="builder"
-# CONFIG_KERNEL_KALLSYMS is not set
-CONFIG_PACKAGE_cgi-io=y
-CONFIG_PACKAGE_libiwinfo=y
-CONFIG_PACKAGE_libiwinfo-lua=y
-CONFIG_PACKAGE_liblua=y
-CONFIG_PACKAGE_liblucihttp=y
-CONFIG_PACKAGE_liblucihttp-lua=y
-CONFIG_PACKAGE_libubus-lua=y
-CONFIG_PACKAGE_lua=y
-CONFIG_PACKAGE_luci=y
 CONFIG_PACKAGE_luci-app-firewall=y
 CONFIG_PACKAGE_luci-app-opkg=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
