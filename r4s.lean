@@ -182,3 +182,17 @@ CONFIG_PACKAGE_luci-app-openvpn-server=y
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ttnode=n
+
+CONFIG_PACKAGE_ddns-scripts=y
+CONFIG_PACKAGE_ddns-scripts_dnspod=y
+CONFIG_PACKAGE_ddns-scripts_aliyun=y
+CONFIG_PACKAGE_ddns-scripts_ddns-scripts_aliyun=y
+CONFIG_PACKAGE_ddns-scripts_ddns-scripts_dnspod=y
+CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
+CONFIG_PACKAGE_ddns-scripts-cloudflare=y
+
+CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
+CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
+CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
+CONFIG_PACKAGE_ddns-scripts_nsupdate=y
+CONFIG_PACKAGE_ddns-scripts_route53-v1=y
