@@ -59,8 +59,7 @@ popd
 
 pushd feeds/luci/applications
 # Add cpufreq
-rm -rf ../../customfeeds/luci/applications/luci-app-cpufreq
-rm -rf ../../feeds/luci/applications/luci-app-cpufreq
+rm -rf ./luci-app-cpufreq
 svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
 sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
@@ -72,6 +71,12 @@ git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
 
 # Add luci-proto-minieap
 git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
+
+# Add luci-aliyundrive-webdav
+rm -rf ./luci-app-aliyundrive-webdav 
+rm -rf ./aliyundrive-webdav
+svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav
+svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav
 popd
 
 echo '替换smartdns'
@@ -332,7 +337,6 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-tiktok/g' feeds/luci/collections/luc
 rm -rf ./package/diy/luci-theme-edge
 rm -rf ./package/build/luci-theme-darkmatter
 
-svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
 git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
