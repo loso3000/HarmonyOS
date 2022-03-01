@@ -19,7 +19,15 @@ rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-theme-opentomcat
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
-rm -rf ./feeds/packages/net/socat 
+# rm -rf ./feeds/packages/net/socat 
+# Add cpufreq
+rm -rf ../../customfeeds/luci/applications/luci-app-cpufreq
+rm -rf ../../feeds/luci/applications/luci-app-cpufreq
+svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
+sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+popd
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
