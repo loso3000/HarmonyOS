@@ -11,6 +11,16 @@ KEY=tt123456
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
+# rm -rf ./package/lean/r8152
+rm -rf ./feeds/luci/themes/luci-theme-argon
+rm -rf ./feeds/luci/applications/luci-theme-opentomcat
+rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+rm -rf ./feeds/luci/applications/luci-app-cpufreq
+rm -rf ./feeds/luci/applications/luci-app-mentohust 
+rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
+rm -rf ./feeds/luci/applications/luci-proto-minieap
+# rm -rf ./feeds/packages/net/socat 
+
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
@@ -47,17 +57,7 @@ popd
 # popd
 #=================================================
 
-# Travelmate
-# pushd feeds/packages/net
-# rm -rf travelmate
-# svn co https://github.com/hanxd/ltm/trunk/travelmate
-# popd
-
-# pushd feeds/luci/applications
-# rm -rf luci-app-travelmate
-# svn co https://github.com/hanxd/ltm/trunk/luci-app-travelmate
-# popd
-#=================================================
+pushd feeds/luci/applications
 # Add cpufreq
 rm -rf ../../customfeeds/luci/applications/luci-app-cpufreq
 rm -rf ../../feeds/luci/applications/luci-app-cpufreq
@@ -65,13 +65,14 @@ svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
 sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-popd
 
-# rm -rf ./package/lean/r8152
-rm -rf ./feeds/luci/themes/luci-theme-argon
-rm -rf ./feeds/luci/applications/luci-theme-opentomcat
-rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
-# rm -rf ./feeds/packages/net/socat 
+# Add mentohust & luci-app-mentohust
+git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust 
+git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
+
+# Add luci-proto-minieap
+git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
+popd
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
@@ -131,7 +132,7 @@ rm -rf ./feeds/luci/applications/luci-app-samba4
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/arm/index.htm > package/lean/autocore/files/arm/index.htm
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings2 > ./package/build/default-settings/files/zzz-default-settings
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingswifi > ./package/build/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
