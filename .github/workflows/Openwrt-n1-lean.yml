@@ -18,9 +18,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config-n1.lean
-  DIY_P1_SH: dz2.sh
-  DIY_P2_SH: update_package_all.sh
+  CONFIG_FILE: script/dzwifi
+  DIY_P1_SH: script/dzwifi.sh
 jobs:
 
   build_openwrt:
@@ -41,11 +40,14 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-          sudo -E apt-get -qq update
-          sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
-          sudo -E apt-get -qq autoremove --purge
-          sudo -E apt-get -qq clean
+          docker rmi `docker images -q`
+          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
+          sudo -E apt-get update
+          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
+          sudo -E apt-get -y autoremove --purge
+          sudo -E apt-get clean
+          df -h
           sudo timedatectl set-timezone "Asia/Shanghai"
       - name: Get current date
         id: date
@@ -67,10 +69,8 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
-         # chmod +x ./$DIY_P2_SH
          cd openwrt
          ../$DIY_P1_SH
-         # ../$DIY_P2_SH
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
@@ -82,27 +82,26 @@ jobs:
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
       - name: Compile firmware
-        working-directory: ./openwrt
+        id: compileopenwrt
+        continue-on-error: true
         run: |
-          make -j$(nproc) || make -j1 V=s
-          echo "======================="
-          echo "Space usage:"
-          echo "======================="
-          df -h
-          echo "======================="
-          du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
-          du -h --max-depth=1 ./build_dir
-          du -h --max-depth=1 ./bin
+         df -h
+         cd openwrt
+         make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
+         echo $?
+      - name: If Error
+        if: steps.compileopenwrt.outcome == 'failure'
+        run: |
+          cat openwrt/.config
+          echo '================================================================'
+          cd openwrt && make -j1 V=s
+          
+          echo $?
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
           name: n1-OpenWrt-IPV6-Firmware
-          path: ./openwrt/bin/targets/
-      - name: Upload  IPK
-        uses: actions/upload-artifact@main
-        with:
-          name: n1-OpenWrt-IPV6-Ipk
-          path: ./openwrt/bin/packages
+          path: ./openwrt/bin
       - name: Prepare Artifact
         run: |
           mkdir ./firmware 
@@ -116,11 +115,6 @@ jobs:
         with:
           name: n1-OpenWrt-IPV6-Firmware
           path: ./firmware
-      - name: Upload firmware to cowtransfer
-        run: |
-         curl -fsSL git.io/file-transfer | sh
-         ./transfer cow --block 2621440 -s -p 64 --no-progress ./firmware/ 2>&1 | tee cowtransfer.log
-         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
