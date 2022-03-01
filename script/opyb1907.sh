@@ -106,3 +106,27 @@ sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generat
 
 sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D $date1\"" package/base-files/files/etc/openwrt_release
 sed -i "/CONFIG_VERSION_CODE=/c\CONFIG_VERSION_CODE=\"$date1\"" ./.config
+# Add cpufreq
+rm -rf ../../customfeeds/luci/applications/luci-app-cpufreq
+svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
+sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+popd
+# Fix libssh
+pushd feeds/packages/libs
+rm -rf libssh
+svn co https://github.com/openwrt/packages/trunk/libs/libssh
+popd
+
+# Use Lienol's https-dns-proxy package
+pushd feeds/packages/net
+rm -rf https-dns-proxy
+svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy
+popd
+
+# Use snapshots syncthing package
+pushd feeds/packages/utils
+rm -rf syncthing
+svn co https://github.com/openwrt/packages/trunk/utils/syncthing
+popd
