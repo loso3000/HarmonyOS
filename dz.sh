@@ -19,7 +19,14 @@ rm -rf ./feeds/luci/applications/luci-app-cpufreq
 rm -rf ./feeds/luci/applications/luci-app-mentohust 
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
-# rm -rf ./feeds/packages/net/socat 
+# socat
+#rm -rf feeds/packages/net/socat
+#svn co https://github.com/openwrt/packages/trunk/net/socat feeds/packages/net/socat
+sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.7.4.3/g' feeds/packages/net/socat/Makefile
+#sed -i 's/PKG_RELEASE:=.*/PKG_RELEASE:=1/g' feeds/packages/net/socat/Makefile
+sed -i 's/PKG_HASH:=.*/PKG_HASH:=d47318104415077635119dfee44bcfb41de3497374a9a001b1aff6e2f0858007/g' feeds/packages/net/socat/Makefile
+sed -i '75i\	  sc_cv_getprotobynumber_r=2 \\' feeds/packages/net/socat/Makefile
+#rm -f feeds/packages/net/socat/patches/100-usleep.patch
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
