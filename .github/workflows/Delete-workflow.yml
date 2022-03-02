@@ -16,14 +16,14 @@ on:
       days:
         description: 'Number of days.'
         required: true
-        default: 90
+        default: 30
 
 jobs:
   del_runs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete workflow runs
-        uses: sirpdboy/delete-workflow-runs@main
+        uses: GitRML/delete-workflow-runs@main
         with:
           token: ${{ secrets.AUTH_PAT }}
           repository: ${{ github.repository }}
