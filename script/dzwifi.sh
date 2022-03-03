@@ -383,7 +383,6 @@ rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
-
 #修正nat回流 
 cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 #修正连接数 
@@ -476,7 +475,6 @@ svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
 sed -i "/filter_aaaa='1'/d" package/new/luci-app-mosdns/root/etc/init.d/mosdns
 
-
 git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
 
@@ -534,12 +532,12 @@ sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefi
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
-# sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
-# sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
+sed -i "s/bootstrap/JituTiktok/g" feeds/luci/modules/luci-base/root/etc/config/luci
+sed -i 's/bootstrap/JituTiktok/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-sed -i 's/+luci-theme-bootstrap/+luci-theme-tiktok/g' feeds/luci/collections/luci/Makefile
-# sed -i "s/bootstrap/opentopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
-# sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
+# sed -i 's/+luci-theme-bootstrap/+luci-theme-JituTiktok/g' feeds/luci/collections/luci/Makefile
+# sed -i "s/bootstrap/JituTiktok/g" feeds/luci/modules/luci-base/root/etc/config/luci
+sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
 rm -rf ./package/diy/luci-theme-edge
 rm -rf ./package/build/luci-theme-darkmatter
@@ -600,7 +598,7 @@ export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = 
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
-date1='dz '`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+date1=' R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
