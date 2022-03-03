@@ -142,8 +142,8 @@ CONFIG_PACKAGE_luci-app-advanced=n
 CONFIG_PACKAGE_luci-app-rebootschedule=n
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 # CONFIG_PACKAGE_luci-app-control-timewol=n
-CONFIG_PACKAGE_luci-app-control-weburl=n
-CONFIG_PACKAGE_luci-app-control-webrestriction=y
+CONFIG_PACKAGE_luci-app-control-weburl=y
+CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-timecontrol=y
 # CONFIG_PACKAGE_luci-app-webadmin=n
@@ -230,6 +230,7 @@ CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-edge=y
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-tiktok=y
+CONFIG_PACKAGE_luci-theme-JituTiktok=y
 CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 #增加其它插件
