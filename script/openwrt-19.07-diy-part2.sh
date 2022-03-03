@@ -32,9 +32,6 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/c
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/tcping
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/trojan-go
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/trojan-plus
-#svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/luci-app-filebrowser package/luci-app-filebrowser
-#svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/filebrowser package/filebrowser
-#svn co https://github.com/project-openwrt/openwrt/trunk/package/lienol/luci-app-fileassistant package/luci-app-fileassistant
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocks-rust package/shadowsocks-rust
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-core package/xray-core
@@ -50,38 +47,33 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/simple-obfs package/s
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/kcptun package/kcptun
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/trojan
 
-#菜单定制
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/network package/network
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-19.07/package/lean/luci-app-cpufreq package/lean/luci-app-cpufreq
-#svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-19.07/package/lean/luci-app-airplay2 package/lean/luci-app-airplay2
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-flowoffload package/lean/luci-app-flowoffload
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-cifs-mount package/lean/luci-app-cifs-mount
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-nfs package/lean/luci-app-nfs
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-netdata package/lean/luci-app-netdata
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-usb-printer package/lean/luci-app-usb-printer
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-filetransfer package/lean/luci-app-filetransfer
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-lib-fs package/lean/luci-lib-fs
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-zerotier package/lean/luci-app-zerotier
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/coremark package/lean/coremark
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/network/fullconenat package/network/fullconenat 
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-docker package/lean/luci-app-docker
-#svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce package/utils/docker-ce
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/diy/luci-lib-docker package/luci-lib-docker
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-openvpn-server package/lean/luci-app-openvpn-server
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
-
-#svn co https://github.com/fw876/helloworld/trunk/xray-core package/xray-core
-#svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/xray-plugin
-#svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-gost package/luci-app-gost
-#svn co https://github.com/kenzok8/openwrt-packages/trunk/gost package/gost
-#svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/luci-app-gost package/luci-app-gost
-#svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/gost package/gost
-#svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-eqos package/luci-app-eqos
-git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
+svn co https://github.com/fw876/helloworld/trunk/xray-core package/xray-core
+svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/xray-plugin
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/luci-app-ssr-plus
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/naiveproxy
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 package/lean/redsocks2
 
+#菜单定制
+rm -rf package/network
+rm -rf packages/utils/coremark
+rm -rf packages/net/hysteria
+svn co https://github.com/Lienol/openwrt/branches/19.07/package/network package/network
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/lean/redsocks2
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/hysteria package/lean/hysteria
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-cpufreq package/lean/luci-app-cpufreq
+#svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-airplay2 package/lean/luci-app-airplay2
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-flowoffload package/lean/luci-app-flowoffload
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-cifs-mount package/lean/luci-app-cifs-mount
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-nfs package/lean/luci-app-nfs
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-netdata package/lean/luci-app-netdata
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-usb-printer package/lean/luci-app-usb-printer
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-filetransfer package/lean/luci-app-filetransfer
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-lib-fs package/lean/luci-lib-fs
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-zerotier package/lean/luci-app-zerotier
+svn co https://github.com/coolsnowwolf/packages/trunk/utils/coremark packages/utils/coremark
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-docker package/lean/luci-app-docker
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-lib-docker package/luci-lib-docker
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-openvpn-server package/lean/luci-app-openvpn-server
 
 #添加smartdns
 svn co https://github.com/project-openwrt/openwrt/trunk/package/ntlf9t/smartdns package/smartdns
@@ -110,19 +102,12 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git  package/luci-theme-
 sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' package/lean/luci-app-cpufreq/Makefile
 sed -i 's/services/system/g'  package/lean/luci-app-cpufreq/luasrc/controller/cpufreq.lua
 
-#默认设置
-#sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/aria2.lua
-#sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/usb_printer.lua
-#sed -i 's/services/nas/g' /root/usr/share/luci/menu.d/luci-app-p910nd.json
-#sed -i 's/services/nas/g' /root/usr/share/luci/menu.d/luci-app-minidlna.json
-#sed -i 's/services/nas/g' /root/usr/share/luci/menu.d/luci-app-hd-idle.json
-
 #replace coremark.sh with the new one
 #rm package/lean/coremark/coremark.sh
 #cp $GITHUB_WORKSPACE/general/coremark.sh package/lean/coremark/
-svn co https://github.com/openwrt/packages/trunk/utils/coremark package/utils/coremark
-cp $GITHUB_WORKSPACE/general/coremark.sh package/utils/coremark/
-cp $GITHUB_WORKSPACE/general/coremark package/utils/coremark/
+#svn co https://github.com/openwrt/packages/trunk/utils/coremark package/utils/coremark
+#cp $GITHUB_WORKSPACE/general/coremark.sh package/utils/coremark/
+#cp $GITHUB_WORKSPACE/general/coremark package/utils/coremark/
 
 #同步官方kernel-version.mk
 #rm include/kernel-version.mk
