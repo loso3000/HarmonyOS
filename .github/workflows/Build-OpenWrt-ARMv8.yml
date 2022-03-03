@@ -74,9 +74,6 @@ jobs:
         clean: 'false'
         prefix: ${{ github.workspace }}/openwrt
 
-    - name: Load custom feeds
-      run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
