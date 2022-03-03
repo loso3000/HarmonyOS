@@ -76,6 +76,8 @@ sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust 
 git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
 
+git clone -b v3.0 https://github.com/Mmx233/BitSrunLoginGo_Openwrt
+
 # Add luci-proto-minieap
 git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
 
