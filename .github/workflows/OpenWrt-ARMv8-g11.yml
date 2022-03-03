@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-ARMv8
+name: OpenWrt-ARMv8-g11
 on:
   repository_dispatch:
   workflow_dispatch:
