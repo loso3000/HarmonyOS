@@ -347,7 +347,8 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-argon/g' feeds/luci/collections/luci
 rm -rf ./package/diy/luci-theme-edge
 rm -rf ./package/build/luci-theme-darkmatter
 
-git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
+svn co https://github.com/apollo-ng/luci-theme-darkmatter/trunk/luci/themes/luci-theme-darkmatter package/luci-theme-darkmatter
+# git clone https://github.com/apollo-ng/luci-theme-darkmatter.git package/diy/darkmatter
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 
