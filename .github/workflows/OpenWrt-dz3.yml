@@ -106,11 +106,11 @@ jobs:
           # md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
           # echo $md5 >> version.txt
 
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./mini/firmware3 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+      # - name: Upload Firmware wetransfer
+      #   run: |
+      #     curl -fsSL git.io/file-transfer | sh
+       #    ./transfer wet -s -p 16 --no-progress ./mini/firmware3 2>&1 | tee wetransfer.log
+        #   echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
           
       - name: Upload Firmware
         uses: actions/upload-artifact@main
