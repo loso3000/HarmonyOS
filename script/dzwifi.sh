@@ -347,8 +347,8 @@ rm -rf ./feeds/luci/applications/luci-app-samba4
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/arm/index.htm > package/lean/autocore/files/arm/index.htm
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingswifi > ./package/build/default-settings/files/zzz-default-settings
-sed -i 's/opentopd/argon-jitu/g'    ./package/build/default-settings/files/zzz-default-settings
-sed -i '/DISTRIB_DESCRIPTION=/d'   ./package/build/default-settings/files/zzz-default-settings
+sed -i 's/opentopd/chuqitopd/g'    ./package/build/default-settings/files/zzz-default-settings
+# sed -i '/DISTRIB_DESCRIPTION=/d'   ./package/build/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
@@ -534,11 +534,11 @@ sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefi
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
-sed -i "s/bootstrap/JituTiktok/g" feeds/luci/modules/luci-base/root/etc/config/luci
-sed -i 's/bootstrap/JituTiktok/g' feeds/luci/collections/luci/Makefile
+sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
+sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-# sed -i 's/+luci-theme-bootstrap/+luci-theme-JituTiktok/g' feeds/luci/collections/luci/Makefile
-# sed -i "s/bootstrap/JituTiktok/g" feeds/luci/modules/luci-base/root/etc/config/luci
+# sed -i 's/+luci-theme-bootstrap/+luci-theme-chuqitopd/g' feeds/luci/collections/luci/Makefile
+# sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
 rm -rf ./package/diy/luci-theme-edge
