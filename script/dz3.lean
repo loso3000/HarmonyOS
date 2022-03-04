@@ -230,7 +230,7 @@ CONFIG_PACKAGE_luci-theme-argon=n
 CONFIG_PACKAGE_luci-theme-edge=n
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-tiktok=n
-CONFIG_PACKAGE_luci-theme-argon-jitu=y
+CONFIG_PACKAGE_luci-theme-chuqitopd=y
 CONFIG_PACKAGE_luci-theme-opentopd=n
 CONFIG_PACKAGE_luci-theme-bootstrap=n
 #增加其它插件
