@@ -170,7 +170,7 @@ CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSFORWARDER=n
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSPROXY=n
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE is not set
-CONFIG_PACKAGE_luci-app-passwall=n
+CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
@@ -226,13 +226,13 @@ CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-ffpdboy=n
 CONFIG_PACKAGE_luci-theme-darkmatter=n
-CONFIG_PACKAGE_luci-theme-argon=y
-CONFIG_PACKAGE_luci-theme-edge=y
+CONFIG_PACKAGE_luci-theme-argon=n
+CONFIG_PACKAGE_luci-theme-edge=n
 CONFIG_PACKAGE_luci-theme-ifit=n
-CONFIG_PACKAGE_luci-theme-tiktok=y
-CONFIG_PACKAGE_luci-theme-JituTiktok=y
-CONFIG_PACKAGE_luci-theme-opentopd=y
-CONFIG_PACKAGE_luci-theme-bootstrap=y
+CONFIG_PACKAGE_luci-theme-tiktok=n
+CONFIG_PACKAGE_luci-theme-argon-jitu=y
+CONFIG_PACKAGE_luci-theme-opentopd=n
+CONFIG_PACKAGE_luci-theme-bootstrap=n
 #增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
@@ -301,40 +301,40 @@ CONFIG_GCC_VERSION="11.2.0"
 
 CONFIG_PACKAGE_pptpd=y
 
-CONFIG_EXTERNAL_TOOLCHAIN=y
+#CONFIG_EXTERNAL_TOOLCHAIN=y
 # CONFIG_NATIVE_TOOLCHAIN is not 
 
 #mitmproxy
 
-CONFIG_DEFAULT_libc=y
-CONFIG_DEFAULT_libgcc=y
+#CONFIG_DEFAULT_libc=y
+#CONFIG_DEFAULT_libgcc=y
 
-CONFIG_PACKAGE_tcpdump=y
-CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_redsocks=y
-CONFIG_PACKAGE_libffi-dev=y
-CONFIG_PACKAGE_libssl-dev=y
-CONFIG_PACKAGE_libtiff5-dev=y
-CONFIG_PACKAGE_libjpeg8-dev=y
-CONFIG_PACKAGE_zlib1g-dev=y
-CONFIG_PACKAGE_libffi=y
-CONFIG_PACKAGE_libwebp-dev=y
-CONFIG_PACKAGE_gcc=y
-CONFIG_PACKAGE_mitmproxy=y
+#CONFIG_PACKAGE_tcpdump=y
+#CONFIG_PACKAGE_curl=y
+#CONFIG_PACKAGE_wget=y
+#CONFIG_PACKAGE_redsocks=y
+#CONFIG_PACKAGE_libffi-dev=y
+#CONFIG_PACKAGE_libssl-dev=y
+#CONFIG_PACKAGE_libtiff5-dev=y
+#CONFIG_PACKAGE_libjpeg8-dev=y
+#CONFIG_PACKAGE_zlib1g-dev=y
+#CONFIG_PACKAGE_libffi=y
+#CONFIG_PACKAGE_libwebp-dev=y
+#CONFIG_PACKAGE_gcc=y
+#CONFIG_PACKAGE_mitmproxy=y
 
-CONFIG_PACKAGE_libpython3=y
-CONFIG_PACKAGE_python3=y
-CONFIG_PACKAGE_python3-mitmproxy=y
-CONFIG_PACKAGE_python-pip-conf=y
-CONFIG_PACKAGE_python3-cffi-src=y
-CONFIG_PACKAGE_python3-libffi=y
-CONFIG_PACKAGE_python3-dev=y
-CONFIG_PACKAGE_python3-pip=y
-CONFIG_PACKAGE_python3-six=y
-CONFIG_PACKAGE_python3-cffi=y
-CONFIG_PACKAGE_python3-openssl=y
-CONFIG_PACKAGE_python3-cryptography=y
-CONFIG_PACKAGE_python3-cryptography-src=y
-CONFIG_PACKAGE_python3-yaml=y
-CONFIG_PACKAGE_python3-yaml-src=y
+#CONFIG_PACKAGE_libpython3=y
+#CONFIG_PACKAGE_python3=y
+#CONFIG_PACKAGE_python3-mitmproxy=y
+#CONFIG_PACKAGE_python-pip-conf=y
+#CONFIG_PACKAGE_python3-cffi-src=y
+#CONFIG_PACKAGE_python3-libffi=y
+#CONFIG_PACKAGE_python3-dev=y
+#CONFIG_PACKAGE_python3-pip=y
+#CONFIG_PACKAGE_python3-six=y
+#CONFIG_PACKAGE_python3-cffi=y
+#CONFIG_PACKAGE_python3-openssl=y
+#CONFIG_PACKAGE_python3-cryptography=y
+#CONFIG_PACKAGE_python3-cryptography-src=y
+#CONFIG_PACKAGE_python3-yaml=y
+#CONFIG_PACKAGE_python3-yaml-src=y
