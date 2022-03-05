@@ -19,7 +19,7 @@ rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-theme-opentomcat
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
-rm -rf ./feeds/packages/net/socat 
+# rm -rf ./feeds/packages/net/socat 
 rm -rf ./feeds/packages/devel/gcc 
 # rm -rf ./package/build/gcc
 
