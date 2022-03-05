@@ -500,7 +500,8 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
 # CONFIG_PACKAGE_autosamba is not set
 # CONFIG_PACKAGE_autocore-x86 is not set
-CONFIG_PACKAGE_my-autocore-x86=y
+# CONFIG_PACKAGE_my-autocore-x86=y
+CONFIG_PACKAGE_my-autocore-arm=y
 CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
@@ -513,13 +514,13 @@ CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-timecontrol=y
 # CONFIG_PACKAGE_luci-app-webadmin=n
 CONFIG_PACKAGE_luci-app-cpulimit=y
-CONFIG_PACKAGE_luci-app-filetransfer=n
+CONFIG_PACKAGE_luci-app-filetransfer=y
 CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-openclash=n 
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-smartdns=y
-# CONFIG_PACKAGE_luci-app-turboacc is not set
+CONFIG_PACKAGE_luci-app-turboacc=y
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSFORWARDER=n
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSPROXY=n
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
