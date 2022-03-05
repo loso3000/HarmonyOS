@@ -220,6 +220,8 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
 git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
+svn co  https://github.com/kenzok8/openwrt-packages/trunk/luci-app-passwall package/passwall/luci-app-passwall
+
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
@@ -290,6 +292,8 @@ svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/pa
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8188eu
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8192du
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl88x2bu
+
+svn co https://github.com/immortalwrt/packages/branches/openwrt-18.06-k5.4/libs/flac /packages/libs/flac
 
 # git clone https://github.com/openwrt-dev/po2lmo.git
 # cd po2lmo
@@ -385,6 +389,7 @@ sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller
 # sed -i 's/h"), 50)/h"), 8)/g' ./package/diy/luci-app-openclash/luasrc/controller/openclash.lua   #openclash
 sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controller/adblock.lua   #adblock
 sed -i 's/),9)/),12)/g' ./package/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
+packages/libs/flac/
 
 # autocore
 sed -i 's/DEPENDS:=@(.*/DEPENDS:=@(TARGET_bcm27xx||TARGET_bcm53xx||TARGET_ipq40xx||TARGET_ipq806x||TARGET_ipq807x||TARGET_mvebu||TARGET_rockchip||TARGET_armvirt) \\/g' package/build/my-autocore/Makefile
