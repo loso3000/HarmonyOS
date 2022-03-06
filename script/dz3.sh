@@ -6,7 +6,7 @@ HOSTNAME=OpenwWrt
 IPADDRESS=192.168.2.1
 SSID=OPWIFI
 ENCRYPTION=psk2
-KEY=12345678
+KEY=123456
 
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
@@ -63,13 +63,15 @@ popd
 # popd
 #=================================================
 
+rm -rf feeds/luci/applications/luci-app-cpufreq
+
 pushd feeds/luci/applications
 # Add cpufreq
-rm -rf ./luci-app-cpufreq
-svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
-sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+# rm -rf ./luci-app-cpufreq
+# svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
+# sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+# sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+# sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust 
