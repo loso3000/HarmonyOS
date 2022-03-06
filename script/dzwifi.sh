@@ -492,6 +492,9 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 # Passwall
+
+rm -rf ./package/build/pass/luci-app-passwall
+svn co https://github.com/loso3000/openwrt-pswall/trunk/luci-app-passwall ./package/passwall/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-passwall/Makefile
