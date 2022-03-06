@@ -1,4 +1,4 @@
-name: OpenWrt-dz2-54
+name: OpenWrt-dz3-54
 
 on:
   repository_dispatch:
