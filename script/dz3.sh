@@ -2,9 +2,9 @@
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 WORKDIR=/workdir
-HOSTNAME=JituTiktok
+HOSTNAME=OpenwWrt
 IPADDRESS=192.168.2.1
-SSID=Tiktok
+SSID=OPWIFI
 ENCRYPTION=psk2
 KEY=12345678
 
@@ -29,7 +29,7 @@ rm -rf ./feeds/luci/applications/luci-proto-minieap
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
-sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
+# sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
@@ -346,9 +346,9 @@ rm -rf ./feeds/luci/applications/luci-app-samba4
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/arm/index.htm > package/lean/autocore/files/arm/index.htm
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingswifi > ./package/build/default-settings/files/zzz-default-settings
-sed -i 's/opentopd/chuqitopd/g'    ./package/build/default-settings/files/zzz-default-settings
-sed -i 's/DESCRIPTION='openwrt '/DESCRIPTION='Tiktok '/g'    ./package/build/default-settings/files/zzz-default-settings
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings2 > ./package/build/default-settings/files/zzz-default-settings
+sed -i 's/opentopd/agron/g'    ./package/build/default-settings/files/zzz-default-settings
+# sed -i 's/DESCRIPTION='openwrt '/DESCRIPTION='Openwrt '/g'    ./package/build/default-settings/files/zzz-default-settings    #改版本前名字
 
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
@@ -536,12 +536,12 @@ sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefil
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
-sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
-sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
+sed -i "s/bootstrap/agron/g" feeds/luci/modules/luci-base/root/etc/config/luci
+# sed -i 's/bootstrap/agron/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-# sed -i 's/+luci-theme-bootstrap/+luci-theme-chuqitopd/g' feeds/luci/collections/luci/Makefile
-# sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
-sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
+# sed -i 's/+luci-theme-bootstrap/+luci-theme-agron/g' feeds/luci/collections/luci/Makefile
+# sed -i "s/bootstrap/agron/g" feeds/luci/modules/luci-base/root/etc/config/luci
+# sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
 rm -rf ./package/diy/luci-theme-edge
 rm -rf ./package/build/luci-theme-darkmatter
@@ -601,7 +601,7 @@ VER1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判�
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
-date1='JituTiktok R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+date1='Dz R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
