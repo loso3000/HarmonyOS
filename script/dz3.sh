@@ -759,45 +759,6 @@ sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.21.4/g' feeds/packages/net/nginx/Makefi
 sed -i 's/PKG_RELEASE:=.*/PKG_RELEASE:=1/g' feeds/packages/net/nginx/Makefile
 sed -i 's/PKG_HASH:=.*/PKG_HASH:=d1f72f474e71bcaaf465dcc7e6f7b6a4705e4b1ed95c581af31df697551f3bfe/g' feeds/packages/net/nginx/Makefile
 
-# openssl
-#sed -i 's/PKG_BUGFIX:=.*/PKG_BUGFIX:=m/g' package/libs/openssl/Makefile
-#sed -i 's/PKG_HASH:=.*/PKG_HASH:=f89199be8b23ca45fc7cb9f1d8d3ee67312318286ad030f5316aca6462db6c96/g' package/libs/openssl/Makefile
-
-# 修改makefile
-#find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's|include\ \.\.\/\.\.\/devel/meson/meson.mk|include \$(INCLUDE_DIR)\/meson.mk|g' {}
-
-# smartdns
-#sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.2021.34/g' feeds/packages/net/smartdns/Makefile
-#sed -i 's/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=756029f5e9879075c042030bd3aa3db06d700270/g' feeds/packages/net/smartdns/Makefile
-#sed -i 's/PKG_MIRROR_HASH:=.*/PKG_MIRROR_HASH:=c2979d956127946861977781beb3323ad9a614ae55014bc99ad39beb7a27d481/g' feeds/packages/net/smartdns/Makefile
-
-# aliyundrive webdav
-#svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav package/aliyundrive-webdav
-#svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav package/luci-app-aliyundrive-webdav
-
-# libpcap
-#sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.10.1/g' package/libs/libpcap/Makefile
-#sed -i 's/PKG_RELEASE:=.*/PKG_RELEASE:=$(AUTORELEASE)/g' package/libs/libpcap/Makefile
-#sed -i 's/PKG_HASH:=.*/PKG_HASH:=ed285f4accaf05344f90975757b3dbfe772ba41d1c401c2648b7fa45b711bdd4/g' package/libs/libpcap/Makefile
-
-# xray-core
-#sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.5.3/g' package/xray-core/Makefile
-#sed -i 's/PKG_HASH:=.*/PKG_HASH:=4b8d78cc20bdf2e8936c02b05d22f0a3231075155ffdc67508d8448ab8858252/g' package/xray-core/Makefile
-
-# xray-plugin
-#sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.5.3/g' package/xray-plugin/Makefile
-#sed -i 's/PKG_HASH:=.*/PKG_HASH:=0280e1c7c9c87db13a456be098e42065374066df4108b87c2e1d781337740a73/g' package/xray-plugin/Makefile
-
-# icu
-rm -rf feeds/packages/libs/icu
-svn co https://github.com/openwrt/packages/trunk/libs/icu feeds/packages/libs/icu
-
-# ucode
-#cp -rf $GITHUB_WORKSPACE/general/ucode package/utils
-
-# readd cpufreq for aarch64
-sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' feeds/luci/applications/luci-app-cpufreq/Makefile
-sed -i 's/services/system/g'  feeds/luci/applications/luci-app-cpufreq/luasrc/controller/cpufreq.lua
 
 # luci-app-openvpn
 sed -i 's/services/vpn/g'  feeds/luci/applications/luci-app-openvpn/luasrc/controller/openvpn.lua
@@ -841,10 +802,6 @@ cp $GITHUB_WORKSPACE/general/advancedtomato.woff package/luci-theme-opentomcat/f
 # zsh
 #sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=5.8.1/g' feeds/packages/utils/zsh/Makefile
 #sed -i 's/PKG_HASH:=.*/PKG_HASH:=b6973520bace600b4779200269b1e5d79e5f505ac4952058c11ad5bbf0dd9919/g' feeds/packages/utils/zsh/Makefile
-
-# flac
-rm -rf feeds/packages/libs/flac
-cp -r $GITHUB_WORKSPACE/general/flac feeds/packages/libs
 
 # libogg
 sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.3.5/g' feeds/packages/libs/libogg/Makefile
