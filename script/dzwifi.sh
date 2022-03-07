@@ -853,8 +853,8 @@ cp $GITHUB_WORKSPACE/general/advancedtomato.woff package/luci-theme-opentomcat/f
 #sed -i 's/PKG_HASH:=.*/PKG_HASH:=b6973520bace600b4779200269b1e5d79e5f505ac4952058c11ad5bbf0dd9919/g' feeds/packages/utils/zsh/Makefile
 
 # flac
-rm -rf feeds/packages/libs/flac
-cp -r $GITHUB_WORKSPACE/general/flac feeds/packages/libs
+# rm -rf feeds/packages/libs/flac
+# cp -r $GITHUB_WORKSPACE/general/flac feeds/packages/libs
 
 # libogg
 sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.3.5/g' feeds/packages/libs/libogg/Makefile
