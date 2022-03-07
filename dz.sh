@@ -99,10 +99,10 @@ git clone --depth=1 https://github.com/NateLol/luci-app-oled
 #add clash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
 cd luci-app-openclash && mkdir -p files/etc/openclash/core
-open_clash_main_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# offical_clash_main_url=$(curl -sL https://api.github.com/repos/Dreamacro/clash/releases/tags/v1.3.5 | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-clash_tun_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
+open_clash_main_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-amd64 | sed 's/.*url\": \"//g' | sed 's/\"//g')
+# offical_clash_main_url=$(curl -sL https://api.github.com/repos/Dreamacro/clash/releases/tags/v1.3.5 | grep /clash-linux-amd64 | sed 's/.*url\": \"//g' | sed 's/\"//g')
+clash_tun_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-amd64 | sed 's/.*url\": \"//g' | sed 's/\"//g')
+clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-amd64 | sed 's/.*url\": \"//g' | sed 's/\"//g')
 
 wget -qO- $open_clash_main_url | tar xOvz > files/etc/openclash/core/clash
 # wget -qO- $offical_clash_main_url | gunzip -c > files/etc/openclash/core/clash
