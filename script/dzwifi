@@ -56,31 +56,6 @@ CONFIG_PACKAGE_luci-i18n-base-en=y
 CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-base-zh-tw is not set
 
-# 所集成的固件类型
-# CONFIG_TARGET_ROOTFS_INITRAMFS is not set
-# CONFIG_TARGET_ROOTFS_CPIOGZ is not set
-CONFIG_TARGET_ROOTFS_TARGZ=y
-# CONFIG_TARGET_ROOTFS_EXT4FS is not set
-CONFIG_TARGET_ROOTFS_SQUASHFS=y
-CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
-CONFIG_TARGET_UBIFS_FREE_SPACE_FIXUP=y
-CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
-CONFIG_GRUB_IMAGES=y
-CONFIG_GRUB_EFI_IMAGES=y
-# CONFIG_GRUB_CONSOLE is not set
-CONFIG_GRUB_BOOTOPTS="nomodeset"
-CONFIG_GRUB_TIMEOUT="0"
-CONFIG_GRUB_TITLE="OpenWrt"
-# CONFIG_ISO_IMAGES is not set
-# CONFIG_VDI_IMAGES is not set
-# CONFIG_VMDK_IMAGES is not set
-# CONFIG_VMDK_IMAGES is not set
-
-# CONFIG_SIGNATURE_CHECK is not set
-# CONFIG_SIGNED_PACKAGES is not set
-
-# 不压缩efi
-# CONFIG_TARGET_IMAGES_GZIP is not set
 #ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
@@ -88,41 +63,29 @@ CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
 CONFIG_PACKAGE_6to4=y
 
-# CONFIG_PACKAGE_kmod-zram=y
-# CONFIG_PACKAGE_zram-swap=y
-##测试内核开关，默认5.10内核，关闭5.15内核 “# CONFIG_TESTING_KERNEL is not set”即可关闭5.15内核！
-#5.15属于测试内核暂时添加到配置文件！测试几天！
-# CONFIG_TESTING_KERNEL=y
-
 CONFIG_PACKAGE_kmod-usb-ehci=y
 CONFIG_PACKAGE_kmod-usb-ledtrig-usbport=y
-
 CONFIG_PACKAGE_kmod-usb-net-aqc111=y
-
 CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
 CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
 CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
 CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
 CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
-
 CONFIG_PACKAGE_kmod-usb-net-hso=y
 CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
 CONFIG_PACKAGE_kmod-usb-net-ipheth=y
 CONFIG_PACKAGE_kmod-usb-net-kalmia=y
 CONFIG_PACKAGE_kmod-usb-net-kaweth=y
-
 CONFIG_PACKAGE_kmod-usb-net-pegasus=y
 CONFIG_PACKAGE_kmod-usb-net-pl=y
 CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
 CONFIG_PACKAGE_kmod-usb-net-sierrawireless=y
-
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 # CONFIG_PACKAGE_kmod-usb-printer is not set
 CONFIG_PACKAGE_kmod-usb-roles=y
 CONFIG_PACKAGE_kmod-usb-wdm=y
 CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
-
 
 CONFIG_PACKAGE_kmod-sdhci=y
 CONFIG_PACKAGE_kmod-sdhci-mt7620=y
@@ -139,8 +102,6 @@ CONFIG_PACKAGE_fdisk=y
 #CONFIG_PACKAGE_kmod-usb2=y
 #CONFIG_PACKAGE_kmod-usb2-pci=y
 #CONFIG_PACKAGE_kmod-usb3=y
-
-
 CONFIG_PACKAGE_kmod-usb-dwc2=y
 CONFIG_PACKAGE_kmod-usb-dwc3=y
 
@@ -154,12 +115,10 @@ CONFIG_PACKAGE_kmod-usb-acm=y
 #USB net driver
 
 CONFIG_PACKAGE_usb-modeswitch=y
-
 # CONFIG_PACKAGE_kmod-usb-net-asix is not set
 # CONFIG_PACKAGE_kmod-usb-net-asix-ax88179 is not set
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
-
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 
 #USB net driver
@@ -180,7 +139,7 @@ CONFIG_PACKAGE_kmod-usb-net-ipheth=y
 
 #-----x86
 CONFIG_PACKAGE_kmod-usb-hid=y
-# CONFIG_PACKAGE_lm-sensors-detect=y
+CONFIG_PACKAGE_lm-sensors-detect=y
 CONFIG_PACKAGE_kmod-bonding=y
 CONFIG_PACKAGE_alsa-utils=y
 CONFIG_PACKAGE_kmod-iwlwifi=y
