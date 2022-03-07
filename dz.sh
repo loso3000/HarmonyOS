@@ -294,8 +294,8 @@ rm -rf ./package/build/miniupnpd
 rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./feeds/luci/applications/luci-app-accesscontrol
-rm -rf ./package/build/autocore
-# rm -rf ./package/lean/autocore
+# rm -rf ./package/build/autocore
+rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
 # rm -rf ./feeds/luci/applications/luci-app-ramfree
 rm -rf ./feeds/luci/applications/luci-app-arpbind
@@ -482,11 +482,20 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 # Passwall
-# svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
-git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
-# svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-passwall/Makefile
+
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/pass2/
+#rm -rf package/passwall/shadowsocksr-libev
+# svn co https://github.com/loso3000/openwrt-pswall/trunk/luci-app-passwall ./package/passwall/luci-app-passwall
+
+svn co https://github.com/loso3000/openwrt-pswall/trunk/ ./package/passwall/
+# svn co https://github.com/loso3000/openwrt-pswall/trunk/shadowsocksr-libev ./package/passwall/shadowsocksr-libev
+# svn co https://github.com/loso3000/openwrt-pswall/trunk/v2ray ./package/passwall/v2ray
+# svn co https://github.com/loso3000/openwrt-pswall/trunk/xray ./package/passwall/xray
+
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
+
+rm -rf ./package/build/pass/luci-app-passwall
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
