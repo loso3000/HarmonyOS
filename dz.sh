@@ -15,10 +15,12 @@ git clone https://github.com/sirpdboy/build.git ./package/build
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-theme-opentomcat
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
-rm -rf ./feeds/luci/applications/luci-app-cpufreq
 rm -rf ./feeds/luci/applications/luci-app-mentohust 
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
+
+rm -rf ./feeds/luci/applications/luci-app-cpufreq
+
 # socat
 #rm -rf feeds/packages/net/socat
 #svn co https://github.com/openwrt/packages/trunk/net/socat feeds/packages/net/socat
@@ -67,10 +69,10 @@ popd
 pushd feeds/luci/applications
 # Add cpufreq
 rm -rf ./luci-app-cpufreq
-svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
-sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+# svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
+# sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+# # sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+# sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust 
@@ -300,6 +302,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-passwall/Makefile
+sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
