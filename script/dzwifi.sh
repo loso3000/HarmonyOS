@@ -493,17 +493,18 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 
 # Passwall
 
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
-svn co https://github.com/loso3000/openwrt-pswall/trunk/luci-app-passwall ./package/passwall/luci-app-passwall
+# svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
+#rm -rf package/passwall/shadowsocksr-libev
+# svn co https://github.com/loso3000/openwrt-pswall/trunk/luci-app-passwall ./package/passwall/luci-app-passwall
 
-svn co https://github.com/loso3000/openwrt-pswall/trunk/shadowsocksr-libev ./package/passwall/shadowsocksr-libev
-svn co https://github.com/loso3000/openwrt-pswall/trunk/v2ray ./package/passwall/v2ray
-svn co https://github.com/loso3000/openwrt-pswall/trunk/xray ./package/passwall/xray
+svn co https://github.com/loso3000/openwrt-pswall/trunk/ ./package/passwall/
+# svn co https://github.com/loso3000/openwrt-pswall/trunk/shadowsocksr-libev ./package/passwall/shadowsocksr-libev
+# svn co https://github.com/loso3000/openwrt-pswall/trunk/v2ray ./package/passwall/v2ray
+# svn co https://github.com/loso3000/openwrt-pswall/trunk/xray ./package/passwall/xray
 
-rm -rf package/passwall/shadowsocksr-libev
+sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 rm -rf ./package/build/pass/luci-app-passwall
-sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 # sed -i 's,default n,default y,g' ./package/build/pass/luci-app-passwall/Makefile
 
 git clone https://github.com/semigodking/redsocks.git package/redsocks2
