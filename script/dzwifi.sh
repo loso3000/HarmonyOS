@@ -493,7 +493,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 
 # Passwall
 
-# svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/pass2/
 #rm -rf package/passwall/shadowsocksr-libev
 # svn co https://github.com/loso3000/openwrt-pswall/trunk/luci-app-passwall ./package/passwall/luci-app-passwall
 
