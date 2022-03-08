@@ -76,6 +76,8 @@ jobs:
         working-directory: ./openwrt
         run: |
           make defconfig
+          ./scripts/diffconfig.sh >./openwrt/bin/n1.txt
+          cp .config  >./openwrt/bin/config.txt
       - name: Make download
         working-directory: ./openwrt
         run: |
