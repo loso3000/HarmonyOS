@@ -413,10 +413,14 @@ git clone https://github.com/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/appli
 # wget -P ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
 rm -rf ./feeds/luci/applications/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
-
-git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
+# dnsfilter
+git clone https://github.com/kiddin9/luci-app-dnsfilter  package/luci-app-dnsfilter
 # git clone https://github.com/tuanqing/install-program package/install-program
 
+#luci-app-unblockneteasemusic
+rm -rf  feeds/luci/applications/luci-app-unblockneteasemusic
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic
+ 
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/luci/applications/luci-app-aria2
