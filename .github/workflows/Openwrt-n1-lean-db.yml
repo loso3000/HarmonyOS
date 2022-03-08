@@ -1,6 +1,5 @@
 name: Openwrt-n1-lean-db
 
-
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -72,13 +71,13 @@ jobs:
          cd openwrt
          ../$DIY_P1_SH
          chmod -R 755 .
+         
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
           make defconfig
           ./scripts/diffconfig.sh >./bin/n1.txt
           cat ./openwrt/bin/n1.txt
-          cp .config  >./bin/config.txt
       - name: Make download
         working-directory: ./openwrt
         run: |
