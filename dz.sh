@@ -696,9 +696,6 @@ cp -f $GITHUB_WORKSPACE/general/01-export-nfs_ssc.patch target/linux/generic/bac
 #rm feeds/packages/utils/coremark/coremark.sh
 #cp $GITHUB_WORKSPACE/general/coremark.sh feeds/packages/utils/coremark/
 
-# replace banner
-cp -f $GITHUB_WORKSPACE/general/openwrt_banner package/base-files/files/etc/banner
-
 # boost
 rm -rf feeds/packages/libs/boost
 cp -r $GITHUB_WORKSPACE/general/boost feeds/packages/libs
@@ -760,7 +757,10 @@ echo "修改默认主题"
 VER1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
-cp -f ./package/build/banner ./package/base-files/files/etc/
+# cp -f ./package/build/banner ./package/base-files/files/etc/
+# replace banner
+cp -f $GITHUB_WORKSPACE/general/openwrt_banner package/base-files/files/etc/banner
+
 # date1='${version} Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"8"hour`
 date1='Dz R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 if [ "$VER2" = "5.4" ]; then
