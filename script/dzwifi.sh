@@ -55,29 +55,6 @@ popd
 # popd
 #=================================================
 
-pushd feeds/luci/applications
-
-# Add mentohust & luci-app-mentohust
-git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust 
-git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
-
-# Add luci-proto-minieap
-git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
-
-# Add luci-aliyundrive-webdav
-rm -rf ./luci-app-aliyundrive-webdav 
-rm -rf ./aliyundrive-webdav
-svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav
-svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav
-popd
-
-# Add luci-app-amlogic
-# svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
-# 晶晨宝盒
-# sed -i "s|https.*/amlogic-s9xxx-openwrt|https://github.com/breakings/OpenWrt|g" package/luci-app-amlogic/root/etc/config/amlogic
-# sed -i "s|http.*/library|https://github.com/breakings/OpenWrt/opt/kernel|g" package/luci-app-amlogic/root/etc/config/amlogic
-# sed -i "s|s9xxx_lede|ARMv8|g" package/luci-app-amlogic/root/etc/config/amlogic
-#sed -i "s|.img.gz|..OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
