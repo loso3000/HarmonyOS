@@ -253,3 +253,4 @@ sed -i 's/+"),1)/+"),11)/g' ./package/diy/luci-app-adblock-plus/luasrc/controlle
 sed -i 's/),9)/),12)/g' ./package/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua 
 
 ./scripts/feeds update -i
+exit 0
