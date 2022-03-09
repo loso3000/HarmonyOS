@@ -62,6 +62,8 @@ jobs:
           #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+          /scripts/feeds clean
+          rm -rf ./tmp && rm -rf .config
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -75,7 +77,8 @@ jobs:
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
-          make defconfig
+          make clean
+          make defconfig 
           ./scripts/diffconfig.sh >./bin/n1.txt
           cat ./openwrt/bin/n1.txt
       - name: Make download
