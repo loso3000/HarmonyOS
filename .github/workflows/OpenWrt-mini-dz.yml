@@ -57,6 +57,8 @@ jobs:
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           # echo "DATA=$(date +'%y%m%d')" >> $GITHUB_ENV
+          rm -rf ./tmp && rm -rf .config
+          ./scripts/feeds clean
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -72,6 +74,7 @@ jobs:
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
+          make clear
           make defconfig
 
       - name: Make download
