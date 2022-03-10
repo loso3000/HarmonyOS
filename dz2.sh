@@ -333,6 +333,8 @@ echo ' ShadowsocksR Plus+'
 # sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
 
 # rm -rf ./package/build/pass/luci-app-ssr-plus
+
+cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 # sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
