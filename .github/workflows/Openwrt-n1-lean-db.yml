@@ -43,9 +43,11 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           cd openwrt
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+          make distclean
           rm -rf ./tmp && rm -rf .config
       - name: Update feeds
         run: |
+          cd openwrt 
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -59,13 +61,11 @@ jobs:
         run: |
           cd openwrt
           make defconfig 
-          make clean
           scripts/diffconfig.sh >bin/n1.txt
           cat ./openwrt/bin/n1.txt
       - name: Make download
         run: |
           cd openwrt
-          make defconfig
           make download -j8
       - name: Compile firmware
         id: compileopenwrt
