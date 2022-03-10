@@ -41,6 +41,6 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/pass2
 svn co https://github.com/loso3000/openwrt-pswall/trunk/ ./package/passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 # svn co https://github.com/loso3000/openwrt-pswall/trunk/shadowsocksr-libev ./package/passwall/shadowsocksr-libev
-rm -rf ./package/build/pass/luci-app-passwall
+rm -rf ./package/build/pass
 svn co https://github.com/hubutui/p7zip-lede/trunk package/p7zip
 ./scripts/feeds update -i
