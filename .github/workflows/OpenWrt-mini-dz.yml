@@ -74,7 +74,6 @@ jobs:
         working-directory: ./openwrt
         run: |
           make defconfig
-
       - name: Make download
         working-directory: ./openwrt
         run: |
