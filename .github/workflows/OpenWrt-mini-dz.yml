@@ -59,6 +59,7 @@ jobs:
           # echo "DATA=$(date +'%y%m%d')" >> $GITHUB_ENV
           rm -rf ./tmp && rm -rf .config
           ./scripts/feeds clean
+          make -C scripts/config clean
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -74,7 +75,6 @@ jobs:
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
-          make clear
           make defconfig
 
       - name: Make download
