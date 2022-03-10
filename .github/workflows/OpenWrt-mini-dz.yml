@@ -16,7 +16,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config-dz
+  CONFIG_FILE: mini.config
   DIY_P1_SH: dz.sh
   DIY_P2_SH: update_package_mini1.sh
 
