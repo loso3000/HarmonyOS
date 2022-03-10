@@ -61,9 +61,7 @@ jobs:
       - name: Generate configuration file
         run: |
           cd openwrt
-          # make defconfig 
-          scripts/diffconfig.sh >bin/n1.txt
-          cat ./openwrt/bin/n1.txt
+          make defconfig 
       - name: Make download
         run: |
           cd openwrt
