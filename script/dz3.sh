@@ -509,8 +509,8 @@ echo ' ShadowsocksR Plus+'
 # sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
 sed -i 's,(jsonStringify(result)),(alias),g' ./package/ssr/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
 
-
 # rm -rf ./package/build/pass/luci-app-ssr-plus
+cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 # sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
