@@ -48,7 +48,7 @@ CONFIG_PACKAGE_brcmfmac-firmware-43602a1-pcie=y
 CONFIG_PACKAGE_kmod-ac97=y
 CONFIG_PACKAGE_kmod-sound-via82xx=y
 CONFIG_PACKAGE_alsa-utils=y
-CONFIG_PACKAGE_kmod-iwlwifi=y
+# CONFIG_PACKAGE_kmod-iwlwifi is not set  #510 错误
 CONFIG_PACKAGE_usbutils=y
 # 工具
 CONFIG_PACKAGE_kmod-fs-antfs=y
