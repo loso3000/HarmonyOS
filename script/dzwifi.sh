@@ -88,15 +88,19 @@ cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 # 最大连接数
 sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
+
 # Passwall
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/pass2
-#rm -rf package/passwall/shadowsocksr-libev
+
+rm -rf ./package/build/pass
+
+svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
+rm -rf package/passwall/luci-app-passwall
+
 # svn co https://github.com/loso3000/openwrt-pswall/trunk/luci-app-passwall ./package/passwall/luci-app-passwall
 svn co https://github.com/loso3000/openwrt-pswall/trunk/ ./package/passwall
 sed -i '/naiveproxy/d' package/passwall/luci-app-passwall/Makefile
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
-svn co https://github.com/loso3000/openwrt-pswall/trunk/shadowsocksr-libev ./package/passwall/shadowsocksr-libev
-rm -rf ./package/build/pass
+
 
 svn co https://github.com/hubutui/p7zip-lede/trunk package/p7zip
 
