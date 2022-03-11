@@ -207,7 +207,7 @@ CONFIG_PACKAGE_kmod-e1000e=y
 CONFIG_PACKAGE_kmod-rtl8xxxu=y
 CONFIG_PACKAGE_kmod-i40e=y
 CONFIG_PACKAGE_kmod-i40evf=y
-# CONFIG_PACKAGE_kmod-ath5k=y
+# CONFIG_PACKAGE_kmod-ath5k=y #515 err
 CONFIG_PACKAGE_kmod-ath9k=y
 CONFIG_PACKAGE_kmod-ath9k-htc=y
 CONFIG_PACKAGE_kmod-ath10k=y
@@ -227,8 +227,6 @@ CONFIG_PACKAGE_kmod-iwlwifi=y
 CONFIG_PACKAGE_kmod-fs-antfs=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 
-CONFIG_PACKAGE_p910nd=y
-CONFIG_PACKAGE_luci-app-p910nd=y
 
 CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_blkid=y
@@ -272,7 +270,6 @@ CONFIG_PACKAGE_ddns-scripts_nsupdate=y
 CONFIG_PACKAGE_ddns-scripts_route53-v1=y
 
 # CONFIG_PACKAGE_autosamba is not set
-CONFIG_PACKAGE_autocore=y
 CONFIG_PACKAGE_autocore-x86=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
@@ -404,6 +401,7 @@ CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-transmission=y
 CONFIG_PACKAGE_luci-app-usb-printer=y
+CONFIG_PACKAGE_luci-app-p910nd=n
 CONFIG_PACKAGE_luci-app-mwan3helper=y
 CONFIG_PACKAGE_luci-app-qbittorrent=y
 CONFIG_PACKAGE_luci-app-familycloud=y
