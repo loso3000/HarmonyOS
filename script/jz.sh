@@ -251,6 +251,8 @@ echo ' ShadowsocksR Plus+'
 # sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
 
 # rm -rf ./package/build/pass/luci-app-ssr-plus
+
+cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 rm -rf package/build/pass/luci-app-bypass
@@ -268,14 +270,9 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 
 
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
-# sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile  #无效
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 
-#sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-#sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/rockchip/Makefile
-#sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
 
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
