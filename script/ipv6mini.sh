@@ -305,8 +305,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 # Passwall
-
-rm -rf ./package/build/pass
+rm -rf ./package/build/pass/luci-app-passwall
 
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
 rm -rf package/passwall/luci-app-passwall
