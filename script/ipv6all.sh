@@ -97,6 +97,8 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-ali
 # Add ddnsto & linkease
 svn co https://github.com/linkease/nas-packages-luci/trunk/luci/luci-app-linkease
 svn co https://github.com/linkease/nas-packages/trunk/network/services/linkease
+sed -i 's/1/0/g' linkease/files/linkease.config
+
 
 # Add luci-app-oled (R2S Only)
 git clone --depth=1 https://github.com/NateLol/luci-app-oled
