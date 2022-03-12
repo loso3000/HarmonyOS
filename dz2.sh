@@ -314,7 +314,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 rm -rf ./package/build/pass/luci-app-passwall
 
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
-rm -rf package/passwall/luci-app-passwall
+#rm -rf package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-passwall/Makefile
 
