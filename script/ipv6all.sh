@@ -26,6 +26,7 @@ rm -rf ./feeds/luci/applications/luci-proto-minieap
 
 rm -rf ./feeds/luci/applications/luci-app-cpufreq
 
+
 # socat
 #rm -rf feeds/packages/net/socat
 svn co https://github.com/openwrt/packages/trunk/net/socat feeds/packages/net/socat
@@ -91,7 +92,9 @@ svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/collections/luci-lib-docker
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
+
 pushd feeds/luci/applications
+
 # Add cpufreq
 rm -rf ./luci-app-cpufreq
 # svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
@@ -147,7 +150,8 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 
-# rm -rf ./feeds/packages-master/utils/docker
+rm -rf packages/utils/dockerd/
+rm -rf ./feeds/packages-master/utils/docker
 
 rm -rf ./package/lean/trojan
 
