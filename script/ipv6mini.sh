@@ -308,7 +308,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 rm -rf ./package/build/pass/luci-app-passwall
 
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
-rm -rf package/passwall/luci-app-passwall
+# rm -rf package/passwall/luci-app-passwall
 
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
