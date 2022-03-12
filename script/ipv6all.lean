@@ -92,6 +92,21 @@ CONFIG_PACKAGE_kmod-e1000e=y
 # CONFIG_PACKAGE_kmod-iwlwifi is not set  #515报错
 # CONFIG_PACKAGE_kmod-usb-rtl8150 is not set  #515报错
 # CONFIG_PACKAGE_kmod-rtl8150 is not set  #515报错
+# docker
+
+CONFIG_PACKAGE_docker=y
+CONFIG_PACKAGE_docker-compose=y
+CONFIG_PACKAGE_docker-compose-src=y
+CONFIG_PACKAGE_dockerd=y
+CONFIG_DOCKER_CGROUP_OPTIONS=y
+CONFIG_DOCKER_OPTIONAL_FEATURES=y
+CONFIG_DOCKER_NET_ENCRYPT=y
+CONFIG_DOCKER_NET_MACVLAN=y
+CONFIG_DOCKER_NET_OVERLAY=y
+CONFIG_DOCKER_NET_TFTP=y
+CONFIG_DOCKER_STO_BTRFS=y
+CONFIG_DOCKER_STO_EXT4=y
+
 # 工具
 CONFIG_PACKAGE_kmod-fs-antfs=m
 CONFIG_PACKAGE_kmod-ntfs-3g=y
@@ -260,7 +275,7 @@ CONFIG_PACKAGE_luci-app-pppoe-server=y
 CONFIG_PACKAGE_luci-app-ipsec-vpnd=y
 # CONFIG_PACKAGE_luci-app-ipsec-serve=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers=y
-CONFIG_PACKAGE_luci-app-docker=y
+# CONFIG_PACKAGE_luci-app-docker=y
 CONFIG_PACKAGE_luci-app-dockerman=y
 CONFIG_PACKAGE_luci-app-koolddns=y
 CONFIG_PACKAGE_luci-app-syncdial=y
