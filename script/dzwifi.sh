@@ -93,10 +93,9 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 rm -rf ./package/build/pass
 
-svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
-rm -rf package/passwall/luci-app-passwall
+svn co https://github.com/loso3000/openwrt-passwall/trunk package/pass
+rm -rf package/pass/luci-app-passwall
 
-# svn co https://github.com/loso3000/openwrt-pswall/trunk/luci-app-passwall ./package/passwall/luci-app-passwall
 svn co https://github.com/loso3000/openwrt-pswall/trunk/ ./package/passwall
 sed -i '/naiveproxy/d' package/passwall/luci-app-passwall/Makefile
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
