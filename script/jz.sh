@@ -24,7 +24,8 @@ rm -rf ./feeds/luci/applications/luci-app-mentohust
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
 
-rm -rf ./feeds/luci/applications/luci-app-cpufreq
+#rm -rf ./feeds/luci/applications/luci-app-cpufreq
+#rm -rf ./package/diy/luci-app-cpufreq
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
@@ -87,7 +88,7 @@ svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/service
 rm -rf ./package/build/samba4
 # rm -rf ./package/lean/samba4
 # rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
-rm -rf ./feeds/luci/applications/luci-app-samba4
+# rm -rf ./feeds/luci/applications/luci-app-samba4
 
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
