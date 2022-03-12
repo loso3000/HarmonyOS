@@ -94,18 +94,20 @@ jobs:
           cd openwrt && make -j1 V=s
           
           echo $?
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: OpenWrt-ipv6-dz2-Firmware
+          path: ./openwrt/bin/
       - name: Prepare Artifact
         run: |
           mkdir -p ./mini/fwd
-          mkdir -p ./mini/pgd
-          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/pgd
           find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./mini/fwd
           cd ./mini/fwd
           gzip *.img
           # echo "${{ env.DATA}}" > version.txt
           # md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
           # echo $md5 >> version.txt
-
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
@@ -117,13 +119,3 @@ jobs:
         with:
           name: OpenWrt-ipv6-dz2-Firmware
           path: ./mini/fwd
-      - name: Upload  IPK
-        uses: actions/upload-artifact@main
-        with:
-          name: OpenWrt-ipv6-dz2-Ipk
-          path: ./mini/pgd
-      - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          retain_days: 5
-          keep_minimum_runs: 3
