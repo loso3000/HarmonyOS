@@ -27,8 +27,8 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-mentohust 
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
-rm -rf ./feeds/luci/applications/luci-app-samba4
-rm -rf ./feeds/luci/applications/luci-app-cpufreq
+# rm -rf ./feeds/luci/applications/luci-app-samba4
+# rm -rf ./feeds/luci/applications/luci-app-cpufreq
 
 sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow
 # sed -i "s/hostname='OpenWrt'/hostname='JituTiktok'/g" package/base-files/files/bin/config_generate
