@@ -227,16 +227,36 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
+# Fix libssh
+rm -rf feeds/packages/libs
+svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
+# Add apk (Apk Packages Manager)
+svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
+
+# Add luci-udptools
+svn co https://github.com/zcy85611/Openwrt-Package/trunk/luci-udptools  package/new/
+svn co https://github.com/zcy85611/Openwrt-Package/trunk/udp2raw package/new/
+svn co https://github.com/zcy85611/Openwrt-Package/trunk/udpspeeder package/new/
+
+# Add subconverter
+git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter  package/new/
+
+rm -rf ./feeds/packages/utils/runc/Makefile
+svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
+
+# Add luci-app-dockerman
+rm -rf ./feeds/luci/collections/luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
+
 # Passwall
 rm -rf ./package/build/pass/luci-app-passwall
-
-svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
+svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall/
 # rm -rf package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' package/pass/luci-app-passwall/Makefile
+sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/luci-app-ssr-plus
+# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/
 # cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
 # sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
 
@@ -270,14 +290,11 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 #sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
-# sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
-# sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
 sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
-# sed -i "s/bootstrap/opentopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
 rm -rf ./package/diy/luci-theme-edge
@@ -287,15 +304,6 @@ svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_n
 git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
-
-# R8168驱动
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8188eu package/new/rtl8188eu
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8189es package/new/rtl8189es
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8192du package/new/rtl8192du
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8812au-ct package/new/rtl8812au-ct
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8812au-ac package/new/rtl8812au-ac
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl8821cu package/new/rtl8821cu
-# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/rtl88x2bu package/new/rtl88x2bu
 
 # Add extra wireless drivers
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8812au-ac
@@ -312,27 +320,9 @@ svn co https://github.com/immortalwrt/packages/branches/openwrt-18.06/net/filebr
 # cd po2lmo
 # make && sudo make install
 
-
-# 在 X86 架构下移除 Shadowsocks-rust
-sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/ssr/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
-### 最后的收尾工作 ###
-# Lets  
-# mkdir ./package/base-files/files/usr/bin 
-# cp -f ./package/build/set/chinadnslist ./package/base-files/files/usr/bin/chinadnslist
-# find ./ -name *.orig | xargs rm -f
-# find ./ -name *.rej | xargs rm -f
-
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # Mod zzz-default-settings
-
-# sed -i '/http/d' package/build/default-settings/files/zzz-default-settings
-# sed -i '/openwrt_luci/d' package/build/default-settings/files/zzz-default-settings
 
 # Fix SDK
 # sed -i '/$(SDK_BUILD_DIR)\/$(STAGING_SUBDIR_HOST)\/usr\/bin/d;/LICENSE/d' ./target/sdk/Makefile
@@ -365,18 +355,6 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 # sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-
-# sed -i "s/hostname='OpenWrt'/hostname=${HOSTNAME}/g" package/base-files/files/bin/config_generate
-# sed -i 's/192.168.1.1/${IPADDRESS}/g' package/base-files/files/bin/config_generate
-
-# Modify default WiFi SSID
-# sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Modify default WiFi Encryption
-# sed -i "s/set wireless.default_radio\${devidx}.encryption=none/set wireless.default_radio\${devidx}.encryption='$ENCRYPTION'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Modify default WiFi Key
-# sed -i "/set wireless.default_radio\${devidx}.mode=ap/a\                        set wireless.default_radio\${devidx}.key='$KEY'" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Forced WiFi to enable
-# sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 #内核设置 甜糖
 # cat ./package/build/set/Config-kernel.in   > ./config/Config-kernel.in
