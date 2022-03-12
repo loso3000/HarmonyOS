@@ -24,16 +24,9 @@ rm -rf ./feeds/luci/applications/luci-app-mentohust
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
 
-rm -rf ./feeds/luci/applications/luci-app-cpufreq
+#rm -rf ./feeds/luci/applications/luci-app-cpufreq
+rm -rf ./package/diy/luci-app-cpufreq
 
-# socat
-#rm -rf feeds/packages/net/socat
-svn co https://github.com/openwrt/packages/trunk/net/socat feeds/packages/net/socat
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.7.4.3/g' feeds/packages/net/socat/Makefile
-sed -i 's/PKG_RELEASE:=.*/PKG_RELEASE:=1/g' feeds/packages/net/socat/Makefile
-sed -i 's/PKG_HASH:=.*/PKG_HASH:=d47318104415077635119dfee44bcfb41de3497374a9a001b1aff6e2f0858007/g' feeds/packages/net/socat/Makefile
-sed -i '75i\	  sc_cv_getprotobynumber_r=2 \\' feeds/packages/net/socat/Makefile
-#rm -f feeds/packages/net/socat/patches/100-usleep.patch
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
@@ -72,12 +65,6 @@ popd
 #=================================================
 
 pushd feeds/luci/applications
-# Add cpufreq
-rm -rf ./luci-app-cpufreq
-# svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
-# sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-# # sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-# sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust 
@@ -116,8 +103,6 @@ wget -qO- $clash_game_url | tar xOvz > files/etc/openclash/core/clash_game
 chmod +x files/etc/openclash/core/clash*
 
 popd
-
-
 
 # Add p7zip
 svn co https://github.com/hubutui/p7zip-lede/trunk package/p7zip
@@ -497,7 +482,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 rm -rf ./package/build/pass/luci-app-passwall
 
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
-rm -rf package/passwall/luci-app-passwall
+# rm -rf package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/build/pass/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
@@ -534,8 +519,8 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 
 # sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/rockchip/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
