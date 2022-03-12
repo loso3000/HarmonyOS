@@ -18,7 +18,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/r2s.lean
+  CONFIG_FILE: r2s.lienol
   DIY_P1_SH: dz.sh
   DIY_P2_SH: update_package_all.sh
 jobs:
@@ -104,11 +104,6 @@ jobs:
           find ./openwrt/bin/targets/ -name "*combined*" -or -name "*sysupgrade*" | xargs -i mv -f {} ./r2s/
           gzip *.*
 
-      - name: Upload firmware to cowtransfer
-        run: |
-         curl -fsSL git.io/file-transfer | sh
-         ./transfer cow --block 2621440 -s -p 64 --no-progress ./r2s/ 2>&1 | tee cowtransfer.log
-         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
