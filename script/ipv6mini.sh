@@ -103,21 +103,7 @@ git clone --depth=1 https://github.com/NateLol/luci-app-oled
 
 #add clash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
-cd luci-app-openclash && mkdir -p files/etc/openclash/core
-open_clash_main_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-amd64 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# offical_clash_main_url=$(curl -sL https://api.github.com/repos/Dreamacro/clash/releases/tags/v1.3.5 | grep /clash-linux-amd64 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-clash_tun_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-amd64 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-amd64 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-
-wget -qO- $open_clash_main_url | tar xOvz > files/etc/openclash/core/clash
-# wget -qO- $offical_clash_main_url | gunzip -c > files/etc/openclash/core/clash
-wget -qO- $clash_tun_url | gunzip -c > files/etc/openclash/core/clash_tun
-wget -qO- $clash_game_url | tar xOvz > files/etc/openclash/core/clash_game
-chmod +x files/etc/openclash/core/clash*
-
 popd
-
-
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 rm -rf ./feeds/luci/applications/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
@@ -312,7 +298,7 @@ svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
 
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' package/build/pass/luci-app-passwall/Makefile
+sed -i 's,default n,default y,g' package/build/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
