@@ -494,9 +494,10 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 # Passwall
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk package/passwall
-sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-passwall/Makefile
+rm -rf ./package/build/pass
+
+svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
+sed -i 's,default n,default y,g' ./package/passwall/luci-app-passwall/Makefile
 
 git clone https://github.com/semigodking/redsocks.git package/redsocks2
 
