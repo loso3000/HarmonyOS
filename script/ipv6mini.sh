@@ -140,8 +140,7 @@ rm -rf ./feeds/luci/applications/luci-app-samba
 svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/applications/luci-app-samba
 rm -rf ./package/network/services/samba36 
 svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
-rm -rf ./package/build/samba4
-# rm -rf ./feeds/packages/net/samba4
+rm -rf package/feeds/packages/samba4
 # rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4
 
@@ -170,8 +169,6 @@ sed -i 's/监听端口/监听端口 用户名admin密码adminadmin/g' ./feeds/lu
 sed -i 's/带宽监控/监控/g' ./feeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
 sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-cifsd/luasrc/controller/cifsd.lua   #挂问题
 echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP穿透问题
-sed -i 's/invalid/# invalid/g' ./feeds/packages/net/samba4/files/smb.conf.template   #共享问题
-sed -i 's/only = yes/only = no/g' ./feeds/packages/net/samba4/files/smb.conf.template   #共享问题
 sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 
