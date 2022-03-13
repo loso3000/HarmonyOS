@@ -320,11 +320,6 @@ rm -rf ./package/lean/trojan
 # rm -rf ./package/lean/vlmcsd 
 rm -rf ./feeds/packages/devel/gcc
 
-rm -rf ./package/lean/ddns-scripts_aliyun
-rm -rf ./package/lean/ddns-scripts_dnspod
-svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_dnspod
-svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_aliyun
-
 # rm -rf ./feeds/luci/applications/luci-app-zerotier
 # rm -rf ./feeds/packages/net/zerotier
 sed -i '/45)./d' ./feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
@@ -340,7 +335,7 @@ rm -rf ./feeds/luci/applications/luci-app-samba
 svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/applications/luci-app-samba
 rm -rf ./package/network/services/samba36 
 svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
-# rm -rf ./package/lean/samba4
+rm -rf ./package/lean/samba4
 # rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4
 
@@ -492,29 +487,28 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
-# Passwall
-rm -rf ./package/build/pass
-
-svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
-sed -i 's,default n,default y,g' ./package/passwall/luci-app-passwall/Makefile
 
 git clone https://github.com/semigodking/redsocks.git package/redsocks2
+
+# Passwall
+rm -rf ./feeds/packages/net/kcptun
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
+
+# rm -rf ./package/build/pass
+rm -rf ./package/build/pass/luci-app-passwall
+svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
+sed -i 's,default n,default y,g' ./package/passwall/luci-app-passwall/Makefile
+# rm -rf ./package/passwall/luci-app-passwall
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/luci-app-ssr-plus
-# cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-
-# sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
-sed -i 's,(jsonStringify(result)),(alias),g' ./package/ssr/luci-app-ssr-plus/root/usr/share/shadowsocksr/subscribe.lua
-
 # rm -rf ./package/build/pass/luci-app-ssr-plus
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
+
 cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-
-# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
-
 #  rm -rf package/build/pass/luci-app-bypass
 # git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 # sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
