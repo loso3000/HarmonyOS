@@ -245,6 +245,8 @@ svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/
 
 
 #bypass
+
+cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 #rm -rf package/build/pass/luci-app-bypass
