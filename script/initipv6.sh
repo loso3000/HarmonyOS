@@ -366,8 +366,6 @@ sed -i 's/监听端口/监听端口 用户名admin密码adminadmin/g' ./feeds/lu
 sed -i 's/带宽监控/监控/g' ./feeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
 sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-cifsd/luasrc/controller/cifsd.lua   #挂问题
 echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP穿透问题
-sed -i 's/invalid/# invalid/g' ./feeds/packages/net/samba4/files/smb.conf.template   #共享问题
-sed -i 's/only = yes/only = no/g' ./feeds/packages/net/samba4/files/smb.conf.template   #共享问题
 sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 
@@ -490,21 +488,19 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 
 # Passwall
 rm -rf ./package/build/pass/luci-app-passwall
-svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
-# rm -rf package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
+svn co https://github.com/loso3000/openwrt-passwall/trunk package/pass
+# rm -rf package/pass/luci-app-passwall
+sed -i 's,default n,default y,g' package/pass/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 rm  ./package/ssr/luci-app-ssr-plus
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/luci-app-ssr-plus
-
-# sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
-
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile 
 # rm -rf ./package/build/pass/luci-app-ssr-plus
+
 cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-
 rm -rf package/build/pass/luci-app-bypass
 git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
@@ -517,7 +513,6 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 #sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
-
 
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
