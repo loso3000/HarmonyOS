@@ -168,7 +168,7 @@ svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/service
 rm -rf ./package/build/samba4
 # rm -rf ./package/lean/samba4
 # rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
-# rm -rf ./feeds/luci/applications/luci-app-samba4
+rm -rf ./feeds/luci/applications/luci-app-samba4
 
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
@@ -312,7 +312,9 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 
 # Passwall
 rm -rf ./package/build/pass/luci-app-passwall
-
+rm -rf ./feeds/packages/net/kcptun
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
 #rm -rf package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/passwall/luci-app-passwall/Makefile
@@ -328,11 +330,10 @@ echo ' ShadowsocksR Plus+'
 # sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
 
 # rm -rf ./package/build/pass/luci-app-ssr-plus
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 
 cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-
-# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile
 
 #  rm -rf package/build/pass/luci-app-bypass
 # git clone https://github.com/kiddin9/openwrt-bypass package/bypass
