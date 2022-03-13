@@ -140,8 +140,8 @@ rm -rf ./feeds/luci/applications/luci-app-samba
 svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/applications/luci-app-samba
 rm -rf ./package/network/services/samba36 
 svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
-# rm -rf ./package/build/samba4
-rm -rf ./package/lean/samba4
+rm -rf ./package/build/samba4
+# rm -rf ./feeds/packages/net/samba4
 # rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4
 
@@ -284,21 +284,19 @@ svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/
 # svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
 
 
-# sed -i 's,default n,default y,g' package/build/passwall/luci-app-passwall/Makefile
 
 # sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 rm -rf package/build/pass/luci-app-bypass
 git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
-rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./package/build/pass/luci-app-passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
 # rm -rf package/passwall/luci-app-passwall
 
 # git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' package/build/passwall/luci-app-passwall/Makefile
+# sed -i 's,default n,default y,g' package/build/passwall/luci-app-passwall/Makefile
 
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
@@ -369,9 +367,9 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-ap
 # git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 # git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
-sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
-sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
-sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
+#sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
+#sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
+#sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 
 
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
