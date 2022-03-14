@@ -250,6 +250,7 @@ rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./package/build/pass/luci-app-passwall
 #bypass
 #rm -rf package/build/pass/luci-app-bypass
+cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
