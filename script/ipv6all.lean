@@ -24,28 +24,15 @@ CONFIG_GRUB_BOOTOPTS="nomodeset"
 CONFIG_GRUB_TIMEOUT="0"
 CONFIG_GRUB_TITLE="OpenWrt"
 # CONFIG_ISO_IMAGES is not set
-# CONFIG_VDI_IMAGES is not set
 # CONFIG_VMDK_IMAGES is not set
-# CONFIG_VMDK_IMAGES is not set
-
-# CONFIG_SIGNATURE_CHECK is not set
-# CONFIG_SIGNED_PACKAGES is not set
-
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 #ipv6
-
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
 CONFIG_PACKAGE_6to4=y
-
-# CONFIG_PACKAGE_kmod-zram=y
-# CONFIG_PACKAGE_zram-swap=y
-##测试内核开关，默认5.10内核，关闭5.15内核 “# CONFIG_TESTING_KERNEL is not set”即可关闭5.15内核！
-#5.15属于测试内核暂时添加到配置文件！测试几天！
-# CONFIG_TESTING_KERNEL=n
 
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
@@ -60,11 +47,8 @@ CONFIG_PACKAGE_kmod-usb3=y
 CONFIG_PACKAGE_kmod-usb-dwc2=y
 CONFIG_PACKAGE_kmod-usb-dwc3=y
 #USB net driver
-
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
-
-#-----x86
 # CONFIG_PACKAGE_kmod-usb-hid=y
 # CONFIG_PACKAGE_kmod-bonding=y
 CONFIG_PACKAGE_ppp-mod-pptp=y  #VPN客户端
@@ -78,20 +62,9 @@ CONFIG_PACKAGE_kmod-r8168=y
 # CONFIG_PACKAGE_kmod-8139too=y
 CONFIG_PACKAGE_kmod-igc=y
 CONFIG_PACKAGE_kmod-e1000e=y
-# CONFIG_PACKAGE_kmod-rtl8xxxu=y
-# CONFIG_PACKAGE_kmod-ath5k is not set  #515报错
-# CONFIG_PACKAGE_kmod-ath9k=y
-# CONFIG_PACKAGE_kmod-ath9k-htc=y
-# CONFIG_PACKAGE_kmod-ath10k=y
-# CONFIG_PACKAGE_kmod-rt2800-usb=y
-# CONFIG_PACKAGE_kmod-tg3=y
-# CONFIG_PACKAGE_ath10k-firmware-qca9888=y
-# CONFIG_PACKAGE_ath10k-firmware-qca988x=y
-# CONFIG_PACKAGE_ath10k-firmware-qca9984=y
-# CONFIG_PACKAGE_brcmfmac-firmware-43602a1-pcie=y
-# CONFIG_PACKAGE_kmod-iwlwifi is not set  #515报错
-# CONFIG_PACKAGE_kmod-usb-rtl8150 is not set  #515报错
-# CONFIG_PACKAGE_kmod-rtl8150 is not set  #515报错
+CONFIG_PACKAGE_kmod-iwlwifi=n   #515报错
+CONFIG_PACKAGE_kmod-usb-rtl8150=n   #515报错
+CONFIG_PACKAGE_kmod-rtl8150=n   #515报错
 # docker
 
 CONFIG_PACKAGE_docker=y
@@ -126,7 +99,6 @@ CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 CONFIG_PACKAGE_block-mount=y
 
-# CONFIG_PACKAGE_wpad-openssl=m
 CONFIG_PACKAGE_wget-ssl=y
 CONFIG_PACKAGE_xray-geodata=y
 CONFIG_PACKAGE_xl2tpd=y
