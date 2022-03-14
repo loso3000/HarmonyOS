@@ -4,9 +4,8 @@ CONFIG_TARGET_x86_64_DEVICE_generic=y
 # 设置固件大小
 CONFIG_COREMARK_NUMBER_OF_THREADS=128
 CONFIG_TARGET_KERNEL_PARTSIZE=64
-CONFIG_TARGET_ROOTFS_PARTSIZE=920
+CONFIG_TARGET_ROOTFS_PARTSIZE=1920
 
-# CONFIG_PACKAGE_i915-firmware=y
 
 # 所集成的固件类型
 # CONFIG_TARGET_ROOTFS_INITRAMFS is not set
@@ -393,40 +392,41 @@ CONFIG_GCC_VERSION="11.2.0"
 
 CONFIG_PACKAGE_pptpd=y
 
-#CONFIG_EXTERNAL_TOOLCHAIN=y
+CONFIG_EXTERNAL_TOOLCHAIN=y
 # CONFIG_NATIVE_TOOLCHAIN is not 
 
+CONFIG_GCC_USE_VERSION_9=y
+CONFIG_GCC_VERSION_9=y
+CONFIG_GCC_VERSION="9.3.0"
+
 #mitmproxy
-
-#CONFIG_DEFAULT_libc=y
-#CONFIG_DEFAULT_libgcc=y
-
+CONFIG_DEFAULT_libc=y
+CONFIG_DEFAULT_libgcc=y
 #CONFIG_PACKAGE_tcpdump=y
-#CONFIG_PACKAGE_curl=y
-#CONFIG_PACKAGE_wget=y
-#CONFIG_PACKAGE_redsocks=y
-#CONFIG_PACKAGE_libffi-dev=y
-#CONFIG_PACKAGE_libssl-dev=y
-#CONFIG_PACKAGE_libtiff5-dev=y
-#CONFIG_PACKAGE_libjpeg8-dev=y
-#CONFIG_PACKAGE_zlib1g-dev=y
-#CONFIG_PACKAGE_libffi=y
-#CONFIG_PACKAGE_libwebp-dev=y
-#CONFIG_PACKAGE_gcc=y
-#CONFIG_PACKAGE_mitmproxy=y
-
-#CONFIG_PACKAGE_libpython3=y
-#CONFIG_PACKAGE_python3=y
-#CONFIG_PACKAGE_python3-mitmproxy=y
-#CONFIG_PACKAGE_python-pip-conf=y
+CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_wget=y
+CONFIG_PACKAGE_redsocks=y
+CONFIG_PACKAGE_libffi-dev=y
+CONFIG_PACKAGE_libssl-dev=y
+CONFIG_PACKAGE_libtiff5-dev=y
+CONFIG_PACKAGE_libjpeg8-dev=y
+CONFIG_PACKAGE_zlib1g-dev=y
+CONFIG_PACKAGE_libffi=y
+CONFIG_PACKAGE_libwebp-dev=y
+CONFIG_PACKAGE_gcc=y
+CONFIG_PACKAGE_mitmproxy=y
+CONFIG_PACKAGE_libpython3=y
+CONFIG_PACKAGE_python3=y
+CONFIG_PACKAGE_python3-mitmproxy=y
+CONFIG_PACKAGE_python-pip-conf=y
 #CONFIG_PACKAGE_python3-cffi-src=y
-#CONFIG_PACKAGE_python3-libffi=y
-#CONFIG_PACKAGE_python3-dev=y
-#CONFIG_PACKAGE_python3-pip=y
-#CONFIG_PACKAGE_python3-six=y
-#CONFIG_PACKAGE_python3-cffi=y
-#CONFIG_PACKAGE_python3-openssl=y
-#CONFIG_PACKAGE_python3-cryptography=y
+CONFIG_PACKAGE_python3-libffi=y
+CONFIG_PACKAGE_python3-dev=y
+CONFIG_PACKAGE_python3-pip=y
+CONFIG_PACKAGE_python3-six=y
+CONFIG_PACKAGE_python3-cffi=y
+CONFIG_PACKAGE_python3-openssl=y
+CONFIG_PACKAGE_python3-cryptography=y
 #CONFIG_PACKAGE_python3-cryptography-src=y
-#CONFIG_PACKAGE_python3-yaml=y
+CONFIG_PACKAGE_python3-yaml=y
 #CONFIG_PACKAGE_python3-yaml-src=y
