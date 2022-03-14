@@ -484,6 +484,7 @@ rm -rf ./package/build/pass/luci-app-passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
 # rm -rf package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/build/pass/luci-app-passwall/Makefile
+rm -rf package/passwall/pdnsd-alt
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
