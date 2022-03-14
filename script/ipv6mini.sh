@@ -12,6 +12,10 @@ KEY=123456
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
 
+rm -f feeds/packages/libs/libsodium
+svn co https://github.com/openwrt/packages/trunk/libs/libsodium  feeds/packages/libs/
+svn co https://github.com/openwrt/packages/trunk/libs/libsodium  package/lean/
+
 # cp -f ./package/build/banner ./package/base-files/files/etc/
 # replace banner
 cp -f $GITHUB_WORKSPACE/general/openwrt_banner package/base-files/files/etc/banner
