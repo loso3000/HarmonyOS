@@ -146,6 +146,8 @@ rm -rf ./package/network/services/samba36
 svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
 
 svn co https://github.com/sirpdboy/build/trunk/autosamba-samba4 ./packages/diy/autosamba-samba4
+
+rm -rf ./packages/build/samba4
 # rm -rf ./feeds/packages/net/samba4
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4
@@ -289,55 +291,13 @@ svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/
 # svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
 
 
-# ShadowsocksR Plus+ 依赖
-pushd feeds/packages/net
-# rm -rf ./feeds/packages/net/kcptun
-# rm -rf ./feeds/packages/net/pdnsd-alt
-# svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
-
-rm -rf ./package/feeds/luci/shadowsocksr-libev
-svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
-ln -sf ../../../feeds/luci/applications/shadowsocksr-libev ./package/feeds/luci/shadowsocksr-libev
-
-# svn co https://github.com/loso3000/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
-# svn co https://github.com/loso3000/openwrt-passwall/trunk/microsocks 
-# svn co https://github.com/loso3000/openwrt-passwall/trunk/dns2socks
-# svn co https://github.com/coolsnowwolf/packages/trunk/net/redsocks2
-# svn co https://github.com/loso3000/openwrt-passwall/trunk/ipt2socks
-# svn co https://github.com/immortalwrt/packages/trunk/net/kcptun
-
-svn co https://github.com/loso3000/openwrt-passwall/trunk/brook
-svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-plus
-svn co https://github.com/loso3000/openwrt-passwall/trunk/ssocks
-svn co https://github.com/loso3000/openwrt-passwall/trunk/chinadns-ng 
-svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria 
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay 
-svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan
-svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping
-svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go
-svn co https://github.com/fw876/helloworld/trunk/simple-obfs
-svn co https://github.com/fw876/helloworld/trunk/naiveproxy
-svn co https://github.com/fw876/helloworld/trunk/v2ray-core
-svn co https://github.com/fw876/helloworld/trunk/xray-core
-svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin
-svn co https://github.com/fw876/helloworld/trunk/xray-plugin
-svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocks-rust
-popd
-
-#bypass
-#rm -rf package/build/pass/luci-app-bypass
-#git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-#sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
-pushd package/build/pass/luci-app-bypass
-cat  ./package/build/set/Makefile   >Makefile
-sed -i 's,default n,default y,g' Makefile
-sed -i '/v2ray-core/d' Makefile
-sed -i '/v2ray-plugin/d' Makefile
-sed -i '/xray-plugin/d' Makefile
-popd
-
-#passwall
+rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./package/build/pass/luci-app-passwall
+#bypass
+rm -rf package/build/pass/luci-app-bypass
+git clone https://github.com/kiddin9/openwrt-bypass package/pass
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
@@ -346,22 +306,61 @@ sed -i '/trojan-go/d' Makefile
 sed -i '/v2ray-core/d' Makefile
 sed -i '/v2ray-plugin/d' Makefile
 sed -i '/xray-plugin/d' Makefile
+sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+sed -i '/shadowsocks-libev-ss-server/d' Makefile
+sed -i '/shadowsocks-libev-ss-local/d' Makefile
 popd
-
-echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-# rm -rf  ./package/ssr/luci-app-ssr-plus
 pushd package/pass/luci-app-ssr-plus
 sed -i 's,default n,default y,g' Makefile
 sed -i '/trojan-go/d' Makefile
 sed -i '/v2ray-core/d' Makefile
 sed -i '/v2ray-plugin/d' Makefile
 sed -i '/xray-plugin/d' Makefile
+sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+sed -i '/shadowsocks-libev-ss-server/d' Makefile
+sed -i '/shadowsocks-libev-ss-local/d' Makefile
 sed -i '/result.encrypt_method/a\result.fast_open = "1"' root/usr/share/shadowsocksr/subscribe.lua
 sed -i 's,ispip.clang.cn/all_cn,gh.404delivr.workers.dev/https://github.com/QiuSimons/Chnroute/raw/master/dist/chnroute/chnroute,' root/etc/init.d/shadowsocksr
 sed -i 's,YW5vbnltb3Vz/domain-list-community/release/gfwlist.txt,Loyalsoldier/v2ray-rules-dat/release/gfw.txt,' root/etc/init.d/shadowsocksr
 sed -i '/Clang.CN.CIDR/a\o:value("https://gh.404delivr.workers.dev/https://github.com/QiuSimons/Chnroute/raw/master/dist/chnroute/chnroute.txt", translate("QiuSimons/Chnroute"))' luasrc/model/cbi/shadowsocksr/advanced.lua
 popd
+
+svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping package/new/tcping
+svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+svn co https://github.com/loso3000/openwrt-passwall/trunk/brook package/new/brook
+svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+svn co https://github.com/loso3000/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/new/hysteria
+
+echo ' ShadowsocksR Plus+'
+# git clone https://github.com/fw876/helloworld package/ssr
+# rm -rf  ./package/ssr/luci-app-ssr-plus
+# ShadowsocksR Plus+ 依赖
+rm -rf ./feeds/packages/net/kcptun
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/pdnsd-alt
+svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
+svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
+svn co https://github.com/loso3000/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
+svn co https://github.com/loso3000/openwrt-passwall/trunk/chinadns-ng package/lean/chinadns-ng
+svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/lean/hysteria
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
+svn co https://github.com/loso3000/openwrt-passwall/trunk/microsocks package/lean/microsocks
+svn co https://github.com/loso3000/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
+svn co https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
+svn co https://github.com/loso3000/openwrt-passwall/trunk/ipt2socks package/lean/ipt2socks
+svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan package/lean/trojan
+svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping package/lean/tcping
+svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
+svn co https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
+svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
+svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
+svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
+svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
+svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
+svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
