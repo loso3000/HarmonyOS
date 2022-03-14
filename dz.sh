@@ -251,16 +251,7 @@ rm -rf ./package/build/pass/luci-app-passwall
 #bypass
 #rm -rf package/build/pass/luci-app-bypass
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-#sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
-
-pushd package/build/pass/luci-app-bypass
-cat  ./package/build/set/Makefile   >Makefile
-sed -i 's,default n,default y,g' Makefile
-sed -i '/trojan-go/d' Makefile
-sed -i '/v2ray-core/d' Makefile
-sed -i '/v2ray-plugin/d' Makefile
-sed -i '/xray-plugin/d' Makefile
-popd
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
