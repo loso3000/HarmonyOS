@@ -26,6 +26,9 @@ rm -rf ./feeds/luci/applications/luci-proto-minieap
 
 rm -rf ./feeds/luci/applications/luci-app-cpufreq
 
+rm -f feeds/packages/libs/libsodium
+svn co https://github.com/openwrt/packages/trunk/libs/libsodium  feeds/packages/libs/
+svn co https://github.com/openwrt/packages/trunk/libs/libsodium  package/lean/
 
 # socat
 #rm -rf feeds/packages/net/socat
