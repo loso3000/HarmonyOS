@@ -344,8 +344,10 @@ rm -rf ./package/network/services/samba36
 svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
 
 svn co https://github.com/sirpdboy/build/trunk/autosamba-samba4 ./packages/diy/autosamba-samba4
-rm -rf ./feeds/packages/net/samba4
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
+
+rm -rf ./package/build/samba4
+#rm -rf ./feeds/packages/net/samba4
+#svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4
 svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
@@ -482,19 +484,13 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 rm -rf ./package/build/pass/luci-app-passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/pass
 # rm -rf package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' package/build/pass/luci-app-passwall/Makefile
-rm -rf package/pass/pdnsd-alt
+sed -i 's,default n,default y,g' package/pass/luci-app-passwall/Makefile
+# rm -rf package/pass/pdnsd-alt
 
 echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/luci-app-ssr-plus
-# cp -f ./package/build/set/myip.htm ./package/ssr/luci-app-ssr-plus/luasrc/view/shadowsocksr/myip.htm
-# sed -i '/status/am:section(SimpleSection).template = "shadowsocksr/myip"' ./package/lean/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/client.lua
-
-# sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile 
 
 # rm -rf ./package/build/pass/luci-app-ssr-plus
-
 cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
