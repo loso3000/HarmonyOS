@@ -493,6 +493,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 rm -rf ./package/build/pass/luci-app-passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/pass
 # rm -rf package/pass/luci-app-passwall
+rm -rf package/pass/pdnsd-alt
 sed -i 's,default n,default y,g' package/pass/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
