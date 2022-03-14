@@ -290,7 +290,11 @@ pushd feeds/packages/net
 # rm -rf ./feeds/packages/net/kcptun
 # rm -rf ./feeds/packages/net/pdnsd-alt
 # svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
-# svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
+
+rm -rf ./package/feeds/luci/shadowsocksr-libev
+svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
+ln -sf ../../../feeds/luci/applications/shadowsocksr-libev ./package/feeds/luci/shadowsocksr-libev
+
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/microsocks 
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/dns2socks
