@@ -153,7 +153,7 @@ CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-oled=n
 # USB net driver
-CONFIG_PACKAGE_kmod-drm-rockchip=y
+# CONFIG_PACKAGE_kmod-drm-rockchip=y  #err
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 CONFIG_PACKAGE_rtl8192ce-firmware=y
 CONFIG_PACKAGE_rtl8192de-firmware=y
@@ -176,4 +176,3 @@ CONFIG_PACKAGE_wpad-wolfssl=y
 CONFIG_DRIVER_11AC_SUPPORT=y
 CONFIG_DRIVER_11N_SUPPORT=y
 CONFIG_DRIVER_11W_SUPPORT=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
