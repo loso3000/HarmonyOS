@@ -17,6 +17,7 @@ git clone https://github.com/sirpdboy/build.git ./package/build
 cp -f $GITHUB_WORKSPACE/general/openwrt_banner package/base-files/files/etc/banner
 
 # rm -rf ./package/lean/r8152
+
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-theme-opentomcat
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
@@ -24,9 +25,10 @@ rm -rf ./feeds/luci/applications/luci-app-mentohust
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
 
-# rm -rf ./feeds/luci/applications/luci-app-cpufreq
+rm -rf ./feeds/luci/applications/luci-app-cpufreq
 
 git clone --depth=1 https://github.com/immortalwrt/openwrt-tmate
+
 # rm -f feeds/packages/libs/libsodium
 # svn co https://github.com/openwrt/packages/trunk/libs/libsodium  feeds/packages/libs/
 # svn co https://github.com/openwrt/packages/trunk/libs/libsodium  package/lean/
@@ -255,24 +257,9 @@ CONFIG_DRM=y
 CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.4
 
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.10
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.15
-
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
 sed -i "/filter_aaaa='1'/d" package/new/luci-app-mosdns/root/etc/init.d/mosdns
-
 
 git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
@@ -280,7 +267,6 @@ sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/kool
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
-
 
 rm -rf ./package/lean/ddns-scripts_aliyun
 svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
