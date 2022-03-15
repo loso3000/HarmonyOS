@@ -299,9 +299,11 @@ sed -i 's,default n,default y,g' ./package/passwall/luci-app-passwall/Makefile
 rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./feeds/packages/net/xray-core
-svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
-#svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
-svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd
+#svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
+ln -sf ../../../feeds/packages/net/shadowsocksr-libev package/lean/shadowsocksr-libev
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
+ln -sf ../../../feeds/packages/net/pdnsd-alt package/lean/pdnsd-alt
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
 svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/microsocks package/lean/microsocks
 svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
@@ -310,14 +312,14 @@ svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/ipt2socks package/
 svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/trojan package/lean/trojan
 svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/tcping package/lean/tcping
 svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
-svn co https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/simple-obfs package/lean/simple-obfs
+ln -sf ../../../feeds/packages/net/simple-obfs package/lean/simple-obfs
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
 svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
 svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
 svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
 svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
 svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
-#svn co https://github.com/immortalwrt/packages/trunk/net/shadowsocks-rust feeds/packages/net/shadowsocks-rust
 sed -i '/Build\/Compile/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $$(PKG_BUILD_DIR)/$(component)' feeds/packages/net/shadowsocks-rust/Makefile
 ln -sf ../../../feeds/packages/net/shadowsocks-rust ./package/feeds/packages/shadowsocks-rust
 svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
