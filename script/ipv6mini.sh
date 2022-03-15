@@ -293,9 +293,11 @@ git clone https://github.com/kiddin9/openwrt-bypass package/pass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 rm -rf ./feeds/packages/net/shadowsocks-libev
-git clone https://github.com/loso3000/openwrt-passwall package/passwall
+
+git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall luci/applications/passwall
+# git clone https://github.com/loso3000/openwrt-passwall package/passwall
 #svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
-pushd package/passwall/luci-app-passwall
+pushd luci/applications/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
 sed -i '/trojan-go/d' Makefile
 sed -i '/v2ray-core/d' Makefile
