@@ -24,21 +24,12 @@ rm -rf ./feeds/luci/applications/luci-app-mentohust
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
 
-rm -rf ./feeds/luci/applications/luci-app-cpufreq
+# rm -rf ./feeds/luci/applications/luci-app-cpufreq
 
 git clone --depth=1 https://github.com/immortalwrt/openwrt-tmate
 # rm -f feeds/packages/libs/libsodium
 # svn co https://github.com/openwrt/packages/trunk/libs/libsodium  feeds/packages/libs/
 # svn co https://github.com/openwrt/packages/trunk/libs/libsodium  package/lean/
-
-# socat
-#rm -rf feeds/packages/net/socat
-svn co https://github.com/openwrt/packages/trunk/net/socat feeds/packages/net/socat
-sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.7.4.3/g' feeds/packages/net/socat/Makefile
-sed -i 's/PKG_RELEASE:=.*/PKG_RELEASE:=1/g' feeds/packages/net/socat/Makefile
-sed -i 's/PKG_HASH:=.*/PKG_HASH:=d47318104415077635119dfee44bcfb41de3497374a9a001b1aff6e2f0858007/g' feeds/packages/net/socat/Makefile
-sed -i '75i\     sc_cv_getprotobynumber_r=2 \\' feeds/packages/net/socat/Makefile
-#rm -f feeds/packages/net/socat/patches/100-usleep.patch
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
@@ -58,12 +49,6 @@ sed -i "/set wireless.default_radio\${devidx}.mode=ap/a\                        
 # Forced WiFi to enable
 sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 #sed -i '/^EOF/i \            \set wireless.default_radio${devidx}.key=567890321' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-
-#echo 'Model '
-sed -i 's/HNET C108/Mifi/g' target/linux/ramips/dts/mt7620a_hnet_c108.dts
-sed -i 's/wwan0/usb0/g' target/linux/ramips/mt7620/base-files/etc/board.d/01_leds
-# sed -i 's/760000/f80000/g' target/linux/ramips/dts/mt7620n_zbtlink_zbt-cpe102.dts
-# sed -i '/zbtlink_zbt-cpe102/{s/7552k))$/15872k))/;}' target/linux/ramips/image/mt7620.mk
 
 #=================================================
 # EC20.patches
@@ -100,14 +85,6 @@ rm -rf ./feeds/luci/collections/luci-lib-docker
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
 
 pushd feeds/luci/applications
-
-# Add cpufreq
-rm -rf ./luci-app-cpufreq
-# svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
-# sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-# # sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-# sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust 
 git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
@@ -212,6 +189,7 @@ sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasr
 
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP禁用IPV6问题
 sed -i 's/请输入用户名和密码。/欢迎使用!请输入用户密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
+
 echo '灰色歌曲'
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
@@ -224,7 +202,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 # 最大连接数
 sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # ipv6
-# # sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
+# sed -i "s/6.ifname='$ifname'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 # sed -i "s/6.ifname='@${1}'/6.ifname='@wan'/g" package/base-files/files/bin/config_generate
 
 #docker err
@@ -241,7 +219,7 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # sed -i "91a\      $LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 
 #echo "其他修改"
-#sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
+sed -i 's/option commit_interval 24h/option commit_interval 30m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
 #sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 #sed -i 's@interval: 5@interval: 1@g' package/lean/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon.js #wrtbwmon默认刷新时间更改为1秒
 
@@ -253,16 +231,9 @@ cat ./package/build/profile > package/base-files/files/etc/profile
 # Boost 通用即插即用
 # rm -rf feeds/packages/libs/boost && svn co https://github.com/openwrt/packages/trunk/libs/boost feeds/packages/libs/boost
 # 全能推送
-rm -rf ./feeds/luci/applications/luci-app-pushbot && \
-git clone https://github.com/zzsj0928/luci-app-pushbot ./feeds/luci/applications/luci-app-pushbot
-rm -rf ./feeds/luci/applications/luci-app-jd-dailybonus && \
-git clone https://github.com/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/applications/luci-app-jd-dailybonus
-# 京东签到 By Jerrykuku
-# sed -i 's/wget-ssl/wget/g' package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/newapp.sh package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua
-# rm -rf ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
-# wget -P ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
-rm -rf ./feeds/luci/applications/luci-app-serverchan && \
-git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
+# rm -rf ./feeds/luci/applications/luci-app-pushbot && git clone https://github.com/zzsj0928/luci-app-pushbot ./feeds/luci/applications/luci-app-pushbot
+# rm -rf ./feeds/luci/applications/luci-app-jd-dailybonus && git clone https://github.com/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/applications/luci-app-jd-dailybonus
+# rm -rf ./feeds/luci/applications/luci-app-serverchan && git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
 
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 # git clone https://github.com/tuanqing/install-program package/install-program
@@ -272,14 +243,6 @@ rm -rf feeds/luci/applications/luci-app-aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/luci/applications/luci-app-aria2
 rm -rf feeds/packages/net/aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packages/net/aria2
-
-# echo 'amule'
-# git clone https://github.com/MatteoRagni/AmuleWebUI-Reloaded files/usr/share/amule/webserver/AmuleWebUI-Reloaded
-# sed -i 's/runasuser "$config_dir"/runasuser "$config_dir"\nwget -P "$config_dir" -O "$config_dir\/nodes.dat" http:\/\/upd.emule-security.org\/nodes.dat/g' package/lean/luci-app-amule/root/etc/init.d/amule
-# sed -i "s/tb.innerHTML = '<em>/tb.innerHTML = '<em><b><font color=red>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
-# sed -i "s/var links = '<em>/var links = '<em><b><font color=green>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
-# rm -rf package/lean/antileech/src/* && \
-# git clone https://github.com/persmule/amule-dlp.antiLeech package/lean/antileech/src
 
 # svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
 
@@ -318,12 +281,6 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package
 
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
-# 花生壳内网穿透
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 rm -rf ./package/lean/ddns-scripts_aliyun
 svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
@@ -343,50 +300,71 @@ svn co https://github.com/immortalwrt/packages/branches/openwrt-18.06/admin/goto
 svn co https://github.com/immortalwrt/packages/trunk/net/minieap packages/net/minieap
 
 rm -rf ./feeds/packages/net/shadowsocks-libev
-rm -rf ./package/build/pass/luci-app-passwall
 #bypass
 rm -rf package/build/pass/luci-app-bypass
 git clone https://github.com/kiddin9/openwrt-bypass package/pass
 sed -i 's,default n,default y,g' ./package/pass/luci-app-bypass/Makefile
 
-git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall ./feeds/luci/applications/passwall
-# git clone https://github.com/loso3000/openwrt-passwall package/passwall
-# svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
-pushd luci/applications/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
-sed -i '/trojan-go/d' Makefile
-sed -i '/v2ray-core/d' Makefile
-sed -i '/v2ray-plugin/d' Makefile
-sed -i '/xray-plugin/d' Makefile
-sed -i '/shadowsocks-libev-ss-redir/d' Makefile
-sed -i '/shadowsocks-libev-ss-server/d' Makefile
-sed -i '/shadowsocks-libev-ss-local/d' Makefile
-popd
-pushd package/pass/luci-app-ssr-plus
-sed -i 's,default n,default y,g' Makefile
-sed -i '/trojan-go/d' Makefile
-sed -i '/v2ray-core/d' Makefile
-sed -i '/v2ray-plugin/d' Makefile
-sed -i '/xray-plugin/d' Makefile
-sed -i '/shadowsocks-libev-ss-redir/d' Makefile
-sed -i '/shadowsocks-libev-ss-server/d' Makefile
-sed -i '/shadowsocks-libev-ss-local/d' Makefile
-popd
-echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-# rm -rf  ./package/ssr/luci-app-ssr-plus
+# git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall ./feeds/luci/applications/passwall
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
+sed -i 's,default n,default y,g' ./package/passwall/luci-app-passwall/Makefile
+
 # ShadowsocksR Plus+ 依赖
+rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
 svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
-svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev ./feeds/packages/net/shadowsocks-libev
+#svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/microsocks package/lean/microsocks
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
+svn co https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/ipt2socks package/lean/ipt2socks
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/trojan package/lean/trojan
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/tcping package/lean/tcping
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
+svn co https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
+svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
+svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
+svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
+svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
+#svn co https://github.com/immortalwrt/packages/trunk/net/shadowsocks-rust feeds/packages/net/shadowsocks-rust
+sed -i '/Build\/Compile/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $$(PKG_BUILD_DIR)/$(component)' feeds/packages/net/shadowsocks-rust/Makefile
+ln -sf ../../../feeds/packages/net/shadowsocks-rust ./package/feeds/packages/shadowsocks-rust
+svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
+ln -sf ../../../feeds/packages/net/kcptun ./package/feeds/packages/kcptun
+
+# ShadowsocksR Plus+
+# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
+rm -rf ./package/build/pass/luci-app-ssr-plus/po/zh_Hans
+pushd package/lean
+#wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/5bbf6e7.patch | patch -p1
+#wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/323fbf0.patch | patch -p1
+popd
+pushd package/build/pass/luci-app-ssr-plus
+sed -i 's,default n,default y,g' Makefile
+sed -i '/trojan-go/d' Makefile
+sed -i '/v2ray-core/d' Makefile
+sed -i '/v2ray-plugin/d' Makefile
+sed -i '/xray-plugin/d' Makefile
+sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+sed -i '/shadowsocks-libev-ss-server/d' Makefile
+sed -i '/shadowsocks-libev-ss-local/d' Makefile
+popd
 # VSSR
-svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
-# git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
-# git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
-sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
-#sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
-#sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
-#sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
+git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
+git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
+pushd package/lean/luci-app-vssr
+sed -i 's,default n,default y,g' Makefile
+sed -i '/trojan-go/d' Makefile
+sed -i '/v2ray-core/d' Makefile
+sed -i '/v2ray-plugin/d' Makefile
+sed -i '/xray-plugin/d' Makefile
+sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
+popd
 
 sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
 sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
