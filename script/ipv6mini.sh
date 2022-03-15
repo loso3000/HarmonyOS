@@ -148,8 +148,6 @@ svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/service
 svn co https://github.com/sirpdboy/build/trunk/autosamba-samba4 ./packages/diy/autosamba-samba4
 
 rm -rf ./packages/build/samba4
-# rm -rf ./feeds/packages/net/samba4
-# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4
 svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
@@ -270,7 +268,6 @@ svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/ne
 
 sed -i "/filter_aaaa='1'/d" package/new/luci-app-mosdns/root/etc/init.d/mosdns
 
-
 git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
 
@@ -290,16 +287,14 @@ rm -rf ./package/lean/ddns-scripts_aliyun
 svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
 # svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
 
-
-rm -rf ./feeds/packages/net/shadowsocks-libev
-rm -rf ./package/build/pass/luci-app-passwall
 #bypass
 rm -rf package/build/pass/luci-app-bypass
 git clone https://github.com/kiddin9/openwrt-bypass package/pass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
-#  git clone https://github.com/loso3000/openwrt-passwall package/passwall
-svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
+rm -rf ./feeds/packages/net/shadowsocks-libev
+git clone https://github.com/loso3000/openwrt-passwall package/passwall
+#svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
 sed -i '/trojan-go/d' Makefile
@@ -319,48 +314,13 @@ sed -i '/xray-plugin/d' Makefile
 sed -i '/shadowsocks-libev-ss-redir/d' Makefile
 sed -i '/shadowsocks-libev-ss-server/d' Makefile
 sed -i '/shadowsocks-libev-ss-local/d' Makefile
-sed -i '/result.encrypt_method/a\result.fast_open = "1"' root/usr/share/shadowsocksr/subscribe.lua
-sed -i 's,ispip.clang.cn/all_cn,gh.404delivr.workers.dev/https://github.com/QiuSimons/Chnroute/raw/master/dist/chnroute/chnroute,' root/etc/init.d/shadowsocksr
-sed -i 's,YW5vbnltb3Vz/domain-list-community/release/gfwlist.txt,Loyalsoldier/v2ray-rules-dat/release/gfw.txt,' root/etc/init.d/shadowsocksr
-sed -i '/Clang.CN.CIDR/a\o:value("https://gh.404delivr.workers.dev/https://github.com/QiuSimons/Chnroute/raw/master/dist/chnroute/chnroute.txt", translate("QiuSimons/Chnroute"))' luasrc/model/cbi/shadowsocksr/advanced.lua
 popd
-
-svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping package/new/tcping
-svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-svn co https://github.com/loso3000/openwrt-passwall/trunk/brook package/new/brook
-svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
-svn co https://github.com/loso3000/openwrt-passwall/trunk/ssocks package/new/ssocks
-svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/new/hysteria
-
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 # rm -rf  ./package/ssr/luci-app-ssr-plus
 # ShadowsocksR Plus+ 依赖
-rm -rf ./feeds/packages/net/kcptun
-rm -rf ./feeds/packages/net/shadowsocks-libev
-rm -rf ./feeds/packages/net/xray-core
-rm -rf ./feeds/packages/net/pdnsd-alt
 svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
-svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
-svn co https://github.com/loso3000/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
-svn co https://github.com/loso3000/openwrt-passwall/trunk/chinadns-ng package/lean/chinadns-ng
-svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/lean/hysteria
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
-svn co https://github.com/loso3000/openwrt-passwall/trunk/microsocks package/lean/microsocks
-svn co https://github.com/loso3000/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
-svn co https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
-svn co https://github.com/loso3000/openwrt-passwall/trunk/ipt2socks package/lean/ipt2socks
-svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan package/lean/trojan
-svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping package/lean/tcping
-svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
-svn co https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
-svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
-svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
-svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
-svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
-svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
-svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
-svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
+# svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -370,7 +330,6 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 #sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
-
 
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
@@ -410,21 +369,6 @@ git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/l
 # git clone https://github.com/openwrt-dev/po2lmo.git
 # cd po2lmo
 # make && sudo make install
-
-
-# 在 X86 架构下移除 Shadowsocks-rust
-sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/ssr/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
-### 最后的收尾工作 ###
-# Lets  
-# mkdir ./package/base-files/files/usr/bin 
-# cp -f ./package/build/set/chinadnslist ./package/base-files/files/usr/bin/chinadnslist
-# find ./ -name *.orig | xargs rm -f
-# find ./ -name *.rej | xargs rm -f
 
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
