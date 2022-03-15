@@ -76,22 +76,24 @@ popd
 # popd
 #=================================================
 
+# Add minieap
+svn co https://github.com/immortalwrt/packages/trunk/net/minieap packages/net/minieap
 # Fix libssh
 rm -rf feeds/packages/libs
-svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
+svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/libssh
 # Add apk (Apk Packages Manager)
-svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
+svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/apk
 
 # Add luci-udptools
-svn co https://github.com/zcy85611/Openwrt-Package/trunk/luci-udptools  package/new/
-svn co https://github.com/zcy85611/Openwrt-Package/trunk/udp2raw package/new/
-svn co https://github.com/zcy85611/Openwrt-Package/trunk/udpspeeder package/new/
+svn co https://github.com/zcy85611/Openwrt-Package/trunk/luci-udptools  package/new/luci-udptools
+svn co https://github.com/zcy85611/Openwrt-Package/trunk/udp2raw package/new/udp2raw
+svn co https://github.com/zcy85611/Openwrt-Package/trunk/udpspeeder package/new/udpspeeder
 
 # Add subconverter
-git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter  package/new/
+git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter  package/new/openwrt-subconverter 
 
-rm -rf ./feeds/packages/utils/runc/Makefile
-svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
+#rm -rf ./feeds/packages/utils/runc/Makefile
+#svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/collections/luci-lib-docker
@@ -109,8 +111,6 @@ rm -rf ./luci-app-cpufreq
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust 
 git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
-
-git clone -b v3.0 https://github.com/Mmx233/BitSrunLoginGo_Openwrt
 
 # Add luci-proto-minieap
 git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
@@ -308,7 +308,6 @@ CONFIG_DRM_I915=y
 
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
-
 sed -i "/filter_aaaa='1'/d" package/new/luci-app-mosdns/root/etc/init.d/mosdns
 
 
@@ -318,6 +317,7 @@ sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/kool
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
+
 # 花生壳内网穿透
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel package/new/phtunnel
@@ -330,6 +330,9 @@ svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/
 rm -rf ./packages/build/ddns-scripts_dnspod
 # rm -rf ./package/lean/ddns-scripts_dnspod
 # svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
+svn co https://github.com/QiuSimons/OpenWrt_luci-app/trunk/luci-app-tencentddns package/lean/luci-app-tencentddns
+svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-aliddns feeds/luci/applications/luci-app-aliddns
+ln -sf ./feeds/luci/applications/luci-app-aliddns ./package/feeds/luci/luci-app-aliddns
 
 git clone --depth=1 https://github.com/immortalwrt/openwrt-tmate package/lean/
 
