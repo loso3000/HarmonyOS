@@ -26,9 +26,10 @@ rm -rf ./feeds/luci/applications/luci-proto-minieap
 
 rm -rf ./feeds/luci/applications/luci-app-cpufreq
 
-rm -f feeds/packages/libs/libsodium
-svn co https://github.com/openwrt/packages/trunk/libs/libsodium  feeds/packages/libs/
-svn co https://github.com/openwrt/packages/trunk/libs/libsodium  package/lean/
+git clone --depth=1 https://github.com/immortalwrt/openwrt-tmate
+# rm -f feeds/packages/libs/libsodium
+# svn co https://github.com/openwrt/packages/trunk/libs/libsodium  feeds/packages/libs/
+# svn co https://github.com/openwrt/packages/trunk/libs/libsodium  package/lean/
 
 # socat
 #rm -rf feeds/packages/net/socat
@@ -169,11 +170,11 @@ rm -rf ./package/build/gcc
 
 rm -rf ./feeds/luci/applications/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./feeds/luci/applications/luci-app-baidupcs-web
 # ksmbd
-rm -rf ./feeds/packages/net/ksmbd-tools && svn co https://github.com/sirpdboy/build/trunk/ksmbd-tools ./feeds/packages/net/ksmbd-tools
-rm -rf ./feeds/luci/applications/luci-app-samba 
-svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/applications/luci-app-samba
-rm -rf ./package/network/services/samba36 
-svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
+# rm -rf ./feeds/packages/net/ksmbd-tools && svn co https://github.com/sirpdboy/build/trunk/ksmbd-tools ./feeds/packages/net/ksmbd-tools
+# rm -rf ./feeds/luci/applications/luci-app-samba 
+# svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/applications/luci-app-samba
+# rm -rf ./package/network/services/samba36 
+# svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
 
 svn co https://github.com/sirpdboy/build/trunk/autosamba-samba4 ./packages/diy/autosamba-samba4
 
@@ -330,6 +331,14 @@ rm -rf ./packages/build/ddns-scripts_dnspod
 # rm -rf ./package/lean/ddns-scripts_dnspod
 # svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
 
+git clone --depth=1 https://github.com/immortalwrt/openwrt-tmate package/lean/
+
+# Add gotop
+svn co https://github.com/immortalwrt/packages/branches/openwrt-18.06/admin/gotop packages/admin/gotop
+
+# Add minieap
+svn co https://github.com/immortalwrt/packages/trunk/net/minieap packages/net/minieap
+
 rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./package/build/pass/luci-app-passwall
 #bypass
@@ -337,7 +346,7 @@ rm -rf package/build/pass/luci-app-bypass
 git clone https://github.com/kiddin9/openwrt-bypass package/pass
 sed -i 's,default n,default y,g' ./package/pass/luci-app-bypass/Makefile
 
-git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall luci/applications/passwall
+git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall ./feeds/luci/applications/passwall
 # git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 pushd luci/applications/passwall/luci-app-passwall
