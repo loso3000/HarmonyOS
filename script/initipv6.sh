@@ -267,20 +267,6 @@ CONFIG_DRM=y
 CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.4
 
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.10
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.15
-
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
 
@@ -293,16 +279,10 @@ sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/kool
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
-# 花生壳内网穿透
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 # Passwall
-rm -rf ./package/build/pass/luci-app-passwall
-svn co https://github.com/loso3000/openwrt-passwall/trunk package/pass
+# svn co https://github.com/loso3000/openwrt-passwall/trunk  package/pass
+rm -rf package/build/pass/
 # rm -rf package/pass/luci-app-passwall
 rm -rf package/pass/pdnsd-alt
 sed -i 's,default n,default y,g' package/pass/luci-app-passwall/Makefile
@@ -313,11 +293,10 @@ rm  ./package/ssr/luci-app-ssr-plus
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/luci-app-ssr-plus
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile 
 # rm -rf ./package/build/pass/luci-app-ssr-plus
-
-cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
+ 
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 rm -rf package/build/pass/luci-app-bypass
-git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+# git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
 # VSSR
@@ -330,12 +309,7 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
-# sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile  #无效
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 
-#sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-#sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/rockchip/Makefile
 sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
@@ -372,14 +346,6 @@ svn co https://github.com/immortalwrt/packages/branches/openwrt-18.06/net/filebr
 # cd po2lmo
 # make && sudo make install
 
-
-# 在 X86 架构下移除 Shadowsocks-rust
-sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/ssr/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 ### 最后的收尾工作 ###
 # Lets  
 # mkdir ./package/base-files/files/usr/bin 
