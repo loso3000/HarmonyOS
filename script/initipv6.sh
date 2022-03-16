@@ -10,9 +10,9 @@ KEY=123456
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
-# cp -f ./package/build/banner ./package/base-files/files/etc/
+cp -f ./package/build/banner ./package/base-files/files/etc/
 # replace banner
-cp -f $GITHUB_WORKSPACE/general/openwrt_banner package/base-files/files/etc/banner
+#cp -f $GITHUB_WORKSPACE/general/openwrt_banner package/base-files/files/etc/banner
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-theme-opentomcat
@@ -52,12 +52,6 @@ popd
 # popd
 #=================================================
 pushd feeds/luci/applications
-# Add cpufreq
-rm -rf ./luci-app-cpufreq
-# svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
-# sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-# # sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-# sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust 
 git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
@@ -81,8 +75,8 @@ popd
 
 echo '替换smartdns'
 rm -rf ./package/diy/smartdns
-rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns package/lean/smartdns
-ln -sf ../../../feeds/packages/net/smartdns package/lean/smartdns
+rm -rf ./feeds/packages/net/smartdns
+rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns feeds/packages/net/smartdns
 rm -rf ./feeds/luci/applications/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
 cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3 && rm -rf ./package/build/mwan3
@@ -184,7 +178,7 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 # sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 #echo "其他修改"
-#sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
+sed -i 's/option commit_interval 24h/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h小时
 #sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 #sed -i 's@interval: 5@interval: 1@g' package/lean/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon.js #wrtbwmon默认刷新时间更改为1秒
 # echo '默认开启 Irqbalance'
@@ -226,20 +220,6 @@ CONFIG_DRM=y
 CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.4
 
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.10
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.15
-
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
 sed -i "/filter_aaaa='1'/d" package/new/luci-app-mosdns/root/etc/init.d/mosdns
@@ -249,12 +229,6 @@ sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/kool
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
-# 花生壳内网穿透
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-# svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
-# svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 # Passwall
 rm -rf ./package/build/pass/luci-app-passwall
@@ -287,7 +261,6 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile  #无效
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
-
 #sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
 #sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/rockchip/Makefile
 sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
