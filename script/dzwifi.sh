@@ -31,16 +31,16 @@ rm -rf ./feeds/luci/applications/luci-proto-minieap
 # rm -rf ./feeds/luci/applications/luci-app-cpufreq
 
 sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow
-# sed -i "s/hostname='OpenWrt'/hostname='CytuTiktok'/g" package/base-files/files/bin/config_generate
+sed -i "s/hostname='OpenWrt'/hostname='CytuTiktok'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
-sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
+#sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
 
 # cp -f ./package/build/banner ./package/base-files/files/etc/
 # replace banner
 cp -f $GITHUB_WORKSPACE/general/openwrt_banner package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
 
-date1='CytuTiktok R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+date1='Tiktok R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
