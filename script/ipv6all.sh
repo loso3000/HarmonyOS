@@ -111,6 +111,7 @@ git clone --depth=1 https://github.com/NateLol/luci-app-oled
 popd
 
 echo '替换smartdns'
+#rm -rf ./package/diy/smartdns
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 rm -rf ./feeds/luci/applications/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
@@ -157,11 +158,9 @@ rm -rf ./feeds/luci/applications/luci-app-baidupcs-web && svn co https://github.
 
 svn co https://github.com/sirpdboy/build/trunk/autosamba-samba4 ./packages/diy/autosamba-samba4
 
-rm -rf ./packages/build/samba4
-# rm -rf ./feeds/packages/net/samba4
-# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
-rm -rf ./feeds/luci/applications/luci-app-samba4
-svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+#rm -rf ./package/build/samba4
+rm -rf ./feeds/packages/net/samba4 && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
+rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
@@ -221,8 +220,8 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # sed -i "91a\      $LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 
 #echo "其他修改"
-sed -i 's/option commit_interval 24h/option commit_interval 30m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
-#sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
+sed -i 's/option commit_interval 24h/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
+sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 #sed -i 's@interval: 5@interval: 1@g' package/lean/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon.js #wrtbwmon默认刷新时间更改为1秒
 
 # echo '默认开启 Irqbalance'
@@ -283,11 +282,31 @@ git clone --depth=1 https://github.com/immortalwrt/openwrt-tmate package/lean/
 svn co https://github.com/immortalwrt/packages/branches/openwrt-18.06/admin/gotop packages/admin/gotop
 
 # Add minieap
+rm -rf ./feeds/packages/net/minieap
 svn co https://github.com/immortalwrt/packages/trunk/net/minieap packages/net/minieap
 
+# Passwall
 rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/pdnsd-alt
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/kcptun
+rm -rf ./feeds/packages/net/brook
+rm -rf ./feeds/packages/net/chinadns-ng
+rm -rf ./feeds/packages/net/dns2socks
+rm -rf ./feeds/packages/net/hysteria
+rm -rf ./feeds/packages/net/ipt2socks
+rm -rf ./feeds/packages/net/microsocks
+rm -rf ./feeds/packages/net/naiveproxy
+rm -rf ./feeds/packages/net/shadowsocks-rust
+rm -rf ./feeds/packages/net/simple-obfs
+rm -rf ./feeds/packages/net/ssocks
+rm -rf ./feeds/packages/net/tcping
+rm -rf ./feeds/packages/net/v2ray*
+rm -rf ./feeds/packages/net/xray*
+rm -rf ./feeds/packages/net/trojan*
 #bypass
-rm -rf package/build/pass/luci-app-bypass
+rm -rf ./package/build/pass/luci-app-bypass
 git clone https://github.com/kiddin9/openwrt-bypass package/pass
 sed -i 's,default n,default y,g' ./package/pass/luci-app-bypass/Makefile
 
