@@ -37,7 +37,9 @@ sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 echo '替换smartdns'
+#rm -rf ./package/diy/smartdns
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
+
 rm -rf ./feeds/luci/applications/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
 cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3 && rm -rf ./package/build/mwan3
@@ -86,8 +88,9 @@ svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/appli
 rm -rf ./package/network/services/samba36 
 svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
 
-rm -rf ./feeds/package/net/samba4 && svn co https://github.com/sirpdboy/build/trunk/samba4 ./feeds/package/net/samba4
-rm -rf ./feeds/luci/applications/luci-app-samba4
+#rm -rf ./package/build/samba4
+rm -rf ./feeds/packages/net/samba4 && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
+rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
@@ -151,8 +154,8 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 
 #echo "其他修改"
-#sed -i 's/option commit_interval 24h/option commit_interval 10m/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
-#sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
+sed -i 's/option commit_interval 24h/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
+sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 #sed -i 's@interval: 5@interval: 1@g' package/lean/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon.js #wrtbwmon默认刷新时间更改为1秒
 
 
@@ -203,20 +206,6 @@ CONFIG_DRM=y
 CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.4
 
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.10
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.15
-
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
 
@@ -237,23 +226,42 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
 
 # Passwall
+rm -rf ./feeds/packages/net/pdnsd-alt
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/kcptun
+rm -rf ./feeds/packages/net/brook
+rm -rf ./feeds/packages/net/chinadns-ng
+rm -rf ./feeds/packages/net/dns2socks
+rm -rf ./feeds/packages/net/hysteria
+rm -rf ./feeds/packages/net/ipt2socks
+rm -rf ./feeds/packages/net/microsocks
+rm -rf ./feeds/packages/net/naiveproxy
+rm -rf ./feeds/packages/net/shadowsocks-rust
+rm -rf ./feeds/packages/net/simple-obfs
+rm -rf ./feeds/packages/net/ssocks
+rm -rf ./feeds/packages/net/tcping
+rm -rf ./feeds/packages/net/v2ray*
+rm -rf ./feeds/packages/net/xray*
+rm -rf ./feeds/packages/net/trojan*
 rm -rf ./package/build/pass/luci-app-passwall
-svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
+
+#svn co https://github.com/loso3000/openwrt-passwall/trunk package/pass/
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/ package/pass/
+# svn co https://github.com/loso3000/openwrt-passwall/trunk package/passwall
 # rm -rf package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' package/pass/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/luci-app-ssr-plus
-# sed -i 's,default n,default y,g' ./package/ssr/luci-app-ssr-plus/Makefile 
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile 
 # rm -rf ./package/build/pass/luci-app-ssr-plus
 
-cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-
-# rm -rf package/build/pass/luci-app-bypass
-# git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-# sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
+# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+rm -rf package/build/pass/luci-app-bypass
+git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -263,6 +271,14 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 #sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
+
+# 在 X86 架构下移除 Shadowsocks-rust
+sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
+sed -i '/Rust:/d' package/pass/luci-app-passwall/Makefile
+sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
+sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/bypass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 
@@ -337,21 +353,6 @@ fi
 echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-# sed -i '/root:/d' ./package/base-files/files/etc/shadow
-# sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
-# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-
-# sed -i "s/hostname='OpenWrt'/hostname=${HOSTNAME}/g" package/base-files/files/bin/config_generate
-# sed -i 's/192.168.1.1/${IPADDRESS}/g' package/base-files/files/bin/config_generate
-
-# Modify default WiFi SSID
-# sed -i "s/set wireless.default_radio\${devidx}.ssid=OpenWrt/set wireless.default_radio\${devidx}.ssid='$SSID'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Modify default WiFi Encryption
-# sed -i "s/set wireless.default_radio\${devidx}.encryption=none/set wireless.default_radio\${devidx}.encryption='$ENCRYPTION'/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Modify default WiFi Key
-# sed -i "/set wireless.default_radio\${devidx}.mode=ap/a\                        set wireless.default_radio\${devidx}.key='$KEY'" package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# Forced WiFi to enable
-# sed -i 's/set wireless.radio\${devidx}.disabled=1/set wireless.radio\${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
