@@ -13,34 +13,75 @@ CONFIG_DOCKER_OPTIONAL_FEATURES=y
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
-CONFIG_PACKAGE_kmod-fs-vfat=y
-CONFIG_PACKAGE_kmod-fs-nfs-common=y
-CONFIG_PACKAGE_kmod-fs-nfs=y
-CONFIG_PACKAGE_kmod-fs-nfs-v3=y
-CONFIG_PACKAGE_kmod-fs-nfs-v4=y
-CONFIG_PACKAGE_kmod-fs-antfs=y
-# CONFIG_PACKAGE_kmod-fs-ntfs  is not set
-CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_PACKAGE_kmod-fs-ext4=y
 CONFIG_PACKAGE_kmod-fs-squashfs=y
+
+# sd
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+CONFIG_PACKAGE_kmod-usb-roles=y
+CONFIG_PACKAGE_kmod-usb-wdm=y
+CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
+CONFIG_PACKAGE_kmod-sdhci=y
+CONFIG_PACKAGE_kmod-usb-core=y
+CONFIG_PACKAGE_kmod-usb-uhci=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+CONFIG_PACKAGE_kmod-fs-ext4=y
+CONFIG_PACKAGE_kmod-fs-vfat=y
+CONFIG_PACKAGE_kmod-scsi-core=y
+CONFIG_PACKAGE_e2fsprogs=y
+# USB3.0支持:
+#CONFIG_PACKAGE_kmod-usb2=y
+#CONFIG_PACKAGE_kmod-usb2-pci=y
+#CONFIG_PACKAGE_kmod-usb3=y
 #ksmbd
 CONFIG_PACKAGE_kmod-nls-utf8=y
 # net
+CONFIG_PACKAGE_rtl8192ce-firmware=y
+CONFIG_PACKAGE_rtl8192de-firmware=y
+CONFIG_PACKAGE_rtl8192se-firmware=y
+CONFIG_PACKAGE_rtl8723au-firmware=y
+CONFIG_PACKAGE_rtl8723bs-firmware=y
+CONFIG_PACKAGE_rtl8723bu-firmware=y
+CONFIG_PACKAGE_rtl8821ae-firmware=y
+CONFIG_PACKAGE_rtl8822be-firmware=y
+CONFIG_PACKAGE_rtl8822ce-firmware=
+CONFIG_PACKAGE_kmod-rtlwifi=y
+CONFIG_PACKAGE_kmod-rtlwifi-btcoexist=y
+CONFIG_PACKAGE_kmod-rtlwifi-usb=y
+CONFIG_PACKAGE_kmod-rtl8812au-ac=y
+CONFIG_PACKAGE_usb-modeswitch=y
+CONFIG_PACKAGE_kmod-rtl8192cu=y
+CONFIG_PACKAGE_kmod-rtl8821cu=y
+CONFIG_PACKAGE_kmod-mt76=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+CONFIG_PACKAGE_kmod-usb-net-asix=y
+CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+CONFIG_PACKAGE_kmod-usb-net-ipheth=y
+CONFIG_PACKAGE_rtl8821cu-firmware=y
+CONFIG_PACKAGE_kmod-rtl8821cu=y
 CONFIG_PACKAGE_ppp-mod-pptp=y  #VPN
 CONFIG_PACKAGE_kmod-vmxnet3=n
 CONFIG_PACKAGE_kmod-pcnet32=y
+# USB net driver
+# CONFIG_PACKAGE_kmod-drm-rockchip=y  #err
+CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_wpad-wolfssl=y
+CONFIG_DRIVER_11AC_SUPPORT=y
+CONFIG_DRIVER_11N_SUPPORT=y
+CONFIG_DRIVER_11W_SUPPORT=y
+
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
 CONFIG_PACKAGE_luci-app-wolplus=y
-# tools
-CONFIG_PACKAGE_snmpd=y
-CONFIG_PACKAGE_fdisk=y
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_curl=y
 # base
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_ddns-scripts_aliyun=y
@@ -152,29 +193,32 @@ CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-oled=n
-# USB net driver
-# CONFIG_PACKAGE_kmod-drm-rockchip=y  #err
-CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
-CONFIG_PACKAGE_rtl8192ce-firmware=y
-CONFIG_PACKAGE_rtl8192de-firmware=y
-CONFIG_PACKAGE_rtl8192se-firmware=y
-CONFIG_PACKAGE_rtl8723au-firmware=y
-CONFIG_PACKAGE_rtl8723bs-firmware=y
-CONFIG_PACKAGE_rtl8723bu-firmware=y
-CONFIG_PACKAGE_rtl8821ae-firmware=y
-CONFIG_PACKAGE_rtl8822be-firmware=y
-CONFIG_PACKAGE_rtl8822ce-firmware=y
-CONFIG_PACKAGE_rtl8821cu-firmware=y
-CONFIG_PACKAGE_kmod-rtl8192ce=y
-CONFIG_PACKAGE_kmod-rtl8192de=y
-CONFIG_PACKAGE_kmod-rtl8192se=y
-CONFIG_PACKAGE_kmod-rtl8723bs=y
-CONFIG_PACKAGE_kmod-rtl8821ae=y
-CONFIG_PACKAGE_kmod-rtl88x2bu=y
-CONFIG_PACKAGE_kmod-rtl8821cu=y
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
+
+# tools
+CONFIG_PACKAGE_kmod-ntfs-3g=y
+# CONFIG_PACKAGE_kmod-fs-ntfs is not set
+CONFIG_PACKAGE_acpid=y
+CONFIG_PACKAGE_blkid=y
+# CONFIG_PACKAGE_qemu-ga=y
+# CONFIG_PACKAGE_smartmontools=y
+CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
+# CONFIG_PACKAGE_ethtool=y #网卡工具
+CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
+# CONFIG_PACKAGE_parted=n #128个区分区工具z
+CONFIG_PACKAGE_fdisk=y #分区工具
+CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
+CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
+CONFIG_PACKAGE_block-mount=y
+# CONFIG_PACKAGE_wget-ssl=y
+CONFIG_PACKAGE_snmpd=y
+CONFIG_PACKAGE_wget=y
+CONFIG_PACKAGE_bash=y
+CONFIG_PACKAGE_coremark=y
+
+CONFIG_PACKAGE_perl=y
+CONFIG_PACKAGE_perl-http-date=y
+CONFIG_PACKAGE_perlbase-getopt=y
+CONFIG_PACKAGE_perlbase-time=y
+CONFIG_PACKAGE_perlbase-unicode=y
+CONFIG_PACKAGE_perlbase-utf8=y
