@@ -279,20 +279,21 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # Passwall
 rm -rf ./package/build/pass/luci-app-passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk package/pass
-# rm -rf package/passwall/luci-app-passwall
+# rm -rf package/pass/luci-app-passwall
+rm -rf package/pass/pdnsd-alt
 sed -i 's,default n,default y,g' package/pass/luci-app-passwall/Makefile
-# rm -rf package/pass/pdnsd-alt
-
 echo ' ShadowsocksR Plus+'
+# git clone https://github.com/fw876/helloworld package/ssr
+rm  ./package/ssr/luci-app-ssr-plus
+# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/luci-app-ssr-plus
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile 
-
 # rm -rf ./package/build/pass/luci-app-ssr-plus
 
-cat  ./package/build/set/Makefile   >./package/build/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 rm -rf package/build/pass/luci-app-bypass
 git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
+
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -306,8 +307,8 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 
-# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
 # sed -i "/mediaurlbase/d" package/*/luci-theme*/root/etc/uci-defaults/*
 # sed -i "/mediaurlbase/d" feed/*/luci-theme*/root/etc/uci-defaults/*
