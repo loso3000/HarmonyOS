@@ -18,7 +18,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: mini.config
   DIY_P1_SH: dz.sh
-  DIY_P2_SH: update_package_mini1.sh
+  DIY_P2_SH: script/clash-core.sh
 
 jobs:
 
@@ -66,8 +66,10 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && cat $CONFIG_FILE  >> ./openwrt/.config
          chmod +x ./$DIY_P1_SH
+         chmod +x ./$DIY_P2_SH 
          cd openwrt
          ../$DIY_P1_SH
+         ../$DIY_P2_SH amd64
          chmod -R 755 .
       
       - name: Generate configuration file
