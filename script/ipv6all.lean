@@ -189,17 +189,17 @@ CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
-# CONFIG_PACKAGE_luci-app-vsftpd is not set
+CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
-CONFIG_PACKAGE_luci-app-mosdns=n
+CONFIG_PACKAGE_luci-app-mosdnsy
 CONFIG_PACKAGE_luci-app-ikoolproxy=y
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
-# CONFIG_PACKAGE_luci-app-wireguard is not set   #默认加了取消
+CONFIG_PACKAGE_luci-app-wireguard=y  #默认加了取消
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set
-#CONFIG_PACKAGE_luci-app-linkease=y
+CONFIG_PACKAGE_luci-app-linkease=y
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
@@ -245,7 +245,7 @@ CONFIG_PACKAGE_luci-app-udpxy=y
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-transmission=y
-# CONFIG_PACKAGE_luci-app-usb-printer=y
+CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_luci-app-mwan3helper=y
 CONFIG_PACKAGE_luci-app-qbittorrent=y
 CONFIG_PACKAGE_luci-app-familycloud=y
@@ -273,6 +273,8 @@ CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 
+CONFIG_PACKAGE_kmod-usb-printer=y
+CONFIG_PACKAGE_kmod-lp=y
 CONFIG_PACKAGE_openssh-sftp-client=y
 CONFIG_PACKAGE_block-mount=y
 CONFIG_PACKAGE_ipt2socks=y
