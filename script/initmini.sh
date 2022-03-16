@@ -325,6 +325,14 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 # sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 
 
+# 在 X86 架构下移除 Shadowsocks-rust
+sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
+sed -i '/Rust:/d' package/ssr/luci-app-ssr-plus/Makefile
+sed -i '/Rust:/d' package/pass/luci-app-passwall/Makefile
+sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
+sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
+
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 
 sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
@@ -380,12 +388,6 @@ fi
 echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-# sed -i '/root:/d' ./package/base-files/files/etc/shadow
-# sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
-# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-
-# sed -i "s/hostname='OpenWrt'/hostname=${HOSTNAME}/g" package/base-files/files/bin/config_generate
-# sed -i 's/192.168.1.1/${IPADDRESS}/g' package/base-files/files/bin/config_generate
 
 #内核设置 甜糖
 # cat ./package/build/set/Config-kernel.in   > ./config/Config-kernel.in
