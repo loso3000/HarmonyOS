@@ -74,9 +74,10 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
 popd
 
 echo '替换smartdns'
+
 rm -rf ./package/diy/smartdns
-rm -rf ./feeds/packages/net/smartdns
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns feeds/packages/net/smartdns
+
 rm -rf ./feeds/luci/applications/luci-app-netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
 cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3 && rm -rf ./package/build/mwan3
@@ -105,6 +106,7 @@ rm -rf ./package/lean/ddns-scripts_aliyun
 #rm -rf ./package/lean/ddns-scripts_dnspod
 svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
 #svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
+
 # rm -rf ./feeds/luci/applications/luci-app-zerotier
 # rm -rf ./feeds/packages/net/zerotier
 sed -i '/45)./d' ./feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
@@ -113,6 +115,7 @@ sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/luasrc/vie
 rm -rf ./package/build/luci-app-zerotier
 rm -rf ./package/build/zerotier
 rm -rf ./feeds/luci/applications/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./feeds/luci/applications/luci-app-baidupcs-web
+
 # ksmbd
 rm -rf ./feeds/packages/net/ksmbd-tools && svn co https://github.com/sirpdboy/build/trunk/ksmbd-tools ./feeds/packages/net/ksmbd-tools
 rm -rf ./feeds/luci/applications/luci-app-samba 
@@ -121,10 +124,9 @@ rm -rf ./package/network/services/samba36
 svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
 svn co https://github.com/sirpdboy/build/trunk/autosamba-samba4 ./packages/diy/autosamba-samba4
 rm -rf ./package/build/samba4
-# rm -rf ./feeds/packages/net/samba4
-# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
-rm -rf ./feeds/luci/applications/luci-app-samba4
-svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+rm -rf ./feeds/packages/net/samba4 && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
+rm -rf ./feeds/luci/applications/luci-app-samba4 && svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/arm/index.htm > package/lean/autocore/files/arm/index.htm
@@ -178,8 +180,8 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # sed -i "90a\		ifup $INTERFACE" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 # sed -i "91a\		$LOG notice \"Recycled $INTERFACE...\"" feeds/packages/net/mwan3/files/etc/hotplug.d/iface/15-mwan3
 #echo "其他修改"
-sed -i 's/option commit_interval 24h/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h小时
-#sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
+sed -i 's/option commit_interval 24h/option commit_interval 2h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h小时
+sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 #sed -i 's@interval: 5@interval: 1@g' package/lean/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon.js #wrtbwmon默认刷新时间更改为1秒
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
@@ -231,11 +233,32 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
 # Passwall
+rm -rf ./feeds/packages/net/pdnsd-alt
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/kcptun
+rm -rf ./feeds/packages/net/brook
+rm -rf ./feeds/packages/net/chinadns-ng
+rm -rf ./feeds/packages/net/dns2socks
+rm -rf ./feeds/packages/net/hysteria
+rm -rf ./feeds/packages/net/ipt2socks
+rm -rf ./feeds/packages/net/microsocks
+rm -rf ./feeds/packages/net/naiveproxy
+rm -rf ./feeds/packages/net/shadowsocks-rust
+rm -rf ./feeds/packages/net/simple-obfs
+rm -rf ./feeds/packages/net/ssocks
+rm -rf ./feeds/packages/net/tcping
+rm -rf ./feeds/packages/net/v2ray*
+rm -rf ./feeds/packages/net/xray*
+rm -rf ./feeds/packages/net/trojan*
 rm -rf ./package/build/pass/luci-app-passwall
-svn co https://github.com/loso3000/openwrt-passwall/trunk package/pass
+
+#svn co https://github.com/loso3000/openwrt-passwall/trunk package/pass/
+svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/ package/pass/
 # rm -rf package/pass/luci-app-passwall
-rm -rf package/pass/pdnsd-alt
+
 sed -i 's,default n,default y,g' package/pass/luci-app-passwall/Makefile
+
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 rm  ./package/ssr/luci-app-ssr-plus
@@ -243,7 +266,7 @@ rm  ./package/ssr/luci-app-ssr-plus
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-ssr-plus/Makefile 
 # rm -rf ./package/build/pass/luci-app-ssr-plus
 
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+#sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 rm -rf package/build/pass/luci-app-bypass
 git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
