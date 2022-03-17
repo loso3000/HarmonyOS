@@ -308,11 +308,11 @@ git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/da
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 # Add extra wireless drivers
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl8812au-ac
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl8821cu
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl8188eu
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl8192du
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl88x2bu
+#svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl8812au-ac
+#svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl8821cu
+#svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl8188eu
+#svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl8192du
+#svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl88x2bu
 #luci-app-filebrowser
 svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-filebrowser ./feeds/luci/applications/
 svn co https://github.com/immortalwrt/packages/branches/openwrt-18.06/net/filebrowser ./feeds/packages/net/
