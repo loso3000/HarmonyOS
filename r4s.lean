@@ -216,9 +216,3 @@ CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_coremark=y
 
-CONFIG_PACKAGE_perl=y
-CONFIG_PACKAGE_perl-http-date=y
-CONFIG_PACKAGE_perlbase-getopt=y
-CONFIG_PACKAGE_perlbase-time=y
-CONFIG_PACKAGE_perlbase-unicode=y
-CONFIG_PACKAGE_perlbase-utf8=y
