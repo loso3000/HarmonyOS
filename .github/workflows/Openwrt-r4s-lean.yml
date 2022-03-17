@@ -80,6 +80,7 @@ jobs:
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
       - name: Compile firmware
+        continue-on-error: true
         working-directory: ./openwrt
         run: |
           make -j$(nproc) || make -j1 V=s
