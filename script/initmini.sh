@@ -134,7 +134,10 @@ git clone https://github.com/john-shine/luci-theme-darkmatter.git package/darkma
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
 
-svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/ package/wall
+#svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/ package/wall
+svn co https://github.com/xiaorouji/openwrt-passwall/branches/packages package/passwall
+svn co https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/luci-app-passwall
+sed -i 's,default n,default y,g' package/wall/luci-app-passwall/Makefile
 
 sed -i 's,default n,default y,g' package/wall/luci-app-passwall/Makefile
 
