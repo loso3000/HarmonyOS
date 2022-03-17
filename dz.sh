@@ -82,7 +82,7 @@ svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/appli
 rm -rf ./package/network/services/samba36 
 svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
 
-# rm -rf ./package/build/samba4
+rm -rf ./package/build/samba4
 rm -rf ./feeds/packages/net/samba4 && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/samba4 ./feeds/packages/net/samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4 && svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
