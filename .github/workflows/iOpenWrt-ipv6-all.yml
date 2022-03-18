@@ -1,8 +1,13 @@
-name: x86-x64-Stablize-FusionWRT
+name: iOpenWrt-ipv6-all
 
 on:
   repository_dispatch:
   workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
   # schedule:
     # - cron: 0 17 * * *
   # watch:
@@ -71,7 +76,7 @@ jobs:
         ./scripts/feeds install -a
         chmod +x ../scriptx/*.sh
         ../scripts/custom.sh
-     - name: Install Feeds
+    - name: Install Feeds
       run: |
         cd $OPENWRTROOT
         ./scripts/feeds install -a
