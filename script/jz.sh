@@ -11,6 +11,7 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 # rm -rf ./feeds/packages-master/utils/docker
+rm -rf ./package/build/samba4
 
 # rm -rf ./feeds/luci/applications/luci-app-vlmcsd
 # rm -rf ./feeds/luci/applications/vlmcsd 
