@@ -66,13 +66,28 @@ rm -rf ./package/lean/trojan
 # rm -rf ./feeds/luci/applications/vlmcsd 
 
 
-# rm -rf ./feeds/luci/applications/luci-app-zerotier
-# rm -rf ./feeds/packages/net/zerotier
-sed -i '/45)./d' ./feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
-rm -rf ./package/build/luci-app-zerotier
-rm -rf ./package/build/zerotier
+pushd feeds/luci/applications
+
+# Add luci-aliyundrive-webdav
+rm -rf ./luci-app-aliyundrive-webdav 
+rm -rf ./aliyundrive-webdav
+svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav
+svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav
+
+# Add ddnsto & linkease
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/luci-app-linkease
+svn co https://github.com/linkease/nas-packages/trunk/network/services/linkease
+sed -i 's/1/0/g' linkease/files/linkease.config
+
+#zerotier
+rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git
+sed -i '/45)./d' luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+sed -i 's/vpn/services/g' luasrc/view/zerotier/zerotier_status.htm   #zerotier
+
+#syncdial
+rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git 
+popd
 
 rm -rf ./feeds/luci/applications/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./feeds/luci/applications/luci-app-baidupcs-web
 # ksmbd
