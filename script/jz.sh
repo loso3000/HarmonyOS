@@ -134,26 +134,110 @@ git clone https://github.com/john-shine/luci-theme-darkmatter.git package/darkma
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
 
-svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/ package/wall
 
-sed -i 's,default n,default y,g' package/wall/luci-app-passwall/Makefile
-mv -f package/wall  package
+# Passwall
+rm -rf ./feeds/packages/net/pdnsd-alt
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/kcptun
+rm -rf ./feeds/packages/net/brook
+rm -rf ./feeds/packages/net/chinadns-ng
+rm -rf ./feeds/packages/net/dns2socks
+rm -rf ./feeds/packages/net/hysteria
+rm -rf ./feeds/packages/net/ipt2socks
+rm -rf ./feeds/packages/net/microsocks
+rm -rf ./feeds/packages/net/naiveproxy
+rm -rf ./feeds/packages/net/shadowsocks-rust
+rm -rf ./feeds/packages/net/simple-obfs
+rm -rf ./feeds/packages/net/ssocks
+rm -rf ./feeds/packages/net/tcping
+rm -rf ./feeds/packages/net/v2ray*
+rm -rf ./feeds/packages/net/xray*
+rm -rf ./feeds/packages/net/trojan*
+rm -rf ./package/build/pass/luci-app-passwall
+#bypass
+#rm -rf package/build/pass/luci-app-bypass
+#git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+
+#  git clone https://github.com/loso3000/openwrt-passwall package/passwall
+svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
+pushd package/passwall/luci-app-passwall
+sed -i 's,default n,default y,g' Makefile
+sed -i '/trojan-go/d' Makefile
+sed -i '/v2ray-core/d' Makefile
+sed -i '/v2ray-plugin/d' Makefile
+sed -i '/xray-plugin/d' Makefile
+sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+sed -i '/shadowsocks-libev-ss-server/d' Makefile
+sed -i '/shadowsocks-libev-ss-local/d' Makefile
+popd
+pushd package/pass/luci-app-ssr-plus
+sed -i 's,default n,default y,g' Makefile
+sed -i '/trojan-go/d' Makefile
+sed -i '/v2ray-core/d' Makefile
+sed -i '/v2ray-plugin/d' Makefile
+sed -i '/xray-plugin/d' Makefile
+sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+sed -i '/shadowsocks-libev-ss-server/d' Makefile
+sed -i '/shadowsocks-libev-ss-local/d' Makefile
+popd
+
+svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping package/new/tcping
+svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+svn co https://github.com/loso3000/openwrt-passwall/trunk/brook package/new/brook
+svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+svn co https://github.com/loso3000/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/new/hysteria
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
-# rm  ./package/ssr/luci-app-ssr-plus
-# rm -rf ./package/pass/luci-app-ssr-plus
-# svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus ./package/ssr/luci-app-ssr-plus
-sed -i 's,default n,default y,g' ./package/pass/luci-app-ssr-plus/Makefile 
-
-#sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-rm -rf package/pass/luci-app-bypass
-git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
+# rm -rf  ./package/ssr/luci-app-ssr-plus
+# ShadowsocksR Plus+ 依赖
+rm -rf ./feeds/packages/net/kcptun
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/pdnsd-alt
+svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev feeds/packages/net/shadowsocks-libev
+svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
+svn co https://github.com/loso3000/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
+svn co https://github.com/loso3000/openwrt-passwall/trunk/chinadns-ng package/lean/chinadns-ng
+svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/lean/hysteria
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
+svn co https://github.com/loso3000/openwrt-passwall/trunk/microsocks package/lean/microsocks
+svn co https://github.com/loso3000/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
+svn co https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
+svn co https://github.com/loso3000/openwrt-passwall/trunk/ipt2socks package/lean/ipt2socks
+svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan package/lean/trojan
+svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping package/lean/tcping
+svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
+svn co https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
+svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
+svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
+svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
+svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
+svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
+svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocks-rust package/lean/shadowsocks-rust
+svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
+svn co https://github.com/immortalwrt/packages/trunk/net/kcptun package/lean/kcptun
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
+# git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
+# git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
+#sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
+#sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
+#sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
+
+
+# 在 X86 架构下移除 Shadowsocks-rust
+sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
+sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
+sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
+sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/bypass/luci-app-bypass/Makefile
 
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/OpenAppFilter
 git clone https://github.com/zzsj0928/luci-app-pushbot.git package/luci-app-pushbot
