@@ -74,7 +74,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         chmod +x ../scriptx/*.sh
-        ../scripts/custom.sh
+        ../$DIY_SH
     - name: Install Feeds
       run: |
         cd $OPENWRTROOT
@@ -87,7 +87,6 @@ jobs:
           cat configx/extra-drivers.config >> $OPENWRTROOT/.config
         chmod +x scriptx/*.sh
         cd $OPENWRTROOT
-        ../$DIY_SH
         ../scriptx/preset-clash-core.sh amd64
         ../scriptx/preset-terminal-tools.sh
         make defconfig
