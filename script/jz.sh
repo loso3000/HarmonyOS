@@ -134,6 +134,39 @@ svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/tr
 svn co https://github.com/loso3000/openwrt-passwall/trunk/ssocks package/new/ssocks
 svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/new/hysteria
 
+# ShadowsocksR Plus+ 依赖
+rm -rf ./feeds/packages/net/kcptun
+rm -rf ./feeds/packages/net/shadowsocks-libev
+rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/pdnsd-alt
+svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
+svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
+svn co https://github.com/loso3000/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
+svn co https://github.com/loso3000/openwrt-passwall/trunk/chinadns-ng package/lean/chinadns-ng
+svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/lean/hysteria
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
+svn co https://github.com/loso3000/openwrt-passwall/trunk/microsocks package/lean/microsocks
+svn co https://github.com/loso3000/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
+svn co https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
+svn co https://github.com/loso3000/openwrt-passwall/trunk/ipt2socks package/lean/ipt2socks
+svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan package/lean/trojan
+svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping package/lean/tcping
+svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
+svn co https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
+svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
+svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
+svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
+svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
+svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
+svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
+svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping package/new/tcping
+svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+svn co https://github.com/loso3000/openwrt-passwall/trunk/brook package/new/brook
+svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+svn co https://github.com/loso3000/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/new/hysteria
+
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
