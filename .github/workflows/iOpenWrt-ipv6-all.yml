@@ -18,7 +18,6 @@ env:
   SOURCE_BRANCH: openwrt-18.06-k5.4
   CONFIG_FILE: configx/x86/64.config
   DIY_SH: scriptx/custom.sh
-  IPV6MOD_IN_FIRMWARE: true
   KMODS_IN_FIRMWARE: f
   UPLOAD_WETRANSFER: true
   UPLOAD_COWTRANSFER: true
