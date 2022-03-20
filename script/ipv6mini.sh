@@ -47,7 +47,7 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 # rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
 rm -rf ./package/build/miniupnpd  
 # rm -rf ./feeds/packages/net/miniupnpd  && svn co https://github.com/sirpdboy/build/trunk/miniupnpd ./feeds/packages/net/miniupnpd
-rm -rf ./package/lean/automount
+# rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./feeds/luci/applications/luci-app-accesscontrol
 # rm -rf ./package/build/autocore
@@ -64,7 +64,6 @@ rm -rf ./package/lean/trojan
 
 # rm -rf ./feeds/luci/applications/luci-app-vlmcsd
 # rm -rf ./feeds/luci/applications/vlmcsd 
-
 
 pushd feeds/luci/applications
 
@@ -249,6 +248,8 @@ rm -rf ./package/lean/ddns-scripts_aliyun
 svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
 # svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
 
+
+
 # Passwall
 rm -rf ./feeds/packages/net/pdnsd-alt
 rm -rf ./feeds/packages/net/shadowsocks-libev
@@ -270,10 +271,9 @@ rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
 rm -rf ./package/build/pass/luci-app-passwall
 #bypass
-#sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-rm -rf package/build/pass/luci-app-bypass
-git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
+#rm -rf package/build/pass/luci-app-bypass
+#git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
@@ -332,7 +332,7 @@ svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-c
 svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
 svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
 svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
-svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocks-rust package/lean/shadowsocks-rust
+svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
 svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
 
 # VSSR
@@ -344,19 +344,11 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 
-
-# 在 X86 架构下移除 Shadowsocks-rust
-sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/bypass/luci-app-bypass/Makefile
 #
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+
+sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
@@ -405,6 +397,7 @@ svn co https://github.com/immortalwrt/packages/branches/openwrt-18.06/net/filebr
 # str1=`grep "KERNEL_PATCHVER:="  ./Makefile | cut -d = -f 2` 
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
+
 date1='Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 # date1='Ipv6-S2022.02.01'
 if [ "$VER2" = "5.4" ]; then
