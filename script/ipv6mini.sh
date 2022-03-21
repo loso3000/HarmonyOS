@@ -8,10 +8,9 @@ SSID=Sirpdboy
 ENCRYPTION=psk2
 KEY=123456
 git clone https://github.com/sirpdboy/build.git ./package/build
-cp -f ./package/build/banner ./package/base-files/files/etc/
+cp -f ./package/build/banner ./package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
 
-# rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
@@ -332,7 +331,7 @@ ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #åˆ¤æ
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 date1='Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-# date1='Ipv6-S2022.02.01'
+date1='Ipv6-Mini-S2022.03.24'
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
