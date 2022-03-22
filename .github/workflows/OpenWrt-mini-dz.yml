@@ -49,24 +49,21 @@ jobs:
           sudo -E apt-get clean
           df -h
           sudo timedatectl set-timezone "Asia/Shanghai"
-      - name: Update git
+      - name: Clone Source Code
         run: |
+         df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-          cd openwrt
       - name: Cache
         uses: klever1988/cachewrtbuild@main
         with:
           ccache: 'true'
           prefix: ${{ github.workspace }}/openwrt
+          clean: 'true'
       - name: Update feeds
         run: |
-          #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-          #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
+          cd openwrt
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-          # echo "DATA=$(date +'%y%m%d')" >> $GITHUB_ENV
-          rm -rf ./tmp && rm -rf .config
-          ./scripts/feeds clean
-          make -C scripts/config clean
+          echo "DATA=$(date +'%Y-%m-%d'-d +"12"hour) \n" >> $GITHUB_ENV
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
