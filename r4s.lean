@@ -1,8 +1,13 @@
-
+# Target Config
 CONFIG_TARGET_rockchip=y
 CONFIG_TARGET_rockchip_armv8=y
 CONFIG_TARGET_MULTI_PROFILE=y
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_pine64_rockpro64=y
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_radxa_rock-pi-4=y
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_xunlong_orangepi-r1-plus=y
+CONFIG_TARGET_ALL_PROFILES=y
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
 CONFIG_TARGET_ROOTFS_PARTSIZE=920
@@ -38,54 +43,59 @@ CONFIG_PACKAGE_e2fsprogs=y
 #ksmbd
 CONFIG_PACKAGE_kmod-nls-utf8=y
 # net
-CONFIG_PACKAGE_rtl8192ce-firmware=y
-CONFIG_PACKAGE_rtl8192de-firmware=y
-CONFIG_PACKAGE_rtl8192se-firmware=y
-CONFIG_PACKAGE_rtl8723au-firmware=y
-CONFIG_PACKAGE_rtl8723bs-firmware=y
-CONFIG_PACKAGE_rtl8723bu-firmware=y
-CONFIG_PACKAGE_rtl8821ae-firmware=y
-CONFIG_PACKAGE_rtl8822be-firmware=y
-CONFIG_PACKAGE_rtl8822ce-firmware=
-CONFIG_PACKAGE_kmod-rtlwifi=y
-CONFIG_PACKAGE_kmod-rtlwifi-btcoexist=y
-CONFIG_PACKAGE_kmod-rtlwifi-usb=y
-CONFIG_PACKAGE_kmod-rtl8812au-ac=y
-CONFIG_PACKAGE_usb-modeswitch=y
+# Kmod
+CONFIG_PACKAGE_kmod-drm-rockchip=y
+CONFIG_PACKAGE_kmod-gpu-lima=y
+CONFIG_PACKAGE_kmod-rtl8187=y
+CONFIG_PACKAGE_kmod-rtl8188eu=y
+CONFIG_PACKAGE_kmod-rtl8192c-common=y
 CONFIG_PACKAGE_kmod-rtl8192cu=y
+CONFIG_PACKAGE_kmod-rtl8192du=y
+CONFIG_PACKAGE_kmod-rtl8812au-ac=y
 CONFIG_PACKAGE_kmod-rtl8821cu=y
-CONFIG_PACKAGE_kmod-mt76=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
-CONFIG_PACKAGE_kmod-usb-net-asix=y
-CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
-CONFIG_PACKAGE_kmod-usb-net-rndis=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
-CONFIG_PACKAGE_kmod-usb-net-ipheth=y
-CONFIG_PACKAGE_rtl8821cu-firmware=y
-CONFIG_PACKAGE_kmod-rtl8821cu=y
-CONFIG_PACKAGE_ppp-mod-pptp=y  #VPN
-CONFIG_PACKAGE_kmod-vmxnet3=n
-CONFIG_PACKAGE_kmod-pcnet32=y
+CONFIG_PACKAGE_kmod-rtl88x2bu=y
+CONFIG_PACKAGE_kmod-rtlwifi=y
+CONFIG_PACKAGE_kmod-rtlwifi-usb=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
+CONFIG_PACKAGE_kmod-r8168=n
+CONFIG_PACKAGE_kmod-r8125=n
 # USB net driver
 # CONFIG_PACKAGE_kmod-drm-rockchip=y  #err
-CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
-
-CONFIG_PACKAGE_kmod-usb-printer=y
-CONFIG_PACKAGE_kmod-usb-serial=y
-CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-CONFIG_PACKAGE_kmod-usb-storage=y
-CONFIG_PACKAGE_kmod-usb-storage-extras=y
-CONFIG_PACKAGE_kmod-usb-uhci=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
+#USB net driver
+CONFIG_PACKAGE_kmod-usb-dwc2=y
+CONFIG_PACKAGE_kmod-usb-dwc3=y
+CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb2-pci=y
+CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-usb-ehci=y
+CONFIG_PACKAGE_kmod-usb-ledtrig-usbport=y
+CONFIG_PACKAGE_kmod-usb-net-aqc111=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
+CONFIG_PACKAGE_kmod-usb-net-hso=y
+CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-ipheth=y
+CONFIG_PACKAGE_kmod-usb-net-kalmia=y
+CONFIG_PACKAGE_kmod-usb-net-kaweth=y
+CONFIG_PACKAGE_kmod-usb-net-pegasus=y
+CONFIG_PACKAGE_kmod-usb-net-pl=y
+CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
+CONFIG_PACKAGE_kmod-usb-net-sierrawireless=y
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+# CONFIG_PACKAGE_kmod-usb-printer is not set
+CONFIG_PACKAGE_kmod-usb-roles=y
 CONFIG_PACKAGE_kmod-usb-wdm=y
-CONFIG_PACKAGE_kmod-usbip-client=y
-CONFIG_PACKAGE_kmod-usbip-server=y
-CONFIG_PACKAGE_kmod-usbmon=y
+CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
+# CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor is not set
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
+CONFIG_PACKAGE_kmod-igc=y
+CONFIG_DEFAULT_kmod-r8125=y
 
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -182,9 +192,9 @@ CONFIG_UnblockNeteaseMusic_NodeJS=y
 CONFIG_PACKAGE_luci-app-pptp-server=y
 CONFIG_PACKAGE_luci-app-pppoe-server=y
 CONFIG_PACKAGE_luci-app-ipsec-server=y
-CONFIG_PACKAGE_luci-app-docker=y
-CONFIG_PACKAGE_luci-app-dockerman=y
-CONFIG_PACKAGE_luci-app-koolddns=n
+CONFIG_PACKAGE_luci-app-docker=n
+CONFIG_PACKAGE_luci-app-dockerman=n
+CONFIG_PACKAGE_luci-app-koolddns=y
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=y
 CONFIG_PACKAGE_luci-app-uugamebooster=y
@@ -200,11 +210,11 @@ CONFIG_PACKAGE_luci-app-familycloud=n
 CONFIG_PACKAGE_luci-app-nps=y
 CONFIG_PACKAGE_luci-app-frpc=y
 CONFIG_PACKAGE_luci-app-nfs=y
-CONFIG_PACKAGE_luci-app-openvpn-server=y
+CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=y
-CONFIG_PACKAGE_luci-app-openvpn=y
+CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
-CONFIG_PACKAGE_luci-app-oled=y
+CONFIG_PACKAGE_luci-app-oled=n
 
 # tools
 CONFIG_PACKAGE_kmod-ntfs-3g=y
