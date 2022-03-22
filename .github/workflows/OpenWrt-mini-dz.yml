@@ -16,7 +16,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: mini.config
+  CONFIG_FILE: config-dz
   DIY_P1_SH: dz.sh
   DIY_P2_SH: script/clash-core.sh
 
@@ -49,10 +49,17 @@ jobs:
           sudo -E apt-get clean
           df -h
           sudo timedatectl set-timezone "Asia/Shanghai"
-      - name: Update feeds
+      - name: Update git
         run: |
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           cd openwrt
+      - name: Cache
+        uses: klever1988/cachewrtbuild@main
+        with:
+          ccache: 'true'
+          prefix: ${{ github.workspace }}/openwrt
+      - name: Update feeds
+        run: |
           #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
