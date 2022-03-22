@@ -15,7 +15,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: mini.config
-  DIY_P1_SH: ipv4.sh
+  DIY_P1_SH: dz.sh
   DIY_P2_SH: uppackage_mini.sh
 jobs:
 
@@ -60,7 +60,7 @@ jobs:
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
          cd openwrt
-         #../$DIY_P1_SH
+         ../$DIY_P1_SH
          #../$DIY_P2_SH
          chmod -R 755 .
       
