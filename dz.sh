@@ -89,15 +89,8 @@ rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app
 popd
 
 rm -rf ./feeds/luci/applications/luci-app-baidupcs-web && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./feeds/luci/applications/luci-app-baidupcs-web
-# ksmbd
-rm -rf ./feeds/packages/net/ksmbd-tools && svn co https://github.com/sirpdboy/build/trunk/ksmbd-tools ./feeds/packages/net/ksmbd-tools
-rm -rf ./feeds/luci/applications/luci-app-samba 
-svn co https://github.com/sirpdboy/build/trunk/luci-app-samba ./feeds/luci/applications/luci-app-samba
-rm -rf ./package/network/services/samba36 
-svn co https://github.com/sirpdboy/build/trunk/samba36 ./package/network/services/samba36
 
 # samba4
-rm -rf ./package/build/samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
 git clone --depth 1 https://github.com/zxlhhyccc/luci-app-v2raya.git package/new/luci-app-v2raya
@@ -142,7 +135,7 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 #修正nat回流 
 cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 #修正连接数 
-sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
+# sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 # 最大连接数
 sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # ipv6
@@ -154,10 +147,8 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 #svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
 #echo "其他修改"
-sed -i 's/option commit_interval 24h/option commit_interval 2h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为2
+sed -i 's/option commit_interval 24h/option commit_interval 4h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为2
 sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
-sed -i 's@interval: 5@interval: 2@g' package/lean/luci-app-wrtbwmon/htdocs/luci-static/wrtbwmon.js #wrtbwmon默认刷新时间更改为1秒
-
 
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
@@ -209,7 +200,6 @@ CONFIG_DRM_I915=y
 
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
 sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
-
 
 git clone https://github.com/iwrt/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
@@ -386,8 +376,6 @@ ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判�
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 date1='Ipv6-Plus-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-date1='Ipv6-Plus-S2022.03.24'
-
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Plus-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
@@ -396,7 +384,8 @@ elif [ "$VER2" = "5.15" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Plus-5.15-/g' include/image.mk
 fi
 
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/${date1}-${VER2}-/g' include/image.mk
+date1='Ipv6-Plus-S2022.03.24'
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220324-Ipv6-Plus-5.4-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}' by Sirpdboy' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
