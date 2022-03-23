@@ -191,11 +191,11 @@ rm -rf ./feeds/packages/net/trojan*
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
-git clone https://github.com/kenzok8/small package/passs
+# git clone https://github.com/kenzok8/small package/passs
 #git clone https://github.com/xiaorouji/openwrt-passwall.git package/passs
-git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall
-#  git clone https://github.com/loso3000/openwrt-passwall package/passwall
-svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
+# git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall
+git clone https://github.com/loso3000/openwrt-passwall package/passwall
+# svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
 sed -i '/trojan-go/d' Makefile
