@@ -228,6 +228,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/collections/luci-lib-docker
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker packages/luci/luci-lib-docker
 
 rm -rf ./packages/build/ddns-scripts_dnspod
 rm -rf ./package/lean/ddns-scripts_aliyun
@@ -299,7 +300,7 @@ echo ' ShadowsocksR Plus+'
 # ShadowsocksR Plus+ 依赖
 svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
 svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
+svn co https://github.com/loso3000/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
 svn co https://github.com/loso3000/openwrt-passwall/trunk/chinadns-ng package/lean/chinadns-ng
 svn co https://github.com/loso3000/openwrt-passwall/trunk/hysteria package/lean/hysteria
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
