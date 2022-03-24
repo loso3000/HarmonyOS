@@ -21,7 +21,7 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
+#sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 echo '替换smartdns'
@@ -35,7 +35,8 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 # rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
 # rm -rf ./package/lean/autosamba
 # rm -rf ./feeds/luci/applications/luci-app-accesscontrol
-# rm -rf ./package/build/autocore
+rm -rf ./package/build/autocore
+rm -rf ./package/build/default-settings
 rm -rf ./package/lean/autocore  && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
 rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
 rm -rf ./feeds/luci/applications/luci-app-arpbind  && svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
@@ -82,7 +83,7 @@ git clone --depth 1 https://github.com/zxlhhyccc/luci-app-v2raya.git package/new
 svn co https://github.com/v2rayA/v2raya-openwrt/trunk/v2raya package/new/v2raya
 
 # Boost 通用即插即用
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/build/default-settings/files/zzz-default-settings
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
@@ -119,6 +120,7 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 #修正连接数 
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
+
 #docker err
 #rm -rf ./feeds/packages/utils/runc/Makefile
 #svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
@@ -154,9 +156,16 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packag
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
 CONFIG_CRYPTO_POLY1305_X86_64=y
-# CONFIG_DRM=y
-# CONFIG_DRM_I915=y
+CONFIG_DRM=y
+CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.4
+
+echo '
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+CONFIG_DRM=y
+CONFIG_DRM_I915=y
+' >> ./target/linux/x86/config-5.15
 
 
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/mosdns
@@ -221,12 +230,6 @@ rm -rf ./package/build/pass/luci-app-passwall
 #rm -rf package/build/pass/luci-app-bypass
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-
-
-# Add luci-app-passwall
-# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall luci/applications/openwrt-passwall
-# git clone -b hello https://github.com/DHDAXCW/openwrt-passwall luci/applications/openwrt-passwall
-# git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall luci/applications/openwrt-passwall
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
@@ -335,7 +338,7 @@ export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = 
 
 date1='Ipv6-Plus-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 date1='Ipv6-Plus-S2022.03.24'
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220324-Ipv6-Super-5.4-/g' include/image.mk
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220324-Ipv6-Plus-5.4-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
