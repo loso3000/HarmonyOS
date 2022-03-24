@@ -42,7 +42,12 @@ CONFIG_PACKAGE_e2fsprogs=y
 #CONFIG_PACKAGE_kmod-usb3=y
 #ksmbd
 CONFIG_PACKAGE_kmod-nls-utf8=y
-# net
+
+
+# CONFIG_PACKAGE_autocore-x86 is not set
+CONFIG_PACKAGE_myautocore-x86=y
+CONFIG_PACKAGE_kmod-inet-diag=y
+
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
