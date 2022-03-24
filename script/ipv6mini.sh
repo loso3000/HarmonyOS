@@ -57,7 +57,7 @@ svn co https://github.com/linkease/nas-packages/trunk/network/services/linkease 
 sed -i 's/1/0/g' ./package/lean/linkease/files/linkease.config
 
 #zerotier 
-rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
+zrm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luasrc/view/zerotier/zerotier_status.htm   #zerotier
