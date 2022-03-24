@@ -18,7 +18,6 @@ CONFIG_DOCKER_OPTIONAL_FEATURES=y
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
-CONFIG_PACKAGE_kmod-fs-ext4=y
 CONFIG_PACKAGE_kmod-fs-squashfs=y
 
 # sd
@@ -58,8 +57,7 @@ CONFIG_PACKAGE_kmod-rtlwifi=y
 CONFIG_PACKAGE_kmod-rtlwifi-usb=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
-CONFIG_PACKAGE_kmod-r8168=n
-CONFIG_PACKAGE_kmod-r8125=n
+CONFIG_PACKAGE_kmod-r8168=y
 # USB net driver
 # CONFIG_PACKAGE_kmod-drm-rockchip=y  #err
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
@@ -157,9 +155,9 @@ CONFIG_PACKAGE_luci-app-bypass=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy=n
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=n
 CONFIG_PACKAGE_luci-app-dnsfilter=y
-# CONFIG_PACKAGE_luci-app-vsftpd is not set
+CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
-CONFIG_PACKAGE_luci-app-mentohust=y
+CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set
 # theme
@@ -177,7 +175,7 @@ CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=y
-# CONFIG_PACKAGE_luci-app-xlnetacc is not set
+CONFIG_PACKAGE_luci-app-xlnetacc=y
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-mwan3=n
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
@@ -191,9 +189,9 @@ CONFIG_UnblockNeteaseMusic_NodeJS=y
 # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui is not set
 CONFIG_PACKAGE_luci-app-pptp-server=y
 CONFIG_PACKAGE_luci-app-pppoe-server=y
-CONFIG_PACKAGE_luci-app-ipsec-server=y
-CONFIG_PACKAGE_luci-app-docker=n
-CONFIG_PACKAGE_luci-app-dockerman=n
+CONFIG_PACKAGE_luci-app-ipsec-server=n
+CONFIG_PACKAGE_luci-app-docker=y
+CONFIG_PACKAGE_luci-app-dockerman=y
 CONFIG_PACKAGE_luci-app-koolddns=y
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=y
@@ -204,8 +202,8 @@ CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-transmission=y
 CONFIG_PACKAGE_luci-app-usb-printer=y
-CONFIG_PACKAGE_luci-app-mwan3helper=n
-CONFIG_PACKAGE_luci-app-qbittorrent=n
+CONFIG_PACKAGE_luci-app-mwan3helper=y
+CONFIG_PACKAGE_luci-app-qbittorrent=y
 CONFIG_PACKAGE_luci-app-familycloud=n
 CONFIG_PACKAGE_luci-app-nps=y
 CONFIG_PACKAGE_luci-app-frpc=y
@@ -214,7 +212,7 @@ CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
-CONFIG_PACKAGE_luci-app-oled=n
+CONFIG_PACKAGE_luci-app-oled=y
 
 # tools
 CONFIG_PACKAGE_kmod-ntfs-3g=y
