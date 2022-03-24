@@ -195,6 +195,8 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 CONFIG_PACKAGE_ddns-scripts_nsupdate=y
 CONFIG_PACKAGE_ddns-scripts_route53-v1=y
 
+CONFIG_PACKAGE_kmod-inet-diag=y
+
 CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_automount=y
@@ -205,8 +207,8 @@ CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
-CONFIG_PACKAGE_luci-app-adguardhome=n
-CONFIG_PACKAGE_luci-app-adguardhome_INCLUDE_binary=n
+CONFIG_PACKAGE_luci-app-adguardhome=y
+CONFIG_PACKAGE_luci-app-adguardhome_INCLUDE_binary=y
 CONFIG_PACKAGE_luci-app-advanced=y
 # CONFIG_PACKAGE_luci-app-autotimeset=n
 CONFIG_PACKAGE_luci-app-rebootschedule=y
@@ -322,7 +324,7 @@ CONFIG_PACKAGE_luci-app-ipsec-serve=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set
 CONFIG_PACKAGE_luci-app-docker=n
 CONFIG_PACKAGE_luci-app-dockerman=n
-CONFIG_PACKAGE_luci-app-koolddns=n
+CONFIG_PACKAGE_luci-app-koolddns=y
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=n
 # CONFIG_PACKAGE_luci-app-uugamebooster is not set
