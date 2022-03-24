@@ -226,6 +226,12 @@ rm -rf ./package/build/pass/luci-app-passwall
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
+
+# Add luci-app-passwall
+# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall luci/applications/openwrt-passwall
+# git clone -b hello https://github.com/DHDAXCW/openwrt-passwall luci/applications/openwrt-passwall
+# git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall luci/applications/openwrt-passwall
+
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
