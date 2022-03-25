@@ -54,15 +54,15 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./package/lean/luci-app-aliyundrive-webdav
 
 # Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/luci-app-linkease ./package/lean/luci-app-linkease
-svn co https://github.com/linkease/nas-packages/trunk/network/services/linkease ./package/lean/linkease
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci-app-linkease
+svn co https://github.com/linkease/nas-packages/trunk/network/services/./package/lean/linkease
 sed -i 's/1/0/g' ./package/lean/linkease/files/linkease.config
 
 #zerotier 
-# rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
+rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 #syncdial
 rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial
@@ -337,15 +337,15 @@ ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #åˆ¤æ
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 date1='Ipv6-Plus-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-date1='Ipv6-Plus-S2022.03.24'
+date1='Ipv6-Plus-S2022.04.01'
 if [ "$VER2" = "5.4" ]; then
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220324-Ipv6-Plus-5.4-/g' include/image.mk
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220401-Ipv6-Plus-5.4-/g' include/image.mk
     #sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220324-Ipv6-Plus-5.10-/g' include/image.mk
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220401-Ipv6-Plus-5.10-/g' include/image.mk
     #sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.10-/g' include/image.mk
 elif [ "$VER2" = "5.15" ]; then
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220324-Ipv6-Plus-5.15-/g' include/image.mk
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220401-Ipv6-Plus-5.15-/g' include/image.mk
     #sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.15-/g' include/image.mk
 fi
 
