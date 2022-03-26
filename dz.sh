@@ -60,9 +60,9 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav
 
 # Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/luci-app-linkease
-svn co https://github.com/linkease/nas-packages/trunk/network/services/linkease
-sed -i 's/1/0/g' linkease/files/linkease.config
+# svn co https://github.com/linkease/nas-packages-luci/trunk/luci/luci-app-linkease
+# svn co https://github.com/linkease/nas-packages/trunk/network/services/linkease
+# sed -i 's/1/0/g' linkease/files/linkease.config
 
 #zerotier
 rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git
