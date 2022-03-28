@@ -144,14 +144,15 @@ git clone -b master --single-branch https://github.com/tty228/luci-app-servercha
 
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 # git clone https://github.com/tuanqing/install-program package/install-program
-
+ 
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/luci/applications/luci-app-aria2
 rm -rf feeds/packages/net/aria2 && \
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/net/aria2 feeds/packages/net/aria2
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/aria2 feeds/packages/net/aria2
 
-# svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
+rm -rf feeds/packages/net/adguardhome && \
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome feeds/packages/net/adguardhome
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
