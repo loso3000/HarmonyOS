@@ -71,10 +71,10 @@ jobs:
          chmod +x ./$DIY_P2_SH
          cd openwrt
          ../$DIY_P1_SH
-         ../$DIY_P2_SH amd64
       - name: Install Feeds
         run: |
             cd openwrt
+            ../$DIY_P2_SH amd64
             ./scripts/feeds install -a
             chmod -R 755 .
       - name: Generate configuration file
