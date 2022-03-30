@@ -73,7 +73,7 @@ jobs:
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
-          ../$DIY_P2_SH amd64
+          ../$DIY_P2_SH armv8
           make defconfig
       - name: Make download
         working-directory: ./openwrt
