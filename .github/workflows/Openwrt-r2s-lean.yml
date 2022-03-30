@@ -67,6 +67,7 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
+         chmod +x ./$DIY_P2_SH
          cd openwrt
          ../$DIY_P1_SH
          chmod -R 755 .
