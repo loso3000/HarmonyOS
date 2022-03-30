@@ -327,7 +327,7 @@ jobs:
           chmod +x ./$DIY_SH
           cd $OPENWRT_ROOT_PATH
           # curl -fsSL https://raw.githubusercontent.com/loso3000/temp/master/openwrt/diy.sh | /bin/bash 
-          ../scriptx/$DIY_SH
+          ../$DIY_SH
           ./scripts/feeds install -a
           make defconfig
 
