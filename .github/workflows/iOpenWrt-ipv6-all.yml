@@ -324,12 +324,10 @@ jobs:
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_ROOT_PATH/.config
           cat configx/general-packages-all.config >> $OPENWRT_ROOT_PATH/.config
           cat configx/extra-drivers.config >> $OPENWRT_ROOT_PATH/.config
+          chmod +x ./scriptx/*.sh
           cd $OPENWRT_ROOT_PATH
           # curl -fsSL https://raw.githubusercontent.com/loso3000/temp/master/openwrt/diy.sh | /bin/bash 
-          chmod +x $GITHUB_WORKSPACE/scriptx/*.sh
-          ../scriptx/$DIY_SH
-          # $GITHUB_WORKSPACE/scriptx/clash-core.sh $CLASH_BINARY_PLATFORM
-          # $GITHUB_WORKSPACE/scriptx/preset-terminal-tools.sh
+          #../scriptx/$DIY_SH
           ./scripts/feeds install -a
           make defconfig
 
