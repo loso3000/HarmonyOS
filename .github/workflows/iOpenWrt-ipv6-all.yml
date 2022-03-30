@@ -27,7 +27,7 @@ env:
   CONFIG_FILE: configx/x86/64.config
   SOURCE_URL: https://github.com/immortalwrt/immortalwrt
   SOURCE_BRANCH: openwrt-18.06-k5.4
-  DIY_SH: scriptx/diy.sh
+  DIY_SH: script/diy.sh
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: amd64
   TOOLCHAIN_RELEASE_UPLOAD: true
