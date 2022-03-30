@@ -207,6 +207,8 @@ rm -rf ./packages/build/ddns-scripts_dnspod
 rm -rf ./package/lean/ddns-scripts_aliyun && \
 svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
 
+patch -p1 <../general/libgnutls.patch
+
 # Passwall
 rm -rf ./feeds/packages/net/pdnsd-alt
 rm -rf ./feeds/packages/net/shadowsocks-libev
