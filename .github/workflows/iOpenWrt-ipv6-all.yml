@@ -27,7 +27,7 @@ env:
   CONFIG_FILE: configx/x86/64.config
   SOURCE_URL: https://github.com/immortalwrt/immortalwrt
   SOURCE_BRANCH: openwrt-18.06-k5.4
-  DIY_SH: scriptx/diy.sh
+  DIY_SH: script/diy.sh
   TOOLCHAIN_TAG: toolchain
   CLASH_BINARY_PLATFORM: amd64
   TOOLCHAIN_RELEASE_UPLOAD: true
@@ -324,10 +324,10 @@ jobs:
           [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_ROOT_PATH/.config
           cat configx/general-packages-all.config >> $OPENWRT_ROOT_PATH/.config
           cat configx/extra-drivers.config >> $OPENWRT_ROOT_PATH/.config
-          # chmod +x ./$DIY_SH
+          chmod +x ./$DIY_SH
           cd $OPENWRT_ROOT_PATH
           # curl -fsSL https://raw.githubusercontent.com/loso3000/temp/master/openwrt/diy.sh | /bin/bash 
-          # ../$DIY_SH
+          ../$DIY_SH
           ./scripts/feeds install -a
           make defconfig
 
