@@ -1,0 +1,101 @@
+name: Openwrt-n1-lean-db-mini
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: script/dzn1
+  DIY_P1_SH: script/initipv6.sh
+jobs:
+  build_openwrt:
+    name: OpenWrt_Build 
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Space cleanup
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          docker rmi `docker images -q`
+          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
+          sudo -E apt-get update
+          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
+          sudo -E apt-get -y autoremove --purge
+          sudo -E apt-get clean
+          df -h
+          sudo timedatectl set-timezone "Asia/Shanghai"
+      - name: download
+        run: |
+          git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+          cd openwrt
+          git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+          rm -rf ./tmp && rm -rf .config
+      - name: Update feeds
+        run: |
+          cd openwrt 
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+      - name: Update package
+        run: |
+         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
+         chmod +x ./$DIY_P1_SH
+         cd openwrt
+         ../$DIY_P1_SH
+         chmod -R 755 .
+      - name: Generate configuration file
+        run: |
+          cd openwrt
+          make defconfig 
+      - name: Make download
+        run: |
+          cd openwrt
+          make download -j8
+      - name: Compile firmware
+        id: compileopenwrt
+        continue-on-error: true
+        run: |
+         df -h
+         cd openwrt
+         make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
+         echo $?
+      - name: If Error
+        if: steps.compileopenwrt.outcome == 'failure'
+        run: |
+          cat openwrt/.config
+          echo '================================================================'
+          cd openwrt && make -j1 V=s
+          echo $?
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: n1-OpenWrt-IPV6-mini-Firmware-bin
+          path: ./openwrt/bin
+      - name: Package Armvirt as OpenWrt
+        uses: ophub/flippy-openwrt-actions@main
+        env:
+           OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*.tar.gz
+           PACKAGE_SOC: s905d
+           KERNEL_VERSION_NAME: 5.10.103
+      - name: Upload OpenWrt Firmware to Release
+        uses: ncipollo/release-action@v1
+        with:
+         tag: openwrt_armvirt_${{ env.PACKAGED_OUTPUTDATE }}
+         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
+         allowUpdates: true
+         token: ${{ secrets.GITHUB_TOKEN }}
+         body: |
+          This is OpenWrt firmware for Armvirt 64
