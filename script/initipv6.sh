@@ -287,7 +287,7 @@ svn co https://github.com/loso3000/openwrt-passwall/trunk/tcping package/lean/tc
 svn co https://github.com/loso3000/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
 svn co https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
-svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
+svn co https://github.com/loso3000/openwrt-passwall/trunk/v2ray-core package/lean/v2ray-core
 svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
 svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
 svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
