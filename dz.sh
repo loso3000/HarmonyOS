@@ -300,7 +300,8 @@ svn co https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
 svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
 svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
-svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
+# svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
+svn co https://github.com/loso3000/openwrt-passwall/trunk/v2ray-plugin package/lean/v2ray-plugin
 svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
 svn co https://github.com/loso3000/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
 svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
