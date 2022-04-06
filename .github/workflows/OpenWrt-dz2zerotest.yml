@@ -97,13 +97,13 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-ipv6-dz2-Firmware
+          name: OpenWrt-ipv6-dz2-zero-Firmware
           path: ./openwrt/bin/
       - name: Prepare Artifact
         run: |
-          mkdir -p ./mini/fwd
-          find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./mini/fwd
-          cd ./mini/fwd
+          mkdir -p ./zero/fwd
+          find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./zero/fwd
+          cd ./zero/fwd
           gzip *.img
           # echo "${{ env.DATA}}" > version.txt
           # md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
@@ -111,11 +111,11 @@ jobs:
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./mini/fwd 2>&1 | tee wetransfer.log
+          ./transfer wet -s -p 16 --no-progress ./zero/fwd 2>&1 | tee wetransfer.log
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
           
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-ipv6-dz2-Firmware
-          path: ./mini/fwd
+          name: OpenWrt-ipv6-dz2-zero-Firmware
+          path: ./zero/fwd
