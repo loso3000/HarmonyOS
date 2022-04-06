@@ -324,6 +324,11 @@ sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 
+svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/kernel/rtl88x2bu package/new/rtl88x2bu
+# svn export https://github.com/friendlyarm/friendlywrt/branches/master/package/kernel/rtl8812au-ct package/new/rtl88x2bu
+
+# svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
+
 #
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 
