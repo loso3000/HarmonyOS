@@ -80,6 +80,7 @@ CONFIG_PACKAGE_kmod-igc=y
 CONFIG_DEFAULT_kmod-r8125=y
 CONFIG_DEFAULT_kmod-r8168=y
 
+CONFIG_PACKAGE_usbutils=y
 CONFIG_DEFAULT_kmod-rtl88x2bu=y   #无线5G8812BU
 # CONFIG_PACKAGE_kmod-r8169 is not set
 
