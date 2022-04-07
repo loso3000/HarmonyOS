@@ -378,7 +378,7 @@ export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = 
 
 date1='Ipv6-dz-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 
-date1='Ipv6-dz-S2022.04.01'
+date1='Ipv6-dz-S2022.04.08'
 sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220401-Ipv6-dz-5.4-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-dz-5.4-/g' include/image.mk
@@ -388,8 +388,8 @@ elif [ "$VER2" = "5.15" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-dz-5.15-/g' include/image.mk
 fi
 
-echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
-echo ${date1}' by Sirpdboy' >> ./package/base-files/files/etc/banner
+echo "DISTRIB_REVISION='${date1} '" > ./package/base-files/files/etc/openwrt_release1
+echo ${date1}'  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 # sed -i 's/root::0:0:99999:7:::/root:$1$g9j2tj.v$w0Bg75cJu0mlJLcg2xoAk.:18870:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #chuqi
