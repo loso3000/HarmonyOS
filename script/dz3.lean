@@ -1,11 +1,13 @@
+# start
 CONFIG_TARGET_x86=y
 CONFIG_TARGET_x86_64=y
 CONFIG_TARGET_x86_64_DEVICE_generic=y
-# 设置固件大小
-CONFIG_COREMARK_NUMBER_OF_THREADS=128
+#
 CONFIG_TARGET_KERNEL_PARTSIZE=64
-CONFIG_TARGET_ROOTFS_PARTSIZE=1920
-
+CONFIG_TARGET_ROOTFS_PARTSIZE=920
+CONFIG_COREMARK_NUMBER_OF_THREADS=128
+CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
+# CONFIG_PACKAGE_i915-firmware is not set
 
 # 所集成的固件类型
 # CONFIG_TARGET_ROOTFS_INITRAMFS is not set
@@ -221,17 +223,17 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 CONFIG_PACKAGE_ddns-scripts_nsupdate=y
 CONFIG_PACKAGE_ddns-scripts_route53-v1=y
 # CONFIG_PACKAGE_autosamba is not set
-# CONFIG_PACKAGE_automount=y
-# CONFIG_PACKAGE_autocore-x86 is not set
-CONFIG_PACKAGE_mycore-x86=y
+CONFIG_PACKAGE_automount=y
+CONFIG_PACKAGE_autocore-x86=y
+# CONFIG_PACKAGE_mycore-x86=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
-CONFIG_PACKAGE_luci-app-adguardhome=n
-CONFIG_PACKAGE_luci-app-advanced=n
+CONFIG_PACKAGE_luci-app-adguardhome=y
+CONFIG_PACKAGE_luci-app-advanced=y
 # CONFIG_PACKAGE_luci-app-autotimeset=n
-CONFIG_PACKAGE_luci-app-rebootschedule=n
+CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 # CONFIG_PACKAGE_luci-app-control-timewol=n
 CONFIG_PACKAGE_luci-app-control-weburl=y
@@ -239,17 +241,17 @@ CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-timecontrol=y
 # CONFIG_PACKAGE_luci-app-webadmin=n
-# CONFIG_PACKAGE_luci-app-cpulimit=y
-CONFIG_PACKAGE_luci-app-diskman=n
+# CONFIG_PACKAGE_luci-app-cpulimit=n
+CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
 # CONFIG_PACKAGE_luci-app-filetransfer=y
 # CONFIG_PACKAGE_luci-app-hd-idle=n
 CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
-CONFIG_PACKAGE_luci-app-netdata=y
+CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
-CONFIG_PACKAGE_luci-app-openclash=n
+CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-serverchan=n
@@ -269,7 +271,7 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
-# CONFIG_PACKAGE_luci-app-ssr-plus is not set
+CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=y
@@ -287,7 +289,7 @@ CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Kcptun=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_obfs_server=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
 CONFIG_PACKAGE_luci-app-pushbot=n
 CONFIG_PACKAGE_luci-app-dnsfilter=n
@@ -308,7 +310,7 @@ CONFIG_PACKAGE_luci-app-mosdns=n
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 # CONFIG_PACKAGE_luci-app-wireguard is not set
-CONFIG_DEFAULT_luci-app-cpufreq=y
+CONFIG_DEFAULT_luci-app-cpufreq=n
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
@@ -329,7 +331,7 @@ CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
-CONFIG_PACKAGE_luci-app-zerotier=y
+CONFIG_PACKAGE_luci-app-zerotier=n
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=n
@@ -363,70 +365,3 @@ CONFIG_PACKAGE_luci-app-frpc=n
 CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
-
-# Compiler
-#
-# CONFIG_GCC_USE_VERSION_7 is not set
-# CONFIG_GCC_USE_VERSION_8 is not set
-# CONFIG_GCC_USE_VERSION_9 is not set
-# CONFIG_GCC_USE_VERSION_10 is not set
-CONFIG_GCC_USE_VERSION_11=y
-# CONFIG_GCC_USE_GRAPHITE is not set
-CONFIG_EXTRA_GCC_CONFIG_OPTIONS=""
-# CONFIG_GCC_DEFAULT_PIE is not set
-# CONFIG_GCC_DEFAULT_SSP is not set
-# CONFIG_SJLJ_EXCEPTIONS is not set
-# CONFIG_INSTALL_GFORTRAN is not set
-# C Library
-CONFIG_LIBC_USE_MUSL=y
-#
-# Debuggers
-#
-CONFIG_USE_MUSL=y
-CONFIG_SSP_SUPPORT=y
-CONFIG_BINUTILS_VERSION_2_37=y
-CONFIG_BINUTILS_VERSION="2.37"
-CONFIG_GCC_VERSION_11=y
-CONFIG_GCC_VERSION="11.2.0"
-# CONFIG_GCC_USE_IREMAP is not set
-
-CONFIG_PACKAGE_pptpd=y
-
-CONFIG_EXTERNAL_TOOLCHAIN=y
-# CONFIG_NATIVE_TOOLCHAIN is not 
-
-CONFIG_GCC_USE_VERSION_9=y
-CONFIG_GCC_VERSION_9=y
-CONFIG_GCC_VERSION="9.3.0"
-
-#mitmproxy
-CONFIG_DEFAULT_libc=y
-CONFIG_DEFAULT_libgcc=y
-#CONFIG_PACKAGE_tcpdump=y
-CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_redsocks=y
-CONFIG_PACKAGE_libffi-dev=y
-CONFIG_PACKAGE_libssl-dev=y
-CONFIG_PACKAGE_libtiff5-dev=y
-CONFIG_PACKAGE_libjpeg8-dev=y
-CONFIG_PACKAGE_zlib1g-dev=y
-CONFIG_PACKAGE_libffi=y
-CONFIG_PACKAGE_libwebp-dev=y
-CONFIG_PACKAGE_gcc=y
-CONFIG_PACKAGE_mitmproxy=y
-CONFIG_PACKAGE_libpython3=y
-CONFIG_PACKAGE_python3=y
-CONFIG_PACKAGE_python3-mitmproxy=y
-CONFIG_PACKAGE_python-pip-conf=y
-#CONFIG_PACKAGE_python3-cffi-src=y
-CONFIG_PACKAGE_python3-libffi=y
-CONFIG_PACKAGE_python3-dev=y
-CONFIG_PACKAGE_python3-pip=y
-CONFIG_PACKAGE_python3-six=y
-CONFIG_PACKAGE_python3-cffi=y
-CONFIG_PACKAGE_python3-openssl=y
-CONFIG_PACKAGE_python3-cryptography=y
-#CONFIG_PACKAGE_python3-cryptography-src=y
-CONFIG_PACKAGE_python3-yaml=y
-#CONFIG_PACKAGE_python3-yaml-src=y
