@@ -17,14 +17,23 @@ CONFIG_PACKAGE_SAMBA_MAX_DEBUG_LEVEL=-1
 CONFIG_PACKAGE_iptables-mod-extra=y
 CONFIG_PACKAGE_iptables-mod-tproxy=y
 CONFIG_PACKAGE_kmod-crypto-crc32c=y
-
+#usb 
+CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-fs-nfs-v4=y
+CONFIG_DEFAULT_kmod-fs-vfat=y
+CONFIG_PACKAGE_block-mount=y
+CONFIG_PACKAGE_usbutils=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_e2fsprogs=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
-CONFIG_PACKAGE_kmod-fs-antfs=y
+# CONFIG_PACKAGE_kmod-fs-antfs=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -46,6 +55,7 @@ CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
 # CONFIG_PACKAGE_autosamba is not set
 # CONFIG_PACKAGE_autocore-x86=y
 CONFIG_PACKAGE_autocore-arm=y
+CONFIG_PACKAGE_automount=y
 # CONFIG_PACKAGE_myautocore-arm=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
@@ -57,7 +67,7 @@ CONFIG_PACKAGE_luci-app-autotimeset=n
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 CONFIG_PACKAGE_luci-app-control-timewol=n
-CONFIG_PACKAGE_luci-app-control-weburl=y
+CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-webadmin=n
@@ -92,7 +102,7 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
-CONFIG_PACKAGE_luci-app-bypass=y
+CONFIG_PACKAGE_luci-app-bypass=n
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server is not set
