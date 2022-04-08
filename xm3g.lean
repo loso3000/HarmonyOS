@@ -11,64 +11,46 @@ CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
 CONFIG_PACKAGE_kmod-fs-vfat=y
-CONFIG_PACKAGE_kmod-fs-nfs-common=y
-CONFIG_PACKAGE_kmod-fs-nfs=y
-CONFIG_PACKAGE_kmod-fs-nfs-v3=y
 CONFIG_PACKAGE_kmod-fs-nfs-v4=y
 CONFIG_PACKAGE_kmod-fs-antfs=y
-CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_PACKAGE_kmod-fs-ext4=y
-CONFIG_PACKAGE_kmod-fs-squashfs=y
-#ksmbd
-#CONFIG_PACKAGE_kmod-fs-ksmbd=y
-#CONFIG_PACKAGE_kmod-nls-utf8=y
-#CONFIG_PACKAGE_kmod-nls-cp936=y
-#CONFIG_PACKAGE_kmod-nls-iso8859-1=y
-CONFIG_PACKAGE_kmod-ksmbd-utils=y
-# 添加网络配置
-CONFIG_PACKAGE_ppp-mod-pptp=y  #VPN客户端
-CONFIG_PACKAGE_kmod-vmxnet3=y
-CONFIG_PACKAGE_kmod-pcnet32=y
 # add upnp
 CONFIG_PACKAGE_irqbalance=n
 CONFIG_PACKAGE_miniupnpd-igdv1=y
-CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-app-upnp=n
 CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-wolplus=n
 # 工具
-CONFIG_PACKAGE_iperf3=y  #局域网测速
-CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
-CONFIG_PACKAGE_fdisk=y #分区工具
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_fdisk=y
+CONFIG_PACKAGE_automount=y
+CONFIG_PACKAGE_autocore-x86=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 CONFIG_PACKAGE_luci-app-adbyby-plus is not set
-CONFIG_PACKAGE_luci-app-adguardhome=y
-CONFIG_PACKAGE_luci-app-advanced=y
+CONFIG_PACKAGE_luci-app-adguardhome=n
+CONFIG_PACKAGE_luci-app-advanced=n
 CONFIG_PACKAGE_luci-app-autotimeset=n
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 CONFIG_PACKAGE_luci-app-control-timewol=n
 CONFIG_PACKAGE_luci-app-control-weburl=y
 CONFIG_PACKAGE_luci-app-cpulimit=y
-CONFIG_PACKAGE_luci-app-diskman=y
-CONFIG_PACKAGE_luci-app-eqos=y
-CONFIG_PACKAGE_luci-app-hd-idle=y
+CONFIG_PACKAGE_luci-app-diskman=n
+CONFIG_PACKAGE_luci-app-eqos=n
+CONFIG_PACKAGE_luci-app-hd-idle=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-jd-dailybonus=y
 CONFIG_PACKAGE_luci-app-koolproxyR=n
-CONFIG_PACKAGE_luci-app-netdata=y
+CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
-CONFIG_PACKAGE_luci-app-openclash=y
-CONFIG_PACKAGE_luci-app-passwall=y
+CONFIG_PACKAGE_luci-app-openclash=n
+CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=y
-CONFIG_PACKAGE_luci-app-serverchan=y
+CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
