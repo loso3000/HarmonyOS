@@ -1,6 +1,9 @@
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7621=y
-CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_mir3p=y
+CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_mi-router-3-pro=y
+
+
+
 CONFIG_ARIA2_BITTORRENT=y
 CONFIG_ARIA2_NOXML=y
 CONFIG_ARIA2_OPENSSL=y
@@ -62,17 +65,17 @@ CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
-CONFIG_PACKAGE_luci-app-advanced=n
+CONFIG_PACKAGE_luci-app-advanced=y
 CONFIG_PACKAGE_luci-app-autotimeset=n
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 CONFIG_PACKAGE_luci-app-control-timewol=n
-CONFIG_PACKAGE_luci-app-control-weburl=n
+CONFIG_PACKAGE_luci-app-control-weburl=y
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
-CONFIG_PACKAGE_luci-app-control-speedlimit=n
+CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-webadmin=n
 CONFIG_PACKAGE_luci-app-cpulimit=n
-CONFIG_PACKAGE_luci-app-diskman=n
+CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-eqos=n
 CONFIG_PACKAGE_luci-app-hd-idle=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
@@ -84,16 +87,15 @@ CONFIG_PACKAGE_luci-app-openclash=n
 CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=y
-CONFIG_PACKAGE_luci-app-serverchan=n
+CONFIG_PACKAGE_luci-app-serverchan=y
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
-CONFIG_PACKAGE_luci-app-smartdns=n
-# CONFIG_PACKAGE_luci-app-ssr-plus is not set
+CONFIG_PACKAGE_luci-app-smartdns=y
 CONFIG_PACKAGE_luci-app-timecontrol=y
 CONFIG_PACKAGE_luci-app-access-control=n
-CONFIG_PACKAGE_luci-app-ttyd=n
-# CONFIG_PACKAGE_luci-app-turboacc is not set
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-turboacc=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_flow-offload=n
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_shortcut-fe=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_dnsforwarder=y
@@ -102,13 +104,21 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
-CONFIG_PACKAGE_luci-app-bypass=n
+CONFIG_PACKAGE_luci-app-bypass=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server is not set
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray is not set
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_xray_Plugin is not set
-CONFIG_PACKAGE_luci-app-dnsfilter=n
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_xray_Plugin
+CONFIG_PACKAGE_luci-app-softethervpn=y
+CONFIG_PACKAGE_luci-app-ssr-plus=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_IPT2Socks=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
+
+CONFIG_PACKAGE_luci-app-dnsfilter=y
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
 CONFIG_PACKAGE_luci-app-mentohust=n
@@ -123,7 +133,7 @@ CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 #增加其它插件
-CONFIG_PACKAGE_luci-app-tencentddns=y
+CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-pushbot=n
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-ksmbd=n
