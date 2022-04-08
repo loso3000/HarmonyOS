@@ -148,14 +148,14 @@ CONFIG_PACKAGE_luci-app-ttyd=n
 CONFIG_PACKAGE_luci-app-vssr=n
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-nlbwmon=y
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
 CONFIG_PACKAGE_luci-app-bypass=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server is not set
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray
-CONFIG_PACKAGE_luci-app-dnsfilter=y
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Socks_Server is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray is not set
+CONFIG_PACKAGE_luci-app-dnsfilter=n
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
 CONFIG_PACKAGE_luci-app-mentohust=n
@@ -178,8 +178,8 @@ CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
 # CONFIG_PACKAGE_luci-app-zerotier=y
-CONFIG_PACKAGE_luci-app-mwan3=y
-CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
+CONFIG_PACKAGE_luci-app-mwan3=n
+CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 CONFIG_PACKAGE_luci-app-unblockmusic=n
 CONFIG_UnblockNeteaseMusic_Go=y
 CONFIG_UnblockNeteaseMusic_NodeJS=y
@@ -194,10 +194,10 @@ CONFIG_PACKAGE_luci-app-ipsec-server=n
 CONFIG_PACKAGE_luci-app-docker=n
 CONFIG_PACKAGE_luci-app-dockerman=n
 CONFIG_PACKAGE_luci-app-koolddns=n
-CONFIG_PACKAGE_luci-app-syncdial=y
+CONFIG_PACKAGE_luci-app-syncdial=n
 CONFIG_PACKAGE_luci-app-softethervpn=n
 CONFIG_PACKAGE_luci-app-uugamebooster=y
-CONFIG_DEFAULT_luci-app-cpufreq=y
+CONFIG_DEFAULT_luci-app-cpufreq=n
 CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-oaf=n
