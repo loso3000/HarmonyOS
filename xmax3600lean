@@ -2,11 +2,9 @@ CONFIG_TARGET_ipq807x=y
 CONFIG_TARGET_ipq807x_generic=y
 CONFIG_TARGET_ipq807x_generic_DEVICE_xiaomi_ax3600=y
 
-# CONFIG_VMDK_IMAGES is not set
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
-# 不压缩efi
-# CONFIG_TARGET_IMAGES_GZIP is not set
+
 # CONFIG_EFI_IMAGES=y
 # CONFIG_TARGET_ROOTFS_TARGZ=n
 # CONFIG_VMDK_IMAGES is not set
@@ -14,33 +12,42 @@ CONFIG_TARGET_ipq807x_generic_DEVICE_xiaomi_ax3600=y
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
-CONFIG_PACKAGE_kmod-fs-antfs=y
+# CONFIG_PACKAGE_kmod-fs-antfs=y
 # CONFIG_PACKAGE_kmod-fs-ntfs  is not set
+
+#usb 
+CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-fs-nfs-v4=y
+CONFIG_DEFAULT_kmod-fs-vfat=y
+CONFIG_PACKAGE_block-mount=y
+CONFIG_PACKAGE_usbutils=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_e2fsprogs=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+CONFIG_PACKAGE_automount=y
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-wolplus=n
 # 工具
 CONFIG_PACKAGE_fdisk=y #分区工具
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_curl=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
-CONFIG_PACKAGE_luci-app-advanced=y
+CONFIG_PACKAGE_luci-app-advanced=n
 CONFIG_PACKAGE_luci-app-autotimeset=n
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 CONFIG_PACKAGE_luci-app-control-timewol=n
-CONFIG_PACKAGE_luci-app-control-weburl=y
+CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
-CONFIG_PACKAGE_luci-app-control-speedlimit=y
+CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-webadmin=n
 CONFIG_PACKAGE_luci-app-cpulimit=n
 CONFIG_PACKAGE_luci-app-diskman=n
@@ -51,8 +58,8 @@ CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
-CONFIG_PACKAGE_luci-app-openclash=y
-CONFIG_PACKAGE_luci-app-passwall=y
+CONFIG_PACKAGE_luci-app-openclash=n
+CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray 
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin 
@@ -62,7 +69,7 @@ CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
-# CONFIG_PACKAGE_luci-app-filetransfer=y
+# CONFIG_PACKAGE_luci-app-filetransfer=n
 CONFIG_PACKAGE_luci-app-smartdns=n
 # CONFIG_PACKAGE_luci-app-ssr-plus is not set
 CONFIG_PACKAGE_luci-app-timecontrol=y
@@ -75,12 +82,14 @@ CONFIG_PACKAGE_luci-app-ttyd=n
 CONFIG_PACKAGE_luci-app-vssr=n
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
 CONFIG_PACKAGE_luci-app-bypass=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy is not set
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray=y
-CONFIG_PACKAGE_luci-app-dnsfilter=y
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray  is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_xray_Plugin  is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray   is not set
+CONFIG_PACKAGE_luci-app-dnsfilter=n
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
 CONFIG_PACKAGE_luci-app-mentohust=n
@@ -95,10 +104,10 @@ CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 #增加其它插件
-CONFIG_PACKAGE_luci-app-sqm=y
-CONFIG_PACKAGE_luci-app-easymesh=y
-CONFIG_PACKAGE_luci-app-guest-wifi=y
-CONFIG_PACKAGE_luci-app-wifischedule=y
+CONFIG_PACKAGE_luci-app-sqm=n
+CONFIG_PACKAGE_luci-app-easymesh=n
+CONFIG_PACKAGE_luci-app-guest-wifi=n
+CONFIG_PACKAGE_luci-app-wifischedule=n
 CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-pushbot=n
 CONFIG_PACKAGE_luci-app-easymesh=n
@@ -106,7 +115,7 @@ CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
-CONFIG_PACKAGE_luci-app-zerotier=y
+CONFIG_PACKAGE_luci-app-zerotier=n
 CONFIG_PACKAGE_luci-app-mwan3=n
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
@@ -120,7 +129,7 @@ CONFIG_PACKAGE_luci-app-docker=n
 CONFIG_PACKAGE_luci-app-dockerman=n
 CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=n
-CONFIG_PACKAGE_luci-app-softethervpn=n
+CONFIG_PACKAGE_luci-app-softethervpn=y
 # CONFIG_PACKAGE_luci-app-uugamebooster is not set
 CONFIG_DEFAULT_luci-app-cpufreq=n
 CONFIG_PACKAGE_luci-app-udpxy=n
@@ -138,3 +147,6 @@ CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
+
+CONFIG_PACKAGE_ppp-mod-pptp=y
+CONFIG_PACKAGE_xl2tpd=y
