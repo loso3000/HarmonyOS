@@ -19,7 +19,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: xmax3600lean
-  DIY_P1_SH: dz2.sh
+  DIY_P1_SH: dz.sh
   DIY_P2_SH: update_package_all.sh
 jobs:
 
@@ -113,11 +113,6 @@ jobs:
           cd ./xm7628a
           # rename -v "s/friendlyarm_//" *
           # gzip *.bin
-      - name: Upload firmware to cowtransfer
-        run: |
-         curl -fsSL git.io/file-transfer | sh
-         ./transfer cow --block 2621440 -s -p 64 --no-progress ./xm7628a/ 2>&1 | tee cowtransfer.log
-         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
