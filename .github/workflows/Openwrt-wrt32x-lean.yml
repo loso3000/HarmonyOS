@@ -19,7 +19,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/wrt32x.lean
-  DIY_P1_SH: script/dz3.sh
+  DIY_P1_SH: dz.sh
   DIY_P2_SH: update_package_all.sh
 jobs:
 
@@ -105,11 +105,6 @@ jobs:
           mkdir ./wrt32x
           find ./openwrt/bin/targets/ -name "*combined*" -or -name "*sysupgrade*" | xargs -i mv -f {} ./wrt32x/
           gzip *.*
-      - name: Upload firmware to cowtransfer
-        run: |
-         curl -fsSL git.io/file-transfer | sh
-         ./transfer cow --block 2621440 -s -p 64 --no-progress ./wrt32x/ 2>&1 | tee cowtransfer.log
-         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
