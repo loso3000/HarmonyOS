@@ -122,7 +122,6 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 # rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
 rm -rf ./package/build/miniupnpd  
 # rm -rf ./feeds/packages/net/miniupnpd  && svn co https://github.com/sirpdboy/build/trunk/miniupnpd ./feeds/packages/net/miniupnpd
-rm -rf ./package/lean/automount
 rm -rf ./package/lean/autosamba
 rm -rf ./feeds/luci/applications/luci-app-accesscontrol
 # rm -rf ./package/build/autocore
@@ -308,9 +307,10 @@ rm -rf ./feeds/packages/net/v2ray*
 rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
 #bypass
-rm -rf ./package/build/pass/luci-app-bypass
-git clone https://github.com/kiddin9/openwrt-bypass package/pass
-sed -i 's,default n,default y,g' ./package/pass/luci-app-bypass/Makefile
+#rm -rf ./package/build/pass/luci-app-bypass
+#git clone https://github.com/kiddin9/openwrt-bypass package/pass
+#sed -i 's,default n,default y,g' ./package/pass/luci-app-bypass/Makefile
+ sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 
 # git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall ./feeds/luci/applications/passwall
 svn co https://github.com/MilesPoupart/openwrt-passwall/trunk/luci-app-passwall package/passwall/luci-app-passwall
@@ -349,16 +349,12 @@ ln -sf ../../../feeds/packages/net/kcptun ./package/feeds/packages/kcptun
 # ShadowsocksR Plus+
 # svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 rm -rf ./package/build/pass/luci-app-ssr-plus/po/zh_Hans
-pushd package/lean
+#pushd package/lean
 #wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/5bbf6e7.patch | patch -p1
 #wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/323fbf0.patch | patch -p1
-popd
+#popd
 pushd package/build/pass/luci-app-ssr-plus
 sed -i 's,default n,default y,g' Makefile
-sed -i '/trojan-go/d' Makefile
-sed -i '/v2ray-core/d' Makefile
-sed -i '/v2ray-plugin/d' Makefile
-sed -i '/xray-plugin/d' Makefile
 sed -i '/shadowsocks-libev-ss-redir/d' Makefile
 sed -i '/shadowsocks-libev-ss-server/d' Makefile
 sed -i '/shadowsocks-libev-ss-local/d' Makefile
@@ -368,10 +364,6 @@ git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git pac
 git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 pushd package/lean/luci-app-vssr
 sed -i 's,default n,default y,g' Makefile
-sed -i '/trojan-go/d' Makefile
-sed -i '/v2ray-core/d' Makefile
-sed -i '/v2ray-plugin/d' Makefile
-sed -i '/xray-plugin/d' Makefile
 sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
 popd
 
@@ -408,7 +400,8 @@ ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #åˆ¤æ
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 date1='Ipv6-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-# date1='Ipv6-S2022.02.01'
+date1='Ipv6-S2022.02.01'
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220215-Ipv6-5.15-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
@@ -416,7 +409,6 @@ elif [ "$VER2" = "5.10" ]; then
 elif [ "$VER2" = "5.15" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-5.15-/g' include/image.mk
 fi
-# sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220201-Ipv6-${str1}-/g' include/image.mk
 echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
