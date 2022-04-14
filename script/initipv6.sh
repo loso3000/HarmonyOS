@@ -57,8 +57,9 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./package/lean/luci-app-aliyundrive-webdav
 
 # Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci-app-linkease
-svn co https://github.com/linkease/nas-packages/trunk/network/services/./package/lean//linkease
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/  ./package/lean/luci
+svn co https://github.com/linkease/nas-packages/trunk/network/services/  ./package/lean/linkease
+svn co https://github.com/linkease/istore/  ./package/lean/istore
 sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
 #zerotier 
@@ -200,8 +201,8 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 # svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
 # Add luci-app-dockerman
-# rm -rf ./feeds/luci/collections/luci-lib-docker
-# git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
+rm -rf ./feeds/luci/collections/luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
 
 rm -rf ./packages/build/ddns-scripts_dnspod
 rm -rf ./package/lean/ddns-scripts_aliyun && \
