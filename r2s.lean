@@ -137,25 +137,25 @@ CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_obfs_server=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
-CONFIG_PACKAGE_luci-app-dnsto=n
-CONFIG_PACKAGE_luci-app-pushbot=n
+CONFIG_PACKAGE_luci-app-dnsto=y
+CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
-CONFIG_PACKAGE_luci-app-mentohust=n
-CONFIG_PACKAGE_luci-app-easymesh=n
+CONFIG_PACKAGE_luci-app-mentohust=y
+CONFIG_PACKAGE_luci-app-easymesh=y
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
-# CONFIG_PACKAGE_luci-app-vlmcsd is not set
+# CONFIG_PACKAGE_luci-app-vlmcsd=y
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=n
-CONFIG_PACKAGE_luci-app-ikoolproxy=y
+CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 # CONFIG_PACKAGE_luci-app-wireguard is not set
 #主题
@@ -197,12 +197,12 @@ CONFIG_PACKAGE_luci-app-koolddns=y
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=n
 # CONFIG_PACKAGE_luci-app-uugamebooster is not set
-CONFIG_DEFAULT_luci-app-cpufreq=n
+CONFIG_DEFAULT_luci-app-cpufreq=y
 CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-oaf=n
 CONFIG_PACKAGE_luci-app-transmission=n
-CONFIG_PACKAGE_luci-app-usb-printer=n
+CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_luci-app-mwan3helper=n
 # CONFIG_PACKAGE_luci-app-qbittorrent is not set
 CONFIG_PACKAGE_luci-app-familycloud=n
