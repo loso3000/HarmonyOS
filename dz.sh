@@ -32,7 +32,7 @@ rm -rf ./feeds/luci/applications/luci-proto-minieap
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.0.100/g' package/base-files/files/bin/config_generate
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
@@ -84,7 +84,7 @@ svn co https://github.com/v2rayA/v2raya-openwrt/trunk/v2raya package/new/v2raya
 # Boost 通用即插即用
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/x86/index.htm > package/lean/autocore/files/x86/index.htm
 # curl -fsSL https://raw.githubusercontent.com/loso3000/other/master/patch/autocore/files/arm/index.htm > package/lean/autocore/files/arm/index.htm
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/build/default-settings/files/zzz-default-settings
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/build/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
@@ -180,6 +180,12 @@ CONFIG_CRYPTO_POLY1305_X86_64=y
 # CONFIG_DRM=y
 # CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.4
+echo '
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+# CONFIG_DRM=y
+# CONFIG_DRM_I915=y
+' >> ./target/linux/x86/config-5.15
 
 git clone https://github.com/QiuSimons/openwrt-mos.git package/mosdns
 # svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
@@ -331,14 +337,14 @@ svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/pac
 #
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
+sed -i 's/+luci-theme-bootstrap/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
 rm -rf ./package/diy/luci-theme-edge
@@ -377,8 +383,8 @@ export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = 
 
 date1='Ipv6-dz-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 
-# date1='Ipv6-R2022.04.08'
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220401-Ipv6-dz-5.4-/g' include/image.mk
+date1='R20220416'
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220416-5.15-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-dz-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
