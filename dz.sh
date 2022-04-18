@@ -11,6 +11,7 @@ KEY=123456
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
+git clone https://github.com/loso3000/other ./package/other
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # replace banner
@@ -196,7 +197,7 @@ sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/kool
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
-git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
+# git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
 # Fix libssh
 # rm -rf feeds/packages/libs
