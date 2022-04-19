@@ -33,7 +33,7 @@ rm -rf ./feeds/luci/applications/luci-proto-minieap
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.0.100/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns&& svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
@@ -65,10 +65,10 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-ali
 # sed -i 's/1/0/g' linkease/files/linkease.config
 
 #zerotier
-rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git
-sed -i '/45)./d' luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+#rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git
+#sed -i '/45)./d' luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+##sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+#sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 #syncdial
 rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git 
