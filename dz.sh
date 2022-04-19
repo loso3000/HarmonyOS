@@ -51,8 +51,6 @@ rm -rf ./feeds/luci/applications/luci-app-accesscontrol
 rm -rf ./package/lean/autocore
 rm -rf ./package/lean/default-settings
 rm -rf ./feeds/luci/applications/luci-app-arpbind
-rm -rf ./feeds/luci/applications/luci-app-docker
-rm -rf ./feeds/luci/applications/luci-app-dockerman
 
 # rm -rf ./feeds/luci/applications/luci-app-vlmcsd
 # rm -rf ./feeds/luci/applications/vlmcsd 
@@ -226,6 +224,14 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package
 # rm -rf ./feeds/luci/collections/luci-lib-docker
 # git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
 # git clone --depth=1 https://github.com/lisaac/luci-lib-docker packages/luci/luci-lib-docker
+
+# Add luci-app-dockerman
+rm -rf ../../customfeeds/luci/collections/luci-lib-docker
+rm -rf ../../customfeeds/luci/applications/luci-app-docker
+rm -rf ../../customfeeds/luci/applications/luci-app-dockerman
+# git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./feeds/luci/collections/luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker  ./feeds/luci/collections/luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker  packages/luci/luci-lib-docker
 
 rm -rf ./packages/build/ddns-scripts_dnspod
 rm -rf ./package/lean/ddns-scripts_aliyun
