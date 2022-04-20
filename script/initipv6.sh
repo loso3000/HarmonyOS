@@ -69,10 +69,10 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-ali
 # sed -i 's/1/0/g' linkease/files/linkease.config
 
 #zerotier
-#rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git
-#sed -i '/45)./d' luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-##sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-#sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git
+sed -i '/45)./d' luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 #syncdial
 rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git 
@@ -240,8 +240,8 @@ patch -p1 <../general/libgnutls.patch
 git clone -b luci --depth 1 https://github.com/QiuSimons/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 #bypass
-#rm -rf package/build/pass/luci-app-bypass
-#git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+rm -rf package/build/pass/luci-app-bypass
+git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 # sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
 # sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 pushd package/bypass/luci-app-bypass
@@ -266,7 +266,6 @@ sed -i '/shadowsocks-libev-ss-local/d' Makefile
 popd
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
-
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
@@ -362,8 +361,8 @@ svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/pac
 #
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
