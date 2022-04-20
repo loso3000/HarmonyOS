@@ -248,7 +248,9 @@ sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+# Add luci-app-passwall
+git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall ./package/passwall
+# svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
 sed -i '/shadowsocks-libev-ss-redir/d' Makefile
@@ -263,12 +265,12 @@ sed -i '/shadowsocks-libev-ss-local/d' Makefile
 popd
 rm -rf ./feeds/packages/net/https-dns-proxy
 svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/tcping package/new/tcping
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/brook package/new/brook
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/hysteria package/new/hysteria
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
@@ -281,22 +283,22 @@ rm -rf ./feeds/packages/net/pdnsd-alt
 
 svn export https://github.com/loso3000/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/lean/microsocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/microsocks package/lean/microsocks
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
 svn export https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/lean/ipt2socks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/lean/trojan
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/lean/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/ipt2socks package/lean/ipt2socks
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/trojan package/lean/trojan
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/tcping package/lean/tcping
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
 svn export https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
 svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
 svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
 #svn export https://github.com/immortalwrt/packages/trunk/net/shadowsocks-rust feeds/packages/net/shadowsocks-rust
 sed -i '/Build\/Compile/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $$(PKG_BUILD_DIR)/$(component)' feeds/packages/net/shadowsocks-rust/Makefile
 ln -sf ../../../feeds/packages/net/shadowsocks-rust ./package/feeds/packages/shadowsocks-rust
