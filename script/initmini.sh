@@ -8,6 +8,8 @@ SSID=Sirpdboy
 ENCRYPTION=psk2
 KEY=123456
 git clone https://github.com/sirpdboy/build.git ./package/build
+
+git clone https://github.com/loso3000/other ./package/other
 cp -f ./package/build/banner ./package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
 
