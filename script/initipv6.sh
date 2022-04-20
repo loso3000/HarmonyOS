@@ -12,8 +12,8 @@ KEY=123456
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
-
-cp -f ./package/build/banner ./package/base-files/files/etc/
+cp -f ./package/build/banner ./package/base-files/files/etc/banner
+cat ./package/build/profile > package/base-files/files/etc/profile
 # replace banner
 # cp -f $GITHUB_WORKSPACE/general/openwrt_banner package/base-files/files/etc/banner
 
