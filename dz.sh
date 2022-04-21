@@ -325,6 +325,8 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-ap
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 pushd package/lean/luci-app-vssr
 sed -i 's,default n,default y,g' Makefile
+sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+sed -i '/shadowsocks-libev-ss-server/d' Makefile
 sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
 popd
 
