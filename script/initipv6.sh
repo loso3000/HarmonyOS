@@ -342,6 +342,8 @@ sed -i '/trojan-go/d' Makefile
 sed -i '/v2ray-core/d' Makefile
 sed -i '/v2ray-plugin/d' Makefile
 sed -i '/xray-plugin/d' Makefile
+sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+sed -i '/shadowsocks-libev-ss-server/d' Makefile
 sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
 popd
 
