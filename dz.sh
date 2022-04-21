@@ -23,6 +23,7 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-mentohust 
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
+rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
 
 # CPU 控制相关
 rm -rf ./feeds/luci/applications/luci-app-cpufreq 
