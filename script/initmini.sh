@@ -19,6 +19,7 @@ cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
@@ -47,7 +48,7 @@ rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/bu
 rm -rf ./feeds/luci/applications/luci-app-arpbind  && svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 
-# rm -rf ./feeds/luci/applications/luci-app-docker
+rm -rf ./feeds/luci/applications/luci-app-docker
 # rm -rf ./feeds/packages-master/utils/docker
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
 #rm -rf ./feeds/luci/applications/vlmcsd 
