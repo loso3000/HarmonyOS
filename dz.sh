@@ -11,7 +11,7 @@ KEY=123456
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
-git clone https://github.com/loso3000/other ./package/other
+git clone https://github.com/loso3000/other.git ./package/other
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # replace banner
@@ -23,6 +23,7 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-mentohust 
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
+
 rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
 
 # CPU 控制相关
@@ -149,17 +150,14 @@ cat ./package/build/profile > package/base-files/files/etc/profile
 # 全能推送
 rm -rf ./feeds/luci/applications/luci-app-pushbot && \
 git clone https://github.com/zzsj0928/luci-app-pushbot ./feeds/luci/applications/luci-app-pushbot
+
 rm -rf ./feeds/luci/applications/luci-app-jd-dailybonus && \
 git clone https://github.com/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/applications/luci-app-jd-dailybonus
-# 京东签到 By Jerrykuku
-# sed -i 's/wget-ssl/wget/g' package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/newapp.sh package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua
-# rm -rf ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
-# wget -P ./package/lean/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
+
 rm -rf ./feeds/luci/applications/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
 
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
-# git clone https://github.com/tuanqing/install-program package/install-program
 
 echo '替换aria2'
 rm -rf feeds/luci/applications/luci-app-aria2 && \
@@ -170,17 +168,7 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/aria2 feeds/packages/n
 rm -rf feeds/packages/net/adguardhome && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome feeds/packages/net/adguardhome
 
-# echo 'amule'
-# git clone https://github.com/MatteoRagni/AmuleWebUI-Reloaded files/usr/share/amule/webserver/AmuleWebUI-Reloaded
-# sed -i 's/runasuser "$config_dir"/runasuser "$config_dir"\nwget -P "$config_dir" -O "$config_dir\/nodes.dat" http:\/\/upd.emule-security.org\/nodes.dat/g' package/lean/luci-app-amule/root/etc/init.d/amule
-# sed -i "s/tb.innerHTML = '<em>/tb.innerHTML = '<em><b><font color=red>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
-# sed -i "s/var links = '<em>/var links = '<em><b><font color=green>/g" package/lean/luci-app-amule/luasrc/view/amule/overview_status.htm
-# rm -rf package/lean/antileech/src/* && \
-# git clone https://github.com/persmule/amule-dlp.antiLeech package/lean/antileech/src
-
 # svn co https://github.com/small-5/luci-app-adblock-plus/trunk/ ./package/diy/luci-app-adblock-plus
-
-#sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
@@ -260,9 +248,9 @@ rm -rf ./feeds/packages/net/shadowsocks-rust
 rm -rf ./feeds/packages/net/simple-obfs
 rm -rf ./feeds/packages/net/ssocks
 rm -rf ./feeds/packages/net/tcping
-rm -rf ./feeds/packages/net/v2ray*
-rm -rf ./feeds/packages/net/xray*
-rm -rf ./feeds/packages/net/trojan*
+# rm -rf ./feeds/packages/net/v2ray*
+# rm -rf ./feeds/packages/net/xray*
+# rm -rf ./feeds/packages/net/trojan*
 
 #bypass
 #rm -rf package/build/pass/luci-app-bypass
@@ -277,8 +265,8 @@ sed -i '/shadowsocks-libev-ss-local/d' Makefile
 popd
 pushd package/build/pass/luci-app-bypass
 sed -i 's,default n,default y,g' Makefile
-sed -i '/shadowsocks-libev-ss-redir/d' Makefile
-sed -i '/shadowsocks-libev-ss-server/d' Makefile
+#sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+#sed -i '/shadowsocks-libev-ss-server/d' Makefile
 sed -i '/shadowsocks-libev-ss-local/d' Makefile
 popd
 
@@ -286,8 +274,8 @@ popd
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 
 # Add luci-app-passwall
-git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall ./package/passwall
-# svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+# git clone --depth=1 https://github.com/MilesPoupart/openwrt-passwall ./package/passwall
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
 sed -i '/trojan-go/d' Makefile
@@ -309,16 +297,45 @@ sed -i '/shadowsocks-libev-ss-server/d' Makefile
 sed -i '/shadowsocks-libev-ss-local/d' Makefile
 popd
 rm -rf ./feeds/packages/net/https-dns-proxy
-svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
 
+svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
+svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 # rm -rf  ./package/ssr/luci-app-ssr-plus
 # ShadowsocksR Plus+ 依赖
 sed -i '/Build\/Compile/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $$(PKG_BUILD_DIR)/$(component)' feeds/packages/net/shadowsocks-rust/Makefile
 ln -sf ../../../feeds/packages/net/shadowsocks-rust ./package/feeds/packages/shadowsocks-rust
+
 svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
 ln -sf ../../../feeds/packages/net/kcptun ./package/feeds/packages/kcptun
+
+svn export https://github.com/MilesPoupart/openwrt-passwall/trunk/pdnsd-alt feeds/packages/net/pdnsd-alt
+ln -sf ../../../feeds/packages/net/pdnsd-alt ./package/feeds/packages/pdnsd-alt
+
+svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd
+svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/lean/microsocks
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
+svn export https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/lean/ipt2socks
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/lean/trojan
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/lean/tcping
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/lean/trojan-go
+svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
+svn export https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
+svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
+svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
+svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocks-rust feeds/packages/net/shadowsocks-rust
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
