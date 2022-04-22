@@ -19,6 +19,7 @@ cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
