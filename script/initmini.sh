@@ -19,7 +19,9 @@ cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
-rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
+#rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
+rm -rf ./package/other/up/luci-app-https-dns-proxy
+rm -rf ./package/other/up/oaf
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
@@ -184,7 +186,7 @@ sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/kool
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
-# git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
+git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
 # Fix libssh
 # rm -rf feeds/packages/libs
