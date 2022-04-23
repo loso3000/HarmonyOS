@@ -12,6 +12,7 @@ KEY=123456
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
+
 cp -f ./package/build/banner ./package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
 # replace banner
@@ -23,7 +24,9 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-mentohust 
 rm -rf ./feeds/packages/net/MentoHUST-OpenWrt-ipk
 rm -rf ./feeds/luci/applications/luci-proto-minieap
-rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
+#rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
+rm -rf ./package/other/up/luci-app-https-dns-proxy
+rm -rf ./package/other/up/oaf
 
 # CPU 控制相关
 rm -rf ./feeds/luci/applications/luci-app-cpufreq 
@@ -202,7 +205,7 @@ sed -i 's,1).dep,11).dep,g' ./package/luci-app-ikoolproxy/luasrc/controller/kool
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
-# git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
+git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
 # Fix libssh
 # rm -rf feeds/packages/libs
