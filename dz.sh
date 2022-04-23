@@ -19,7 +19,6 @@ cat ./package/build/set/sysctl.conf >>  package/base-files/files/etc/sysctl.conf
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
-rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
@@ -258,8 +257,8 @@ sed -i '/shadowsocks-libev-ss-redir/d' Makefile
 sed -i '/shadowsocks-libev-ss-server/d' Makefile
 sed -i '/shadowsocks-libev-ss-local/d' Makefile
 popd
-rm -rf ./feeds/packages/net/https-dns-proxy
-svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
+# rm -rf ./feeds/packages/net/https-dns-proxy
+# svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
