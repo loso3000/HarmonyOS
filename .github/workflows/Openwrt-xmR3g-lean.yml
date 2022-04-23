@@ -1,0 +1,125 @@
+name: Openwrt-xmR3g-lean
+
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+ #   watch:
+ #     types: started
+#  schedule:
+#    - cron: 0 21 */7 * * 
+
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: xm3g.lean
+  DIY_P1_SH: dz.sh
+  DIY_P2_SH: update_package_all.sh
+jobs:
+
+  build_openwrt:
+
+    name: OpenWrt_Build 
+
+    runs-on: ubuntu-latest
+
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Space cleanup
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo -E apt-get -qq update
+          sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
+          sudo -E apt-get -qq autoremove --purge
+          sudo -E apt-get -qq clean
+          sudo timedatectl set-timezone "Asia/Shanghai"
+      - name: Get current date
+        id: date
+        run: |
+          echo "date=$(date +'%m/%d_%Y_%H/%M')" >> $GITHUB_ENV
+          echo "date2=$(date +'%m/%d %Y')" >> $GITHUB_ENV
+          echo "date3=$(date +'%m.%d')" >> $GITHUB_ENV
+          echo "date4=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      - name: Update feeds
+        run: |
+          git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+          cd openwrt
+          #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
+          #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
+          git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+      - name: Update package
+        run: |
+         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
+         chmod +x ./$DIY_P1_SH
+         cd openwrt
+         ../$DIY_P1_SH
+         chmod -R 755 .
+      - name: Generate configuration file
+        working-directory: ./openwrt
+        run: |
+          make defconfig
+      - name: Make download
+        working-directory: ./openwrt
+        run: |
+          make download -j8
+          find dl -size -1024c -exec rm -f {} \;
+      - name: Compile firmware
+        id: compileopenwrt
+        continue-on-error: true
+        run: |
+         df -h
+         cd openwrt
+         make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
+         echo $?
+      - name: If Error
+        if: steps.compileopenwrt.outcome == 'failure'
+        run: |
+          cat openwrt/.config
+          echo '================================================================'
+          cd openwrt && make -j1 V=s
+          
+          echo $?
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: xmR3g_OpenWrt-IPV6-Firmware
+          path: ./openwrt/bin/targets/
+      - name: Upload  IPK
+        uses: actions/upload-artifact@main
+        with:
+          name: xmR3g_OpenWrt-IPV6-Ipk
+          path: ./openwrt/bin/packages
+      - name: Prepare Artifact
+        run: |
+          mkdir ./xmR3g
+          #find ./openwrt/bin/targets/ -name "*combined*" -or -name "*sysupgrade*" | xargs -i mv -f {} ./xmR3g/
+          # cp openwrt/.config  ./firmware/r2s.config
+          # cd ./firmware
+          # rename -v "s/friendlyarm_//" *
+          # gzip *.*
+      - name: Upload Firmware wetransfer
+        run: |
+          curl -fsSL git.io/file-transfer | sh
+          #./transfer wet -s -p 16 --no-progress ./xmR3g/ 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+      - name: Delete workflow runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+          retain_days: 14
+          keep_minimum_runs: 3
