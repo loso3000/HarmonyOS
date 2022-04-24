@@ -11,6 +11,7 @@ KEY=123456
 # 使用 O2 级别的优化
 # sed -i 's/O3/O2/g' include/target.mk
 git clone https://github.com/sirpdboy/build.git ./package/build
+git clone https://github.com/loso3000/other ./package/other
 
 cp -f ./package/build/banner ./package/base-files/files/etc/
 # replace banner
