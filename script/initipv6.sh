@@ -73,7 +73,7 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-ali
 # sed -i 's/1/0/g' linkease/files/linkease.config
 
 #zerotier
-rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git
+# rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git
 sed -i '/45)./d' luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
