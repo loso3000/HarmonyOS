@@ -54,6 +54,7 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
       - name: Load custom update feeds
         run: |
+          [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
           cd openwrt
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           ./scripts/feeds update -a
