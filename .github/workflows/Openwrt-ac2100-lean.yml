@@ -107,11 +107,7 @@ jobs:
           cd ./ac2100
           # rename -v "s/friendlyarm_//" *
           # gzip *.bin
-      - name: Upload firmware to cowtransfer
-        run: |
-         curl -fsSL git.io/file-transfer | sh
-         ./transfer cow --block 2621440 -s -p 64 --no-progress ./ac2100/ 2>&1 | tee cowtransfer.log
-         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
+
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
