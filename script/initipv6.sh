@@ -28,6 +28,8 @@ rm -rf ./feeds/luci/applications/luci-proto-minieap
 rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/oaf
 
+rm -rf ./feeds/packages/utils/containerd
+svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/containerd ./feeds/packages/utils/containerd
 # CPU 控制相关
 rm -rf ./feeds/luci/applications/luci-app-cpufreq 
 svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
@@ -388,8 +390,8 @@ svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/pac
 #
 # svn co https://github.com/jerrykuku/luci-app-ttnode/trunk/  package/diy/luci-app-ttnode
 
- sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
- sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+ sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
+ sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
