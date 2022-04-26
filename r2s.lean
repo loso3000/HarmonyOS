@@ -32,6 +32,7 @@ CONFIG_PACKAGE_kmod-fs-ext4=y
 CONFIG_PACKAGE_kmod-fs-vfat=y
 CONFIG_PACKAGE_kmod-scsi-core=y
 CONFIG_PACKAGE_e2fsprogs=y
+CONFIG_PACKAGE_kmod-usb-printer=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 
@@ -83,18 +84,18 @@ CONFIG_PACKAGE_luci-app-advanced=y
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 # CONFIG_PACKAGE_luci-app-control-timewol=n
-CONFIG_PACKAGE_luci-app-control-weburl=y
+CONFIG_PACKAGE_luci-app-control-weburl=n
 # CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
-CONFIG_PACKAGE_luci-app-timecontrol=y
+CONFIG_PACKAGE_luci-app-timecontrol=n
 # CONFIG_PACKAGE_luci-app-webadmin=y
-# CONFIG_PACKAGE_luci-app-cpulimit=n
+# CONFIG_PACKAGE_luci-app-cpulimit=y
 CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
 # CONFIG_PACKAGE_luci-app-hd-idle=n
-CONFIG_PACKAGE_luci-app-jd-dailybonus=y
+CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=y
 CONFIG_PACKAGE_luci-app-onliner=n
@@ -212,6 +213,9 @@ CONFIG_PACKAGE_luci-app-frpc=n
 CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
+
+CONFIG_PACKAGE_luci-app-beardropper=y
+CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 
 # 工具
 CONFIG_PACKAGE_kmod-ntfs-3g=y
