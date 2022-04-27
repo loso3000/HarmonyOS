@@ -44,12 +44,23 @@ CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 
 ## File System Drivers
+CONFIG_PACKAGE_kmod-fs-f2fs=y
+CONFIG_PACKAGE_kmod-fs-nfs=y
+CONFIG_PACKAGE_kmod-fs-nfs-v3=y
+CONFIG_PACKAGE_kmod-fs-nfs-v4=y
+CONFIG_PACKAGE_kmod-fs-squashfs=y
+CONFIG_DEFAULT_kmod-fs-vfat=y
 CONFIG_PACKAGE_ntfs-3g=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 #CONFIG_PACKAGE_antfs-mount=y
 #CONFIG_PACKAGE_kmod-fs-antfs=n
 #CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_block-mount=y
+
+#Tailscale
+CONFIG_PACKAGE_libustream-openssl=y
+CONFIG_PACKAGE_ca-bundle=y
+CONFIG_PACKAGE_kmod-tun=y
 #base插件
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_dnspod=y
@@ -71,7 +82,7 @@ CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_automount=y
 # CONFIG_PACKAGE_autocore-x86 is not set
-CONFIG_PACKAGE_myautocore-x86=y
+CONFIG_PACKAGE_myautocore-arm=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
@@ -155,8 +166,8 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
-CONFIG_PACKAGE_luci-app-mosdns=n
-CONFIG_PACKAGE_luci-app-ikoolproxy=n
+CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-ikoolproxy=y
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 # CONFIG_PACKAGE_luci-app-wireguard is not set
 #主题
@@ -191,15 +202,14 @@ CONFIG_PACKAGE_luci-app-pptp-server=n
 CONFIG_PACKAGE_luci-app-pppoe-server=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-serve=n
-# CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set
 CONFIG_PACKAGE_luci-app-docker=n
 CONFIG_PACKAGE_luci-app-dockerman=n
 CONFIG_PACKAGE_luci-app-koolddns=y
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=n
-# CONFIG_PACKAGE_luci-app-uugamebooster is not set
+# CONFIG_PACKAGE_luci-app-uugamebooster=y
 CONFIG_DEFAULT_luci-app-cpufreq=y
-CONFIG_PACKAGE_luci-app-udpxy=n
+CONFIG_PACKAGE_luci-app-udpxy=y
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-oaf=n
 CONFIG_PACKAGE_luci-app-transmission=n
@@ -224,8 +234,8 @@ CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_blkid=y
 # CONFIG_PACKAGE_qemu-ga=y
 # CONFIG_PACKAGE_smartmontools=y
-CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
-# CONFIG_PACKAGE_ethtool=y #网卡工具
+# CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
+CONFIG_PACKAGE_ethtool=y #网卡工具
 CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
 # CONFIG_PACKAGE_parted=n #128个区分区工具z
 CONFIG_PACKAGE_fdisk=y #分区工具
