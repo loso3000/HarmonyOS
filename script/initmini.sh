@@ -255,18 +255,18 @@ sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
-pushd package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
-sed -i '/shadowsocks-libev-ss-redir/d' Makefile
-sed -i '/shadowsocks-libev-ss-server/d' Makefile
-sed -i '/shadowsocks-libev-ss-local/d' Makefile
-popd
-pushd package/pass/luci-app-ssr-plus
-sed -i 's,default n,default y,g' Makefile
-sed -i '/shadowsocks-libev-ss-redir/d' Makefile
-sed -i '/shadowsocks-libev-ss-server/d' Makefile
-sed -i '/shadowsocks-libev-ss-local/d' Makefile
-popd
+# pushd package/passwall/luci-app-passwall
+# sed -i 's,default n,default y,g' Makefile
+# sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+# sed -i '/shadowsocks-libev-ss-server/d' Makefile
+# sed -i '/shadowsocks-libev-ss-local/d' Makefile
+# popd
+# pushd package/pass/luci-app-ssr-plus
+# sed -i 's,default n,default y,g' Makefile
+# sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+# sed -i '/shadowsocks-libev-ss-server/d' Makefile
+# sed -i '/shadowsocks-libev-ss-local/d' Makefile
+# popd
 rm -rf ./feeds/packages/net/https-dns-proxy
 svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
@@ -285,7 +285,6 @@ rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./feeds/packages/net/xray-core
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd
 svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/lean/microsocks
@@ -316,10 +315,7 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 #sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
-pushd package/lean/luci-app-vssr
-sed -i 's,default n,default y,g' Makefile
-sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
-popd
+
 
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
