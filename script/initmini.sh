@@ -286,6 +286,7 @@ rm -rf ./feeds/packages/net/xray-core
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd-alt
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/lean/pdnsd
 svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/lean/microsocks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/lean/dns2socks
@@ -317,10 +318,6 @@ sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 pushd package/lean/luci-app-vssr
 sed -i 's,default n,default y,g' Makefile
-sed -i '/trojan-go/d' Makefile
-sed -i '/v2ray-core/d' Makefile
-sed -i '/v2ray-plugin/d' Makefile
-sed -i '/xray-plugin/d' Makefile
 sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
 popd
 
