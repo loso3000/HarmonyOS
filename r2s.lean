@@ -82,6 +82,7 @@ CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_automount=y
 # CONFIG_PACKAGE_autocore-x86 is not set
+# CONFIG_PACKAGE_autocore-arm is not set
 CONFIG_PACKAGE_myautocore-arm=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
@@ -232,7 +233,7 @@ CONFIG_PACKAGE_kmod-ntfs-3g=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_blkid=y
-# CONFIG_PACKAGE_qemu-ga=y
+CONFIG_PACKAGE_qemu-ga=y
 # CONFIG_PACKAGE_smartmontools=y
 # CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
 CONFIG_PACKAGE_ethtool=y #网卡工具
