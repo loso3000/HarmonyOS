@@ -232,12 +232,12 @@ git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter  package/n
 # svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
 # Add luci-app-dockerman
-rm -rf feeds/luci/collections/luci-lib-docker
+# rm -rf feeds/luci/collections/luci-lib-docker
 rm -rf feeds/luci/applications/luci-app-docker
 rm -rf feeds/luci/applications/luci-app-dockerman
 # git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./feeds/luci/collections/luci-lib-docker
-git clone --depth=1 https://github.com/lisaac/luci-lib-docker  ./feeds/luci/collections/luci-lib-docker
-git clone --depth=1 https://github.com/lisaac/luci-lib-docker  packages/luci/luci-lib-docker
+# git clone --depth=1 https://github.com/lisaac/luci-lib-docker  ./feeds/luci/collections/luci-lib-docker
+# git clone --depth=1 https://github.com/lisaac/luci-lib-docker  packages/luci/luci-lib-docker
 
 rm -rf ./packages/build/ddns-scripts_dnspod
 rm -rf ./package/lean/ddns-scripts_aliyun
