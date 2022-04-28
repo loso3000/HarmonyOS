@@ -1,23 +1,6 @@
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7620=y
 CONFIG_TARGET_ramips_mt7620_DEVICE_xiaomi_miwifi-r3=y
-# CONFIG_PACKAGE_iptables-mod-extra is not set
-# CONFIG_PACKAGE_iptables-mod-tproxy is not set
-CONFIG_PACKAGE_kmod-crypto-des=y
-CONFIG_PACKAGE_kmod-crypto-md5=y
-# CONFIG_PACKAGE_kmod-inet-diag is not set
-# CONFIG_PACKAGE_kmod-ip6tables is not set
-# CONFIG_PACKAGE_kmod-ipt-extra is not set
-# CONFIG_PACKAGE_kmod-ipt-tproxy is not set
-CONFIG_PACKAGE_kmod-mt7603=y
-# CONFIG_PACKAGE_kmod-nf-ipt6 is not set
-# CONFIG_PACKAGE_kmod-nf-reject6 is not set
-# CONFIG_PACKAGE_kmod-tun is not set
-CONFIG_PACKAGE_kmod-usb-ledtrig-usbport=y
-# CONFIG_PACKAGE_kmod-usb-ohci is not set
-CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
-# CONFIG_PACKAGE_kmod-usb2 is not set
-CONFIG_PACKAGE_kmod-usb3=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 CONFIG_TARGET_ROOTFS_TARGZ=n
@@ -204,9 +187,7 @@ CONFIG_PACKAGE_kmod-fs-nfs-v3=y
 CONFIG_PACKAGE_kmod-fs-nfs-v4=y
 CONFIG_PACKAGE_kmod-fs-squashfs=y
 CONFIG_DEFAULT_kmod-fs-vfat=y
-CONFIG_PACKAGE_ntfs-3g=n
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
-#CONFIG_PACKAGE_antfs-mount=y
+CONFIG_PACKAGE_antfs-mount=y
 #CONFIG_PACKAGE_kmod-fs-antfs=n
 #CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_block-mount=y
