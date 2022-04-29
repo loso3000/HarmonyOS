@@ -187,7 +187,7 @@ CONFIG_PACKAGE_kmod-fs-nfs-v3=y
 CONFIG_PACKAGE_kmod-fs-nfs-v4=y
 CONFIG_PACKAGE_kmod-fs-squashfs=y
 CONFIG_DEFAULT_kmod-fs-vfat=y
-CONFIG_PACKAGE_antfs-mount=y
-#CONFIG_PACKAGE_kmod-fs-antfs=n
+# CONFIG_PACKAGE_antfs-mount=y
+#CONFIG_PACKAGE_kmod-fs-antfs is not set
 #CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_block-mount=y
