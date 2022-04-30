@@ -92,7 +92,7 @@ jobs:
         if: steps.compileopenwrt.outcome == 'failure'
         run: |
           cat openwrt/.config
-          cp openwrt/.config  ./openwrt/bin/targets/r3.config
+          #cp openwrt/.config  ./openwrt/bin/targets/r3.config
           echo '================================================================'
           cd openwrt && make -j1 V=s
           
