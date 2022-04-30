@@ -44,10 +44,11 @@ CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_automount=y
 # CONFIG_PACKAGE_autocore-x86 is not set
+# CONFIG_PACKAGE_autocore-arm is not set
 # CONFIG_PACKAGE_myautocore-arm=y
 # CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
@@ -74,7 +75,7 @@ CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=n
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is not set
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
@@ -201,21 +202,21 @@ CONFIG_ALL_NONSHARED=y
 CONFIG_DEVEL=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_AUTOREMOVE=y
-CONFIG_BPF_TOOLCHAIN_BUILD_LLVM=y
+CONFIG_BPF_TOOLCHAIN_BUILD_LLVM=n
 # CONFIG_BPF_TOOLCHAIN_NONE is not set
 CONFIG_BUILDBOT=y
-CONFIG_COLLECT_KERNEL_DEBUG=y
-CONFIG_HAS_BPF_TOOLCHAIN=y
+CONFIG_COLLECT_KERNEL_DEBUG=n
+CONFIG_HAS_BPF_TOOLCHAIN=n
 CONFIG_IB=y
 CONFIG_KERNEL_BUILD_DOMAIN="buildhost"
 CONFIG_KERNEL_BUILD_USER="builder"
-CONFIG_MAKE_TOOLCHAIN=y
+CONFIG_MAKE_TOOLCHAIN=n
 CONFIG_PACKAGE_libbpf=y
 CONFIG_PACKAGE_libelf=y
 CONFIG_PACKAGE_qosify=y
 CONFIG_PACKAGE_tc-tiny=y
 CONFIG_REPRODUCIBLE_DEBUG_INFO=y
-CONFIG_SDK=y
+CONFIG_SDK=n
 CONFIG_SDK_LLVM_BPF=y
 CONFIG_TARGET_ALL_PROFILES=y
 CONFIG_USE_LLVM_BUILD=y
