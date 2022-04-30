@@ -64,6 +64,7 @@ rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/bu
 rm -rf ./feeds/luci/applications/luci-app-arpbind  && svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
+rm -rf ./package/diy/luci-app-dockerman
 
 # rm -rf ./feeds/packages-master/utils/docker
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
