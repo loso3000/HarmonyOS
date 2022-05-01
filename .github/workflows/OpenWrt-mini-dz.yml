@@ -68,7 +68,7 @@ jobs:
           ./scripts/feeds install -a
       - name: Update package
         run: |
-         #[ -e $CONFIG_FILE ] && cat $CONFIG_FILE  >> ./openwrt/.config
+         [ -e $CONFIG_FILE ] && cat $CONFIG_FILE  >> ./openwrt/.config
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH 
          cd openwrt
