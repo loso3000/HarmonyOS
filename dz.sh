@@ -363,8 +363,8 @@ git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/l
 # ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
-date1='Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' by Sirpdboy '
-#date1='Ipv6-R20220508'
+date1='Ipv6-Mini-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+#date1='Ipv6-R20220508'' by Sirpdboy '
 #sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/2022422-Ipv6-5.15-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
 #sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220415-Ipv6-Plus-5.4-/g' include/image.mk
