@@ -232,10 +232,10 @@ CONFIG_PACKAGE_luci-app-advanced=y
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 # CONFIG_PACKAGE_luci-app-control-timewol=y
-CONFIG_PACKAGE_luci-app-control-weburl=y
+CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
-CONFIG_PACKAGE_luci-app-timecontrol=y
+CONFIG_PACKAGE_luci-app-timecontrol=n
 # CONFIG_PACKAGE_luci-app-webadmin=y
 # CONFIG_PACKAGE_luci-app-cpulimit=y
 CONFIG_PACKAGE_luci-app-diskman=y
@@ -345,6 +345,13 @@ CONFIG_PACKAGE_luci-app-openvpn-server=y
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=y
 
+CONFIG_PACKAGE_luci-app-bridge=n
+CONFIG_PACKAGE_luci-app-cowbping=y
+CONFIG_PACKAGE_luci-app-beardropper=y
+CONFIG_PACKAGE_luci-app-control-parentcontrol=y
+CONFIG_PACKAGE_luci-app-https-dns-proxy=n
+CONFIG_PACKAGE_luci-app-pwdHackDeny=n
+CONFIG_PACKAGE_luci-app-oaf=y
 # 工具
 CONFIG_PACKAGE_kmod-ntfs-3g=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
