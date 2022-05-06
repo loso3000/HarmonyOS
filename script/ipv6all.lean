@@ -1,36 +1,37 @@
 CONFIG_TARGET_x86=y
 CONFIG_TARGET_x86_64=y
 CONFIG_TARGET_x86_64_DEVICE_generic=y
+# 设置固件大小
+CONFIG_TARGET_KERNEL_PARTSIZE=64
+CONFIG_TARGET_ROOTFS_PARTSIZE=926
+
+CONFIG_COREMARK_NUMBER_OF_THREADS=128
+CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
+# CONFIG_PACKAGE_i915-firmware is not set
 
 # 所集成的固件类型
+# CONFIG_TARGET_ROOTFS_INITRAMFS is not set
+# CONFIG_TARGET_ROOTFS_CPIOGZ is not set
 CONFIG_TARGET_ROOTFS_TARGZ=y
+# CONFIG_TARGET_ROOTFS_EXT4FS is not set
 CONFIG_TARGET_ROOTFS_SQUASHFS=y
-
-# 不压缩efi
-# CONFIG_TARGET_IMAGES_GZIP is not set
-
-# 设置固件大小
-CONFIG_COREMARK_NUMBER_OF_THREADS=128
-CONFIG_TARGET_KERNEL_PARTSIZE=64
-CONFIG_TARGET_ROOTFS_PARTSIZE=920
-
-CONFIG_ALL_KMODS=y
-CONFIG_ALL_NONSHARED=y
+CONFIG_TARGET_UBIFS_FREE_SPACE_FIXUP=y
+CONFIG_TARGET_UBIFS_JOURNAL_SIZE=""
 CONFIG_GRUB_IMAGES=y
 CONFIG_GRUB_EFI_IMAGES=y
-CONFIG_BUSYBOX_CUSTOM=y
-CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
 # CONFIG_GRUB_CONSOLE is not set
+CONFIG_GRUB_BOOTOPTS="nomodeset"
 CONFIG_GRUB_TIMEOUT="0"
 CONFIG_GRUB_TITLE="OpenWrt"
 # CONFIG_ISO_IMAGES is not set
-
+# CONFIG_VDI_IMAGES is not set
+# CONFIG_VMDK_IMAGES is not set
 # CONFIG_VMDK_IMAGES is not set
 
 # CONFIG_SIGNATURE_CHECK is not set
 # CONFIG_SIGNED_PACKAGES is not set
-# CONFIG_PACKAGE_i915-firmware is not set
-
+# 不压缩efi
+# CONFIG_TARGET_IMAGES_GZIP is not set
 #ipv6
 
 CONFIG_PACKAGE_ipv6helper=y
@@ -38,74 +39,165 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
 CONFIG_PACKAGE_6to4=y
-
-
-#USB net driver
-CONFIG_PACKAGE_kmod-usb-ohci=y
-CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-CONFIG_PACKAGE_kmod-usb-roles=y
-CONFIG_PACKAGE_kmod-usb-wdm=y
-CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
+#network 
+# CONFIG_PACKAGE_r8169-firmware=y
+CONFIG_PACKAGE_bnx2x-firmware=y
+CONFIG_PACKAGE_e100-firmware=y
+CONFIG_PACKAGE_kmod-3c59x=y
+CONFIG_PACKAGE_kmod-atl1=y
+CONFIG_PACKAGE_kmod-atl1c=y
+CONFIG_PACKAGE_kmod-atl1e=y
+CONFIG_PACKAGE_kmod-atl2=y
+CONFIG_PACKAGE_kmod-atm=y
+CONFIG_PACKAGE_kmod-b44=y
+CONFIG_PACKAGE_kmod-be2net=y
+CONFIG_PACKAGE_kmod-bnx2x=y
+CONFIG_PACKAGE_kmod-dm9000=y
+CONFIG_PACKAGE_kmod-dummy=y
+CONFIG_PACKAGE_kmod-e100=y
+CONFIG_PACKAGE_kmod-et131x=y
+CONFIG_PACKAGE_kmod-ethoc=y
+CONFIG_PACKAGE_kmod-hfcmulti=y
+CONFIG_PACKAGE_kmod-hfcpci=y
+CONFIG_PACKAGE_kmod-iavf=y
+CONFIG_PACKAGE_kmod-ixgbevf=y
+CONFIG_PACKAGE_kmod-lib-crc32c=y
+CONFIG_PACKAGE_kmod-mdio-gpio=y
+CONFIG_PACKAGE_kmod-misdn=y
+CONFIG_PACKAGE_kmod-natsemi=y
+CONFIG_PACKAGE_kmod-ne2k-pci=y
+CONFIG_PACKAGE_kmod-niu=y
+CONFIG_PACKAGE_kmod-of-mdio=y
+CONFIG_PACKAGE_kmod-phy-bcm84881=y
+CONFIG_PACKAGE_kmod-phy-broadcom=y
+CONFIG_PACKAGE_kmod-phy-realtek=y
+CONFIG_PACKAGE_kmod-phylib-broadcom=y
+CONFIG_PACKAGE_kmod-phylink=y
+# CONFIG_PACKAGE_kmod-r8169=n
+CONFIG_PACKAGE_kmod-random-core=y
+CONFIG_PACKAGE_kmod-sfp=y
+CONFIG_PACKAGE_kmod-siit=y
+CONFIG_PACKAGE_kmod-sis190=y
+CONFIG_PACKAGE_kmod-sis900=y
+CONFIG_PACKAGE_kmod-skge=y
+CONFIG_PACKAGE_kmod-sky2=y
+CONFIG_PACKAGE_kmod-solos-pci=y
+CONFIG_PACKAGE_kmod-spi-ks8995=y
+CONFIG_PACKAGE_kmod-ssb=y
+CONFIG_PACKAGE_kmod-swconfig=y
+CONFIG_PACKAGE_kmod-switch-bcm53xx=y
+CONFIG_PACKAGE_kmod-switch-bcm53xx-mdio=y
+CONFIG_PACKAGE_kmod-switch-ip17xx=y
+CONFIG_PACKAGE_kmod-switch-mvsw61xx=y
+CONFIG_PACKAGE_kmod-switch-rtl8306=y
+CONFIG_PACKAGE_kmod-switch-rtl8366-smi=y
+CONFIG_PACKAGE_kmod-switch-rtl8366rb=y
+CONFIG_PACKAGE_kmod-switch-rtl8366s=y
+CONFIG_PACKAGE_kmod-switch-rtl8367b=y
+CONFIG_PACKAGE_kmod-usb-atm=y
+CONFIG_PACKAGE_kmod-usb-atm-cxacru=y
+CONFIG_PACKAGE_kmod-usb-atm-speedtouch=y
+CONFIG_PACKAGE_kmod-usb-atm-ueagle=y
+CONFIG_PACKAGE_kmod-usb-cm109=y
 CONFIG_PACKAGE_kmod-usb-dwc2=y
 CONFIG_PACKAGE_kmod-usb-dwc3=y
-
-# USB3.0支持:
+CONFIG_PACKAGE_kmod-usb-ehci=y
+CONFIG_PACKAGE_kmod-usb-ledtrig-usbport=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
+CONFIG_PACKAGE_kmod-usb-net-dm9601-ether=y
+CONFIG_PACKAGE_kmod-usb-net-hso=y
+CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-kalmia=y
+CONFIG_PACKAGE_kmod-usb-net-kaweth=y
+CONFIG_PACKAGE_kmod-usb-net-mcs7830=y
+CONFIG_PACKAGE_kmod-usb-net-pegasus=y
+CONFIG_PACKAGE_kmod-usb-net-pl=y
+CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
+CONFIG_PACKAGE_kmod-usb-net-sierrawireless=y
+CONFIG_PACKAGE_kmod-usb-net-smsc95xx=y
+CONFIG_PACKAGE_kmod-usb-net-sr9700=y
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+CONFIG_PACKAGE_kmod-usb-uhci=y
+CONFIG_PACKAGE_kmod-usb-wdm=y
+CONFIG_PACKAGE_kmod-usb-yealink=y
+CONFIG_PACKAGE_kmod-usbip=y
+CONFIG_PACKAGE_kmod-usbip-client=y
+CONFIG_PACKAGE_kmod-usbip-server=y
+CONFIG_PACKAGE_kmod-usbmon=y
+CONFIG_PACKAGE_kmod-via-rhine=y
+CONFIG_PACKAGE_kmod-via-velocity=y
+#USB net driver
+CONFIG_PACKAGE_kmod-usb-dwc2=y
+CONFIG_PACKAGE_kmod-usb-dwc3=y
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb2-pci=y
 CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-usb-ehci=y
+CONFIG_PACKAGE_kmod-usb-ledtrig-usbport=y
+CONFIG_PACKAGE_kmod-usb-net-aqc111=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
+CONFIG_PACKAGE_kmod-usb-net-hso=y
+CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-ipheth=y
+CONFIG_PACKAGE_kmod-usb-net-kalmia=y
+CONFIG_PACKAGE_kmod-usb-net-kaweth=y
+CONFIG_PACKAGE_kmod-usb-net-pegasus=y
+CONFIG_PACKAGE_kmod-usb-net-pl=y
+CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
+CONFIG_PACKAGE_kmod-usb-net-sierrawireless=y
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+CONFIG_PACKAGE_kmod-usb-printer=y
+CONFIG_PACKAGE_kmod-usb-roles=y
+CONFIG_PACKAGE_kmod-usb-wdm=y
+CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
 
+### Ethernet Support
+# CONFIG_PACKAGE_kmod-usb-net-asix is not set
+# CONFIG_PACKAGE_kmod-usb-net-asix-ax88179 is not set
+CONFIG_DEFAULT_kmod-usb-net-rtl8150=y
+CONFIG_DEFAULT_kmod-usb-net-rtl8152-vendor=y
+CONFIG_DEFAULT_kmod-via-velocity=y
+CONFIG_DEFAULT_kmod-vmxnet3=y
 
-CONFIG_DEFAULT_kmod-8139cp=y
-CONFIG_DEFAULT_kmod-8139too=y
-CONFIG_DEFAULT_kmod-alx=y
-CONFIG_DEFAULT_kmod-amazon-ena=y
-CONFIG_DEFAULT_kmod-amd-xgbe=y
-CONFIG_DEFAULT_kmod-bnx2=y
-CONFIG_DEFAULT_kmod-bnx2x=y
-CONFIG_DEFAULT_kmod-button-hotplug=y
-CONFIG_DEFAULT_kmod-e1000=y
-CONFIG_DEFAULT_kmod-e1000e=y
-CONFIG_DEFAULT_kmod-forcedeth=y
-CONFIG_DEFAULT_kmod-fs-f2fs=y
-CONFIG_DEFAULT_kmod-fs-vfat=y
-CONFIG_DEFAULT_kmod-i40e=y
-CONFIG_DEFAULT_kmod-i40evf=y
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
 CONFIG_DEFAULT_kmod-iavf=y
 CONFIG_DEFAULT_kmod-igb=y
 CONFIG_DEFAULT_kmod-igbvf=y
 CONFIG_DEFAULT_kmod-igc=y
 CONFIG_DEFAULT_kmod-ipt-raw=y
 CONFIG_DEFAULT_kmod-ixgbe=y
-CONFIG_DEFAULT_kmod-mlx4-core=y
-CONFIG_DEFAULT_kmod-mlx5-core=y
-CONFIG_DEFAULT_kmod-mmc=y
-CONFIG_DEFAULT_kmod-nf-nathelper=y
-CONFIG_DEFAULT_kmod-nf-nathelper-extra=y
-CONFIG_DEFAULT_kmod-pcnet32=y
-CONFIG_DEFAULT_kmod-r8125=y
+# CONFIG_DEFAULT_kmod-r8125=y
 CONFIG_DEFAULT_kmod-r8168=y
 # CONFIG_PACKAGE_kmod-r8169 is not set
-CONFIG_DEFAULT_kmod-sdhci=y
-CONFIG_DEFAULT_kmod-sound-hda-codec-hdmi=y
-CONFIG_DEFAULT_kmod-sound-hda-codec-realtek=y
-CONFIG_DEFAULT_kmod-sound-hda-codec-via=y
-CONFIG_DEFAULT_kmod-sound-hda-core=y
-CONFIG_DEFAULT_kmod-sound-hda-intel=y
-CONFIG_DEFAULT_kmod-sound-i8x0=y
-CONFIG_DEFAULT_kmod-sound-via82xx=y
-CONFIG_DEFAULT_kmod-tulip=y
-CONFIG_DEFAULT_kmod-usb-audio=y
-CONFIG_DEFAULT_kmod-usb-hid=y
-CONFIG_DEFAULT_kmod-usb-net=y
-CONFIG_DEFAULT_kmod-usb-net-asix-ax88179=y
-CONFIG_DEFAULT_kmod-usb-net-rtl8150=y
-CONFIG_DEFAULT_kmod-usb-net-rtl8152-vendor=y
-CONFIG_DEFAULT_kmod-via-velocity=y
-CONFIG_DEFAULT_kmod-vmxnet3=y
 
+## File System Drivers
+CONFIG_PACKAGE_kmod-fs-f2fs=y
+CONFIG_PACKAGE_kmod-fs-nfs=y
+CONFIG_PACKAGE_kmod-fs-nfs-v3=y
+CONFIG_PACKAGE_kmod-fs-nfs-v4=y
+CONFIG_PACKAGE_kmod-fs-squashfs=y
+CONFIG_DEFAULT_kmod-fs-vfat=y
+CONFIG_PACKAGE_ntfs-3g=y
+#CONFIG_PACKAGE_antfs-mount=y
+#CONFIG_PACKAGE_kmod-fs-antfs=n
+#CONFIG_PACKAGE_kmod-fs-ntfs is not set
+CONFIG_PACKAGE_block-mount=y
+
+#Tailscale
+CONFIG_PACKAGE_libustream-openssl=y
+CONFIG_PACKAGE_ca-bundle=y
+CONFIG_PACKAGE_kmod-tun=y
 
 CONFIG_PACKAGE_automount=y
-
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
@@ -127,9 +219,8 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 CONFIG_PACKAGE_ddns-scripts_nsupdate=y
 CONFIG_PACKAGE_ddns-scripts_route53-v1=y
 # CONFIG_PACKAGE_autosamba is not set
-CONFIG_PACKAGE_autocore=y
-CONFIG_PACKAGE_autocore-x86=y
-# CONFIG_PACKAGE_my-autocore-x86=y
+# CONFIG_PACKAGE_autocore-x86 is not set
+CONFIG_PACKAGE_myautocore-x86=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
@@ -195,7 +286,7 @@ CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-ikoolproxy=y
+CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-wireguard=y  #默认加了取消
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set
@@ -234,8 +325,6 @@ CONFIG_PACKAGE_luci-app-pppoe-server=y
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-serve=y
 # CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set
-CONFIG_PACKAGE_luci-app-docker=y
-CONFIG_PACKAGE_luci-app-dockerman=y
 CONFIG_PACKAGE_luci-app-koolddns=y
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=y
@@ -332,3 +421,12 @@ CONFIG_PACKAGE_luci-proto-ncm=y
 CONFIG_PACKAGE_comgt=y
 CONFIG_PACKAGE_kmod-usb-acm=y
 CONFIG_PACKAGE_luci-proto-3g=y
+
+### DOCKER ###
+CONFIG_PACKAGE_luci-app-docker=y
+CONFIG_PACKAGE_luci-app-dockerman=y
+CONFIG_DOCKER_KERNEL_OPTIONS=y
+CONFIG_DOCKER_NET_ENCRYPT=y
+CONFIG_DOCKER_NET_MACVLAN=y
+CONFIG_DOCKER_NET_OVERLAY=y
+CONFIG_DOCKER_NET_TFTP=y
