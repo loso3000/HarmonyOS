@@ -27,11 +27,12 @@ CONFIG_PACKAGE_luci-app-wolplus=y
 CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_automount=y
-# CONFIG_PACKAGE_autocore-x86 is not set
-CONFIG_PACKAGE_myautocore-x86=y
+# CONFIG_PACKAGE_autocore-arm is not set
+#CONFIG_PACKAGE_myautocore-x86=y
+CONFIG_PACKAGE_myautocore-arm=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
@@ -47,7 +48,7 @@ CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-timecontrol=n
 # CONFIG_PACKAGE_luci-app-webadmin=n
 # CONFIG_PACKAGE_luci-app-cpulimit=n
-CONFIG_PACKAGE_luci-app-diskman=y
+CONFIG_PACKAGE_luci-app-diskman=n
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
@@ -56,9 +57,9 @@ CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
-CONFIG_PACKAGE_luci-app-openclash=n
+CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is not set
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
@@ -89,7 +90,7 @@ CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=y
-CONFIG_PACKAGE_luci-app-bypass=m
+CONFIG_PACKAGE_luci-app-bypass=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Kcptun=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_obfs_server=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
@@ -167,7 +168,7 @@ CONFIG_PACKAGE_luci-app-aliddns=n
 # CONFIG_PACKAGE_luci-app-uugamebooster is not set
 CONFIG_DEFAULT_luci-app-cpufreq=y
 CONFIG_PACKAGE_luci-app-udpxy=n
-CONFIG_PACKAGE_luci-app-socat=n
+CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-transmission=n
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
 CONFIG_PACKAGE_luci-app-mwan3helper=n
