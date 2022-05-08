@@ -29,10 +29,10 @@ rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/oaf
 
 rm -rf ./feeds/packages/utils/dockerd
-svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/dockerd ./feeds/packages/utils/dockerd
+svn export https://github.com/immortalwrt/packages/branches/openwrt-21.02/utils/dockerd ./feeds/packages/utils/dockerd
 
 rm -rf ./feeds/packages/utils/containerd
-svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/containerd ./feeds/packages/utils/containerd
+svn export https://github.com/immortalwrt/packages/branches/openwrt-21.02/utils/containerd ./feeds/packages/utils/containerd
 
 # Add luci-app-dockerman
 # rm -rf package/build/luci-app-dockerman
