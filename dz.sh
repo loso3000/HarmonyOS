@@ -44,19 +44,22 @@ sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generat
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
-rm -rf ./feeds/luci/applications/luci-app-netdata 
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
-rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
+
+rm -rf ./package/build/luci-app-netdata 
+rm -rf ./package/build/netdata
+#rm -rf ./feeds/luci/applications/luci-app-netdata 
+#svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
+#rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
+
 cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3 && rm -rf ./package/build/mwan3
-
 # sed -i 's,+mwan3,+mwan3plus,g' ./feeds/luci/applications/luci-app-mwan3/Makefile
-
 # rm -rf ./package/build/mwan3 
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 # rm -rf ./feeds/packages/net/mwan3 && svn co https://github.com/sirpdboy/build/trunk/mwan3 ./feeds/packages/net/mwan3
 # rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
 # rm -rf ./package/lean/autosamba
 # rm -rf ./feeds/luci/applications/luci-app-accesscontrol
+
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
 rm -rf ./package/lean/autocore  && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
@@ -65,7 +68,7 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind  && svn co https://github.com/
 
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
-rm -rf ./package/diy/luci-app-dockerman
+# rm -rf ./package/build/luci-app-dockerman
 # rm -rf ./feeds/packages-master/utils/docker
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
 #rm -rf ./feeds/luci/applications/vlmcsd 
@@ -83,16 +86,16 @@ svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
 sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
 #zerotier 
-rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier
+# rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier  #取消防火墙
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 #syncdial
-rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial
+rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
 
-rm -rf ./feeds/luci/applications/luci-app-baidupcs-web && \
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./feeds/luci/applications/luci-app-baidupcs-web
+# rm -rf ./feeds/luci/applications/luci-app-baidupcs-web && \
+# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-baidupcs-web ./feeds/luci/applications/luci-app-baidupcs-web
 
 # samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
