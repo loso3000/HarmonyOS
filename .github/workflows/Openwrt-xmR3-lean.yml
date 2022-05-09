@@ -92,20 +92,18 @@ jobs:
         if: steps.compileopenwrt.outcome == 'failure'
         run: |
           cat openwrt/.config
-          #cp openwrt/.config  ./openwrt/bin/targets/r3.config
           echo '================================================================'
           cd openwrt && make -j1 V=s
-          
-          echo $?
+          cp .config  ./bin/targets/r3.config
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: xmR3P_OpenWrt-IPV6-Firmware
+          name: xmR3_OpenWrt-IPV6-Firmware
           path: ./openwrt/bin/targets/
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: xmR3P_OpenWrt-IPV6-Ipk
+          name: xmR3_OpenWrt-IPV6-Ipk
           path: ./openwrt/bin/packages
       - name: Prepare Artifact
         run: |
