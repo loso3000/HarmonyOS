@@ -13,7 +13,7 @@ git clone https://github.com/loso3000/other ./package/other
 cp -f ./package/build/banner ./package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
 
-cp-f ./package/build/ramips/.  target/linux/ramips/.
+cp -f ./package/build/ramips/.  target/linux/ramips/.
 
 #修正nat回流 
 cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
