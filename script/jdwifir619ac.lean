@@ -6,6 +6,7 @@ CONFIG_TARGET_BOARD="ipq40xx"
 CONFIG_EFI_IMAGES=y
 CONFIG_TARGET_ROOTFS_TARGZ=n
 # CONFIG_VMDK_IMAGES is not set
+
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
@@ -145,3 +146,34 @@ CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-amule=n
+
+# Wireless Support
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_wpad-wolfssl=y
+CONFIG_DRIVER_11AC_SUPPORT=y
+CONFIG_DRIVER_11N_SUPPORT=y
+CONFIG_DRIVER_11W_SUPPORT=y
+
+# 3G/4G Drivers & Utilities
+CONFIG_PACKAGE_comgt-ncm=y
+CONFIG_PACKAGE_comgt=y
+CONFIG_PACKAGE_kmod-mii=y
+CONFIG_PACKAGE_kmod-usb-acm=y
+CONFIG_PACKAGE_kmod-usb-serial=y
+CONFIG_PACKAGE_kmod-usb-serial-option=y
+CONFIG_PACKAGE_kmod-usb-serial-wwan=y
+CONFIG_PACKAGE_luci-proto-3g=y
+CONFIG_PACKAGE_luci-proto-ncm=y
+CONFIG_PACKAGE_luci-proto-qmi=y
+CONFIG_PACKAGE_qmi-utils=y
+CONFIG_PACKAGE_umbim=y
+CONFIG_PACKAGE_uqmi=y
+CONFIG_PACKAGE_usb-modeswitch=y
+
+# Mobile Network Sharing
+CONFIG_PACKAGE_libimobiledevice-utils=y
+CONFIG_PACKAGE_libplist-utils=y
+CONFIG_PACKAGE_libudev-fbsd=y
+CONFIG_PACKAGE_libusbmuxd-utils=y
+CONFIG_PACKAGE_usbmuxd=y
