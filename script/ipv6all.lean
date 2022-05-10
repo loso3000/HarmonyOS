@@ -32,8 +32,261 @@ CONFIG_GRUB_TITLE="OpenWrt"
 # CONFIG_SIGNED_PACKAGES is not set
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
-#ipv6
 
+#-----------------------------------
+# Kmod
+CONFIG_PACKAGE_kmod-drm-rockchip=y
+CONFIG_PACKAGE_kmod-gpu-lima=y
+CONFIG_PACKAGE_kmod-rtl8187=y
+CONFIG_PACKAGE_kmod-rtl8188eu=y
+CONFIG_PACKAGE_kmod-rtl8192c-common=y
+CONFIG_PACKAGE_kmod-rtl8192cu=y
+CONFIG_PACKAGE_kmod-rtl8192du=y
+CONFIG_PACKAGE_kmod-rtl8812au-ac=y
+CONFIG_PACKAGE_kmod-rtl8821cu=y
+CONFIG_PACKAGE_kmod-rtl88x2bu=y
+CONFIG_PACKAGE_kmod-rtlwifi=y
+CONFIG_PACKAGE_kmod-rtlwifi-usb=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
+CONFIG_PACKAGE_kmod-r8168=n
+CONFIG_PACKAGE_kmod-r8125=n
+
+# Wireless Support
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_wpad-wolfssl=y
+CONFIG_DRIVER_11AC_SUPPORT=y
+CONFIG_DRIVER_11N_SUPPORT=y
+CONFIG_DRIVER_11W_SUPPORT=y
+## Camera Drivers
+CONFIG_PACKAGE_kmod-video-core=y
+CONFIG_PACKAGE_kmod-video-uvc=y
+
+## I2C Drivers
+CONFIG_PACKAGE_kmod-i2c-core=y
+
+## printer Drivers
+CONFIG_PACKAGE_kmod-lp=y
+
+### USB Audio 
+CONFIG_PACKAGE_kmod-usb-audio=y
+
+##Display & Extra Drivers
+CONFIG_PACKAGE_kmod-backlight=y
+CONFIG_PACKAGE_kmod-backlight-pwm=y
+CONFIG_PACKAGE_kmod-drm=y
+CONFIG_PACKAGE_kmod-drm-amdgpu=y
+CONFIG_PACKAGE_kmod-drm-kms-helper=y
+CONFIG_PACKAGE_kmod-drm-radeon=y
+CONFIG_PACKAGE_kmod-drm-ttm=y
+CONFIG_PACKAGE_kmod-fb=y
+CONFIG_PACKAGE_kmod-fb-cfb-copyarea=y
+CONFIG_PACKAGE_kmod-fb-cfb-fillrect=y
+CONFIG_PACKAGE_kmod-fb-cfb-imgblt=y
+CONFIG_PACKAGE_kmod-fb-sys-fops=y
+CONFIG_PACKAGE_kmod-fb-sys-ram=y
+CONFIG_PACKAGE_kmod-video-pwc=y
+CONFIG_PACKAGE_kmod-video-uvc=y
+CONFIG_PACKAGE_kmod-video-videobuf2=y
+
+### USB Net Drivers
+CONFIG_PACKAGE_kmod-usb-net=y
+CONFIG_PACKAGE_kmod-usb-net-asix=y
+CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
+CONFIG_PACKAGE_kmod-usb-net-dm9601-ether=y
+CONFIG_PACKAGE_kmod-usb-net-hso=y
+CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-ipheth=y
+CONFIG_PACKAGE_kmod-usb-net-kalmia=y
+CONFIG_PACKAGE_kmod-usb-net-kaweth=y
+CONFIG_PACKAGE_kmod-usb-net-mcs7830=y
+CONFIG_PACKAGE_kmod-usb-net-pegasus=y
+CONFIG_PACKAGE_kmod-usb-net-pl=y
+CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
+CONFIG_PACKAGE_kmod-usb-net-sierrawireless=y
+CONFIG_PACKAGE_kmod-usb-net-smsc95xx=y
+CONFIG_PACKAGE_kmod-usb-net-sr9700=y
+CONFIG_PACKAGE_kmod-usb-net2280=y
+
+### USB Wireless Card Drivers
+CONFIG_PACKAGE_kmod-ath=y
+CONFIG_PACKAGE_kmod-ath6kl=y
+CONFIG_PACKAGE_kmod-ath6kl-usb=y
+CONFIG_PACKAGE_kmod-ath9k-common=y
+CONFIG_PACKAGE_kmod-ath9k-htc=y
+CONFIG_PACKAGE_kmod-ath11k=n
+CONFIG_PACKAGE_kmod-carl9170=y
+CONFIG_PACKAGE_kmod-lib80211=y
+CONFIG_PACKAGE_kmod-libertas-usb=y
+CONFIG_PACKAGE_kmod-mac80211=y
+CONFIG_PACKAGE_kmod-mt7601u=y
+CONFIG_PACKAGE_kmod-mt7603=y
+CONFIG_PACKAGE_kmod-mt7663u=y
+CONFIG_PACKAGE_kmod-mt76x0u=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+CONFIG_PACKAGE_kmod-net-prism54=y
+CONFIG_PACKAGE_kmod-net-rtl8192su=y
+CONFIG_PACKAGE_kmod-p54-common=y
+CONFIG_PACKAGE_kmod-p54-usb=y
+CONFIG_PACKAGE_kmod-rsi91x=y
+CONFIG_PACKAGE_kmod-rsi91x-usb=y
+CONFIG_PACKAGE_kmod-rt2500-usb=y
+CONFIG_PACKAGE_kmod-rt2800-lib=y
+CONFIG_PACKAGE_kmod-rt2800-usb=y
+CONFIG_PACKAGE_kmod-rt2x00-lib=y
+CONFIG_PACKAGE_kmod-rt2x00-usb=y
+CONFIG_PACKAGE_kmod-rt73-usb=y
+CONFIG_PACKAGE_kmod-zd1211rw=y
+
+### Wireless Card Firmware
+CONFIG_PACKAGE_ath9k-htc-firmware=y
+CONFIG_PACKAGE_libertas-usb-firmware=y
+CONFIG_PACKAGE_mt7601u-firmware=y
+CONFIG_PACKAGE_p54-usb-firmware=y
+CONFIG_PACKAGE_prism54-firmware=y
+CONFIG_PACKAGE_rs9113-firmware=y
+CONFIG_PACKAGE_rt2800-usb-firmware=y
+CONFIG_PACKAGE_rt73-usb-firmware=y
+CONFIG_PACKAGE_rtl8188eu-firmware=y
+CONFIG_PACKAGE_rtl8192cu-firmware=y
+CONFIG_PACKAGE_rtl8192eu-firmware=y
+CONFIG_PACKAGE_rtl8192su-firmware=y
+CONFIG_PACKAGE_rtl8723au-firmware=y
+CONFIG_PACKAGE_rtl8723bu-firmware=y
+
+##Wireless Card Firmware
+CONFIG_PACKAGE_kmod-ath=y
+CONFIG_ATH_USER_REGD=y
+CONFIG_PACKAGE_ATH_DFS=y
+CONFIG_PACKAGE_kmod-ath10k=y
+CONFIG_ATH10K_LEDS=y
+CONFIG_ATH10K_THERMAL=y
+CONFIG_PACKAGE_kmod-ath6kl=y
+CONFIG_PACKAGE_kmod-ath6kl-usb=y
+CONFIG_PACKAGE_kmod-ath9k=y
+CONFIG_ATH9K_SUPPORT_PCOEM=y
+CONFIG_PACKAGE_kmod-ath9k-common=y
+CONFIG_PACKAGE_kmod-ath9k-htc=y
+CONFIG_PACKAGE_kmod-b43=y
+CONFIG_PACKAGE_B43_USE_SSB=y
+CONFIG_PACKAGE_B43_USE_BCMA=y
+CONFIG_B43_FW_5_100_138=y
+CONFIG_B43_FW_SQUASH=y
+CONFIG_B43_FW_SQUASH_COREREVS="5,6,7,8,9,10,11,13,15,16,28,29,30"
+CONFIG_B43_FW_SQUASH_PHYTYPES="G,N,LP,HT"
+CONFIG_PACKAGE_B43_BUSES_BCMA_AND_SSB=y
+CONFIG_PACKAGE_B43_PHY_G=y
+CONFIG_PACKAGE_B43_PHY_N=y
+CONFIG_PACKAGE_B43_PHY_LP=y
+CONFIG_PACKAGE_B43_PHY_HT=y
+CONFIG_PACKAGE_kmod-b43legacy=y
+CONFIG_PACKAGE_kmod-brcmfmac=y
+CONFIG_BRCMFMAC_USB=y
+CONFIG_BRCMFMAC_PCIE=y
+CONFIG_PACKAGE_kmod-brcmutil=y
+CONFIG_PACKAGE_kmod-cfg80211=y
+CONFIG_PACKAGE_kmod-iwl-legacy=y
+CONFIG_PACKAGE_kmod-iwl3945=y
+CONFIG_PACKAGE_kmod-iwl4965=y
+CONFIG_PACKAGE_kmod-iwlwifi=y
+CONFIG_PACKAGE_kmod-lib80211=y
+CONFIG_PACKAGE_kmod-libertas-usb=y
+CONFIG_PACKAGE_kmod-libipw=y
+CONFIG_PACKAGE_kmod-mac80211=y
+CONFIG_PACKAGE_MAC80211_DEBUGFS=y
+CONFIG_PACKAGE_MAC80211_MESH=y
+CONFIG_PACKAGE_kmod-mt76-connac=y
+CONFIG_PACKAGE_kmod-mt76-core=y
+CONFIG_PACKAGE_kmod-mt76-usb=y
+CONFIG_PACKAGE_kmod-mt7601u-ap=y
+CONFIG_PACKAGE_kmod-mt7615-common=y
+CONFIG_PACKAGE_kmod-mt7615-firmware=y
+CONFIG_PACKAGE_kmod-mt7615e=y
+CONFIG_PACKAGE_kmod-mt7663-usb-sdio=y
+CONFIG_PACKAGE_kmod-mt7663u=y
+CONFIG_PACKAGE_kmod-mt76x0-common=y
+CONFIG_PACKAGE_kmod-mt76x02-common=y
+CONFIG_PACKAGE_kmod-mt76x02-usb=y
+CONFIG_PACKAGE_kmod-mt76x0e=y
+CONFIG_PACKAGE_kmod-mt76x0u=y
+CONFIG_PACKAGE_kmod-mt76x2=y
+CONFIG_PACKAGE_kmod-mt76x2-common=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+CONFIG_PACKAGE_kmod-mt7915e=y
+CONFIG_PACKAGE_kmod-mt7921e=y
+CONFIG_PACKAGE_kmod-mt7921-common=y
+CONFIG_PACKAGE_kmod-mwifiex-pcie=y
+CONFIG_PACKAGE_kmod-mwl8k=y
+CONFIG_PACKAGE_kmod-net-rtl8192su=y
+CONFIG_PACKAGE_kmod-p54-common=y
+CONFIG_PACKAGE_kmod-p54-pci=y
+CONFIG_PACKAGE_kmod-p54-usb=y
+CONFIG_PACKAGE_kmod-rsi91x=y
+CONFIG_PACKAGE_kmod-rsi91x-usb=y
+CONFIG_PACKAGE_kmod-rt2400-pci=y
+CONFIG_PACKAGE_kmod-rt2500-pci=y
+CONFIG_PACKAGE_kmod-rt2500-usb=y
+CONFIG_PACKAGE_kmod-rt2800-lib=y
+CONFIG_PACKAGE_kmod-rt2800-mmio=y
+CONFIG_PACKAGE_kmod-rt2800-pci=y
+CONFIG_PACKAGE_kmod-rt2800-usb=y
+CONFIG_PACKAGE_kmod-rt2x00-lib=y
+CONFIG_PACKAGE_kmod-rt2x00-mmio=y
+CONFIG_PACKAGE_kmod-rt2x00-pci=y
+CONFIG_PACKAGE_kmod-rt2x00-usb=y
+CONFIG_PACKAGE_kmod-rt61-pci=y
+CONFIG_PACKAGE_kmod-rt73-usb=y
+CONFIG_PACKAGE_kmod-rtl8180=y
+CONFIG_PACKAGE_kmod-rtl8187=y
+CONFIG_PACKAGE_kmod-rtl8188eu=y
+CONFIG_PACKAGE_kmod-rtl8192c-common=y
+CONFIG_PACKAGE_kmod-rtl8192ce=y
+CONFIG_PACKAGE_kmod-rtl8192cu=y
+CONFIG_PACKAGE_kmod-rtl8192de=y
+CONFIG_PACKAGE_kmod-rtl8192eu=y
+CONFIG_PACKAGE_kmod-rtl8192se=y
+CONFIG_PACKAGE_kmod-rtl8812au-ac=y
+CONFIG_PACKAGE_kmod-rtl8821ae=y
+CONFIG_PACKAGE_kmod-rtl8821cu=y
+CONFIG_PACKAGE_kmod-rtl88x2bu=y
+CONFIG_PACKAGE_kmod-rtlwifi=y
+CONFIG_PACKAGE_kmod-rtlwifi-btcoexist=y
+CONFIG_PACKAGE_kmod-rtlwifi-pci=y
+CONFIG_PACKAGE_kmod-rtlwifi-usb=y
+CONFIG_PACKAGE_kmod-rtw88=y
+CONFIG_PACKAGE_kmod-wil6210=y
+
+# 3G/4G Drivers & Utilities
+CONFIG_PACKAGE_comgt-ncm=y
+CONFIG_PACKAGE_comgt=y
+CONFIG_PACKAGE_kmod-mii=y
+CONFIG_PACKAGE_kmod-usb-acm=y
+CONFIG_PACKAGE_kmod-usb-serial=y
+CONFIG_PACKAGE_kmod-usb-serial-option=y
+CONFIG_PACKAGE_kmod-usb-serial-wwan=y
+CONFIG_PACKAGE_luci-proto-3g=y
+CONFIG_PACKAGE_luci-proto-ncm=y
+CONFIG_PACKAGE_luci-proto-qmi=y
+CONFIG_PACKAGE_qmi-utils=y
+CONFIG_PACKAGE_umbim=y
+CONFIG_PACKAGE_uqmi=y
+CONFIG_PACKAGE_usb-modeswitch=y
+
+# Mobile Network Sharing
+CONFIG_PACKAGE_libimobiledevice-utils=y
+CONFIG_PACKAGE_libplist-utils=y
+CONFIG_PACKAGE_libudev-fbsd=y
+CONFIG_PACKAGE_libusbmuxd-utils=y
+CONFIG_PACKAGE_usbmuxd=y
+#-----------------------------------
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_6in4=y
@@ -231,7 +484,7 @@ CONFIG_PACKAGE_luci-app-advanced=y
 # CONFIG_PACKAGE_luci-app-autotimeset=n
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
-# CONFIG_PACKAGE_luci-app-control-timewol=y
+# CONFIG_PACKAGE_luci-app-control-timewol=n
 CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
@@ -239,7 +492,7 @@ CONFIG_PACKAGE_luci-app-timecontrol=n
 # CONFIG_PACKAGE_luci-app-webadmin=y
 # CONFIG_PACKAGE_luci-app-cpulimit=y
 CONFIG_PACKAGE_luci-app-diskman=y
-CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
+CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=y
 # CONFIG_PACKAGE_luci-app-eqos=n
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
 # CONFIG_PACKAGE_luci-app-hd-idle=y
@@ -285,7 +538,7 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
-CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-mosdns=n
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-wireguard=y  #默认加了取消
@@ -315,7 +568,7 @@ CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=y
-# CONFIG_PACKAGE_luci-app-minidlna is not set
+CONFIG_PACKAGE_luci-app-minidlna=y
 CONFIG_PACKAGE_luci-app-rclone=y
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng=n
