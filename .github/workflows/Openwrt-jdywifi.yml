@@ -1,4 +1,4 @@
-name: Openwrt-xmr3-de
+name: Openwrt-jdywifi
 
 
 on:
@@ -18,8 +18,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/xmr3_defconfig
-  DIY_P1_SH: dz.sh
+  CONFIG_FILE: script/jdwifir619ac.lean
+  DIY_P1_SH: jdwifi.sh
   DIY_P2_SH: update_package_all.sh
 jobs:
 
@@ -58,8 +58,6 @@ jobs:
         run: |
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           cd openwrt
-          #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-          #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           ./scripts/feeds update -a
           ./scripts/feeds install -a
@@ -86,23 +84,24 @@ jobs:
          df -h
          cd openwrt
          make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
+         cp .config  ./bin/targets/jdy2.config
          echo $?
       - name: If Error
         if: steps.compileopenwrt.outcome == 'failure'
         run: |
+          echo '================================================================'
           cat openwrt/.config
           echo '================================================================'
           cd openwrt && make -j1 V=s
-          cp .config  ./bin/targets/r3.config
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: xmR3_OpenWrt-IPV6-Firmware
+          name: jdy2_OpenWrt-IPV6-Firmware
           path: ./openwrt/bin/targets/
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: xmR3_OpenWrt-IPV6-Ipk
+          name: jdy2_OpenWrt-IPV6-Ipk
           path: ./openwrt/bin/packages
       - name: Prepare Artifact
         run: |
