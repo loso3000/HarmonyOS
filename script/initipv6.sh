@@ -45,8 +45,8 @@ echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
-rm -rf ./package/build/luci-app-netdata 
-rm -rf ./package/build/netdata
+rm -rf ./package/diy/luci-app-netdata 
+rm -rf ./package/diy/netdata
 #rm -rf ./feeds/luci/applications/luci-app-netdata 
 #svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 #rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
@@ -66,13 +66,13 @@ rm -rf ./package/lean/autocore  && svn co https://github.com/sirpdboy/build/trun
 rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
 rm -rf ./feeds/luci/applications/luci-app-arpbind  && svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
 
-rm -rf ./feeds/luci/applications/luci-app-dockerman
-rm -rf ./feeds/luci/applications/luci-app-docker
-# rm -rf ./package/build/luci-app-dockerman
+# rm -rf ./feeds/luci/applications/luci-app-dockerman
+# rm -rf ./feeds/luci/applications/luci-app-docker
+rm -rf ./package/diy/luci-app-dockerman
 # rm -rf ./feeds/packages-master/utils/docker
 # Add luci-app-dockerman
-rm -rf ./feeds/luci/collections/luci-lib-docker
-git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
+# rm -rf ./feeds/luci/collections/luci-lib-docker
+# git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
 
 
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
@@ -265,10 +265,10 @@ rm -rf ./feeds/packages/net/trojan*
 
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
+# sed -i 's,default n,default y,g' Makefile
 popd
 pushd package/pass/luci-app-ssr-plus
-sed -i 's,default n,default y,g' Makefile
+# sed -i 's,default n,default y,g' Makefile
 popd
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
@@ -319,8 +319,8 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-ap
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 pushd package/lean/luci-app-vssr
-sed -i 's,default n,default y,g' Makefile
-sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
+# sed -i 's,default n,default y,g' Makefile
+# sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
 popd
 
 # 在 X86 架构下移除 Shadowsocks-rust
