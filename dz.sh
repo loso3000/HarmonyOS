@@ -10,10 +10,10 @@ KEY=123456
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
 
-cp -f ./package/build/banner ./package/base-files/files/etc/banner
+cp -rf ./package/build/banner ./package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
 
-cp -f ./package/other/ramips/.  target/linux/ramips/.
+cp -rf ./package/other/ramips/*  target/linux/ramips/*
 
 #修正nat回流 
 cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
