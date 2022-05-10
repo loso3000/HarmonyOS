@@ -49,8 +49,8 @@ rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
 # netdata 
-rm -rf ./package/build/luci-app-netdata 
-rm -rf ./package/build/netdata
+rm -rf ./package/diy/luci-app-netdata 
+rm -rf ./package/diy/netdata
 #rm -rf ./feeds/luci/applications/luci-app-netdata 
 #svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 #rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
