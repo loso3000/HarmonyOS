@@ -114,9 +114,9 @@ jobs:
           cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./package
           find ./openwrt/bin/targets/ -name "*combined.img" | xargs -i mv -f {} ./firmware
           cd ./firmware
-          gzip *.img
+          gzip *.img |true
           find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*combined-efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
-          gzip *.img
+          gzip *.img |true
           echo -e "Sirpdboy-IPV6-Plus-${{ env.DATA}}大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
@@ -126,6 +126,12 @@ jobs:
           curl -fsSL git.io/file-transfer | sh
           ./transfer wet -s -p 16 --no-progress ./firmware 2>&1 | tee wetransfer.log
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: SirpdboyOpenWrt-IPV6-Plus-Firmware
+          path: ./openwrt/bin
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
