@@ -106,12 +106,10 @@ jobs:
           mkdir -p ./mini/firmware
           mkdir -p ./mini/package
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/package
-          find ./openwrt/bin/targets/ -name "*squashfs*" | xargs -i mv -f {} ./mini/firmware
+          find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
-          gzip *.img
-          # echo "${{ env.DATA}}" > version.txt
-          # md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
-          # echo $md5 >> version.txt
+          gzip *.img |true
+          echo $md5 >> version.txt
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
