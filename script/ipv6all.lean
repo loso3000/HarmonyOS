@@ -542,7 +542,7 @@ CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-ikoolproxy=y
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-wireguard=y  #默认加了取消
-# CONFIG_PACKAGE_luci-app-vlmcsd=y
+# CONFIG_PACKAGE_luci-app-vlmcsd is not set
 CONFIG_PACKAGE_luci-app-linkease=y
 #主题
 CONFIG_LUCI_LANG_en=y
