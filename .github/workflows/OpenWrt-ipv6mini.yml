@@ -98,7 +98,7 @@ jobs:
           mkdir -p ./ipv6mini/firmware
           mkdir -p ./ipv6mini/package
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./ipv6mini/package
-          find ./openwrt/bin/targets/ -name "*combined*img" | xargs -i mv -f {} ./ipv6mini/firmware
+          find ./openwrt/bin/targets/ -name "*rootfs*img" | xargs -i mv -f {} ./ipv6mini/firmware
           cd ./ipv6mini/firmware
           gzip *.img
           echo -e "Sirpdboy-IPV6-MINI-${{ env.DATA}}精简通用版--【EFI通用不区分引导方式】\n" > 版本日期和MD5信息.txt
