@@ -80,7 +80,8 @@ git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/lean/luc
 
 
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
-#rm -rf ./feeds/luci/applications/vlmcsd 
+#rm -rf ./feeds/luci/applications/vlmcsd
+ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
 
 # Add luci-aliyundrive-webdav
 rm -rf ./luci-app-aliyundrive-webdav 
@@ -141,6 +142,7 @@ echo '灰色歌曲'
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
+
 
 #docker err
 #rm -rf ./feeds/packages/utils/runc/Makefile
