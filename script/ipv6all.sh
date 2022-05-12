@@ -80,6 +80,7 @@ git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/lean/luc
 
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
 #rm -rf ./feeds/luci/applications/vlmcsd 
+ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
 
 # Add luci-aliyundrive-webdav
 rm -rf ./luci-app-aliyundrive-webdav 
