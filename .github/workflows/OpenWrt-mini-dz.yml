@@ -106,7 +106,7 @@ jobs:
           mkdir -p ./mini/firmware
           mkdir -p ./mini/package
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/package
-          find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./mini/firmware
+          find ./openwrt/bin/targets/ -name "*squashfs*" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
           gzip *.img
           # echo "${{ env.DATA}}" > version.txt
