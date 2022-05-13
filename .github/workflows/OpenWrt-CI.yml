@@ -103,8 +103,8 @@ jobs:
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./firmware
           cd ./firmware
           gzip *.img |true
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
-          gzip *.img |true
+          #find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
+          #gzip *.img |true
           echo -e "Sirpdboy-IPV6-Plus-${{ env.DATA}}大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
