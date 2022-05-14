@@ -66,7 +66,7 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-ali
 # Add ddnsto & linkease
 svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
 svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
-svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
+# svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
 sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
 #zerotier 
