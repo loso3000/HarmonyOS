@@ -76,7 +76,7 @@ rm -rf ./feeds/luci/applications/luci-app-docker
 # rm -rf ./package/build/luci-app-dockerman
 # rm -rf ./feeds/packages/utils/docker
 
-rm -rf ./feeds/packages/net/adguardhome
+rm -rf ./feeds/packages/net/adguardhome && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./feeds/packages/net/adguardhome
 
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
 #rm -rf ./feeds/luci/applications/vlmcsd 
