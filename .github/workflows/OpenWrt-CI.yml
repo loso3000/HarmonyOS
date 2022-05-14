@@ -119,11 +119,6 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: SirpdboyOpenWrt-IPV6-Plus-Firmware
-          path: ./openwrt/bin
-      - name: Upload Firmware
-        uses: actions/upload-artifact@main
-        with:
-          name: SirpdboyOpenWrt-IPV6-Plus-Firmware
           path: ./firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
