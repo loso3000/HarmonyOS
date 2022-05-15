@@ -272,8 +272,8 @@ rm -rf ./feeds/packages/net/trojan*
 #bypass
 #rm -rf package/build/pass/luci-app-bypass
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-# sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-# sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
@@ -281,10 +281,10 @@ rm -rf ./feeds/packages/net/trojan*
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
-# sed -i 's,default n,default y,g' Makefile
+sed -i 's,default n,default y,g' Makefile
 popd
 pushd package/pass/luci-app-ssr-plus
-# sed -i 's,default n,default y,g' Makefile
+sed -i 's,default n,default y,g' Makefile
 popd
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
