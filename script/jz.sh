@@ -22,8 +22,6 @@ rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
 
-rm -rf ./feeds/luci/applications/luci-app-unblockmusic
-
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 # sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
