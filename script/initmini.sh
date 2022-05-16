@@ -360,9 +360,10 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/l
 rm -rf ./package/diy/luci-theme-edge
 rm -rf ./package/build/luci-theme-darkmatter
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
-git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
+# git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
+git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
 
 #luci-app-filebrowser
 # svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-filebrowser ./feeds/luci/applications/
