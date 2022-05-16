@@ -7,14 +7,14 @@ CONFIG_EFI_IMAGES=y
 CONFIG_TARGET_ROOTFS_TARGZ=n
 # CONFIG_VMDK_IMAGES is not set
 # ipv6
-CONFIG_PACKAGE_ipv6helper=y
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+# CONFIG_PACKAGE_ipv6helper=y
+# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # add upnp
-CONFIG_PACKAGE_miniupnpd-igdv1=y
-CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_miniupnpd-igdv1=n
+CONFIG_PACKAGE_luci-app-upnp=n
 CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-wolplus=n
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_automount=y
 # CONFIG_PACKAGE_autocore-arm is not set
@@ -23,7 +23,7 @@ CONFIG_PACKAGE_automount=y
 # 工具
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=n
@@ -37,7 +37,7 @@ CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-webadmin=n
 CONFIG_PACKAGE_luci-app-cpulimit=n
-CONFIG_PACKAGE_luci-app-diskman=y
+CONFIG_PACKAGE_luci-app-diskman=n
 CONFIG_PACKAGE_luci-app-eqos=n
 CONFIG_PACKAGE_luci-app-hd-idle=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
@@ -48,7 +48,7 @@ CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=n
 CONFIG_PACKAGE_luci-app-passwall=n
 # CONFIG_PACKAGE_luci-app-samba is not set
-CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is no set
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
@@ -84,14 +84,14 @@ CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-opentomcat=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
-CONFIG_PACKAGE_luci-theme-darkmatter=y
-CONFIG_PACKAGE_luci-theme-neobird=y
+CONFIG_PACKAGE_luci-theme-darkmatter=n
+CONFIG_PACKAGE_luci-theme-neobird=n
 
-CONFIG_PACKAGE_luci-app-tencentddns=y
-CONFIG_PACKAGE_luci-app-aliddns=y
-CONFIG_PACKAGE_luci-app-cowbping=y
-CONFIG_PACKAGE_luci-app-beardropper=y
-CONFIG_PACKAGE_luci-app-control-parentcontrol=y
+CONFIG_PACKAGE_luci-app-tencentddns=n
+CONFIG_PACKAGE_luci-app-aliddns=n
+CONFIG_PACKAGE_luci-app-cowbping=n
+CONFIG_PACKAGE_luci-app-beardropper=n
+CONFIG_PACKAGE_luci-app-control-parentcontrol=n
 
 #增加其它插件
 CONFIG_PACKAGE_luci-app-pushbot=n
@@ -102,8 +102,8 @@ CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
 # CONFIG_PACKAGE_luci-app-zerotier is not set
 CONFIG_PACKAGE_luci-app-mwan3=n
-CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
-CONFIG_PACKAGE_luci-app-unblockmusic=n
+CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
+# CONFIG_PACKAGE_luci-app-unblockmusic is not set
 # CONFIG_PACKAGE_luci-app-minidlna is not set
 # CONFIG_PACKAGE_luci-app-rclone is not set
 # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils is not set
