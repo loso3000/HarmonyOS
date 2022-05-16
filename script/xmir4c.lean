@@ -4,12 +4,12 @@ CONFIG_TARGET_ramips_mt76x8=y
 CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c=y
 
 # 工具
-CONFIG_PACKAGE_miniupnpd-igdv1=y
-CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_miniupnpd-igdv1=n
+CONFIG_PACKAGE_luci-app-upnp=n
 CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
-CONFIG_PACKAGE_automount=y
+CONFIG_PACKAGE_luci-app-wolplus=n
+# CONFIG_PACKAGE_automount is not set
 # CONFIG_PACKAGE_autocore-arm is not set
 # CONFIG_PACKAGE_default-settings is not set
 
@@ -59,7 +59,12 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=n
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
-CONFIG_PACKAGE_luci-app-bypass=n
+CONFIG_PACKAGE_luci-app-bypass=y
+CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server is not set
+CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server is not set
+CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray_Plugin is not set
+CONFIG_PACKAGE_luci-app-bypass_INCLUDE_xray-core is not set
+CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus is not set
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
@@ -83,7 +88,7 @@ CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-cowbping=n
 CONFIG_PACKAGE_luci-app-beardropper=n
-CONFIG_PACKAGE_luci-app-control-parentcontrol=y
+CONFIG_PACKAGE_luci-app-control-parentcontrol=n
 
 #增加其它插件
 CONFIG_PACKAGE_luci-app-pushbot=n
