@@ -1,26 +1,18 @@
+####
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt76x8=y
 CONFIG_TARGET_ramips_mt76x8_DEVICE_xiaomi_mi-router-4c=y
-# 不压缩efi
-# CONFIG_TARGET_IMAGES_GZIP is not set
-CONFIG_EFI_IMAGES=y
-CONFIG_TARGET_ROOTFS_TARGZ=n
-# CONFIG_VMDK_IMAGES is not set
-# ipv6
-# CONFIG_PACKAGE_ipv6helper=y
-# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-# add upnp
-CONFIG_PACKAGE_miniupnpd-igdv1=n
-CONFIG_PACKAGE_luci-app-upnp=n
+
+# 工具
+CONFIG_PACKAGE_miniupnpd-igdv1=y
+CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=n
-# CONFIG_PACKAGE_autosamba is not set
+CONFIG_PACKAGE_luci-app-wolplus=y
 CONFIG_PACKAGE_automount=y
 # CONFIG_PACKAGE_autocore-arm is not set
 # CONFIG_PACKAGE_default-settings is not set
 
-# 工具
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=n
@@ -82,7 +74,7 @@ CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-btmod=n
 CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-opentomcat=n
-CONFIG_PACKAGE_luci-theme-opentopd=y
+CONFIG_PACKAGE_luci-theme-opentopd=n
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-darkmatter=n
 CONFIG_PACKAGE_luci-theme-neobird=n
@@ -91,7 +83,7 @@ CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-cowbping=n
 CONFIG_PACKAGE_luci-app-beardropper=n
-CONFIG_PACKAGE_luci-app-control-parentcontrol=n
+CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 
 #增加其它插件
 CONFIG_PACKAGE_luci-app-pushbot=n
@@ -118,7 +110,7 @@ CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=n
 CONFIG_PACKAGE_luci-app-softethervpn=n
 # CONFIG_PACKAGE_luci-app-uugamebooster is not set
-CONFIG_DEFAULT_luci-app-cpufreq=y
+CONFIG_DEFAULT_luci-app-cpufreq=n
 CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=n
 CONFIG_PACKAGE_luci-app-oaf=n
