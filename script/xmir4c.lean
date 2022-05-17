@@ -60,13 +60,13 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=n
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
 CONFIG_PACKAGE_luci-app-bypass=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server is not set
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server is not set
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray_Plugin is not set
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_xray-core is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray_Plugin is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_xray-core is not set
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy is not set
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_Obfs is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy is not set
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_Obfs is not set
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-switch-lan-play=n
