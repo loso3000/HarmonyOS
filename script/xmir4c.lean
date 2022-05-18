@@ -46,7 +46,15 @@ CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
 CONFIG_PACKAGE_luci-app-smartdns=n
-# CONFIG_PACKAGE_luci-app-ssr-plus is not set
+CONFIG_PACKAGE_luci-app-ssr-plus=y
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_Plugin is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy is not set
 CONFIG_PACKAGE_luci-app-timecontrol=n
 CONFIG_PACKAGE_luci-app-access-control=n
 CONFIG_PACKAGE_luci-app-ttyd=n
@@ -59,7 +67,7 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=n
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-dnsto=n
-CONFIG_PACKAGE_luci-app-bypass=y
+CONFIG_PACKAGE_luci-app-bypass=n
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server is not set
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray_Plugin is not set
