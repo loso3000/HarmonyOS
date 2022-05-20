@@ -120,7 +120,7 @@ CONFIG_PACKAGE_luci-theme-neobird=n
 CONFIG_PACKAGE_luci-app-cowbping=n
 CONFIG_PACKAGE_luci-app-beardropper=n
 CONFIG_PACKAGE_luci-app-control-parentcontrol=n
-CONFIG_PACKAGE_luci-app-v2ray-server=y
+CONFIG_PACKAGE_luci-app-v2ray-server=n
 
 # 增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
