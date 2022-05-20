@@ -5,29 +5,29 @@ CONFIG_TARGET_ramips_mt76x8_DEVICE_alfa-network_awusfree1=y
 
 ### USB Net Drivers
 CONFIG_PACKAGE_kmod-usb-net=y
-CONFIG_PACKAGE_kmod-usb-net-asix=y
-CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
-CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
-CONFIG_PACKAGE_kmod-usb-net-dm9601-ether=y
-CONFIG_PACKAGE_kmod-usb-net-hso=y
-CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
-CONFIG_PACKAGE_kmod-usb-net-ipheth=y
-CONFIG_PACKAGE_kmod-usb-net-kalmia=y
-CONFIG_PACKAGE_kmod-usb-net-kaweth=y
-CONFIG_PACKAGE_kmod-usb-net-mcs7830=y
-CONFIG_PACKAGE_kmod-usb-net-pegasus=y
-CONFIG_PACKAGE_kmod-usb-net-pl=y
+# CONFIG_PACKAGE_kmod-usb-net-asix=y
+# CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
+# CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
+# CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
+# CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+# CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
+# CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
+# CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
+# CONFIG_PACKAGE_kmod-usb-net-dm9601-ether=y
+# CONFIG_PACKAGE_kmod-usb-net-hso=y
+# CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
+# CONFIG_PACKAGE_kmod-usb-net-ipheth=y
+# CONFIG_PACKAGE_kmod-usb-net-kalmia=y
+# CONFIG_PACKAGE_kmod-usb-net-kaweth=y
+# CONFIG_PACKAGE_kmod-usb-net-mcs7830=y
+# CONFIG_PACKAGE_kmod-usb-net-pegasus=y
+# CONFIG_PACKAGE_kmod-usb-net-pl=y
 CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
-CONFIG_PACKAGE_kmod-usb-net-rndis=y
+# CONFIG_PACKAGE_kmod-usb-net-rndis=y
 CONFIG_PACKAGE_kmod-usb-net-sierrawireless=y
-CONFIG_PACKAGE_kmod-usb-net-smsc95xx=y
-CONFIG_PACKAGE_kmod-usb-net-sr9700=y
-CONFIG_PACKAGE_kmod-usb-net2280=y
+# CONFIG_PACKAGE_kmod-usb-net-smsc95xx=y
+# CONFIG_PACKAGE_kmod-usb-net-sr9700=y
+# CONFIG_PACKAGE_kmod-usb-net2280=y
 # ipv6
 # CONFIG_PACKAGE_ipv6helper=y
 # CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
@@ -169,12 +169,12 @@ CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-amule=n
 
 # Wireless Support
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
+# CONFIG_PACKAGE_iw=y
+# CONFIG_PACKAGE_iwinfo=y
+# CONFIG_PACKAGE_wpad-wolfssl=y
+# CONFIG_DRIVER_11AC_SUPPORT=y
+# CONFIG_DRIVER_11N_SUPPORT=y
+# CONFIG_DRIVER_11W_SUPPORT=y
 
 # 3G/4G Drivers & Utilities
 CONFIG_PACKAGE_comgt-ncm=y
@@ -211,8 +211,8 @@ CONFIG_PACKAGE_uqmi=y
 CONFIG_PACKAGE_usb-modeswitch=y
 
 # Mobile Network Sharing
-CONFIG_PACKAGE_libimobiledevice-utils=y
-CONFIG_PACKAGE_libplist-utils=y
-CONFIG_PACKAGE_libudev-fbsd=y
-CONFIG_PACKAGE_libusbmuxd-utils=y
-CONFIG_PACKAGE_usbmuxd=y
+# CONFIG_PACKAGE_libimobiledevice-utils=y
+# CONFIG_PACKAGE_libplist-utils=y
+# CONFIG_PACKAGE_libudev-fbsd=y
+# CONFIG_PACKAGE_libusbmuxd-utils=y
+# CONFIG_PACKAGE_usbmuxd=y
