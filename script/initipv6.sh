@@ -27,13 +27,13 @@ rm -rf ./package/other/up/oaf
 
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
-rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
+# rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
 # rm -rf ./feeds/packages/net/https-dns-proxy
-svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
+# svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
 # svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-https-dns-proxy ./package/build/luci-app-https-dns-proxy
 # svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/net/https-dns-proxy ./package/build/https-dns-proxy
 
-# git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
+git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
@@ -48,7 +48,7 @@ echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
-rm -rf ./package/diy/luci-app-netdata 
+# rm -rf ./package/diy/luci-app-netdata 
 rm -rf ./package/diy/netdata
 # rm -rf ./feeds/luci/applications/luci-app-netdata 
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
@@ -78,7 +78,7 @@ rm -rf ./feeds/luci/applications/luci-app-docker
 # rm -rf ./package/diy/luci-app-dockerman
 # rm -rf ./feeds/packages-master/utils/docker
 # Add luci-app-dockerman
-# rm -rf ./feeds/luci/collections/luci-lib-docker
+rm -rf ./feeds/luci/collections/luci-lib-docker
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/lean/luci-lib-docker
 
 
@@ -105,7 +105,7 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/contr
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 #syncdial
-rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
+# rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
 
 # samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
@@ -154,7 +154,7 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 #svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
 #断线不重拨
-sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
+# sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #echo "其他修改"
 sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为2
