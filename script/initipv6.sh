@@ -197,15 +197,15 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome feeds/pack
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
 CONFIG_CRYPTO_POLY1305_X86_64=y
-# CONFIG_DRM=y
-# CONFIG_DRM_I915=y
+CONFIG_DRM=y
+CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.4
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
 CONFIG_CRYPTO_POLY1305_X86_64=y
-# CONFIG_DRM=y
-# CONFIG_DRM_I915=y
+CONFIG_DRM=y
+CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.15
 
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/mosdns
