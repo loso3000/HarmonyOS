@@ -13,7 +13,7 @@ git clone https://github.com/loso3000/other ./package/other
 cp -rf ./package/build/banner ./package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
 
-cp -rf ./package/other/ramips/*  target/linux/ramips/*
+# cp -rf ./package/other/ramips/*  target/linux/ramips/*
 cp -rf ./package/other/luci/*  ./feeds/luci/*
 
 #修正nat回流 
@@ -49,10 +49,9 @@ rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
 # netdata 
-# rm -rf ./package/diy/luci-app-netdata 
 rm -rf ./package/diy/luci-app-netdata/root
 rm -rf ./package/diy/netdata
-cp -rf ./feeds/packages/admin/netdata    ./package/other/netdata    
+cp -rf ./feeds/packages/admin/netdata    ./package/other/netdata
 rm -rf ./feeds/luci/applications/luci-app-netdata
 rm -rf ./feeds/packages/admin/netdata
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
@@ -68,13 +67,16 @@ rm -rf ./package/build/mwan3
 
 # rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
 
-rm -rf ./feeds/luci/applications/luci-app-accesscontrol
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
-rm -rf ./package/lean/autocore  && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
-rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
+rm -rf ./package/lean/autocore 
+svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
+rm -rf ./package/lean/default-settings
+svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
+
 rm -rf ./feeds/luci/applications/luci-app-arpbind  && svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
 
+rm -rf ./feeds/luci/applications/luci-app-accesscontrol
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
 # rm -rf ./package/build/luci-app-dockerman
@@ -149,7 +151,7 @@ git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./pac
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
 #断线不重拨
-sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
+# sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #docker err
 #rm -rf ./feeds/packages/utils/runc/Makefile
