@@ -145,7 +145,7 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 #svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
 #断线不重拨
-sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
+# sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #echo "其他修改"
 sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为2
@@ -229,6 +229,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./
 git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 # CPU 控制相关
+rm -rf  feeds/luci/applications/luci-app-cpufreq
 svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
 ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
 sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
@@ -275,18 +276,18 @@ sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
-# pushd package/passwall/luci-app-passwall
-# sed -i 's,default n,default y,g' Makefile
+pushd package/passwall/luci-app-passwall
+sed -i 's,default n,default y,g' Makefile
 # sed -i '/shadowsocks-libev-ss-redir/d' Makefile
 # sed -i '/shadowsocks-libev-ss-server/d' Makefile
 # sed -i '/shadowsocks-libev-ss-local/d' Makefile
-# popd
-# pushd package/pass/luci-app-ssr-plus
-# sed -i 's,default n,default y,g' Makefile
+popd
+pushd package/pass/luci-app-ssr-plus
+sed -i 's,default n,default y,g' Makefile
 # sed -i '/shadowsocks-libev-ss-redir/d' Makefile
 # sed -i '/shadowsocks-libev-ss-server/d' Makefile
 # sed -i '/shadowsocks-libev-ss-local/d' Makefile
-# popd
+popd
 rm -rf ./feeds/packages/net/https-dns-proxy
 svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
