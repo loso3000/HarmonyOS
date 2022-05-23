@@ -56,8 +56,9 @@ rm -rf ./feeds/luci/applications/luci-app-netdata
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
 
-
+rm -rf  ./package/diy/adguardhome
 rm -rf ./feeds/packages/net/adguardhome && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./feeds/packages/net/adguardhome
+sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
 
 cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3 && rm -rf ./package/build/mwan3
 # sed -i 's,+mwan3,+mwan3plus,g' ./feeds/luci/applications/luci-app-mwan3/Makefile
