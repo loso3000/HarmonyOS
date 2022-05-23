@@ -289,6 +289,22 @@ svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-
 # sed -i 's,default n,default y,g' Makefile
 # popd
 
+# Passwall 白名单
+echo '
+checkip.synology.com
+checkipv6.synology.com
+checkport.synology.com
+ddns.synology.com
+account.synology.com
+whatismyip.akamai.com
+checkip.dyndns.org
+teamviewer.com
+bing.com
+api.ipify.org
+epicgames.com
+emby.kyarucloud.moe
+' >>package/passwall/luci-app-passwall/root/usr/share/passwall/rules/direct_host
+
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
