@@ -56,6 +56,10 @@ rm -rf ./feeds/luci/applications/luci-app-netdata
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
 
+rm -rf ./package/build/luci-app-arpbind
+rm -rf feeds/luci/applications/luci-app-arpbind
+svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-arpbind feeds/luci/applications/luci-app-arpbind
+ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 
 rm -rf ./feeds/packages/net/adguardhome && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./feeds/packages/net/adguardhome
 
