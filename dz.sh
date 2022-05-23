@@ -166,8 +166,8 @@ rm -rf feeds/packages/net/minieap
 svn co https://github.com/immortalwrt/packages/trunk/net/minieap packages/net/minieap feeds/packages/net/minieap
 
 # Add mentohust & luci-app-mentohust
-git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust package/luci-app-mentohust
-git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
+git clone --depth 1 https://github.com/BoringCat/luci-app-mentohust package/new/luci-app-mentohust
+git clone --depth 1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/new/MentoHUST
 
 # 全能推送
 rm -rf ./feeds/luci/applications/luci-app-pushbot && \
