@@ -159,6 +159,7 @@ sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasr
 
 # rm -rf ./feeds/luci/applications/luci-app-socat && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
 sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
+ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/feeds/luci/luci-app-socat
 
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP禁用IPV6问题
 sed -i 's/请输入用户名和密码。/欢迎使用!请输入用户密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
@@ -209,6 +210,8 @@ svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packa
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome feeds/packages/net/adguardhome
 # sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/AdGuardHome' ./feeds/packages/net/adguardhome/Makefile
 sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
+ln -sf ../../../feeds/packages/net/adguardhome ./package/feeds/packages/net/adguardhome
+cp -rf ./feeds/packages/net/adguardhome   ./package/diy/adguardhome
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
