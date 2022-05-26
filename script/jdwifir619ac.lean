@@ -112,6 +112,10 @@ CONFIG_PACKAGE_luci-app-n2n_v2=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-vlmcsd=y
 # 主题
+
+CONFIG_LUCI_LANG_en=y
+CONFIG_LUCI_LANG_ko=y
+CONFIG_LUCI_LANG_zh-cn=y
 CONFIG_PACKAGE_luci-theme-argon=n
 CONFIG_PACKAGE_luci-theme-atmaterial=n
 CONFIG_PACKAGE_luci-theme-ifit=n
