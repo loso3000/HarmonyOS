@@ -43,18 +43,15 @@ CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-boostupnp=n
 # CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=n
+CONFIG_PACKAGE_luci-app-wolplus=y
 # base插件
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_dnspod=y
 CONFIG_PACKAGE_ddns-scripts_aliyun=y
 CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
-CONFIG_PACKAGE_ddns-scripts-cloudflare=y
 CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
 CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
 CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
-CONFIG_PACKAGE_ddns-scripts_nsupdate=y
-CONFIG_PACKAGE_ddns-scripts_route53-v1=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_automount=y
 CONFIG_PACKAGE_autocore-arm=y
@@ -97,7 +94,7 @@ CONFIG_PACKAGE_luci-app-smartdns=y
 # CONFIG_PACKAGE_luci-app-flowoffload is no set
 CONFIG_PACKAGE_luci-app-filetransfer=y
 CONFIG_PACKAGE_luci-app-passwall=y
-CONFIG_PACKAGE_luci-app-ssr-plus=y
+CONFIG_PACKAGE_luci-app-ssr-plus=n
 CONFIG_PACKAGE_luci-app-ssrpro=n
 CONFIG_PACKAGE_luci-app-vssr=n
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
@@ -106,7 +103,7 @@ CONFIG_PACKAGE_luci-app-netspeedtest=y
 CONFIG_PACKAGE_luci-app-bypass=y
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 CONFIG_PACKAGE_luci-app-dnsto=n
-CONFIG_PACKAGE_luci-app-pushbot=y
+CONFIG_PACKAGE_luci-app-pushbot=n
 CONFIG_PACKAGE_luci-app-mac=n
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-kodexplorer=n
@@ -132,7 +129,7 @@ CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
 # CONFIG_PACKAGE_luci-app-zerotier is not set
-CONFIG_PACKAGE_luci-app-mwan3=y
+CONFIG_PACKAGE_luci-app-mwan3=n
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_UnblockNeteaseMusic_Go=y
@@ -152,10 +149,10 @@ CONFIG_PACKAGE_luci-app-dockerman=n
 CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=n
 CONFIG_PACKAGE_luci-app-softethervpn=n
-CONFIG_PACKAGE_luci-app-uugamebooster=y
+# CONFIG_PACKAGE_luci-app-uugamebooster is not set
 CONFIG_DEFAULT_luci-app-cpufreq=n
 CONFIG_PACKAGE_luci-app-udpxy=n
-CONFIG_PACKAGE_luci-app-socat=n
+CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-oaf=n
 CONFIG_PACKAGE_luci-app-transmission=n
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
@@ -163,7 +160,7 @@ CONFIG_PACKAGE_luci-app-mwan3helper=n
 CONFIG_PACKAGE_luci-app-qbittorrent=n
 CONFIG_PACKAGE_luci-app-familycloud=n
 CONFIG_PACKAGE_luci-app-nps=n
-CONFIG_PACKAGE_luci-app-frpc=y
+CONFIG_PACKAGE_luci-app-frpc=n
 # CONFIG_PACKAGE_luci-app-nfs=n
 CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
