@@ -212,9 +212,9 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package
 
 # Fix libssh
 # rm -rf feeds/packages/libs
-# svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
+svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
 # Add apk (Apk Packages Manager)
-# svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
+svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
 
 # Add luci-udptools
 # svn co https://github.com/zcy85611/Openwrt-Package/trunk/luci-udptools  package/new/
