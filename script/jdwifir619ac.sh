@@ -191,16 +191,6 @@ sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
 ln -sf ../../../feeds/packages/net/adguardhome ./package/feeds/packages/net/adguardhome
 cp -rf ./feeds/packages/net/adguardhome   ./package/diy/adguardhome
 
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-' >> ./target/linux/x86/config-5.4
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-' >> ./target/linux/x86/config-5.15
-
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/mosdns
 sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
@@ -209,20 +199,27 @@ sed -i 's/告"), 1).dep/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/contr
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
-
-# Fix libssh
-# rm -rf feeds/packages/libs
-# svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
-# Add apk (Apk Packages Manager)
-# svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
-
-# Add luci-udptools
-# svn co https://github.com/zcy85611/Openwrt-Package/trunk/luci-udptools  package/new/
-# svn co https://github.com/zcy85611/Openwrt-Package/trunk/udp2raw package/new/
-# svn co https://github.com/zcy85611/Openwrt-Package/trunk/udpspeeder package/new/
-
 # Add subconverter
 # git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter  package/new/
+# 订阅转换
+svn export https://github.com/immortalwrt/packages/trunk/net/subconverter feeds/packages/net/subconverter
+#wget https://github.com/immortalwrt/packages/raw/b7b4499/net/subconverter/Makefile -O feeds/packages/net/subconverter/Makefile
+#mkdir -p ./feeds/packages/net/subconverter/patches
+#wget https://github.com/immortalwrt/packages/raw/b7b4499/net/subconverter/patches/100-stdcxxfs.patch -O feeds/packages/net/subconverter/patches/100-stdcxxfs.patch
+#sed -i '\/bin\/subconverter/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(1)/usr/bin/subconverter' feeds/packages/net/subconverter/Makefile
+ln -sf ../../../feeds/packages/net/subconverter ./package/feeds/packages/subconverter
+svn export https://github.com/immortalwrt/packages/trunk/libs/jpcre2 feeds/packages/libs/jpcre2
+ln -sf ../../../feeds/packages/libs/jpcre2 ./package/feeds/packages/jpcre2
+svn export https://github.com/immortalwrt/packages/trunk/libs/rapidjson feeds/packages/libs/rapidjson
+ln -sf ../../../feeds/packages/libs/rapidjson ./package/feeds/packages/rapidjson
+svn export https://github.com/immortalwrt/packages/trunk/libs/libcron feeds/packages/libs/libcron
+#wget https://github.com/immortalwrt/packages/raw/b7b4499/libs/libcron/Makefile -O feeds/packages/libs/libcron/Makefile
+ln -sf ../../../feeds/packages/libs/libcron ./package/feeds/packages/libcron
+svn export https://github.com/immortalwrt/packages/trunk/libs/quickjspp feeds/packages/libs/quickjspp
+#wget https://github.com/immortalwrt/packages/raw/b7b4499/libs/quickjspp/Makefile -O feeds/packages/libs/quickjspp/Makefile
+ln -sf ../../../feeds/packages/libs/quickjspp ./package/feeds/packages/quickjspp
+svn export https://github.com/immortalwrt/packages/trunk/libs/toml11 feeds/packages/libs/toml11
+ln -sf ../../../feeds/packages/libs/toml11 ./package/feeds/packages/toml11
 
 # rm -rf ./feeds/packages/utils/runc/Makefile
 # svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
@@ -267,19 +264,19 @@ rm -rf ./feeds/packages/net/trojan*
 #bypass
 #rm -rf package/build/pass/luci-app-bypass
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
+#sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
+#sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
-pushd package/passwall/luci-app-passwall
+#pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
 popd
 pushd package/pass/luci-app-ssr-plus
-sed -i 's,default n,default y,g' Makefile
+#sed -i 's,default n,default y,g' Makefile
 popd
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
@@ -335,14 +332,6 @@ pushd package/lean/luci-app-vssr
 # sed -i 's,default n,default y,g' Makefile
 # sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
 popd
-
-# 在 X86 架构下移除 Shadowsocks-rust
-sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/ssr/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 #sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
