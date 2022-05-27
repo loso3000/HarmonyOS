@@ -92,7 +92,7 @@ jobs:
          df -h
          cd openwrt
          make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
-         cp  .config /bin/targets/x86dz
+         cp  .config /bin/targets/
          echo $?
       - name: If Error
         if: steps.compileopenwrt.outcome == 'failure'
