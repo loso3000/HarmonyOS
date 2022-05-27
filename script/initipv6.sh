@@ -10,15 +10,6 @@ KEY=123456
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
 
-cp -f ./package/build/banner ./package/base-files/files/etc/banner
-cat ./package/build/profile > package/base-files/files/etc/profile
-# cp -rf ./package/build/ramips/*  target/linux/ramips/*
-
-cp -rf ./package/other/luci/*  ./feeds/luci/*
-
-#修正nat回流 
-cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
-
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
@@ -35,15 +26,6 @@ rm -rf ./package/other/up/https-dns-proxy
 
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
-# version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
-# sed -i '/root:/d' ./package/base-files/files/etc/shadow
-# sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
-# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-
-#sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-#sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
@@ -56,13 +38,8 @@ rm -rf ./feeds/luci/applications/luci-app-netdata
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netdata ./feeds/packages/admin/netdata
 
-rm -rf  ./package/diy/adguardhome
-rm -rf ./feeds/packages/net/adguardhome && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./feeds/packages/net/adguardhome
-sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
-
 cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3 && rm -rf ./package/build/mwan3
 # sed -i 's,+mwan3,+mwan3plus,g' ./feeds/luci/applications/luci-app-mwan3/Makefile
-rm -rf ./package/build/mwan3 
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 # rm -rf ./feeds/packages/net/mwan3 && svn co https://github.com/sirpdboy/build/trunk/mwan3 ./feeds/packages/net/mwan3
 
@@ -100,6 +77,7 @@ sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' ta
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
 #rm -rf ./feeds/luci/applications/vlmcsd
 ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
+ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
 
 # Add luci-aliyundrive-webdav
 rm -rf ./luci-app-aliyundrive-webdav 
@@ -115,11 +93,11 @@ sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
 #zerotier 
 # rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier  #取消防火墙
-svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
-ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
-rm -rf ./feeds/packages/net/zerotier
-svn export https://github.com/openwrt/packages/trunk/net/zerotier feeds/packages/net/zerotier
-rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
+# svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+# ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+# rm -rf ./feeds/packages/net/zerotier
+# svn export https://github.com/openwrt/packages/trunk/net/zerotier feeds/packages/net/zerotier
+# rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
@@ -173,7 +151,7 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 # sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #echo "其他修改"
-sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为2
+sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
 sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 
 # echo '默认开启 Irqbalance'
@@ -216,15 +194,11 @@ cp -rf ./feeds/packages/net/adguardhome   ./package/diy/adguardhome
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
 CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.4
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
 CONFIG_CRYPTO_POLY1305_X86_64=y
-CONFIG_DRM=y
-CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.15
 
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/mosdns
@@ -399,10 +373,24 @@ sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/
 
 # Fix SDK
 # sed -i '/$(SDK_BUILD_DIR)\/$(STAGING_SUBDIR_HOST)\/usr\/bin/d;/LICENSE/d' ./target/sdk/Makefile
+ 
 
-# echo '默认开启 Irqbalance'
-ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
-export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
+cp -f ./package/build/banner ./package/base-files/files/etc/banner
+cat ./package/build/profile > package/base-files/files/etc/profile
+# cp -rf ./package/build/ramips/*  target/linux/ramips/*
+
+cp -rf ./package/other/luci/*  ./feeds/luci/*
+
+#修正nat回流 
+cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
+# version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
+# sed -i '/root:/d' ./package/base-files/files/etc/shadow
+# sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
+# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
+
+#sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+#sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 
