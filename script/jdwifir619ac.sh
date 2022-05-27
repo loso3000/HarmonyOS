@@ -16,14 +16,6 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
 rm -rf ./package/other/up/oaf
 
-# rm -rf ./package/other/up/luci-app-https-dns-proxy
-rm -rf ./package/other/up/https-dns-proxy
-# rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
-# rm -rf ./feeds/packages/net/https-dns-proxy
-# svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
-# svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-https-dns-proxy ./package/build/luci-app-https-dns-proxy
-# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/net/https-dns-proxy ./package/build/https-dns-proxy
-
 git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
 echo '替换smartdns'
@@ -44,8 +36,6 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 # rm -rf ./feeds/packages/net/mwan3 && svn co https://github.com/sirpdboy/build/trunk/mwan3 ./feeds/packages/net/mwan3
 
 # rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
-# rm -rf ./package/lean/autosamba
-# rm -rf ./feeds/luci/applications/luci-app-accesscontrol
 
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
@@ -70,14 +60,12 @@ sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.10
 # sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.15
 
-#docker err
-#rm -rf ./feeds/packages/utils/runc/Makefile
-#svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
-
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
-#rm -rf ./feeds/luci/applications/vlmcsd
+rm -rf ./feeds/luci/applications/vlmcsd
+svn export https://github.com/wongsyrone/lede-1/trunk/package/external/vlmcsd ./feeds/luci/applications/vlmcsd
 ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
 ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
+
 
 # Add luci-aliyundrive-webdav
 rm -rf ./luci-app-aliyundrive-webdav 
@@ -101,6 +89,21 @@ sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+
+# Zerotier
+svn export https://github.com/wongsyrone/lede-1/trunk/package/external/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+#svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+wget -P feeds/luci/applications/luci-app-zerotier/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
+chmod -R 755 ./feeds/luci/applications/luci-app-zerotier/move_2_services.sh
+pushd feeds/luci/applications/luci-app-zerotier
+bash move_2_services.sh
+popd
+ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+rm -rf ./feeds/packages/net/zerotier
+#svn export https://github.com/openwrt/packages/trunk/net/zerotier feeds/packages/net/zerotier
+svn export https://github.com/wongsyrone/packages-1/trunk/net/zerotier feeds/packages/net/zerotier
+rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
+
 
 #syncdial
 # rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
@@ -196,6 +199,13 @@ sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdn
 
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1).dep/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
+
+
+# Fix libssh
+# rm -rf feeds/packages/libs
+svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
+# Add apk (Apk Packages Manager)
+svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
