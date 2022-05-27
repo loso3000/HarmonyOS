@@ -134,7 +134,7 @@ CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
 CONFIG_PACKAGE_luci-app-n2n_v2=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
-CONFIG_PACKAGE_luci-app-vlmcsd=n
+CONFIG_PACKAGE_luci-app-vlmcsd=y
 # 主题
 
 CONFIG_LUCI_LANG_en=y
@@ -196,7 +196,7 @@ CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-amule=n
-CONFIG_PACKAGE_subconverter=y
+# CONFIG_PACKAGE_subconverter=y
 
 # Wireless Support
 CONFIG_PACKAGE_iw=y
