@@ -104,13 +104,7 @@ jobs:
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
          
-         cat  .config  > bin/targets
-      - name: If Error
-        if: steps.compileopenwrt.outcome == 'failure'
-        run: |
-          echo '================================================================'
- 
-
+         cat  .config  > bin/targets/x86dz
       - name: Upload Firmware bin
         uses: actions/upload-artifact@main
         with:
