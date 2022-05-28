@@ -267,6 +267,7 @@ CONFIG_PACKAGE_kmod-rtlwifi-pci=y
 CONFIG_PACKAGE_kmod-rtlwifi-usb=y
 CONFIG_PACKAGE_kmod-rtw88=y
 CONFIG_PACKAGE_kmod-wil6210=y
+CONFIG_PACKAGE_kmod-tg3=y  #BCM5719
 
 # 3G/4G Drivers & Utilities
 CONFIG_PACKAGE_comgt-ncm=y
