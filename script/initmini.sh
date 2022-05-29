@@ -54,10 +54,10 @@ rm -rf ./package/lean/autocore  && svn co https://github.com/sirpdboy/build/trun
 rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
 
 rm -rf ./package/build/luci-app-arpbind
-rm -rf ./feeds/luci/applications/luci-app-arpbind
+# rm -rf ./feeds/luci/applications/luci-app-arpbind
 # svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-arpbind feeds/luci/applications/luci-app-arpbind
-svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
-ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
+# svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
+# ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
@@ -228,29 +228,6 @@ svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
 # svn co https://github.com/zcy85611/Openwrt-Package/trunk/udp2raw package/new/
 # svn co https://github.com/zcy85611/Openwrt-Package/trunk/udpspeeder package/new/
 
-# Add subconverter
-# git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter  package/new/
-# 订阅转换
-svn export https://github.com/immortalwrt/packages/trunk/net/subconverter feeds/packages/net/subconverter
-#wget https://github.com/immortalwrt/packages/raw/b7b4499/net/subconverter/Makefile -O feeds/packages/net/subconverter/Makefile
-#mkdir -p ./feeds/packages/net/subconverter/patches
-#wget https://github.com/immortalwrt/packages/raw/b7b4499/net/subconverter/patches/100-stdcxxfs.patch -O feeds/packages/net/subconverter/patches/100-stdcxxfs.patch
-#sed -i '\/bin\/subconverter/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(1)/usr/bin/subconverter' feeds/packages/net/subconverter/Makefile
-ln -sf ../../../feeds/packages/net/subconverter ./package/feeds/packages/subconverter
-svn export https://github.com/immortalwrt/packages/trunk/libs/jpcre2 feeds/packages/libs/jpcre2
-ln -sf ../../../feeds/packages/libs/jpcre2 ./package/feeds/packages/jpcre2
-svn export https://github.com/immortalwrt/packages/trunk/libs/rapidjson feeds/packages/libs/rapidjson
-ln -sf ../../../feeds/packages/libs/rapidjson ./package/feeds/packages/rapidjson
-svn export https://github.com/immortalwrt/packages/trunk/libs/libcron feeds/packages/libs/libcron
-#wget https://github.com/immortalwrt/packages/raw/b7b4499/libs/libcron/Makefile -O feeds/packages/libs/libcron/Makefile
-ln -sf ../../../feeds/packages/libs/libcron ./package/feeds/packages/libcron
-svn export https://github.com/immortalwrt/packages/trunk/libs/quickjspp feeds/packages/libs/quickjspp
-#wget https://github.com/immortalwrt/packages/raw/b7b4499/libs/quickjspp/Makefile -O feeds/packages/libs/quickjspp/Makefile
-ln -sf ../../../feeds/packages/libs/quickjspp ./package/feeds/packages/quickjspp
-svn export https://github.com/immortalwrt/packages/trunk/libs/toml11 feeds/packages/libs/toml11
-ln -sf ../../../feeds/packages/libs/toml11 ./package/feeds/packages/toml11
-
-
 # rm -rf ./feeds/packages/utils/runc/Makefile
 # svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
@@ -416,11 +393,8 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-#sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
-# sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-echo 'CONFIG_TARGET_PREINIT_IP="192.168.8.1"'  >>.config
-echo 'CONFIG_TARGET_PREINIT_BROADCAST="192.168.8.255"'  >>.config
-echo 'CONFIG_VERSION_MANUFACTURER_URL="www.baidu.com"'  >>.config
+sed -i "s/hostname='OpenWrt'/hostname='EzOpWrt'/g" package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 
