@@ -225,24 +225,24 @@ svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
 # Add subconverter
 # git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter  package/new/
 # 订阅转换
-svn export https://github.com/immortalwrt/packages/trunk/net/subconverter feeds/packages/net/subconverter
+#svn export https://github.com/immortalwrt/packages/trunk/net/subconverter feeds/packages/net/subconverter
 #wget https://github.com/immortalwrt/packages/raw/b7b4499/net/subconverter/Makefile -O feeds/packages/net/subconverter/Makefile
 #mkdir -p ./feeds/packages/net/subconverter/patches
 #wget https://github.com/immortalwrt/packages/raw/b7b4499/net/subconverter/patches/100-stdcxxfs.patch -O feeds/packages/net/subconverter/patches/100-stdcxxfs.patch
 #sed -i '\/bin\/subconverter/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(1)/usr/bin/subconverter' feeds/packages/net/subconverter/Makefile
-ln -sf ../../../feeds/packages/net/subconverter ./package/feeds/packages/subconverter
-svn export https://github.com/immortalwrt/packages/trunk/libs/jpcre2 feeds/packages/libs/jpcre2
-ln -sf ../../../feeds/packages/libs/jpcre2 ./package/feeds/packages/jpcre2
-svn export https://github.com/immortalwrt/packages/trunk/libs/rapidjson feeds/packages/libs/rapidjson
-ln -sf ../../../feeds/packages/libs/rapidjson ./package/feeds/packages/rapidjson
-svn export https://github.com/immortalwrt/packages/trunk/libs/libcron feeds/packages/libs/libcron
+#ln -sf ../../../feeds/packages/net/subconverter ./package/feeds/packages/subconverter
+#svn export https://github.com/immortalwrt/packages/trunk/libs/jpcre2 feeds/packages/libs/jpcre2
+#ln -sf ../../../feeds/packages/libs/jpcre2 ./package/feeds/packages/jpcre2
+#svn export https://github.com/immortalwrt/packages/trunk/libs/rapidjson feeds/packages/libs/rapidjson
+#ln -sf ../../../feeds/packages/libs/rapidjson ./package/feeds/packages/rapidjson
+#svn export https://github.com/immortalwrt/packages/trunk/libs/libcron feeds/packages/libs/libcron
 #wget https://github.com/immortalwrt/packages/raw/b7b4499/libs/libcron/Makefile -O feeds/packages/libs/libcron/Makefile
-ln -sf ../../../feeds/packages/libs/libcron ./package/feeds/packages/libcron
-svn export https://github.com/immortalwrt/packages/trunk/libs/quickjspp feeds/packages/libs/quickjspp
+#ln -sf ../../../feeds/packages/libs/libcron ./package/feeds/packages/libcron
+#svn export https://github.com/immortalwrt/packages/trunk/libs/quickjspp feeds/packages/libs/quickjspp
 #wget https://github.com/immortalwrt/packages/raw/b7b4499/libs/quickjspp/Makefile -O feeds/packages/libs/quickjspp/Makefile
-ln -sf ../../../feeds/packages/libs/quickjspp ./package/feeds/packages/quickjspp
-svn export https://github.com/immortalwrt/packages/trunk/libs/toml11 feeds/packages/libs/toml11
-ln -sf ../../../feeds/packages/libs/toml11 ./package/feeds/packages/toml11
+#ln -sf ../../../feeds/packages/libs/quickjspp ./package/feeds/packages/quickjspp
+#svn export https://github.com/immortalwrt/packages/trunk/libs/toml11 feeds/packages/libs/toml11
+#ln -sf ../../../feeds/packages/libs/toml11 ./package/feeds/packages/toml11
 
 
 # rm -rf ./feeds/packages/utils/runc/Makefile
@@ -411,7 +411,7 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 #sed -i "s/hostname='OpenWrt'/hostname='${HOSTNAME}'/g" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+# sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings2 > ./package/lean/default-settings/files/zzz-default-settings
 
