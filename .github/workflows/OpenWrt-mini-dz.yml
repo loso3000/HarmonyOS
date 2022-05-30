@@ -112,12 +112,7 @@ jobs:
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
-         cat  .config  > bin/targets/x86dz
-      - name: Upload Firmware bin
-        uses: actions/upload-artifact@main
-        with:
-          name: SirpdboyOpenWrt-IPV6-Plus-bin-Firmware
-          path: ./openwrt/bin
+
       - name: Prepare Artifact
         run: |
           mkdir -p ./mini/firmware
@@ -126,6 +121,7 @@ jobs:
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
           gzip *.img |true
+          cat  .config  > ./mini/firmware/x86ez
           echo $md5 >> version.txt
       - name: Upload Firmware wetransfer
         run: |
