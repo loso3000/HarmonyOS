@@ -112,6 +112,7 @@ jobs:
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
+         ls ./openwrt/bin/targets/*/  
 
       - name: Prepare Artifact
         run: |
@@ -120,8 +121,8 @@ jobs:
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/package
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
-          gzip *.img |true
-          cat  .config  > ./mini/firmware/x86ez
+          gzip *.img ||true
+          #cat  .config  > ./mini/firmware/x86ez
           echo $md5 >> version.txt
       - name: Upload Firmware wetransfer
         run: |
