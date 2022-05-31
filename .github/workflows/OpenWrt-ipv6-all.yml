@@ -91,7 +91,7 @@ jobs:
          make package/index
          echo "::set-output name=COMPILE_STATUS::success"
       - name: Generate Firmware
-        if: steps.compileopenwrt.outputs.COMPILE_STATUS == 'success'
+        if: steps.compile.outputs.COMPILE_STATUS == 'success'
         id: generate
         run: |
           cd openwrt
