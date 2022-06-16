@@ -295,6 +295,7 @@ sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
+# svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
@@ -337,6 +338,8 @@ svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/lean/dns2tc
 svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
 svn export https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
+
+rm -rf ./feeds/packages/net/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hysteria
 svn export https://github.com/fw876/helloworld/trunk/sagernet-core package/lean/sagernet-core
