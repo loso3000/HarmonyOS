@@ -3,10 +3,10 @@ CONFIG_TARGET_x86_64=y
 CONFIG_TARGET_x86_64_DEVICE_generic=y
 # 设置固件大小
 CONFIG_TARGET_KERNEL_PARTSIZE=64
-CONFIG_TARGET_ROOTFS_PARTSIZE=926
+CONFIG_TARGET_ROOTFS_PARTSIZE=1526
 
-CONFIG_COREMARK_NUMBER_OF_THREADS=128
-CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
+# CONFIG_COREMARK_NUMBER_OF_THREADS=128
+# CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
 # CONFIG_PACKAGE_i915-firmware is not set
 
 # 所集成的固件类型
@@ -33,7 +33,6 @@ CONFIG_GRUB_TITLE="OpenWrt"
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 #ipv6
-
 CONFIG_TARGET_PREINIT_IP="192.168.8.1"
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
@@ -162,6 +161,19 @@ CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
 
 CONFIG_PACKAGE_kmod-tg3=y  #BCM5719
 
+CONFIG_PACKAGE_kmod-cfg80211=y
+CONFIG_PACKAGE_kmod-iwl-legacy=y
+CONFIG_PACKAGE_kmod-iwl3945=y
+CONFIG_PACKAGE_kmod-iwl4965=y
+CONFIG_PACKAGE_kmod-iwlwifi=y
+CONFIG_PACKAGE_kmod-lib80211=y
+CONFIG_PACKAGE_kmod-libertas-usb=y
+# CONFIG_PACKAGE_kmod-libipw=y
+CONFIG_PACKAGE_kmod-mac80211=y
+CONFIG_PACKAGE_MAC80211_DEBUGFS=y
+CONFIG_PACKAGE_MAC80211_MESH=y
+CONFIG_PACKAGE_kmod-mt76=y
+CONFIG_PACKAGE_kmod-rtlwifi=y
 CONFIG_PACKAGE_ath10k-firmware-qca9888=y
 CONFIG_PACKAGE_ath10k-firmware-qca988x=y
 CONFIG_PACKAGE_ath10k-firmware-qca9984=y
@@ -170,6 +182,7 @@ CONFIG_PACKAGE_kmod-usb-net-rndis=y
 CONFIG_DEFAULT_kmod-iavf=y
 CONFIG_DEFAULT_kmod-igb=y
 CONFIG_DEFAULT_kmod-igbvf=y
+CONFIG_PACKAGE_kmod-ixgbe=y
 CONFIG_DEFAULT_kmod-igc=y
 CONFIG_DEFAULT_kmod-ipt-raw=y
 CONFIG_DEFAULT_kmod-ixgbe=y
@@ -249,7 +262,7 @@ CONFIG_PACKAGE_luci-app-cpulimit=y
 CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
-# CONFIG_PACKAGE_luci-app-filetransfer is not set
+CONFIG_PACKAGE_luci-app-filetransfer=y
 CONFIG_PACKAGE_luci-app-hd-idle=y
 CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
