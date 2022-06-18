@@ -206,8 +206,8 @@ CONFIG_PACKAGE_kmod-fs-squashfs=y
 CONFIG_DEFAULT_kmod-fs-vfat=y
 CONFIG_PACKAGE_ntfs-3g=y
 #CONFIG_PACKAGE_antfs-mount=y
-#CONFIG_PACKAGE_kmod-fs-antfs=n
-#CONFIG_PACKAGE_kmod-fs-ntfs is not set
+# CONFIG_PACKAGE_kmod-fs-antfs is not set
+# CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_block-mount=y
 
 ### USB Audio 
@@ -277,12 +277,12 @@ CONFIG_PACKAGE_luci-app-serverchan=y
 CONFIG_PACKAGE_luci-app-smartdns=y
 CONFIG_PACKAGE_luci-app-ttyd=y
 CONFIG_PACKAGE_luci-app-turboacc=y
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSFORWARDER=n
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSPROXY=n
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
-# CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE is not set
+CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE=y
+CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
+CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSFORWARDER=y
+CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSPROXY=y
 CONFIG_PACKAGE_luci-app-passwall=y
-CONFIG_PACKAGE_luci-app-passwall2=y
+CONFIG_PACKAGE_luci-app-passwall2=n
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-bypass=y
@@ -331,6 +331,7 @@ CONFIG_PACKAGE_luci-app-homeassistant=n
 CONFIG_PACKAGE_luci-app-tencentddns=y
 CONFIG_PACKAGE_luci-app-aliddns=y
 CONFIG_PACKAGE_luci-app-pptpserver=y
+CONFIG_PACKAGE_luci-app-n2n_v2=y
 
 #主题
 CONFIG_LUCI_LANG_en=y
