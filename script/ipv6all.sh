@@ -1,12 +1,7 @@
 #!/bin/bash
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
-WORKDIR=/workdir
-HOSTNAME=OpenWrt
-IPADDRESS=192.168.8.1
-SSID=Sirpdboy
-ENCRYPTION=psk2
-KEY=123456
+# git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy 
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
 
@@ -32,7 +27,7 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packa
 
 # netdata 
 # rm -rf  ./package/diy/netdata
-cp -rf ./feeds/packages/admin/netdata ./package/diy/
+cp -rf ./feeds/packages/admin/netdata ./package/diy/netdata
 rm -rf ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
@@ -52,11 +47,11 @@ rm -rf ./package/build/default-settings
 rm -rf ./package/lean/autocore  && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
 rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
 
-rm -rf ./package/build/luci-app-arpbind
-rm -rf ./feeds/luci/applications/luci-app-arpbind
+# rm -rf ./package/build/luci-app-arpbind
+# rm -rf ./feeds/luci/applications/luci-app-arpbind
 # svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-arpbind feeds/luci/applications/luci-app-arpbind
-svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
-ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
+# svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
+# ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
@@ -76,14 +71,14 @@ sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' ta
 
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
 #rm -rf ./feeds/luci/applications/vlmcsd
-ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
-ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
+# ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
+# ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
 
 # Add luci-aliyundrive-webdav
-rm -rf ./luci-app-aliyundrive-webdav 
-rm -rf ./aliyundrive-webdav
-svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav ./package/lean/aliyundrive-webdav
-svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./package/lean/luci-app-aliyundrive-webdav
+# rm -rf ./luci-app-aliyundrive-webdav 
+# rm -rf ./aliyundrive-webdav
+# svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav ./package/lean/aliyundrive-webdav
+# svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./package/lean/luci-app-aliyundrive-webdav
 
 # Add ddnsto & linkease
 svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
@@ -98,53 +93,30 @@ sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 # rm -rf ./feeds/packages/net/zerotier
 # svn export https://github.com/openwrt/packages/trunk/net/zerotier feeds/packages/net/zerotier
 # rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
-sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+# sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+# sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+# sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 #syncdial
 # rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
 
 # samba4
-rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+# rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
-git clone --depth 1 https://github.com/zxlhhyccc/luci-app-v2raya.git package/new/luci-app-v2raya
-svn co https://github.com/v2rayA/v2raya-openwrt/trunk/v2raya package/new/v2raya
-
-# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 echo '添加关机'
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
-
-sed -i 's/网络存储/存储/g' ./feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
-sed -i 's/Turbo ACC 网络加速/ACC网络加速/g' ./feeds/luci/applications/luci-app-flowoffload/po/zh-cn/flowoffload.po
-sed -i 's/Turbo ACC 网络加速/ACC网络加速/g' ./feeds/luci/applications/luci-app-turboacc/po/zh-cn/turboacc.po
-sed -i 's/Turbo ACC 网络加速/ACC网络加速/g' ./feeds/luci/applications/luci-app-sfe/po/zh-cn/sfe.po
-sed -i 's/解锁网易云灰色歌曲/解锁灰色歌曲/g' ./feeds/luci/applications/luci-app-unblockmusic/po/zh-cn/unblockmusic.po
-sed -i 's/家庭云//g' ./feeds/luci/applications/luci-app-familycloud/luasrc/controller/familycloud.lua
-sed -i 's/实时流量监测/流量/g' ./feeds/luci/applications/luci-app-wrtbwmon/po/zh-cn/wrtbwmon.po
-sed -i 's/KMS 服务器/KMS激活/g' ./feeds/luci/applications/luci-app-vlmcsd/po/zh-cn/vlmcsd.po
-sed -i 's/USB 打印服务器"/打印服务/g' ./feeds/luci/applications/luci-app-usb-printer/po/zh-cn/usb-printer.po
-sed -i 's/网络存储/存储/g' ./feeds/luci/applications/luci-app-usb-printer/po/zh-cn/usb-printer.po
-sed -i 's/aMule设置/电驴下载/g' ./feeds/luci/applications/luci-app-amule/po/zh-cn/amule.po
-sed -i 's/网络存储/存储/g' ./feeds/luci/applications/luci-app-amule/po/zh-cn/amule.po
-sed -i 's/监听端口/监听端口 用户名admin密码adminadmin/g' ./feeds/luci/applications/luci-app-qbittorrent/po/zh-cn/qbittorrent.po
-sed -i 's/带宽监控/监控/g' ./feeds/luci/applications/luci-app-nlbwmon/po/zh-cn/nlbwmon.po
 sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-cifsd/luasrc/controller/cifsd.lua   #挂问题
 echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP穿透问题
 sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 
-# rm -rf ./feeds/luci/applications/luci-app-socat && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
-sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
+rm -rf ./feeds/luci/applications/luci-app-socat && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
 ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/feeds/luci/luci-app-socat
 
-sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP禁用IPV6问题
-sed -i 's/请输入用户名和密码。/欢迎使用!请输入用户密码~/g' ./feeds/luci/modules/luci-base/po/zh-cn/base.po   #用户名密码
 echo '灰色歌曲'
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
 
 #断线不重拨
@@ -153,9 +125,6 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 #echo "其他修改"
 sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
 sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
-
-# echo '默认开启 Irqbalance'
-# sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 # Add minieap
 rm -rf feeds/packages/net/minieap
@@ -205,44 +174,13 @@ svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/mosdns
 sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
-sed -i 's/告"), 1).dep/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
-
-
-# Fix libssh
-# rm -rf feeds/packages/libs
-# svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
-# Add apk (Apk Packages Manager)
-# svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
-
-# Add luci-udptools
-# svn co https://github.com/zcy85611/Openwrt-Package/trunk/luci-udptools  package/new/
-# svn co https://github.com/zcy85611/Openwrt-Package/trunk/udp2raw package/new/
-# svn co https://github.com/zcy85611/Openwrt-Package/trunk/udpspeeder package/new/
-
-# Add subconverter
-# git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter  package/new/
-
-# rm -rf ./feeds/packages/utils/runc/Makefile
-# svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
 # ChinaDNS
 git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
-# CPU 控制相关
-rm -rf  feeds/luci/applications/luci-app-cpufreq
-svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
-ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
-sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 
-rm -rf ./packages/build/ddns-scripts_dnspod
-# rm -rf ./package/lean/ddns-scripts_aliyun && svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
-sed -i '/boot()/,+2d' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
-svn export https://github.com/linkease/istore-packages/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
-svn export https://github.com/linkease/istore-packages/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
 
 # Passwall
 rm -rf ./feeds/packages/net/pdnsd-alt
@@ -364,10 +302,6 @@ git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/l
 git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
 
 
-# Remove some default packages
-# sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
-sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
-
 # git clone https://github.com/openwrt-dev/po2lmo.git
 # cd po2lmo
 # make && sudo make install
@@ -401,21 +335,7 @@ ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判�
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 date1='Ipv6-Plus-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-date1='Ipv6-Plus-S20220618'
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220618-Ipv6-Plus-5.15-/g' include/image.mk
-if [ "$VER2" = "5.4" ]; then
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220415-Ipv6-Plus-5.4-/g' include/image.mk
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.4-/g' include/image.mk
-elif [ "$VER2" = "5.10" ]; then
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220401-Ipv6-Plus-5.10-/g' include/image.mk
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.10-/g' include/image.mk
-elif [ "$VER2" = "5.15" ]; then
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220415-Ipv6-Plus-5.15-/g' include/image.mk
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.15-/g' include/image.mk
-fi
-
-# echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
-# echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
+# date1='Ipv6-Plus-S20220618'
 echo "DISTRIB_REVISION='${date1} '" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}'  ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
