@@ -213,9 +213,9 @@ CONFIG_PACKAGE_block-mount=y
 ### USB Audio 
 CONFIG_PACKAGE_kmod-usb-audio=y
 #Tailscale
-CONFIG_PACKAGE_libustream-openssl=y
-CONFIG_PACKAGE_ca-bundle=y
-CONFIG_PACKAGE_kmod-tun=y
+#CONFIG_PACKAGE_libustream-openssl=y
+#CONFIG_PACKAGE_ca-bundle=y
+#CONFIG_PACKAGE_kmod-tun=y
 
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -315,7 +315,7 @@ CONFIG_PACKAGE_luci-app-cpufreq=n
 # CONFIG_PACKAGE_BitSrunLoginGo=n   #学校签到
 CONFIG_PACKAGE_luci-app-v2raya=n
 CONFIG_PACKAGE_luci-app-linkease=y
-# CONFIG_PACKAGE_luci-app-vlmcsd is not set
+CONFIG_PACKAGE_luci-app-vlmcsd=y
 
 CONFIG_PACKAGE_luci-app-bridge=n
 CONFIG_PACKAGE_luci-app-cowbping=y
@@ -331,7 +331,7 @@ CONFIG_PACKAGE_luci-app-homeassistant=n
 CONFIG_PACKAGE_luci-app-tencentddns=y
 CONFIG_PACKAGE_luci-app-aliddns=y
 CONFIG_PACKAGE_luci-app-pptpserver=y
-CONFIG_PACKAGE_luci-app-n2n_v2=y
+CONFIG_PACKAGE_luci-app-n2n_v2=n
 
 #主题
 CONFIG_LUCI_LANG_en=y
@@ -364,7 +364,7 @@ CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui=n
 CONFIG_PACKAGE_luci-app-pppoe-server=y
 CONFIG_PACKAGE_luci-app-ipsec-vpnd=n
 CONFIG_PACKAGE_luci-app-ipsec-server=y
-CONFIG_PACKAGE_luci-app-koolddns=y
+CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=y
 CONFIG_PACKAGE_luci-app-uugamebooster=y
@@ -374,7 +374,7 @@ CONFIG_PACKAGE_luci-app-transmission=y
 CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_luci-app-mwan3helper=y
 CONFIG_PACKAGE_luci-app-qbittorrent=y
-CONFIG_PACKAGE_luci-app-familycloud=y
+CONFIG_PACKAGE_luci-app-familycloud=n
 CONFIG_PACKAGE_luci-app-nps=y
 CONFIG_PACKAGE_luci-app-frpc=y
 CONFIG_PACKAGE_luci-app-frps=y
