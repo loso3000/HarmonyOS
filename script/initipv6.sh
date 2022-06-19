@@ -184,8 +184,8 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/aria2 feeds/packages/n
 
 rm -rf ./package/diy/adguardhome
 rm -rf ./feeds/packages/net/adguardhome
-svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
-# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome feeds/packages/net/adguardhome
+# svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome feeds/packages/net/adguardhome
 # sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/AdGuardHome' ./feeds/packages/net/adguardhome/Makefile
 sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
 ln -sf ../../../feeds/packages/net/adguardhome ./package/feeds/packages/net/adguardhome
