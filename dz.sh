@@ -9,7 +9,7 @@ ENCRYPTION=psk2
 KEY=123456
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
-
+git clone https://github.com/sirpdboy/luci-app-cupsd.git  ./package/cupsd
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
