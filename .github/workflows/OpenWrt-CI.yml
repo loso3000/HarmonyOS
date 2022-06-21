@@ -112,16 +112,16 @@ jobs:
           mkdir -p ./package
           df -h
           cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./package
-          find ./openwrt/bin/targets/ -name "*combined.img" | xargs -i mv -f {} ./firmware
+          find ./openwrt/bin/targets/ -name "*combined*img" | xargs -i mv -f {} ./firmware
           cd ./firmware
           ls
           gzip *.img || true
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*combined-efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
-          gzip *.img || true
+          # find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*combined-efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
+          # gzip *.img || true
           echo -e "Sirpdboy-IPV6-Plus-${{ env.DATA}}大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
-          md5sum *img* >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt || true
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
