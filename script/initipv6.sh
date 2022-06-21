@@ -391,7 +391,7 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # sed -i "s/hostname='OpenWrt'/hostname='EzOpWrt'/g" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 
