@@ -75,8 +75,7 @@ sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' ta
 #svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
 #rm -rf ./feeds/luci/applications/luci-app-vlmcsd
-rm -rf ./feeds/luci/applications/vlmcsd
-svn export https://github.com/wongsyrone/lede-1/trunk/package/external/vlmcsd ./feeds/luci/applications/vlmcsd
+#rm -rf ./feeds/luci/applications/vlmcsd
 ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
 ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
 
@@ -183,14 +182,14 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/l
 rm -rf feeds/packages/net/aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/aria2 feeds/packages/net/aria2
 
-rm -rf ./package/diy/adguardhome
+# rm -rf ./package/diy/adguardhome
 rm -rf ./feeds/packages/net/adguardhome
-svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
-# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome feeds/packages/net/adguardhome
+# svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome feeds/packages/net/adguardhome
 # sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/AdGuardHome' ./feeds/packages/net/adguardhome/Makefile
-sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
-ln -sf ../../../feeds/packages/net/adguardhome ./package/feeds/packages/net/adguardhome
-cp -rf ./feeds/packages/net/adguardhome   ./package/diy/adguardhome
+# sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
+# ln -sf ../../../feeds/packages/net/adguardhome ./package/feeds/packages/net/adguardhome
+# cp -rf ./feeds/packages/net/adguardhome   ./package/diy/adguardhome
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
@@ -213,9 +212,9 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package
 
 # Fix libssh
 # rm -rf feeds/packages/libs
-svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
+# svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
 # Add apk (Apk Packages Manager)
-svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
+# svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
 
 # Add luci-udptools
 # svn co https://github.com/zcy85611/Openwrt-Package/trunk/luci-udptools  package/new/
@@ -224,26 +223,6 @@ svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
 
 # Add subconverter
 # git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter  package/new/
-# 订阅转换
-#svn export https://github.com/immortalwrt/packages/trunk/net/subconverter feeds/packages/net/subconverter
-#wget https://github.com/immortalwrt/packages/raw/b7b4499/net/subconverter/Makefile -O feeds/packages/net/subconverter/Makefile
-#mkdir -p ./feeds/packages/net/subconverter/patches
-#wget https://github.com/immortalwrt/packages/raw/b7b4499/net/subconverter/patches/100-stdcxxfs.patch -O feeds/packages/net/subconverter/patches/100-stdcxxfs.patch
-#sed -i '\/bin\/subconverter/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(1)/usr/bin/subconverter' feeds/packages/net/subconverter/Makefile
-#ln -sf ../../../feeds/packages/net/subconverter ./package/feeds/packages/subconverter
-#svn export https://github.com/immortalwrt/packages/trunk/libs/jpcre2 feeds/packages/libs/jpcre2
-#ln -sf ../../../feeds/packages/libs/jpcre2 ./package/feeds/packages/jpcre2
-#svn export https://github.com/immortalwrt/packages/trunk/libs/rapidjson feeds/packages/libs/rapidjson
-#ln -sf ../../../feeds/packages/libs/rapidjson ./package/feeds/packages/rapidjson
-#svn export https://github.com/immortalwrt/packages/trunk/libs/libcron feeds/packages/libs/libcron
-#wget https://github.com/immortalwrt/packages/raw/b7b4499/libs/libcron/Makefile -O feeds/packages/libs/libcron/Makefile
-#ln -sf ../../../feeds/packages/libs/libcron ./package/feeds/packages/libcron
-#svn export https://github.com/immortalwrt/packages/trunk/libs/quickjspp feeds/packages/libs/quickjspp
-#wget https://github.com/immortalwrt/packages/raw/b7b4499/libs/quickjspp/Makefile -O feeds/packages/libs/quickjspp/Makefile
-#ln -sf ../../../feeds/packages/libs/quickjspp ./package/feeds/packages/quickjspp
-#svn export https://github.com/immortalwrt/packages/trunk/libs/toml11 feeds/packages/libs/toml11
-#ln -sf ../../../feeds/packages/libs/toml11 ./package/feeds/packages/toml11
-
 
 # rm -rf ./feeds/packages/utils/runc/Makefile
 # svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
@@ -255,15 +234,15 @@ svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng packa
 rm -rf  feeds/luci/applications/luci-app-cpufreq
 svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
 ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
-sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
-sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
-sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
+sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 
-# rm -rf ./packages/build/ddns-scripts_dnspod
+rm -rf ./packages/build/ddns-scripts_dnspod
 # rm -rf ./package/lean/ddns-scripts_aliyun && svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
-# sed -i '/boot()/,+2d' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
-# svn export https://github.com/linkease/istore-packages/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
-# svn export https://github.com/linkease/istore-packages/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
+sed -i '/boot()/,+2d' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
+svn export https://github.com/linkease/istore-packages/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
+svn export https://github.com/linkease/istore-packages/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
 
 # Passwall
 rm -rf ./feeds/packages/net/pdnsd-alt
@@ -294,26 +273,22 @@ sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 
-git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
-# svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+# git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
 popd
-pushd package/pass/luci-app-ssr-plus
-#sed -i 's,default n,default y,g' Makefile
+pushd ./package/build/pass/luci-app-ssr-plus
+sed -i 's,default n,default y,g' Makefile
 popd
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/new/v2ray-geodata
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 # rm -rf  ./package/ssr/luci-app-ssr-plus
+
 # ShadowsocksR Plus+ 依赖
 rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
@@ -326,8 +301,6 @@ svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata
-
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
@@ -338,8 +311,6 @@ svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/lean/dns2tc
 svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
 svn export https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
-
-rm -rf ./feeds/packages/net/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hysteria
 svn export https://github.com/fw876/helloworld/trunk/sagernet-core package/lean/sagernet-core
@@ -351,6 +322,7 @@ svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/le
 rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
 ln -sf ../../../feeds/packages/net/kcptun ./package/feeds/packages/kcptun
+
 
 # VSSR
 svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
@@ -373,14 +345,13 @@ sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 
-#sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
-#sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-sed -i 's/+luci-theme-bootstrap/+luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 # sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
@@ -395,7 +366,7 @@ git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-
 
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
-sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
+# sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 
 # git clone https://github.com/openwrt-dev/po2lmo.git
 # cd po2lmo
@@ -409,6 +380,7 @@ cp -f ./package/build/banner ./package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
 # cp -rf ./package/build/ramips/*  target/linux/ramips/*
 
+cp -rf ./package/other/patch/hl7621dts/*  /target/linux/ramips/dts/
 cp -rf ./package/other/luci/*  ./feeds/luci/*
 
 #修正nat回流 
@@ -419,29 +391,25 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i "s/hostname='OpenWrt'/hostname='EzOpWrt'/g" package/base-files/files/bin/config_generate
+# sed -i "s/hostname='OpenWrt'/hostname='EzOpWrt'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings2 > ./package/lean/default-settings/files/zzz-default-settings
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 
 
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
-date1='Ipv6-Ez-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-#date1='Ipv6-R20220508'' by Sirpdboy '
-# sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Ez/g' include/image.mk
-if [ "$VER2" = "5.4" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Ez-5.4/g' include/image.mk
-elif [ "$VER2" = "5.10" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Ez-5.10/g' include/image.mk
-elif [ "$VER2" = "5.15" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Ez-5.15/g' include/image.mk
-fi
+#date1='Ipv6-Plus-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+date1='Ipv6-S20220623'
+#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220701-Ipv6-Plus-5.15-/g' include/image.mk
+
 
 echo "DISTRIB_REVISION='${date1} '" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}' ' >> ./package/base-files/files/etc/banner
+# echo "DISTRIB_REVISION='${date1} '" > ./package/base-files/files/etc/openwrt_release1
+# echo ${date1}'  ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
