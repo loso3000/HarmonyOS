@@ -276,10 +276,10 @@ sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
 # git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
-# sed -i 's,default n,default y,g' Makefile
+sed -i 's,default n,default y,g' Makefile
 popd
-pushd package/pass/luci-app-ssr-plus
-# sed -i 's,default n,default y,g' Makefile
+pushd ./package/build/pass/luci-app-ssr-plus
+sed -i 's,default n,default y,g' Makefile
 popd
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/new/v2ray-geodata
@@ -345,8 +345,8 @@ sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 
-sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
