@@ -18,7 +18,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: HL7621.config
+  CONFIG_FILE: script/HL7621.config
   DIY_P1_SH: script/HL7621.sh
   DIY_P2_SH: script/clash-core.sh
 jobs:
@@ -100,12 +100,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: R2sOpenWrt-IPV6-Firmware
+          name: HL7621OpenWrt-IPV6-Firmware
           path: ./openwrt/bin/targets/
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: R2sOpenWrt-IPV6-Ipk
+          name: HL7621OpenWrt-IPV6-Ipk
           path: ./openwrt/bin/packages
       - name: Prepare Artifact
         run: |
