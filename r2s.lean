@@ -169,6 +169,7 @@ CONFIG_PACKAGE_cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-ikoolproxy=y
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
+CONFIG_PACKAGE_luci-app-ramfree=y
 # CONFIG_PACKAGE_luci-app-wireguard is not set
 #主题
 CONFIG_LUCI_LANG_en=y
@@ -225,6 +226,7 @@ CONFIG_PACKAGE_luci-app-openvpn=y
 
 CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
+CONFIG_PACKAGE_luci-app-wizard=y
 
 # 工具
 CONFIG_PACKAGE_kmod-ntfs-3g=y
