@@ -98,9 +98,15 @@ sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 # rm -rf ./feeds/packages/net/zerotier
 # svn export https://github.com/openwrt/packages/trunk/net/zerotier feeds/packages/net/zerotier
 # rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
-sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+# sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+# sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+# sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+
+sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-frps/luasrc/controller/frps.lua    #frpc
+sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-frps/luasrc/view/frp/frps_status.htm   #frpc
+
+# sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-nps/luasrc/controller/nps.lua    #nps
+# sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-nps/luasrc/view/frp/nps_status.htm   #nps
 
 #syncdial
 # rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
