@@ -160,17 +160,18 @@ CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
-# CONFIG_PACKAGE_luci-app-vlmcsd=y
+# CONFIG_PACKAGE_luci-app-vlmcsd is not set
 CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-ikoolproxy=y
+CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-ramfree=y
 # CONFIG_PACKAGE_luci-app-wireguard is not set
+CONFIG_PACKAGE_luci-app-linkease=y
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
@@ -195,13 +196,13 @@ CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=y
 CONFIG_PACKAGE_luci-app-minidlna=y
-CONFIG_PACKAGE_luci-app-rclone=n
+CONFIG_PACKAGE_luci-app-rclone=y
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui=n
 CONFIG_PACKAGE_luci-app-pptpserver=y
 CONFIG_PACKAGE_luci-app-pppoe-server=y
-CONFIG_PACKAGE_luci-app-ipsec-vpnd=y
+# CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-serve=y
 CONFIG_PACKAGE_luci-app-koolddns=y
 CONFIG_PACKAGE_luci-app-syncdial=y
@@ -210,30 +211,32 @@ CONFIG_PACKAGE_luci-app-uugamebooster=y
 CONFIG_DEFAULT_luci-app-cpufreq=y
 CONFIG_PACKAGE_luci-app-udpxy=y
 CONFIG_PACKAGE_luci-app-socat=y
-CONFIG_PACKAGE_luci-app-oaf=n
+CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-transmission=y
 CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_luci-app-mwan3helper=n
-# CONFIG_PACKAGE_luci-app-qbittorrent=y
+CONFIG_PACKAGE_luci-app-qbittorrent=y
 CONFIG_PACKAGE_luci-app-familycloud=n
-CONFIG_PACKAGE_luci-app-nps=n
+CONFIG_PACKAGE_luci-app-nps=y
 CONFIG_PACKAGE_luci-app-frpc=y
 CONFIG_PACKAGE_luci-app-frps=y
-#CONFIG_PACKAGE_luci-app-nfs=n
-CONFIG_PACKAGE_luci-app-openvpn-server=n
+#CONFIG_PACKAGE_luci-app-nfs=y
+CONFIG_PACKAGE_luci-app-openvpn-server=y
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=y
 
 CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 CONFIG_PACKAGE_luci-app-wizard=y
+CONFIG_PACKAGE_luci-app-filebrowser=y
+CONFIG_PACKAGE_luci-app-fileassistant=y
 
 # 工具
 CONFIG_PACKAGE_kmod-ntfs-3g=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_blkid=y
-CONFIG_PACKAGE_qemu-ga=y
+# CONFIG_PACKAGE_qemu-ga=y
 # CONFIG_PACKAGE_smartmontools=y
 # CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
 CONFIG_PACKAGE_ethtool=y #网卡工具
