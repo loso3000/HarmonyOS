@@ -15,7 +15,7 @@ on:
 #    - cron: 0 21 */7 * * 
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/openwrt
+  REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/HL7621.config
@@ -60,7 +60,7 @@ jobs:
           cd openwrt
           #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
-          git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+          # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
