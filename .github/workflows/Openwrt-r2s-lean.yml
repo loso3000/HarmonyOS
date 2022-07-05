@@ -81,22 +81,37 @@ jobs:
         run: |
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
-      - name: Compile firmware
-        id: compileopenwrt
-        continue-on-error: true
+     
+      - name: Compile Packages
+        working-directory: ./openwrt
+        id: compile
         run: |
          df -h
-         cd openwrt
-         make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
-         echo $?
-      - name: If Error
-        if: steps.compileopenwrt.outcome == 'failure'
+         echo -e "$(nproc) thread compile"
+         make tools/compile -j$(nproc) || make tools/compile -j72
+         make toolchain/compile -j$(nproc) || make toolchain/compile -j72
+         make target/compile -j$(nproc) || make target/compile -j72 IGNORE_ERRORS=1
+         make diffconfig
+         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
+         make package/index
+         echo "::set-output name=COMPILE_STATUS::success"
+        
+      - name: Generate Firmware
+        working-directory: ./openwrt
+        if: steps.compile.outputs.COMPILE_STATUS == 'success'
+        id: generate
         run: |
-          cat openwrt/.config
-          echo '================================================================'
-          cd openwrt && make -j1 V=s
-          
-          echo $?
+         df -h
+         # mkdir -p files/etc/uci-defaults/
+         # cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+         make package/install -j$(nproc) || make package/install -j1 V=s
+         make target/install -j$(nproc) || make target/install -j1 V=s
+         make checksum
+         
+      - name: Prepare Artifact
+        run: |
+          cd ./openwrt/bin/targets/rockchip/armv8
+          gzip *.img ||true
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
@@ -107,14 +122,7 @@ jobs:
         with:
           name: R2sOpenWrt-IPV6-Ipk
           path: ./openwrt/bin/packages
-      - name: Prepare Artifact
-        run: |
-          mkdir ./firmware 
-          find ./openwrt/bin/targets/ -name "*combined*" -or -name "*sysupgrade*" | xargs -i mv -f {} ./firmware/
-          # cp openwrt/.config  ./firmware/r2s.config
-          # cd ./firmware
-          # rename -v "s/friendlyarm_//" *
-          # gzip *.*
+
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
