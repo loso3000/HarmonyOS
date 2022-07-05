@@ -47,11 +47,10 @@ CONFIG_PACKAGE_kmod-fs-nfs-v3=y
 CONFIG_PACKAGE_kmod-fs-nfs-v4=y
 CONFIG_PACKAGE_kmod-fs-squashfs=y
 CONFIG_DEFAULT_kmod-fs-vfat=y
-CONFIG_PACKAGE_ntfs-3g=y
+CONFIG_PACKAGE_ntfs-3g=y 
+# CONFIG_PACKAGE_antfs-mount=y
+# CONFIG_PACKAGE_kmod-fs-antfs=n
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
-#CONFIG_PACKAGE_antfs-mount=y
-#CONFIG_PACKAGE_kmod-fs-antfs=n
-#CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_block-mount=y
 
 #Tailscale
@@ -78,6 +77,7 @@ CONFIG_PACKAGE_automount=y
 # CONFIG_PACKAGE_autocore-x86 is not set
 # CONFIG_PACKAGE_autocore-arm is not set
 CONFIG_PACKAGE_myautocore-arm=y
+CONFIG_PACKAGE_myautocore-x86=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
@@ -86,7 +86,7 @@ CONFIG_PACKAGE_autosamba-samba4=y
 CONFIG_PACKAGE_luci-app-adguardhome=y
 CONFIG_PACKAGE_luci-app-adguardhome_INCLUDE_binary=n
 CONFIG_PACKAGE_luci-app-advanced=y
-# CONFIG_PACKAGE_luci-app-autotimeset=n
+# CONFIG_PACKAGE_luci-app-autotimeset=y
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 # CONFIG_PACKAGE_luci-app-control-timewol=n
@@ -103,7 +103,7 @@ CONFIG_PACKAGE_luci-app-filetransfer=y
 # CONFIG_PACKAGE_luci-app-hd-idle=n
 CONFIG_PACKAGE_luci-app-jd-dailybonus=y
 CONFIG_PACKAGE_luci-app-koolproxyR=n
-CONFIG_PACKAGE_luci-app-netdata=y
+CONFIG_PACKAGE_luci-app-netdata=n
 CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-samba is not set
@@ -121,7 +121,6 @@ CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSFORWARDER=y
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSPROXY=y
 CONFIG_PACKAGE_luci-app-passwall=y
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
@@ -133,8 +132,6 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server is not set
 CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan=y
@@ -152,7 +149,7 @@ CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
 CONFIG_PACKAGE_luci-app-mentohust=y
-CONFIG_PACKAGE_luci-app-easymesh=y
+CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
@@ -198,10 +195,10 @@ CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui=n
 CONFIG_PACKAGE_luci-app-pptpserver=y
-CONFIG_PACKAGE_luci-app-pppoe-server=y
+CONFIG_PACKAGE_luci-app-pppoe-server=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-serve=y
-CONFIG_PACKAGE_luci-app-koolddns=y
+CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=y
 CONFIG_PACKAGE_luci-app-uugamebooster=y
@@ -216,8 +213,8 @@ CONFIG_PACKAGE_luci-app-qbittorrent=y
 CONFIG_PACKAGE_luci-app-familycloud=n
 CONFIG_PACKAGE_luci-app-nps=y
 CONFIG_PACKAGE_luci-app-frpc=y
-CONFIG_PACKAGE_luci-app-frps=y
-#CONFIG_PACKAGE_luci-app-nfs=y
+CONFIG_PACKAGE_luci-app-frps=n
+# CONFIG_PACKAGE_luci-app-nfs=y
 CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=n
@@ -225,8 +222,8 @@ CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 CONFIG_PACKAGE_luci-app-wizard=y
-CONFIG_PACKAGE_luci-app-filebrowser=y
-CONFIG_PACKAGE_luci-app-fileassistant=y
+# CONFIG_PACKAGE_luci-app-filebrowser=y
+# CONFIG_PACKAGE_luci-app-fileassistant=y
 
 # 工具
 CONFIG_PACKAGE_kmod-ntfs-3g=y
