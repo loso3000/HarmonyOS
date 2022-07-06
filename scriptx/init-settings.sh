@@ -12,7 +12,7 @@ fi
 ifname2=$(echo $ifname | sed -r 's/([a-z]{1,})([0-9]{1,}).*/\1\ \2/'  | awk -F ' '  '{print $1}')
 a=$(ip address | grep ^[0-9] | awk -F: '{print $2}' | sed "s/ //g" | grep $ifname2 | grep -v "@" | grep -v "\." )
 b=$(echo "$a" | wc -l)
-if [ ${b} > 1 ]; then
+if [ ${b} -gt 1 ]; then
 	  lannet=""
 	  for i in $(seq 1 $b)
 	  do
@@ -28,7 +28,7 @@ if [ ${b} > 1 ]; then
       	   lannet=$wannet
 fi
 uci -q set network.lan.ifname="${lannet}"
-[ ${b} > 1 ] && uci -q set network.lan.ifname="$lannet ${wannet}" || uci -q set network.wan.ifname="${wannet}"
+[ ${b} -gt 1 ] && uci -q set network.lan.ifname="$lannet ${wannet}" || uci -q set network.wan.ifname="${wannet}"
 
 uci commit luci
 uci commit network
