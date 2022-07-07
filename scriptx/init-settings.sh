@@ -1,7 +1,4 @@
 #!/bin/bash
-
-local ifname ifname2 lannet wannet a b i
-
 # Set default theme to luci-theme-opentopd
 uci set luci.main.mediaurlbase='/luci-static/opentopd'
 # Check file system during boot
@@ -20,16 +17,16 @@ if [ ${b} -gt 1 ]; then
 			wannet=$(echo "$a" | sed -n ${b}p)
 		else
 			lannet="$lannet $(echo "$a" | sed -n ${i}p)"
-			
 		fi
 	  done
-	else
-	   wannet=$(echo "$a" | sed -n 1p)
-      	   lannet=$wannet
+      uci -q delete network.wan
+      uci -q set network.wan=interface
+      uci -q set network.wan.ifname="$wannet"
+      uci -q set network.wan.proto='dhcp'
+      uci -q set network.wan.metric='40'
+      uci -q set network.wan.delegate='0'
+      uci -q set network.lan.ifname="${lannet}"
 fi
-uci -q set network.lan.ifname="${lannet}"
-[ ${b} -gt 1 ] && uci -q set network.lan.ifname="$lannet ${wannet}" || uci -q set network.wan.ifname="${wannet}"
-
 uci commit luci
 uci commit network
 uci commit fstab
