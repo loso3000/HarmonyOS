@@ -22,6 +22,7 @@ if [ ${b} -gt 1 ]; then
       uci -q delete network.wan
       uci -q set network.wan=interface
       uci -q set network.wan.ifname="$wannet"
+      uci -q set network.wan6.ifname="$wannet"
       uci -q set network.wan.proto='dhcp'
       uci -q set network.wan.metric='40'
       uci -q set network.wan.delegate='0'
