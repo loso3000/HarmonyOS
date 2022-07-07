@@ -54,11 +54,11 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
-         chmod +x ./scriptx/clash-core.sh
+         chmod +x ./script/clash-core.sh
 
          cd openwrt
          ../$DIY_P1_SH
-         ../scriptx/clash-core.sh $CLASH_BINARY_PLATFORM
+         ../script/clash-core.sh $CLASH_BINARY_PLATFORM
          chmod -R 755 .
       - name: Generate configuration file
         run: |
