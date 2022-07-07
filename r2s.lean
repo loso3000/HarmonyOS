@@ -221,7 +221,7 @@ CONFIG_PACKAGE_luci-app-openvpn=n
 
 CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
-CONFIG_PACKAGE_luci-app-wizard=y
+# CONFIG_PACKAGE_luci-app-wizard=y
 # CONFIG_PACKAGE_luci-app-filebrowser=y
 # CONFIG_PACKAGE_luci-app-fileassistant=y
 
