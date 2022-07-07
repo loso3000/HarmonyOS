@@ -15,6 +15,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/dzn1
   DIY_P1_SH: script/initipv6.sh
+  CLASH_BINARY_PLATFORM: armv8
 jobs:
   build_openwrt:
     name: OpenWrt_Build 
@@ -53,11 +54,15 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
+         chmod +x ./scriptx/clash-core.sh
+
          cd openwrt
          ../$DIY_P1_SH
+         ../scriptx/clash-core.sh $CLASH_BINARY_PLATFORM
          chmod -R 755 .
       - name: Generate configuration file
         run: |
+        
           cd openwrt
           make defconfig 
       - name: Make download
@@ -89,7 +94,7 @@ jobs:
         env:
            OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*.tar.gz
            PACKAGE_SOC: s905d
-           KERNEL_VERSION_NAME: 5.15.32
+           KERNEL_VERSION_NAME: 5.10.125_5.15.50
       - name: Upload OpenWrt Firmware to Release
         uses: ncipollo/release-action@v1
         with:
