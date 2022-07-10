@@ -103,8 +103,9 @@ sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 # sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 # sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
-sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-frps/luasrc/controller/frps.lua    #frpc
-sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-frps/luasrc/view/frp/frps_status.htm   #frpc
+# sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-frps/luasrc/controller/frps.lua    #frpc
+# sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-frps/luasrc/view/frp/frps_status.htm   #frpc
+# sed -i 's/vpn/services/g' /usr/lib/lua/luci/controller/frps.lua
 
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-nps/luasrc/controller/nps.lua    #nps
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-nps/luasrc/view/frp/nps_status.htm   #nps
