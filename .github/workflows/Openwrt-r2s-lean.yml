@@ -66,10 +66,12 @@ jobs:
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
+         cp -rf PATCH/r5s.patch ./openwrt/package/diy
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
          cd openwrt
          ../$DIY_P1_SH
+         patch -p1 <../PATCH/r5s.patch
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
