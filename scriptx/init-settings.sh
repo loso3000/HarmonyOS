@@ -13,14 +13,8 @@ if [ ${b} -gt 1 ]; then
 	  lannet=""
 	  for i in $(seq 1 $b)
 	  do
-		if [ $(uci -q get network.wan.ifname) = $(echo "$a" | sed -n ${b}p) ]; then
-			wannet=$(uci -q get network.wan.ifname)
-		else
-			lannet="$lannet "$(echo "$a" | sed -n ${i}p)
-		fi
-	  done
-      uci -q set network.wan.ifname="$wannet"
-      uci -q set network.wan6.ifname="$wannet"
+		[ $(uci -q get network.wan.ifname) = $(echo "$a" | sed -n ${b}p) ] || lannet="$lannet $(echo "$a" | sed -n ${i}p)"
+	 done
       uci -q set network.lan.ifname="${lannet}"
 fi
 uci commit luci
