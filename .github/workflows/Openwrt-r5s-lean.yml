@@ -70,8 +70,8 @@ jobs:
 
          cp -rf PATCH/r5s.patch ./openwrt/package/diy
          cd openwrt
-         rm -rf target/linux/rockchip/patches-5.10/{002-net-usb*,003-dt-bindings*,006-rockchip-rk3399*}
-         svn export --force https://github.com/friendlyarm/friendlywrt/trunk/target/linux/rockchip/armv8/base-files/etc/modules.d target/linux/rockchip/armv8/base-files/etc/modules.d
+         # rm -rf target/linux/rockchip/patches-5.10/{002-net-usb*,003-dt-bindings*,006-rockchip-rk3399*}
+         # svn export --force https://github.com/friendlyarm/friendlywrt/trunk/target/linux/rockchip/armv8/base-files/etc/modules.d target/linux/rockchip/armv8/base-files/etc/modules.d
          sed -i -e 's,kmod-r8168,kmod-r8169,g' target/linux/rockchip/image/armv8.mk
          patch -p1 <../PATCH/r5s.patch
          patch -p1 < package/diy/r5s.patch
