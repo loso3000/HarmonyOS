@@ -393,6 +393,7 @@ CONFIG_DEFAULT_kmod-vmxnet3=y
 
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 CONFIG_DEFAULT_kmod-iavf=y
+CONFIG_DEFAULT_kmod-igb=y
 CONFIG_DEFAULT_kmod-igb-intel=y
 CONFIG_DEFAULT_kmod-igbvf=y
 CONFIG_DEFAULT_kmod-igc=y
