@@ -99,12 +99,9 @@ jobs:
           mkdir -p ./mini/firmware3
           mkdir -p ./mini/package3
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/package3
-          find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./mini/firmware3
+          find ./openwrt/bin/targets/ -name "*ext4*img*" | xargs -i mv -f {} ./mini/firmware3
           cd ./mini/firmware3
           gzip *.img
-          # echo "${{ env.DATA}}" > version.txt
-          # md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
-          # echo $md5 >> version.txt
 
       # - name: Upload Firmware wetransfer
       #   run: |
