@@ -1,4 +1,4 @@
-name: Openwrt-r4s-lean
+name: Openwrt-r5s-lean
 
 
 on:
@@ -19,7 +19,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: r4s.lean
+  CONFIG_FILE: r5s.lean
   DIY_P1_SH: dz.sh
 jobs:
 
@@ -67,7 +67,14 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
+
+         cp -rf PATCH/r5s.patch ./openwrt/package/diy
          cd openwrt
+         rm -rf target/linux/rockchip/patches-5.10/{002-net-usb*,003-dt-bindings*,006-rockchip-rk3399*}
+         svn export --force https://github.com/friendlyarm/friendlywrt/trunk/target/linux/rockchip/armv8/base-files/etc/modules.d target/linux/rockchip/armv8/base-files/etc/modules.d
+         sed -i -e 's,kmod-r8168,kmod-r8169,g' target/linux/rockchip/image/armv8.mk
+         patch -p1 <../PATCH/r5s.patch
+         patch -p1 < package/diy/r5s.patch
          ../$DIY_P1_SH
          chmod -R 755 .
       - name: Generate configuration file
@@ -95,25 +102,25 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: R4sOpenWrt-IPV6-Firmware
+          name: R5sOpenWrt-IPV6-Firmware
           path: ./openwrt/bin/targets/
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: R4sOpenWrt-IPV6-Ipk
+          name: R5sOpenWrt-IPV6-Ipk
           path: ./openwrt/bin/packages
       - name: Prepare Artifact
         run: |
-          mkdir ./r4s 
-          find ./openwrt/bin/targets/ -name "*combined*" -or -name "*sysupgrade*" | xargs -i mv -f {} ./r4s/
+          mkdir ./r5s 
+          find ./openwrt/bin/targets/ -name "*combined*" -or -name "*sysupgrade*" | xargs -i mv -f {} ./r5s/
           # cp openwrt/.config  ./r4s/r2s.config
-          # cd ./r4s
+          # cd ./r5s
           # rename -v "s/friendlyarm_//" *
           # gzip *.*
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./r4s/ 2>&1 | tee wetransfer.log
+          ./transfer wet -s -p 16 --no-progress ./r5s/ 2>&1 | tee wetransfer.log
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
 
       - name: Delete workflow runs
