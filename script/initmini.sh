@@ -17,6 +17,8 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
 rm -rf ./package/other/up/oaf
 
+
+rm -rf ./package/lean/igb-intel
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
 # rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
