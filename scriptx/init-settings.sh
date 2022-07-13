@@ -10,12 +10,12 @@ ifname2=$(echo $ifname | sed -r 's/([a-z]{1,})([0-9]{1,}).*/\1\ \2/'  | awk -F '
 a=$(ip address | grep ^[0-9] | awk -F: '{print $2}' | sed "s/ //g" | grep $ifname2 | grep -v "@" | grep -v "\." )
 b=$(echo "$a" | wc -l)
 if [ ${b} -gt 1 ]; then
-	  lannet=""
-	  for i in $(seq 1 $b)
+	  lannet=$(echo "$a" | sed -n 1p)
+	  for i in $(seq 2 $b)
 	  do
-		[ $(uci -q get network.wan.ifname) = $(echo "$a" | sed -n ${b}p) ] || lannet="$lannet $(echo "$a" | sed -n ${i}p)"
+		[ $(uci -q get network.wan.ifname) != $(echo "$a" | sed -n ${b}p) ] && lannet="$lannet "$(echo "$a" | sed -n ${i}p)
 	 done
-      uci -q set network.lan.ifname="${lannet}"
+      uci -q set network.lan.ifname=${lannet}
 fi
 uci commit luci
 uci commit network
