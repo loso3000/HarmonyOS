@@ -439,8 +439,8 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_automount=y
 CONFIG_PACKAGE_autocore-x86=y
-# CONFIG_PACKAGE_myautocore-x86=n
-# CONFIG_PACKAGE_default-settings is not set
+CONFIG_PACKAGE_myautocore-x86=n
+CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
 
