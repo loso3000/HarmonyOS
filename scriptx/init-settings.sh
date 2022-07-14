@@ -1,6 +1,6 @@
 #!/bin/bash
 # Set default theme to luci-theme-opentopd
-uci set luci.main.mediaurlbase='/luci-static/opentopd'
+# uci set luci.main.mediaurlbase='/luci-static/opentopd'
 # Check file system during boot
 setup_ssid()
 {
