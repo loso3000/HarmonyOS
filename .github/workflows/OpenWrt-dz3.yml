@@ -109,9 +109,9 @@ jobs:
           mkdir -p ./mini/firmware3
           mkdir -p ./mini/package3
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/package3
-          find ./openwrt/bin/targets/ -name "*ext4*img*" | xargs -i mv -f {} ./mini/firmware3
+          find ./openwrt/bin/targets/ -name "*combined*img" | xargs -i mv -f {} ./mini/firmware3
           cd ./mini/firmware3
-          gzip *.img
+          gzip *.img || true
 
       # - name: Upload Firmware wetransfer
       #   run: |
