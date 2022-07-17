@@ -15,9 +15,6 @@ rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
 rm -rf ./package/other/up/oaf
-
-rm -rf ./package/lean/igb-intel
-
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
 # rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
@@ -355,8 +352,8 @@ sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 
-# sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
-# sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.15/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.18/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
@@ -400,7 +397,7 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i "s/hostname='OpenWrt'/hostname='EzOpWrt'/g" package/base-files/files/bin/config_generate
+# sed -i "s/hostname='OpenWrt'/hostname='EzOpWrt'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
