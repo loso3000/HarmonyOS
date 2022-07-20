@@ -161,8 +161,8 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
-CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-ikoolproxy=n
+CONFIG_PACKAGE_luci-app-mosdns=n
+CONFIG_PACKAGE_luci-app-ikoolproxy=y
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-ramfree=y
 # CONFIG_PACKAGE_luci-app-wireguard is not set
@@ -222,7 +222,7 @@ CONFIG_PACKAGE_luci-app-openvpn=n
 
 CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
-# CONFIG_PACKAGE_luci-app-wizard=n
+CONFIG_PACKAGE_luci-app-wizard=y
 # CONFIG_PACKAGE_luci-app-filebrowser=y
 # CONFIG_PACKAGE_luci-app-fileassistant=y
 
