@@ -1,37 +1,15 @@
+# Target Config
 CONFIG_TARGET_rockchip=y
 CONFIG_TARGET_rockchip_armv8=y
-CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
+# CONFIG_TARGET_MULTI_PROFILE=y
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
+# CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
+# CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
+# CONFIG_TARGET_ALL_PROFILES=y
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
 CONFIG_TARGET_ROOTFS_PARTSIZE=920
 CONFIG_DOCKER_OPTIONAL_FEATURES=y
-
-#add
-
-CONFIG_ARM64_CRYPTO=y
-CONFIG_CRYPTO_AES_ARM64=y
-CONFIG_CRYPTO_AES_ARM64_BS=y
-CONFIG_CRYPTO_AES_ARM64_CE=y
-CONFIG_CRYPTO_AES_ARM64_CE_BLK=y
-CONFIG_CRYPTO_AES_ARM64_CE_CCM=y
-CONFIG_CRYPTO_CRCT10DIF_ARM64_CE=y
-CONFIG_CRYPTO_AES_ARM64_NEON_BLK=y
-CONFIG_CRYPTO_CRYPTD=y
-CONFIG_CRYPTO_GF128MUL=y
-CONFIG_CRYPTO_GHASH_ARM64_CE=y
-CONFIG_CRYPTO_SHA1=y
-CONFIG_CRYPTO_SHA1_ARM64_CE=y
-CONFIG_CRYPTO_SHA256_ARM64=y
-CONFIG_CRYPTO_SHA2_ARM64_CE=y
-CONFIG_CRYPTO_SHA512_ARM64=y
-CONFIG_CRYPTO_SIMD=y
-CONFIG_REALTEK_PHY=y
-CONFIG_CPU_FREQ_GOV_USERSPACE=y
-CONFIG_CPU_FREQ_GOV_ONDEMAND=y
-CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
-CONFIG_MOTORCOMM_PHY=y
-CONFIG_SENSORS_PWM_FAN=y
-
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
@@ -166,12 +144,12 @@ CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_obfs_server=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
-CONFIG_PACKAGE_luci-app-dnsto=n
+CONFIG_PACKAGE_luci-app-dnsto=y
 CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
-CONFIG_PACKAGE_luci-app-mentohust=n
+CONFIG_PACKAGE_luci-app-mentohust=y
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
@@ -183,8 +161,8 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
-CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-ikoolproxy=n
+CONFIG_PACKAGE_luci-app-mosdns=n
+CONFIG_PACKAGE_luci-app-ikoolproxy=y
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-ramfree=y
 # CONFIG_PACKAGE_luci-app-wireguard is not set
@@ -206,45 +184,45 @@ CONFIG_PACKAGE_luci-theme-bootstrap=y
 #增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
-CONFIG_PACKAGE_luci-app-cifs-mount=n
-CONFIG_PACKAGE_luci-app-xlnetacc=n
+CONFIG_PACKAGE_luci-app-cifs-mount=y
+CONFIG_PACKAGE_luci-app-xlnetacc=y
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=y
-CONFIG_PACKAGE_luci-app-minidlna=n
-CONFIG_PACKAGE_luci-app-rclone=n
+CONFIG_PACKAGE_luci-app-minidlna=y
+CONFIG_PACKAGE_luci-app-rclone=y
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui=n
-CONFIG_PACKAGE_luci-app-pptpserver=n
+CONFIG_PACKAGE_luci-app-pptpserver=y
 CONFIG_PACKAGE_luci-app-pppoe-server=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
-CONFIG_PACKAGE_luci-app-ipsec-serve=n
+CONFIG_PACKAGE_luci-app-ipsec-serve=y
 CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=y
-CONFIG_PACKAGE_luci-app-softethervpn=n
+CONFIG_PACKAGE_luci-app-softethervpn=y
 CONFIG_PACKAGE_luci-app-uugamebooster=y
 CONFIG_DEFAULT_luci-app-cpufreq=y
-CONFIG_PACKAGE_luci-app-udpxy=n
+CONFIG_PACKAGE_luci-app-udpxy=y
 CONFIG_PACKAGE_luci-app-socat=y
-CONFIG_PACKAGE_luci-app-oaf=n
-CONFIG_PACKAGE_luci-app-transmission=n
-CONFIG_PACKAGE_luci-app-usb-printer=n
+CONFIG_PACKAGE_luci-app-oaf=y
+CONFIG_PACKAGE_luci-app-transmission=y
+CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_luci-app-mwan3helper=n
-CONFIG_PACKAGE_luci-app-qbittorrent=n
+CONFIG_PACKAGE_luci-app-qbittorrent=y
 CONFIG_PACKAGE_luci-app-familycloud=n
-CONFIG_PACKAGE_luci-app-nps=n
+CONFIG_PACKAGE_luci-app-nps=y
 CONFIG_PACKAGE_luci-app-frpc=y
-CONFIG_PACKAGE_luci-app-frps=n
-CONFIG_PACKAGE_luci-app-nfs=n
+CONFIG_PACKAGE_luci-app-frps=y
+CONFIG_PACKAGE_luci-app-nfs=y
 CONFIG_PACKAGE_luci-app-openvpn-server=n
-CONFIG_PACKAGE_luci-app-aria2=n
+CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=n
 
 CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
-# CONFIG_PACKAGE_luci-app-wizard=y
+CONFIG_PACKAGE_luci-app-wizard=y
 # CONFIG_PACKAGE_luci-app-filebrowser=y
 # CONFIG_PACKAGE_luci-app-fileassistant=y
 
@@ -266,3 +244,12 @@ CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y
+
+#docker
+# CONFIG_PACKAGE_luci-app-docker=y
+#CONFIG_PACKAGE_luci-app-dockerman=y
+#CONFIG_DOCKER_KERNEL_OPTIONS=y
+#CONFIG_DOCKER_NET_ENCRYPT=y
+#CONFIG_DOCKER_NET_MACVLAN=y
+#CONFIG_DOCKER_NET_OVERLAY=y
+#CONFIG_DOCKER_NET_TFTP=y
