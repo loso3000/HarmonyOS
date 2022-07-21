@@ -14,6 +14,8 @@ git clone https://github.com/loso3000/other ./package/other
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
+rm -rf ./feeds/packages/net/mosdns
+
 rm -rf ./package/other/up/oaf
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
