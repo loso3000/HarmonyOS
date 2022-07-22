@@ -74,7 +74,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         chmod +x ../scriptx/*.sh
-        ../$DIY_SH
+        # ../$DIY_SH
     - name: Install Feeds
       run: |
         cd $OPENWRTROOT
