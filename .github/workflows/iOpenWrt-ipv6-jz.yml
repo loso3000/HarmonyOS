@@ -16,7 +16,7 @@ on:
 env:
   SOURCE_URL: https://github.com/immortalwrt/immortalwrt
   SOURCE_BRANCH: openwrt-21.02
-  CONFIG_FILE: config/jz.config
+  CONFIG_FILE: script/jz.config
   DIY_SH: scriptx/custom.sh
   KMODS_IN_FIRMWARE: true
   UPLOAD_WETRANSFER: true
