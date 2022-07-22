@@ -138,13 +138,33 @@ jobs:
         make target/install -j$(nproc) || make target/install -j1 V=s
         make checksum
         echo "::set-output name=GENERATE_STATUS::success"
-    - name: Upload Bin Folder
+
+    - name: Prepare Artifact
+      run: |
+          mkdir -p ./mini/firmware
+          mkdir -p ./mini/package
+          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/package
+          find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./mini/firmware
+          cd ./mini/firmware
+          gzip *.img ||true
+          #cat  .config  > ./mini/firmware/x86ez
+          echo $md5 >> version.txt
+    - name: Upload Firmware wetransfer
+      run: |
+          curl -fsSL git.io/file-transfer | sh
+          ./transfer wet -s -p 16 --no-progress ./mini/firmware 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+    - name: Upload Firmware
       uses: actions/upload-artifact@main
       with:
-        name: bin-archive
-        path: openwrt/bin
-        
-
+          name: iOpenWrt-ipv6-mini-dz-Firmware
+          path: ./mini/firmware
+    - name: Upload  IPK
+      uses: actions/upload-artifact@main
+      with:
+          name: iOpenWrt-ipv6-mini-dz-Ipk
+          path: ./mini/package
+          
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
