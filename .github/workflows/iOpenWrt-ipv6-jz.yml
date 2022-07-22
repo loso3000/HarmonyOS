@@ -85,9 +85,9 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
           # cat configx/general-packages.config >> $OPENWRTROOT/.config
           # cat configx/extra-drivers.config >> $OPENWRTROOT/.config
-        chmod +x scriptx/*.sh
+        chmod +x script/*.sh
         cd $OPENWRTROOT
-        ../scriptx/preset-clash-core.sh amd64
+        ../script/clash-core.sh amd64
         # ../scriptx/preset-terminal-tools.sh
         make defconfig
     - name: Download Package
