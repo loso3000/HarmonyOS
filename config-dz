@@ -415,6 +415,10 @@ CONFIG_PACKAGE_ntfs-3g=y
 #CONFIG_PACKAGE_kmod-fs-antfs=n
 #CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_block-mount=y
+#BCM57810 
+CONFIG_PACKAGE_kmod-bnx2x=y
+CONFIG_PACKAGE_bnx2x-firmware=y
+
 
 # L2TP
 CONFIG_PACKAGE_kmod-pppol2tp=y
