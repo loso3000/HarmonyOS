@@ -89,7 +89,6 @@ jobs:
         cd $OPENWRTROOT
         ../script/clash-core.sh amd64
         # ../scriptx/preset-terminal-tools.sh
-        make defconfig
     - name: Download Package
       id: package
       run: |
@@ -98,7 +97,9 @@ jobs:
         then
             echo "CONFIG_ALL_NONSHARED=y" >> .config
         fi
-        cat .config
+        # cat .config
+        
+        make defconfig
         make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
