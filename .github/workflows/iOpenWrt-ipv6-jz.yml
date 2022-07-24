@@ -17,7 +17,7 @@ env:
   SOURCE_URL: https://github.com/immortalwrt/immortalwrt
   SOURCE_BRANCH: openwrt-21.02
   CONFIG_FILE: script/jz.config
-  DIY_SH: scriptx/custom.sh
+  DIY_SH: scriptx/diy21.sh
   KMODS_IN_FIRMWARE: true
   UPLOAD_WETRANSFER: true
   UPLOAD_COWTRANSFER: true
@@ -74,7 +74,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         chmod +x ../scriptx/*.sh
-        # ../$DIY_SH
+        ../$DIY_SH
     - name: Install Feeds
       run: |
         cd $OPENWRTROOT
@@ -147,7 +147,7 @@ jobs:
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/package
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
-          gzip *.img ||true
+          gzip *.img || true
           #cat  .config  > ./mini/firmware/x86ez
           echo $md5 >> version.txt
     - name: Upload Firmware wetransfer
