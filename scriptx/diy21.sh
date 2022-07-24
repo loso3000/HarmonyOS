@@ -29,6 +29,8 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus ./pac
 svn co https://github.com/sirpdboy/build/trunk/autosamba-samba4 ./package/new/autosamba-samba4
 svn co https://github.com/sirpdboy/build/trunk/pass ./package/pass
 
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
+
 # samba4
 # rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
@@ -92,3 +94,4 @@ chmod +x ./package/*/*/root/etc/init.d/*
 chmod +x ./package/*/*/root/usr/*/*  
 chmod +x ./package/*/*/*/root/etc/init.d/*  
 chmod +x ./package/*/*/*/root/usr/*/*
+./scripts/feeds update -i
