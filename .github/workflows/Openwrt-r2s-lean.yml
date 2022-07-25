@@ -71,12 +71,12 @@ jobs:
          chmod +x ./$DIY_P2_SH
          cd openwrt
          ../$DIY_P1_SH
+         ../$DIY_P2_SH armv8
          # patch -p1 <../PATCH/r5s.patch
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
-          ../$DIY_P2_SH armv8
           make defconfig
       - name: Make download
         working-directory: ./openwrt
