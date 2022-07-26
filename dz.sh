@@ -15,8 +15,14 @@ git clone https://github.com/sirpdboy/luci-app-cupsd.git  ./package/cupsd
 # rm -rf ./package/cupsd/cupsd
 # rm -rf ./package/cupsd/cups-bjnp
 # svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cupsd ./package/build/cupsd
-# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cups-bjnp./package/build/cups-bjnp
+# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cups-bjnp./package/build/cups-bjnp 
+
 # svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-cupsd ./package/cupsd/luci-app-cupsd
+
+rm -rf ./feeds/packages/lang/ruby
+rm -rf ./*/*/*/ruby
+svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/lang/ruby ./package/build/ruby
+
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
