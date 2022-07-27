@@ -1,57 +1,72 @@
 #!/bin/bash
 
-rm -rf feeds/*/*/{smartdns,adguardhome,luci-app-smartdns,luci-app-bypass,luci-app-socat,luci-app-ssr-plus,luci-app-netdata,luci-app-adguardhome,luci-app-wolplus,}
-
-
 wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/sirpdboy/build/master/banner
 wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/sirpdboy/build/master/profile
 wget -qO package/base-files/files/etc/sysctl.conf https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf
 
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 #mosdns
-git clone https://github.com/QiuSimons/openwrt-mos.git package/A/mosdns
-sed -i "/filter_aaaa='1'/d" package/A/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+# git clone https://github.com/QiuSimons/openwrt-mos.git package/A/mosdns
+# sed -i "/filter_aaaa='1'/d" package/A/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
  #dnsfilter
-git clone https://github.com/kiddin9/luci-app-dnsfilter package/A/luci-app-dnsfilter
-sed -i 's/),9)/),12)/g' package/A/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua  
- 
+# git clone https://github.com/kiddin9/luci-app-dnsfilter package/A/luci-app-dnsfilter
+# sed -i 's/),9)/),12)/g' package/A/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua
+
+rm -rf  ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./package/new/luci-app-smartdns
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./package/new/adguardhome
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./package/new/luci-app-socat
+
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+
+rm -rf ./feeds/luci/applications/luci-app-socat
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
+
+rm -rf ./feeds/luci/applications/luci-app-netdata
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./package/new/luci-app-netdata
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./package/new/luci-app-adguardhome
+
+rm -rf  ./feeds/packages/net/adguardhome
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./feeds/packages/net/adguardhome
+rm -rf ./feeds/luci/applications/luci-app-adguardhome
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./feeds/luci/applications/luci-app-adguardhome
+
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard ./package/new/luci-app-wizard
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus ./package/new/luci-app-wolplus
+rm -rf ./feeds/luci/applications/luci-app-wolplus
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus ./feeds/luci/applications/luci-app-wolplus
 
 svn co https://github.com/sirpdboy/build/trunk/autosamba-samba4 ./package/new/autosamba-samba4
-svn co https://github.com/sirpdboy/build/trunk/pass ./package/pass
 
-svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
+rm -rf ./feeds/luci/applications/luci-app-openclash
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./feeds/luci/applications/luci-app-openclash
+
+rm -rf ./feeds/luci/applications/luci-app-bypass
+rm -rf ./feeds/luci/applications/luci-app-vssr
+svn co https://github.com/sirpdboy/build/trunk/pass ./package/pass
 
 # samba4
 # rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
+rm -rf ./feeds/luci/applications/luci-app-arpbind 
 svn co https://github.com/sirpdboy/build/trunk/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
-ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
+# ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
+
 # Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
+# svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
+# svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
 # svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
-sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
+# sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
 # Add luci-aliyundrive-webdav
-rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
-rm -rf ./feeds/luci/applications/aliyundrive-webdav
-svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav ./feeds/luci/applications/aliyundrive-webdav
-svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./feeds/luci/applications/luci-app-aliyundrive-webdav 
+# rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
+# rm -rf ./feeds/luci/applications/aliyundrive-webdav
+# svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav ./feeds/luci/applications/aliyundrive-webdav
+# svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./feeds/luci/applications/luci-app-aliyundrive-webdav 
 
-rm -rf ./feeds/luci/applications/vlmcsd
-svn export https://github.com/wongsyrone/lede-1/trunk/package/external/vlmcsd ./feeds/luci/applications/vlmcsd
-ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
-ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
+# rm -rf ./feeds/luci/applications/vlmcsd
+# svn export https://github.com/wongsyrone/lede-1/trunk/package/external/vlmcsd ./feeds/luci/applications/vlmcsd
+# ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
+# ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
 
 #设置
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
