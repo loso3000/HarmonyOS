@@ -137,7 +137,6 @@ jobs:
         with:
           name: OpenWrt-ipv6-mini-dz-Ipk
           path: ./mini/package
-
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
         with:
