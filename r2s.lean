@@ -53,7 +53,8 @@ CONFIG_PACKAGE_ntfs-3g=y
 # CONFIG_PACKAGE_kmod-fs-antfs=n
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_block-mount=y
-
+# CONFIG_PACKAGE_rtl8821cu is not set
+ 
 #Tailscale
 CONFIG_PACKAGE_libustream-openssl=y
 CONFIG_PACKAGE_ca-bundle=y
