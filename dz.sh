@@ -19,9 +19,9 @@ git clone https://github.com/sirpdboy/luci-app-cupsd.git  ./package/cupsd
 
 # svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-cupsd ./package/cupsd/luci-app-cupsd
 
-rm -rf ./feeds/packages/lang/ruby
-rm -rf ./*/*/*/ruby
-svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/lang/ruby ./package/build/ruby
+# rm -rf ./feeds/packages/lang/ruby
+# rm -rf ./*/*/*/ruby
+# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/lang/ruby ./package/build/ruby
 
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
@@ -197,14 +197,14 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/l
 rm -rf feeds/packages/net/aria2 && \
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/aria2 feeds/packages/net/aria2
 
-# rm -rf ./package/diy/adguardhome
+rm -rf ./package/diy/adguardhome
 rm -rf ./feeds/packages/net/adguardhome
 # svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome feeds/packages/net/adguardhome
 # sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/AdGuardHome' ./feeds/packages/net/adguardhome/Makefile
-# sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
+sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
 ln -sf ../../../feeds/packages/net/adguardhome ./package/feeds/packages/net/adguardhome
-# cp -rf ./feeds/packages/net/adguardhome   ./package/diy/adguardhome
+cp -rf ./feeds/packages/net/adguardhome   ./package/diy/adguardhome
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
@@ -392,8 +392,8 @@ sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
 sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
 
-#sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
-#sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
