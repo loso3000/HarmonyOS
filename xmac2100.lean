@@ -3,6 +3,22 @@ CONFIG_TARGET_ramips_mt7621=y
 CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_redmi-router-ac2100=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
+CONFIG_COREMARK_NUMBER_OF_THREADS=32
+CONFIG_NPC_COMPRESS_UPX=y
+CONFIG_NPS_COMPRESS_UPX=y
+CONFIG_PACKAGE_boost=y
+CONFIG_PACKAGE_boost-date_time=y
+CONFIG_PACKAGE_boost-program_options=y
+CONFIG_PACKAGE_boost-system=y
+CONFIG_PACKAGE_libatomic=y
+CONFIG_PACKAGE_libmbedtls=y
+CONFIG_PACKAGE_libstdcpp=y
+
+CONFIG_boost-compile-visibility-hidden=y
+CONFIG_boost-runtime-shared=y
+CONFIG_boost-static-and-shared-libs=y
+CONFIG_boost-variant-release=y
+
 # 其他需要安装的软件包:
 # add ipv6 support
 CONFIG_PACKAGE_ipv6helper=y
@@ -10,7 +26,6 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # add upnp
 
 # CONFIG_PACKAGE_autocore-x86 is not set
-CONFIG_PACKAGE_autocore-x86=y
 CONFIG_PACKAGE_autocore-arm=y
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -68,7 +83,7 @@ CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server=y
 CONFIG_PACKAGE_luci-app-ttyd=n
 CONFIG_PACKAGE_luci-app-turboacc=y
-CONFIG_PACKAGE_luci-app-cpufreq=y
+CONFIG_PACKAGE_luci-app-cpufreq=n
 CONFIG_PACKAGE_luci-app-mac=n
 CONFIG_PACKAGE_luci-app-vssr=n
 # CONFIG_PACKAGE_luci-app-wrtbwmon is not set
@@ -99,8 +114,8 @@ CONFIG_PACKAGE_luci-app-dnsfilter=y
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_luci-app-easymesh=n
-CONFIG_PACKAGE_luci-app-guest-wifi=y
-CONFIG_PACKAGE_luci-app-wifischedule=y
+CONFIG_PACKAGE_luci-app-guest-wifi=n
+CONFIG_PACKAGE_luci-app-wifischedule=n
 # 主题
 CONFIG_PACKAGE_luci-theme-argon_new=n
 CONFIG_PACKAGE_luci-theme-btmod=n
@@ -151,7 +166,7 @@ CONFIG_PACKAGE_luci-app-usb-printer=n
 # CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-pushbot=y
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set
-CONFIG_PACKAGE_luci-app-wizard=y
+CONFIG_PACKAGE_luci-app-wizard=n
 CONFIG_PACKAGE_luci-app-cowbping=y
 CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
