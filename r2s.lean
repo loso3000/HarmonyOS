@@ -35,9 +35,6 @@ CONFIG_PACKAGE_kmod-usb-printer=y
 # CONFIG_TARGET_IMAGES_GZIP is not set
 
 ### Ethernet Support
-# CONFIG_PACKAGE_kmod-usb-net-asix is not set
-# CONFIG_PACKAGE_kmod-usb-net-asix-ax88179 is not set
-# CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 
@@ -53,12 +50,7 @@ CONFIG_PACKAGE_ntfs-3g=y
 # CONFIG_PACKAGE_kmod-fs-antfs=n
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_block-mount=y
-# CONFIG_PACKAGE_rtl8821cu is not set
- 
-#Tailscale
-CONFIG_PACKAGE_libustream-openssl=y
-CONFIG_PACKAGE_ca-bundle=y
-CONFIG_PACKAGE_kmod-tun=y
+
 #base插件
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_dnspod=y
@@ -150,7 +142,7 @@ CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
-CONFIG_PACKAGE_luci-app-mentohust=y
+CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
@@ -247,10 +239,10 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y
 
 #docker
-# CONFIG_PACKAGE_luci-app-docker=y
-#CONFIG_PACKAGE_luci-app-dockerman=y
-#CONFIG_DOCKER_KERNEL_OPTIONS=y
-#CONFIG_DOCKER_NET_ENCRYPT=y
-#CONFIG_DOCKER_NET_MACVLAN=y
-#CONFIG_DOCKER_NET_OVERLAY=y
-#CONFIG_DOCKER_NET_TFTP=y
+CONFIG_PACKAGE_luci-app-docker=y
+CONFIG_PACKAGE_luci-app-dockerman=y
+CONFIG_DOCKER_KERNEL_OPTIONS=y
+CONFIG_DOCKER_NET_ENCRYPT=y
+CONFIG_DOCKER_NET_MACVLAN=y
+CONFIG_DOCKER_NET_OVERLAY=y
+CONFIG_DOCKER_NET_TFTP=y
