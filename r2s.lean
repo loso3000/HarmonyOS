@@ -6,12 +6,9 @@ CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
 # CONFIG_TARGET_ALL_PROFILES=y
-
-CONFIG_TARGET_OPTIMIZATION="-O3 -pipe -march=armv8-a+crypto+crc -mcpu=cortex-a53+crypto+crc -mtune=cortex-a53"
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
 CONFIG_TARGET_ROOTFS_PARTSIZE=920
-CONFIG_DOCKER_OPTIONAL_FEATURES=y
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
@@ -130,13 +127,13 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
-# CONFIG_PACKAGE_luci-app-ssr-plus is not set
+CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_Obfs=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
-CONFIG_PACKAGE_luci-app-vssr=n
+CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
@@ -164,7 +161,7 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
-CONFIG_PACKAGE_luci-app-mosdns=n
+CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-ikoolproxy=y
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-ramfree=y
