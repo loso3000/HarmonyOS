@@ -4,7 +4,6 @@ CONFIG_TARGET_rockchip_armv8=y
 CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
-CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
 # CONFIG_TARGET_ALL_PROFILES=y
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
@@ -41,23 +40,6 @@ CONFIG_PACKAGE_kmod-usb-printer=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_block-mount=y
 
-# CONFIG_PACKAGE_kmod-gpu-lima=y
-# CONFIG_PACKAGE_kmod-ath9k-htc=y
-# CONFIG_PACKAGE_kmod-mt76x0u=y
-# CONFIG_PACKAGE_kmod-mt76x2u=y
-# CONFIG_PACKAGE_kmod-r8125=y
-# CONFIG_PACKAGE_kmod-rtl8821cu=y
-# CONFIG_PACKAGE_kmod-rtl8812au-ac=y
-# CONFIG_PACKAGE_iw=y
-# CONFIG_PACKAGE_iwinfo=y
-# CONFIG_PACKAGE_wpad-wolfssl=y
-# CONFIG_DRIVER_11AC_SUPPORT=y
-# CONFIG_DRIVER_11N_SUPPORT=y
-# CONFIG_DRIVER_11W_SUPPORT=y
-# CONFIG_PACKAGE_luci-app-oled=y
-
-# CONFIG_PACKAGE_collectd-mod-ping=y
-# CONFIG_PACKAGE_collectd-mod-thermal=y
 #base插件
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_dnspod=y
@@ -150,7 +132,7 @@ CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
 CONFIG_PACKAGE_luci-app-mentohust=y
-CONFIG_PACKAGE_luci-app-easymesh=y
+CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
@@ -162,7 +144,7 @@ CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-ikoolproxy=y
+CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-ramfree=y
 # CONFIG_PACKAGE_luci-app-wireguard is not set
@@ -222,7 +204,7 @@ CONFIG_PACKAGE_luci-app-openvpn=n
 
 CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
-CONFIG_PACKAGE_luci-app-wizard=n
+CONFIG_PACKAGE_luci-app-wizard=y
 # CONFIG_PACKAGE_luci-app-filebrowser=y
 # CONFIG_PACKAGE_luci-app-fileassistant=y
 
