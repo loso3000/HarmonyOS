@@ -11,8 +11,6 @@ CONFIG_TARGET_ROOTFS_PARTSIZE=920
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-# file system
-CONFIG_PACKAGE_kmod-fs-squashfs=y
 
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
@@ -131,7 +129,7 @@ CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
-CONFIG_PACKAGE_luci-app-mentohust=y
+CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
@@ -143,7 +141,7 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
-CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-mosdns=n
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-ramfree=y
@@ -228,10 +226,10 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y
 
 #docker
-CONFIG_PACKAGE_luci-app-docker=y
-CONFIG_PACKAGE_luci-app-dockerman=y
-CONFIG_DOCKER_KERNEL_OPTIONS=y
-CONFIG_DOCKER_NET_ENCRYPT=y
-CONFIG_DOCKER_NET_MACVLAN=y
-CONFIG_DOCKER_NET_OVERLAY=y
-CONFIG_DOCKER_NET_TFTP=y
+# CONFIG_PACKAGE_luci-app-docker=y
+# CONFIG_PACKAGE_luci-app-dockerman=y
+# CONFIG_DOCKER_KERNEL_OPTIONS=y
+# CONFIG_DOCKER_NET_ENCRYPT=y
+# CONFIG_DOCKER_NET_MACVLAN=y
+# CONFIG_DOCKER_NET_OVERLAY=y
+# CONFIG_DOCKER_NET_TFTP=y
