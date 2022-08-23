@@ -93,12 +93,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-IPV6-ac2100-Firmware
+          name: OpenWrt-IPV6-xmra2100-Firmware
           path: ./openwrt/bin/targets/
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-IPV6-ac2100-Ipk
+          name: OpenWrt-IPV6-xmra2100-Ipk
           path: ./openwrt/bin/packages
       - name: Prepare Artifact
         run: |
