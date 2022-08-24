@@ -42,6 +42,8 @@ rm -rf ./package/other/up/https-dns-proxy
 
 # svn export https://github.com/destan19/OpenAppFilter/branches/oaf-3.0.1 ./package/diy/OpenAppFilter
 
+git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
+
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
@@ -224,7 +226,6 @@ sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdn
 svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
 sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
 
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1).dep/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
