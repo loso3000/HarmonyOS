@@ -40,7 +40,10 @@ rm -rf ./package/other/up/https-dns-proxy
 
 # git clone -b oaf-3.0.1 --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
-# svn export https://github.com/destan19/OpenAppFilter/branches/oaf-3.0.1 ./package/diy/OpenAppFilter
+#添加istore
+svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
+svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
 git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
 sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn/alist.po
@@ -221,8 +224,13 @@ CONFIG_CRYPTO_CHACHA20_X86_64=y
 CONFIG_CRYPTO_POLY1305_X86_64=y
 ' >> ./target/linux/x86/config-5.15
 
-git clone https://github.com/QiuSimons/openwrt-mos.git package/mosdns
-sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns package/mosdns
+svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
+sed -i "/filter_aaaa='1'/d" package/luci-app-mosdns/root/etc/init.d/mosdns
+
+# git clone https://github.com/QiuSimons/openwrt-mos.git package/mosdns
+# sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+
 
 svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
 sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
@@ -433,7 +441,9 @@ cp -f ./package/build/banner ./package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
 # cp -rf ./package/build/ramips/*  target/linux/ramips/*
 
-cp -rf ./package/other/luci/*  ./feeds/luci/*
+cp -f ./package/other/luci/*  ./feeds/luci/*
+#coremark
+cp -f ./package/build/set/coremark.sh feeds/packages/utils/coremark/
 
 #修正nat回流 
 cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
@@ -445,6 +455,8 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # sed -i "s/hostname='OpenWrt'/hostname='EzOpWrt'/g" package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+#开启MU-MIMO
+sed -i 's/mu_beamformer=0/mu_beamformer=1/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings2 > ./package/lean/default-settings/files/zzz-default-settings
 
@@ -469,6 +481,7 @@ fi
 echo "DISTRIB_REVISION='${date1} '" > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}' ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
+
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
