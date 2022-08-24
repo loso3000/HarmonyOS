@@ -27,6 +27,9 @@ rm -rf ./package/other/up/https-dns-proxy
 
 # git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
+git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
+sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn/alist.po
+
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
@@ -428,7 +431,7 @@ export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = 
 
 date1='Ipv6-Super-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`' by Sirpdboy '
 date1='Ipv6-Super-S2022.09.01'
-# sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220901-Ipv6-Super-5.15-/g' include/image.mk
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220901-Ipv6-Super-5.15-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
 #sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220415-Ipv6-Super-5.4-/g' include/image.mk
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Super-5.4-/g' include/image.mk
