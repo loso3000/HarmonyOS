@@ -27,6 +27,8 @@ rm -rf ./package/other/up/https-dns-proxy
 
 # git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
+git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
+
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
