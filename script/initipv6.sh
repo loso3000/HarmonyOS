@@ -96,6 +96,11 @@ svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./packag
 # svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
 sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
+#添加istore
+svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
+svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
+
 #syncdial
 # rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
 
