@@ -26,7 +26,8 @@ git clone https://github.com/sirpdboy/luci-app-cupsd.git  ./package/cupsd
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
-rm -rf ./package/other/up/oaf
+rm -rf ./package/diy/OpenAppFilter
+# rm -rf ./package/other/up/oaf
 # rm -rf ./package/lean/igb-intel
 rm -rf ./feeds/packages/net/mosdns
 
