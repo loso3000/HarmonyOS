@@ -27,8 +27,11 @@ rm -rf ./package/other/up/https-dns-proxy
 
 # git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
+
 git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
 sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn/alist.po
+sed -i 's/nas/services/g' ./package/openwrt-alist/luci-app-alist/luasrc/controller/alist.lua   #alistalist
+sed -i 's/nas/services/g' ./package/openwrt-alist/luci-app-alist/luasrc/view/alist_status.htm   #alist
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
