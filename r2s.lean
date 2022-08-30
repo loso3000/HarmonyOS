@@ -56,7 +56,7 @@ CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_automount=y
 # CONFIG_PACKAGE_autocore-x86 is not set
 # CONFIG_PACKAGE_autocore-arm is not set
-CONFIG_PACKAGE_myautocore-x86=y
+CONFIG_PACKAGE_myautocore-x86=n
 CONFIG_PACKAGE_myautocore-arm=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
@@ -66,7 +66,7 @@ CONFIG_PACKAGE_autosamba-samba4=y
 CONFIG_PACKAGE_luci-app-adguardhome=y
 CONFIG_PACKAGE_luci-app-adguardhome_INCLUDE_binary=n
 CONFIG_PACKAGE_luci-app-advanced=y
-# CONFIG_PACKAGE_luci-app-autotimeset=y
+# CONFIG_PACKAGE_luci-app-autotimeset=n
 CONFIG_PACKAGE_luci-app-rebootschedule=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 # CONFIG_PACKAGE_luci-app-control-timewol=n
@@ -97,9 +97,6 @@ CONFIG_PACKAGE_luci-app-turboacc=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING is not set
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM=y
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_BBR_CCA=y
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSFORWARDER=y
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_DNSPROXY=y
 CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
@@ -140,12 +137,12 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_cupsd=n
-CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-mosdns=n
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
-CONFIG_PACKAGE_luci-app-ramfree=y
+CONFIG_PACKAGE_luci-app-ramfree=n
 # CONFIG_PACKAGE_luci-app-wireguard is not set
-CONFIG_PACKAGE_luci-app-linkease=y
+CONFIG_PACKAGE_luci-app-linkease=n
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
@@ -163,14 +160,14 @@ CONFIG_PACKAGE_luci-theme-bootstrap=y
 #增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
-CONFIG_PACKAGE_luci-app-cifs-mount=y
-CONFIG_PACKAGE_luci-app-xlnetacc=y
+CONFIG_PACKAGE_luci-app-cifs-mount=n
+CONFIG_PACKAGE_luci-app-xlnetacc=n
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=y
-CONFIG_PACKAGE_luci-app-minidlna=y
-CONFIG_PACKAGE_luci-app-rclone=y
+CONFIG_PACKAGE_luci-app-minidlna=n
+CONFIG_PACKAGE_luci-app-rclone=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui=n
@@ -183,18 +180,18 @@ CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=y
 CONFIG_PACKAGE_luci-app-uugamebooster=y
 CONFIG_DEFAULT_luci-app-cpufreq=y
-CONFIG_PACKAGE_luci-app-udpxy=y
-CONFIG_PACKAGE_luci-app-socat=y
+CONFIG_PACKAGE_luci-app-udpxy=n
+CONFIG_PACKAGE_luci-app-socat=n
 CONFIG_PACKAGE_luci-app-oaf=y
-CONFIG_PACKAGE_luci-app-transmission=y
+CONFIG_PACKAGE_luci-app-transmission=n
 CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_luci-app-mwan3helper=n
-CONFIG_PACKAGE_luci-app-qbittorrent=y
+CONFIG_PACKAGE_luci-app-qbittorrent=n
 CONFIG_PACKAGE_luci-app-familycloud=n
-CONFIG_PACKAGE_luci-app-nps=y
+CONFIG_PACKAGE_luci-app-nps=n
 CONFIG_PACKAGE_luci-app-frpc=y
 CONFIG_PACKAGE_luci-app-frps=n
-CONFIG_PACKAGE_luci-app-nfs=y
+CONFIG_PACKAGE_luci-app-nfs=n
 CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
@@ -202,7 +199,9 @@ CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 CONFIG_PACKAGE_luci-app-wizard=y
 # CONFIG_PACKAGE_luci-app-filebrowser=y
-# CONFIG_PACKAGE_luci-app-fileassistant=y
+CONFIG_PACKAGE_luci-app-fileassistant=y
+CONFIG_PACKAGE_luci-app-alist=y
+
 # 工具
 CONFIG_PACKAGE_kmod-ntfs-3g=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
@@ -222,6 +221,23 @@ CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y
 
+
+# Other Appliciations
+CONFIG_PACKAGE_luci-ssl-openssl=y
+CONFIG_PACKAGE_bash=y
+CONFIG_PACKAGE_htop=y
+CONFIG_PACKAGE_ipt2socks=y
+CONFIG_PACKAGE_wpad-openssl=y
+CONFIG_PACKAGE_xz=y
+CONFIG_PACKAGE_xz-utils=y
+CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
+CONFIG_PACKAGE_wget-ssl=y
+CONFIG_PACKAGE_wget=y
+
+CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_ppp-mod-pptp=y
+CONFIG_PACKAGE_ppp-mod-pppol2tp=y
+CONFIG_PACKAGE_xl2tpd=y
 #docker
 # CONFIG_PACKAGE_luci-app-docker=y
 # CONFIG_PACKAGE_luci-app-dockerman=y
