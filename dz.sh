@@ -48,8 +48,8 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
 git clone https://github.com/sbwml/luci-app-alist.git package/alist
 # sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/view/alist_status.htm
+# sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
+# sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/view/alist_status.htm
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
