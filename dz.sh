@@ -46,10 +46,10 @@ svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-stor
 svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
 sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
-git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
-#sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn/alist.po
-#sed -i 's/nas/services/g' ./package/openwrt-alist/luci-app-alist/luasrc/controller/alist.lua   #alistalist
-#sed -i 's/nas/services/g' ./package/openwrt-alist/luci-app-alist/luasrc/view/alist_status.htm   #alist
+git clone https://github.com/sbwml/luci-app-alist.git package/alist
+# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
+sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/view/alist_status.htm
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
@@ -141,6 +141,17 @@ svn co https://github.com/v2rayA/v2raya-openwrt/trunk/v2raya package/new/v2raya
 echo '添加关机'
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
+
+# sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
+sed -i 's/"Turbo ACC 网络加速"/"ACC网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
+sed -i 's/"网络存储"/"存储"/g' `grep "网络存储" -rl ./`
+# sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -rl ./`
+# sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
+# sed -i 's/实时流量监测/流量/g'  `grep "实时流量监测" -rl ./`
+sed -i 's/解锁网易云灰色歌曲/解锁灰色歌曲/g'  `grep "解锁网易云灰色歌曲" -rl ./`
+sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g'  `grep "解除网易云音乐播放限制" -rl ./`
+# sed -i 's/家庭云//g'  `grep "家庭云" -rl ./`
+# sed -i 's/KMS 服务器/KMS激活/g'  `grep "KMS 服务器" -rl ./`
 
 sed -i 's/网络存储/存储/g' ./feeds/luci/applications/luci-app-vsftpd/po/zh-cn/vsftpd.po
 sed -i 's/Turbo ACC 网络加速/ACC网络加速/g' ./feeds/luci/applications/luci-app-flowoffload/po/zh-cn/flowoffload.po
