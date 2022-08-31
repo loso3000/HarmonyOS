@@ -1,4 +1,4 @@
-name: OpenWrt-mini-imdz
+name: OpenWrt-mini-dzim
 
 
 on:
@@ -19,7 +19,7 @@ env:
   #  https://github.com/loso3000/immortalwrt-1.git
   REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: dzim
+  CONFIG_FILE: config-dzim
   DIY_P1_SH: im.sh
 jobs:
 
