@@ -7,6 +7,7 @@ IPADDRESS=192.168.8.1
 SSID=Sirpdboy
 ENCRYPTION=psk2
 KEY=123456
+config_generate=package/base-files/files/bin/config_generate
 
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
@@ -40,7 +41,9 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/defaul
 #设置
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
-sed -i "s/ImmortalWrt/OpenWrt/" {$config_generate,include/version.mk}
+sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
+
+sed -i "s/ImmortalWrt/EzOpWrt/g" package/base-files/files/bin/config_generate
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 # sed -i 's/option commit_interval 24h/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为2
@@ -367,7 +370,6 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i "s/immortalwrt/EzOpWrt/g" package/base-files/files/bin/config_generate
 # sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 sed -i "s/192.168.6.1/192.168.8.1/g"  package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
