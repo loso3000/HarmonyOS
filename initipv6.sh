@@ -176,7 +176,7 @@ CONFIG_DRM_I915=y
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
-git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
+# git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt ./package/diy/aliyundrive-webdav
 # Passwall
