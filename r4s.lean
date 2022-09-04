@@ -1,16 +1,20 @@
 # Target Config
 CONFIG_TARGET_rockchip=y
 CONFIG_TARGET_rockchip_armv8=y
-CONFIG_TARGET_MULTI_PROFILE=y
-# CONFIG_TARGET_rockchip_armv8_DEVICE_ezpro_mrkaio-m68s is not set
-CONFIG_TARGET_rockchip_armv8_DEVICE_fastrhino_r66s=y
 CONFIG_TARGET_rockchip_armv8_DEVICE_fastrhino_r68s=y
+
+# CONFIG_TARGET_rockchip=y
+# CONFIG_TARGET_rockchip_armv8=y
+# CONFIG_TARGET_MULTI_PROFILE=y
+# CONFIG_TARGET_rockchip_armv8_DEVICE_ezpro_mrkaio-m68s is not set
+# CONFIG_TARGET_rockchip_armv8_DEVICE_fastrhino_r66s=y
+# CONFIG_TARGET_rockchip_armv8_DEVICE_fastrhino_r68s=y
 # CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-neo3 is not set
 # CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2c is not set
-CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
-CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
-CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
-CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
+# CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
+# CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
+# CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
+# CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
 # CONFIG_TARGET_rockchip_armv8_DEVICE_pine64_rockpro64 is not set
 # CONFIG_TARGET_rockchip_armv8_DEVICE_radxa_rock-3a is not set
 # CONFIG_TARGET_rockchip_armv8_DEVICE_radxa_rock-pi-4 is not set
