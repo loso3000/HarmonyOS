@@ -73,10 +73,23 @@ jobs:
          ../$DIY_P1_SH
          ../$DIY_P2_SH amd64
          chmod -R 755 .
+         
+          make defconfig
+      - name: Get Architecture
+        working-directory: ${{ github.workspace }}/openwrt
+        run: |
+         TARGET_DEVICE_ARCH="$(grep "^CONFIG_TARGET_.*_.*=y$" ".config" | head -n 1 | sed 's/^CONFIG_TARGET_//g' | awk -F '_' '{print $1}')"
+         echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}-" >>$GITHUB_ENV
+         latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][0-9]/p' | sed -n 1p | sed 's/.tar.gz//g' | sed 's/v//g')"
+         echo "latest_release=${latest_release}" >>$GITHUB_ENV
+      - name: Cache
+        uses: HiGarfield/cachewrtbuild@main
+        with:
+          mixkey: ${{ env.TARGET_DEVICE_ARCH }}
+          prefix: ${{ github.workspace }}/openwrt
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
-          make defconfig
           make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
