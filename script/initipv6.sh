@@ -243,6 +243,7 @@ sed -i '/boot()/,+2d' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
 svn export https://github.com/linkease/istore-packages/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
 svn export https://github.com/linkease/istore-packages/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
 
+
 # Passwall
 rm -rf ./feeds/packages/net/pdnsd-alt
 rm -rf ./feeds/packages/net/shadowsocks-libev
@@ -264,30 +265,34 @@ rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
 
 #bypass
-#rm -rf package/build/pass/luci-app-bypass
+#rm -rf package/other/up/pass/luci-app-bypass
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-sed -i 's,default n,default y,g' ./package/build/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' ./package/bypass/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
+# svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
-popd
-pushd ./package/build/pass/luci-app-ssr-plus
-sed -i 's,default n,default y,g' Makefile
+popd 
+pushd package/pass/luci-app-ssr-plus
+#sed -i 's,default n,default y,g' Makefile
 popd
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/new/v2ray-geodata
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 # rm -rf  ./package/ssr/luci-app-ssr-plus
-
 # ShadowsocksR Plus+ 依赖
 rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
@@ -300,6 +305,8 @@ svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata
+
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
@@ -310,10 +317,12 @@ svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/lean/dns2tc
 svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
 svn export https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
+svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/lean/lua-neturl
+
+rm -rf ./feeds/packages/net/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hysteria
 svn export https://github.com/fw876/helloworld/trunk/sagernet-core package/lean/sagernet-core
-svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/lean/lua-neturl
 rm -rf ./feeds/packages/net/xray-core
 svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
@@ -323,27 +332,26 @@ rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
 ln -sf ../../../feeds/packages/net/kcptun ./package/feeds/packages/kcptun
 
-
 # VSSR
-svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
+svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/vssr/luci-app-vssr
 # git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 # git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 # sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
 #sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
-pushd package/lean/luci-app-vssr
-# sed -i 's,default n,default y,g' Makefile
-# sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
+pushd /package/vssr/luci-app-vssr
+ sed -i 's,default n,default y,g' Makefile
+ sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
 popd
 
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
 sed -i '/Rust:/d' package/ssr/luci-app-ssr-plus/Makefile
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
+sed -i '/Rust:/d' package/vssr/luci-app-vssr/Makefile
+sed -i '/Rust:/d' package/other/up/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' package/other/up/pass/luci-ssr-plus/Makefile
 
 
 # 使用默认取消自动
