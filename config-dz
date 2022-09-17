@@ -410,15 +410,13 @@ CONFIG_PACKAGE_kmod-fs-nfs-v4=y
 CONFIG_PACKAGE_kmod-fs-squashfs=y
 CONFIG_DEFAULT_kmod-fs-vfat=y
 CONFIG_PACKAGE_ntfs-3g=y
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
 #CONFIG_PACKAGE_antfs-mount=y
 #CONFIG_PACKAGE_kmod-fs-antfs=n
-#CONFIG_PACKAGE_kmod-fs-ntfs is not set
+#CONFIG_PACKAGE_kmod-fs-ntfs
 CONFIG_PACKAGE_block-mount=y
 #BCM57810 
 CONFIG_PACKAGE_kmod-bnx2x=y
 CONFIG_PACKAGE_bnx2x-firmware=y
-
 
 # L2TP
 CONFIG_PACKAGE_kmod-pppol2tp=y
@@ -643,8 +641,6 @@ CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_ppp-mod-pppol2tp=y
 CONFIG_PACKAGE_xl2tpd=y
 
-CONFIG_PACKAGE_kmod-ntfs-3g=y
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
 CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_blkid=y
 # CONFIG_PACKAGE_qemu-ga=y
