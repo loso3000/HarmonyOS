@@ -41,10 +41,6 @@ rm -rf ./package/other/up/https-dns-proxy
 
 # git clone -b oaf-3.0.1 --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
-#添加istore
-svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
 git clone https://github.com/sbwml/luci-app-alist.git package/alist
 # sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
