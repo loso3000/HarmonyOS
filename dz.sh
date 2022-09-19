@@ -113,10 +113,14 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./feeds/luci/applications/luci-app-aliyundrive-webdav 
 
 # Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
+# svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
+# svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
 # svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
-sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
+# sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
+
+# svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+# sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
+# svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 #zerotier 
 # rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier  #取消防火墙
@@ -247,9 +251,6 @@ sed -i "/filter_aaaa='1'/d" package/luci-app-mosdns/root/etc/init.d/mosdns
 # sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
 
-svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
-svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1).dep/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
