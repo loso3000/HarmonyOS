@@ -106,7 +106,7 @@ jobs:
           find ./openwrt/bin/targets/ -name "*sysupgrade*" | xargs -i mv -f {} ./xmr3p/
           cd ./xmr3p
           # rename -v "s/friendlyarm_//" *
-          gzip *.bin || ture
+          # gzip *.bin || ture
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
