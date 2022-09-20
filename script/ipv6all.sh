@@ -87,7 +87,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/application
 
 # Add luci-aliyundrive-webdav
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
-rm -rf ./feeds/luci/applications/aliyundrive-webdav
+rm -rf ./feeds/packages/net/aliyundrive-webdav
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav ./feeds/luci/applications/aliyundrive-webdav
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./feeds/luci/applications/luci-app-aliyundrive-webdav 
 
@@ -99,8 +99,8 @@ sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
 #添加istore
 svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
+#svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+#sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
 #syncdial
 # rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
