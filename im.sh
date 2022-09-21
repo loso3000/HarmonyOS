@@ -20,6 +20,12 @@ rm -rf feeds/*/*/{luci-app-dockerman,luci-app-aria2,luci-app-beardropper,luci-ap
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
 
+# Add ddnsto & linkease
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
+svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
+# svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
+sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
+
 rm -rf ./package/lean/autocore  
 rm -rf  package/emortal/autocore && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
 rm -rf ./package/lean/automount  
@@ -31,6 +37,8 @@ rm -rf  package/emortal/default-settings && svn co https://github.com/sirpdboy/b
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
 rm -rf ./package/build/automount
+rm -rf package/diy1/luci/luci-app-istorex
+rm -rf package/diy1/luciluci-app-quickstart
 
 wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/sirpdboy/build/master/banner
 wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/sirpdboy/build/master/profile
@@ -94,11 +102,6 @@ rm -rf ./feeds/luci/applications/aliyundrive-webdav
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav ./feeds/luci/applications/aliyundrive-webdav
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./feeds/luci/applications/luci-app-aliyundrive-webdav 
 
-# Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
-# svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
-sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
 # samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
