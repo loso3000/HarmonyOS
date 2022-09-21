@@ -69,7 +69,7 @@ CONFIG_PACKAGE_kmod-phylink=y
 # CONFIG_PACKAGE_kmod-r8169 is not set
 CONFIG_PACKAGE_kmod-random-core=y
 CONFIG_PACKAGE_kmod-sfp=y
-CONFIG_PACKAGE_kmod-siit=y
+# CONFIG_PACKAGE_kmod-siit=y
 CONFIG_PACKAGE_kmod-sis190=y
 CONFIG_PACKAGE_kmod-sis900=y
 CONFIG_PACKAGE_kmod-skge=y
