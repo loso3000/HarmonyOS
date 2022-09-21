@@ -217,8 +217,8 @@ CONFIG_DRM_I915=y
 ' >> ./target/linux/x86/config-5.15
 
 
-svn co https://github.com/QiuSimons/openwrt-mos/trunk package/mosdns
-sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+# svn co https://github.com/QiuSimons/openwrt-mos/trunk package/mosdns
+# sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1).dep/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
