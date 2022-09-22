@@ -54,6 +54,7 @@ echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
+git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/diy1/ddns-go
 # netdata 
 # rm -rf  ./package/diy/netdata
 cp -rf ./feeds/packages/admin/netdata ./package/diy/
