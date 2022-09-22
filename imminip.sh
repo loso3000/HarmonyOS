@@ -20,11 +20,16 @@ rm -rf feeds/*/*/{luci-app-dockerman,luci-app-aria2,luci-app-beardropper,luci-ap
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
 
+
 # Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
-# svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
-sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
+svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
+svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
+sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
+
+svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
+# svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 rm -rf ./package/lean/autocore  
 rm -rf  package/emortal/autocore && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
@@ -55,8 +60,8 @@ sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
 sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
-
-sed -i "s/ImmortalWrt/OpenWrt/g" package/base-files/files/bin/config_generate
+sed -i "s/immortalwrt/OpenWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
+sed -i "s/ImmortalWrt/OpenWrt/g" {package/base-files/files/bin/config_generate,include/version.mk}
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 # sed -i 's/option commit_interval 24h/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为2
@@ -376,7 +381,6 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 sed -i "s/192.168.6.1/192.168.8.1/g"  package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 # echo '默认开启 Irqbalance'
