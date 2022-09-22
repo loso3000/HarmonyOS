@@ -382,15 +382,15 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 sed -i "s/192.168.6.1/192.168.8.1/g"  package/base-files/files/bin/config_generate
 
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
-date1='MINI-BYPASS-'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-#date1='Ipv6-R20220824'' by Sirpdboy '
+date1='MINI-BYPASS-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+#date1='Ipv6-R20220824 by Sirpdboy '
 sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-MINI-BYPASS-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-MINI-BYPASS-5.4-/g' include/image.mk
@@ -400,7 +400,7 @@ elif [ "$VER2" = "5.15" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-MINI-BYPASS-5.15-/g' include/image.mk
 fi
 
-echo "DISTRIB_REVISION='${date1} ' by Sirpdboy ' > ./package/base-files/files/etc/openwrt_release1
+echo "DISTRIB_REVISION="${date1} ' by Sirpdboy ' > ./package/base-files/files/etc/openwrt_release1
 echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 
