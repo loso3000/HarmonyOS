@@ -14,6 +14,26 @@ git clone https://github.com/loso3000/other ./package/other
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
+
+# svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
+# sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+
+# Add ddnsto & linkease
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
+svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
+# svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
+sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
+
+#添加istore
+svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/diy1/app-store-ui
+# svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/diy1/luci-app-store
+git clone https://github.com/linkease/istore.git package/diy1/istore
+sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci/luci-app-store/Makefile
+
+rm -rf package/diy1/istore/luci/luci-app-store
+rm -rf ./package/diy1/luci/luci-app-istorex
+rm -rf package/diy1/luci/luci-app-quickstart
+
 rm -rf ./feeds/packages/net/mosdns
 
 rm -rf ./package/other/up/oaf
@@ -90,17 +110,6 @@ rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav
 rm -rf ./feeds/luci/applications/aliyundrive-webdav
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav ./feeds/luci/applications/aliyundrive-webdav
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./feeds/luci/applications/luci-app-aliyundrive-webdav 
-
-# Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
-# svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
-sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
-
-#添加istore
-svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-# svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-# sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
 #syncdial
 # rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
@@ -200,9 +209,6 @@ echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
 CONFIG_CRYPTO_POLY1305_X86_64=y
 ' >> ./target/linux/x86/config-5.15
-
-# svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
-# sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1).dep/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
