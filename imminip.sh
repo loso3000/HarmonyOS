@@ -12,7 +12,7 @@ config_generate=package/base-files/files/bin/config_generate
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 # 清理
-rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web,luci-app-ikoolproxy}
+rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web,luci-app-ikoolproxy,luci-app-vnstat2,luci-app-vnstat}
 rm -rf package/*/{autocore,autosamba,default-settings}
 rm -rf feeds/*/*/{luci-app-dockerman,luci-app-aria2,luci-app-beardropper,luci-app-adguardhome,luci-app-appfilter,open-app-filter,luci-app-openclash,luci-app-vssr,luci-app-ssr-plus,luci-app-passwall,luci-app-bypass,luci-app-wrtbwmon,luci-app-koolddns,luci-app-samba,luci-app-samba4,luci-app-wol,luci-app-unblockneteasemusic,luci-app-accesscontrol}
 
