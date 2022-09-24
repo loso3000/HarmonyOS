@@ -502,7 +502,7 @@ CONFIG_PACKAGE_luci-app-bypass=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
-CONFIG_PACKAGE_luci-app-dnsto=n
+CONFIG_PACKAGE_luci-app-ddnsto=n
 CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=n
@@ -548,10 +548,10 @@ CONFIG_PACKAGE_luci-app-encryption=n
 CONFIG_PACKAGE_luci-app-wizard=y
 CONFIG_PACKAGE_luci-app-filebrowser=n
 # CONFIG_PACKAGE_luci-app-nodogsplash=y  #WIFI认证
-CONFIG_PACKAGE_luci-app-alist=y
+CONFIG_PACKAGE_luci-app-alist=n
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
 # CONFIG_PACKAGE_bandwidthd=y
-CONFIG_PACKAGE_luci-app-ddns-go=y
+CONFIG_PACKAGE_luci-app-ddns-go=n
 CONFIG_PACKAGE_luci-app-vnstat2=y
 
 #主题
