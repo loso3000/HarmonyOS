@@ -34,6 +34,8 @@ echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
+git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/diy1/ddns-go
+
 # netdata 
 # rm -rf  ./package/diy/netdata
 cp -rf ./feeds/packages/admin/netdata ./package/diy/
@@ -99,8 +101,8 @@ sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
 #添加istore
 svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-#svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-#sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
+svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
 #syncdial
 # rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
@@ -402,8 +404,8 @@ sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generat
 
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.19/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.19/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.19/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
