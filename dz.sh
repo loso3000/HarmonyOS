@@ -41,9 +41,8 @@ rm -rf ./package/other/up/https-dns-proxy
 
 # git clone -b oaf-3.0.1 --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
-
 git clone https://github.com/sbwml/luci-app-alist.git package/alist
-# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 # sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 # sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/view/alist_status.htm
 
@@ -109,14 +108,13 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./feeds/luci/applications/luci-app-aliyundrive-webdav 
 
 # Add ddnsto & linkease
-# svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
-# svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
+svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
 # svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
-# sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
+sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
-# svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-# sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
-# svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
+git clone https://github.com/linkease/istore.git package/diy1/istore
+sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci/luci-app-store/Makefile
 
 #zerotier 
 # rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier  #取消防火墙
@@ -249,7 +247,6 @@ git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoo
 sed -i 's/告"), 1)/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
 
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
-
 
 # Fix libssh
 # rm -rf feeds/packages/libs
