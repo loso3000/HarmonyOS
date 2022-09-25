@@ -38,6 +38,7 @@ echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
+git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/diy1/ddns-go
 # netdata 
 # rm -rf  ./package/diy/netdata
 cp -rf ./feeds/packages/admin/netdata ./package/diy/
@@ -99,9 +100,12 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-ali
 # Add ddnsto & linkease
 svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
 svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
-# svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
+svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
 sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
 
+svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
+# svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 #zerotier 
 # rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier  #取消防火墙
 # svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
