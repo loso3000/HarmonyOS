@@ -27,8 +27,8 @@ sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 #添加istore
 svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/diy1/app-store-ui
 # svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/diy1/luci-app-store
-git clone https://github.com/linkease/istore.git package/diy1/istore
-sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci/luci-app-store/Makefile
+# git clone https://github.com/linkease/istore.git package/diy1/istore
+# sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci/luci-app-store/Makefile
 
 rm -rf package/diy1/istore/luci/luci-app-store
 rm -rf ./package/diy1/luci/luci-app-istorex
