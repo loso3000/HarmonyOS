@@ -1,11 +1,11 @@
 #!/bin/bash
 # Set default theme to luci-theme-opentopd
 # uci set luci.main.mediaurlbase='/luci-static/opentopd'
-uci -q set fstab.@global[0].check_fs=1
-	ifname=$(uci -q get network.lan.ifname 2>/dev/null) 
-	ifname2=$(echo $ifname | sed -r 's/([a-z]{1,})([0-9]{1,}).*/\1\ \2/'  | awk -F ' '  '{print $1}')#!/bin/bash
-
 local ifname ifname2 lannet wannet a b i
+
+uci -q set fstab.@global[0].check_fs=1
+ifname=$(uci -q get network.lan.ifname 2>/dev/null) 
+ifname2=$(echo $ifname | sed -r 's/([a-z]{1,})([0-9]{1,}).*/\1\ \2/'  | awk -F ' '  '{print $1}')
 
 if ! ifname=$(uci -q get network.wan.ifname 2>/dev/null) ; then
       	 ifname=$(uci -q get network.lan.ifname 2>/dev/null) 
