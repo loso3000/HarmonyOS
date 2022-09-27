@@ -36,7 +36,7 @@ rm -rf package/diy1/luci/luci-app-quickstart
 
 rm -rf ./feeds/packages/net/mosdns
 
-rm -rf ./package/other/up/oaf
+rm -rf ./package/diy/luci-lib-ipkg
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
 # rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
