@@ -37,8 +37,11 @@ CONFIG_PACKAGE_kmod-scsi-core=y
 CONFIG_PACKAGE_e2fsprogs=y
 CONFIG_PACKAGE_kmod-usb-printer=y
 CONFIG_PACKAGE_block-mount=y
-CONFIG_PACKAGE_kmod-ntfs-3g=y
+# CONFIG_PACKAGE_ntfs-3g is not set
+# CONFIG_PACKAGE_antfs-mount is not set
+# CONFIG_PACKAGE_kmod-fs-antfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
+CONFIG_PACKAGE_kmod-fs-ntfs3-oot=y
 
 # L2TP
 CONFIG_PACKAGE_kmod-pppol2tp=y
