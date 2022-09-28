@@ -9,11 +9,18 @@ ENCRYPTION=psk2
 KEY=123456
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
-git clone https://github.com/sirpdboy/luci-app-cupsd.git  ./package/cupsd
 
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+
+# rm -rf ./package/cupsd/luci-app-cupsd
+rm -rf ./feeds/packages/utils/cupsd
+rm -rf ./feeds/packages/utils/cups-bjnp
+rm -rf ./feeds/luci/applications/luci-app-cupsd
+# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cupsd ./package/build/cupsd
+# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cups-bjnp./package/build/cups-bjnp 
+# svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-cupsd ./package/cupsd/luci-app-cupsd
 
 
 # svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
