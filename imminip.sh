@@ -18,7 +18,14 @@ rm -rf feeds/*/*/{luci-app-cupsd,luci-app-dockerman,luci-app-aria2,luci-app-bear
 
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
-git clone https://github.com/sirpdboy/luci-app-cupsd.git  ./package/cupsd
+
+# rm -rf ./package/cupsd/luci-app-cupsd
+rm -rf ./feeds/packages/utils/cupsd
+rm -rf ./feeds/packages/utils/cups-bjnp
+rm -rf ./feeds/luci/applications/luci-app-cupsd
+# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cupsd ./package/build/cupsd
+# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cups-bjnp./package/build/cups-bjnp 
+# svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-cupsd ./package/cupsd/luci-app-cupsd
 
 # Add ddnsto & linkease
 svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
