@@ -395,10 +395,11 @@ CONFIG_DEFAULT_kmod-igbvf=y
 CONFIG_DEFAULT_kmod-igc=y
 CONFIG_DEFAULT_kmod-ipt-raw=y
 CONFIG_DEFAULT_kmod-ixgbe=y
-CONFIG_DEFAULT_kmod-r8125=n
+CONFIG_DEFAULT_kmod-r8125=y
 CONFIG_DEFAULT_kmod-usb-net-rtl8152-vendor=y
 CONFIG_DEFAULT_kmod-r8168=y
 # CONFIG_PACKAGE_kmod-r8169 is not set
+CONFIG_PACKAGE_kmod-r8101=y
 
 ## File System Drivers
 CONFIG_PACKAGE_kmod-fs-f2fs=y
