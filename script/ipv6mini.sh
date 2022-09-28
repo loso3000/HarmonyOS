@@ -9,15 +9,15 @@ ENCRYPTION=psk2
 KEY=123456
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
-git clone https://github.com/sirpdboy/luci-app-cupsd.git  ./package/cupsd
 
 # rm -rf ./package/cupsd/luci-app-cupsd
-# rm -rf ./package/cupsd/cupsd
-# rm -rf ./package/cupsd/cups-bjnp
+rm -rf ./feeds/packages/utils/cupsd
+rm -rf ./feeds/packages/utils/cups-bjnp
+rm -rf ./feeds/luci/applications/luci-app-cupsd
 # svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cupsd ./package/build/cupsd
 # svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cups-bjnp./package/build/cups-bjnp 
-
 # svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-cupsd ./package/cupsd/luci-app-cupsd
+
 
 # rm -rf ./feeds/packages/lang/ruby
 # rm -rf ./*/*/*/ruby
@@ -43,7 +43,7 @@ rm -rf ./package/other/up/https-dns-proxy
 
 
 git clone https://github.com/sbwml/luci-app-alist.git package/alist
-# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 # sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 # sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/view/alist_status.htm
 
