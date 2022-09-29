@@ -40,7 +40,7 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
 rm -rf ./feeds/packages/net/mosdns
 
-rm -rf ./package/diy/luci-lib-ipkg
+# rm -rf ./package/diy/luci-lib-ipkg
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
 # rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
