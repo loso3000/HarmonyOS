@@ -28,21 +28,24 @@ rm -rf ./feeds/luci/applications/luci-app-cupsd
 # svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-cupsd ./package/cupsd/luci-app-cupsd
 
 # Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
-svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
-sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
+svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
+sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 
-svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
+svn co https://github.com/linkease/istore/trunk/luci/ ./package/istore
+# svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci-app-store/Makefile
+
 # svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 rm -rf ./package/lean/autocore  
 rm -rf  package/emortal/autocore && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
+
 rm -rf ./package/lean/automount  
 rm -rf ./package/build/automount
-rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+# rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
 rm -rf  package/emortal/automount && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+
 rm -rf  package/emortal/autosamba
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
