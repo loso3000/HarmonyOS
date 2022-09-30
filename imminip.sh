@@ -39,10 +39,10 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
 rm -rf ./package/lean/autocore  
 rm -rf  package/emortal/autocore && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
-#rm -rf ./package/lean/automount  
+rm -rf ./package/lean/automount  
 rm -rf ./package/build/automount
-# rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
-#rm -rf  package/emortal/automount && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+rm -rf  package/emortal/automount && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
 rm -rf  package/emortal/autosamba
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
