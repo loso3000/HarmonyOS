@@ -31,9 +31,11 @@ rm -rf ./feeds/luci/applications/luci-app-cupsd
 # Add ddnsto & linkease
 svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
 svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
-svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
 sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
-sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
+
+svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
+# sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
+# svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
 
 # rm -rf package/diy1/istore/luci/luci-app-store
 # rm -rf ./package/diy1/luci/luci-app-istorex
