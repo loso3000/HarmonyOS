@@ -7,6 +7,7 @@ IPADDRESS=192.168.8.1
 SSID=Sirpdboy
 ENCRYPTION=psk2
 KEY=123456
+
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
 
@@ -22,9 +23,25 @@ rm -rf ./feeds/luci/applications/luci-app-cupsd
 # svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cups-bjnp./package/build/cups-bjnp 
 # svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-cupsd ./package/cupsd/luci-app-cupsd
 
+
+# svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
+# sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+
+# Add ddnsto & linkease
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
+svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
+svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
+sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
+svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
+
+# rm -rf package/diy1/istore/luci/luci-app-store
+# rm -rf ./package/diy1/luci/luci-app-istorex
+# rm -rf package/diy1/luci/luci-app-quickstart
+
 rm -rf ./feeds/packages/net/mosdns
 
-rm -rf ./package/other/up/oaf
+# rm -rf ./package/diy/luci-lib-ipkg
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
 # rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
@@ -36,14 +53,13 @@ rm -rf ./package/other/up/https-dns-proxy
 # git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
 
 git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
-sed -i 's/网络存储/存储/g' ./package/openwrt-alist/uci-app-alist/po/zh-cn/alist.po
+sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn/alist.po
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
 git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/diy1/ddns-go
-
 # netdata 
 # rm -rf  ./package/diy/netdata
 cp -rf ./feeds/packages/admin/netdata ./package/diy/
@@ -63,8 +79,9 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
+
 rm -rf ./package/build/automount
-# rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
 rm -rf ./package/lean/autocore  && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
 rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
 
@@ -98,20 +115,9 @@ ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/application
 
 # Add luci-aliyundrive-webdav
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
-rm -rf ./feeds/packages/net/aliyundrive-webdav
+rm -rf ./feeds/luci/applications/aliyundrive-webdav
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav ./feeds/luci/applications/aliyundrive-webdav
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./feeds/luci/applications/luci-app-aliyundrive-webdav 
-
-# Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
-# svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
-sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
-
-#添加istore
-svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
 
 #syncdial
 # rm -rf luci-app-syncdial  && git clone https://github.com/rufengsuixing/luci-app-syncdial.git feeds/luci/applications/luci-app-syncdial  #IPV6多拨
@@ -211,9 +217,6 @@ echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
 CONFIG_CRYPTO_POLY1305_X86_64=y
 ' >> ./target/linux/x86/config-5.15
-
-# svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
-# sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1)/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
@@ -409,20 +412,20 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # sed -i "s/hostname='OpenWrt'/hostname='EzOpWrt'/g" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 
-sed -i 's/KERNEL_PATCHVER:=5.19/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.18/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 date1='Ipv6-Plus-S'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-#date1='Ipv6-Plus-S2022.09.01'
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220901-Ipv6-Plus-5.15-/g' include/image.mk
+date1='VIP-R2022.10.01'
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20221001-VIP-5.15-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
 #sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220415-Ipv6-Plus-5.4-/g' include/image.mk
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.4-/g' include/image.mk
@@ -432,14 +435,10 @@ elif [ "$VER2" = "5.10" ]; then
 elif [ "$VER2" = "5.15" ]; then
 #sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220415-Ipv6-Plus-5.15-/g' include/image.mk
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.15-/g' include/image.mk
-elif [ "$VER2" = "5.19" ]; then
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220415-Ipv6-Plus-5.19-/g' include/image.mk
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-5.19-/g' include/image.mk
 fi
 
-
-echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
-echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
+echo "DISTRIB_REVISION='${date1}'" > ./package/base-files/files/etc/openwrt_release1
+echo ${date1}'' >> ./package/base-files/files/etc/banner
 # echo "DISTRIB_REVISION='${date1} '" > ./package/base-files/files/etc/openwrt_release1
 # echo ${date1}'  ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
