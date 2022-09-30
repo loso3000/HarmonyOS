@@ -34,7 +34,7 @@ sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 
 svn co https://github.com/linkease/istore/trunk/luci/ ./package/istore
 # svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci-app-store/Makefile
+# sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci-app-store/Makefile
 
 # svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
