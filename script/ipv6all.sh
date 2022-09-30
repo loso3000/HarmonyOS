@@ -27,13 +27,13 @@ rm -rf ./feeds/luci/applications/luci-app-cupsd
 # svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
 # sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
+
 # Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/lean/luci
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/lean/linkease
-svn co https://github.com/linkease/istore/trunk/luci/ ./package/lean/istore
-sed -i 's/1/0/g' ./package/lean/linkease/linkease/files/linkease.config
-svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
-# sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-store/Makefile
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
+svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
+svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
+sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
+sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 # rm -rf package/diy1/istore/luci/luci-app-store
 # rm -rf ./package/diy1/luci/luci-app-istorex
