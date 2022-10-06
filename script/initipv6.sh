@@ -31,7 +31,7 @@ svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/
 svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
 svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
 sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
-# sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
+sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 # rm -rf package/diy1/luci-app-store
 # rm -rf ./package/diy1/luci/luci-app-istorex
