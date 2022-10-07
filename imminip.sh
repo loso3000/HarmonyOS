@@ -18,6 +18,7 @@ rm -rf feeds/*/*/{luci-app-cupsd,luci-app-dockerman,luci-app-aria2,luci-app-bear
 
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
+git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # rm -rf ./package/cupsd/luci-app-cupsd
 rm -rf ./feeds/packages/utils/cupsd
@@ -39,6 +40,8 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci-app-store/Makefile
 
 rm -rf ./package/lean/autocore  
 rm -rf  package/emortal/autocore && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
+
+rm -rf ./package/diy/luci-lib-ipkg
 
 rm -rf ./package/lean/automount  
 rm -rf ./package/build/automount
@@ -79,8 +82,6 @@ sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
-
-git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/diy1/ddns-go
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata
