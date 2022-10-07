@@ -14,7 +14,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/dzn1
-  DIY_P1_SH: script/initmini.sh
+  DIY_P1_SH: script/initipv6.sh
   CLASH_BINARY_PLATFORM: armv8
 jobs:
   build_openwrt:
