@@ -87,21 +87,35 @@ jobs:
         run: |
           cd openwrt
           make download -j8
-      - name: Compile firmware
-        id: compileopenwrt
-        continue-on-error: true
+
+      - name: Cache
+        uses: klever1988/cachewrtbuild@main
+        with:
+          ccache: 'true' 
+          prefix: ${{ github.workspace }}/openwrt
+      - name: Compile Packages
+        id: compile
         run: |
          df -h
          cd openwrt
-         make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
-         echo $?
-      - name: If Error
-        if: steps.compileopenwrt.outcome == 'failure'
+         echo -e "$(nproc) thread compile"
+         make tools/compile -j$(nproc) || make tools/compile -j72
+         make toolchain/compile -j$(nproc) || make toolchain/compile -j72
+         make target/compile -j$(nproc) || make target/compile -j72 IGNORE_ERRORS=1
+         make diffconfig
+         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
+         make package/index
+         
+      - name: Generate Firmware
+        id: generate
         run: |
-          cat openwrt/.config
-          echo '================================================================'
-          cd openwrt && make -j1 V=s
-          echo $?
+         df -h
+         cd openwrt 
+         mkdir -p files/etc/uci-defaults/
+         cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+         make package/install -j$(nproc) || make package/install -j1 V=s
+         make target/install -j$(nproc) || make target/install -j1 V=s
+         make checksum
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
@@ -111,8 +125,8 @@ jobs:
         uses: ophub/flippy-openwrt-actions@main
         env:
            OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*rootfs.tar.gz
-           PACKAGE_SOC: s905d
            KERNEL_VERSION_NAME: 5.15.50_5.19.1
+           PACKAGE_SOC: s905d_s905x3_s922x_vplus_beikeyun_l1pro_qemu
       - name: Upload OpenWrt Firmware to Release
         uses: ncipollo/release-action@v1
         with:
