@@ -80,11 +80,7 @@ jobs:
           # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-      - name: Cache
-        uses: klever1988/cachewrtbuild@main
-        with:
-          ccache: 'true' 
-          prefix: ${{ github.workspace }}/openwrt
+
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
@@ -101,7 +97,11 @@ jobs:
         run: |
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
-      
+      - name: Cache
+        uses: klever1988/cachewrtbuild@main
+        with:
+          ccache: 'true' 
+          prefix: ${{ github.workspace }}/openwrt
       - name: Compile Packages
         id: compile
         run: |
@@ -114,10 +114,8 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
-         echo "::set-output name=COMPILE_STATUS::success"
-        
+         
       - name: Generate Firmware
-        if: steps.compile.outputs.COMPILE_STATUS == 'success'
         id: generate
         run: |
          df -h
