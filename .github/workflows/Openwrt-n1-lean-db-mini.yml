@@ -58,17 +58,18 @@ jobs:
           df -h
           sudo timedatectl set-timezone "Asia/Shanghai"
 
-      - name: Cache
-        uses: klever1988/cachewrtbuild@main
-        with:
-          ccache: 'true' 
-          prefix: ${{ github.workspace }}/openwrt
       - name: download
         run: |
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           cd openwrt
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           rm -rf ./tmp && rm -rf .config
+
+      - name: Cache
+        uses: klever1988/cachewrtbuild@main
+        with:
+          ccache: 'true' 
+          prefix: ${{ github.workspace }}/openwrt
       - name: Update feeds
         run: |
           cd openwrt 
