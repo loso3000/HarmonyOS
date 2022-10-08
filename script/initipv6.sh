@@ -281,7 +281,7 @@ rm -rf ./feeds/packages/net/trojan*
 #rm -rf package/other/up/pass/luci-app-bypass
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
+# sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
@@ -290,11 +290,11 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 pushd package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
+# sed -i 's,default n,default y,g' Makefile
 popd 
-pushd package/pass/luci-app-ssr-plus
-#sed -i 's,default n,default y,g' Makefile
-popd
+# pushd package/pass/luci-app-ssr-plus
+# sed -i 's,default n,default y,g' Makefile
+# popd
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
@@ -354,8 +354,8 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/vssr/luci-ap
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
 pushd /package/vssr/luci-app-vssr
- sed -i 's,default n,default y,g' Makefile
- sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
+ # sed -i 's,default n,default y,g' Makefile
+ # sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
 popd
 
 # 在 X86 架构下移除 Shadowsocks-rust
