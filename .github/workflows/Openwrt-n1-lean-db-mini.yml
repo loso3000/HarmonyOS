@@ -57,6 +57,12 @@ jobs:
           sudo -E apt-get clean
           df -h
           sudo timedatectl set-timezone "Asia/Shanghai"
+
+      - name: Cache
+        uses: klever1988/cachewrtbuild@main
+        with:
+          ccache: 'true' 
+          prefix: ${{ github.workspace }}/openwrt
       - name: download
         run: |
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
@@ -88,11 +94,6 @@ jobs:
           cd openwrt
           make download -j8
 
-      - name: Cache
-        uses: klever1988/cachewrtbuild@main
-        with:
-          ccache: 'true' 
-          prefix: ${{ github.workspace }}/openwrt
       - name: Compile Packages
         id: compile
         run: |
