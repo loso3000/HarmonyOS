@@ -97,11 +97,15 @@ jobs:
         working-directory: ./openwrt
         run: |
           make defconfig
+          
+
       - name: Make download
         working-directory: ./openwrt
         run: |
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
+          
+
       - name: Compile Packages
         id: compile
         run: |
@@ -114,8 +118,10 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
-         
+         echo "::set-output name=COMPILE_STATUS::success"
+        
       - name: Generate Firmware
+        if: steps.compile.outputs.COMPILE_STATUS == 'success'
         id: generate
         run: |
          df -h
@@ -125,6 +131,7 @@ jobs:
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
+         
       - name: Prepare Artifact
         run: |
           mkdir -p ./imminip/firmware
@@ -133,25 +140,22 @@ jobs:
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./imminip/firmware
           cd ./imminip/firmware
           gzip *.img ||true
-          #cat  .config  > ./imdz/firmware/x86ez
           echo $md5 >> version.txt
+          
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
           ./transfer wet -s -p 16 --no-progress ./imminip/firmware 2>&1 | tee wetransfer.log
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+          
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
           name: SirpdboyOpenWrt-Bypass-mini-im-Firmware
           path: ./imminip/firmware
+          
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
           name: SirpdboyOpenWrt-Bypass-mini-im-Ipk
           path: ./imminip/package
-      - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          retain_days: 5
-          keep_minimum_runs: 3
