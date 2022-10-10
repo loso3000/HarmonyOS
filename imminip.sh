@@ -256,10 +256,10 @@ rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
 
 #bypass
-#rm -rf package/build/pass/luci-app-bypass
-#git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-sed -i 's,default n,default y,g' ./package/other/up/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' ./package/other/up/pass/luci-app-ssr-plus/Makefile
+# rm -rf package/build/pass/luci-app-bypass
+# git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+# sed -i 's,default n,default y,g' ./package/other/up/pass/luci-app-bypass/Makefile
+# sed -i 's,default n,default y,g' ./package/other/up/pass/luci-app-ssr-plus/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
@@ -267,9 +267,9 @@ sed -i 's,default n,default y,g' ./package/other/up/pass/luci-app-ssr-plus/Makef
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
-pushd package/passwall/luci-app-passwall
+# pushd package/passwall/luci-app-passwall
 # sed -i 's,default n,default y,g' Makefile
-popd
+# popd
 # pushd package/pass/luci-app-ssr-plus
 #sed -i 's,default n,default y,g' Makefile
 # popd
@@ -330,18 +330,18 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-ap
 #sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
-pushd package/lean/luci-app-vssr
+# pushd package/lean/luci-app-vssr
 # sed -i 's,default n,default y,g' Makefile
 # sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
-popd
+# popd
 
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
 sed -i '/Rust:/d' package/ssr/luci-app-ssr-plus/Makefile
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
+sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
 
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 #sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
