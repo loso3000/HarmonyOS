@@ -54,6 +54,8 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 # rm -rf ./package/lean/autosamba
 # rm -rf ./feeds/luci/applications/luci-app-accesscontrol
 
+rm -rf .feeds/packages/utils/coremark/
+
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
 rm -rf ./package/build/automount
@@ -303,8 +305,8 @@ rm -rf ./feeds/packages/net/trojan*
 #bypass
 #rm -rf package/other/up/pass/luci-app-bypass
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
-sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
+#sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
+#sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
@@ -312,12 +314,18 @@ sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefil
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
-pushd package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
-popd 
-pushd package/pass/luci-app-ssr-plus
+#pushd package/passwall/luci-app-passwall
 #sed -i 's,default n,default y,g' Makefile
-popd
+#popd 
+#pushd package/pass/luci-app-ssr-plus
+#sed -i 's,default n,default y,g' Makefile
+#popd
+
+echo ' ShadowsocksR Plus+'
+# git clone https://github.com/fw876/helloworld package/ssr
+# rm -rf  ./package/ssr/luci-app-ssr-plus
+# ShadowsocksR Plus+ 依赖
+rm -rf ./feeds/packages/net/kcptun
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
@@ -325,21 +333,10 @@ svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
-
-echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-# rm -rf  ./package/ssr/luci-app-ssr-plus
-# ShadowsocksR Plus+ 依赖
-rm -rf ./feeds/packages/net/kcptun
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
-svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata
 
@@ -376,10 +373,10 @@ svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/vssr/luci-ap
 #sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
 #sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
-pushd /package/vssr/luci-app-vssr
- sed -i 's,default n,default y,g' Makefile
- sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
-popd
+#pushd /package/vssr/luci-app-vssr
+# sed -i 's,default n,default y,g' Makefile
+# sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
+#popd
 
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
