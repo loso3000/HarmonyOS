@@ -45,9 +45,6 @@ jobs:
          echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
          echo "硬盘详情："
          df -Th
-         if  [ "$(LANG=en_US.UTF-8 lscpu | awk '$1=="CPU"&&$2=="MHz:"{print int($3)}')" -le 2600 ] ;then
-           exit
-         fi
       - name: Space cleanup
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -128,10 +125,10 @@ jobs:
          
       - name: N1 Packit Compile
         run: |
-          chmod +x ./$DIY_AFTER
+          chmod +x ./scriptx/diy-after.sh
           cd openwrt
            # 没 imageBuilder下也就是不做slim的设备此刻执行 after
-           ../DIY_AFTER
+           bash  ../scriptx/diy-after.sh
 
       - name: Upload Firmware
         uses: actions/upload-artifact@main
