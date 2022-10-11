@@ -277,7 +277,6 @@ svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
-svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
 
@@ -302,7 +301,9 @@ rm -rf ./feeds/packages/net/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
 svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
-svn export https://github.com/fw876/helloworld/trunk/trojan package/lean/trojan
+
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/new/trojan
+# svn export https://github.com/fw876/helloworld/trunk/trojan package/lean/trojan
 svn export https://github.com/fw876/helloworld/trunk/tcping package/lean/tcping
 svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/lean/dns2tcp
 svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
