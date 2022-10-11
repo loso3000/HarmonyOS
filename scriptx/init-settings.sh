@@ -26,7 +26,7 @@ if [ ${b} -gt 1 ]; then
       	   lannet=$wannet
 fi
 uci -q set network.lan.ifname="${lannet}"
-[ ${b} -gt 1 ] && uci -q set network.lan.ifname="$lannet ${wannet}" || uci -q set network.wan.ifname="${wannet}"
+# [ ${b} -gt 1 ] && uci -q set network.lan.ifname="$lannet ${wannet}" || uci -q set network.wan.ifname="${wannet}"
 
 uci commit network
 if [ ! -f "/boot/init.sh" ]; then
