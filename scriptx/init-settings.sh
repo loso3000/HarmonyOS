@@ -12,7 +12,7 @@ if [ ${b} -gt 1 ]; then
 	  for i in $(seq 1 $b)
 	  do
 		if [ $i = $ifname ]; then
-			wannet=$(echo "$a" | sed -n ${b}p)
+			wannet=$(echo "$a" | sed -n ${i}p)
 		else
 			lannet="$lannet $(echo "$a" | sed -n ${i}p)"
 			
