@@ -9,7 +9,7 @@ git clone --depth 1 https://github.com/unifreq/openwrt_packit /opt/openwrt_packi
 
 mkdir -p /opt/kernel
 
-cp bin/targets/*/*/openwrt-armvirt-64-default-rootfs.tar.gz /opt/openwrt_packit/
+cp bin/targets/*/*/*armvirt-64-default-rootfs.tar.gz /opt/openwrt_packit/openwrt-armvirt-64-default-rootfs.tar.gz
 
 if [ -n "$n1_kernal" ];then
     export KERNEL_VERSION=$n1_kernal
