@@ -45,6 +45,9 @@ jobs:
          echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
          echo "硬盘详情："
          df -Th
+         if  [ "$(LANG=en_US.UTF-8 lscpu | awk '$1=="CPU"&&$2=="MHz:"{print int($3)}')" -le 2600 ] ;then
+           exit
+         fi
       - name: Space cleanup
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -118,7 +121,7 @@ jobs:
          df -h
          cd openwrt 
          mkdir -p files/etc/uci-defaults/
-         cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+         # cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
