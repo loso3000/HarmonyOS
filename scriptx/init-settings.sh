@@ -1,7 +1,4 @@
 #!/bin/bash
-# Set default theme to luci-theme-opentopd
-# uci set luci.main.mediaurlbase='/luci-static/opentopd'
-local ifname ifname2 lannet wannet a b i
 
 uci -q set fstab.@global[0].check_fs=1
 if ! ifname=$(uci -q get network.wan.ifname 2>/dev/null) ; then
@@ -27,7 +24,6 @@ if [ ${b} -gt 1 ]; then
 fi
 uci -q set network.lan.ifname="${lannet}"
 # [ ${b} -gt 1 ] && uci -q set network.lan.ifname="$lannet ${wannet}" || uci -q set network.wan.ifname="${wannet}"
-
 uci commit network
 if [ ! -f "/boot/init.sh" ]; then
 bash /boot/init.sh
@@ -36,15 +32,3 @@ fi
 
 exit 0
 
-	b=$(echo "$a" | wc -l)
-	[ ${b} -gt 1 ] && {
-	  lannet=""
-	  for i in $(seq 1 $b)
-	  do
-		[ "$(uci -q get network.wan.ifname)" = "$(echo "$a" | sed -n ${i}p)" ] || lannet="${lannet} $(echo "$a" | sed -n ${i}p)"
-	  done
-	  uci -q set network.lan.ifname="${lannet}"
-	}
-uci commit network
-uci commit fstab
-exit 0
