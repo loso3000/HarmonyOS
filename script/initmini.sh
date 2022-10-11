@@ -55,6 +55,8 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 # rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
 # rm -rf ./package/lean/autosamba
 # rm -rf ./feeds/luci/applications/luci-app-accesscontrol
+#coremark
+cp -f ./package/build/set/coremark.sh feeds/packages/utils/coremark/
 
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
