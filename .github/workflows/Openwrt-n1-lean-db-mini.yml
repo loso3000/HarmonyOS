@@ -87,8 +87,8 @@ jobs:
          ../$DIY_P1_SH
          ../script/clash-core.sh $CLASH_BINARY_PLATFORM
          # N1 的安装到 emcc的脚本
-         git clone --depth 1 https://github.com/tuanqing/install-program package/install-program
-         echo 'CONFIG_PACKAGE_install-program=y' >> .config
+         # git clone https://github.com/tuanqing/install-program package/install-program
+         # echo 'CONFIG_PACKAGE_install-program=y' >> .config
          chmod -R 755 .
       - name: Generate configuration file
         run: |
