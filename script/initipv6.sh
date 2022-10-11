@@ -49,6 +49,8 @@ rm -rf ./package/other/up/https-dns-proxy
 # svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/net/https-dns-proxy ./package/build/https-dns-proxy
 
 # git clone -b master --single-branch https://github.com/destan19/OpenAppFilter ./package/diy/OpenAppFilter
+#coremark
+cp -f ./package/build/set/coremark.sh feeds/packages/utils/coremark/
 
 git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
 sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn/alist.po
