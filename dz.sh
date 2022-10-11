@@ -449,7 +449,7 @@ cat ./package/build/profile > package/base-files/files/etc/profile
 
 cp -f ./package/other/luci/*  ./feeds/luci/*
 #coremark
-cp -f ./package/build/set/coremark.sh feeds/packages/utils/coremark/
+# cp -f ./package/build/set/coremark.sh feeds/packages/utils/coremark/
 
 #修正nat回流 
 cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
