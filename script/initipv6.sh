@@ -38,6 +38,9 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # rm -rf package/diy1/luci/luci-app-quickstart
 
 rm -rf ./feeds/packages/net/mosdns
+#upnp
+rm -rf ./feeds/packages/net/miniupnpd
+rm -rf ./feeds/luci/applications/luci-app-upnp
 
 rm -rf ./package/diy/luci-lib-ipkg
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
