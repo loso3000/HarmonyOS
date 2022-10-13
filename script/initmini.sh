@@ -38,6 +38,10 @@ echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
+#upnp
+rm -rf ./feeds/packages/net/miniupnpd
+rm -rf ./feeds/luci/applications/luci-app-upnp
+
 # netdata 
 # rm -rf  ./package/diy/netdata
 cp -rf ./feeds/packages/admin/netdata ./package/diy/
