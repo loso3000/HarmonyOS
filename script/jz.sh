@@ -56,6 +56,10 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 
 rm -rf .feeds/packages/utils/coremark/
 
+#upnp
+rm -rf ./feeds/packages/net/miniupnpd
+rm -rf ./feeds/luci/applications/luci-app-upnp
+
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
 rm -rf ./package/build/automount
