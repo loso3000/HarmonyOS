@@ -99,7 +99,7 @@ CONFIG_PACKAGE_luci-app-filetransfer=y
 CONFIG_PACKAGE_luci-app-hd-idle=n
 CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
-CONFIG_PACKAGE_luci-app-netdata=n
+CONFIG_PACKAGE_luci-app-netdata=y
 CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-samba is not set
@@ -175,10 +175,10 @@ CONFIG_PACKAGE_luci-app-encryption=n
 CONFIG_PACKAGE_luci-app-wizard=y
 CONFIG_PACKAGE_luci-app-filebrowser=n
 # CONFIG_PACKAGE_luci-app-nodogsplash=y  #WIFI认证
-CONFIG_PACKAGE_luci-app-alist=n
+CONFIG_PACKAGE_luci-app-alist=y
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
 # CONFIG_PACKAGE_bandwidthd=y
-CONFIG_PACKAGE_luci-app-ddns-go=y
+CONFIG_PACKAGE_luci-app-ddns-go=n
 CONFIG_PACKAGE_luci-app-vnstat2=n #有错误
 
 #主题
@@ -215,7 +215,7 @@ CONFIG_PACKAGE_luci-app-ipsec-serve=n
 CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=n
 CONFIG_PACKAGE_luci-app-softethervpn=n
-CONFIG_PACKAGE_luci-app-uugamebooster=n
+CONFIG_PACKAGE_luci-app-uugamebooster=y
 CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
