@@ -28,22 +28,25 @@ rm -rf ./feeds/luci/applications/luci-app-cupsd
 # sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
 
+
 # Add ddnsto & linkease
 svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
 svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
-sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
-
 svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
-# sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
-# svn co https://github.com/linkease/istore/trunk/luci/luci-app-store package/luci-app-store
+sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
+sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 # rm -rf package/diy1/istore/luci/luci-app-store
 # rm -rf ./package/diy1/luci/luci-app-istorex
 # rm -rf package/diy1/luci/luci-app-quickstart
 
+#upnp
+rm -rf ./feeds/packages/net/miniupnpd
+rm -rf ./feeds/luci/applications/luci-app-upnp
+
 rm -rf ./feeds/packages/net/mosdns
 
-# rm -rf ./package/diy/luci-lib-ipkg
+rm -rf ./package/diy/luci-lib-ipkg
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
 # rm -rf ./feeds/luci/applications/luci-app-https-dns-proxy
@@ -61,7 +64,6 @@ echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
-git clone https://github.com/sirpdboy/luci-app-ddns-go.git ./package/diy1/ddns-go
 # netdata 
 # rm -rf  ./package/diy/netdata
 cp -rf ./feeds/packages/admin/netdata ./package/diy/
