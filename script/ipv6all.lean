@@ -3,10 +3,10 @@ CONFIG_TARGET_x86_64=y
 CONFIG_TARGET_x86_64_DEVICE_generic=y
 # 设置固件大小
 CONFIG_TARGET_KERNEL_PARTSIZE=64
-CONFIG_TARGET_ROOTFS_PARTSIZE=1925
+CONFIG_TARGET_ROOTFS_PARTSIZE=925
 
-# CONFIG_COREMARK_NUMBER_OF_THREADS=128
-# CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
+CONFIG_COREMARK_NUMBER_OF_THREADS=128
+CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_diffutils=y
 
@@ -268,11 +268,11 @@ CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-timecontrol=n
 CONFIG_PACKAGE_luci-app-webadmin=y
-CONFIG_PACKAGE_luci-app-cpulimit=y
+CONFIG_PACKAGE_luci-app-cpulimit=n
 CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
-CONFIG_PACKAGE_luci-app-filetransfer=y
+# CONFIG_PACKAGE_luci-app-filetransfer is not set
 CONFIG_PACKAGE_luci-app-hd-idle=y
 CONFIG_PACKAGE_luci-app-jd-dailybonus=y
 CONFIG_PACKAGE_luci-app-koolproxyR=n
@@ -281,7 +281,7 @@ CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=y
-CONFIG_PACKAGE_luci-app-serverchan=y
+CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is not set
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
 CONFIG_PACKAGE_luci-app-smartdns=y
@@ -346,8 +346,8 @@ CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray_Plugin=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
-CONFIG_PACKAGE_luci-app-ddnsto=y
-CONFIG_PACKAGE_luci-app-pushbot=y
+CONFIG_PACKAGE_luci-app-ddnsto=n
+CONFIG_PACKAGE_luci-app-pushbot=n
 CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=y
 CONFIG_PACKAGE_luci-app-uhttpd=y
@@ -357,7 +357,7 @@ CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
-CONFIG_PACKAGE_luci-app-vsftpd=y
+# CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_wifidog=n
@@ -367,12 +367,12 @@ CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-wireguard=y
-CONFIG_PACKAGE_luci-app-aliyundrive-webdav=y
+CONFIG_PACKAGE_luci-app-aliyundrive-webdav=n
 CONFIG_PACKAGE_luci-app-cpufreq=n
 # CONFIG_PACKAGE_BitSrunLoginGo=n   #学校签到
 CONFIG_PACKAGE_luci-app-v2raya=n
-CONFIG_PACKAGE_luci-app-linkease=y
-CONFIG_PACKAGE_luci-app-vlmcsd=y
+CONFIG_PACKAGE_luci-app-linkease=n
+# CONFIG_PACKAGE_luci-app-vlmcsd is not set
 CONFIG_PACKAGE_luci-app-ramfree=y
 
 CONFIG_PACKAGE_luci-app-bridge=n
@@ -384,8 +384,9 @@ CONFIG_PACKAGE_luci-app-https-dns-proxy-whisky=n
 CONFIG_PACKAGE_luci-app-pwdHackDeny=n
 CONFIG_PACKAGE_luci-app-oaf=y
 # CONFIG_PACKAGE_luci-lib-ipkg=y
-CONFIG_PACKAGE_luci-app-store=n
+CONFIG_PACKAGE_luci-app-store=y
 CONFIG_PACKAGE_luci-app-homebox=n
+CONFIG_PACKAGE_luci-app-homeassistant=n
 CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-pptpserver=y
@@ -413,7 +414,7 @@ CONFIG_PACKAGE_luci-theme-neobird=y
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=y
-CONFIG_PACKAGE_luci-app-xlnetacc=y
+# CONFIG_PACKAGE_luci-app-xlnetacc is not set
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
@@ -423,71 +424,29 @@ CONFIG_PACKAGE_luci-app-rclone=y
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui=n
-CONFIG_PACKAGE_luci-app-pppoe-server=y
+CONFIG_PACKAGE_luci-app-pppoe-server=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-server=y
 CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=y
-CONFIG_PACKAGE_luci-app-uugamebooster=y
-CONFIG_PACKAGE_luci-app-udpxy=y
+CONFIG_PACKAGE_luci-app-uugamebooster=n
+CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=y
-CONFIG_PACKAGE_luci-app-homeredirect=y
-CONFIG_PACKAGE_luci-app-transmission=y
+CONFIG_PACKAGE_luci-app-homeredirect=n
+CONFIG_PACKAGE_luci-app-transmission=n
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
-CONFIG_PACKAGE_luci-app-mwan3helper=y
-CONFIG_PACKAGE_luci-app-qbittorrent=y
+CONFIG_PACKAGE_luci-app-mwan3helper=n
+CONFIG_PACKAGE_luci-app-qbittorrent=n
 CONFIG_PACKAGE_luci-app-familycloud=n
-CONFIG_PACKAGE_luci-app-nps=y
-CONFIG_PACKAGE_luci-app-frpc=y
-CONFIG_PACKAGE_luci-app-frps=y
+CONFIG_PACKAGE_luci-app-nps=n
+CONFIG_PACKAGE_luci-app-frpc=n
+CONFIG_PACKAGE_luci-app-frps=n
 CONFIG_PACKAGE_luci-app-nfs=y
 CONFIG_PACKAGE_luci-app-openvpn-server=y
-CONFIG_PACKAGE_luci-app-aria2=y
+CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
-
-
-CONFIG_PACKAGE_apk=y
-CONFIG_PACKAGE_alpine-keys=y
-CONFIG_PACKAGE_alpine-repositories=y
-CONFIG_PACKAGE_e2fsprogs=y
-CONFIG_PACKAGE_fstrim=y
-CONFIG_PACKAGE_gpioctl-sysfs=y
-CONFIG_PACKAGE_gpiod-tools=y
-CONFIG_PACKAGE_irqbalance=y
-CONFIG_PACKAGE_lsblk=y
-CONFIG_PACKAGE_lscpu=y
-
-CONFIG_PACKAGE_kmod-usb-serial=y
-CONFIG_PACKAGE_kmod-usb-serial-option=y
-CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-CONFIG_PACKAGE_usb-modeswitch=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_luci-proto-qmi=y
-CONFIG_PACKAGE_qmi-utils=y
-CONFIG_PACKAGE_umbim=y
-CONFIG_PACKAGE_uqmi=y
-CONFIG_PACKAGE_comgt-ncm=y
-CONFIG_PACKAGE_luci-proto-ncm=y
-CONFIG_PACKAGE_comgt=y
-CONFIG_PACKAGE_kmod-usb-acm=y
-CONFIG_PACKAGE_luci-proto-3g=y
-
-CONFIG_PACKAGE_libimobiledevice-utils=y
-CONFIG_PACKAGE_libplist-utils=y
-CONFIG_PACKAGE_libusbmuxd-utils=y
-
-CONFIG_PACKAGE_usbmuxd=y
-CONFIG_PACKAGE_libwslay=y
-CONFIG_PACKAGE_libudev-fbsd=y
-
-CONFIG_HYSTERIA_COMPRESS_UPX=y
-CONFIG_PACKAGE_hysteria=y
-# 存放禁用的东西
-
-# CONFIG_PACKAGE_kmod-fs-virtiofs is not set
-# CONFIG_PACKAGE_kmod-qca-mcs is not set
 
 # store
 CONFIG_PACKAGE_kmod-fuse=y
