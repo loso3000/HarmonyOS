@@ -60,6 +60,8 @@ rm -rf ./package/other/up/https-dns-proxy
 git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
 sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn/alist.po
 
+git clone --depth 1 https://github.com/jerrykuku/luci-app-ttnode ./package/diy/luci-app-ttnode
+
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
