@@ -87,7 +87,7 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
-         # chmod +x ./$DIY_P2_SH
+         chmod +x ./$DIY_P2_SH
          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
          echo "DATA=$(date +'%Y-%m-%d'-d +"12"hour) \n" >> $GITHUB_ENV
          cd openwrt
@@ -151,12 +151,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-IPV6-Firmware
+          name: SirpdboyOpenWrt-IPV6-Plus-VIP-Firmware
           path: ./firmwareipv6all
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-IPV6-Ipk
+          name: SirpdboyOpenWrt-IPV6-Plus-VIP-Ipk
           path: ./package
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
