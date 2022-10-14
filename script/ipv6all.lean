@@ -244,8 +244,8 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_automount=y
-# CONFIG_PACKAGE_autocore-x86 is not set
-CONFIG_PACKAGE_myautocore-x86=y
+CONFIG_PACKAGE_autocore-x86=y
+CONFIG_PACKAGE_myautocore-x86=n
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
@@ -273,7 +273,7 @@ CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
-CONFIG_PACKAGE_luci-app-hd-idle=y
+CONFIG_PACKAGE_luci-app-hd-idle=n
 CONFIG_PACKAGE_luci-app-jd-dailybonus=y
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=y
@@ -357,7 +357,7 @@ CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=y
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
-# CONFIG_PACKAGE_luci-app-vsftpd is not set
+CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_wifidog=n
