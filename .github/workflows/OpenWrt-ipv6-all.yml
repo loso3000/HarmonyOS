@@ -157,9 +157,4 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: SirpdboyOpenWrt-IPV6-Plus-VIP-Ipk
-          path: ./package
-      - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          retain_days: 14
-          keep_minimum_runs: 3
+          path: ./packageipv6all
