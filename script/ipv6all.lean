@@ -1,8 +1,8 @@
 CONFIG_TARGET_x86=y
 CONFIG_TARGET_x86_64=y
 CONFIG_TARGET_x86_64_DEVICE_generic=y
-CONFIG_TARGET_KERNEL_PARTSIZE=64
-CONFIG_TARGET_ROOTFS_PARTSIZE=925
+CONFIG_TARGET_KERNEL_PARTSIZE=65
+CONFIG_TARGET_ROOTFS_PARTSIZE=1525
 # CONFIG_COREMARK_NUMBER_OF_THREADS=128
 # CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
 # CONFIG_PACKAGE_i915-firmware=y
@@ -261,7 +261,7 @@ CONFIG_PACKAGE_luci-app-cpulimit=n
 CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
-# CONFIG_PACKAGE_luci-app-filetransfer is not set
+CONFIG_PACKAGE_luci-app-filetransfer=y
 CONFIG_PACKAGE_luci-app-hd-idle=n
 CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
@@ -349,7 +349,7 @@ CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=y
 CONFIG_PACKAGE_cupsd=y
-CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-mosdns=n
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-wireguard=y
@@ -422,7 +422,7 @@ CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
 CONFIG_PACKAGE_luci-app-transmission=n
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
-CONFIG_PACKAGE_luci-app-mwan3helper=n
+CONFIG_PACKAGE_luci-app-mwan3helper=y
 CONFIG_PACKAGE_luci-app-qbittorrent=n
 CONFIG_PACKAGE_luci-app-familycloud=n
 CONFIG_PACKAGE_luci-app-nps=y
