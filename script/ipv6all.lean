@@ -340,7 +340,7 @@ CONFIG_PACKAGE_luci-app-uhttpd=y
 CONFIG_PACKAGE_luci-app-mentohust=y
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
-CONFIG_PACKAGE_luci-app-ttnode=n
+CONFIG_PACKAGE_luci-app-ttnode=y
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
