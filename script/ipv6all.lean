@@ -1,17 +1,16 @@
 CONFIG_TARGET_x86=y
 CONFIG_TARGET_x86_64=y
 CONFIG_TARGET_x86_64_DEVICE_generic=y
-CONFIG_TARGET_KERNEL_PARTSIZE=65
-CONFIG_TARGET_ROOTFS_PARTSIZE=1525
-# CONFIG_COREMARK_NUMBER_OF_THREADS=128
-# CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
+CONFIG_TARGET_KERNEL_PARTSIZE=64
+CONFIG_TARGET_ROOTFS_PARTSIZE=925
+CONFIG_COREMARK_NUMBER_OF_THREADS=128
+CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
 # CONFIG_PACKAGE_i915-firmware=y
 CONFIG_GRUB_IMAGES=y
 CONFIG_GRUB_EFI_IMAGES=y
 # CONFIG_GRUB_CONSOLE is not set
 CONFIG_GRUB_TIMEOUT="0"
 CONFIG_GRUB_TITLE="OpenWrt"
-
 # CONFIG_ISO_IMAGES is not set
 # CONFIG_VDI_IMAGES is not set
 # CONFIG_VMDK_IMAGES is not set
@@ -32,7 +31,6 @@ CONFIG_DEFAULT_kmod-8139too=y
 CONFIG_DEFAULT_kmod-alx=y
 CONFIG_DEFAULT_kmod-amazon-ena=y
 CONFIG_DEFAULT_kmod-amd-xgbe=y
-
 CONFIG_PACKAGE_kmod-3c59x=y
 CONFIG_PACKAGE_kmod-atl1=y
 CONFIG_PACKAGE_kmod-atl1c=y
@@ -149,7 +147,6 @@ CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-usb-roles=y
 CONFIG_PACKAGE_kmod-usb-wdm=y
 CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
-
 CONFIG_PACKAGE_kmod-tg3=y  #BCM5719
 CONFIG_DEFAULT_kmod-i40e=y
 CONFIG_DEFAULT_kmod-i40evf=y
@@ -173,7 +170,6 @@ CONFIG_DEFAULT_kmod-pcnet32=y
 CONFIG_DEFAULT_kmod-r8125=y
 CONFIG_DEFAULT_kmod-r8168=y
 CONFIG_DEFAULT_kmod-sdhci=y
-
 CONFIG_DEFAULT_kmod-sound-hda-codec-hdmi=y
 CONFIG_DEFAULT_kmod-sound-hda-codec-realtek=y
 CONFIG_DEFAULT_kmod-sound-hda-codec-via=y
@@ -184,7 +180,6 @@ CONFIG_DEFAULT_kmod-sound-via82xx=y
 CONFIG_DEFAULT_kmod-tulip=y
 CONFIG_DEFAULT_kmod-usb-hid=y
 CONFIG_PACKAGE_kmod-r8101=y
-
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-asix=y
 CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
@@ -192,7 +187,6 @@ CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 CONFIG_PACKAGE_kmod-via-velocity=y
 CONFIG_PACKAGE_kmod-vmxnet3=y
-
 ## File System Drivers
 CONFIG_DEFAULT_kmod-forcedeth=y
 CONFIG_PACKAGE_kmod-fs-f2fs=y
@@ -206,22 +200,18 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 # CONFIG_PACKAGE_kmod-fs-antfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs3-oot=y
-
 CONFIG_PACKAGE_block-mount=y
-
 ### USB Audio 
 CONFIG_PACKAGE_kmod-usb-audio=y
 #Tailscale
 #CONFIG_PACKAGE_libustream-openssl=y
 #CONFIG_PACKAGE_ca-bundle=y
 #CONFIG_PACKAGE_kmod-tun=y
-
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
 # CONFIG_PACKAGE_luci-app-wol is not set
 CONFIG_PACKAGE_luci-app-wolplus=y
-
 #base插件
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_dnspod=y
@@ -233,17 +223,13 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 CONFIG_PACKAGE_automount=y
-CONFIG_PACKAGE_autocore-x86=y
-CONFIG_PACKAGE_myautocore-x86=n
+# CONFIG_PACKAGE_autocore-x86 is not set
+CONFIG_PACKAGE_myautocore-x86=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_autosamba-samba4=y
-
-
 CONFIG_PACKAGE_kmod-inet-diag=y
-
 # CONFIG_PACKAGE_kmod-br-netfilter=n  #透明网桥
-
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=y
@@ -261,7 +247,7 @@ CONFIG_PACKAGE_luci-app-cpulimit=n
 CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
-CONFIG_PACKAGE_luci-app-filetransfer=y
+# CONFIG_PACKAGE_luci-app-filetransfer is not set
 CONFIG_PACKAGE_luci-app-hd-idle=n
 CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
@@ -349,7 +335,7 @@ CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=y
 CONFIG_PACKAGE_cupsd=y
-CONFIG_PACKAGE_luci-app-mosdns=n
+CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-wireguard=y
@@ -422,7 +408,7 @@ CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
 CONFIG_PACKAGE_luci-app-transmission=n
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
-CONFIG_PACKAGE_luci-app-mwan3helper=y
+CONFIG_PACKAGE_luci-app-mwan3helper=n
 CONFIG_PACKAGE_luci-app-qbittorrent=n
 CONFIG_PACKAGE_luci-app-familycloud=n
 CONFIG_PACKAGE_luci-app-nps=y
