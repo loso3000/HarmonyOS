@@ -8,7 +8,7 @@ CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
 # CONFIG_TARGET_ALL_PROFILES=y
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
-CONFIG_TARGET_ROOTFS_PARTSIZE=920
+CONFIG_TARGET_ROOTFS_PARTSIZE=1920
 CONFIG_DOCKER_OPTIONAL_FEATURES=y
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
@@ -92,7 +92,7 @@ CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-timecontrol=n
 CONFIG_PACKAGE_luci-app-webadmin=n
 CONFIG_PACKAGE_luci-app-cpulimit=n
-CONFIG_PACKAGE_luci-app-diskman=n
+CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=y
 # CONFIG_PACKAGE_luci-app-eqos=n
 CONFIG_PACKAGE_luci-app-filetransfer=y
@@ -115,17 +115,17 @@ CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM is not set
 CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan is not set
-CONFIG_PACKAGE_luci-app-passwall2=y
-# CONFIG_PACKAGE_luci-app-ssr-plus is not set
+CONFIG_PACKAGE_luci-app-passwall2=n
+CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
-CONFIG_PACKAGE_luci-app-vssr=y
+CONFIG_PACKAGE_luci-app-vssr=n
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
 # CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan is not set
 # CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun is not set
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=y
-CONFIG_PACKAGE_luci-app-bypass=y
+CONFIG_PACKAGE_luci-app-bypass=n
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
@@ -145,17 +145,17 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_luci-app-sqm=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_cupsd=n
-CONFIG_PACKAGE_luci-app-cupsd=y
+CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=n
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 # CONFIG_PACKAGE_luci-app-wireguard is not set
-CONFIG_PACKAGE_luci-app-aliyundrive-webdav=n
+CONFIG_PACKAGE_luci-app-aliyundrive-webdav=y
 CONFIG_PACKAGE_luci-app-cpufreq=n
 # CONFIG_PACKAGE_BitSrunLoginGo=n   #学校签到
 CONFIG_PACKAGE_luci-app-v2raya=n
 CONFIG_PACKAGE_luci-app-linkease=n
-# CONFIG_PACKAGE_luci-app-vlmcsd is not set
+CONFIG_PACKAGE_luci-app-vlmcsd=y
 
 CONFIG_PACKAGE_luci-app-bridge=n
 CONFIG_PACKAGE_luci-app-cowbping=y
@@ -166,7 +166,7 @@ CONFIG_PACKAGE_luci-app-https-dns-proxy-whisky=n
 CONFIG_PACKAGE_luci-app-pwdHackDeny=n
 CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-homebox=n
-CONFIG_PACKAGE_luci-app-store=n
+CONFIG_PACKAGE_luci-app-store=y
 CONFIG_PACKAGE_luci-app-homeassistant=n
 CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
@@ -201,7 +201,7 @@ CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
 # CONFIG_PACKAGE_luci-app-zerotier is not set
-CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
+CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=y
 # CONFIG_PACKAGE_luci-app-minidlna is not set
