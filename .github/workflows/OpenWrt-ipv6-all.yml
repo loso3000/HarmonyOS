@@ -89,7 +89,7 @@ jobs:
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "DATA=$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)" >> $GITHUB_ENV
+          echo "DATA=`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          ../$DIY_P1_SH
@@ -115,18 +115,13 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
-         echo "::set-output name=COMPILE_STATUS::success"
       - name: Generate Firmware
-        if: steps.compile.outputs.COMPILE_STATUS == 'success'
         id: generate
         run: |
           cd openwrt
           df -h
           mkdir -p files/etc/uci-defaults/
           cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-          #mkdir -p files/etc/opkg
-          #cp ../configs/opkg/distfeeds-packages-server.conf files/etc/opkg/distfeeds.conf.server
-         
           make package/install -j$(nproc) || make package/install -j1 V=s
           make target/install -j$(nproc) || make target/install -j1 V=s
           make checksum
