@@ -18,7 +18,9 @@ CONFIG_PACKAGE_kmod-fs-squashfs=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 ### Ethernet Support
-CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8125=y
+# CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor is not set
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
@@ -166,7 +168,7 @@ CONFIG_PACKAGE_luci-app-https-dns-proxy-whisky=n
 CONFIG_PACKAGE_luci-app-pwdHackDeny=n
 CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-homebox=n
-CONFIG_PACKAGE_luci-app-store=y
+CONFIG_PACKAGE_luci-app-store=n
 CONFIG_PACKAGE_luci-app-homeassistant=n
 CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
@@ -203,7 +205,7 @@ CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-zerotier is not set
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
-CONFIG_PACKAGE_luci-app-mwan3=y
+CONFIG_PACKAGE_luci-app-mwan3=n
 # CONFIG_PACKAGE_luci-app-minidlna is not set
 CONFIG_PACKAGE_luci-app-rclone=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
@@ -245,8 +247,6 @@ CONFIG_DOCKER_NET_TFTP=y
 # Other Appliciations
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
-
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_ppp-mod-pppol2tp=y
@@ -267,20 +267,3 @@ CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y
 
-
-# Other Appliciations
-CONFIG_PACKAGE_luci-ssl-openssl=y
-CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_ipt2socks=y
-CONFIG_PACKAGE_wpad-openssl=y
-CONFIG_PACKAGE_xz=y
-CONFIG_PACKAGE_xz-utils=y
-CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
-CONFIG_PACKAGE_wget-ssl=y
-CONFIG_PACKAGE_wget=y
-
-CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_ppp-mod-pptp=y
-CONFIG_PACKAGE_ppp-mod-pppol2tp=y
-CONFIG_PACKAGE_xl2tpd=y
