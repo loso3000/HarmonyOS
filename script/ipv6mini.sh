@@ -156,7 +156,7 @@ echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-f
 sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 
-# rm -rf ./feeds/luci/applications/luci-app-socat && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
+rm -rf ./feeds/luci/applications/luci-app-socat && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
 sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
 ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/feeds/luci/luci-app-socat
 
@@ -421,8 +421,8 @@ sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 
-sed -i 's/KERNEL_PATCHVER:=5.18/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.18/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
