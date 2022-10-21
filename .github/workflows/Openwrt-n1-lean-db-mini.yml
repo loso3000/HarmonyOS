@@ -66,7 +66,8 @@ jobs:
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           rm -rf ./tmp && rm -rf .config
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "DATA=$(date +'%Y-%m-%d'-d +"12"hour) \n" >> $GITHUB_ENV
+          echo "DATA=$(date +'%Y%m%d'-d +"12"hour) \n" >> $GITHUB_ENV
+          echo "$FIRMWARE -- ${{ env.DATA }}"
 
       - name: Cache
         uses: klever1988/cachewrtbuild@main
@@ -87,9 +88,6 @@ jobs:
          cd openwrt
          ../$DIY_P1_SH
          ../script/clash-core.sh $CLASH_BINARY_PLATFORM
-         
-         TARGET_DEVICE_ARCH="$(grep "^CONFIG_TARGET_.*_.*=y$" ".config" | head -n 1 | sed 's/^CONFIG_TARGET_//g' | awk -F '_' '{print $1}')"
-         echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}" >>$GITHUB_ENV
          # N1 的安装到 emcc的脚本
          # git clone https://github.com/tuanqing/install-program package/install-program
          # echo 'CONFIG_PACKAGE_install-program=y' >> .config
@@ -142,7 +140,7 @@ jobs:
           # rename -v "s/friendlyarm_//" *
           
           gzip *.img |true
-          echo -e "${{ env.DATA}}-Sirpdboy-IPV6-n1-${{TARGET_DEVICE_ARCH}}\n" > 版本日期和MD5信息.txt
+          echo -e "${{ env.DATA }}-Sirpdboy-IPV6-n1-super\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
@@ -150,13 +148,13 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA}}-Sirpdboy-IPV6-n1-${{TARGET_DEVICE_ARCH}}
+          name: ${{ env.DATA }}-SirpdboyOpenwrt-IPV6-n1-Super
           path: ./n1
           
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: n1-OpenWrt-IPV6-Ipk
+          name: ${{ env.DATA }}-SirpdboyOpenwrt-IPV6-Ipk
           path: ./openwrt/bin/packages
       - name: Upload Firmware wetransfer
         run: |
