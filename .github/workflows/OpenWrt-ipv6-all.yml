@@ -88,8 +88,9 @@ jobs:
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
-         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-         echo "DATA=$(date +'%Y%m%d' -d +"12"hour)" >> $GITHUB_ENV
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "DATA=$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)" >> $GITHUB_ENV
+          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          ../$DIY_P1_SH
          ../$DIY_P2_SH amd64
