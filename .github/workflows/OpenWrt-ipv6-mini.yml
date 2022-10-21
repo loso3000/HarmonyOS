@@ -81,6 +81,7 @@ jobs:
         run: |
           cd openwrt
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+          
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -89,7 +90,8 @@ jobs:
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-         echo "DATA=$(date +'%Y-%m-%d'-d +"12"hour) \n" >> $GITHUB_ENV
+         echo "DATA=$(date +"%Y%m%d_%H"-d +"12"hour)" >> $GITHUB_ENV
+         echo "$FIRMWARE -- ${{ env.DATA}}"
          cd openwrt
          ../$DIY_P1_SH
          ../$DIY_P2_SH amd64
@@ -139,7 +141,7 @@ jobs:
           gzip *.img |true
           find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwareipv6mini
           gzip *.img |true
-          echo -e "Sirpdboy-IPV6-${{ env.DATA}}大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-IPV6-VIP-${{ env.DATE }}-Mini--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
@@ -151,10 +153,10 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-IPV6-mini-VIP-Firmware
+          name: ${{ env.DATE }}-SirpdboyOpenWrt-IPV6-mini-VIP-Firmware
           path: ./firmwareipv6mini
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-IPV6-mini-VIP-Ipk
+          name: ${{ env.DATE }}-SirpdboyOpenWrt-IPV6-mini-VIP-Ipk
           path: ./packageipv6mini
