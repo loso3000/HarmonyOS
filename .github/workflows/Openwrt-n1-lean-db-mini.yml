@@ -132,13 +132,17 @@ jobs:
            # 没 imageBuilder下也就是不做slim的设备此刻执行 after
            bash  ../scriptx/diy-after.sh
 
+          
+      - name: Upload bin ipk
+        uses: actions/upload-artifact@main
+        with:
+          name: SirpdboyOpenwrt-IPV6-n1-Super-Ipk
+          path: ./openwrt/bin
       - name: Prepare Artifact
         run: |
           mkdir ./n1
           find ./openwrt/bin/targets/ -name "openwrt*.img*" | xargs -i mv -f {} ./n1/
           cd ./n1
-          # rename -v "s/friendlyarm_//" *
-          
           gzip *.img |true
           echo -e "${{ env.DATA }}-Sirpdboy-IPV6-n1-super\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
@@ -150,12 +154,6 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenwrt-IPV6-n1-Super
           path: ./n1
-          
-      - name: Upload  IPK
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ env.DATA }}-SirpdboyOpenwrt-IPV6-Ipk
-          path: ./openwrt/bin/packages
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
