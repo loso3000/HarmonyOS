@@ -79,8 +79,8 @@ jobs:
         run: |
           cd openwrt
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "DATA=$(date +"%Y%m%d_%H"-d +"12"hour)" >> $GITHUB_ENV
-          echo "$FIRMWARE -- ${{ env.DATA}}"
+          echo "DATA=$(date +'%Y%m%d' -d +"12"hour)" >> $GITHUB_ENV
+          echo "$FIRMWARE -- ${{ env.DATA }}"
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
