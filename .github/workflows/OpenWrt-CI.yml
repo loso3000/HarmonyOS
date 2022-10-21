@@ -90,7 +90,8 @@ jobs:
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-         echo "DATA=$(date +'%Y-%m-%d'-d +"12"hour) \n" >> $GITHUB_ENV
+         echo "DATA=$(date +"%Y%m%d_%H"-d +"12"hour)" >> $GITHUB_ENV
+         echo "$FIRMWARE -- ${{ env.DATA}}"
          cd openwrt
          ../$DIY_P1_SH
          ../$DIY_P2_SH amd64
@@ -154,7 +155,7 @@ jobs:
           gzip *.img || true
           # find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*combined-efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
           # gzip *.img || true
-          echo -e "Sirpdboy-IPV6-Plus-${{ env.DATA}}大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-IPV6-Plus-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt || true
@@ -167,12 +168,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-IPV6-Plus-Firmware
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-Plus-Firmware
           path: ./firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-IPV6-Plus-Ipk
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-Plus-Ipk
           path: ./package
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
