@@ -9,19 +9,18 @@ CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
 CONFIG_TARGET_ROOTFS_PARTSIZE=1920
-CONFIG_DOCKER_OPTIONAL_FEATURES=y
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-# file system
-CONFIG_PACKAGE_kmod-fs-squashfs=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
+### Ethernet Support
+CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8125=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor is not set
-CONFIG_PACKAGE_kmod-usb-net-rndis=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
@@ -37,7 +36,7 @@ CONFIG_PACKAGE_kmod-fs-ext4=y
 CONFIG_PACKAGE_kmod-fs-vfat=y
 CONFIG_PACKAGE_kmod-scsi-core=y
 CONFIG_PACKAGE_e2fsprogs=y
-CONFIG_PACKAGE_kmod-usb-printer=y
+# CONFIG_PACKAGE_kmod-usb-printer is not set
 CONFIG_PACKAGE_block-mount=y
 # CONFIG_PACKAGE_ntfs-3g=y
 # CONFIG_PACKAGE_antfs-mount is not set
@@ -45,8 +44,6 @@ CONFIG_PACKAGE_block-mount=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs3-oot=y
 
-# L2TP
-CONFIG_PACKAGE_kmod-pppol2tp=y
 
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -130,7 +127,7 @@ CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server=y
 CONFIG_PACKAGE_luci-app-bypass=n
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-ddnsto=n
 CONFIG_PACKAGE_luci-app-pushbot=n
 CONFIG_PACKAGE_luci-app-dnsfilter=y
@@ -168,7 +165,7 @@ CONFIG_PACKAGE_luci-app-https-dns-proxy-whisky=n
 CONFIG_PACKAGE_luci-app-pwdHackDeny=n
 CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-homebox=n
-CONFIG_PACKAGE_luci-app-store=n
+CONFIG_PACKAGE_luci-app-store=y
 CONFIG_PACKAGE_luci-app-homeassistant=n
 CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
@@ -202,7 +199,7 @@ CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
-# CONFIG_PACKAGE_luci-app-zerotier is not set
+# CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=n
@@ -266,4 +263,5 @@ CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y
-
+# L2TP
+CONFIG_PACKAGE_kmod-pppol2tp=y
