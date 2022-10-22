@@ -170,7 +170,7 @@ CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-pptpserver=n
 CONFIG_PACKAGE_luci-app-encryption=n
-CONFIG_PACKAGE_luci-app-wizard=y
+CONFIG_PACKAGE_luci-app-wizard=n
 CONFIG_PACKAGE_luci-app-filebrowser=n
 # CONFIG_PACKAGE_luci-app-nodogsplash=y  #WIFI认证
 
@@ -228,58 +228,58 @@ CONFIG_DRIVER_11N_SUPPORT=y
 CONFIG_DRIVER_11W_SUPPORT=y
 
 # 3G/4G Drivers & Utilities
-CONFIG_PACKAGE_comgt-ncm=y
-CONFIG_PACKAGE_comgt=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_kmod-usb-acm=y
-CONFIG_PACKAGE_kmod-usb-serial=y
-CONFIG_PACKAGE_kmod-usb-serial-option=y
-CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-CONFIG_PACKAGE_luci-proto-3g=y
-CONFIG_PACKAGE_luci-proto-ncm=y
-CONFIG_PACKAGE_luci-proto-qmi=y
-CONFIG_PACKAGE_qmi-utils=y
-CONFIG_PACKAGE_umbim=y
-CONFIG_PACKAGE_uqmi=y
+# CONFIG_PACKAGE_comgt-ncm=y
+# CONFIG_PACKAGE_comgt=y
+# CONFIG_PACKAGE_kmod-mii=y
+# CONFIG_PACKAGE_kmod-usb-acm=y
+# CONFIG_PACKAGE_kmod-usb-serial=y
+# CONFIG_PACKAGE_kmod-usb-serial-option=y
+# CONFIG_PACKAGE_kmod-usb-serial-wwan=y
+# CONFIG_PACKAGE_luci-proto-3g=y
+# CONFIG_PACKAGE_luci-proto-ncm=y
+# CONFIG_PACKAGE_luci-proto-qmi=y
+# CONFIG_PACKAGE_qmi-utils=y
+# CONFIG_PACKAGE_umbim=y
+# CONFIG_PACKAGE_uqmi=y
 CONFIG_PACKAGE_usb-modeswitch=y
 
 # Mobile Network Sharing
-CONFIG_PACKAGE_libimobiledevice-utils=y
-CONFIG_PACKAGE_libplist-utils=y
-CONFIG_PACKAGE_libudev-fbsd=y
-CONFIG_PACKAGE_libusbmuxd-utils=y
-CONFIG_PACKAGE_usbmuxd=y
+# CONFIG_PACKAGE_libimobiledevice-utils=y
+# CONFIG_PACKAGE_libplist-utils=y
+# CONFIG_PACKAGE_libudev-fbsd=y
+# CONFIG_PACKAGE_libusbmuxd-utils=y
+# CONFIG_PACKAGE_usbmuxd=y
 
 
-CONFIG_PACKAGE_luci-proto-openconnect=y
+# CONFIG_PACKAGE_luci-proto-openconnect=y
 
 # Other Appliciations
-CONFIG_PACKAGE_luci-ssl-openssl=y
+# CONFIG_PACKAGE_luci-ssl-openssl=y
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_ipt2socks=y
-CONFIG_PACKAGE_wpad-openssl=y
-CONFIG_PACKAGE_xz=y
-CONFIG_PACKAGE_xz-utils=y
+# CONFIG_PACKAGE_ipt2socks=y
+# CONFIG_PACKAGE_wpad-openssl=y
+# CONFIG_PACKAGE_xz=y
+# CONFIG_PACKAGE_xz-utils=y
 CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
-CONFIG_PACKAGE_wget-ssl=y
-CONFIG_PACKAGE_wget=y
+# CONFIG_PACKAGE_wget-ssl=y
+# CONFIG_PACKAGE_wget=y
 # CONFIG_PACKAGE_ocserv=y
 
 CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_ppp-mod-pptp=y
-CONFIG_PACKAGE_ppp-mod-pppol2tp=y
-CONFIG_PACKAGE_xl2tpd=y
+# CONFIG_PACKAGE_ppp-mod-pptp=y
+# CONFIG_PACKAGE_ppp-mod-pppol2tp=y
+# CONFIG_PACKAGE_xl2tpd=y
 
-CONFIG_PACKAGE_kmod-ntfs-3g=y
+# CONFIG_PACKAGE_kmod-ntfs-3g=y
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
-CONFIG_PACKAGE_acpid=y
-CONFIG_PACKAGE_blkid=y
+# CONFIG_PACKAGE_acpid=y
+# CONFIG_PACKAGE_blkid=y
 # CONFIG_PACKAGE_qemu-ga=y
 # CONFIG_PACKAGE_smartmontools=y
-CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
+# CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
 CONFIG_PACKAGE_ethtool=y #网卡工具
-CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
+# CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
 # CONFIG_PACKAGE_parted=n #128个区分区工具z
 CONFIG_PACKAGE_fdisk=y #分区工具
-CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
+# CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
