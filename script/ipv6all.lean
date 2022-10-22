@@ -1,16 +1,17 @@
 CONFIG_TARGET_x86=y
 CONFIG_TARGET_x86_64=y
 CONFIG_TARGET_x86_64_DEVICE_generic=y
-CONFIG_TARGET_KERNEL_PARTSIZE=64
+CONFIG_TARGET_KERNEL_PARTSIZE=65
 CONFIG_TARGET_ROOTFS_PARTSIZE=925
-# CONFIG_COREMARK_NUMBER_OF_THREADS=128
-# CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
-# CONFIG_PACKAGE_i915-firmware=y
+CONFIG_COREMARK_NUMBER_OF_THREADS=128
+CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
+CONFIG_PACKAGE_i915-firmware=y
 CONFIG_GRUB_IMAGES=y
 CONFIG_GRUB_EFI_IMAGES=y
 # CONFIG_GRUB_CONSOLE is not set
 CONFIG_GRUB_TIMEOUT="0"
 CONFIG_GRUB_TITLE="OpenWrt"
+
 # CONFIG_ISO_IMAGES is not set
 # CONFIG_VDI_IMAGES is not set
 # CONFIG_VMDK_IMAGES is not set
@@ -31,6 +32,7 @@ CONFIG_DEFAULT_kmod-8139too=y
 CONFIG_DEFAULT_kmod-alx=y
 CONFIG_DEFAULT_kmod-amazon-ena=y
 CONFIG_DEFAULT_kmod-amd-xgbe=y
+
 CONFIG_PACKAGE_kmod-3c59x=y
 CONFIG_PACKAGE_kmod-atl1=y
 CONFIG_PACKAGE_kmod-atl1c=y
@@ -147,6 +149,7 @@ CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-usb-roles=y
 CONFIG_PACKAGE_kmod-usb-wdm=y
 CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
+
 CONFIG_PACKAGE_kmod-tg3=y  #BCM5719
 CONFIG_DEFAULT_kmod-i40e=y
 CONFIG_DEFAULT_kmod-i40evf=y
@@ -170,6 +173,7 @@ CONFIG_DEFAULT_kmod-pcnet32=y
 CONFIG_DEFAULT_kmod-r8125=y
 CONFIG_DEFAULT_kmod-r8168=y
 CONFIG_DEFAULT_kmod-sdhci=y
+
 CONFIG_DEFAULT_kmod-sound-hda-codec-hdmi=y
 CONFIG_DEFAULT_kmod-sound-hda-codec-realtek=y
 CONFIG_DEFAULT_kmod-sound-hda-codec-via=y
@@ -180,6 +184,7 @@ CONFIG_DEFAULT_kmod-sound-via82xx=y
 CONFIG_DEFAULT_kmod-tulip=y
 CONFIG_DEFAULT_kmod-usb-hid=y
 CONFIG_PACKAGE_kmod-r8101=y
+
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-asix=y
 CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
@@ -188,6 +193,7 @@ CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor is not set
 CONFIG_PACKAGE_kmod-via-velocity=y
 CONFIG_PACKAGE_kmod-vmxnet3=y
+
 ## File System Drivers
 CONFIG_DEFAULT_kmod-forcedeth=y
 CONFIG_PACKAGE_kmod-fs-f2fs=y
@@ -201,13 +207,16 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 # CONFIG_PACKAGE_kmod-fs-antfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs3-oot=y
+
 CONFIG_PACKAGE_block-mount=y
+
 ### USB Audio 
 CONFIG_PACKAGE_kmod-usb-audio=y
 #Tailscale
 #CONFIG_PACKAGE_libustream-openssl=y
 #CONFIG_PACKAGE_ca-bundle=y
 #CONFIG_PACKAGE_kmod-tun=y
+
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
