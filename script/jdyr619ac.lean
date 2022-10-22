@@ -7,6 +7,17 @@ CONFIG_TARGET_BOARD="ipq40xx"
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 
+#usb 
+CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-fs-nfs-v4=y
+CONFIG_DEFAULT_kmod-fs-vfat=y
+CONFIG_PACKAGE_block-mount=y
+CONFIG_PACKAGE_usbutils=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_e2fsprogs=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+
 #add upnp
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_miniupnpd-igdv1=y
