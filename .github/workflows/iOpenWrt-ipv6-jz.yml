@@ -15,7 +15,7 @@ on:
 
 env:
   SOURCE_URL: https://github.com/immortalwrt/immortalwrt
-  SOURCE_BRANCH: openwrt-21.02
+  SOURCE_BRANCH: openwrt-18.06-k5.4
   CONFIG_FILE: script/jz.config
   DIY_SH: scriptx/diy21.sh
   KMODS_IN_FIRMWARE: true
@@ -39,7 +39,25 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-
+      with:
+          ref: master
+    - name: Check server performance
+      run: |
+         echo "警告⚠"
+         echo "若分配的服务器性能不足，务必及时取消，重新运行！"
+         echo "已知编译成功CPU型号：8370C,8272CL有时可以"
+         echo "已知性能不足CPU型号：8171M E5-2673基本不行"
+         echo -e "-------------- ------------CPU信息------------------------------------------\n"
+         echo "CPU物理数量:$(cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)"
+         echo -e "CPU核心及版本信息：$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
+         echo "-------------------------------内存信息-------------------------------------------"
+         echo "已安装内存详细信息："
+         sudo lshw -short -C memory | grep GiB
+         echo -e "\n"
+         echo "-----------------------------硬盘信息---------------------------------------------"
+         echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
+         echo "硬盘详情："
+         df -Th
     - name: Initialization Environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -71,6 +89,9 @@ jobs:
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
         echo "::set-output name=OPENWRTROOT::$(echo $PWD)"
        
+         echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+         # echo "DATA=$(date +"%Y%m%d_%H" -d +"12"hour)" >> $GITHUB_ENV
+         echo "$FIRMWARE -- ${{ env.DATA }}"
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         chmod +x ../scriptx/*.sh
@@ -129,12 +150,13 @@ jobs:
         echo "::set-output name=SUBTARGET::$(echo $SUBTARGET)"
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=FIRMWARE::$(echo $PWD)"
-        echo "::set-output name=COMPILE_STATUS::success"
     - name: Generate Firmware
-      if: steps.compile.outputs.COMPILE_STATUS == 'success'
       id: generate
       run: |
         cd $OPENWRTROOT
+        
+         mkdir -p files/etc/uci-defaults/
+         cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
         make package/install -j$(nproc) || make package/install -j1 V=s
         make target/install -j$(nproc) || make target/install -j1 V=s
         make checksum
@@ -158,22 +180,10 @@ jobs:
     - name: Upload Firmware
       uses: actions/upload-artifact@main
       with:
-          name: iOpenWrt-ipv6-mini-dz-Firmware
+          name: ${{ env.DATA }} SirpdboyOpenWrt-ipv6-Super-VIP-Firmware
           path: ./mini/firmware
     - name: Upload  IPK
       uses: actions/upload-artifact@main
       with:
-          name: iOpenWrt-ipv6-mini-dz-Ipk
+          name: ${{ env.DATA }} SirpdboyOpenWrt-ipv6-Super-VIP-Ipk
           path: ./mini/package
-          
-    - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
-      with:
-        retain_days: 5
-        keep_minimum_runs: 2
-
-    - name: Delete Artifacts
-      uses: geekyeggo/delete-artifact@v1
-      with:
-        name: |
-         bin-archive
