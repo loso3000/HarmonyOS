@@ -72,7 +72,7 @@ jobs:
           #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-          echo "DATA=$(date +'%Y-%m-%d'-d +"8"hour) \n" >> $GITHUB_ENV
+          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           rm -rf ./tmp && rm -rf .config
@@ -138,19 +138,19 @@ jobs:
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
           gzip *.img
-          echo -e "Sirpdboy-IPV6-MINI-${{ env.DATA}}精简通用版--【EFI通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-IPV6-MINI-${{ env.DATA }}-精简通用版--【EFI通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n" > 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-ipv6-mini-Firmware
+          name: ${{ env.DATA }} SirpdboyOpenWrt-ipv6-mini-Firmware
           path: ./mini/firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-ipv6-mini-Ipk
+          name: ${{ env.DATA }} SirpdboyOpenWrt-ipv6-mini-Ipk
           path: ./mini/package
       - name: Upload Firmware wetransfer
         run: |
