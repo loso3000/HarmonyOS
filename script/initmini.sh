@@ -63,8 +63,10 @@ cp -f ./package/build/set/coremark.sh feeds/packages/utils/coremark/
 
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
+
 rm -rf ./package/build/automount
-rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+
+# rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
 rm -rf ./package/lean/autocore  && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
 rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
 
