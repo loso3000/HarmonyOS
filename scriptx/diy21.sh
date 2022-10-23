@@ -43,8 +43,9 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 rm -rf ./feeds/packages/net/mosdns
 #upnp
-rm -rf ./feeds/packages/net/miniupnpd
-rm -rf ./feeds/luci/applications/luci-app-upnp
+# rm -rf ./feeds/packages/net/miniupnp
+# rm -rf ./feeds/luci/applications/luci-app-upnp
+rm -rf  ./package/diy/upnpd
 
 rm -rf ./package/lean/autocore  
 rm -rf  package/emortal/autocore && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
