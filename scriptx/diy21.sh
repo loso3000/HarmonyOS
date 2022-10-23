@@ -265,12 +265,9 @@ rm -rf ./feeds/packages/net/trojan*
 sed -i 's,default n,default y,g' ./package/other/up/pass/luci-app-bypass/Makefile
 # sed -i 's,default n,default y,g' ./package/other/up/pass/luci-app-ssr-plus/Makefile
 
-#  git clone https://github.com/loso3000/openwrt-passwall package/passwall
-# svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
-
-git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
+# git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+
 # pushd package/passwall/luci-app-passwall
 # sed -i 's,default n,default y,g' Makefile
 # popd
