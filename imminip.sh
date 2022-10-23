@@ -47,10 +47,9 @@ rm -rf  package/emortal/autocore && svn co https://github.com/sirpdboy/build/tru
 
 rm -rf ./package/diy/luci-lib-ipkg
 
-rm -rf ./package/lean/automount  
 rm -rf ./package/build/automount
 # rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
-rm -rf  package/emortal/automount && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+# rm -rf  package/emortal/automount && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
 
 rm -rf  package/emortal/autosamba
 rm -rf ./package/lean/default-settings  
@@ -60,7 +59,7 @@ rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
 rm -rf ./package/build/automount
 rm -rf package/diy1/luci/luci-app-istorex
-rm -rf package/diy1/luciluci-app-quickstart
+# rm -rf package/diy1/luciluci-app-quickstart
 
 wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/sirpdboy/build/master/banner
 wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/sirpdboy/build/master/profile
