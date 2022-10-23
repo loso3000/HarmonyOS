@@ -31,8 +31,9 @@ rm -rf ./package/diy/OpenAppFilter
 rm -rf ./feeds/packages/net/mosdns
 
 #upnp
-rm -rf ./feeds/packages/net/miniupnpd
-rm -rf ./feeds/luci/applications/luci-app-upnp
+# rm -rf ./feeds/packages/net/miniupnp
+# rm -rf ./feeds/luci/applications/luci-app-upnp
+rm -rf  ./package/diy/upnpd
 
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
