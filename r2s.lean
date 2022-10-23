@@ -8,7 +8,7 @@ CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
 # CONFIG_TARGET_ALL_PROFILES=y
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
-CONFIG_TARGET_ROOTFS_PARTSIZE=1920
+CONFIG_TARGET_ROOTFS_PARTSIZE=920
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
@@ -63,7 +63,11 @@ CONFIG_PACKAGE_luci-app-ddns=y
 
 CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
+
+
 CONFIG_PACKAGE_automount=y
+CONFIG_PACKAGE_ntfs3-mount=y
+
 # CONFIG_PACKAGE_autocore-x86 is not set
 # CONFIG_PACKAGE_autocore-arm is not set
 CONFIG_PACKAGE_myautocore-x86=y
