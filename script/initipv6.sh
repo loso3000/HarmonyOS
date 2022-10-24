@@ -38,8 +38,10 @@ svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
 sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
 #upnp
-rm -rf ./feeds/packages/net/miniupnpd
-rm -rf ./feeds/luci/applications/luci-app-upnp
+# rm -rf ./feeds/packages/net/miniupnp
+# rm -rf ./feeds/luci/applications/luci-app-upnp
+rm -rf  ./package/diy/upnpd
+
 
 rm -rf ./package/diy/luci-lib-ipkg
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
