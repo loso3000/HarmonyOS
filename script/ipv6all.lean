@@ -233,8 +233,8 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 
-CONFIG_PACKAGE_ntfs3-mount=y
-CONFIG_PACKAGE_kmod-ntfs3-mount=y
+CONFIG_PACKAGE_automount=y
+CONFIG_PACKAGE_ntfs3-mount=y 
 
 # CONFIG_PACKAGE_autocore-x86 is not set
 CONFIG_PACKAGE_myautocore-x86=y
@@ -261,7 +261,7 @@ CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
 # CONFIG_PACKAGE_luci-app-filetransfer is not set
-CONFIG_PACKAGE_luci-app-hd-idle=n
+CONFIG_PACKAGE_luci-app-hd-idle=y
 CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=y
@@ -415,7 +415,7 @@ CONFIG_PACKAGE_luci-app-ipsec-server=y
 CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=y
-CONFIG_PACKAGE_luci-app-uugamebooster=n
+# CONFIG_PACKAGE_luci-app-uugamebooster is not set
 CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
