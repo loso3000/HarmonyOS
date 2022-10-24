@@ -89,6 +89,7 @@ jobs:
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
         echo "::set-output name=OPENWRTROOT::$(echo $PWD)"
        
+         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
          # echo "DATA=$(date +"%Y%m%d_%H" -d +"12"hour)" >> $GITHUB_ENV
          echo "$FIRMWARE -- ${{ env.DATA }}"
@@ -98,7 +99,7 @@ jobs:
         ../$DIY_SH
     - name: Install Feeds
       run: |
-        cd $OPENWRTROOT
+        cd openwrt
         ./scripts/feeds install -a
     - name: Load Custom Configuration
       run: |
@@ -113,11 +114,11 @@ jobs:
     - name: Download Package
       id: package
       run: |
-        cd $OPENWRTROOT
-        if "$KMODS_IN_FIRMWARE" = 'true'
-        then
-            echo "CONFIG_ALL_NONSHARED=y" >> .config
-        fi
+        cd openwrt
+        # if "$KMODS_IN_FIRMWARE" = 'true'
+        # then
+        #     echo "CONFIG_ALL_NONSHARED=y" >> .config
+        # fi
         # cat .config
         
         make defconfig
@@ -128,7 +129,7 @@ jobs:
     - name: Compile Packages
       id: compile
       run: |
-        cd $OPENWRTROOT
+        cd openwrt
         echo -e "$(nproc) thread compile"
         make tools/compile -j$(nproc) || make tools/compile -j1 V=s
         make toolchain/compile -j$(nproc) || make toolchain/compile -j1 V=s
@@ -170,8 +171,10 @@ jobs:
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
           gzip *.img || true
-          #cat  .config  > ./mini/firmware/x86ez
-          echo $md5 >> version.txt
+          echo -e "Sirpdboy-IPV6-Super-VIP$-{{ env.DATA }}-极致版-【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt || true
     - name: Upload Firmware wetransfer
       run: |
           curl -fsSL git.io/file-transfer | sh
