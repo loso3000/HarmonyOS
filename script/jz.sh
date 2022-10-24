@@ -54,7 +54,7 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 # rm -rf ./package/lean/autosamba
 # rm -rf ./feeds/luci/applications/luci-app-accesscontrol
 
-rm -rf .feeds/packages/utils/coremark/
+# rm -rf .feeds/packages/utils/coremark/
 #upnp
 rm -rf ./feeds/packages/net/miniupnp
 rm -rf ./feeds/luci/applications/luci-app-upnp
