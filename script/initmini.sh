@@ -37,11 +37,12 @@ sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
-
 #upnp
-rm -rf ./feeds/packages/net/miniupnp
-rm -rf ./feeds/luci/applications/luci-app-upnp
-# rm -rf  ./package/diy/upnpd
+# rm -rf ./feeds/packages/net/miniupnp
+# rm -rf ./feeds/luci/applications/luci-app-upnp
+rm -rf  ./package/diy/upnpd
+
+
 
 # netdata 
 # rm -rf  ./package/diy/netdata
