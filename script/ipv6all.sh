@@ -35,9 +35,9 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # rm -rf package/diy1/luci/luci-app-quickstart
 
 #upnp
-# rm -rf ./feeds/packages/net/miniupnp
-# rm -rf ./feeds/luci/applications/luci-app-upnp
-rm -rf  ./package/diy/upnpd
+rm -rf ./feeds/packages/net/miniupnp
+rm -rf ./feeds/luci/applications/luci-app-upnp
+# rm -rf  ./package/diy/upnpd
 
 rm -rf ./feeds/packages/net/mosdns
 
