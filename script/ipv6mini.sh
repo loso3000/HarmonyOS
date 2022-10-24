@@ -103,10 +103,22 @@ rm -rf ./feeds/luci/applications/luci-app-docker
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/collections/luci-lib-docker
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/lean/luci-lib-docker
-sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
-sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.10
+# sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
+# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+# sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.10
 # sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.15
+
+#zerotier 
+# rm -rf  luci-app-zerotier && git clone https://github.com/rufengsuixing/luci-app-zerotier.git feeds/luci/applications/luci-app-zerotier  #取消防火墙
+# svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-zerotier feeds/luci/applications/luci-app-zerotier
+# ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
+# rm -rf ./feeds/packages/net/zerotier
+# svn export https://github.com/openwrt/packages/trunk/net/zerotier feeds/packages/net/zerotier
+# rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
+sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+
 
 #docker err
 #rm -rf ./feeds/packages/utils/runc/Makefile
@@ -116,7 +128,6 @@ sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' ta
 #rm -rf ./feeds/luci/applications/vlmcsd
 ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
 ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
-
 
 # Add luci-aliyundrive-webdav
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
