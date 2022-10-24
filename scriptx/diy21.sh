@@ -51,9 +51,12 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 rm -rf ./feeds/packages/net/mosdns
+
 #upnp
-rm -rf ./feeds/packages/net/miniupnp
+rm -rf ./feeds/packages/net/miniupnpd
 rm -rf ./feeds/luci/applications/luci-app-upnp
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-uhttpd ./feeds/luci/applications/luci-app-uhttpd
 # rm -rf  ./package/diy/upnpd
 
 rm -rf .feeds/packages/utils/coremark
