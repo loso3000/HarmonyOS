@@ -39,8 +39,9 @@ rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
 #upnp
-rm -rf ./feeds/packages/net/miniupnpd
+rm -rf ./feeds/packages/net/miniupnp
 rm -rf ./feeds/luci/applications/luci-app-upnp
+# rm -rf  ./package/diy/upnpd
 
 # netdata 
 # rm -rf  ./package/diy/netdata
