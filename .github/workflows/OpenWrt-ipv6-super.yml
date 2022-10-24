@@ -1,4 +1,4 @@
-name: OpenWrt-ipv6-jz
+name: OpenWrt-ipv6-super
 
 on:
   repository_dispatch:
