@@ -11,10 +11,27 @@ config_generate=package/base-files/files/bin/config_generate
 
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf ./feeds/luci/applications/luci-app-socat
+rm -rf ./feeds/luci/applications/luci-app-netdata
+rm -rf ./feeds/luci/applications/luci-app-arpbind
+rm -rf ./feeds/luci/applications/luci-app-baidupcs-web
+rm -rf ./feeds/luci/applications/luci-app-beardropper
+rm -rf ./feeds/luci/applications/luci-app-cupsd
+rm -rf ./feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-aria2
+rm -rf ./feeds/luci/applications/luci-app-adguardhome
+rm -rf ./feeds/luci/applications/luci-app-appfilter
+rm -rf ./feeds/luci/applications/luci-app-ssr-plus
+rm -rf ./feeds/luci/applications/luci-app-bypass
+rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+rm -rf ./feeds/luci/applications/luci-app-wolplus
+
+rm -rf ./feeds/packages/net/wrtbwmon
+rm -rf ./feeds/packages/net/trojan-plus
 # 清理
-rm -rf feeds/*/*/{cups,smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web,luci-app-vnstat2,luci-app-vnstat}
-rm -rf package/*/{autocore,autosamba,default-settings}
-rm -rf feeds/*/*/{luci-app-cupsd,luci-app-dockerman,luci-app-aria2,luci-app-beardropper,oaf,luci-app-adguardhome,luci-app-appfilter,open-app-filter,luci-app-openclash,luci-app-vssr,luci-app-ssr-plus,luci-app-passwall,luci-app-bypass,luci-app-wrtbwmon,luci-app-koolddns,luci-app-samba,luci-app-samba4,luci-app-wol,luci-app-unblockneteasemusic,luci-app-accesscontrol}
+# rm -rf feeds/*/*/{cups,smartdns,wrtbwmon,luci-app-smartdns,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web,trojan-plus}
+# rm -rf feeds/*/*/{luci-app-cupsd,luci-app-dockerman,luci-app-aria2,luci-app-beardropper,oaf,luci-app-adguardhome,luci-app-appfilter,open-app-filter,luci-app-vssr,luci-app-ssr-plus,luci-app-bypass,luci-app-wrtbwmon,luci-app-samba4}
 
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
@@ -24,14 +41,6 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 rm -rf ./feeds/packages/utils/cupsd
 rm -rf ./feeds/packages/utils/cups-bjnp
 rm -rf ./feeds/luci/applications/luci-app-cupsd
-
-rm -rf ./feeds/luci/applications/luci-app-passwall
-rm -rf ./feeds/luci/applications/luci-app-passwall2
-
-# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cupsd ./package/build/cupsd
-# svn export https://github.com/immortalwrt/packages/branches/openwrt-18.06/utils/cups-bjnp./package/build/cups-bjnp 
-# svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06-k5.4/applications/luci-app-cupsd ./package/cupsd/luci-app-cupsd
-
 
 # Add ddnsto & linkease
 svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
@@ -52,10 +61,10 @@ rm -rf  package/emortal/autocore && svn co https://github.com/sirpdboy/build/tru
 
 rm -rf ./package/diy/luci-lib-ipkg
 
-rm -rf ./package/lean/automount  
+# rm -rf ./package/lean/automount  
 rm -rf ./package/build/automount
 # rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
-rm -rf  package/emortal/automount && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+# rm -rf  package/emortal/automount && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
 
 rm -rf  package/emortal/autosamba
 rm -rf ./package/lean/default-settings  
@@ -63,9 +72,8 @@ rm -rf  package/emortal/default-settings && svn co https://github.com/sirpdboy/b
 
 rm -rf ./package/build/autocore
 rm -rf ./package/build/default-settings
-rm -rf ./package/build/automount
-rm -rf package/diy1/luci/luci-app-istorex
-rm -rf package/diy1/luciluci-app-quickstart
+# rm -rf package/diy1/luci/luci-app-istorex
+# rm -rf package/diy1/luciluci-app-quickstart
 
 wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/sirpdboy/build/master/banner
 wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/sirpdboy/build/master/profile
@@ -132,9 +140,6 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-ali
 # samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/sirpdboy/build/trunk/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
-git clone --depth 1 https://github.com/zxlhhyccc/luci-app-v2raya.git package/new/luci-app-v2raya
-svn co https://github.com/v2rayA/v2raya-openwrt/trunk/v2raya package/new/v2raya
-
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
 sed -i 's/"网络存储"/"存储"/g' `grep "网络存储" -rl ./`
@@ -165,8 +170,10 @@ ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/feeds/luci/luci
 
 echo '灰色歌曲'
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
-git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
+# git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
+sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./feeds/luci/applications/luci-app-unblockmusic/luasrc/controller/unblockneteasemusic.lua
+sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./feeds/luci/applications/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
 
 #断线不重拨
@@ -178,22 +185,6 @@ sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/n
 
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
-
-# Add minieap
-rm -rf feeds/packages/net/minieap
-svn co https://github.com/immortalwrt/packages/trunk/net/minieap packages/net/minieap feeds/packages/net/minieap
-
-# Add mentohust & luci-app-mentohust
-# git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust package/luci-app-mentohust
-# git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
-
-# 全能推送
-rm -rf ./feeds/luci/applications/luci-app-pushbot && \
-git clone https://github.com/zzsj0928/luci-app-pushbot ./feeds/luci/applications/luci-app-pushbot
-rm -rf ./feeds/luci/applications/luci-app-jd-dailybonus && \
-git clone https://github.com/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/applications/luci-app-jd-dailybonus
-rm -rf ./feeds/luci/applications/luci-app-serverchan && \
-git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
 
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 # git clone https://github.com/tuanqing/install-program package/install-program
@@ -207,9 +198,6 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/aria2 feeds/packages/n
 # rm -rf ./package/diy/adguardhome
 rm -rf ./feeds/packages/net/adguardhome
 svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
-# sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
-# ln -sf ../../../feeds/packages/net/adguardhome ./package/feeds/packages/net/adguardhome
-# cp -rf ./feeds/packages/net/adguardhome   ./package/diy/adguardhome
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y
@@ -224,45 +212,16 @@ CONFIG_CRYPTO_POLY1305_X86_64=y
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1)/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
 
-svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
+# svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 
-# Fix libssh
-# rm -rf feeds/packages/libs
-svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
-# Add apk (Apk Packages Manager)
-svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
-
-# ChinaDNS
-git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 # CPU 控制相关
-rm -rf  feeds/luci/applications/luci-app-cpufreq
-svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
-ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
+# rm -rf  feeds/luci/applications/luci-app-cpufreq
+# svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
+# ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
 sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 
-
-# Passwall
-rm -rf ./feeds/packages/net/pdnsd-alt
-rm -rf ./feeds/packages/net/shadowsocks-libev
-rm -rf ./feeds/packages/net/xray-core
-rm -rf ./feeds/packages/net/kcptun
-rm -rf ./feeds/packages/net/brook
-rm -rf ./feeds/packages/net/chinadns-ng
-rm -rf ./feeds/packages/net/dns2socks
-rm -rf ./feeds/packages/net/hysteria
-rm -rf ./feeds/packages/net/ipt2socks
-rm -rf ./feeds/packages/net/microsocks
-rm -rf ./feeds/packages/net/naiveproxy
-rm -rf ./feeds/packages/net/shadowsocks-rust
-rm -rf ./feeds/packages/net/simple-obfs
-rm -rf ./feeds/packages/net/ssocks
-rm -rf ./feeds/packages/net/tcping
-rm -rf ./feeds/packages/net/v2ray*
-rm -rf ./feeds/packages/net/xray*
-rm -rf ./feeds/packages/net/trojan*
 
 #bypass
 # rm -rf package/build/pass/luci-app-bypass
@@ -279,70 +238,11 @@ sed -i 's,default n,default y,g' ./package/other/up/pass/luci-app-bypass/Makefil
 # pushd package/pass/luci-app-ssr-plus
 #sed -i 's,default n,default y,g' Makefile
 # popd
+packages/net/
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
+rm -rf feeds/packages/net/trojan-plus
+svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus feeds/packages/net/trojan-plus
 
-echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-# rm -rf  ./package/ssr/luci-app-ssr-plus
-# ShadowsocksR Plus+ 依赖
-rm -rf ./feeds/packages/net/kcptun
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
-svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata
-rm -rf ./feeds/packages/net/shadowsocks-libev
-svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
-svn export https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
-svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
-
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/new/trojan
-# svn export https://github.com/fw876/helloworld/trunk/trojan package/lean/trojan
-svn export https://github.com/fw876/helloworld/trunk/tcping package/lean/tcping
-svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/lean/dns2tcp
-svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
-svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
-svn export https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
-
-rm -rf ./feeds/packages/net/v2ray-core
-svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
-svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hysteria
-svn export https://github.com/fw876/helloworld/trunk/sagernet-core package/lean/sagernet-core
-rm -rf ./feeds/packages/net/xray-core
-svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
-svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
-svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
-svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/lean/shadowsocks-rust
-rm -rf ./feeds/packages/net/kcptun
-svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
-ln -sf ../../../feeds/packages/net/kcptun ./package/feeds/packages/kcptun
-
-# VSSR
-svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/lean/luci-app-vssr
-# git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
-# git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
-# sed -i 's,default n,default y,g' ./package/lean/luci-app-vssr/Makefile
-#sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
-#sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
-#sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/root/usr/share/vssr/update.lua
-# pushd package/lean/luci-app-vssr
-# sed -i 's,default n,default y,g' Makefile
-# sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
-# popd
-
-# 在 X86 架构下移除 Shadowsocks-rust
-sed -i '/Rust:/d' package/lean/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/ssr/luci-app-ssr-plus/Makefile
-sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' package/lean/luci-app-vssr/Makefile
-sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
 
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 #sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
@@ -366,7 +266,7 @@ git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-
 
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
-sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
+# sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 
 # git clone https://github.com/openwrt-dev/po2lmo.git
 # cd po2lmo
