@@ -19,8 +19,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/ipv6mini
-  DIY_P1_SH: script/ipv6mini.sh
+  CONFIG_FILE: script/aipv6mini
+  DIY_P1_SH: script/aipv6mini.sh
   DIY_P2_SH: script/clash-core.sh
 jobs:
 
