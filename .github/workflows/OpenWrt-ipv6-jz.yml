@@ -1,4 +1,4 @@
-name: OpenWrt-ipv6-jz
+name: BOpenWrt-ipv6-jz
 
 on:
   repository_dispatch:
@@ -79,9 +79,6 @@ jobs:
         run: |
           cd openwrt
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          
-          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
-          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -89,6 +86,10 @@ jobs:
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
+
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          ../$DIY_P1_SH
       - name: Install Feeds
@@ -140,11 +141,16 @@ jobs:
           find ./openwrt/bin/targets/ -name "*squashfs*img*"| xargs -i mv -f {} ./jz/firmware
           cd ./jz/firmware
           gzip *.img || true
-          echo -e "Sirpdboy-IPV6-Super-${{ env.DATA }}-极致通用版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-IPV6-Super-${{ env.DATA }}-极致版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n" >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
 
+      - name: Upload Firmware wetransfer
+        run: |
+          curl -fsSL git.io/file-transfer | sh
+          ./transfer wet -s -p 16 --no-progress ./jz/firmware 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
@@ -155,13 +161,3 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-ipv6-Super-Ipk
           path: ./jz/package
-      #- name: Upload firmware to cowtransfer
-      #  run: |
-      #  curl -fsSL git.io/file-transfer | sh
-      #   ./transfer cow --block 2621440 -s -p 64 --no-progress ./jz/firmware 2>&1 | tee cowtransfer.log
-      #   echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./jz/firmware 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
