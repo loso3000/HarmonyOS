@@ -18,8 +18,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/super.config
-  DIY_P1_SH: script/super.sh
+  CONFIG_FILE: script/asuper.config
+  DIY_P1_SH: script/asuper.sh
   DIY_P2_SH: script/clash-core.sh
 
 jobs:
