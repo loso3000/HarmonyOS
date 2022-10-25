@@ -46,8 +46,7 @@ rm -rf ./feeds/packages/net/mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
 sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
-
-svn co https://github.com/sirpdboy/lucky/trunk ./package/lean/lucky
+git clone https://github.com/sirpdboy/lucky ./package/lucky
 
 rm -rf ./package/diy/luci-lib-ipkg
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
