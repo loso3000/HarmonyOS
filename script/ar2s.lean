@@ -18,8 +18,8 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
-CONFIG_PACKAGE_kmod-usb-net-rtl8125=y
-# CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor is not set
+# CONFIG_PACKAGE_kmod-usb-net-rtl8125=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
