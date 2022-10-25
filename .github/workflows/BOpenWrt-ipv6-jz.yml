@@ -17,8 +17,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/jz.config
-  DIY_P1_SH: script/jz.sh
+  CONFIG_FILE: script/bjz.config
+  DIY_P1_SH: script/bjz.sh
   DIY_P2_SH: script/clash-core.sh
 
 jobs:
