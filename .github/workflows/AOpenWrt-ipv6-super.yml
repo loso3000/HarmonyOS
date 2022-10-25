@@ -108,32 +108,19 @@ jobs:
           cd openwrt
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
-               
-      - name: Compile Packages
-        id: compile
+
+      - name: Compile firmware
+        working-directory: ./openwrt
         run: |
-         df -h
-         cd openwrt
-         echo -e "$(nproc) thread compile"
-         make tools/compile -j$(nproc) || make tools/compile -j72
-         make toolchain/compile -j$(nproc) || make toolchain/compile -j72
-         make target/compile -j$(nproc) || make target/compile -j72 IGNORE_ERRORS=1
-         make diffconfig
-         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
-         make package/index
-         echo "::set-output name=COMPILE_STATUS::success"
-        
-      - name: Generate Firmware
-        if: steps.compile.outputs.COMPILE_STATUS == 'success'
-        id: generate
-        run: |
-         df -h
-         cd openwrt 
-         mkdir -p files/etc/uci-defaults/
-         cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-         make package/install -j$(nproc) || make package/install -j1 V=s
-         make target/install -j$(nproc) || make target/install -j1 V=s
-         make checksum
+          make -j$(nproc) || make -j1 V=s
+          echo "======================="
+          echo "Space usage:"
+          echo "======================="
+          df -h
+          echo "======================="
+          du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
+          du -h --max-depth=1 ./build_dir
+          du -h --max-depth=1 ./bin
       - name: Prepare Artifact
         run: |
           mkdir -p ./jz/firmware
