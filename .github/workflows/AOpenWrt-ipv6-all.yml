@@ -1,5 +1,5 @@
 
-name: OpenWrt-ipv6-all
+name: AOpenWrt-ipv6-all
 
 
 on:
@@ -135,7 +135,7 @@ jobs:
           gzip *.img |true
           find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwareipv6all
           gzip *.img |true
-          echo -e "Sirpdboy-IPV6-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-IPV6-Super-VIP-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
