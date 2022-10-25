@@ -1,4 +1,4 @@
-name: Openwrt-r2s-lean
+name: AOpenwrt-r2s-lean
 
 
 on:
@@ -87,6 +87,10 @@ jobs:
          # cp -rf PATCH/r5s.patch ./openwrt/package/diy
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
+
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          ../$DIY_P1_SH
          ../$DIY_P2_SH armv8
@@ -127,30 +131,26 @@ jobs:
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
-         
+
       - name: Prepare Artifact
         run: |
-          cd ./openwrt/bin/targets/rockchip/armv8
-          gzip *.img ||true
+          mkdir -p ./firmwarer2s
+          mkdir -p ./firmwarer4s
+          find ./openwrt/bin/targets/ -name "*r2s*sysupgrade.img*" | xargs -i mv -f {} ./firmwarer2s
+          cd ./firmwarer2s
+          gzip *.img | true
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r4s*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
+          cd ${{ env.FIRMWARE }}/firmwarer4s
+          gzip *.img | true
+
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: R2sOpenWrt-IPV6-Firmware
-          path: ./openwrt/bin/targets/
-      - name: Upload  IPK
+          name: ${{ env.DATA }}-R2sOpenWrt-IPV6-Vip-Firmware
+          path: ./firmwarer2s
+      - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: R2sOpenWrt-IPV6-Ipk
-          path: ./openwrt/bin/packages
+          name: ${{ env.DATA }}-R4sOpenWrt-IPV6-Vip-Firmware
+          path: ./firmwarer4s
 
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./firmware/ 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-
-      - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          retain_days: 14
-          keep_minimum_runs: 3
