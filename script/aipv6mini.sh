@@ -67,7 +67,7 @@ echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 
-svn co https://github.com/sirpdboy/lucky/trunk ./package/lean/lucky
+git clone https://github.com/sirpdboy/lucky ./package/lucky
 
 # netdata 
 # rm -rf  ./package/diy/netdata
