@@ -32,7 +32,6 @@ CONFIG_DEFAULT_kmod-8139too=y
 CONFIG_DEFAULT_kmod-alx=y
 CONFIG_DEFAULT_kmod-amazon-ena=y
 CONFIG_DEFAULT_kmod-amd-xgbe=y
-
 CONFIG_PACKAGE_kmod-3c59x=y
 CONFIG_PACKAGE_kmod-atl1=y
 CONFIG_PACKAGE_kmod-atl1c=y
@@ -121,7 +120,64 @@ CONFIG_PACKAGE_kmod-usbip-server=y
 CONFIG_PACKAGE_kmod-usbmon=y
 CONFIG_PACKAGE_kmod-via-rhine=y
 CONFIG_PACKAGE_kmod-via-velocity=y
-#USB net driver
+
+# usb wifi
+CONFIG_PACKAGE_ath10k-board-qca9888=y
+CONFIG_PACKAGE_ath10k-board-qca988x=y
+CONFIG_PACKAGE_ath10k-board-qca9984=y
+CONFIG_PACKAGE_ath10k-firmware-qca9888=y
+CONFIG_PACKAGE_ath10k-firmware-qca988x=y
+CONFIG_PACKAGE_ath10k-firmware-qca9984=y
+CONFIG_PACKAGE_ath9k-htc-firmware=y
+
+CONFIG_PACKAGE_kmod-cfg80211=y
+CONFIG_PACKAGE_kmod-iwlwifi=y
+CONFIG_PACKAGE_kmod-mac80211=y
+
+CONFIG_PACKAGE_MAC80211_DEBUGFS=y
+CONFIG_PACKAGE_MAC80211_MESH=y
+
+CONFIG_PACKAGE_kmod-rtlwifi=y
+CONFIG_PACKAGE_kmod-rtlwifi-btcoexist=y
+CONFIG_PACKAGE_kmod-rtlwifi-pci=y
+CONFIG_PACKAGE_kmod-rtlwifi-usb=y
+
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_hostapd-common=y
+
+CONFIG_PACKAGE_kmod-ath=y
+CONFIG_PACKAGE_kmod-ath10k=y
+CONFIG_PACKAGE_kmod-ath5k=y
+CONFIG_PACKAGE_kmod-ath6kl=y
+CONFIG_PACKAGE_kmod-ath6kl-usb=y
+CONFIG_PACKAGE_kmod-ath9k=y
+CONFIG_PACKAGE_kmod-ath9k-common=y
+CONFIG_PACKAGE_kmod-ath9k-htc=y
+
+CONFIG_PACKAGE_kmod-mmc-spi=y
+CONFIG_PACKAGE_kmod-mt76=y
+CONFIG_PACKAGE_kmod-mt76-connac=y
+CONFIG_PACKAGE_kmod-mt76-core=y
+CONFIG_PACKAGE_kmod-mt76-usb=y
+CONFIG_PACKAGE_kmod-mt7603=y
+CONFIG_PACKAGE_kmod-mt7615-common=y
+CONFIG_PACKAGE_kmod-mt7615-firmware=y
+CONFIG_PACKAGE_kmod-mt7615e=y
+CONFIG_PACKAGE_kmod-mt7663-usb-sdio=y
+CONFIG_PACKAGE_kmod-mt7663u=y
+CONFIG_PACKAGE_kmod-mt76x0-common=y
+CONFIG_PACKAGE_kmod-mt76x02-common=y
+CONFIG_PACKAGE_kmod-mt76x02-usb=y
+CONFIG_PACKAGE_kmod-mt76x0e=y
+CONFIG_PACKAGE_kmod-mt76x0u=y
+CONFIG_PACKAGE_kmod-mt76x2=y
+CONFIG_PACKAGE_kmod-mt76x2-common=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+CONFIG_PACKAGE_kmod-mt7915e=y
+CONFIG_PACKAGE_kmod-mt7921-common=y
+CONFIG_PACKAGE_kmod-mt7921e=y
+# USB net drive
 CONFIG_PACKAGE_kmod-usb-dwc2=y
 CONFIG_PACKAGE_kmod-usb-dwc3=y
 CONFIG_PACKAGE_kmod-usb2=y
@@ -401,8 +457,8 @@ CONFIG_PACKAGE_luci-app-nfs=y
 CONFIG_PACKAGE_luci-app-openvpn-server=y
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=y
-CONFIG_PACKAGE_luci-app-ddns-go=n
-CONFIG_PACKAGE_luci-app-lucky=y
+CONFIG_PACKAGE_luci-app-ddns-go=y
+CONFIG_PACKAGE_luci-app-lucky=n
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 # 工具
