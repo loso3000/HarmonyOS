@@ -16,8 +16,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: minialldrv.config
-  DIY_P1_SH: script/initmini.sh
+  CONFIG_FILE: script/bminialldrv.config
+  DIY_P1_SH: script/binitmini.sh
   DIY_P2_SH: script/clash-core.sh
 
 jobs:
