@@ -1,5 +1,5 @@
 
-name: OpenWrt-CI
+name: BOpenWrt-Plus
 
 
 on:
@@ -89,15 +89,13 @@ jobs:
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
-         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-         echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
-         # echo "DATA=$(date +"%Y%m%d_%H" -d +"12"hour)" >> $GITHUB_ENV
-         echo "$FIRMWARE -- ${{ env.DATA }}"
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          ../$DIY_P1_SH
          ../$DIY_P2_SH amd64
          chmod -R 755 .
-         
           make defconfig
       - name: Get Architecture
         working-directory: ${{ github.workspace }}/openwrt
@@ -106,7 +104,6 @@ jobs:
          echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}-" >>$GITHUB_ENV
          latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][0-9]/p' | sed -n 1p | sed 's/.tar.gz//g' | sed 's/v//g')"
          echo "latest_release=${latest_release}" >>$GITHUB_ENV
-
       #- name: Cache
       #  uses: HiGarfield/cachewrtbuild@main
       #  with:
@@ -118,7 +115,6 @@ jobs:
           make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
-          
       - name: Compile Packages
         id: compile
         run: |
@@ -132,7 +128,6 @@ jobs:
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
          echo "::set-output name=COMPILE_STATUS::success"
-        
       - name: Generate Firmware
         if: steps.compile.outputs.COMPILE_STATUS == 'success'
         id: generate
@@ -165,7 +160,6 @@ jobs:
           curl -fsSL git.io/file-transfer | sh
           ./transfer wet -s -p 16 --no-progress ./firmware 2>&1 | tee wetransfer.log
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
@@ -176,8 +170,3 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-Plus-Ipk
           path: ./package
-      - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          retain_days: 7
-          keep_minimum_runs: 3
