@@ -12,6 +12,7 @@ git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
@@ -118,8 +119,6 @@ git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/lean/luc
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
-
-git clone https://github.com/sirpdboy/lucky ./package/lucky
 
 #docker err
 #rm -rf ./feeds/packages/utils/runc/Makefile
