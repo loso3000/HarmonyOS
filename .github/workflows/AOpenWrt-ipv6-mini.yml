@@ -89,9 +89,7 @@ jobs:
           prefix: ${{ github.workspace }}/openwrt
       - name: Load custom update feeds
         run: |
-          cd openwrt
-          git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-          
+          cd openwrt          
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -126,10 +124,7 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
-         echo "::set-output name=COMPILE_STATUS::success"
       - name: Generate Firmware
-        if: steps.compile.outputs.COMPILE_STATUS == 'success'
-        id: generate
         run: |
           cd openwrt
           df -h
