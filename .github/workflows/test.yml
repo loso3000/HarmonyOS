@@ -56,17 +56,16 @@ jobs:
          echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
          echo "硬盘详情："
          
-         df -Th
-         CKCPU=$( grep  "8370|8272" "/proc/cpuinfo" )
+         df -Th 
          # && echo "CKCPU=success" >> $GITHUB_ENV ||  echo "CKCPU=failure" >> $GITHUB_ENV
-         if [ -n "${CKCPU}" ]  ; then
+         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
           echo "CPU YES！！！"
-          echo $( cat "/proc/cpuinfo"  | grep  "8370|8272")
+          echo -e "$( cat "/proc/cpuinfo"  | grep  "8272") \n"
+          echo -e "$( cat "/proc/cpuinfo"  | grep  "8370") \n"
           echo "CKCPU=success" >> $GITHUB_ENV
           # echo "::set-output name=CKCPU::success"
          else
              echo "CPU NO！！！"
-             echo bigcpu=$( grep  "8370|8272" "/proc/cpuinfo" )
              echo "CKCPU=failure" >> $GITHUB_ENV
          fi
       - name: Check cpu
