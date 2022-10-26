@@ -45,6 +45,15 @@ jobs:
          echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
          echo "硬盘详情："
          df -Th
+         
+         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
+          echo "CPU YES！！！"
+          echo "CKCPU=success" >> $GITHUB_ENV
+         else
+             echo "CPU NO！！！"
+             echo "CKCPU=failure" >> $GITHUB_ENV
+             exit 1
+         fi
       - name: Space cleanup
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -65,10 +74,6 @@ jobs:
           cd openwrt
           git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           rm -rf ./tmp && rm -rf .config
-          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "DATA=$(date +"%Y%m%d" -d +"12"hour)" >> $GITHUB_ENV
-          echo "$FIRMWARE -- ${{ env.DATA }}"
-
       - name: Cache
         uses: klever1988/cachewrtbuild@main
         with:
@@ -83,6 +88,9 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
 
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          chmod +x ./$DIY_P1_SH
          chmod +x ./script/clash-core.sh
          cd openwrt
@@ -144,7 +152,7 @@ jobs:
           find ./openwrt/bin/targets/ -name "openwrt*.img*" | xargs -i mv -f {} ./n1/
           cd ./n1
           gzip *.img |true
-          echo -e "${{ env.DATA }}-Sirpdboy-IPV6-n1-super\n" > 版本日期和MD5信息.txt
+          echo -e "${{ env.DATA }}-SirpdboyOpenwrt-Ipv6-n1-Super\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
@@ -152,7 +160,7 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenwrt-IPV6-n1-Super
+          name: ${{ env.DATA }}-SirpdboyOpenwrt-Ipv6-n1-Super
           path: ./n1
       - name: Upload Firmware wetransfer
         run: |
