@@ -144,7 +144,7 @@ jobs:
           gzip *.img |true
           find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwareipv6all
           gzip *.img |true
-          echo -e "Sirpdboy-IPV6-Super-VIP-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-Ipv6-Super-Vip-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
@@ -156,10 +156,10 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-Plus-VIP-Firmware
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Super-Vip-Firmware
           path: ./firmwareipv6all
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-Plus-VIP-Ipk
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Super-Vip-Ipk
           path: ./packageipv6all
