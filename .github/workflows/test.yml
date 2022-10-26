@@ -78,7 +78,7 @@ jobs:
         #if: env.CKCPU == 'success' && !cancelled()
         # if: env.CKCPU == 'success' && !cancelled()
         
-        if: steps.checkcpu.outputs.CKCPU == 'success'  && !cancelled()
+        if: steps.checkcpu.outputs.CKCPU == 'success'  || cancelled()
         run: |
           echo "=============================="
           echo "|-----------CPU OK-----------|"
