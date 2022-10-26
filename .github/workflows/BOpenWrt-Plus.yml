@@ -156,7 +156,7 @@ jobs:
           mkdir -p ./package
           df -h
           cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./package
-          find ./openwrt/bin/targets/ -name "*combined*img" | xargs -i mv -f {} ./firmware
+          find ./openwrt/bin/targets/ -name "*efi.img" | xargs -i mv -f {} ./firmware
           cd ./firmware
           ls
           gzip *.img || true
