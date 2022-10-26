@@ -57,12 +57,11 @@ jobs:
          echo "硬盘详情："
          
          df -Th
+         
+         steps.checkcpu.outputs.cpu == 'no'
          if  grep -q "8370|8272" "/proc/cpuinfo" ; then
              echo "CPU YES！！！"
              steps.checkcpu.outputs.cpu == 'yes'
-         else
-             echo "CPU ERROR！！！"
-             steps.checkcpu.outputs.cpu == 'no'
          fi
       - name: Check cpu
         if: steps.checkcpu.outputs.cpu == 'yes' && !cancelled()
