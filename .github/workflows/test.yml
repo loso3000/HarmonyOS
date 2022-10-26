@@ -1,0 +1,61 @@
+name: OpenWrt-dz3-54
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+#  watch:
+#    types: started
+#  schedule:
+#    - cron: 0 21 */7 * * 
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: script/dz2
+  DIY_P1_SH: script/dz3.sh
+  DIY_P2_SH: script/clash-core.sh
+
+jobs:
+
+  build_openwrt:
+
+    name: OpenWrt_Build 
+
+    runs-on: ubuntu-latest
+
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: master
+      - name: Check server performance
+        run: |
+         echo "警告⚠"
+         echo "若分配的服务器性能不足，务必及时取消，重新运行！"
+         echo "已知编译成功CPU型号：8370C,8171M"
+         echo "已知性能不足CPU型号：8272CL有时可以 E5-2673基本不行"
+         echo -e "-------------- ------------CPU信息------------------------------------------\n"
+         echo "CPU物理数量:$(cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)"
+         echo -e "CPU核心及版本信息：$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
+         if ! grep -q "8370|8272" "/proc/cpuinfo"  then
+         echo "CPU ERROR！！！ EXIT!!"
+         exit
+         fi
+         
+         echo "-------------------------------内存信息-------------------------------------------"
+         echo "已安装内存详细信息："
+         sudo lshw -short -C memory | grep GiB
+         echo -e "\n"
+         echo "-----------------------------硬盘信息---------------------------------------------"
+         echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
+         echo "硬盘详情："
+         
+         df -Th
