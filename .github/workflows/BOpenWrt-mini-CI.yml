@@ -145,19 +145,19 @@ jobs:
           find ./openwrt/bin/targets/ -name "*efi.img" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
           gzip *.img
-          echo -e "Sirpdboy-IPV6-MINI-${{ env.DATA }}-精简版--【EFI通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "SirpdboyOpenWrt-Ipv6-Mini-${{ env.DATA }}-精简版--【EFI通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n" > 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-ipv6-mini-Firmware
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Mini-Firmware
           path: ./mini/firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-ipv6-mini-Ipk
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Mini-Ipk
           path: ./mini/package
       - name: Upload Firmware wetransfer
         run: |
