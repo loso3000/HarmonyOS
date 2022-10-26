@@ -10,6 +10,7 @@ ENCRYPTION=psk2
 KEY=123456
 git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
+git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
@@ -32,6 +33,8 @@ git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
 sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn/alist.po
 # sed -i 's/nas/services/g' ./package/openwrt-alist/luci-app-alist/luasrc/controller/alist.lua   #alistalist
 # sed -i 's/nas/services/g' ./package/openwrt-alist/luci-app-alist/luasrc/view/alist_status.htm   #alist
+rm -rf feeds/packages/lang/golang
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
