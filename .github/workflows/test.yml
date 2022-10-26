@@ -61,13 +61,13 @@ jobs:
          
          if  grep -q "8370|8272" "/proc/cpuinfo" ; then
              echo "CPU YES！！！"
-             echo "::set-output name={cpu}::{yes}"
+             # echo "::set-output name={cpu}::{yes}"
              #echo "::set-output name={name}::{value}"
-             # echo "{cpu}={yes}" >> $GITHUB_OUTPUT
+             echo "{cpu}={yes}" >> $GITHUB_OUTPUT
          else
              echo "CPU NO！！！"
-             echo "::set-output name={cpu}::{no}"
-             # echo "{cpu}={no}" >> $GITHUB_OUTPUT
+             # echo "::set-output name={cpu}::{no}"
+             echo "{cpu}={no}" >> $GITHUB_OUTPUT
          fi
       - name: Check cpu
         if: steps.checkcpu.outputs.cpu == 'yes' && !cancelled()
