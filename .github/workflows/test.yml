@@ -1,4 +1,4 @@
-name: OpenWrt-dz3-54
+name: test
 
 on:
   repository_dispatch:
