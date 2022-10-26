@@ -58,26 +58,30 @@ jobs:
          
          df -Th
          if  grep -Eq "8370|8272" "/proc/cpuinfo" ; then
-             echo "CPU YES！！！"
-             # echo "::set-output name={cpu}::{yes}"
-             # echo "CKCPU=success" >> $GITHUB_ENV
-              echo "CKCPU=success" >> $GITHUB_OUTPUT
+          echo "CPU YES！！！"
+          echo $(grep  "8370|8272" "/proc/cpuinfo")
+          echo "CKCPU=success" >> $GITHUB_OUTPUT
+          echo "CKCPU=success" >> $GITHUB_ENV
+          # echo "::set-output name=CKCPU::success"
          else
              echo "CPU NO！！！"
-              echo "CKCPU=failure" >> $GITHUB_OUTPUT
-             #  echo "CKCPU=failure" >> $GITHUB_ENV
+             echo $(grep  "8370|8272" "/proc/cpuinfo")
+             echo "CKCPU=failure" >> $GITHUB_OUTPUT
+             echo "CKCPU=failure" >> $GITHUB_ENV
               
          fi
       - name: Check cpu
         #if: env.CKCPU == 'success' && !cancelled()
         # if: env.CKCPU == 'success' && !cancelled()
-        
-        if: steps.checkcpu.outputs.CKCPU == 'success' 
+        if: env.CKCPU == 'success'
+        # if: steps.checkcpu.outputs.CKCPU == 'success' 
         run: |
           echo "=============================="
           echo "|-----------CPU OK-----------|"
           echo "=============================="
       - name: run-go!
+      
+        if: env.CKCPU == 'success'
         run: |
           echo "=============================="
           echo "|-----------run!!!-----------|"
