@@ -57,19 +57,13 @@ jobs:
          echo "硬盘详情："
          
          df -Th
-         
-         
-         if  grep -q "8370|8272" "/proc/cpuinfo" ; then
+         if  grep -Eq "8370|8272" "/proc/cpuinfo" ; then
              echo "CPU YES！！！"
              # echo "::set-output name={cpu}::{yes}"
-             # echo "::set-output name={name}::{value}"
-             # echo "{cpu}={yes}" >> $GITHUB_OUTPUT
              # echo "CKCPU=success" >> $GITHUB_ENV
               echo "CKCPU=success" >> $GITHUB_OUTPUT
          else
              echo "CPU NO！！！"
-             # echo "::set-output name={cpu}::{no}"
-             #echo "{cpu}={no}" >> $GITHUB_OUTPUT
               echo "CKCPU=failure" >> $GITHUB_OUTPUT
              #  echo "CKCPU=failure" >> $GITHUB_ENV
               
@@ -78,7 +72,7 @@ jobs:
         #if: env.CKCPU == 'success' && !cancelled()
         # if: env.CKCPU == 'success' && !cancelled()
         
-        if: steps.checkcpu.outputs.CKCPU == 'success'  || cancelled()
+        if: steps.checkcpu.outputs.CKCPU == 'success' 
         run: |
           echo "=============================="
           echo "|-----------CPU OK-----------|"
