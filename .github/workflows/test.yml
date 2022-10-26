@@ -57,30 +57,25 @@ jobs:
          echo "硬盘详情："
          
          df -Th
-         if  $( cat "/proc/cpuinfo"  | grep  "8370|8272") ; then
+         CKCPU=$( grep  "8370|8272" "/proc/cpuinfo" )
+         # && echo "CKCPU=success" >> $GITHUB_ENV ||  echo "CKCPU=failure" >> $GITHUB_ENV
+         if [ -n "${CKCPU}" ]  ; then
           echo "CPU YES！！！"
           echo $( cat "/proc/cpuinfo"  | grep  "8370|8272")
-          echo "CKCPU=success" >> $GITHUB_OUTPUT
           echo "CKCPU=success" >> $GITHUB_ENV
           # echo "::set-output name=CKCPU::success"
          else
              echo "CPU NO！！！"
-             echo $( grep  "8370|8272" "/proc/cpuinfo" )
-             echo "CKCPU=failure" >> $GITHUB_OUTPUT
+             echo bigcpu=$( grep  "8370|8272" "/proc/cpuinfo" )
              echo "CKCPU=failure" >> $GITHUB_ENV
-              
          fi
       - name: Check cpu
-        #if: env.CKCPU == 'success' && !cancelled()
-        # if: env.CKCPU == 'success'  && !cancelled()
         if: env.CKCPU == 'success'  && !cancelled()
-        # if: steps.checkcpu.outputs.CKCPU == 'success' 
         run: |
           echo "=============================="
           echo "|-----------CPU OK-----------|"
           echo "=============================="
       - name: run-go!
-      
         if: env.CKCPU == 'success'  || cancelled()
         run: |
           echo "=============================="
