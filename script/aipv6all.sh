@@ -61,6 +61,8 @@ rm -rf ./package/other/up/https-dns-proxy
 
 git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
 sed -i 's/网络存储/存储/g' ./package/openwrt-alist/luci-app-alist/po/zh-cn/alist.po
+rm -rf feeds/packages/lang/golang
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 
 #ttnode
 git clone --depth 1 https://github.com/jerrykuku/luci-app-ttnode ./package/diy/luci-app-ttnode
@@ -104,10 +106,10 @@ ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/lu
 
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
+rm -rf ./feeds/luci/collections/luci-lib-docker
 # rm -rf ./package/diy/luci-app-dockerman
 # rm -rf ./feeds/packages/utils/docker
 # Add luci-app-dockerman
-rm -rf ./feeds/luci/collections/luci-lib-docker
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/lean/luci-lib-docker
 # sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
