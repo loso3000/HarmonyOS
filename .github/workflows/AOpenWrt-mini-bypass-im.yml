@@ -1,4 +1,4 @@
-name: AOpenWrt-mini-bypass-im
+name: AOpenWrt-bypass-im
 
 
 on:
@@ -153,7 +153,7 @@ jobs:
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./imminip/firmware
           cd ./imminip/firmware
           
-          echo -e "SirpdboyOpenWrt-Mini-Vip-Bypass-${{ env.DATA }}-旁路由--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "SirpdboyOpenWrt-Bypass-Vip-${{ env.DATA }}-旁路由--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt || true
@@ -167,11 +167,11 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-Mini-Vip-Bypass-Firmware
+          name: SirpdboyOpenWrt-Bypass-Vip-Firmware
           path: ./imminip/firmware
           
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-Mini-Vip-Bypass-Ipk
+          name: SirpdboyOpenWrt-Bypass-Vip-Ipk
           path: ./imminip/package
