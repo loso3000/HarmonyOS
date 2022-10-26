@@ -1,4 +1,4 @@
-name: OpenWrt-mini-bypass-im
+name: AOpenWrt-mini-bypass-im
 
 
 on:
@@ -19,8 +19,9 @@ env:
   #  https://github.com/loso3000/immortalwrt-1.git
   REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: imminip
-  DIY_P1_SH: imminip.sh
+  CONFIG_FILE: script/aimminip
+  DIY_P1_SH: script/aimminip.sh
+  DIY_P2_SH: script/clash-core.sh
 jobs:
 
   build_openwrt:
@@ -54,6 +55,15 @@ jobs:
          echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
          echo "硬盘详情："
          df -Th
+         
+         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
+          echo "CPU YES！！！"
+          echo "CKCPU=success" >> $GITHUB_ENV
+         else
+             echo "CPU NO！！！"
+             echo "CKCPU=failure" >> $GITHUB_ENV
+             exit 1
+         fi
       - name: Space cleanup
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -77,7 +87,6 @@ jobs:
         run: |
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           cd openwrt
-          # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
@@ -90,8 +99,15 @@ jobs:
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
+         chmod +x ./$DIY_P2_SH
+
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
+         
          cd openwrt
          ../$DIY_P1_SH
+         ../$DIY_P2_SH amd64
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
@@ -118,11 +134,8 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
-         echo "::set-output name=COMPILE_STATUS::success"
         
       - name: Generate Firmware
-        if: steps.compile.outputs.COMPILE_STATUS == 'success'
-        id: generate
         run: |
          df -h
          cd openwrt 
@@ -139,8 +152,11 @@ jobs:
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./imminip/package
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./imminip/firmware
           cd ./imminip/firmware
-          gzip *.img ||true
-          echo $md5 >> version.txt
+          
+          echo -e "SirpdboyOpenWrt-Mini-Vip-Bypass-${{ env.DATA }}-旁路由--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt || true
           
       - name: Upload Firmware wetransfer
         run: |
@@ -151,11 +167,11 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-Bypass-mini-im-Firmware
+          name: SirpdboyOpenWrt-Mini-Vip-Bypass-Firmware
           path: ./imminip/firmware
           
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-Bypass-mini-im-Ipk
+          name: SirpdboyOpenWrt-Mini-Vip-Bypass-Ipk
           path: ./imminip/package
