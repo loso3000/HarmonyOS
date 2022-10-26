@@ -37,7 +37,7 @@ jobs:
         with:
           ref: master
       - name: Check server performance
-        id: tag
+        id: checkcpu
         run: |
          echo "警告⚠"
          echo "若分配的服务器性能不足，务必及时取消，重新运行！"
@@ -59,13 +59,13 @@ jobs:
          df -Th
          if  grep -q "8370|8272" "/proc/cpuinfo" ; then
              echo "CPU YES！！！"
-             steps.tag.outputs.cpu == 'yes'
+             steps.checkcpu.outputs.cpu == 'yes'
          else
              echo "CPU ERROR！！！"
-             steps.tag.outputs.cpu == 'no'
+             steps.checkcpu.outputs.cpu == 'no'
          fi
       - name: Check cpu
-        if: steps.tag.outputs.cpu == 'yes' && !cancelled()
+        if: steps.checkcpu.outputs.cpu == 'yes' && !cancelled()
         run: |
           echo "=============================="
           echo "|-----------CPU OK-----------|"
