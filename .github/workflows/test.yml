@@ -63,14 +63,16 @@ jobs:
              echo "CPU YES！！！"
              # echo "::set-output name={cpu}::{yes}"
              #echo "::set-output name={name}::{value}"
-             echo "{cpu}={yes}" >> $GITHUB_OUTPUT
+             # echo "{cpu}={yes}" >> $GITHUB_OUTPUT
+              echo "CKCPU=yes" >> $GITHUB_ENV
          else
              echo "CPU NO！！！"
              # echo "::set-output name={cpu}::{no}"
-             echo "{cpu}={no}" >> $GITHUB_OUTPUT
+             #echo "{cpu}={no}" >> $GITHUB_OUTPUT
+              echo "CKCPU=no" >> $GITHUB_ENV
          fi
       - name: Check cpu
-        if: steps.checkcpu.outputs.cpu == 'yes' && !cancelled()
+        if: env.CKCPU == 'yes' && !cancelled()
         run: |
           echo "=============================="
           echo "|-----------CPU OK-----------|"
