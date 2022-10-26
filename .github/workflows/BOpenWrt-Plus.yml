@@ -115,11 +115,6 @@ jobs:
          echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}-" >>$GITHUB_ENV
          latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][0-9]/p' | sed -n 1p | sed 's/.tar.gz//g' | sed 's/v//g')"
          echo "latest_release=${latest_release}" >>$GITHUB_ENV
-      #- name: Cache
-      #  uses: HiGarfield/cachewrtbuild@main
-      #  with:
-      #    mixkey: ${{ env.TARGET_DEVICE_ARCH }}
-      #    prefix: ${{ github.workspace }}/openwrt
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
@@ -138,10 +133,7 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
-         echo "::set-output name=COMPILE_STATUS::success"
       - name: Generate Firmware
-        if: steps.compile.outputs.COMPILE_STATUS == 'success'
-        id: generate
         run: |
          df -h
          cd openwrt 
