@@ -141,11 +141,11 @@ CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Server=y
 CONFIG_PACKAGE_luci-app-bypass=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan is not set
-CONFIG_PACKAGE_luci-app-wrtbwmon=y
-CONFIG_PACKAGE_luci-app-nlbwmon=y
+CONFIG_PACKAGE_luci-app-wrtbwmon=n
+CONFIG_PACKAGE_luci-app-nlbwmon=n
 CONFIG_PACKAGE_luci-app-netspeedtest=y
 CONFIG_PACKAGE_luci-app-ddnsto=n
-CONFIG_PACKAGE_luci-app-pushbot=y
+CONFIG_PACKAGE_luci-app-pushbot=n
 CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
@@ -160,7 +160,7 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_luci-app-sqm=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=y
-CONFIG_PACKAGE_cupsd=y
+CONFIG_PACKAGE_cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=n
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
@@ -175,7 +175,7 @@ CONFIG_PACKAGE_luci-app-ramfree=y
 
 CONFIG_PACKAGE_luci-app-bridge=n
 CONFIG_PACKAGE_luci-app-cowbping=y
-CONFIG_PACKAGE_luci-app-beardropper=y
+CONFIG_PACKAGE_luci-app-beardropper=n
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 CONFIG_PACKAGE_luci-app-https-dns-proxy=n
 CONFIG_PACKAGE_luci-app-https-dns-proxy-whisky=n
@@ -230,7 +230,7 @@ CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=n
 CONFIG_PACKAGE_luci-app-uugamebooster=n
 CONFIG_PACKAGE_luci-app-udpxy=n
-CONFIG_PACKAGE_luci-app-socat=N
+CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
 CONFIG_PACKAGE_luci-app-transmission=n
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
@@ -244,8 +244,8 @@ CONFIG_PACKAGE_luci-app-nfs=n
 CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
-CONFIG_PACKAGE_luci-app-ddns-go=N
-CONFIG_PACKAGE_luci-app-lucky=y
+CONFIG_PACKAGE_luci-app-ddns-go=y
+CONFIG_PACKAGE_luci-app-lucky=n
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 
