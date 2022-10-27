@@ -290,7 +290,8 @@ CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 
 CONFIG_PACKAGE_automount=y
-CONFIG_PACKAGE_ntfs3-mount=y 
+CONFIG_PACKAGE_ntfs3-mount=y
+CONFIG_PACKAGE_kmod-fs-ntfs3-oot=y
 
 # CONFIG_PACKAGE_autocore-x86 is not set
 CONFIG_PACKAGE_myautocore-x86=y
