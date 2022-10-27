@@ -39,6 +39,8 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 rm -rf ./feeds/packages/net/mosdns
 
+rm -rf ./feeds/packages/net/ddns-go
+rm -rf ./feeds/packages/net/ddns-web
 #upnp
 rm -rf ./feeds/packages/net/miniupnpd
 rm -rf ./feeds/luci/applications/luci-app-upnp
@@ -376,8 +378,8 @@ cat ./package/build/set/sysctl.conf >  package/base-files/files/etc/sysctl.conf
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-sed -i "s/192.168.6.1/192.168.8.1/g"  package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
 
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
