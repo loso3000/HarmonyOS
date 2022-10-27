@@ -503,3 +503,35 @@ CONFIG_DOCKER_NET_ENCRYPT=y
 CONFIG_DOCKER_NET_MACVLAN=y
 CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
+
+
+
+CONFIG_PACKAGE_kmod-usb-serial=y
+CONFIG_PACKAGE_kmod-usb-serial-option=y
+CONFIG_PACKAGE_kmod-usb-serial-wwan=y
+CONFIG_PACKAGE_usb-modeswitch=y
+CONFIG_PACKAGE_kmod-mii=y
+CONFIG_PACKAGE_luci-proto-qmi=y
+CONFIG_PACKAGE_qmi-utils=y
+CONFIG_PACKAGE_umbim=y
+CONFIG_PACKAGE_uqmi=y
+CONFIG_PACKAGE_comgt-ncm=y
+CONFIG_PACKAGE_luci-proto-ncm=y
+CONFIG_PACKAGE_comgt=y
+CONFIG_PACKAGE_kmod-usb-acm=y
+CONFIG_PACKAGE_luci-proto-3g=y
+
+CONFIG_PACKAGE_libimobiledevice-utils=y
+CONFIG_PACKAGE_libplist-utils=y
+CONFIG_PACKAGE_libusbmuxd-utils=y
+
+CONFIG_PACKAGE_usbmuxd=y
+CONFIG_PACKAGE_libwslay=y
+CONFIG_PACKAGE_libudev-fbsd=y
+
+CONFIG_HYSTERIA_COMPRESS_UPX=y
+CONFIG_PACKAGE_hysteria=y
+# 存放禁用的东西
+
+# CONFIG_PACKAGE_kmod-fs-virtiofs is not set
+# CONFIG_PACKAGE_kmod-qca-mcs is not set
