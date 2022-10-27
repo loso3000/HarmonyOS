@@ -3,10 +3,10 @@ CONFIG_TARGET_x86_64=y
 CONFIG_TARGET_x86_64_DEVICE_generic=y
 CONFIG_TARGET_KERNEL_PARTSIZE=65
 CONFIG_TARGET_ROOTFS_PARTSIZE=925
-CONFIG_COREMARK_NUMBER_OF_THREADS=128
-CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
+# CONFIG_COREMARK_NUMBER_OF_THREADS=128
+# CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
 CONFIG_PACKAGE_i915-firmware=y
-CONFIG_GRUB_IMAGES=y
+# CONFIG_GRUB_IMAGES=y
 CONFIG_GRUB_EFI_IMAGES=y
 # CONFIG_GRUB_CONSOLE is not set
 CONFIG_GRUB_TIMEOUT="0"
@@ -325,7 +325,7 @@ CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=y
-CONFIG_PACKAGE_luci-app-serverchan=n
+CONFIG_PACKAGE_luci-app-serverchan=y
 # CONFIG_PACKAGE_luci-app-sfe is not set
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
 CONFIG_PACKAGE_luci-app-smartdns=y
@@ -369,7 +369,7 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
 CONFIG_PACKAGE_luci-app-ddnsto=n
-CONFIG_PACKAGE_luci-app-pushbot=n
+CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=y
 CONFIG_PACKAGE_luci-app-kodexplorer=y
 CONFIG_PACKAGE_luci-app-uhttpd=y
@@ -407,7 +407,7 @@ CONFIG_PACKAGE_luci-app-pwdHackDeny=n
 CONFIG_PACKAGE_luci-app-oaf=y
 # CONFIG_PACKAGE_luci-lib-ipkg=y
 CONFIG_PACKAGE_luci-app-store=y
-CONFIG_PACKAGE_luci-app-istorex=y
+CONFIG_PACKAGE_luci-app-istorex=n
 CONFIG_PACKAGE_quickstart=y
 CONFIG_PACKAGE_luci-app-homeassistant=n
 CONFIG_PACKAGE_luci-app-tencentddns=n
