@@ -56,3 +56,8 @@ jobs:
           repository: ${{ github.repository }}
           retain_days: ${{ env.KEEP_DAY }}
           keep_minimum_runs: ${{ env.KEEP_MININUM_RUNS }}
+      - name: Remove old artifacts
+        uses: c-hive/gha-remove-artifacts@v1
+        with:
+         age: '2 day'
+         skip-recent: 3
