@@ -57,18 +57,25 @@ for i in `cat /proc/partitions|grep -v name|grep -v ram|awk '{print $4}'|grep -v
 	do
 		case "$i" in
 		sda*)
-			isB=`df -P|grep "/boot"  | head -n1 | awk -F " " '{print $1}'`
+			isB=`df -P|grep '/boot'  | head -n1 | awk -F ' ' '{print $1}'`
 			isD=`fdisk -l /dev/sda |grep -v 'bytes'| grep '/dev/sda1'`
-			if [ "$isD" != "" && $isB = '/dev/sda1' ] ;then 
+			if [ "$isD" != "" -a "$isB" = "/dev/sda1" ]; then 
 				fdiskB sda 3
 			fi
 			;;
 		nvme0n1*)
 		
-			isB=`df -P|grep "/boot" | head -n1 | awk -F " " '{print $1}'`
+			isB=`df -P|grep '/boot' | head -n1 | awk -F ' ' '{print $1}'`
 			isD=`fdisk -l /dev/nvme0n1 |grep -v 'bytes'| grep '/dev/nvme0n1p1'`
-			if [ "$isD" != ""  && $isB = '/dev/nvme0n1p1' ] ;then 
+			if [ "$isD" != "" -a "$isB" = "/dev/nvme0n1p1" ]; then 
 				fdiskB nvme0n1 p3
+			fi
+			;;
+		mmcblk0*)
+			isB=`df -P|grep '/boot' | head -n1 | awk -F ' ' '{print $1}'`
+			isD=`fdisk -l /dev/mmcblk0 |grep -v 'bytes'| grep '/dev/mmcblk0p1'`
+			if [ "$isD" != "" -a "$isB" = "/dev/mmcblk0p1" ]; then 
+				fdiskB mmcblk0 p3
 			fi
 			;;
 		esac
