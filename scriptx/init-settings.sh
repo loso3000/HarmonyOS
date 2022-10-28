@@ -1,7 +1,7 @@
 #!/bin/bash
 # Set default theme to luci-theme-opentopd
 # uci set luci.main.mediaurlbase='/luci-static/opentopd'
-am=0
+
 fdiskB(){
 		isP=`fdisk -l /dev/$1 |grep -v "bytes"|grep "/dev/$1$2"`
 		if [ "$isP" = "" ];then
@@ -30,7 +30,6 @@ EOF
 			    uci set fstab.@mount[0].target='/overlay'             
 			    uci set fstab.@mount[0].enabled='0'
 			    sed -i "s,/mnt/$1$2,/overlay,g"  /etc/config/fstab
-			    am=1
 			    uci commit fstab
 		fi
 }
@@ -78,8 +77,8 @@ for i in `cat /proc/partitions|grep -v name|grep -v ram|awk '{print $4}'|grep -v
 				fdiskB mmcblk0 p3
 			fi
 			;;
+
 		esac
 	done
-	 [ ${am} = 1 ] && reboot
-	
+
 exit 0
