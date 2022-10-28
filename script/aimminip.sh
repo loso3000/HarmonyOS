@@ -37,13 +37,11 @@ rm -rf ./feeds/packages/net/mosdns
 
 rm -rf ./feeds/packages/net/ddns-go
 rm -rf ./feeds/packages/net/ddns-web
+
 #upnpupnp
 rm -rf ./package/diy/upnpd
-rm -rf ./feeds/packages/net/miniupnpd
-rm -rf ./feeds/luci/applications/luci-app-upnp
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
-# rm -rf  ./package/diy/upnpd
+# rm -rf ./feeds/packages/net/miniupnpd &&  svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
+# rm -rf ./feeds/luci/applications/luci-app-upnp && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 
 rm -rf ./package/build/autocore
 rm -rf ./package/lean/autocore  
@@ -58,7 +56,6 @@ rm -rf  package/emortal/automount && svn co https://github.com/sirpdboy/build/tr
 rm -rf ./package/build/default-settings
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
-
 
 wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/sirpdboy/build/master/banner
 wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/sirpdboy/build/master/profile
