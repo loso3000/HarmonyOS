@@ -34,10 +34,10 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
  
 #upnp
 rm -rf  ./package/diy/upnpd
-rm -rf ./feeds/packages/net/miniupnpd
-rm -rf ./feeds/luci/applications/luci-app-upnp
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
+# rm -rf ./feeds/packages/net/miniupnpd
+# rm -rf ./feeds/luci/applications/luci-app-upnp
+# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
+# svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 
 
 rm -rf ./feeds/packages/net/mosdns && \
