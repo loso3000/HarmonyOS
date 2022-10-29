@@ -50,6 +50,9 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./
 
 rm -rf ./feeds/packages/net/mosdns
 
+rm -rf ./feeds/packages/net/mentohust
+rm -rf ./feeds/packages/net/open-app-filter
+
 rm -rf ./package/diy/luci-lib-ipkg
 # rm -rf ./package/other/up/luci-app-https-dns-proxy
 rm -rf ./package/other/up/https-dns-proxy
