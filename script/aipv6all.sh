@@ -31,20 +31,22 @@ svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
 sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
-# rm -rf package/diy1/istore/luci/luci-app-store
-# rm -rf ./package/diy1/luci/luci-app-istorex
-# rm -rf package/diy1/luci/luci-app-quickstart
-
+ 
 #upnp
+rm -rf  ./package/diy/upnpd
 rm -rf ./feeds/packages/net/miniupnpd
 rm -rf ./feeds/luci/applications/luci-app-upnp
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-uhttpd ./feeds/luci/applications/luci-app-uhttpd
-# rm -rf  ./package/diy/upnpd
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 
-# rm -rf ./feeds/packages/net/mosdns
-svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
+
+rm -rf ./feeds/packages/net/mosdns && \
+svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns  ./feeds/packages/net/mosdns
+svn co https://github.com/QiuSimons/openwrt-mos/trunk   package/mosdns 
 sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+
+rm -rf ./feeds/packages/net/mentohust
+rm -rf ./feeds/packages/net/open-app-filter
 
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 
@@ -85,18 +87,19 @@ cat  ./package/build/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/master/mwan3/files/etc/config/mwan3   > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 # rm -rf ./feeds/packages/net/mwan3 && svn co https://github.com/sirpdboy/build/trunk/mwan3 ./feeds/packages/net/mwan3
 
-# rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/ninja
-# rm -rf ./package/lean/autosamba
-# rm -rf ./feeds/luci/applications/luci-app-accesscontrol
+# rm -rf ./feeds/packages/devel/ninja   && svn co https://github.com/Lienol/openwrt-packages/trunk/devel/ninja feeds/packages/devel/nin
 
 rm -rf ./package/build/autocore
-rm -rf ./package/build/default-settings
+rm -rf ./package/lean/autocore   && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
+rm -rf  package/emortal/autocore
 
 rm -rf ./package/build/automount
-# rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+rm -rf  package/emortal/automount
 
-rm -rf ./package/lean/autocore  && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
-rm -rf ./package/lean/default-settings  && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
+rm -rf ./package/build/default-settings
+rm -rf ./package/lean/default-settings   && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
+rm -rf  package/emortal/default-settings
 
 rm -rf ./package/build/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-arpbind
