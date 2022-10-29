@@ -43,7 +43,6 @@ svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-uhttpd 
 # rm -rf  ./package/diy/upnpd
 
 rm -rf ./feeds/packages/net/mosdns
-
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/ package/mosdns
 sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
