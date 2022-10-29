@@ -41,7 +41,7 @@ rm -rf ./feeds/packages/net/ddns-go
 rm -rf ./feeds/packages/net/ddns-web
 
 #upnpupnp
-# rm -rf ./package/diy/upnpd
+rm -rf ./package/diy/upnpd
 # rm -rf ./feeds/packages/net/miniupnpd/ &&  svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
 # rm -rf ./feeds/luci/applications/luci-app-upnp && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 
