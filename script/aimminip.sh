@@ -42,22 +42,22 @@ rm -rf ./feeds/packages/net/ddns-web
 
 #upnpupnp
 rm -rf ./package/diy/upnpd
-# rm -rf ./feeds/packages/net/miniupnpd &&  svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
-# rm -rf ./feeds/luci/applications/luci-app-upnp && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
+rm -rf ./feeds/packages/net/miniupnpd/ &&  svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
+rm -rf ./feeds/luci/applications/luci-app-upnp && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 
 rm -rf ./package/build/autocore
-rm -rf ./package/lean/autocore  
-rm -rf  package/emortal/autocore && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
+rm -rf ./package/lean/autocore   && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
+rm -rf  package/emortal/autocore
 
 rm -rf ./package/diy/luci-lib-ipkg
 
 rm -rf ./package/build/automount
 rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
-rm -rf  package/emortal/automount && svn co https://github.com/sirpdboy/build/trunk/automount ./package/emortal/automount
+rm -rf  package/emortal/automount 
 
 rm -rf ./package/build/default-settings
-rm -rf ./package/lean/default-settings  
-rm -rf  package/emortal/default-settings && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
+rm -rf ./package/lean/default-settings   && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
+rm -rf  package/emortal/default-settings
 
 wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/sirpdboy/build/master/banner
 wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/sirpdboy/build/master/profile
@@ -68,7 +68,7 @@ echo "poweroff"
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 #zzz-default-settingsim
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/build/default-settings/files/zzz-default-settings
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/build/default-settings/files/zzz-default-settings
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 
 #设置
@@ -222,7 +222,6 @@ svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng packa
 # sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 # sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 # sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
-
 
 # Passwall
 rm -rf ./feeds/packages/net/pdnsd-alt
