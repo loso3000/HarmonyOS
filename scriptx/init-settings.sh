@@ -1,12 +1,14 @@
 #!/bin/bash
 # Set default theme to luci-theme-opentopd
 # uci set luci.main.mediaurlbase='/luci-static/opentopd'
-
 fdiskB(){
-		isP=`fdisk -l /dev/$1 |grep -v "bytes"|grep "/dev/$1$2"`
+        a=$1
+		b=$2
+
+		isP=`fdisk -l /dev/$1 |grep -v "bytes"|grep "/dev/$a$b"`
 		if [ "$isP" = "" ];then
 				#Start partition
-				fdisk /dev/$1 << EOF
+				fdisk /dev/$a << EOF
 n
 p
 
@@ -16,21 +18,25 @@ wq
 EOF
 			sleep 5
 		fi
-		isR=`df -P|grep "/mnt/$1$2"`
+		isR=`df -P|grep "/mnt/$a$b"`
 		if [ "$isR" != "" ] ; then
-			umount /mnt/$1$2
+			umount /mnt/$a$b
 			sleep 5
 		fi
-		isP=`fdisk -l /dev/$1 |grep -v "bytes"|grep "/dev/$1$2"`
-		if [ "$isP" != "" ];then
-			    echo y | mkfs.ext4 /dev/$1$2
+		isP=`fdisk -l /dev/$a |grep -v "bytes"|grep "/dev/$a$b"`
+		isPa=$(fdisk -l  |grep /dev/${a}2 | awk -F ' ' '{print $4}')
+		isPb=$(fdisk -l  |grep /dev/$a$b | awk -F ' ' '{print $4}')
+		check=`echo "$isPa < $isPb" | bc`
+		if [ "$isP" != "" -a $check = 1 ];then
+			    echo y | mkfs.ext4 /dev/$a$b
 			    block detect > /etc/config/fstab
-			    eval $(block info "/dev/$1$2" | grep -o -e "UUID=\S*")
+			    eval $(block info "/dev/$a$b" | grep -o -e "UUID=\S*")
 			    uci set fstab.@mount[0].uuid="${UUID}"
 			    uci set fstab.@mount[0].target='/overlay'             
 			    uci set fstab.@mount[0].enabled='0'
-			    sed -i "s,/mnt/$1$2,/overlay,g"  /etc/config/fstab
+			    sed -i "s,/mnt/$a$b,/overlay,g"  /etc/config/fstab
 			    uci commit fstab
+				echo $check > /etc/fdiskb.list
 		fi
 }
 
@@ -52,6 +58,9 @@ b=$(echo "$a" | wc -l)
 	}
 uci commit network
 uci commit fstab
+
+[ -f /etc/fdiskb.list ] && exit 0
+
 for i in `cat /proc/partitions|grep -v name|grep -v ram|awk '{print $4}'|grep -v '^$'|grep -v '[0-9]$'|grep -v 'vda'|grep -v 'xvda'|grep -e 'vd' -e 'sd' -e 'xvd'`
 	do
 		case "$i" in
@@ -77,8 +86,8 @@ for i in `cat /proc/partitions|grep -v name|grep -v ram|awk '{print $4}'|grep -v
 				fdiskB mmcblk0 p3
 			fi
 			;;
-
 		esac
 	done
-
+	reboot
+	
 exit 0
