@@ -41,9 +41,9 @@ rm -rf ./feeds/packages/net/ddns-go
 rm -rf ./feeds/packages/net/ddns-web
 
 #upnpupnp
-rm -rf ./package/diy/upnpd
-rm -rf ./feeds/packages/net/miniupnpd/ &&  svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
-rm -rf ./feeds/luci/applications/luci-app-upnp && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
+# rm -rf ./package/diy/upnpd
+# rm -rf ./feeds/packages/net/miniupnpd/ &&  svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
+# rm -rf ./feeds/luci/applications/luci-app-upnp && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 
 rm -rf ./package/build/autocore
 rm -rf ./package/lean/autocore   && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
@@ -69,7 +69,7 @@ curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/powero
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 #zzz-default-settingsim
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/build/default-settings/files/zzz-default-settings
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 
 #设置
 # sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
@@ -104,10 +104,10 @@ rm -rf ./feeds/luci/collections/luci-lib-docker
 # Add luci-app-dockerman
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/lean/luci-lib-docker
 
-rm -rf ./feeds/luci/applications/vlmcsd
-svn export https://github.com/wongsyrone/lede-1/trunk/package/external/vlmcsd ./feeds/luci/applications/vlmcsd
-ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
-ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
+# rm -rf ./feeds/luci/applications/vlmcsd
+# svn export https://github.com/wongsyrone/lede-1/trunk/package/external/vlmcsd ./feeds/luci/applications/vlmcsd
+# ln -sf ../../../feeds/packages/net/vlmcsd ./package/feeds/packages/vlmcsd 
+# ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./feeds/luci/applications/luci-app-vlmcsd
 
 # Add luci-aliyundrive-webdav
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
