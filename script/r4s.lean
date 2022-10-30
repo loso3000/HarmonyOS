@@ -13,22 +13,19 @@ CONFIG_DOCKER_OPTIONAL_FEATURES=y
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # file system
-CONFIG_PACKAGE_kmod-fs-vfat=y
-CONFIG_PACKAGE_kmod-fs-nfs-common=y
-CONFIG_PACKAGE_kmod-fs-nfs=y
-CONFIG_PACKAGE_kmod-fs-nfs-v3=y
-CONFIG_PACKAGE_kmod-fs-nfs-v4=y
-CONFIG_PACKAGE_kmod-fs-antfs=y
-# CONFIG_PACKAGE_kmod-fs-ntfs  is not set
-CONFIG_PACKAGE_kmod-fuse=y
-CONFIG_PACKAGE_kmod-fs-ext4=y
-CONFIG_PACKAGE_kmod-fs-squashfs=y
+# CONFIG_PACKAGE_kmod-fs-vfat=y
+# CONFIG_PACKAGE_kmod-fs-nfs-common=y
+# CONFIG_PACKAGE_kmod-fs-nfs=y
+# CONFIG_PACKAGE_kmod-fs-nfs-v3=y
+# CONFIG_PACKAGE_kmod-fs-nfs-v4=y
+# CONFIG_PACKAGE_kmod-fs-antfs=y
+# CONFIG_PACKAGE_kmod-fs-ntfs is not set
+# CONFIG_PACKAGE_kmod-fs-ext4=y
+# CONFIG_PACKAGE_kmod-fs-squashfs=y
 #ksmbd
 CONFIG_PACKAGE_kmod-nls-utf8=y
 # net
 CONFIG_PACKAGE_ppp-mod-pptp=y  #VPN
-CONFIG_PACKAGE_kmod-vmxnet3=n
-CONFIG_PACKAGE_kmod-pcnet32=y
 # add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
@@ -159,9 +156,6 @@ CONFIG_PACKAGE_kmod-ath9k-htc=y
 CONFIG_PACKAGE_kmod-mt76x0u=y
 CONFIG_PACKAGE_kmod-mt76x2u=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
-CONFIG_PACKAGE_kmod-rt73-usb=y
-CONFIG_PACKAGE_kmod-rtl8821cu=y
-CONFIG_PACKAGE_kmod-rtlwifi=y
 CONFIG_PACKAGE_rtl8821cu-firmware=y
 CONFIG_PACKAGE_iw=y
 CONFIG_PACKAGE_iwinfo=y
