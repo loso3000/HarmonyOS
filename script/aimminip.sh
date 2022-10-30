@@ -245,7 +245,9 @@ rm -rf ./feeds/packages/net/ssocks
 rm -rf ./feeds/packages/net/tcping
 rm -rf ./feeds/packages/net/v2ray*
 rm -rf ./feeds/packages/net/xray*
-rm -rf ./feeds/packages/net/trojan*
+rm -rf ./feeds/packages/net/trojan-go
+rm -rf ./feeds/packages/net/trojan-plus
+rm -rf ./feeds/packages/net/trojan
 
 #bypass
 # rm -rf package/build/pass/luci-app-bypass
@@ -274,7 +276,7 @@ echo ' ShadowsocksR Plus+'
 # ShadowsocksR Plus+ 依赖
 rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+# svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
@@ -290,7 +292,7 @@ svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev 
 svn export https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
 svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/new/trojan
+# svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/new/trojan
 # svn export https://github.com/fw876/helloworld/trunk/trojan package/lean/trojan
 svn export https://github.com/fw876/helloworld/trunk/tcping package/lean/tcping
 svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/lean/dns2tcp
