@@ -86,8 +86,9 @@ jobs:
       - name: Cache
         uses: klever1988/cachewrtbuild@main
         with:
-          ccache: 'true' 
-          prefix: ${{ github.workspace }}/openwrt
+          ccache: 'true'
+          prefix: 'openwrt'
+          mixkey: 'x86'
       - name: Load custom update feeds
         run: |
           [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
