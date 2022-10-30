@@ -93,8 +93,9 @@ jobs:
       - name: Cache
         uses: klever1988/cachewrtbuild@main
         with:
-          ccache: 'true' 
-          prefix: ${{ github.workspace }}/openwrt
+          ccache: 'true'
+          prefix: 'openwrt'
+          mixkey: 'x86i'
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
