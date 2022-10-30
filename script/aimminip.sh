@@ -46,17 +46,20 @@ rm -rf ./package/diy/upnpd
 # rm -rf ./feeds/luci/applications/luci-app-upnp && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 
 rm -rf ./package/build/autocore
-rm -rf ./package/lean/autocore   && svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
+rm -rf ./package/lean/autocore   
+svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
 rm -rf  package/emortal/autocore
 
 rm -rf ./package/diy/luci-lib-ipkg
 
 rm -rf ./package/build/automount
-rm -rf ./package/lean/automount  && svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
+rm -rf ./package/lean/automount  
+svn co https://github.com/sirpdboy/build/trunk/automount ./package/lean/automount
 rm -rf  package/emortal/automount 
 
 rm -rf ./package/build/default-settings
-rm -rf ./package/lean/default-settings   && svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
+rm -rf ./package/lean/default-settings   
+svn co https://github.com/sirpdboy/build/trunk/default-settings ./package/lean/default-settings
 rm -rf  package/emortal/default-settings
 
 wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/sirpdboy/build/master/banner
