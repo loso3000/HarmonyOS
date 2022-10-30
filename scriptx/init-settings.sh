@@ -5,10 +5,10 @@ fdiskB(){
         a=$1
 		b=$2
 
-		isP=`fdisk -l /dev/$1 |grep -v "bytes"|grep "/dev/$a$b"`
+		isP=`fdisk -l /dev/$a |grep -v "bytes"|grep "/dev/$a$b"`
 		if [ "$isP" = "" ];then
 				#Start partition
-				fdisk /dev/$a << EOF
+				fdisk /dev/$1 << EOF
 n
 p
 
@@ -36,7 +36,9 @@ EOF
 			    uci set fstab.@mount[0].enabled='0'
 			    sed -i "s,/mnt/$a$b,/overlay,g"  /etc/config/fstab
 			    uci commit fstab
-				echo $check > /etc/fdiskb.list
+				echo $isPb > /etc/fdiskb.list
+				sleep 5
+				reboot
 		fi
 }
 
@@ -63,9 +65,10 @@ uci commit fstab
 
 for i in `cat /proc/partitions|grep -v name|grep -v ram|awk '{print $4}'|grep -v '^$'|grep -v '[0-9]$'|grep -v 'vda'|grep -v 'xvda'|grep -e 'vd' -e 'sd' -e 'xvd'`
 	do
+	
+		isB=`df -P|grep '/boot'  | head -n1 | awk -F ' ' '{print $1}'`
 		case "$i" in
 		sda*)
-			isB=`df -P|grep '/boot'  | head -n1 | awk -F ' ' '{print $1}'`
 			isD=`fdisk -l /dev/sda |grep -v 'bytes'| grep '/dev/sda1'`
 			if [ "$isD" != "" -a "$isB" = "/dev/sda1" ]; then 
 				fdiskB sda 3
@@ -73,14 +76,12 @@ for i in `cat /proc/partitions|grep -v name|grep -v ram|awk '{print $4}'|grep -v
 			;;
 		nvme0n1*)
 		
-			isB=`df -P|grep '/boot' | head -n1 | awk -F ' ' '{print $1}'`
 			isD=`fdisk -l /dev/nvme0n1 |grep -v 'bytes'| grep '/dev/nvme0n1p1'`
 			if [ "$isD" != "" -a "$isB" = "/dev/nvme0n1p1" ]; then 
 				fdiskB nvme0n1 p3
 			fi
 			;;
 		mmcblk0*)
-			isB=`df -P|grep '/boot' | head -n1 | awk -F ' ' '{print $1}'`
 			isD=`fdisk -l /dev/mmcblk0 |grep -v 'bytes'| grep '/dev/mmcblk0p1'`
 			if [ "$isD" != "" -a "$isB" = "/dev/mmcblk0p1" ]; then 
 				fdiskB mmcblk0 p3
@@ -88,6 +89,7 @@ for i in `cat /proc/partitions|grep -v name|grep -v ram|awk '{print $4}'|grep -v
 			;;
 		esac
 	done
-	reboot
+
+
 	
 exit 0
