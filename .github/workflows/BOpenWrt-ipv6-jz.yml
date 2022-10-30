@@ -83,8 +83,8 @@ jobs:
         uses: klever1988/cachewrtbuild@main
         with:
           ccache: 'true'
-          prefix: ${{ github.workspace }}/openwrt
-          clean: 'true'
+          prefix: 'openwrt'
+          mixkey: 'x86'
       - name: Update feeds
         run: |
           cd openwrt
