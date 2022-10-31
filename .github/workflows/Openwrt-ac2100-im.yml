@@ -19,7 +19,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: xmra2100.im
-  DIY_P1_SH: im.sh
+  DIY_P1_SH: ./script/aimminip.sh
 jobs:
 
   build_openwrt:
