@@ -33,6 +33,7 @@ CONFIG_DRIVER_11W_SUPPORT=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 # sd
+
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-usb-roles=y
@@ -45,13 +46,6 @@ CONFIG_PACKAGE_kmod-usb-storage=y
 CONFIG_PACKAGE_kmod-usb-storage-extras=y
 # CONFIG_PACKAGE_kmod-scsi-core=y
 # CONFIG_PACKAGE_kmod-usb-printer is not set
-CONFIG_PACKAGE_block-mount=y
-
-# CONFIG_PACKAGE_ntfs-3g=y
-# CONFIG_PACKAGE_antfs-mount is not set
-# CONFIG_PACKAGE_kmod-fs-antfs is not set
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
-# CONFIG_PACKAGE_kmod-fs-ntfs3-oot=y
 
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -70,7 +64,19 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_autosamba is not set
 
-CONFIG_PACKAGE_automount=y
+#diy
+CONFIG_PACKAGE_swconfig=y  #交换机功能
+CONFIG_PACKAGE_qos-scripts=y  #qos负载脚本
+CONFIG_PACKAGE_hostapd=y
+CONFIG_PACKAGE_hostapd-common=y
+CONFIG_PACKAGE_e2fsprogs=y
+CONFIG_PACKAGE_smartmontools=y
+CONFIG_PACKAGE_luci-proto-ipip=y
+# CONFIG_PACKAGE_fstools is not set   #挂载功能
+# CONFIG_PACKAGE_block-mount is not set #挂载功能
+CONFIG_PACKAGE_ntfsprogs=y  #ntfs.mks分区格式化
+# CONFIG_PACKAGE_ntfs3mount=y  #NTFS挂载
+# CONFIG_PACKAGE_automount is not set  #取消AUTO挂载
 
 # CONFIG_PACKAGE_autocore-arm is not set
 # CONFIG_PACKAGE_autocore-x86 is not set
@@ -78,7 +84,7 @@ CONFIG_PACKAGE_myautocore-x86=y
 CONFIG_PACKAGE_myautocore-arm=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
-CONFIG_PACKAGE_autosamba-samba4=y
+CONFIG_PACKAGE_autosamba-samba4=n
 
 CONFIG_PACKAGE_kmod-inet-diag=y
 
@@ -167,7 +173,6 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_luci-app-sqm=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=y
-CONFIG_PACKAGE_cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=n
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
@@ -269,7 +274,6 @@ CONFIG_DOCKER_NET_TFTP=y
 # Other Appliciations
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y 
 CONFIG_PACKAGE_ppp-mod-pppol2tp=y
@@ -288,3 +292,5 @@ CONFIG_PACKAGE_fdisk=y #分区工具
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 CONFIG_PACKAGE_wget=y
+
+# CONFIG_PACKAGE_block-mount is not set
