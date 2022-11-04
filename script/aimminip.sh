@@ -334,7 +334,7 @@ sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
 sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
 
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.0/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
