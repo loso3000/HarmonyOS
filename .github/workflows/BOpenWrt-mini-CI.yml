@@ -97,12 +97,6 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           rm -rf ./tmp && rm -rf .config
-      - name: Cache
-        uses: klever1988/cachewrtbuild@main
-        with:
-          ccache: 'true'
-          prefix: 'openwrt'
-          mixkey: 'x86'
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
@@ -110,14 +104,14 @@ jobs:
          chmod +x ./$DIY_P2_SH
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
          cd openwrt
-         ../$DIY_P1_SH
+         $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
       
       - name: Generate configuration file
 
         run: |
          cd openwrt
-          ../$DIY_P2_SH amd64
+          $GITHUB_WORKSPACE/$DIY_P2_SH amd64
           make defconfig
 
       - name: Make download
@@ -145,7 +139,7 @@ jobs:
          df -h
          cd openwrt 
          mkdir -p files/etc/uci-defaults/
-         cp ../scriptx/init-settingsw.sh files/etc/uci-defaults/99-init-settings
+         cp $GITHUB_WORKSPACE/scriptx/init-settingsw.sh files/etc/uci-defaults/99-init-settings
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
