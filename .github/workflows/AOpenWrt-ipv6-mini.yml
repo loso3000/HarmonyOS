@@ -1,4 +1,3 @@
-
 name: AOpenWrt-ipv6-mini
 
 
@@ -22,13 +21,14 @@ env:
   CONFIG_FILE: script/aipv6mini
   DIY_P1_SH: script/aipv6mini.sh
   DIY_P2_SH: script/clash-core.sh
+  TZ: Asia/Shanghai
 jobs:
 
   build_openwrt:
 
     name: OpenWrt_Build 
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     if: github.event.repository.owner.id == github.event.sender.id
 
@@ -39,6 +39,24 @@ jobs:
         uses: actions/checkout@main
         with:
           ref: master
+
+      - name: Space cleanup
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo -E apt update
+          sudo -E apt full-upgrade -y
+          sudo -E apt install -y ack antlr3 aria2 asciidoc autoconf automake autopoint binutils bison build-essential \
+          bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
+          git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
+          libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz \
+          mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pip libpython3-dev qemu-utils \
+          rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
+          sudo -E apt autoremove --purge
+          sudo -E apt clean
+          sudo timedatectl set-timezone "$TZ"
+          sudo mkdir -p /mnt/workdir
+          sudo chown $USER:$GROUPS /mnt/workdir
       - name: Check server performance
         id: checkcpu
         run: |
@@ -66,30 +84,17 @@ jobs:
              echo "CKCPU=failure" >> $GITHUB_ENV
              exit 1
          fi
-      - name: Space cleanup
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        run: |
-          docker rmi `docker images -q`
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
-          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* libfuse-dev || true
-          sudo -E apt-get update
-          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
-          df -h
       - name: Update feeds
+        working-directory: /mnt/workdir
         run: |
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-      - name: Cache
-        uses: klever1988/cachewrtbuild@main
-        with:
-          ccache: 'true' 
-          prefix: ${{ github.workspace }}/openwrt
+          ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          ls
       - name: Load custom update feeds
         run: |
-          cd openwrt          
+          cd openwrt
+          ls
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -97,26 +102,25 @@ jobs:
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
-          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
-          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
+         ls
+         echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+         ls
          cd openwrt
-         ../$DIY_P1_SH
-         ../$DIY_P2_SH amd64
+         $GITHUB_WORKSPACE/$DIY_P1_SH
+         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
       - name: Generate configuration file
-        working-directory: ./openwrt
         run: |
+          cd openwrt
           make defconfig
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
-
       - name: Compile Packages
         id: compile
         run: |
          df -h
          cd openwrt
-         
+         ls
          echo -e "$(nproc) thread compile"
          make tools/compile -j$(nproc) || make tools/compile -j72
          make toolchain/compile -j$(nproc) || make toolchain/compile -j72
@@ -129,7 +133,7 @@ jobs:
           cd openwrt
           df -h
           mkdir -p files/etc/uci-defaults/
-          cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
           #mkdir -p files/etc/opkg
           #cp ../configs/opkg/distfeeds-packages-server.conf files/etc/opkg/distfeeds.conf.server
          
