@@ -30,22 +30,21 @@ svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
 sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
-# rm -rf package/diy1/luci-app-store
-# rm -rf ./package/diy1/luci/luci-app-istorex
-# rm -rf package/diy1/luci/luci-app-quickstart
-
 #upnp
 # rm -rf ./feeds/packages/net/miniupnpd &&  svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
 # rm -rf ./feeds/luci/applications/luci-app-upnp &&\
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./package/diy/upnpd
 
+
 rm -rf ./feeds/packages/net/mosdns
-# svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
-# svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
-svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
-svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
-sed -i "/filter_aaaa='1'/d" package/luci-app-mosdns/root/etc/init.d/mosdns
+# svn co https://github.com/sbwml/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
+# svn co https://github.com/sbwml/openwrt-packages/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
+# svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
+git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/geodata
+sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+
 
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
@@ -209,7 +208,7 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 
 
 #断线不重拨
-# sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
+sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #echo "其他修改"
 sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
