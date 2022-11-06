@@ -1,4 +1,3 @@
-
 name: AOpenWrt-ipv6-all
 
 
@@ -16,29 +15,23 @@ on:
 #    - cron: 0 21 */7 * * 
 
 env:
-  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  # REPO_URL: https://github.com/immortalwrt/immortalwrt
   #  https://github.com/loso3000/immortalwrt-1.git
-  REPO_BRANCH: openwrt-18.06-k5.4
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/aipv6all.lean
   DIY_P1_SH: script/aipv6all.sh
   DIY_P2_SH: script/clash-core.sh
+  TZ: Asia/Shanghai
+  
 jobs:
-
-  build_openwrt:
-
-    name: OpenWrt_Build 
-
-    runs-on: ubuntu-latest
-
-    if: github.event.repository.owner.id == github.event.sender.id
-
+  build:
+    runs-on: ubuntu-22.04
 
     steps:
-
       - name: Checkout
         uses: actions/checkout@main
-        with:
-          ref: master
       - name: Check server performance
         id: checkcpu
         run: |
@@ -66,27 +59,37 @@ jobs:
              echo "CKCPU=failure" >> $GITHUB_ENV
              exit 1
          fi
-      - name: Space cleanup
+      - name: Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          docker rmi `docker images -q`
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
-          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* fuse-devel || true
-          sudo -E apt-get update
-          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
-          
-          sudo timedatectl set-timezone "Asia/Shanghai"
-          df -h
+          sudo -E apt update
+          sudo -E apt full-upgrade -y
+          sudo -E apt install -y ack antlr3 aria2 asciidoc autoconf automake autopoint binutils bison build-essential \
+          bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
+          git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
+          libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz \
+          mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pip libpython3-dev qemu-utils \
+          rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
+          sudo -E apt autoremove --purge
+          sudo -E apt clean
+          sudo timedatectl set-timezone "$TZ"
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+          echo "pwd:$pwd"
+          ls
       - name: Update feeds
+        working-directory: /workdir
         run: |
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          ls
       - name: Load custom update feeds
         run: |
           cd openwrt
+          echo "pwd:$pwd"
+          ls
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
@@ -95,11 +98,11 @@ jobs:
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
-         ../$DIY_P1_SH
-         ../$DIY_P2_SH amd64
+         $GITHUB_WORKSPACE/$DIY_P1_SH
+         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
@@ -107,7 +110,6 @@ jobs:
           make defconfig
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
-
       - name: Compile Packages
         id: compile
         run: |
@@ -127,7 +129,7 @@ jobs:
           cd openwrt
           df -h
           mkdir -p files/etc/uci-defaults/
-          cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
           make package/install -j$(nproc) || make package/install -j1 V=s
           make target/install -j$(nproc) || make target/install -j1 V=s
           make checksum
@@ -139,9 +141,9 @@ jobs:
           find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./firmwareipv6all
           cd ./firmwareipv6all
           gzip *.img |true
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwareipv6all
-          gzip *.img |true
-          echo -e "Sirpdboy-Ipv6-Super-Vip-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          # find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwareipv6all
+          # gzip *.img |true
+          echo -e "Sirpdboy-Ipv6-Plus-Vip-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
@@ -153,10 +155,10 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Super-Vip-Firmware
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Plus-Vip-Firmware
           path: ./firmwareipv6all
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Super-Vip-Ipk
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Plus-Vip-Ipk
           path: ./packageipv6all
