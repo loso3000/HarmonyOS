@@ -77,16 +77,13 @@ jobs:
           sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
+          
+          sudo timedatectl set-timezone "Asia/Shanghai"
           df -h
       - name: Update feeds
         run: |
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-      - name: Cache
-        uses: klever1988/cachewrtbuild@main
-        with:
-          ccache: 'true' 
-          prefix: ${{ github.workspace }}/openwrt
       - name: Load custom update feeds
         run: |
           cd openwrt
@@ -98,7 +95,7 @@ jobs:
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          ../$DIY_P1_SH
