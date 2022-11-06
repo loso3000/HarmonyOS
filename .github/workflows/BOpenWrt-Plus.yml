@@ -91,15 +91,15 @@ jobs:
         run: |
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           
           
-      - name: Cache
-        uses: klever1988/cachewrtbuild@main
-        with:
-          ccache: 'true'
-          prefix: 'openwrt'
-          mixkey: 'x86'
+      #- name: Cache
+        #uses: klever1988/cachewrtbuild@main
+        #with:
+        #  ccache: 'true'
+        #  prefix: 'openwrt'
+        #  mixkey: 'x86'
       - name: Load custom update feeds
         run: |
           [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
@@ -115,8 +115,8 @@ jobs:
           echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
-         ../$DIY_P1_SH
-         ../$DIY_P2_SH amd64
+         $GITHUB_WORKSPACE/$DIY_P1_SH
+         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
           make defconfig
       - name: Get Architecture
@@ -149,7 +149,7 @@ jobs:
          df -h
          cd openwrt 
          mkdir -p files/etc/uci-defaults/
-         cp ../scriptx/init-settingsw.sh files/etc/uci-defaults/99-init-settings
+         cp $GITHUB_WORKSPACE/scriptx/init-settingsw.sh files/etc/uci-defaults/99-init-settings
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
