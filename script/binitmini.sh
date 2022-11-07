@@ -298,7 +298,7 @@ rm -rf ./feeds/packages/net/tcping
 rm -rf ./feeds/packages/net/v2ray*
 rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
-
+rm -rf ./feeds/packages/net/v2ray-geodata
 #bypass
 #rm -rf package/other/up/pass/luci-app-bypass
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
@@ -338,7 +338,7 @@ svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/ne
 
 # svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata
 
-svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
+# svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/redsocks2 package/lean/redsocks2
