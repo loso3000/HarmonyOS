@@ -24,22 +24,27 @@ env:
   DIY_P2_SH: script/clash-core.sh
   
   TZ: Asia/Shanghai
+
 jobs:
 
   build_openwrt:
 
-    name: OpenWrt_Build 
+    permissions:
+      contents: write # for release creation
 
-    runs-on: ubuntu-20.04
+    name: Build OpenWrt firmware
 
-    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+
+    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
 
     steps:
 
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
         with:
           ref: master
+          
       - name: Check server performance
         run: |
          echo "警告⚠"
@@ -70,46 +75,17 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-          sudo -E apt-get -qq update
-          sudo -E apt-get -qq install rdate squashfs-tools $(curl -fsSL git.io/depends-ubuntu-2004)
-          sudo -E apt-get -qq autoremove --purge
-          sudo -E apt-get -qq clean
-          sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-          docker image prune -a -f
+          docker rmi `docker images -q`
+          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
+          sudo -E apt-get update
+          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
+          sudo -E apt-get -y autoremove --purge
+          sudo -E apt-get clean
 
           sudo timedatectl set-timezone "Asia/Shanghai"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
-      - name: Combine Disks
-        run: |
-          sudo swapoff -a
-          sudo rm -f /mnt/swapfile
-          export ROOT_FREE_KB=$(df --block-size=1024 --output=avail / | tail -1)
-          export ROOT_LOOP_KB=$(expr $ROOT_FREE_KB - 1048576)
-          export ROOT_LOOP_BYTES=$(expr $ROOT_LOOP_KB \* 1024)
-          sudo fallocate -l $ROOT_LOOP_BYTES /root.img
-          export ROOT_LOOP_DEVNAME=$(sudo losetup -Pf --show /root.img)
-          sudo pvcreate -f $ROOT_LOOP_DEVNAME
-          export MNT_FREE_KB=$(df --block-size=1024 --output=avail /mnt | tail -1)
-          export MNT_LOOP_KB=$(expr $MNT_FREE_KB - 102400)
-          export MNT_LOOP_BYTES=$(expr $MNT_LOOP_KB \* 1024)
-          sudo fallocate -l $MNT_LOOP_BYTES /mnt/mnt.img
-          export MNT_LOOP_DEVNAME=$(sudo losetup -Pf --show /mnt/mnt.img)
-          sudo pvcreate -f $MNT_LOOP_DEVNAME
-          sudo vgcreate vgstorage $ROOT_LOOP_DEVNAME $MNT_LOOP_DEVNAME
-          sudo lvcreate -n lvstorage -l 100%FREE vgstorage
-          export LV_DEVNAME=$(sudo lvscan | awk -F "'" '{print $2}')
-          sudo mkfs.btrfs -L combinedisk $LV_DEVNAME
-          sudo mount -o compress=zstd $LV_DEVNAME $GITHUB_WORKSPACE
-          sudo chown -R runner:runner $GITHUB_WORKSPACE
-          mkdir $GITHUB_WORKSPACE/tmp
-          chmod 777 $GITHUB_WORKSPACE/tmp
-          sudo cp -rp /tmp/* $GITHUB_WORKSPACE/tmp
-          sudo mount -B $GITHUB_WORKSPACE/tmp /tmp
-          df -hT $GITHUB_WORKSPACE
-          sudo btrfs filesystem usage $GITHUB_WORKSPACE
-
       - name: git lede
         working-directory: /workdir
         run: |
@@ -117,6 +93,7 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
+          df -h
       - name: Update feeds
         run: | 
           cd openwrt
@@ -128,26 +105,21 @@ jobs:
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
          $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
           make defconfig
-      - name: Get Architecture
-        working-directory: ${{ github.workspace }}/openwrt
-        run: |
-         TARGET_DEVICE_ARCH="$(grep "^CONFIG_TARGET_.*_.*=y$" ".config" | head -n 1 | sed 's/^CONFIG_TARGET_//g' | awk -F '_' '{print $1}')"
-         echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}-" >>$GITHUB_ENV
-         latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][0-9]/p' | sed -n 1p | sed 's/.tar.gz//g' | sed 's/v//g')"
-         echo "latest_release=${latest_release}" >>$GITHUB_ENV
+          df -h
       - name: Generate configuration file
-        working-directory: ./openwrt
         run: |
+          cd openwrt
           make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
+          df -h
       - name: Compile Packages
         id: compile
         run: |
@@ -160,6 +132,7 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
+         df -h
       - name: Generate Firmware
         run: |
          df -h
@@ -169,6 +142,7 @@ jobs:
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
+         df -h
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmware
