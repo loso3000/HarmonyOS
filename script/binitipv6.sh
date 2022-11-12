@@ -365,7 +365,7 @@ svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/ne
 
 # svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata
 
-svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
+# svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
 
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
