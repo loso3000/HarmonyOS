@@ -15,6 +15,9 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
+rm -rf  ./package/system/fstools
+svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
+
 # rm -rf ./package/cupsd/luci-app-cupsd
 rm -rf ./feeds/packages/utils/cupsd
 rm -rf ./feeds/packages/utils/cups-bjnp
