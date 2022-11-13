@@ -247,6 +247,7 @@ CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=y
+CONFIG_PACKAGE_luci-app-partexp=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 
