@@ -12,6 +12,9 @@ git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+rm -rf  ./package/system/fstools
+svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
+
 # rm -rf ./package/lean/r8152
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
