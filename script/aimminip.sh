@@ -20,6 +20,9 @@ git clone https://github.com/sirpdboy/build.git ./package/build
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+rm -rf  ./package/system/fstools
+svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
+
 # rm -rf ./package/cupsd/luci-app-cupsd
 rm -rf ./feeds/packages/utils/cupsd
 rm -rf ./feeds/packages/utils/cups-bjnp
@@ -72,6 +75,7 @@ wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/s
 wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/sirpdboy/build/master/profile
 wget -qO package/base-files/files/etc/sysctl.conf https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf
 # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/sirpdboy-package/master/set/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
+
 
 echo "poweroff"
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
