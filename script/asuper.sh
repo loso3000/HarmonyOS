@@ -33,6 +33,9 @@ sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
+rm -rf  ./package/system/fstools
+svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
+
 
 rm -rf ./feeds/packages/net/mosdns
 # svn co https://github.com/sbwml/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
