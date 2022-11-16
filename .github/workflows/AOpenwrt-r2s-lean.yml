@@ -19,7 +19,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/ar2s.lean
-  DIY_P1_SH: script/aipv6mini.sh
+  DIY_P1_SH: script/aipv6all.sh
   DIY_P2_SH: script/clash-core.sh
   TZ: Asia/Shanghai
   
