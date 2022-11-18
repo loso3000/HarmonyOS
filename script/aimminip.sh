@@ -340,9 +340,6 @@ sed -i '/Rust:/d' package/diy/luci-app-vssr/Makefile
 sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
 sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
 
-#sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
-#sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
-
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
@@ -365,8 +362,6 @@ git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-
 sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 
 
-
-
 # wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/loso3000/other/master/patch/banner
 # wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/loso3000/other/master/patch/profile
 # wget -qO package/base-files/files/etc/sysctl.conf https://raw.githubusercontent.com/loso3000/other/master/patch/sysctl.conf
@@ -384,9 +379,12 @@ cp -rf ./package/other/luci/*  ./feeds/luci/*
 #zzz-default-settingsim
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
+
+#sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+#sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
