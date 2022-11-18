@@ -95,7 +95,6 @@ rm -rf ./feeds/luci/applications/luci-app-netdata
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 
 
-rm -rf ./package/build/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 svn co https://github.com/loso3000/other/trunk/up/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
@@ -338,8 +337,8 @@ popd
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 sed -i '/Rust:/d' package/diy/luci-app-vssr/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/build/pass/luci-ssr-plus/Makefile
+sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
 
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 #sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
