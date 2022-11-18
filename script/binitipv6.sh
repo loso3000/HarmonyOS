@@ -17,6 +17,9 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
 rm -rf  ./package/system/fstools
 svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
+# 可以设置汉字名字
+sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
+# sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 # rm -rf ./package/cupsd/luci-app-cupsd
 rm -rf ./feeds/packages/utils/cupsd
