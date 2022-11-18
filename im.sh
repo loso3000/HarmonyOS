@@ -154,9 +154,8 @@ rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
-
 #断线不重拨
-# sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
+sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #echo "其他修改"
 sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
@@ -164,10 +163,6 @@ sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/n
 
 # echo '默认开启 Irqbalance'
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
-
-# Add minieap
-rm -rf feeds/packages/net/minieap
-svn co https://github.com/immortalwrt/packages/trunk/net/minieap packages/net/minieap feeds/packages/net/minieap
 
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust package/luci-app-mentohust
@@ -182,30 +177,9 @@ rm -rf ./feeds/luci/applications/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
 
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
-# git clone https://github.com/tuanqing/install-program package/install-program
 
-echo '替换aria2'
-rm -rf feeds/luci/applications/luci-app-aria2 && \
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-aria2 feeds/luci/applications/luci-app-aria2
-rm -rf feeds/packages/net/aria2 && \
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/aria2 feeds/packages/net/aria2
-
-# rm -rf ./package/diy/adguardhome
 rm -rf ./feeds/packages/net/adguardhome
 svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
-# sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
-# ln -sf ../../../feeds/packages/net/adguardhome ./package/feeds/packages/net/adguardhome
-# cp -rf ./feeds/packages/net/adguardhome   ./package/diy/adguardhome
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-' >> ./target/linux/x86/config-5.4
-
-echo '
-CONFIG_CRYPTO_CHACHA20_X86_64=y
-CONFIG_CRYPTO_POLY1305_X86_64=y
-' >> ./target/linux/x86/config-5.15
 
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1)/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
@@ -365,13 +339,6 @@ git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
-
-# git clone https://github.com/openwrt-dev/po2lmo.git
-# cd po2lmo
-# make && sudo make install
-
-# Fix SDK
-# sed -i '/$(SDK_BUILD_DIR)\/$(STAGING_SUBDIR_HOST)\/usr\/bin/d;/LICENSE/d' ./target/sdk/Makefile
 
 cp -f ./package/build/banner ./package/base-files/files/etc/banner
 cat ./package/build/profile > package/base-files/files/etc/profile
