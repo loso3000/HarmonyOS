@@ -60,6 +60,9 @@ svn co https://github.com/sirpdboy/build/trunk/autocore ./package/lean/autocore
 rm -rf  package/emortal/autocore
 
 rm -rf ./package/diy/luci-lib-ipkg
+# 可以设置汉字名字
+sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
+# sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 rm -rf ./package/build/automount
 rm -rf ./package/lean/automount  
