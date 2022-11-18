@@ -54,6 +54,9 @@ rm -rf ./feeds/packages/net/ddns-web
 rm -rf ./package/diy/upnpd
 # rm -rf ./feeds/packages/net/miniupnpd &&  svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
 # rm -rf ./feeds/luci/applications/luci-app-upnp && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
+# 可以设置汉字名字
+sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
+# sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 rm -rf ./package/build/autocore
 rm -rf ./package/lean/autocore  
