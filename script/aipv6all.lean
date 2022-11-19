@@ -270,15 +270,15 @@ CONFIG_PACKAGE_default-settings=y
 #diy
 
 # CONFIG_PACKAGE_automount is not set
-CONFIG_PACKAGE_swconfig=y  #交换机功能
-CONFIG_PACKAGE_qos-scripts=y  #qos负载脚本
+# CONFIG_PACKAGE_swconfig=y  #交换机功能
+# CONFIG_PACKAGE_qos-scripts=y  #qos负载脚本
 CONFIG_PACKAGE_hostapd=y
 CONFIG_PACKAGE_hostapd-common=y
 CONFIG_PACKAGE_e2fsprogs=y
-CONFIG_PACKAGE_smartmontools=y
+# CONFIG_PACKAGE_smartmontools=y
 CONFIG_PACKAGE_luci-proto-ipip=y
-CONFIG_PACKAGE_fstools=y   #挂载功能
-CONFIG_PACKAGE_block-mount=y  #挂载功能
+# CONFIG_PACKAGE_fstools=y   #挂载功能
+# CONFIG_PACKAGE_block-mount=y  #挂载功能
 # CONFIG_PACKAGE_ntfsprogs=y  #ntfs.mks分区格式化
 CONFIG_PACKAGE_automount-ntfs=y  #NTFS挂载
 
@@ -459,8 +459,7 @@ CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=y
-CONFIG_PACKAGE_luci-app-partexp=y
-
+CONFIG_PACKAGE_luci-app-sys-partexp=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 # 工具
