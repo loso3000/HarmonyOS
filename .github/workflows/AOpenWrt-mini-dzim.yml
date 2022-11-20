@@ -1,4 +1,4 @@
-name: OpenWrt-mini-dzim
+name: AOpenWrt-mini-dzim
 
 
 on:
@@ -21,21 +21,26 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config-dzim
   DIY_P1_SH: im.sh
+permissions:
+  contents: read
+
 jobs:
 
   build_openwrt:
 
-    name: OpenWrt_Build 
+    permissions:
+      contents: write # for release creation
+
+    name: Build OpenWrt firmware
 
     runs-on: ubuntu-latest
 
-    if: github.event.repository.owner.id == github.event.sender.id
+    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
 
     steps:
 
-
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
         with:
           ref: master
       - name: Check server performance
@@ -43,7 +48,7 @@ jobs:
          echo "警告⚠"
          echo "若分配的服务器性能不足，务必及时取消，重新运行！"
          echo "已知编译成功CPU型号：8370C,8171M"
-         echo "已知性能不足CPU型号：8272CL"
+         echo "已知性能不足CPU型号：8272CL E5-2673"
          echo -e "-------------- ------------CPU信息------------------------------------------\n"
          echo "CPU物理数量:$(cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)"
          echo -e "CPU核心及版本信息：$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
@@ -55,49 +60,76 @@ jobs:
          echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
          echo "硬盘详情："
          df -Th
+         
+         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
+          echo "CPU YES！！！"
+          echo "CKCPU=success" >> $GITHUB_ENV
+         else
+             echo "CPU NO！！！"
+             echo "CKCPU=failure" >> $GITHUB_ENV
+             exit 1
+         fi
       - name: Space cleanup
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
           docker rmi `docker images -q`
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
-          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php* android*
+          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
           sudo -E apt-get update
-          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev curl patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
+          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
+
           sudo timedatectl set-timezone "Asia/Shanghai"
-      - name: Get current date
-        id: date
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+      - name: git lede
+        working-directory: /workdir
         run: |
-          echo "date=$(date +'%m/%d_%Y_%H/%M')" >> $GITHUB_ENV
-          echo "date2=$(date +'%m/%d %Y')" >> $GITHUB_ENV
-          echo "date3=$(date +'%m.%d')" >> $GITHUB_ENV
-          echo "date4=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-      - name: Update feeds
-        run: |
+          df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          ls
+      - name: Update feeds
+        run: | 
           cd openwrt
-          git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+
+      #- name: Cache
+      #  uses: klever1988/cachewrtbuild@main
+      #  with:
+      #    ccache: 'true'
+      #    prefix: 'openwrt'
+      #    mixkey: 'x86'
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
          chmod +x ./$DIY_P1_SH
+         chmod +x ./$DIY_P2_SH
+
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
+         
          cd openwrt
-         ../$DIY_P1_SH
+         $GITHUB_WORKSPACE/$DIY_P1_SH
+         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
           make defconfig
+          
+
       - name: Make download
         working-directory: ./openwrt
         run: |
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
-      
+          df -h
+
       - name: Compile Packages
         id: compile
         run: |
@@ -110,46 +142,50 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
-         echo "::set-output name=COMPILE_STATUS::success"
-        
+         df -h
       - name: Generate Firmware
-        if: steps.compile.outputs.COMPILE_STATUS == 'success'
-        id: generate
         run: |
          df -h
          cd openwrt 
          mkdir -p files/etc/uci-defaults/
-         cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+         cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
+         
       - name: Prepare Artifact
         run: |
-          mkdir -p ./imdz/firmware
-          mkdir -p ./imdz/package
-          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./imdz/package
-          find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./imdz/firmware
-          cd ./imdz/firmware
-          gzip *.img ||true
-          #cat  .config  > ./imdz/firmware/x86ez
-          echo $md5 >> version.txt
+          mkdir -p ./imminip/firmware
+          mkdir -p ./imminip/package
+          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./imminip/package
+          find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./imminip/firmware
+          cd ./imminip/firmware
+          gzip *.img | true
+          echo -e "SirpdboyOpenWrt-Bypass-Vip-${{ env.DATA }}-旁路由--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt || true
+          
       - name: Upload Firmware wetransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./imdz/firmware 2>&1 | tee wetransfer.log
+          ./transfer wet -s -p 16 --no-progress ./imminip/firmware 2>&1 | tee wetransfer.log
           echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+          
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-ipv6-imdz-Firmware
-          path: ./imdz/firmware
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Bypass-Vip-Firmware
+          path: ./imminip/firmware
+          
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: OpenWrt-ipv6-imdz-Ipk
-          path: ./imdz/package
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Bypass-Vip-Ipk
+          path: ./imminip/package
+
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
         with:
-          retain_days: 5
-          keep_minimum_runs: 3
+          retain_days: 2
+          keep_minimum_runs: 2
