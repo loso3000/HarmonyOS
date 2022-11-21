@@ -95,7 +95,6 @@ jobs:
         run: | 
           cd openwrt
           ./scripts/feeds update -a
-          ./scripts/feeds install -a
 
       #- name: Cache
       #  uses: klever1988/cachewrtbuild@main
@@ -120,6 +119,8 @@ jobs:
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
+        
+          ./scripts/feeds install -a
           make defconfig
           
 
