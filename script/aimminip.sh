@@ -235,7 +235,7 @@ svn co https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs
 svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
 
 # ChinaDNS
-git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
+# git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 # CPU 控制相关
 rm -rf  feeds/luci/applications/luci-app-cpufreq
