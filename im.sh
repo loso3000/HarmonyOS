@@ -20,17 +20,12 @@ rm -rf ./feeds/packages/utils/cups-bjnp
 rm -rf ./feeds/luci/applications/luci-app-cupsd
 
 # 清理
-rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,v2ray-geodata,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web,luci-app-vnstat2,luci-app-vnstat}
+rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-ikoolproxy,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind}
 rm -rf package/*/{autocore,autosamba,default-settings}
-rm -rf feeds/*/*/{luci-app-dockerman,luci-app-aria2,luci-app-beardropper,oaf,luci-app-adguardhome,luci-app-appfilter,open-app-filter,luci-app-openclash,luci-app-vssr,luci-app-ssr-plus,luci-app-passwall,luci-app-bypass,luci-app-wrtbwmon,luci-app-koolddns,luci-app-samba,luci-app-samba4,luci-app-wol,luci-app-unblockneteasemusic,luci-app-accesscontrol}
+rm -rf feeds/*/*/{luci-app-aria2,luci-app-beardropper,oaf,luci-app-adguardhome,luci-app-appfilter,open-app-filter,luci-app-bypass,luci-app-wrtbwmon,luci-app-samba4,}
 
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-
-rm -rf ./feeds/packages/net/mosdns
-git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/geodata
-sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -62,6 +57,7 @@ rm -rf ./package/other/up/default-settings
 svn co https://github.com/loso3000/other/trunk/up/default-settings ./package/lean/default-settings
 
 rm -rf  ./package/system/fstools
+rm -rf  ./package/other/up/fstools
 svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
 
 echo "poweroff"
@@ -70,7 +66,7 @@ curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/powero
 
 #设置
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
-sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
+# sed -i 's/option dports.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 
 sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
@@ -126,10 +122,10 @@ sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasr
 
 
 #断线不重拨
-# sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
+sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #echo "其他修改"
-# sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
+sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
 
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
@@ -147,11 +143,11 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 
-git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
-pushd package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
-popd
+#git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
+#svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+#pushd package/passwall/luci-app-passwall
+#sed -i 's,default n,default y,g' Makefile
+#popd
 
 # svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 # svn export https://github.com/sirpdboy/openwrt-trojan-go/trunk/trojan-go package/new/trojan-go
