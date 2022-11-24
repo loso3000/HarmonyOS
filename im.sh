@@ -41,6 +41,7 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
 #svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./package/diy/upnpd
 
+
 rm -rf ./package/lean/autocore  
 rm -rf ./package/other/up/autocore
 rm -rf  package/emortal/autocore
@@ -159,6 +160,8 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/l
 
 
 rm -rf ./package/diy/luci-theme-edge
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
 # git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
 # git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 # git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
