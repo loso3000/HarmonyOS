@@ -178,11 +178,11 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Bypass-Vip-Firmware
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Bypass-Vip-imFirmware
           path: ./imminip/firmware
           
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Bypass-Vip-Ipk
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Bypass-Vip-imIpk
           path: ./imminip/package
