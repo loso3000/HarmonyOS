@@ -24,7 +24,7 @@ rm -rf ./feeds/luci/applications/luci-app-cupsd
 # rm -rf package/*/{autocore,autosamba,default-settings}
 # rm -rf feeds/*/*/{luci-app-aria2,luci-app-beardropper,oaf,luci-app-adguardhome,luci-app-appfilter,open-app-filter,luci-app-bypass,luci-app-wrtbwmon,luci-app-samba4,}
 
-# git clone https://github.com/loso3000/other ./package/other
+git clone https://github.com/loso3000/other ./package/other
 # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # nlbwmon
@@ -41,25 +41,30 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
 #svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./package/diy/upnpd
 
-
+mkdir -p ./package/lean
+mv ./package/other/up/autocore ./package/lean/autocore
 rm -rf ./package/lean/autocore  
 rm -rf ./package/other/up/autocore
-rm -rf  package/emortal/autocore
-svn co https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
+rm -rf  ./package/emortal/autocore
+# svn co https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
 
+
+mv ./package/other/up/automount-ntfs3g ./package/lean/automount-ntfs3g
 rm -rf ./package/lean/automount  
 rm -rf ./package/other/up/automount
 rm -rf  package/emortal/automount
-svn co https://github.com/loso3000/other/trunk/up/automount ./package/lean/automount
+svn co https://github.com/loso3000/other/trunk/up/automount-ntfs3g ./package/lean/automount
  
+ 
+mv ./package/other/up/default-settings ./package/lean/default-settings
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings 
 rm -rf ./package/other/up/default-settings
 svn co https://github.com/loso3000/other/trunk/up/default-settings ./package/lean/default-settings
 
-rm -rf  ./package/system/fstools
+# rm -rf  ./package/system/fstools
 rm -rf  ./package/other/up/fstools
-svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
+# svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
 
 echo "poweroff"
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
