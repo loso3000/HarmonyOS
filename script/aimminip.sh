@@ -36,6 +36,7 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 rm -rf ./feeds/packages/net/mosdns
+rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
 # svn co https://github.com/sbwml/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
 # svn co https://github.com/sbwml/openwrt-packages/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
@@ -62,16 +63,20 @@ svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./package/diy/upnpd
 
+mkdir -p ./package/lean
+mv ./package/other/up/autocore ./package/lean/autocore
 rm -rf ./package/lean/autocore  
 rm -rf ./package/other/up/autocore
-rm -rf  package/emortal/autocore
-svn co https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
+rm -rf  ./package/emortal/autocore
+# svn co https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
 
+mv ./package/other/up/automount-ntfs3g ./package/lean/automount-ntfs3g
 rm -rf ./package/lean/automount  
 rm -rf ./package/other/up/automount
 rm -rf  package/emortal/automount
-svn co https://github.com/loso3000/other/trunk/up/automount ./package/lean/automount
- 
+svn co https://github.com/loso3000/other/trunk/up/automount-ntfs3g ./package/lean/automount
+  
+mv ./package/other/up/default-settings ./package/lean/default-settings
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings 
 rm -rf ./package/other/up/default-settings
@@ -398,35 +403,6 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/defaul
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 
-#sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-
-#sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
-
-# echo '默认开启 Irqbalance'
-ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
-export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
-
-date1='Ipv4-Bypass-Vip-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-# date1='Ipv4-Bypass-Vip-R2022.11.01'
-# sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20221101-Ipv4-Bypass-Vip-5.10-/g' include/image.mk
-if [ "$VER2" = "5.4" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv4-Bypass-Vip-5.4-/g' include/image.mk
-elif [ "$VER2" = "5.10" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv4-Bypass-Vip-5.10-/g' include/image.mk
-elif [ "$VER2" = "5.15" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv4-Bypass-Vip-5.15-/g' include/image.mk
-elif [ "$VER2" = "6.0" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv4-Bypass-Vip-6.0-/g' include/image.mk
-fi
-
-echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
-echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
-
-echo '---------------------------------' >> ./package/base-files/files/etc/banner
-
 ## ugly fix of the read-only issue
 sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
 
@@ -458,6 +434,35 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
 sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
+
+#sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+
+#sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
+
+# echo '默认开启 Irqbalance'
+ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
+export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
+
+date1='Ipv4-Bypass-Vip-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+# date1='Ipv4-Bypass-Vip-R2022.11.01'
+# sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20221101-Ipv4-Bypass-Vip-5.10-/g' include/image.mk
+if [ "$VER2" = "5.4" ]; then
+    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv4-Bypass-Vip-5.4-/g' include/image.mk
+elif [ "$VER2" = "5.10" ]; then
+    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv4-Bypass-Vip-5.10-/g' include/image.mk
+elif [ "$VER2" = "5.15" ]; then
+    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv4-Bypass-Vip-5.15-/g' include/image.mk
+elif [ "$VER2" = "6.0" ]; then
+    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv4-Bypass-Vip-6.0-/g' include/image.mk
+fi
+
+echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
+echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
+
+echo '---------------------------------' >> ./package/base-files/files/etc/banner
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
