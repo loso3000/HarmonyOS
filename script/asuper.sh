@@ -36,6 +36,7 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 rm -rf ./feeds/packages/net/mosdns
+rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
 # svn co https://github.com/sbwml/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
 # svn co https://github.com/sbwml/openwrt-packages/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
@@ -45,14 +46,6 @@ sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdn
 
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 
-  # kernel:fix bios boot partition is under 1 MiB
-  # https://github.com/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
-  sed -i 's/256/1024/' target/linux/x86/image/Makefile
-  
-    # remove non-exist package from x86 profile
-  sed -i 's/kmod-i40evf//;s/kmod-iavf//' target/linux/x86/Makefile
-  
-  
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 
@@ -60,22 +53,30 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
+#dnsmasq
+rm -rf ./package/network/services/dnsmasq
+svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dnsmasq ./package/network/services/dnsmasq
+
 #upnp
 # rm -rf ./feeds/packages/net/miniupnpd &&  svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
 # rm -rf ./feeds/luci/applications/luci-app-upnp &&\
 # svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./package/diy/upnpd
 
+mkdir -p ./package/lean
+mv ./package/other/up/autocore ./package/lean/autocore
 rm -rf ./package/lean/autocore  
 rm -rf ./package/other/up/autocore
-rm -rf  package/emortal/autocore
-svn co https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
+rm -rf  ./package/emortal/autocore
+# svn co https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
 
+mv ./package/other/up/automount-ntfs3g ./package/lean/automount-ntfs3g
 rm -rf ./package/lean/automount  
 rm -rf ./package/other/up/automount
 rm -rf  package/emortal/automount
-svn co https://github.com/loso3000/other/trunk/up/automount ./package/lean/automount
- 
+svn co https://github.com/loso3000/other/trunk/up/automount-ntfs3g ./package/lean/automount
+  
+mv ./package/other/up/default-settings ./package/lean/default-settings
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings 
 rm -rf ./package/other/up/default-settings
@@ -245,7 +246,6 @@ svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
 # ChinaDNS
 # git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
-
 # CPU 控制相关
 rm -rf  feeds/luci/applications/luci-app-cpufreq
 svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
@@ -373,7 +373,7 @@ rm -rf ./package/diy/luci-theme-edge
 rm -rf ./package/build/luci-theme-darkmatter
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
 # git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
 
@@ -390,12 +390,45 @@ cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/m
 cp -f ./package/other/patch/sysctl.conf ./package/base-files/files/etc/sysctl.conf
 cp -f ./package/other/patch/banner ./package/base-files/files/etc/banner
 cp -f ./package/other/patch/profile package/base-files/files/etc/profile
-cp -rf ./package/other/luci/*  ./feeds/luci/*
+# cp -rf ./package/other/luci/*  ./feeds/luci/*
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 # sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
+
+# temporary fix for upx
+sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
+
+  # enable r2s oled plugin by default
+  sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
+
+# kernel:fix bios boot partition is under 1 MiB
+  # https://github.com/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
+  sed -i 's/256/1024/' target/linux/x86/image/Makefile
+
+config_file_turboacc=`find package/ -follow -type f -path '*/luci-app-turboacc/root/etc/config/turboacc'`
+sed -i "s/option hw_flow '1'/option hw_flow '0'/" $config_file_turboacc
+sed -i "s/option sfe_flow '1'/option sfe_flow '0'/" $config_file_turboacc
+sed -i "s/option sfe_bridge '1'/option sfe_bridge '0'/" $config_file_turboacc
+sed -i "/dep.*INCLUDE_.*=n/d" `find package/ -follow -type f -path '*/luci-app-turboacc/Makefile'`
+
+sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
+sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
+
+sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
+
+# 修改makefile
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
+
+sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
+
+sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
+
+#sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+
 #zzz-default-settingsim
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
@@ -403,14 +436,15 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/defaul
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 
+## ugly fix of the read-only issue
+sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
+
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-# sed -i "s/192.168.6.1/192.168.8.1/g"  package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-# sed -i 's/KERNEL_PATCHVER:=5.18/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
 
 # echo '默认开启 Irqbalance'
+ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 date1='Ipv6-Super-Vip-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
@@ -435,39 +469,6 @@ echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/
 echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-
-## ugly fix of the read-only issue
-sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
-
-# temporary fix for upx
-sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
-
-  # enable r2s oled plugin by default
-  sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
-
-# kernel:fix bios boot partition is under 1 MiB
-  # https://github.com/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
-  sed -i 's/256/1024/' target/linux/x86/image/Makefile
-
-
-config_file_turboacc=`find package/ -follow -type f -path '*/luci-app-turboacc/root/etc/config/turboacc'`
-sed -i "s/option hw_flow '1'/option hw_flow '0'/" $config_file_turboacc
-sed -i "s/option sfe_flow '1'/option sfe_flow '0'/" $config_file_turboacc
-sed -i "s/option sfe_bridge '1'/option sfe_bridge '0'/" $config_file_turboacc
-sed -i "/dep.*INCLUDE_.*=n/d" `find package/ -follow -type f -path '*/luci-app-turboacc/Makefile'`
-
-sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
-sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
-
-sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
-
-# 修改makefile
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
-
-sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
-
-sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
