@@ -20,5 +20,11 @@ b=$(echo "$a" | wc -l)
 	}
 uci commit network
 uci commit fstab
-	
+#  
+sed -i 's/^[^#].*option ula/#&/' /etc/config/network
+# Disable autostart by default for some packages
+cd /etc/rc.d
+rm -f S98udptools || true
+rm -f S99nft-qos || true
+
 exit 0
