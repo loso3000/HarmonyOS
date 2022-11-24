@@ -282,6 +282,15 @@ pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
 popd
 
+line_number_INCLUDE_Xray=$[`grep -m1 -n 'Include Xray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
+sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+line_number_INCLUDE_V2ray=$[`grep -m1 -n 'Include V2ray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
+sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
 # rm -rf  ./package/ssr/luci-app-ssr-plus
@@ -414,13 +423,18 @@ echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 
+## ugly fix of the read-only issue
+sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
+
+# temporary fix for upx
+sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
 
   # enable r2s oled plugin by default
   sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
-  # kernel:fix bios boot partition is under 1 MiB
+
+# kernel:fix bios boot partition is under 1 MiB
   # https://github.com/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
   sed -i 's/256/1024/' target/linux/x86/image/Makefile
-
 
 config_file_turboacc=`find package/ -follow -type f -path '*/luci-app-turboacc/root/etc/config/turboacc'`
 sed -i "s/option hw_flow '1'/option hw_flow '0'/" $config_file_turboacc
