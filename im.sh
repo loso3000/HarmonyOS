@@ -27,12 +27,32 @@ rm -rf ./feeds/luci/applications/luci-app-cupsd
 git clone https://github.com/loso3000/other ./package/other
 # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
+git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
+
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 
 # 可以设置汉字名字
 sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
+
+# Add ddnsto & linkease
+svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
+svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
+svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
+sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
+sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
+# svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
+
+rm -rf ./feeds/packages/net/mosdns
+rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
+# svn co https://github.com/sbwml/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
+# svn co https://github.com/sbwml/openwrt-packages/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
+# svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
+git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/geodata
+sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
 #upnp
 #rm -rf ./feeds/packages/net/miniupnpd
@@ -80,6 +100,50 @@ sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./packages/new/luci-app-smartdns
+
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./packages/new/luci-app-control-speedlimit
+
+rm -rf ./feeds/luci/applications/luci-app-cupsd
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd ./packages/new/luci-app-cupsd
+
+rm -rf ./feeds/packages/net/adguardhome
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/adguardhome ./packages/new/adguardhome
+rm -rf ./feeds/luci/applications/luci-app-adguardhome
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./packages/new/luci-app-adguardhome
+
+rm -rf ./feeds/luci/applications/luci-app-advanced
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./packages/new/luci-app-advanced
+rm -rf ./feeds/luci/applications/luci-app-rebootschedule
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootschedule ./packages/new/luci-app-rebootschedule
+
+rm -rf ./feeds/luci/applications/luci-app-wizard
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard  ./packages/new/luci-app-wizard
+
+rm -rf ./feeds/luci/applications/wrtbwmon
+rm -rf ./feeds/packages/net/wrtbwmon
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./packages/new/wrtbwmon
+rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./packages/new/luci-app-wrtbwmon
+
+rm -rf ./feeds/luci/applications/luci-app-wolplus
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus  ./packages/new/luci-app-wolplus
+
+rm -rf ./feeds/luci/applications/luci-theme-argon
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon  ./packages/new/luci-theme-argon
+
+rm -rf ./feeds/luci/applications/luci-theme-opentopd
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd  ./packages/new/luci-theme-opentopd
+
+rm -rf ./feeds/luci/applications/netspeedtest
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netspeedtest  ./packages/new/netspeedtest
+
+rm -rf ./feeds/luci/applications/lua-maxminddb
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/lua-maxminddb ./packages/new/lua-maxminddb
+
+rm -rf ./feeds/luci/applications/luci-app-control-timewol
+svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-timewol ./packages/new/luci-app-control-timewol
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata
@@ -94,7 +158,8 @@ rm -rf ./package/other/up/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
-git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/lean/luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/new/luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
 # samba4
 rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/loso3000/other/trunk/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
@@ -148,6 +213,7 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
+sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
 #git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
 #svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
