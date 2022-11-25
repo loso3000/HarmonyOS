@@ -37,12 +37,12 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
-svn co https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/mosdns
+svn co https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
 # svn co https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
 # git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
-sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+sed -i "/filter_aaaa='1'/d" package/luci-app-mosdns/root/etc/init.d/mosdns
 
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 
@@ -82,8 +82,9 @@ rm -rf  package/emortal/default-settings
 rm -rf ./package/other/up/default-settings
 svn co https://github.com/loso3000/other/trunk/up/default-settings ./package/lean/default-settings
 
-rm -rf  ./package/system/fstools
-svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
+# rm -rf  ./package/system/fstools
+rm -rf  ./package/other/up/fstools
+# svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
 
 echo "poweroff"
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
@@ -444,8 +445,6 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/defaul
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 
-## ugly fix of the read-only issue
-sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
