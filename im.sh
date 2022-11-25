@@ -47,10 +47,10 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
-# svn co https://github.com/sbwml/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
-# svn co https://github.com/sbwml/openwrt-packages/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
+svn co https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
+# svn co https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
-git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
+# git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
@@ -215,11 +215,33 @@ sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
-#git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
-#svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
-#pushd package/passwall/luci-app-passwall
-#sed -i 's,default n,default y,g' Makefile
-#popd
+git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
+# svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+pushd package/passwall/luci-app-passwall
+sed -i 's,default n,default y,g' Makefile
+popd
+line_number_INCLUDE_Xray=$[`grep -m1 -n 'Include Xray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
+sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+line_number_INCLUDE_V2ray=$[`grep -m1 -n 'Include V2ray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
+sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+# VSSR
+svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
+pushd package/diy/luci-app-vssr
+sed -i 's,default n,default y,g' Makefile
+sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
+popd
+
+# 在 X86 架构下移除 Shadowsocks-rust
+sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
+sed -i '/Rust:/d' package/diy/luci-app-vssr/Makefile
+sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
+sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plusdns/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
@@ -290,3 +312,4 @@ echo '删除IPK安装签名'
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
 sed -i 's/),9)/),12)/g' ./package/luci-app-dnsfilter/luasrc/controller/dnsfilter.lua   #dnsfilter
+./scripts/feeds update -i
