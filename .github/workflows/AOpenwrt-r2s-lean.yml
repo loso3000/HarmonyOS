@@ -107,6 +107,8 @@ jobs:
          # cp -rf PATCH/r5s.patch ./openwrt/package/diy
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
+         sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
+
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
