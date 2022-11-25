@@ -37,10 +37,10 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
-# svn co https://github.com/sbwml/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
-# svn co https://github.com/sbwml/openwrt-packages/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
+svn co https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
+# svn co https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
-git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
+# git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
 
@@ -280,6 +280,7 @@ rm -rf ./feeds/packages/net/trojan*
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
+sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
