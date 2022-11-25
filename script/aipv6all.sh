@@ -37,12 +37,12 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
-# svn co https://github.com/sbwml/openwrt-packages/trunk/luci-app-mosdns package/luci-app-mosdns
-# svn co https://github.com/sbwml/openwrt-packages/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
+svn co https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
+# svn co https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
-git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
+# git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
-sed -i "/filter_aaaa='1'/d" package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+sed -i "/filter_aaaa='1'/d" package/luci-app-mosdns/root/etc/init.d/mosdns
 
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 
@@ -82,8 +82,9 @@ rm -rf  package/emortal/default-settings
 rm -rf ./package/other/up/default-settings
 svn co https://github.com/loso3000/other/trunk/up/default-settings ./package/lean/default-settings
 
-rm -rf  ./package/system/fstools
-svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
+# rm -rf  ./package/system/fstools
+rm -rf  ./package/other/up/fstools
+# svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
 
 echo "poweroff"
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
@@ -235,7 +236,8 @@ svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packa
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1)/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
 
-svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
+# svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
+svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash package/new/luci-app-openclash
 
 # Fix libssh
 # rm -rf feeds/packages/libs
@@ -246,14 +248,14 @@ svn co https://github.com/openwrt/packages/trunk/utils/apk package/new/
 # ChinaDNS
 # git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
+
 # CPU 控制相关
 rm -rf  feeds/luci/applications/luci-app-cpufreq
-svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
+svn export -r 19495 https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
 ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
 sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
-
 
 # Passwall
 rm -rf ./feeds/packages/net/pdnsd-alt
@@ -280,6 +282,7 @@ rm -rf ./feeds/packages/net/trojan*
 #git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
+sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn co https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
@@ -359,6 +362,7 @@ sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 sed -i '/Rust:/d' package/diy/luci-app-vssr/Makefile
 sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
 sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
+sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plusdns/Makefile
 
 # 使用默认取消自动
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
@@ -390,21 +394,12 @@ cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/m
 cp -f ./package/other/patch/sysctl.conf ./package/base-files/files/etc/sysctl.conf
 cp -f ./package/other/patch/banner ./package/base-files/files/etc/banner
 cp -f ./package/other/patch/profile package/base-files/files/etc/profile
-cp -rf ./package/other/luci/*  ./feeds/luci/*
+# cp -rf ./package/other/luci/*  ./feeds/luci/*
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 # sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-#zzz-default-settingsim
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
-
-## ugly fix of the read-only issue
-sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
 
 # temporary fix for upx
 sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
@@ -425,6 +420,11 @@ sed -i "/dep.*INCLUDE_.*=n/d" `find package/ -follow -type f -path '*/luci-app-t
 sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
 
+
+# sed -i '/boot()/,+2d' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
+# svn export https://github.com/jjm2473/openwrt-third/trunk/ddns-scripts_aliyun feeds/packages/net/ddns-scripts_aliyun
+# svn export https://github.com/jjm2473/openwrt-third/trunk/ddns-scripts_dnspod feeds/packages/net/ddns-scripts_dnspod
+
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 
 # 修改makefile
@@ -437,6 +437,14 @@ sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockch
 
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+
+#zzz-default-settingsim
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
+
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
