@@ -17,13 +17,10 @@ env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   #  https://github.com/loso3000/immortalwrt-1.git
   REPO_BRANCH: openwrt-18.06-k5.4
-  FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config-dzim
-  DIY_P1_SH: im.sh
+  CONFIG_FILE: script/asuper.config
+  DIY_P1_SH: script/asuper.sh
   DIY_P2_SH: script/clash-core.sh
-  
-  
-  
+
   TZ: Asia/Shanghai
   
 permissions:
