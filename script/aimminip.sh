@@ -216,8 +216,9 @@ sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
-git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
-# svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+# git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
+#svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/openwrt-passwall2/luci-app-passwall2 package/luci-app-passwall2
  pushd ./feeds/luci/applications/luci-app-passwall
  sed -i 's,default n,default y,g' Makefile
  popd
