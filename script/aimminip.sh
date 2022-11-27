@@ -18,6 +18,7 @@ rm -rf ./feeds/packages/net/open-app-filter
 rm -rf ./feeds/packages/utils/cupsd
 rm -rf ./feeds/packages/utils/cups-bjnp
 rm -rf ./feeds/luci/applications/luci-app-cupsd
+rm -rf ./feeds/luci/applications/luci-app-beardropper
 
 # 清理
 # rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-ikoolproxy,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind}
@@ -38,16 +39,16 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 # Add ddnsto & linkease
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
-svn co https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
+svn export  https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
+svn export  https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
+svn export  https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
 sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
-svn co https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
+svn export  https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
 # svn co https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
 # git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
@@ -58,8 +59,8 @@ sed -i "/filter_aaaa='1'/d" package/luci-app-mosdns/root/etc/init.d/mosdns
 #upnp
 #rm -rf ./feeds/packages/net/miniupnpd
 #svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
-#rm -rf ./feeds/luci/applications/luci-app-upnp
-#svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
+rm -rf ./feeds/luci/applications/luci-app-upnp
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./package/diy/upnpd
 
 mkdir -p ./package/lean
@@ -67,25 +68,25 @@ mv ./package/other/up/autocore ./package/lean/autocore
 rm -rf ./package/lean/autocore  
 rm -rf ./package/other/up/autocore
 rm -rf  ./package/emortal/autocore
-# svn co https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
+svn export  https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
 
 
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount-ntfs3g
 rm -rf ./package/lean/automount  
 rm -rf ./package/other/up/automount
 rm -rf  package/emortal/automount
-svn co https://github.com/loso3000/other/trunk/up/automount-ntfs3g ./package/lean/automount
+svn export  https://github.com/loso3000/other/trunk/up/automount-ntfs3g ./package/lean/automount
  
  
 mv ./package/other/up/default-settings ./package/lean/default-settings
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings 
 rm -rf ./package/other/up/default-settings
-svn co https://github.com/loso3000/other/trunk/up/default-settings ./package/lean/default-settings
+svn export  https://github.com/loso3000/other/trunk/up/default-settings ./package/lean/default-settings
 
 # rm -rf  ./package/system/fstools
 rm -rf  ./package/other/up/fstools
-# svn co https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
+# svn export  https://github.com/loso3000/other/trunk/up/fstools ./package/system/fstools
 
 echo "poweroff"
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
@@ -100,56 +101,58 @@ sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./packages/new/luci-app-smartdns
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./packages/new/luci-app-smartdns
 
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./packages/new/luci-app-control-speedlimit
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./packages/new/luci-app-control-speedlimit
 
 rm -rf ./feeds/luci/applications/luci-app-cupsd
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd ./packages/luci-app-cupsd
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd ./packages/luci-app-cupsd
 
 rm -rf ./feeds/packages/net/adguardhome
 svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./packages/luci-app-adguardhome
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./packages/luci-app-adguardhome
 
 rm -rf ./feeds/luci/applications/luci-app-advanced
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./packages/luci-app-advanced
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./packages/luci-app-advanced
 
 rm -rf ./feeds/luci/applications/luci-app-rebootschedule
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootschedule ./packages/luci-app-rebootschedule
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootschedule ./packages/luci-app-rebootschedule
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootschedule ./feeds/luci/applications/luci-app-rebootschedule
 
 rm -rf ./feeds/luci/applications/luci-app-wizard
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard  ./packages/luci-app-wizard
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard  ./packages/luci-app-wizard
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard  ./feeds/luci/applications/luci-app-wizard
 
 rm -rf ./feeds/luci/applications/wrtbwmon
 rm -rf ./feeds/packages/net/wrtbwmon
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./feeds/packages/net/wrtbwmon
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./feeds/packages/net/wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./feeds/luci/applications/wrtbwmon
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./feeds/luci/applications/wrtbwmon
 
 rm -rf ./feeds/luci/applications/luci-app-wolplus
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus  ./packages/luci-app-wolplus
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus  ./packages/luci-app-wolplus
 
 rm -rf ./feeds/luci/applications/luci-theme-argon
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon  ./packages/luci-theme-argon
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon  ./packages/luci-theme-argon
 
 rm -rf ./feeds/luci/applications/luci-theme-opentopd
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd  ./packages/luci-theme-opentopd
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd  ./packages/luci-theme-opentopd
 
 rm -rf ./feeds/luci/applications/netspeedtest
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/netspeedtest  ./packages/netspeedtest
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/netspeedtest  ./packages/netspeedtest
 rm -rf ./feeds/luci/applications/lua-maxminddb
 rm -rf ./feeds/packages/net/lua-maxminddb
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/lua-maxminddb ./feeds/packages/net/lua-maxminddb
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/lua-maxminddb ./feeds/packages/net/lua-maxminddb
 
 rm -rf ./feeds/luci/applications/luci-app-control-timewol
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-timewol ./packages/new/luci-app-control-timewol
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-timewol ./packages/new/luci-app-control-timewol
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 
 #rm -rf ./feeds/luci/applications/luci-app-arpbind
 #svn co https://github.com/loso3000/other/trunk/up/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
@@ -203,7 +206,7 @@ sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/n
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
 
-git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
+svn export  https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/告"), 1)/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
 
 ./feeds/luci/applications/luci-app-openclash
@@ -259,8 +262,8 @@ sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-script
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
 rm -rf ./package/diy/luci-theme-edge
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
-svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
+svn co  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
 # git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
 # git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 # git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
