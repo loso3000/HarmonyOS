@@ -55,7 +55,6 @@ svn export  https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns packa
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 sed -i "/filter_aaaa='1'/d" package/luci-app-mosdns/root/etc/init.d/mosdns
-
 #upnp
 #rm -rf ./feeds/packages/net/miniupnpd
 #svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
@@ -234,6 +233,9 @@ line_number_INCLUDE_V2ray=$[`grep -m1 -n 'Include V2ray' package/passwall/luci-a
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+
+rm -rf ./feeds/packages/net/trojan-plus
+svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
 # VSSR
 # svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
