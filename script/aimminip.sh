@@ -44,20 +44,20 @@ svn export  https://github.com/linkease/nas-packages/trunk/network/services/ ./p
 svn export  https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
 sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
-# svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
+# svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
 svn export  https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
-# svn co https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
-# svn co https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
+# svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
+# svn export https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
 # git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 sed -i "/filter_aaaa='1'/d" package/luci-app-mosdns/root/etc/init.d/mosdns
 #upnp
 #rm -rf ./feeds/packages/net/miniupnpd
-#svn co https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
+#svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
 rm -rf ./feeds/luci/applications/luci-app-upnp
 svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./package/diy/upnpd
@@ -154,7 +154,7 @@ rm -rf ./feeds/luci/applications/luci-app-netdata
 svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 
 #rm -rf ./feeds/luci/applications/luci-app-arpbind
-#svn co https://github.com/loso3000/other/trunk/up/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
+#svn export https://github.com/loso3000/other/trunk/up/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
 #ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 rm -rf ./package/other/up/luci-app-arpbind
 
@@ -166,9 +166,9 @@ rm -rf ./package/other/up/luci-app-arpbind
 # git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
 # samba4
-rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn co https://github.com/loso3000/other/trunk/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+rm -rf ./feeds/luci/applications/luci-app-samba4 &&svn export https://github.com/loso3000/other/trunk/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
-# rm -rf ./feeds/luci/applications/luci-app-socat && svn co https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
+# rm -rf ./feeds/luci/applications/luci-app-socat && svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
 sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
 # ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/feeds/luci/luci-app-socat
 
@@ -238,7 +238,7 @@ rm -rf ./feeds/packages/net/trojan-plus
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
 # VSSR
-# svn co https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
+# svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
 # pushd package/diy/luci-app-vssr
 # sed -i 's,default n,default y,g' Makefile
 # sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
@@ -264,7 +264,7 @@ sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-script
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
 rm -rf ./package/diy/luci-theme-edge
-svn co  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
+svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
 svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
 # git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
 # git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
