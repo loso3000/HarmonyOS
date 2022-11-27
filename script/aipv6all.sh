@@ -100,6 +100,9 @@ sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn co https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
+echo '替换softethervpn5'
+rm -rf ./feeds/packages/net/softethervpn5
+svn co https://github.com/loso3000/other/trunk/up/softethervpn5 ./package/system/softethervpn5
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata
