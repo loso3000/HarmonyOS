@@ -39,7 +39,7 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
+# svn export https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
 # svn export https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
 git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
