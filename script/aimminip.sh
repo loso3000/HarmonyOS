@@ -271,9 +271,9 @@ rm -rf ./feeds/luci/applications/luci-app-openclash package/feeds/packages/luci-
 svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash ./feeds/luci/applications/luci-app-openclash
 
 #bypass
-rm -rf package/other/up/pass/luci-app-bypass package/feeds/packages/luci-app-bypass
+#rm -rf package/other/up/pass/luci-app-bypass package/feeds/packages/luci-app-bypass
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
-git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+#git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
