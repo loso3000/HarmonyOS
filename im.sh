@@ -16,7 +16,7 @@ rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 
 rm -rf ./feeds/packages/utils/cupsd
-rm -rf ./feeds/packages/utils/cups-bjnp
+# rm -rf ./feeds/packages/utils/cups-bjnp
 rm -rf ./feeds/luci/applications/luci-app-cupsd
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 
@@ -104,6 +104,7 @@ sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
+
 rm -rf ./feeds/luci/applications/luci-app-smartdns
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./packages/new/luci-app-smartdns
 
