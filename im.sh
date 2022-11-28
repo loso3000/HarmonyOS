@@ -48,10 +48,10 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
+# svn export  https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns #lean中包含,feeds/packages/net
 # svn export https://github.com/kenzok8/openwrt-packages/trunk/mosdns ./feeds/packages/net/mosdns
-# git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
+git clone https://github.com/sbwml/luci-app-mosdns package/mosdns
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 sed -i "/filter_aaaa='1'/d" package/luci-app-mosdns/root/etc/init.d/mosdns
@@ -125,14 +125,17 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootsch
 svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootschedule ./feeds/luci/applications/luci-app-rebootschedule
 
 rm -rf ./feeds/luci/applications/luci-app-wizard
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard  ./packages/luci-app-wizard
-svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard  ./feeds/luci/applications/luci-app-wizard
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard  ./packages/luci-app-wizard
+# svn export  https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard  ./feeds/luci/applications/luci-app-wizard
+git clone https://github.com/sirpdboy/luci-app-wizard  ./package/luci-app-wizard 
 
 rm -rf ./feeds/luci/applications/wrtbwmon
 rm -rf ./feeds/packages/net/wrtbwmon
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./feeds/packages/net/wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./feeds/luci/applications/wrtbwmon
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./feeds/luci/applications/luci-app-wrtbwmon
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./packages/luci-app-wrtbwmon
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./packages/wrtbwmon
 
 rm -rf ./feeds/luci/applications/luci-app-wolplus
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus  ./packages/luci-app-wolplus
@@ -150,7 +153,10 @@ rm -rf ./feeds/packages/net/lua-maxminddb
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/lua-maxminddb ./feeds/packages/net/lua-maxminddb
 
 rm -rf ./feeds/luci/applications/luci-app-control-timewol
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-timewol ./packages/new/luci-app-control-timewol
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-timewol ./packages/luci-app-control-timewol
+
+rm -rf ./feeds/luci/applications/luci-app-fileassistant
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-fileassistant ./packages/luci-app-fileassistant
 
 rm -rf ./feeds/packages/net/softethervpn5
 svn export https://github.com/loso3000/other/trunk/up/softethervpn5 ./package/system/softethervpn5
@@ -167,9 +173,16 @@ rm -rf ./package/other/up/luci-app-arpbind
 # docker
 # rm -rf ./feeds/luci/applications/luci-app-dockerman
 # rm -rf ./feeds/luci/applications/luci-app-docker
-# rm -rf ./feeds/luci/collections/luci-lib-docker
-# git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/new/luci-lib-docker
+# rm -rf ./package/diy/luci-app-dockerman
+# rm -rf ./feeds/packages/utils/docker
+# Add luci-app-dockerman
+rm -rf ./feeds/luci/collections/luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/lean/luci-lib-docker
 # git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
+# sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
+# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+# sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.10
+# sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.15
 
 # Add luci-aliyundrive-webdav
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
@@ -238,7 +251,7 @@ git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilt
 
 
 svn export  https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
-sed -i 's/告"), 1)/告"), 11)/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
+sed -i 's/1).d/11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
 
 # ChinaDNS
 # git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
