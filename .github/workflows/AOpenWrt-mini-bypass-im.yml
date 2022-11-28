@@ -124,6 +124,8 @@ jobs:
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
+        
+          ./scripts/feeds install -a
           make defconfig
           
 
