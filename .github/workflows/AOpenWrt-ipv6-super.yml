@@ -122,11 +122,11 @@ jobs:
       - name: Generate configuration file
         run: |
           cd openwrt
+          ./scripts/feeds install -a
           make defconfig
       - name: Make download
         run: |
           cd openwrt
-          ./scripts/feeds install -a
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
       - name: Compile Packages
