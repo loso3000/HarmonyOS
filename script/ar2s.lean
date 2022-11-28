@@ -17,9 +17,32 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # CONFIG_TARGET_IMAGES_GZIP is not set
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
+
+CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb3=y
+# CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
+CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
+
+CONFIG_PACKAGE_kmod-gpu-lima=y
+CONFIG_PACKAGE_kmod-ath9k-htc=y
+CONFIG_PACKAGE_kmod-mt76x0u=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+CONFIG_PACKAGE_kmod-r8125=y
+CONFIG_PACKAGE_kmod-rtw88=y
+CONFIG_PACKAGE_kmod-rtl8812au-ct=y
+CONFIG_PACKAGE_rtl8821ce-firmware=y
+
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_wpad-wolfssl=y
+CONFIG_DRIVER_11AC_SUPPORT=y
+CONFIG_DRIVER_11N_SUPPORT=y
+CONFIG_DRIVER_11W_SUPPORT=y
+
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8125=y
+# CONFIG_PACKAGE_kmod-usb-net-rtl8168 is not set
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
@@ -38,8 +61,8 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 #diy
 # CONFIG_PACKAGE_swconfig=y  #交换机功能
 # CONFIG_PACKAGE_qos-scripts=y  #qos负载脚本
-# CONFIG_PACKAGE_hostapd=y
-# CONFIG_PACKAGE_hostapd-common=y
+CONFIG_PACKAGE_hostapd=y
+CONFIG_PACKAGE_hostapd-common=y
 CONFIG_PACKAGE_e2fsprogs=y
 # CONFIG_PACKAGE_smartmontools=y
 # CONFIG_PACKAGE_luci-proto-ipip=y
@@ -290,24 +313,3 @@ CONFIG_PACKAGE_fdisk=y #分区工具
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 CONFIG_PACKAGE_wget=y
-
-CONFIG_PACKAGE_kmod-usb2=y
-CONFIG_PACKAGE_kmod-usb3=y
-# CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
-CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
-
-CONFIG_PACKAGE_kmod-gpu-lima=y
-CONFIG_PACKAGE_kmod-ath9k-htc=y
-CONFIG_PACKAGE_kmod-mt76x0u=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
-CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-rtw88=y
-CONFIG_PACKAGE_kmod-rtl8812au-ct=y
-CONFIG_PACKAGE_rtl8821ce-firmware=y
-
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
