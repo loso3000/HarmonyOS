@@ -22,8 +22,7 @@ env:
   DIY_P1_SH: script/aipv6all.sh
   DIY_P2_SH: script/clash-core.sh
   TZ: Asia/Shanghai
-  
-    
+
 permissions:
   contents: read
 
@@ -46,8 +45,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
-
- 
       - name: Check server performance
         run: |
          echo "警告⚠"
@@ -85,7 +82,6 @@ jobs:
           sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
-
           sudo timedatectl set-timezone "Asia/Shanghai"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
@@ -101,37 +97,37 @@ jobs:
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+      #- name: Cache
+      #  uses: klever1988/cachewrtbuild@main
+      #  with:
+      #    ccache: 'true'
+      #    prefix: 'openwrt'
+      #    mixkey: 'x86'
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
-         # cp -rf PATCH/r5s.patch ./openwrt/package/diy
          chmod +x ./$DIY_P1_SH
          chmod +x ./$DIY_P2_SH
-         sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
-
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
+         
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
-         $GITHUB_WORKSPACE/$DIY_P2_SH armv8
-         # patch -p1 <../PATCH/r5s.patch
+         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
           make defconfig
-      - name: Make download
-        working-directory: ./openwrt
-        run: |
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
-     
       - name: Compile Packages
-        working-directory: ./openwrt
         id: compile
         run: |
          df -h
+         cd openwrt
+         
          echo -e "$(nproc) thread compile"
          make tools/compile -j$(nproc) || make tools/compile -j72
          make toolchain/compile -j$(nproc) || make toolchain/compile -j72
@@ -139,16 +135,17 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
-        
       - name: Generate Firmware
-        working-directory: ./openwrt
+        id: generate
         run: |
-         df -h
-         # mkdir -p files/etc/uci-defaults/
-         # cp ../scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-         make package/install -j$(nproc) || make package/install -j1 V=s
-         make target/install -j$(nproc) || make target/install -j1 V=s
-         make checksum
+          cd openwrt
+          df -h
+          mkdir -p files/etc/uci-defaults/
+          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+          make package/install -j$(nproc) || make package/install -j1 V=s
+          make target/install -j$(nproc) || make target/install -j1 V=s
+          make checksum
+        
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwarer2s
@@ -156,9 +153,20 @@ jobs:
           find ./openwrt/bin/targets/ -name "*r2s*sysupgrade.img*" | xargs -i mv -f {} ./firmwarer2s
           cd ./firmwarer2s
           gzip *.img | true
+          
+          
+          echo -e "Sirpdboy-R2S-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt
           find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r4s*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
           cd ${{ env.FIRMWARE }}/firmwarer4s
           gzip *.img | true
+          
+          echo -e "Sirpdboy-R4S-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
