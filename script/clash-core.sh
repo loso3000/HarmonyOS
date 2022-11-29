@@ -15,3 +15,15 @@ wget -qO- $clash_tun_url | gunzip -c > files/etc/openclash/core/clash_tun
 wget -qO- $clash_game_url | tar xOvz > files/etc/openclash/core/clash_game
 
 chmod +x files/etc/openclash/core/clash*
+
+export DEVICE_PLATFORM=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | awk -F '"' '{print $2}')
+mkdir -p files/etc/opkg
+pushd files/etc/opkg
+cat <<-EOF > "distfeeds.conf"
+src/gz openwrt_base https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/base
+src/gz openwrt_luci https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/luci
+src/gz openwrt_packages https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/packages
+src/gz openwrt_routing https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/routing
+src/gz openwrt_telephony https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/telephony
+EOF
+popd
