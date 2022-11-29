@@ -23,7 +23,7 @@ rm -rf ./feeds/luci/applications/luci-app-beardropper package/feeds/packages/luc
 # 清理
 # rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-ikoolproxy,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind}
 # rm -rf package/*/{autocore,autosamba,default-settings}
-rm -rf feeds/*/*/{luci-app-aria2,luci-app-smartdns,smartdns,luci-app-beardropper,luci-app-socat,luci-app-adguardhome,luci-app-wolplus,luci-app-arpbind,luci-app-netdata,open-app-filter,luci-app-wrtbwmon,luci-app-samba4}
+# rm -rf feeds/*/*/{luci-app-aria2,luci-app-smartdns,smartdns,luci-app-beardropper,luci-app-socat,luci-app-adguardhome,luci-app-wolplus,luci-app-arpbind,luci-app-netdata,open-app-filter,luci-app-wrtbwmon,luci-app-samba4}
 
 git clone https://github.com/loso3000/other ./package/other
 # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
@@ -104,13 +104,19 @@ sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,in
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 
 echo '替换smartdns'
-rm -rf ./feeds/packages/net/smartdns package/feeds/packages/smartdns
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
-svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/smartdns ./feeds/packages/net/smartdns
+# rm -rf ./feeds/packages/net/smartdns package/feeds/packages/smartdns
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
+# svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/smartdns ./feeds/packages/net/smartdns
 
-rm -rf ./feeds/luci/applications/luci-app-smartdns  package/feeds/packages/luci-app-smartdns
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./packages/new/luci-app-smartdns
-svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-smartdns ./packages/a/luci-app-smartdns
+# rm -rf ./feeds/luci/applications/luci-app-smartdns  package/feeds/packages/luci-app-smartdns
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./packages/new/luci-app-smartdns
+# svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-smartdns ./packages/a/luci-app-smartdns
+
+# SmartDNS
+rm -rf ./feeds/packages/net/smartdns
+svn export https://github.com/Lienol/openwrt-packages/trunk/net/smartdns feeds/packages/net/smartdns
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 
 rm -rf ./feeds/luci/applications/luci-app-control-speedlimit package/feeds/packages/luci-app-control-speedlimit
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./packages/new/luci-app-control-speedlimit
@@ -184,9 +190,10 @@ svn export https://github.com/loso3000/other/trunk/up/softethervpn5 ./package/sy
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata ./feeds/luci/applications/luci-app-netdata
 
-#rm -rf ./feeds/luci/applications/luci-app-arpbind
-#svn export https://github.com/loso3000/other/trunk/up/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
-#ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
+
+rm -rf ./feeds/luci/applications/luci-app-arpbind
+svn export https://github.com/loso3000/other/trunk/up/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
+ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 rm -rf ./package/other/up/luci-app-arpbind
 
 # docker
@@ -237,9 +244,17 @@ sed -i 's/GO_VERSION_PATCH:=.*/GO_VERSION_PATCH:=2/g' feeds/packages/lang/golang
 sed -i 's/PKG_HASH:=.*/PKG_HASH:=2ce930d70a931de660fdaf271d70192793b1b240272645bf0275779f6704df6b/g' feeds/packages/lang/golang/golang/Makefile
 # svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 
-# rm -rf ./feeds/luci/applications/luci-app-socat && svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
+svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-syncthing package/luci-app-syncthing
+cp -r package/luci-app-syncthing/po/zh_Hans/ package/luci-app-syncthing/po/zh-cn/
+svn export https://github.com/immortalwrt/packages/trunk/utils/syncthing package/syncthing
+# Syncthing 1.20.4 -> 1.22.0 由于 golang 升级 1.19.X
+sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.22.0/g' package/syncthing/Makefile
+sed -i 's/PKG_HASH:=.*/PKG_HASH:=b9644e814b4c7844a59e4e7705c550361cb4ed6c36bf9b46617de386ee2dad45/g' package/syncthing/Makefile
+
+rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-socat ./feeds/luci/applications/luci-app-socat
 sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
-# ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/feeds/luci/luci-app-socat
+ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/feeds/luci/luci-app-socat
 
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
@@ -265,28 +280,62 @@ echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-f
 sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 
 
+echo '灰色歌曲'
+rm -rf ./feeds/luci/applications/luci-app-unblockmusic
+git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
+sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
+
 #断线不重拨
 sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #echo "其他修改"
 sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
 
+# echo '默认开启 Irqbalance'
+# sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
+
+# Add mentohust & luci-app-mentohust
+git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust package/luci-app-mentohust
+git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
+
+# 全能推送
+rm -rf ./feeds/luci/applications/luci-app-pushbot && \
+git clone https://github.com/zzsj0928/luci-app-pushbot ./feeds/luci/applications/luci-app-pushbot
+rm -rf ./feeds/luci/applications/luci-app-jd-dailybonus && \
+git clone https://github.com/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/applications/luci-app-jd-dailybonus
+rm -rf ./feeds/luci/applications/luci-app-serverchan && \
+git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
+
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
+#koolproxy
+git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
+sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
 
-svn export https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
-sed -i 's/1).d/11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua  #koolproxy
+# svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
+svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash package/new/luci-app-openclash
+
+# Fix libssh
+# rm -rf feeds/packages/libs
+svn export https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
+# Add apk (Apk Packages Manager)
+svn export https://github.com/openwrt/packages/trunk/utils/apk package/new/
 
 # ChinaDNS
 # git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 
 rm -rf ./feeds/luci/applications/chinadns-ng package/feeds/packages/chinadns-ng
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
-rm -rf ./feeds/luci/applications/luci-app-openclash package/feeds/packages/luci-app-openclash
-svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash ./feeds/luci/applications/luci-app-openclash
+# CPU 控制相关
+rm -rf  feeds/luci/applications/luci-app-cpufreq
+svn export -r 19495 https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
+ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
+sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
+sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
+sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 
 #bypass
-rm -rf package/other/up/pass/luci-app-bypass  # package/feeds/packages/luci-app-bypass
+rm -rf package/other/up/pass/luci-app-bypass 
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
 git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
@@ -317,11 +366,12 @@ rm -rf ./feeds/packages/net/trojan-plus package/feeds/packages/trojan-plus
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus ./feeds/packages/net/trojan-plus
 
 # VSSR
-# svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
-# pushd package/diy/luci-app-vssr
-# sed -i 's,default n,default y,g' Makefile
-# sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
-# popd
+rm -rf ./feeds/luci/applications/luci-app-vssr ./package/feeds/packages/luci-app-vssr
+svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
+pushd package/diy/luci-app-vssr
+sed -i 's,default n,default y,g' Makefile
+sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
+popd
 
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
