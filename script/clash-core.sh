@@ -22,7 +22,7 @@ DEVICE_SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{pri
 mkdir -p files/etc/opkg
 pushd files/etc/opkg
 cat <<-EOF > "distfeeds.conf"
-src/gz openwrt_core https://openwrt.cc/snapshots/$DEVICE_TARGET/$DEVICE_SUBTARGET/packages
+src/gz openwrt_core https://openwrt.cc/snapshots/targets/$DEVICE_TARGET/$DEVICE_SUBTARGET/packages
 src/gz openwrt_base https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/base
 src/gz openwrt_luci https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/luci
 src/gz openwrt_packages https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/packages
