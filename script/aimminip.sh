@@ -107,10 +107,15 @@ sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns package/feeds/packages/smartdns
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
+svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/smartdns ./feeds/packages/net/smartdns
+
 rm -rf ./feeds/luci/applications/luci-app-smartdns  package/feeds/packages/luci-app-smartdns
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./packages/new/luci-app-smartdns
+svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-smartdns ./packages/a/luci-app-smartdns
+
 rm -rf ./feeds/luci/applications/luci-app-control-speedlimit package/feeds/packages/luci-app-control-speedlimit
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./packages/new/luci-app-control-speedlimit
+svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-control-speedlimit ./packages/a/luci-app-control-speedlimit
 
 rm -rf ./feeds/luci/applications/luci-app-cupsd package/feeds/packages/luci-app-cupsd 
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd ./packages/luci-app-cupsd
@@ -122,15 +127,20 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/
 
 rm -rf ./feeds/packages/net/adguardhome package/feeds/packages/adguardhome
 svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
+svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/adguardhome feeds/packages/net/adguardhome
+
 rm -rf ./feeds/luci/applications/luci-app-adguardhome package/feeds/packages/luci-app-adguardhome
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardhome ./packages/luci-app-adguardhome
+svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-adguardhome./packages/a/luci-app-adguardhome
 
 rm -rf ./feeds/luci/applications/luci-app-advanced package/feeds/packages/luci-app-advanced
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./packages/luci-app-advanced
+svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-advanced./packages/a/luci-app-advanced
 
 rm -rf ./feeds/luci/applications/luci-app-rebootschedule package/feeds/packages/luci-app-rebootschedule
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootschedule ./packages/luci-app-rebootschedule
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootschedule ./packages/luci-app-rebootschedule
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootschedule ./feeds/luci/applications/luci-app-rebootschedule
+svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-rebootschedule ./packages/luci-app-rebootschedule
 
 rm -rf ./feeds/luci/applications/luci-app-wizard package/feeds/packages/luci-app-wizard
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard  ./packages/luci-app-wizard
@@ -275,10 +285,11 @@ rm -rf ./feeds/luci/applications/luci-app-openclash package/feeds/packages/luci-
 svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash ./feeds/luci/applications/luci-app-openclash
 
 #bypass
-rm -rf package/other/up/pass/luci-app-bypass package/feeds/packages/luci-app-bypass
+rm -rf package/other/up/pass/luci-app-bypass  # package/feeds/packages/luci-app-bypass
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
 git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' package/bypass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
@@ -302,7 +313,7 @@ sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-pa
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 
 rm -rf ./feeds/packages/net/trojan-plus package/feeds/packages/trojan-plus
-svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus ./feeds/packages/net/trojan-plus
 
 # VSSR
 # svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
