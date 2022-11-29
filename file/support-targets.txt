@@ -1,3 +1,0 @@
-# This file include supported targets 
-rockchip/armv8
-x86/64
