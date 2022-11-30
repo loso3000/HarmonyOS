@@ -90,13 +90,13 @@ sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,in
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 
 echo '替换smartdns'
-rm -rf ./feeds/packages/net/smartdns package/feeds/packages/smartdns
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
-svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/smartdns ./package/new/smartdns
+# rm -rf ./feeds/packages/net/smartdns package/feeds/packages/smartdns
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
+# svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/smartdns ./package/new/smartdns
 
-rm -rf ./feeds/luci/applications/luci-app-smartdns  package/feeds/packages/luci-app-smartdns
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./package/new/luci-app-smartdns
-svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+# rm -rf ./feeds/luci/applications/luci-app-smartdns  package/feeds/packages/luci-app-smartdns
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./package/new/luci-app-smartdns
+# svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 # SmartDNS
 # rm -rf ./feeds/packages/net/smartdns  ./package/feeds/packages/smartdns
 # svn export https://github.com/Lienol/openwrt-packages/trunk/net/smartdns feeds/packages/net/smartdns
@@ -156,9 +156,9 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon  
 rm -rf ./feeds/luci/applications/netspeedtest
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/netspeedtest  ./packages/netspeedtest
 
-rm -rf ./feeds/luci/applications/lua-maxminddb
-rm -rf ./feeds/packages/net/lua-maxminddb package/feeds/packages/lua-maxminddb
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/lua-maxminddb ./feeds/packages/net/lua-maxminddb
+# rm -rf ./feeds/luci/applications/lua-maxminddb
+# rm -rf ./feeds/packages/net/lua-maxminddb package/feeds/packages/lua-maxminddb
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/lua-maxminddb ./feeds/packages/net/lua-maxminddb
 
 rm -rf ./feeds/luci/applications/luci-app-control-timewol package/feeds/packages/luci-app-control-timewol
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-timewol ./packages/luci-app-control-timewol
