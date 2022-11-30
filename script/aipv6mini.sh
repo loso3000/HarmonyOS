@@ -320,7 +320,7 @@ svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/new/trojan
 # svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
 rm -rf ./feeds/packages/net/trojan-plus package/feeds/packages/trojan-plus
-svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus ./feeds/packages/net/trojan-plus
+svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 # svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 # svn export https://github.com/sirpdboy/openwrt-trojan-go/trunk/trojan-go package/new/trojan-go
 # svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata  #用sbwml版本更多更好。
