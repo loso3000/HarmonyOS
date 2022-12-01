@@ -89,6 +89,9 @@ curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/powero
 sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-partexp ./feeds/luci/applications/luci-app-partexp
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-partexp ./package/new/luci-app-partexp
+
 echo '替换smartdns'
 # rm -rf ./feeds/packages/net/smartdns package/feeds/packages/smartdns
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
