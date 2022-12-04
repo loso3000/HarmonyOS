@@ -193,4 +193,3 @@ jobs:
         with:
           name: ${{ env.DATA }}-R4sOpenWrt-Ipv6-Vip-Firmware
           path: ./firmwarer4s
-Footer
