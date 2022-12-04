@@ -21,6 +21,7 @@ env:
   DIY_P1_SH: script/bjz.sh
   DIY_P2_SH: script/clash-core.sh
 
+    
   
 permissions:
   contents: read
@@ -34,6 +35,8 @@ jobs:
 
     name: Build OpenWrt firmware
 
+
+
     runs-on: ubuntu-latest
 
     if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
@@ -44,6 +47,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
+          
       - name: Check server performance
         run: |
          echo "警告⚠"
