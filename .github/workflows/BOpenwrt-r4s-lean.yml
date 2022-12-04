@@ -1,4 +1,4 @@
-name: Openwrt-r4s-lean
+name: BOpenwrt-r4s-lean
          
 on:
   repository_dispatch:
@@ -17,7 +17,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: r4s.lean
+  CONFIG_FILE: script/br4s.lean
   DIY_P1_SH: script/initmini.sh
   DIY_P2_SH: script/clash-core.sh
   
