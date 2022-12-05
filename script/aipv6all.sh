@@ -283,8 +283,8 @@ sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/n
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 # Add mentohust & luci-app-mentohust
-git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust package/luci-app-mentohust
-git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
+# git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust package/luci-app-mentohust
+# git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
 
 # 全能推送
 rm -rf ./feeds/luci/applications/luci-app-pushbot && \
