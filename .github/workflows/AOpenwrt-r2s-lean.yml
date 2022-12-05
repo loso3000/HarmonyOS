@@ -15,8 +15,12 @@ on:
 #    - cron: 0 21 */7 * * 
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  #  https://github.com/loso3000/immortalwrt-1.git
+  REPO_BRANCH: openwrt-18.06-k5.4
+  #REPO_URL: https://github.com/coolsnowwolf/lede
+  #REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/ar2s.lean
   DIY_P1_SH: script/aipv6all.sh
