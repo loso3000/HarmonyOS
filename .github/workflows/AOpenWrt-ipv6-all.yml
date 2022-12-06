@@ -28,7 +28,6 @@ env:
   TZ: Asia/Shanghai
   
   
- 
 permissions:
   contents: read
 
@@ -131,26 +130,12 @@ jobs:
       - name: Compile Packages
         id: compile
         run: |
-         df -h
          cd openwrt
-         echo -e "$(nproc) thread compile"
-         make tools/compile -j$(nproc) || make tools/compile -j72
-         make toolchain/compile -j$(nproc) || make toolchain/compile -j72
-         make target/compile -j$(nproc) || make target/compile -j72 IGNORE_ERRORS=1
-         make diffconfig
-         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
-         make package/index
-         df -h
-      - name: Generate Firmware
-        id: generate
-        run: |
-          cd openwrt
-          df -h
           mkdir -p files/etc/uci-defaults/
           cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-          make package/install -j$(nproc) || make package/install -j1 V=s
-          make target/install -j$(nproc) || make target/install -j1 V=s
-          make checksum
+         make -j$(($(nproc)+1)) || make -j1 V=s
+         
+          df -h
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwareipv6all
