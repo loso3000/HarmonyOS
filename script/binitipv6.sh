@@ -276,9 +276,9 @@ rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
 
 #bypass
-rm -rf package/other/up/pass/luci-app-bypass 
+#rm -rf package/other/up/pass/luci-app-bypass 
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
-git clone https://github.com/kiddin9/openwrt-bypass package/bypass
+#git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/bypass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
