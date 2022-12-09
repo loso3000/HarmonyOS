@@ -136,7 +136,10 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootsch
 ln -sf ../../../feeds/luci/applications/luci-app-rebootschedule ./package/feeds/luci/luci-app-rebootschedule
 
 rm -rf ./feeds/luci/applications/luci-app-wizard package/feeds/packages/luci-app-wizard
-git clone https://github.com/sirpdboy/luci-app-wizard  ./package/luci-app-wizard 
+
+# git clone https://github.com/sirpdboy/luci-app-wizard  ./package/luci-app-wizard 
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard ./package/luci-app-wizard
+
 
 rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./feeds/packages/net/wrtbwmon
