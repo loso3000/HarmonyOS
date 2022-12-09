@@ -15,12 +15,12 @@ on:
 #    - cron: 0 21 */7 * * 
 env:
 
-  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  #REPO_URL: https://github.com/immortalwrt/immortalwrt
   #  https://github.com/loso3000/immortalwrt-1.git
-  REPO_BRANCH: openwrt-18.06-k5.4
+  #REPO_BRANCH: openwrt-18.06-k5.4
 
-  # REPO_URL: https://github.com/coolsnowwolf/lede
-  # REPO_BRANCH: master
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
   CONFIG_FILE: script/aipv6mini
   DIY_P1_SH: script/aipv6mini.sh
   DIY_P2_SH: script/clash-core.sh
