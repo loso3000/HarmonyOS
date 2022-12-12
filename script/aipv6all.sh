@@ -407,11 +407,11 @@ git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-
 # svn export https://github.com/Lienol/openwrt-packages/branches/21.02/net/mwan3 ./feeds/packages/net/mwan3
 # svn export https://github.com/Lienol/openwrt-luci/branches/21.02/applications/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 # cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/mwan3
-
+# cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 #修正nat回流 
-cp -f ./package/other/patch/sysctl.conf ./package/base-files/files/etc/sysctl.conf
-cp -f ./package/other/patch/banner ./package/base-files/files/etc/banner
-cp -f ./package/other/patch/profile package/base-files/files/etc/profile
+cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
+cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
+cat ./package/other/patch/profile > package/base-files/files/etc/profile
 # cp -rf ./package/other/luci/*  ./feeds/luci/*
 
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
