@@ -399,12 +399,13 @@ git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-
 # wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/loso3000/other/master/patch/banner
 # wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/loso3000/other/master/patch/profile
 # wget -qO package/base-files/files/etc/sysctl.conf https://raw.githubusercontent.com/loso3000/other/master/patch/sysctl.conf
-cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/mwan3
+# cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 #修正nat回流 
-cp -f ./package/other/patch/sysctl.conf ./package/base-files/files/etc/sysctl.conf
-cp -f ./package/other/patch/banner ./package/base-files/files/etc/banner
-cp -f ./package/other/patch/profile package/base-files/files/etc/profile
+cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
+cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
+cat ./package/other/patch/profile > package/base-files/files/etc/profile
 # cp -rf ./package/other/luci/*  ./feeds/luci/*
+ 
 
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
 # sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
