@@ -407,11 +407,11 @@ sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/
 # wget -qO package/base-files/files/etc/banner https://raw.githubusercontent.com/loso3000/other/master/patch/banner
 # wget -qO package/base-files/files/etc/profile https://raw.githubusercontent.com/loso3000/other/master/patch/profile
 # wget -qO package/base-files/files/etc/sysctl.conf https://raw.githubusercontent.com/loso3000/other/master/patch/sysctl.conf
-cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/mwan3
+# cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 #修正nat回流 
-cp -f ./package/other/patch/sysctl.conf ./package/base-files/files/etc/sysctl.conf
-cp -f ./package/other/patch/banner ./package/base-files/files/etc/banner
-cp -f ./package/other/patch/profile package/base-files/files/etc/profile
+cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
+cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
+cat ./package/other/patch/profile > package/base-files/files/etc/profile
 # cp -rf ./package/other/luci/*  ./feeds/luci/*
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
