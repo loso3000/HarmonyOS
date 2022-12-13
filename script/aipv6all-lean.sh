@@ -11,7 +11,7 @@ config_generate=package/base-files/files/bin/config_generate
 
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
-rm -rf feeds/luci/applications/luci-app-openvpn-server
+# rm -rf feeds/luci/applications/luci-app-openvpn-server
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 
