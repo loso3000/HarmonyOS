@@ -59,6 +59,7 @@ svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.
 #svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
 rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
+rm -rf  ./package/diy/upnpd
 
 mkdir -p ./package/lean
 mv ./package/other/up/autocore ./package/lean/autocore
