@@ -28,6 +28,9 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
+
+#管控
+sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # 可以设置汉字名字
