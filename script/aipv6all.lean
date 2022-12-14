@@ -466,6 +466,8 @@ CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-partexp=y
+
+CONFIG_PACKAGE_luci-app-arpbind=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 
