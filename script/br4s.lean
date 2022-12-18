@@ -4,8 +4,7 @@ CONFIG_TARGET_rockchip_armv8=y
 CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
-CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
-# CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
+# CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
 # CONFIG_TARGET_ALL_PROFILES=y
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
@@ -43,7 +42,7 @@ CONFIG_DRIVER_11W_SUPPORT=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8125=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8168 is not set
-CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
+# CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
@@ -137,7 +136,7 @@ CONFIG_PACKAGE_luci-app-ttyd=n
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE is not set
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM is not set
-CONFIG_PACKAGE_luci-app-passwall2=n
+CONFIG_PACKAGE_luci-app-passwall2=y
 # CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Trojan
 CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=y
@@ -174,7 +173,7 @@ CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
-CONFIG_PACKAGE_luci-app-nlbwmon=y
+# CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-ddnsto=n
 CONFIG_PACKAGE_luci-app-pushbot=y
@@ -222,7 +221,7 @@ CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-pptpserver=n
 CONFIG_PACKAGE_luci-app-n2n=n
 CONFIG_PACKAGE_luci-app-wizard=y
-CONFIG_PACKAGE_luci-app-fileassistant=y
+CONFIG_PACKAGE_luci-app-fileassistant=n
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
 # CONFIG_PACKAGE_bandwidthd=y
 CONFIG_PACKAGE_luci-app-alist=n
@@ -279,6 +278,7 @@ CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-app-partexp=y
+CONFIG_PACKAGE_luci-app-arpbin=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 
