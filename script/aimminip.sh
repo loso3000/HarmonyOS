@@ -96,13 +96,13 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-partexp .
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-partexp ./package/new/luci-app-partexp
 
 echo '替换smartdns'
-# rm -rf ./feeds/packages/net/smartdns package/feeds/packages/smartdns
+rm -rf ./feeds/packages/net/smartdns package/feeds/packages/smartdns
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
-# svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/smartdns ./package/new/smartdns
+svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/smartdns ./package/new/smartdns
 
-# rm -rf ./feeds/luci/applications/luci-app-smartdns  package/feeds/packages/luci-app-smartdns
+rm -rf ./feeds/luci/applications/luci-app-smartdns  package/feeds/packages/luci-app-smartdns
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns ./package/new/luci-app-smartdns
-# svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 # SmartDNS
 # rm -rf ./feeds/packages/net/smartdns  ./package/feeds/packages/smartdns
 # svn export https://github.com/Lienol/openwrt-packages/trunk/net/smartdns feeds/packages/net/smartdns
