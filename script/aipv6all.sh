@@ -15,6 +15,8 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 
+
+rm -rf ./feedspackages/utils/cups/
 rm -rf ./feeds/packages/utils/cupsd
 rm -rf ./feeds/luci/applications/luci-app-cupsd
 
