@@ -158,11 +158,10 @@ jobs:
         run: |
           mkdir -p ./firmwarer2s
           mkdir -p ./firmwarer4s
+          mkdir -p ./firmwarer5s
           find ./openwrt/bin/targets/ -name "*r2s*sysupgrade.img*" | xargs -i mv -f {} ./firmwarer2s
           cd ./firmwarer2s
           gzip *.img | true
-          
-          
           echo -e "Sirpdboy-R2S-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
@@ -170,8 +169,14 @@ jobs:
           find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r4s*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
           cd ${{ env.FIRMWARE }}/firmwarer4s
           gzip *.img | true
-          
           echo -e "Sirpdboy-R4S-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r5*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
+          cd ${{ env.FIRMWARE }}/firmwarer5s
+          gzip *.img | true
+          echo -e "Sirpdboy-R5S-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
@@ -185,3 +190,8 @@ jobs:
         with:
           name: ${{ env.DATA }}-R4sOpenWrt-Ipv6-Vip-Firmware
           path: ./firmwarer4s
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-R5sOpenWrt-Ipv6-Vip-Firmware
+          path: ./firmwarer5s
