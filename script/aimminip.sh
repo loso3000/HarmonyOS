@@ -20,7 +20,7 @@ rm -rf ./feeds/luci/applications/luci-app-beardropper package/feeds/packages/luc
 git clone https://github.com/loso3000/other ./package/other
 # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
-git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
+# git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
 #管控
