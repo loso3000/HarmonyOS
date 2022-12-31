@@ -30,6 +30,7 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
+ git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 # nlbwmon
