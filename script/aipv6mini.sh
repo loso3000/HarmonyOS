@@ -49,7 +49,7 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 
-rm -rf ./package/diy/netspeedtest
+# rm -rf ./package/diy/netspeedtest
 
 rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns
