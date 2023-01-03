@@ -165,7 +165,7 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon  
 
 
 rm -rf ./feeds/luci/applications/netspeedtest
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/netspeedtest  ./packages/netspeedtest
+svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
 # rm -rf ./feeds/luci/applications/lua-maxminddb
 # rm -rf ./feeds/packages/net/lua-maxminddb package/feeds/packages/lua-maxminddb
