@@ -1,6 +1,6 @@
 
 #!/bin/bash
-# rm -rf /package/lean/r8168/patches/020-5.18-support.patch
+rm -rf /package/lean/r8168/patches/020-5.18-support.patch
 mkdir -p files/etc/openclash/core
 # sed -i "s/PKG_HASH:=.*/PKG_HASH:=5de8c8e29aaa3fb9cc6b47bb27299f271354ebb72514e3accadc7d38b5bbaa72/g"  ./feeds/packages/utils/jq/Makefile
 
