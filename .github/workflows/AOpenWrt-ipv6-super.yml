@@ -19,7 +19,7 @@ env:
   REPO_BRANCH: openwrt-18.06-k5.4
   CONFIG_FILE: script/asuper.config
   DIY_P1_SH: script/asuper.sh
-  DIY_P2_SH: script/clash-core.sh
+  DIY_P2_SH: script/diy-clash-im.sh
 
   TZ: Asia/Shanghai
   
