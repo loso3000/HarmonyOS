@@ -23,7 +23,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/aimminip
   DIY_P1_SH: script/aimminip.sh
-  DIY_P2_SH: script/clash-core.sh
+  DIY_P2_SH: script/diy-clash-im.sh
   
 permissions:
   contents: read
