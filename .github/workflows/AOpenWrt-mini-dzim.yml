@@ -21,7 +21,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config-dzim
   DIY_P1_SH: im.sh
-  DIY_P2_SH: script/clash-core.sh
+  DIY_P2_SH: script/diy-clash-im.sh
   
  
   TZ: Asia/Shanghai
