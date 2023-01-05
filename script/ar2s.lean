@@ -136,14 +136,14 @@ CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is not set
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
 CONFIG_PACKAGE_luci-app-smartdns=y
-CONFIG_PACKAGE_luci-app-ttyd=n
+CONFIG_PACKAGE_luci-app-ttyd=y
 CONFIG_PACKAGE_luci-app-turboacc=n
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE is not set
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM is not set
-CONFIG_PACKAGE_luci-app-passwall2=n
+CONFIG_PACKAGE_luci-app-passwall2=y
 # CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Trojan
-CONFIG_PACKAGE_luci-app-passwall=n
+CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=y
@@ -173,11 +173,11 @@ CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Server=y
 # CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan
-CONFIG_PACKAGE_luci-app-bypass=n
+CONFIG_PACKAGE_luci-app-bypass=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan
-CONFIG_PACKAGE_luci-app-wrtbwmon=n
+CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-ddnsto=n
@@ -185,8 +185,8 @@ CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
-CONFIG_PACKAGE_luci-app-mentohust=n
-CONFIG_PACKAGE_luci-app-easymesh=n
+CONFIG_PACKAGE_luci-app-mentohust=y
+CONFIG_PACKAGE_luci-app-easymesh=y
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
@@ -225,7 +225,7 @@ CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-pptpserver=n
 CONFIG_PACKAGE_luci-app-n2n=n
-CONFIG_PACKAGE_luci-app-wizard=n
+CONFIG_PACKAGE_luci-app-wizard=y
 CONFIG_PACKAGE_luci-app-fileassistant=y
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
 # CONFIG_PACKAGE_bandwidthd=y
@@ -252,7 +252,7 @@ CONFIG_PACKAGE_luci-app-cifs-mount=n
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
-CONFIG_PACKAGE_luci-app-mwan3=n
+CONFIG_PACKAGE_luci-app-mwan3=y
 CONFIG_PACKAGE_luci-app-minidlna=n
 CONFIG_PACKAGE_luci-app-rclone=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
@@ -262,10 +262,10 @@ CONFIG_PACKAGE_luci-app-pppoe-server=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-server=n
 CONFIG_PACKAGE_luci-app-koolddns=n
-CONFIG_PACKAGE_luci-app-syncdial=n
+CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=n
-CONFIG_PACKAGE_luci-app-uugamebooster=n
-CONFIG_PACKAGE_luci-app-udpxy=n
+CONFIG_PACKAGE_luci-app-uugamebooster=y
+CONFIG_PACKAGE_luci-app-udpxy=y
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
 CONFIG_PACKAGE_luci-app-transmission=n
@@ -274,14 +274,14 @@ CONFIG_PACKAGE_luci-app-mwan3helper=n
 CONFIG_PACKAGE_luci-app-qbittorrent=n
 CONFIG_PACKAGE_luci-app-familycloud=n
 CONFIG_PACKAGE_luci-app-nps=n
-CONFIG_PACKAGE_luci-app-frpc=n
-CONFIG_PACKAGE_luci-app-frps=n
+CONFIG_PACKAGE_luci-app-frpc=y
+CONFIG_PACKAGE_luci-app-frps=y
 CONFIG_PACKAGE_luci-app-nfs=n
 CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ddns-go=y
-CONFIG_PACKAGE_luci-app-lucky=n
+CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-partexp=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
