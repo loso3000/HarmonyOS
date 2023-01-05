@@ -286,6 +286,40 @@ CONFIG_PACKAGE_luci-app-partexp=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 
+# store
+CONFIG_PACKAGE_kmod-mt7921-common=y
+CONFIG_PACKAGE_kmod-mt79222=y
+CONFIG_PACKAGE_kmod-mt7922-common=y
+CONFIG_PACKAGE_kmod-mt7921e=y
+CONFIG_PACKAGE_kmod-mt7921-firmware=y
+CONFIG_PACKAGE_kmod-mt7921s=y
+CONFIG_PACKAGE_kmod-mt7921u=y
+CONFIG_PACKAGE_kmod-mt7922-firmware=y
+CONFIG_PACKAGE_kmod-mt7921bt-firmware=y
+CONFIG_PACKAGE_kmod-bluetooth=y
+CONFIG_PACKAGE_kmod-mt7922bt-firmware=y
+
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_kmod-ata-core=y
+CONFIG_PACKAGE_luci-app-mtk=y
+CONFIG_PACKAGE_wifi-profile=y
+CONFIG_PACKAGE_wireless-regdb=y
+CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_kmod-mt_wifi=y
+CONFIG_PACKAGE_wpad-wolfssl=y
+CONFIG_DRIVER_11AC_SUPPORT=y
+CONFIG_DRIVER_11N_SUPPORT=y
+CONFIG_DRIVER_11W_SUPPORT=y
+
+CONFIG_PACKAGE_kmod-gpu-lima=y
+CONFIG_PACKAGE_kmod-ath9k-htc=y
+CONFIG_PACKAGE_kmod-mt76x0u=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+CONFIG_PACKAGE_kmod-r8125=y
+CONFIG_PACKAGE_kmod-rtw88=y
+CONFIG_PACKAGE_kmod-rtl8812au-ct=y
+CONFIG_PACKAGE_rtl8821ce-firmware=y
 #docker
 # CONFIG_PACKAGE_luci-app-docker=y
 # CONFIG_PACKAGE_luci-app-dockerman=y
