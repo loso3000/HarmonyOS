@@ -268,7 +268,7 @@ CONFIG_DEFAULT_kmod-sound-i8x0=y
 CONFIG_DEFAULT_kmod-sound-via82xx=y
 CONFIG_DEFAULT_kmod-tulip=y
 CONFIG_DEFAULT_kmod-usb-hid=y
-CONFIG_PACKAGE_kmod-r8101=y
+# CONFIG_PACKAGE_kmod-r8101=y
 
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-asix=y
