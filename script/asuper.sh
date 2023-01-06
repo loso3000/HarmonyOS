@@ -20,7 +20,8 @@ rm -rf ./feeds/luci/applications/luci-app-beardropper package/feeds/packages/luc
 git clone https://github.com/loso3000/other ./package/other
 # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
- git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
+# git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
+git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
 #管控
@@ -497,8 +498,8 @@ export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = 
 
 date1='Ipv6-Super-Vip-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 
-date1='Ipv6-Super-Vip-R2023.01.01'
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20230101-Ipv6-Super-Vip-5.4-/g' include/image.mk
+# date1='Ipv6-Super-Vip-R2023.01.01'
+# sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20230101-Ipv6-Super-Vip-5.4-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Super-Vip-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
