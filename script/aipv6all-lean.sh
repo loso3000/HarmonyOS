@@ -336,6 +336,7 @@ echo ' ShadowsocksR Plus+'
 # ShadowsocksR Plus+ 依赖
 rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
+
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook feeds/packages/net/brook
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
