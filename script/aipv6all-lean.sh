@@ -314,21 +314,21 @@ sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Make
 # svn export https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
- pushd ./feeds/luci/applications/luci-app-passwall
- sed -i 's,default n,default y,g' Makefile
- popd
-pushd package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
-popd
+# pushd ./feeds/luci/applications/luci-app-passwall
+#  sed -i 's,default n,default y,g' Makefile
+#  popd
+# pushd package/passwall/luci-app-passwall
+# sed -i 's,default n,default y,g' Makefile
+# popd
 
 line_number_INCLUDE_Xray=$[`grep -m1 -n 'Include Xray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
-sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_Xray'd' package/passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_Xray'd' package/passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_Xray'd' package/passwall/luci-app-passwall/Makefile
 line_number_INCLUDE_V2ray=$[`grep -m1 -n 'Include V2ray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
-sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_V2ray'd' package/passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_V2ray'd' package/passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_V2ray'd' package/passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
 # git clone https://github.com/fw876/helloworld package/ssr
@@ -338,6 +338,7 @@ rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook feeds/packages/net/brook
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
