@@ -23,8 +23,8 @@ git clone https://github.com/loso3000/other ./package/other
 #   git clone https://github.com/gdy666/luci-app-lucky ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
-rm -rf ./package/other/up/OpenAppFilter
-git clone https://github.com/destan19/OpenAppFilter ./package/OpenAppFilter
+#rm -rf ./package/other/up/OpenAppFilter
+#git clone https://github.com/destan19/OpenAppFilter ./package/OpenAppFilter
 
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
