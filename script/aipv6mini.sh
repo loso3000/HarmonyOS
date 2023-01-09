@@ -33,6 +33,10 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 #  git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
+
+rm -rf ./package/other/up/OpenAppFilter
+git clone https://github.com/destan19/OpenAppFilter ./package/OpenAppFilter
+
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # 可以设置汉字名字
