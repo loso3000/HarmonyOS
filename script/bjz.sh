@@ -83,11 +83,13 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upn
 rm -rf  ./package/diy/upnpd
 
 mkdir -p ./package/lean
-mv ./package/other/up/autocore ./package/lean/autocore
+# mv ./package/other/up/myautocore ./package/lean/autocore
 rm -rf ./package/lean/autocore  
 rm -rf ./package/other/up/autocore
-rm -rf  ./package/emortal/autocore package/feeds/packages/autocore
-svn export https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
+rm -rf ./package/other/up/myautocore
+# rm -rf  ./package/emortal/autocore package/feeds/packages/autocore
+svn export https://github.com/loso3000/other/trunk/up/myautocore ./package/lean/autocore
+sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
 
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount-ntfs3g
 rm -rf ./package/lean/automount
@@ -101,7 +103,6 @@ rm -rf ./package/lean/default-settings
 rm -rf  package/emortal/default-settings 
 rm -rf ./package/other/up/default-settings package/feeds/packages/default-settings
 svn export https://github.com/loso3000/other/trunk/up/default-settings ./package/lean/default-settings
-
 
 echo "poweroff"
 curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
