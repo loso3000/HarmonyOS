@@ -122,7 +122,7 @@ jobs:
          
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
-         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
+         $GITHUB_WORKSPACE/$DIY_P2_SH arm64
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
@@ -148,34 +148,53 @@ jobs:
         run: |
           cd openwrt
           df -h
-          mkdir -p files/etc/uci-defaults/
-          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+          # mkdir -p files/etc/uci-defaults/
+          # cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
           make package/install -j$(nproc) || make package/install -j1 V=s
           make target/install -j$(nproc) || make target/install -j1 V=s
+          pushd bin/targets/rockchip/armv8
+          rm -rf openwrt-rockchip-armv8-friendlyarm_nanopi-r2s.manifest
+          rm -rf openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-rootfs.tar.gz
+          rm -rf config.buildinfo
+          rm -rf packages-server.zip
+          
+          echo '--------------img file--------------'
+          ls
+          echo '--------------gz file--------------'
+          gzip *.img || true
+          ls
+          popd
           make checksum
-        
+          
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-RxsOpenWrt-Ipv6-Vip-bin-Firmware
+          path: ./openwrt/bin/targets/
+          
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwarer2s
           mkdir -p ./firmwarer4s
           mkdir -p ./firmwarer5s
+          ls
           find ./openwrt/bin/targets/ -name "*r2s*sysupgrade.img*" | xargs -i mv -f {} ./firmwarer2s
           cd ./firmwarer2s
-          gzip *.img | true
+          #gzip *.img || true
           echo -e "Sirpdboy-R2S-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
           find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r4s*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
           cd ${{ env.FIRMWARE }}/firmwarer4s
-          gzip *.img | true
+          #gzip *.img || true
           echo -e "Sirpdboy-R4S-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
           find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r5*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
           cd ${{ env.FIRMWARE }}/firmwarer5s
-          gzip *.img | true
+          #gzip *.img || true
           echo -e "Sirpdboy-R5S-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
