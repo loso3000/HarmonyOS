@@ -91,6 +91,11 @@ rm -rf ./package/other/up/myautocore
 svn export https://github.com/loso3000/other/trunk/up/myautocore ./package/lean/autocore
 sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
 
+rm -rf ./package/lean/autosamba
+rm -rf ./package/other/up/autosamba-samba4
+svn export https://github.com/loso3000/other/trunk/up/autosamba-samba4 ./package/lean/autosamba
+sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
+
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount-ntfs3g
 rm -rf ./package/lean/automount
 rm -rf ./package/other/up/automount
