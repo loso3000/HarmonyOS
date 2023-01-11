@@ -161,7 +161,8 @@ CONFIG_PACKAGE_luci-proto-ipip=y
 # CONFIG_PACKAGE_fstools=y   #挂载功能
 # CONFIG_PACKAGE_block-mount=y  #挂载功能
 # CONFIG_PACKAGE_ntfsprogs=y  #ntfs.mks分区格式化
-CONFIG_PACKAGE_automount-ntfs=y  #NTFS挂载
+# CONFIG_PACKAGE_automount-ntfs=y  #NTFS挂载
+CONFIG_PACKAGE_automount=y  #NTFS挂载
 
 # CONFIG_PACKAGE_autocore-x86 is not set
 CONFIG_PACKAGE_myautocore-x86=y
