@@ -73,9 +73,9 @@ CONFIG_PACKAGE_e2fsprogs=y
 # CONFIG_PACKAGE_fstools=y   #挂载功能
 # CONFIG_PACKAGE_block-mount=y
 # CONFIG_PACKAGE_ntfsprogs=y  #ntfs.mks分区格式化
-CONFIG_PACKAGE_ntfsmount=y  #NTFS挂载
-# CONFIG_PACKAGE_automount is not set
-CONFIG_PACKAGE_automount-ntfs=y 
+# CONFIG_PACKAGE_ntfsmount=y  #NTFS挂载
+CONFIG_PACKAGE_automount=y
+# CONFIG_PACKAGE_automount-ntfs=y 
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
