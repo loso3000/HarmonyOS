@@ -101,7 +101,8 @@ rm -rf ./package/lean/automount
 rm -rf ./package/other/up/automount
 rm -rf  package/emortal/automount package/feeds/packages/automount
 svn export https://github.com/loso3000/other/trunk/up/automount-ntfs3g ./package/lean/automount
- 
+sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
+
  
 mv ./package/other/up/default-settings ./package/lean/default-settings
 rm -rf ./package/lean/default-settings  
