@@ -70,12 +70,19 @@ rm -rf ./package/other/up/autocore
 rm -rf  ./package/emortal/autocore package/feeds/packages/autocore
 svn export https://github.com/loso3000/other/trunk/up/autocore ./package/lean/autocore
 
+rm -rf ./package/lean/autosamba
+rm -rf ./package/other/up/autosamba-samba4
+rm -rf  package/emortal/autosamba package/feeds/packages/autosamba
+svn export https://github.com/loso3000/other/trunk/up/autosamba-samba4 ./package/lean/autosamba
+sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
+
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount-ntfs3g
 rm -rf ./package/lean/automount
 rm -rf ./package/other/up/automount
 rm -rf  package/emortal/automount package/feeds/packages/automount
 svn export https://github.com/loso3000/other/trunk/up/automount-ntfs3g ./package/lean/automount
 sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
+ 
  
 mv ./package/other/up/default-settings ./package/lean/default-settings
 rm -rf ./package/lean/default-settings  
