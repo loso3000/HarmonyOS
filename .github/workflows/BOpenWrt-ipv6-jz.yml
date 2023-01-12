@@ -169,11 +169,6 @@ jobs:
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
 
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./jz/firmware 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
@@ -184,3 +179,9 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Super-Ipk
           path: ./jz/package
+
+      - name: Upload Firmware wetransfer
+        run: |
+          curl -fsSL git.io/file-transfer | sh
+          ./transfer wet -s -p 16 --no-progress ./jz/firmware 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
