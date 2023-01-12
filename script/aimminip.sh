@@ -77,6 +77,7 @@ sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
 
 rm -rf ./package/lean/autosamba
 rm -rf ./package/other/up/autosamba-samba4
+rm -rf  package/emortal/autosamba package/feeds/packages/autosamba
 svn export https://github.com/loso3000/other/trunk/up/autosamba-samba4 ./package/lean/autosamba
 sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
 
