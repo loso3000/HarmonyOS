@@ -50,7 +50,7 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 # rm -rf ./package/diy/netspeedtest
-svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
+# svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
 rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
 
