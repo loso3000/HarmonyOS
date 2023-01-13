@@ -174,8 +174,8 @@ rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-th
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon  ./packages/luci-theme-argon
 
 
-rm -rf ./feeds/luci/applications/netspeedtest
-svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
+# rm -rf ./feeds/luci/applications/netspeedtest
+# svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
 # rm -rf ./feeds/luci/applications/lua-maxminddb
 # rm -rf ./feeds/packages/net/lua-maxminddb package/feeds/packages/lua-maxminddb
