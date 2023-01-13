@@ -113,7 +113,7 @@ jobs:
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
-         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
+         $GITHUB_WORKSPACE/$DIY_P2_SH arm64
          chmod -R 755 .
           make defconfig
           df -h
@@ -141,8 +141,8 @@ jobs:
         run: |
           cd openwrt
           df -h
-          mkdir -p files/etc/uci-defaults/
-          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+          #mkdir -p files/etc/uci-defaults/
+          #cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
           #mkdir -p files/etc/opkg
           #cp ../configs/opkg/distfeeds-packages-server.conf files/etc/opkg/distfeeds.conf.server
          
