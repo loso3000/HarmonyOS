@@ -29,6 +29,11 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
+git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-autotimeset
+
+# rm -rf ./feeds/luci/applications/netspeedtest
+svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
+
 
 #  git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
@@ -52,11 +57,6 @@ sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
-
-#rm -rf ./package/diy/netspeedtest
-#rm -rf ./feeds/luci/applications/netspeedtest
-rm -rf ./feeds/luci/applications/homebox
-#svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
 rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
 
