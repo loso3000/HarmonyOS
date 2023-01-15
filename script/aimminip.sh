@@ -75,7 +75,7 @@ mkdir -p ./package/lean
 rm -rf ./package/lean/autocore  
 rm -rf ./package/other/up/autocore
 rm -rf ./package/other/up/myautocore
-# rm -rf  ./package/emortal/autocore package/feeds/packages/autocore
+rm -rf  ./package/emortal/autocore package/feeds/packages/autocore
 svn export https://github.com/loso3000/other/trunk/up/myautocore ./package/lean/autocore
 sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
 
