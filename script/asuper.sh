@@ -29,7 +29,7 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-autotimeset
 
 # rm -rf ./feeds/luci/applications/netspeedtest
-svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
+# svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
 
 # nlbwmon
@@ -176,10 +176,6 @@ ln -sf ../../../feeds/luci/applications/luci-app-wolplus ./package/feeds/luci/lu
 
 rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon  ./packages/luci-theme-argon
-
-
-# rm -rf ./feeds/luci/applications/netspeedtest
-# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/netspeedtest  ./packages/netspeedtest
 
 # rm -rf ./feeds/luci/applications/lua-maxminddb
 # rm -rf ./feeds/packages/net/lua-maxminddb package/feeds/packages/lua-maxminddb
