@@ -21,5 +21,5 @@ b=$(echo "$a" | wc -l)
 	}
 uci commit network
 uci commit fstab
-
+ntpd -n -q -p 1.lede.pool.ntp.org
 exit 0
