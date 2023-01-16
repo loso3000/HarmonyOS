@@ -151,7 +151,7 @@ CONFIG_PACKAGE_kmod-ath9k=y
 CONFIG_PACKAGE_kmod-ath9k-common=y
 CONFIG_PACKAGE_kmod-ath9k-htc=y
 
-CONFIG_PACKAGE_kmod-mmc-spi=y
+# CONFIG_PACKAGE_kmod-mmc-spi=y #error 20230116
 # CONFIG_PACKAGE_kmod-mt76=y
 CONFIG_PACKAGE_kmod-mt76-connac=y
 CONFIG_PACKAGE_kmod-mt76-core=y
