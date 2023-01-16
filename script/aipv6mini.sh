@@ -32,7 +32,7 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-autotimeset
 
 # rm -rf ./feeds/luci/applications/netspeedtest
-svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
+# svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
 
 #  git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
