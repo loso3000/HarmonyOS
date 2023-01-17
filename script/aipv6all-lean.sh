@@ -53,8 +53,8 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
 git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-autotimeset
-rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
 
+# rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
 rm -rf ./feeds/luci/applications/luci-app-mwan3
 rm -rf ./feeds/packages/net/mwan3
 mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
