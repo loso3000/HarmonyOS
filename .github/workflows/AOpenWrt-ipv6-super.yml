@@ -8,21 +8,21 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-#  watch:
-#    types: started
+      watch:
+      types: started
 #  schedule:
 #    - cron: 0 21 */7 * * 
 
 env:
+  # REPO_URL: https://github.com/coolsnowwolf/lede
+  
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   #  https://github.com/loso3000/immortalwrt-1.git
   REPO_BRANCH: openwrt-18.06-k5.4
-  CONFIG_FILE: script/asuper.config
-  DIY_P1_SH: script/asuper.sh
+  FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: script/aimminip
+  DIY_P1_SH: script/aimminip.sh
   DIY_P2_SH: script/diy-clash-im.sh
-
-  TZ: Asia/Shanghai
-  
   
 permissions:
   contents: read
@@ -83,12 +83,15 @@ jobs:
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
           sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
           sudo -E apt-get update
-          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
+          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           sudo timedatectl set-timezone "Asia/Shanghai"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
+             sudo timedatectl set-timezone "Asia/Shanghai"
+             sudo mkdir -p /workdir
+             sudo chown $USER:$GROUPS /workdir
       - name: git lede
         working-directory: /workdir
         run: |
@@ -119,35 +122,19 @@ jobs:
       - name: Generate configuration file
         run: |
           cd openwrt
-          make download -j8
+          make download -j32
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
           df -h
       - name: Compile Packages
         id: compile
         run: |
-         df -h
-         cd openwrt
-         echo -e "$(nproc) thread compile"
-         make tools/compile -j$(nproc) || make tools/compile -j72
-         make toolchain/compile -j$(nproc) || make toolchain/compile -j72
-         make target/compile -j$(nproc) || make target/compile -j72 IGNORE_ERRORS=1
-         make diffconfig
-         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
-         make package/index
-         df -h
-      - name: Generate Firmware
-        run: |
-          cd openwrt
-          df -h
-          mkdir -p files/etc/uci-defaults/
-          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-          #mkdir -p files/etc/opkg
-          #cp ../configs/opkg/distfeeds-packages-server.conf files/etc/opkg/distfeeds.conf.server
+         cd openwrt 
+         mkdir -p files/etc/uci-defaults/
+         cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
          
-          make package/install -j$(nproc) || make package/install -j1 V=s
-          make target/install -j$(nproc) || make target/install -j1 V=s
-          make checksum
+         make -j$(($(nproc)+1)) || make -j1 V=s
+         df -h
       - name: Prepare Artifact
         run: |
           mkdir -p ./jz/firmware
