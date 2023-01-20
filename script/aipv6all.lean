@@ -87,17 +87,10 @@ CONFIG_PACKAGE_kmod-usb-dwc3=y
 CONFIG_PACKAGE_kmod-usb-core=y
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-
 CONFIG_PACKAGE_kmod-tg3=y   #BCM5719
 CONFIG_DEFAULT_kmod-via-velocity=y
 CONFIG_DEFAULT_kmod-vmxnet3=y
-
 # CONFIG_PACKAGE_kmod-r8101=y
-
-CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
-CONFIG_PACKAGE_kmod-via-velocity=y
-CONFIG_PACKAGE_kmod-vmxnet3=y
-
 ## File System Drivers
 CONFIG_DEFAULT_kmod-forcedeth=y
 CONFIG_PACKAGE_kmod-fs-f2fs=y
@@ -339,95 +332,7 @@ CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-partexp=y
 
 CONFIG_PACKAGE_luci-app-arpbind=y
-# store
-CONFIG_PACKAGE_kmod-fuse=y
 
-
-# store
-CONFIG_PACKAGE_kmod-mt7921-common=y
-CONFIG_PACKAGE_kmod-mt79222=y
-CONFIG_PACKAGE_kmod-mt7922-common=y
-CONFIG_PACKAGE_kmod-mt7921e=y
-CONFIG_PACKAGE_kmod-mt7921-firmware=y
-CONFIG_PACKAGE_kmod-mt7921s=y
-CONFIG_PACKAGE_kmod-mt7921u=y
-CONFIG_PACKAGE_kmod-mt7922-firmware=y
-CONFIG_PACKAGE_kmod-mt7921bt-firmware=y
-# CONFIG_PACKAGE_kmod-bluetooth=n  #error 
-CONFIG_PACKAGE_kmod-mt7922bt-firmware=y
-
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_kmod-ata-core=y
-CONFIG_PACKAGE_luci-app-mtk=y
-CONFIG_PACKAGE_wifi-profile=y
-CONFIG_PACKAGE_wireless-regdb=y
-CONFIG_PACKAGE_wireless-tools=y
-CONFIG_PACKAGE_kmod-mt_wifi=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
-
-CONFIG_PACKAGE_kmod-gpu-lima=y
-CONFIG_PACKAGE_kmod-ath9k-htc=y
-CONFIG_PACKAGE_kmod-mt76x0u=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
-CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-rtw88=y
-CONFIG_PACKAGE_kmod-rtl8812au-ct=y
-CONFIG_PACKAGE_rtl8821ce-firmware=y
-
-# CONFIG_PACKAGE_kmod-cfg80211=y
-# CONFIG_PACKAGE_kmod-lib80211=y
-# CONFIG_PACKAGE_kmod-libertas-usb=y
-# CONFIG_PACKAGE_kmod-libipw=y
-CONFIG_PACKAGE_kmod-mac80211=y
-# CONFIG_PACKAGE_MAC80211_DEBUGFS=y
-# CONFIG_PACKAGE_MAC80211_MESH=y
-
-
-CONFIG_PACKAGE_iptables-mod-nat-extra=y
-CONFIG_PACKAGE_kmod-usb-serial=y
-CONFIG_PACKAGE_kmod-usb-serial-option=y
-CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-CONFIG_PACKAGE_usb-modeswitch=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_luci-proto-qmi=y
-CONFIG_PACKAGE_qmi-utils=y
-CONFIG_PACKAGE_umbim=y
-CONFIG_PACKAGE_uqmi=y
-CONFIG_PACKAGE_comgt-ncm=y
-CONFIG_PACKAGE_luci-proto-ncm=y
-CONFIG_PACKAGE_comgt=y
-CONFIG_PACKAGE_kmod-usb-acm=y
-CONFIG_PACKAGE_luci-proto-3g=y
-
-CONFIG_PACKAGE_kmod-fuse=y
-# Other Appliciations
-CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_ppp-mod-pptp=y
-CONFIG_PACKAGE_xl2tpd=y 
-CONFIG_PACKAGE_ppp-mod-pppol2tp=y
-CONFIG_PACKAGE_kmod-pppol2tp=y
-CONFIG_PACKAGE_ethtool=y #网卡工具
-CONFIG_PACKAGE_fdisk=y #分区工具
-CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
-CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
-CONFIG_PACKAGE_block-mount=y
-CONFIG_PACKAGE_ipt2socks=y
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_coremark=y
-
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
 # System Utilities
 CONFIG_PACKAGE_acl=y
 CONFIG_PACKAGE_btrfs-progs=y
@@ -484,6 +389,8 @@ CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_wget-ssl=y
+
+CONFIG_PACKAGE_coremark=y
 #docker
 CONFIG_PACKAGE_luci-app-docker=y
 CONFIG_PACKAGE_luci-app-dockerman=y
