@@ -136,8 +136,8 @@ CONFIG_PACKAGE_luci-app-ddns=y
 #diy
 # CONFIG_PACKAGE_automount   #取消AUTO挂载
 # CONFIG_PACKAGE_swconfig=y  #交换机功能
-CONFIG_PACKAGE_hostapd=y
-CONFIG_PACKAGE_hostapd-common=y
+# CONFIG_PACKAGE_hostapd=y
+# CONFIG_PACKAGE_hostapd-common=y
 CONFIG_PACKAGE_e2fsprogs=y
 # CONFIG_PACKAGE_smartmontools=y
 CONFIG_PACKAGE_luci-proto-ipip=y
