@@ -5,6 +5,7 @@ CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
 # CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
+# CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
 # CONFIG_TARGET_ALL_PROFILES=y
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
@@ -30,6 +31,10 @@ CONFIG_PACKAGE_kmod-r8125=y
 CONFIG_PACKAGE_kmod-rtw88=y
 CONFIG_PACKAGE_kmod-rtl8812au-ct=y
 CONFIG_PACKAGE_rtl8821ce-firmware=y
+CONFIG_PACKAGE_kmod-mt7921e=y
+CONFIG_PACKAGE_kmod-mt7921-common=y
+CONFIG_PACKAGE_kmod-mt7922=y
+CONFIG_PACKAGE_kmod-mt7922-common=y
 
 CONFIG_PACKAGE_iw=y
 CONFIG_PACKAGE_iwinfo=y
@@ -42,7 +47,7 @@ CONFIG_DRIVER_11W_SUPPORT=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8125=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8168 is not set
-# CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
@@ -57,19 +62,6 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 # CONFIG_PACKAGE_antfs-mount is not set
 # CONFIG_PACKAGE_kmod-fs-antfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
-#diy
-# CONFIG_PACKAGE_swconfig=y  #交换机功能
-# CONFIG_PACKAGE_qos-scripts=y  #qos负载脚本
-# CONFIG_PACKAGE_hostapd=y
-# CONFIG_PACKAGE_hostapd-common=y
-# CONFIG_PACKAGE_e2fsprogs=y
-# CONFIG_PACKAGE_smartmontools=y
-# CONFIG_PACKAGE_luci-proto-ipip=y
-# CONFIG_PACKAGE_fstools=y   #挂载功能
-# CONFIG_PACKAGE_block-mount=y
-# CONFIG_PACKAGE_ntfsprogs=y  #ntfs.mks分区格式化
-# CONFIG_PACKAGE_ntfsmount=y  #NTFS挂载
-CONFIG_PACKAGE_automount=y
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
@@ -87,10 +79,22 @@ CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_luci-app-ddns=y
 
-# CONFIG_PACKAGE_autocore-arm 
-# CONFIG_PACKAGE_autocore-x86 
-CONFIG_PACKAGE_autocore-x86=n
+#diy
+# CONFIG_PACKAGE_automount   #取消AUTO挂载
+# CONFIG_PACKAGE_swconfig=y  #交换机功能
+# CONFIG_PACKAGE_hostapd=y
+# CONFIG_PACKAGE_hostapd-common=y
+# CONFIG_PACKAGE_e2fsprogs=y
+# CONFIG_PACKAGE_smartmontools=y
+# CONFIG_PACKAGE_luci-proto-ipip=y
+# CONFIG_PACKAGE_fstools=y   #挂载功能
+# CONFIG_PACKAGE_block-mount=y  #挂载功能
+# CONFIG_PACKAGE_ntfsprogs=y  #ntfs.mks分区格式化
+# CONFIG_PACKAGE_automount-ntfs=y  #NTFS挂载
+CONFIG_PACKAGE_automount=y  #NTFS挂载
+
 CONFIG_PACKAGE_autocore-arm=y
+# CONFIG_PACKAGE_myautocore-x86=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 # CONFIG_PACKAGE_autosamba-samba4=y
@@ -112,7 +116,7 @@ CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-timecontrol=n
-CONFIG_PACKAGE_luci-app-webadmin=n
+CONFIG_PACKAGE_luci-app-webadmin=y
 CONFIG_PACKAGE_luci-app-cpulimit=n
 CONFIG_PACKAGE_luci-app-diskman=n
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
@@ -131,7 +135,7 @@ CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
 CONFIG_PACKAGE_luci-app-smartdns=y
 CONFIG_PACKAGE_luci-app-ttyd=n
-# CONFIG_PACKAGE_luci-app-turboacc is not set
+CONFIG_PACKAGE_luci-app-turboacc=n
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE is not set
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM is not set
@@ -150,8 +154,7 @@ CONFIG_PACKAGE_luci-app-ssr-plusdns_Shadowsocks_Libev_Client=y
 CONFIG_PACKAGE_luci-app-ssr-plusdns_INCLUDEINCLUDE_Hysteria=y 
 CONFIG_PACKAGE_luci-app-ssr-plusdns_INCLUDEINCLUDE_NaiveProxy=y 
 CONFIG_PACKAGE_luci-app-ssr-plusdns_INCLUDE_mosdns=y 
-CONFIG_PACKAGE_luci-app-ssr-plus=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus is not set 
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NONE_V2RAY=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_V2ray=y 
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Xray=y 
@@ -161,7 +164,7 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_IPT2Socks=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_NaiveProxy=y 
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Redsocks2=y 
 CONFIG_PACKAGE_luci-app-ssr-plus_Shadowsocks_Libev_Client=y 
-CONFIG_PACKAGE_luci-app-vssr=n
+CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=y
@@ -173,10 +176,10 @@ CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-ddnsto=n
 CONFIG_PACKAGE_luci-app-pushbot=y
-CONFIG_PACKAGE_luci-app-dnsfilter=y
+CONFIG_PACKAGE_luci-app-dnsfilter=n
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
 CONFIG_PACKAGE_luci-app-mentohust=n
@@ -205,6 +208,7 @@ CONFIG_PACKAGE_luci-app-ramfree=n
 CONFIG_PACKAGE_luci-app-bridge=n
 CONFIG_PACKAGE_luci-app-cowbping=n
 CONFIG_PACKAGE_luci-app-beardropper=n
+CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 CONFIG_PACKAGE_luci-app-parentcontrol=y
 CONFIG_PACKAGE_luci-app-https-dns-proxy=n
 CONFIG_PACKAGE_luci-app-https-dns-proxy-whisky=n
@@ -220,7 +224,7 @@ CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-pptpserver=n
 CONFIG_PACKAGE_luci-app-n2n=n
 CONFIG_PACKAGE_luci-app-wizard=y
-CONFIG_PACKAGE_luci-app-fileassistant=n
+CONFIG_PACKAGE_luci-app-fileassistant=y
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
 # CONFIG_PACKAGE_bandwidthd=y
 CONFIG_PACKAGE_luci-app-alist=n
@@ -256,7 +260,7 @@ CONFIG_PACKAGE_luci-app-pppoe-server=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-server=n
 CONFIG_PACKAGE_luci-app-koolddns=n
-CONFIG_PACKAGE_luci-app-syncdial=n
+CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=n
 CONFIG_PACKAGE_luci-app-uugamebooster=y
 CONFIG_PACKAGE_luci-app-udpxy=n
@@ -275,20 +279,53 @@ CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ddns-go=y
-CONFIG_PACKAGE_luci-app-lucky=n
+CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-partexp=y
-CONFIG_PACKAGE_luci-app-arpbind=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 
+# store
+CONFIG_PACKAGE_kmod-mt7921-common=y
+CONFIG_PACKAGE_kmod-mt79222=y
+CONFIG_PACKAGE_kmod-mt7922-common=y
+CONFIG_PACKAGE_kmod-mt7921e=y
+CONFIG_PACKAGE_kmod-mt7921-firmware=y
+CONFIG_PACKAGE_kmod-mt7921s=y
+CONFIG_PACKAGE_kmod-mt7921u=y
+CONFIG_PACKAGE_kmod-mt7922-firmware=y
+CONFIG_PACKAGE_kmod-mt7921bt-firmware=y
+# CONFIG_PACKAGE_kmod-bluetooth=y
+CONFIG_PACKAGE_kmod-mt7922bt-firmware=y
+
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_kmod-ata-core=y
+CONFIG_PACKAGE_luci-app-mtk=y
+CONFIG_PACKAGE_wifi-profile=y
+CONFIG_PACKAGE_wireless-regdb=y
+CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_kmod-mt_wifi=y
+CONFIG_PACKAGE_wpad-wolfssl=y
+CONFIG_DRIVER_11AC_SUPPORT=y
+CONFIG_DRIVER_11N_SUPPORT=y
+CONFIG_DRIVER_11W_SUPPORT=y
+
+CONFIG_PACKAGE_kmod-gpu-lima=y
+CONFIG_PACKAGE_kmod-ath9k-htc=y
+CONFIG_PACKAGE_kmod-mt76x0u=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+CONFIG_PACKAGE_kmod-r8125=y
+CONFIG_PACKAGE_kmod-rtw88=y
+CONFIG_PACKAGE_kmod-rtl8812au-ct=y
+CONFIG_PACKAGE_rtl8821ce-firmware=y
 #docker
-# CONFIG_PACKAGE_luci-app-docker=y
-# CONFIG_PACKAGE_luci-app-dockerman=y
-# # CONFIG_DOCKER_KERNEL_OPTIONS=y
-# CONFIG_DOCKER_NET_ENCRYPT=y
-# CONFIG_DOCKER_NET_MACVLAN=y
-# CONFIG_DOCKER_NET_OVERLAY=y
-# CONFIG_DOCKER_NET_TFTP=y
+CONFIG_PACKAGE_luci-app-docker=y
+CONFIG_PACKAGE_luci-app-dockerman=y
+CONFIG_DOCKER_KERNEL_OPTIONS=y
+ CONFIG_DOCKER_NET_ENCRYPT=y
+ CONFIG_DOCKER_NET_MACVLAN=y
+ CONFIG_DOCKER_NET_OVERLAY=y
+ CONFIG_DOCKER_NET_TFTP=y
 
 # Other Appliciations
 CONFIG_PACKAGE_bash=y
