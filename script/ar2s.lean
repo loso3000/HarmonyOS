@@ -62,20 +62,6 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 # CONFIG_PACKAGE_antfs-mount is not set
 # CONFIG_PACKAGE_kmod-fs-antfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
-#diy
-# CONFIG_PACKAGE_swconfig=y  #交换机功能
-# CONFIG_PACKAGE_qos-scripts=y  #qos负载脚本
-CONFIG_PACKAGE_hostapd=y
-CONFIG_PACKAGE_hostapd-common=y
-CONFIG_PACKAGE_e2fsprogs=y
-# CONFIG_PACKAGE_smartmontools=y
-# CONFIG_PACKAGE_luci-proto-ipip=y
-# CONFIG_PACKAGE_fstools=y   #挂载功能
-# CONFIG_PACKAGE_block-mount=y
-# CONFIG_PACKAGE_ntfsprogs=y  #ntfs.mks分区格式化
-# CONFIG_PACKAGE_ntfsmount=y  #NTFS挂载
-CONFIG_PACKAGE_automount=y
-# CONFIG_PACKAGE_automount-ntfs=y 
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
 CONFIG_PACKAGE_luci-app-upnp=y
