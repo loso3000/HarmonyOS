@@ -28,7 +28,7 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
 
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
-git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-autotimeset
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
 
 # rm -rf ./feeds/luci/applications/netspeedtest
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
@@ -131,7 +131,8 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-s
 
 rm -rf ./feedspackages/utils/cups/
 rm -rf ./feeds/packages/utils/cupsd
-rm -rf ./feeds/luci/applications/luci-app-cupsd package/feeds/packages/luci-app-cupsd 
+rm -rf ./feeds/luci/applications/luci-app-cupsd
+rm -rf ./package/feeds/packages/luci-app-cupsd 
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd ./feeds/luci/applications/luci-app-cupsd
 
 echo '灰色歌曲'
