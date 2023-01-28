@@ -20,17 +20,18 @@ rm -rf ./feeds/luci/applications/luci-app-beardropper package/feeds/packages/luc
 git clone https://github.com/loso3000/other ./package/other
 # git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
-# git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
+#   git clone https://github.com/gdy666/luci-app-lucky ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
-git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
+git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
+#rm -rf ./package/other/up/OpenAppFilter
+#git clone https://github.com/destan19/OpenAppFilter ./package/OpenAppFilter
 
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
-git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-autotimeset
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
 
 # rm -rf ./feeds/luci/applications/netspeedtest
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
-
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -69,7 +70,6 @@ svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.
 rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 
-
 mkdir -p ./package/lean
 # mv ./package/other/up/myautocore ./package/lean/autocore
 rm -rf ./package/lean/autocore  
@@ -85,13 +85,13 @@ rm -rf  package/emortal/autosamba package/feeds/packages/autosamba
 svn export https://github.com/loso3000/other/trunk/up/autosamba-samba4 ./package/lean/autosamba
 sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
 
+
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount-ntfs3g
 rm -rf ./package/lean/automount
 rm -rf ./package/other/up/automount
 rm -rf  package/emortal/automount package/feeds/packages/automount
 svn export https://github.com/loso3000/other/trunk/up/automount-ntfs3g ./package/lean/automount
 sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
- 
  
 mv ./package/other/up/default-settings ./package/lean/default-settings
 rm -rf ./package/lean/default-settings  
@@ -131,7 +131,8 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-s
 
 rm -rf ./feedspackages/utils/cups/
 rm -rf ./feeds/packages/utils/cupsd
-rm -rf ./feeds/luci/applications/luci-app-cupsd package/feeds/packages/luci-app-cupsd 
+rm -rf ./feeds/luci/applications/luci-app-cupsd
+rm -rf ./package/feeds/packages/luci-app-cupsd 
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd ./feeds/luci/applications/luci-app-cupsd
 
 echo '灰色歌曲'
@@ -478,18 +479,6 @@ sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockch
 
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-
-
-#zzz-default-settingsim
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
-
-#sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
 
 #zzz-default-settingsim
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
