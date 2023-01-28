@@ -25,6 +25,8 @@ env:
   DIY_P2_SH: script/clash-core.sh
   TZ: Asia/Shanghai
  
+  
+  
 permissions:
   contents: read
 
@@ -84,15 +86,12 @@ jobs:
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
           sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
           sudo -E apt-get update
-          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
+          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           sudo timedatectl set-timezone "Asia/Shanghai"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
-             sudo timedatectl set-timezone "Asia/Shanghai"
-             sudo mkdir -p /workdir
-             sudo chown $USER:$GROUPS /workdir
       - name: git lede
         working-directory: /workdir
         run: |
@@ -100,12 +99,17 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
-          df -h
       - name: Update feeds
         run: | 
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+      #- name: Cache
+      #  uses: klever1988/cachewrtbuild@main
+      #  with:
+      #    ccache: 'true'
+      #    prefix: 'openwrt'
+      #    mixkey: 'x86'
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
@@ -114,28 +118,45 @@ jobs:
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
+         
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
          $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
-          make defconfig
-          df -h
       - name: Generate configuration file
+
         run: |
-          cd openwrt
-          make download -j32
-          find dl -size -1024c -exec ls -l {} \;
+         cd openwrt
+          make defconfig
+      - name: Make download
+        working-directory: ./openwrt
+        run: |
+          make download -j8
           find dl -size -1024c -exec rm -f {} \;
-          df -h
+          
+               
       - name: Compile Packages
         id: compile
         run: |
+         df -h
+         cd openwrt
+         echo -e "$(nproc) thread compile"
+         make tools/compile -j$(nproc) || make tools/compile -j72
+         make toolchain/compile -j$(nproc) || make toolchain/compile -j72
+         make target/compile -j$(nproc) || make target/compile -j72 IGNORE_ERRORS=1
+         make diffconfig
+         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
+         make package/index
+      - name: Generate Firmware
+        run: |
+         df -h
          cd openwrt 
          mkdir -p files/etc/uci-defaults/
          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-         
-         make -j$(($(nproc)+1)) || make -j1 V=s
-         df -h
+         make package/install -j$(nproc) || make package/install -j1 V=s
+         make target/install -j$(nproc) || make target/install -j1 V=s
+         make checksum
+          echo $?
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwareipv6mini
