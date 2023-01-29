@@ -90,7 +90,7 @@ CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-tg3=y   #BCM5719
 CONFIG_DEFAULT_kmod-via-velocity=y
 CONFIG_DEFAULT_kmod-vmxnet3=y
-CONFIG_PACKAGE_kmod-r8101=y
+# CONFIG_PACKAGE_kmod-r8101=y #error
 ## File System Drivers
 CONFIG_DEFAULT_kmod-forcedeth=y
 CONFIG_PACKAGE_kmod-fs-f2fs=y
