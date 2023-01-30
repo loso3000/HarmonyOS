@@ -15,10 +15,6 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 
-rm -rf ./feedspackages/utils/cups/
-rm -rf ./feeds/packages/utils/cupsd
-rm -rf ./feeds/luci/applications/luci-app-cupsd
-
 # 清理
 rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web}
 rm -rf package/*/{autocore,autosamba,default-settings}
@@ -65,6 +61,13 @@ rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
 # svn export https://github.com/Lienol/openwrt-luci/branches/21.02/applications/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 # cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/mwan3
 cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
+
+rm -rf ./feeds/packages/utils/cups
+rm -rf ./feeds/packages/utils/cupsd
+rm -rf ./feeds/luci/applications/luci-app-cupsd
+rm -rf ./package/feeds/packages/luci-app-cupsd 
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd/cups ./feeds/packages/utils/cups
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd/ ./feeds/luci/applications/luci-app-cupsd
 
 rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns
