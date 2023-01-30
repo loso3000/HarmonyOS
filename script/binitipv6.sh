@@ -15,8 +15,8 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 
-rm -rf ./feeds/packages/utils/cupsd
-rm -rf ./feeds/luci/applications/luci-app-cupsd
+# rm -rf ./feeds/packages/utils/cupsd
+# rm -rf ./feeds/luci/applications/luci-app-cupsd
 
 # 清理
 rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web}
@@ -36,6 +36,12 @@ git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-a
 # rm -rf ./feeds/luci/applications/netspeedtest
 svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
+rm -rf ./feeds/packages/utils/cups
+rm -rf ./feeds/packages/utils/cupsd
+rm -rf ./feeds/luci/applications/luci-app-cupsd
+rm -rf ./package/feeds/packages/luci-app-cupsd 
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd/cups ./feeds/packages/utils/cups
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-cupsd/ ./feeds/luci/applications/luci-app-cupsd
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
