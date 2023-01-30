@@ -88,8 +88,8 @@ git clone https://github.com/sbwml/v2ray-geodata package/geodata
 sed -i "/filter_aaaa='1'/d" ./feeds/luci/applications/luci-app-mosdns/root/etc/init.d/mosdns
 
 #dnsmasq
-rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dnsmasq ./package/network/services/dnsmasq
+#rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
+#svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dnsmasq ./package/network/services/dnsmasq
 
 #upnp
 #rm -rf ./feeds/packages/net/miniupnpd
