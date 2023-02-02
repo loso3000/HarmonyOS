@@ -28,6 +28,11 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
 
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
+
+# netwizard
+sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
+
+# autotimeset
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
 
 # rm -rf ./feeds/luci/applications/netspeedtest
