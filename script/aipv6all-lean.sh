@@ -26,6 +26,9 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
+# netwizard
+sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
+
 #sed -i 's/-D_GNU_SOURCE/-D_GNU_SOURCE -Wno-error=use-after-free/g' ./package/libs/elfutils/Makefile
 
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
