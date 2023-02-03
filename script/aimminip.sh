@@ -185,8 +185,6 @@ rm -rf ./feeds/luci/applications/luci-app-wolplus  package/feeds/packages/luci-a
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus ./feeds/luci/applications/luci-app-wolplus
 ln -sf ../../../feeds/luci/applications/luci-app-wolplus ./package/feeds/luci/luci-app-wolplus
 
-rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon  ./packages/luci-theme-argon
 
 # rm -rf ./feeds/luci/applications/lua-maxminddb
 # rm -rf ./feeds/packages/net/lua-maxminddb package/feeds/packages/lua-maxminddb
@@ -422,7 +420,9 @@ sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-script
 
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
+rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
 rm -rf ./feeds/luci/themes/luci-theme-argon package/feeds/packages/luci-theme-argon
+rm -rf ./package/diy/luci-theme-argon ./package/diy/luci-theme-opentopd
 rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci-theme-opentopd
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
