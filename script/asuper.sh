@@ -183,9 +183,6 @@ rm -rf ./feeds/luci/applications/luci-app-wolplus  package/feeds/packages/luci-a
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus ./feeds/luci/applications/luci-app-wolplus
 ln -sf ../../../feeds/luci/applications/luci-app-wolplus ./package/feeds/luci/luci-app-wolplus
 
-rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon  ./packages/luci-theme-argon
-
 # rm -rf ./feeds/luci/applications/lua-maxminddb
 # rm -rf ./feeds/packages/net/lua-maxminddb package/feeds/packages/lua-maxminddb
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/lua-maxminddb ./feeds/packages/net/lua-maxminddb
@@ -429,14 +426,18 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon p
 git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
 
-rm -rf ./feeds/luci/applications/luci-app-mwan3
-rm -rf ./feeds/packages/net/mwan3
-mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
-mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
-# svn export https://github.com/Lienol/openwrt-packages/branches/21.02/net/mwan3 ./feeds/packages/net/mwan3
-# svn export https://github.com/Lienol/openwrt-luci/branches/21.02/applications/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
-# cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/mwan3
-# cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
+rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
+rm -rf ./feeds/luci/themes/luci-theme-argon package/feeds/packages/luci-theme-argon
+rm -rf ./feeds/luci/applications/luci-app-argon-config
+rm -rf ./package/diy/luci-theme-argon ./package/diy/luci-theme-opentopd
+rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci-theme-opentopd
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
+# git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
+git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
+git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
+
 #修正nat回流 
 cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
