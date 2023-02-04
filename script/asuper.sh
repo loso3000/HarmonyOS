@@ -431,12 +431,12 @@ rm -rf ./feeds/luci/themes/luci-theme-argon package/feeds/packages/luci-theme-ar
 rm -rf ./feeds/luci/applications/luci-app-argon-config
 rm -rf ./package/diy/luci-theme-argon ./package/diy/luci-theme-opentopd
 rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci-theme-opentopd
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
 # git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
-git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
-git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
+# git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
+# git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
 
 #修正nat回流 
 cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
