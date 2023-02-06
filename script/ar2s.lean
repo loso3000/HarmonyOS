@@ -241,7 +241,7 @@ CONFIG_PACKAGE_luci-theme-edge=y
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
-CONFIG_PACKAGE_luci-theme-darkmatter=n
+CONFIG_PACKAGE_luci-theme-darkmatter=y
 CONFIG_PACKAGE_luci-theme-neobird=y
 CONFIG_PACKAGE_luci-app-argon-config=y
 #增加其它插件
