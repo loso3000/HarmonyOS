@@ -417,15 +417,6 @@ sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-script
 
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
-rm -rf ./feeds/luci/themes/luci-theme-argon package/feeds/packages/luci-theme-argon
-rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci-theme-opentopd
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
-# git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
-# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
-git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
-git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
-
 rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
 rm -rf ./feeds/luci/themes/luci-theme-argon package/feeds/packages/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-argon-config
@@ -433,16 +424,25 @@ rm -rf ./package/diy/luci-theme-argon ./package/diy/luci-theme-opentopd
 rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci-theme-opentopd
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-opentopd package/new/luci-theme-opentopd
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-theme-argon package/new/luci-theme-argon
-# git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
+git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
 # git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
-# git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
+git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
 
+rm -rf ./feeds/luci/applications/luci-app-mwan3
+rm -rf ./feeds/packages/net/mwan3
+mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
+mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
+# svn export https://github.com/Lienol/openwrt-packages/branches/21.02/net/mwan3 ./feeds/packages/net/mwan3
+# svn export https://github.com/Lienol/openwrt-luci/branches/21.02/applications/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
+# cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/mwan3
+# cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 #修正nat回流 
 cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > package/base-files/files/etc/profile
-# cp -rf ./package/other/luci/*  ./feeds/luci/*
+cp -rf ./package/other/luci/*  ./feeds/luci/*
+ 
  
 
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
