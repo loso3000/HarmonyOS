@@ -35,10 +35,10 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 # netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
-git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-autotimeset
+# git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-autotimeset
 
 # rm -rf ./feeds/luci/applications/netspeedtest
-svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
+# svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -438,7 +438,7 @@ rm -rf ./package/build/luci-theme-darkmatter
 # svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new package/lean/luci-theme-atmaterial_new
 # git clone https://github.com/john-shine/luci-theme-darkmatter.git package/diy/darkmatter
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/diy/luci-theme-argon
-git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
+# git clone -b 18.06  https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
 git clone https://github.com/thinktip/luci-theme-neobird.git   package/new/luci-theme-neobird
 
 # Remove some default packages
