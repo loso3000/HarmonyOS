@@ -280,13 +280,13 @@ CONFIG_PACKAGE_luci-app-alist=n
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
-CONFIG_PACKAGE_luci-theme-btmod=n
-CONFIG_PACKAGE_luci-theme-opentomcat=n
+CONFIG_PACKAGE_luci-theme-btmod=y
+CONFIG_PACKAGE_luci-theme-opentomcat=y
 CONFIG_PACKAGE_luci-theme-chuqitopd=n
-CONFIG_PACKAGE_luci-theme-ffpdboy=n
+CONFIG_PACKAGE_luci-theme-kucat=n
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-edge=y
-CONFIG_PACKAGE_luci-theme-ifit=n
+CONFIG_PACKAGE_luci-theme-ifit=y
 CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-darkmatter=y
