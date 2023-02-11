@@ -32,6 +32,9 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 # netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
+# netwizard
+sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
+
 # autotimeset
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
 
