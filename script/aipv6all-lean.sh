@@ -29,6 +29,8 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 # netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
+# netwizard
+sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
 #sed -i 's/-D_GNU_SOURCE/-D_GNU_SOURCE -Wno-error=use-after-free/g' ./package/libs/elfutils/Makefile
 
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
