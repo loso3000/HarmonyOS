@@ -164,6 +164,7 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-adguardho
 ln -sf ../../../feeds/luci/applications/luci-app-adguardhome ./package/feeds/luci/luci-app-adguardhome
 
 rm -rf ./feeds/luci/applications/luci-app-advanced package/feeds/packages/luci-app-advanced
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./package/new/luci-app-advanced
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced ./feeds/luci/applications/luci-app-advanced
 
 rm -rf ./feeds/luci/applications/luci-app-rebootschedule package/feeds/packages/luci-app-rebootschedule
