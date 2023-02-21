@@ -32,6 +32,10 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
+# kucat
+rm -rf ./package/other/up/luci-app-kucat
+mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
+sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
 # netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
