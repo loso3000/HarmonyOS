@@ -32,7 +32,9 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 # netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
-# netwizard
+# kucat
+rm -rf ./package/other/up/luci-app-kucat
+mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
 sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
 
 # autotimeset
