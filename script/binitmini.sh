@@ -29,6 +29,10 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 # git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
+# kucat
+rm -rf ./package/other/up/luci-app-kucat
+mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
+sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
