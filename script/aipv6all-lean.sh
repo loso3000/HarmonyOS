@@ -29,8 +29,11 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 # netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
-# netwizard
+# kucat
+rm -rf ./package/other/up/luci-app-kucat
+mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
 sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
+
 #sed -i 's/-D_GNU_SOURCE/-D_GNU_SOURCE -Wno-error=use-after-free/g' ./package/libs/elfutils/Makefile
 
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
@@ -429,7 +432,7 @@ sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plusdns/Makefile
 # sed -i "s/bootstrap/chuqitopd/g" feeds/luci/modules/luci-base/root/etc/config/luci
 # sed -i 's/bootstrap/chuqitopd/g' feeds/luci/collections/luci/Makefile
 echo "修改默认主题"
-sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
+sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci/Makefile
 # sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
