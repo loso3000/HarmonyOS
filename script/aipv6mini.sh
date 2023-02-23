@@ -34,7 +34,7 @@ sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 mv -f  ./package/other/up/luci-app-pdadplus./package/other/up/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/other/up/luci-app-advancedplus/Makefile
 
-@echo xkucat
+echo 'xkucat'
 mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
 sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
 cp -r ./package/other/up/luci-app-kucat ./feeds/luci/applications/luci-app-kucat
