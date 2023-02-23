@@ -40,9 +40,9 @@ sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
 
 echo kucat
 # mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-xkucat ./package/lean/luci-app-kucat
+svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-qcatku ./package/lean/luci-app-kucat
 rm -rf   ./package/other/up/luci-app-xkucat
-sed -i 's/xkucat/kucat/g' ./package/lean/luci-app-kucat
+sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 # autotimeset
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
