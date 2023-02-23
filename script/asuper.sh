@@ -30,12 +30,15 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
-#advancedplus
-mv -f  ./package/other/up/luci-app-pdadplus./package/other/up/luci-app-advancedplus
+echo advancedplus
+mv -f  ./package/other/up/luci-app-pdadplus ./package/other/up/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/other/up/luci-app-advancedplus/Makefile
-# kucat
+sed -i 's/pdadplus/advancedplus/g' ./package/other/up/luci-app-pdadplus/Makefile
+
+echo kucat
 mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
 sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
+sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-xkucat/Makefile
 
 # netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
