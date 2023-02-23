@@ -30,17 +30,19 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
 # netwizard
+
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
 echo advancedplus
-# mv -f  ./package/other/up/luci-app-pdadplus ./package/other/up/luci-app-advancedplus
-sed -i 's/pdadplus/advancedplus/g' ./package/other/up/luci-app-advancedplus/Makefile
-sed -i 's/pdadplus/advancedplus/g' ./package/other/up/luci-app-pdadplus/Makefile
+svn export https://github.com/loso3000/other/trunk/up/luci-app-pdadplus ./package/lean/luci-app-advancedplus
+rm -rf   ./package/other/up/luci-app-pdadplus
+sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
 
 echo kucat
 # mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
-sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
-sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-xkucat/Makefile
+svn export https://github.com/loso3000/other/trunk/up/luci-app-xkucat ./package/lean/luci-app-kucat
+rm -rf   ./package/other/up/luci-app-xkucat
+sed -i 's/xkucat/kucat/g' ./package/lean/luci-app-kucat
 
 # autotimeset
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
