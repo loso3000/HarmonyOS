@@ -35,10 +35,12 @@ sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 echo advancedplus
 mv -f  ./package/other/up/luci-app-pdadplus ./package/other/up/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/other/up/luci-app-advancedplus/Makefile
+sed -i 's/pdadplus/advancedplus/g' ./package/other/up/luci-app-pdadplus/Makefile
 
 echo kucat
 mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
 sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
+sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-xkucat/Makefile
 
 # autotimeset
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
