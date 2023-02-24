@@ -273,10 +273,10 @@ CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-pptpserver=y
 CONFIG_PACKAGE_luci-app-n2n=y
 CONFIG_PACKAGE_luci-app-netwizard=y
-CONFIG_PACKAGE_luci-app-fileassistant=y
+CONFIG_PACKAGE_luci-app-fileassistant=n
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
 # CONFIG_PACKAGE_bandwidthd=y
-CONFIG_PACKAGE_luci-app-alist=n
+CONFIG_PACKAGE_luci-app-alist=y
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
