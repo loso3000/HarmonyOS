@@ -28,9 +28,8 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 
 # netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
-
 echo advancedplus
-svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-gkad ./package/lean/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkad ./package/lean/luci-app-advancedplus
 #svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkplus ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
 
@@ -40,7 +39,6 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-qcat ./package/l
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-pdcat ./package/lean/luci-theme-kucat
 # rm -rf   ./package/other/up/luci-app-xkucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
-
 # alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 rm -rf feeds/packages/lang/golang
