@@ -29,10 +29,17 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 # git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
-# kucat
-rm -rf ./package/other/up/luci-app-kucat
-mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
-sed -i 's/xkucat/kucat/g' ./package/other/up/luci-app-kucat/Makefile
+echo advancedplus
+#svn export https://github.com/loso3000/mypk/trunk/up/luci-app-pdadplus ./package/lean/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkplus ./package/lean/luci-app-advancedplus
+sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
+
+echo kucat
+# mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
+# svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-qcat ./package/lean/luci-theme-kucat
+svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-pdcat ./package/lean/luci-theme-kucat
+# rm -rf   ./package/other/up/luci-app-xkucat
+sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
