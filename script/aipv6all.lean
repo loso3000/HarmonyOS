@@ -52,9 +52,7 @@ CONFIG_DEFAULT_kmod-fs-vfat=y
 CONFIG_DEFAULT_kmod-i40e=y
 CONFIG_DEFAULT_kmod-i40evf=y
 CONFIG_DEFAULT_kmod-iavf=y
-# CONFIG_DEFAULT_kmod-igb is not set
-CONFIG_DEFAULT_kmod-igb-intel=y
-
+CONFIG_DEFAULT_kmod-igb=y
 CONFIG_DEFAULT_kmod-igbvf=y
 CONFIG_DEFAULT_kmod-igc=y
 CONFIG_DEFAULT_kmod-ipt-raw=y
@@ -88,7 +86,6 @@ CONFIG_PACKAGE_kmod-usb-core=y
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-tg3=y   #BCM5719
-CONFIG_DEFAULT_kmod-via-velocity=y
 CONFIG_DEFAULT_kmod-vmxnet3=y
 # CONFIG_PACKAGE_kmod-r8101=y #error
 ## File System Drivers
@@ -401,3 +398,6 @@ CONFIG_DOCKER_NET_ENCRYPT=y
 CONFIG_DOCKER_NET_MACVLAN=y
 CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
+
+# CONFIG_PACKAGE_kmod-fs-virtiofs is not set
+# CONFIG_PACKAGE_kmod-qca-mcs is not set
