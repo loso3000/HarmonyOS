@@ -38,7 +38,7 @@ echo advancedplus
 rm -rf  ./package/other/up/luci-app-advanced
 rm -rf  ./package/other/diy/luci-app-advanced
 rm -rf ./feeds/luci/applications/luci-app-advanced
-# svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkad ./package/lean/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkad ./package/lean/luci-app-advancedplus
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-advanced ./package/lean/luci-app-advanced
 #svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkplus ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
