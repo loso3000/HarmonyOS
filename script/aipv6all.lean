@@ -252,7 +252,7 @@ CONFIG_PACKAGE_luci-app-ramfree=n
 
 CONFIG_PACKAGE_luci-app-bridge=n
 CONFIG_PACKAGE_luci-app-cowbping=n
-CONFIG_PACKAGE_luci-app-beardropper=n
+CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 CONFIG_PACKAGE_luci-app-parentcontrol=y
 CONFIG_PACKAGE_luci-app-https-dns-proxy=n
@@ -330,37 +330,8 @@ CONFIG_PACKAGE_luci-app-partexp=y
 
 CONFIG_PACKAGE_luci-app-arpbind=y
 
-# System Utilities
-CONFIG_PACKAGE_acl=y
-CONFIG_PACKAGE_btrfs-progs=y
-CONFIG_PACKAGE_e2fsprogs=y
-CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_mkf2fs=y
-CONFIG_PACKAGE_nfs-utils-libs=y
-CONFIG_PACKAGE_pciutils=y
-CONFIG_PACKAGE_squashfs-tools-mksquashfs=y
-CONFIG_PACKAGE_squashfs-tools-unsquashfs=y
-CONFIG_PACKAGE_swap-utils=y
-CONFIG_PACKAGE_sysfsutils=y
-CONFIG_SQUASHFS_TOOLS_LZ4_SUPPORT=y
-CONFIG_SQUASHFS_TOOLS_LZO_SUPPORT=y
-CONFIG_SQUASHFS_TOOLS_XZ_SUPPORT=y
-#CONFIG_PACKAGE_zsh=y
-CONFIG_PACKAGE_f2fsck=y
-CONFIG_PACKAGE_f2fs-tools=y
-CONFIG_PACKAGE_lsblk=y
-CONFIG_PACKAGE_lscpu=y
-CONFIG_PACKAGE_resize2fs=y
-CONFIG_PACKAGE_usbutils=y
-CONFIG_PACKAGE_alpine-keys=y
-CONFIG_PACKAGE_alpine-repositories=y
-CONFIG_LXC_BUSYBOX_OPTIONS=y
-CONFIG_LXC_KERNEL_OPTIONS=y
-CONFIG_LXC_NETWORKING=y
-CONFIG_LXC_SECCOMP=y
-
 # Other Appliciations
-CONFIG_PACKAGE_luci-ssl-openssl=y
+# CONFIG_PACKAGE_luci-ssl-openssl=y
 CONFIG_PACKAGE_ipt2socks=y
 CONFIG_PACKAGE_wpad-openssl=y
 CONFIG_PACKAGE_xz=y
