@@ -411,7 +411,8 @@ line_number_INCLUDE_V2ray=$[`grep -m1 -n 'Include V2ray' package/passwall/luci-a
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-
+sed -i 's,-1,3,g' package/luci-app-passwall2/luasrc/controller/passwall2.lua
+sed -i 's,-1,2,g' package/passwall/luci-app-passwall/luasrc/controller/passwall2.lua
 
 
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook feeds/packages/net/brook
