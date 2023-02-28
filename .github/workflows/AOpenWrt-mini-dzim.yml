@@ -10,7 +10,7 @@ on:
         required: false
         default: 'false'
   watch:
-    types: started
+#    types: started
 #  schedule:
 #    - cron: 0 21 */7 * * 
 
