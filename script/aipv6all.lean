@@ -100,8 +100,6 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 # CONFIG_PACKAGE_kmod-fs-antfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 
-### USB Audio 
-CONFIG_PACKAGE_kmod-usb-audio=y
 #Tailscale
 #CONFIG_PACKAGE_libustream-openssl=y
 #CONFIG_PACKAGE_ca-bundle=y
@@ -287,8 +285,8 @@ CONFIG_PACKAGE_luci-theme-edge=y
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
-CONFIG_PACKAGE_luci-theme-darkmatter=y
-CONFIG_PACKAGE_luci-theme-neobird=y
+CONFIG_PACKAGE_luci-theme-darkmatter=n
+CONFIG_PACKAGE_luci-theme-neobird=n
 CONFIG_PACKAGE_luci-app-argon-config=y
 #增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
@@ -376,8 +374,8 @@ CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_blkid=y
 # CONFIG_PACKAGE_qemu-ga=y
 # CONFIG_PACKAGE_smartmontools=y
-CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
-# CONFIG_PACKAGE_ethtool=y #网卡工具
+# CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
+CONFIG_PACKAGE_ethtool=y #网卡工具
 CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
 # CONFIG_PACKAGE_parted=n #128个区分区工具z
 CONFIG_PACKAGE_fdisk=y #分区工具
