@@ -30,12 +30,14 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
+
 echo advancedplus
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kuplus ./package/lean/luci-app-advancedplus
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kuplus ./feeds/luci/applications/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./package/lean/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./feeds/luci/applications/luci-app-advancedplus
 #svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkplus ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./feeds/luci/applications/luci-app-advancedplus
+
 
 echo kucat
 # mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
