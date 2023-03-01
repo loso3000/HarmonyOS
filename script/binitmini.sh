@@ -31,7 +31,7 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 echo advancedplus
 #svn export https://github.com/loso3000/mypk/trunk/up/luci-app-pdadplus ./package/lean/luci-app-advancedplus
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkplus ./package/lean/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
 
 echo kucat
@@ -40,6 +40,7 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-qcat ./package/l
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-pdcat ./package/lean/luci-theme-kucat
 # rm -rf   ./package/other/up/luci-app-xkucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
+
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
