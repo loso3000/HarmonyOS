@@ -2,6 +2,7 @@
 # Set default theme to luci-theme-opentopd
 # uci set luci.main.mediaurlbase='/luci-static/opentopd'
 # sed -i 's/string ListenIP.*/string ListenIP 0.0.0.0/g' /usr/libexec/softethervpn/vpn_server.config
+
 uci -q set fstab.@global[0].check_fs=1
 if ! ifname=$(uci -q get network.wan.ifname 2>/dev/null) ; then
       	 ifname=$(uci -q get network.lan.ifname 2>/dev/null) 
@@ -20,9 +21,13 @@ b=$(echo "$a" | wc -l)
 	}
 uci commit network
 uci commit fstab
+uci set luci.main.mediaurlbase='/luci-static/kucat'
+uci commit luci
 #  
-ntpd -n -q -p 1.lede.pool.ntp.org
+
+# ipv6
 sed -i 's/^[^#].*option ula/#&/' /etc/config/network
+ntpd -n -q -p 1.lede.pool.ntp.org
 # Disable autostart by default for some packages
 cd /etc/rc.d
 rm -f S98udptools || true
