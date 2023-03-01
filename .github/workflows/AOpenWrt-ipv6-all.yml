@@ -123,10 +123,10 @@ jobs:
           echo "src-link packages $packages_feed" >> feeds.conf.default
           sed -i '/src-git luci/d' feeds.conf.default
           echo "src-link luci $luci_feed" >> feeds.conf.default
-          ./scripts/feeds update -a
       - name: Install Feeds
         run: |
           cd openwrt
+          ./scripts/feeds update -a
           ./scripts/feeds install -a
 
       - name: Update package
