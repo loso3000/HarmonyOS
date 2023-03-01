@@ -38,8 +38,7 @@ sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
 
 echo kucat
 # mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
-svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-qcat ./package/lean/luci-theme-kucat
-# svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-pdcat ./package/lean/luci-theme-kucat
+svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-cat ./package/lean/luci-theme-kucat
 # rm -rf   ./package/other/up/luci-app-xkucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
