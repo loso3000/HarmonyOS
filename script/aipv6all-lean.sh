@@ -37,13 +37,8 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./fee
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./feeds/luci/applications/luci-app-advancedplus
 
-
-echo kucat
-# mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
-svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-cat ./package/lean/luci-theme-kucat
-# rm -rf   ./package/other/up/luci-app-xkucat
+svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
-
 
 # alist
 # git clone https://github.com/sbwml/luci-app-alist package/alist
