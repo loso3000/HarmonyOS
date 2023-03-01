@@ -116,10 +116,9 @@ jobs:
           git clone --depth=1 https://github.com/DHDAXCW/luci cfeeds/luci
           chmod +x ../scriptx/hook-feeds.sh
           ../scriptx/hook-feeds.sh
-        
       - name: Install Feeds
         run: |
-          cd $OPENWRTROOT
+          cd openwrt
           ./scripts/feeds install -a
 
       - name: Update package
