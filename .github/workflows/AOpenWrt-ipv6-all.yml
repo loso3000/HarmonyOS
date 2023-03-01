@@ -114,8 +114,16 @@ jobs:
           mkdir cfeeds
           git clone --depth=1 https://github.com/DHDAXCW/packages cfeeds/packages
           git clone --depth=1 https://github.com/DHDAXCW/luci cfeeds/luci
-          chmod +x ../scriptx/hook-feeds.sh
-          ../scriptx/hook-feeds.sh
+          cd $GITHUB_WORKSPACE/openwrt/cfeeds/packages
+          export packages_feed="$(pwd)"
+          cd $GITHUB_WORKSPACE/openwrt/
+          cd $GITHUB_WORKSPACE/openwrt/cfeeds/luci
+          export luci_feed="$(pwd)"
+          sed -i '/src-git packages/d' feeds.conf.default
+          echo "src-link packages $packages_feed" >> feeds.conf.default
+          sed -i '/src-git luci/d' feeds.conf.default
+          echo "src-link luci $luci_feed" >> feeds.conf.default
+          ./scripts/feeds update -a
       - name: Install Feeds
         run: |
           cd openwrt
