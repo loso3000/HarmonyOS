@@ -84,17 +84,17 @@ jobs:
           DEBIAN_FRONTEND: noninteractive
         run: |
           docker rmi `docker images -q`
-          # docker rmi `docker images -q`
-          # sudo -E apt-get -qq remove -y --purge azure-cli ghc* zulu* llvm* firefox google* powershell openjdk* msodbcsql17 mongodb* moby* snapd* mysql*
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
           sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /usr/lib/jvm /opt/ghc /swapfile
-          sudo -E apt-get -qq update
-          sudo -E apt-get -qq install squashfs-tools $(curl -fsSL git.io/depends-ubuntu-2004)
-          sudo -E apt-get -qq autoremove --purge
-          sudo -E apt-get -qq clean
-          sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-          docker image prune -a -f
-          sudo timedatectl set-timezone "Asia/Shanghai"
+          sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+          sudo -E apt-mark hold grub-efi-amd64-signed
+          sudo -E apt update
+          sudo -E apt -y purge azure-cli* docker* ghc* zulu* llvm* firefox google* dotnet* powershell* openjdk* mysql* php* mongodb* dotnet* moby* snap*
+          sudo -E apt -y full-upgrade
+          sudo -E apt -y install ack antlr3 aria2 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python3 python3-pip libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
+          sudo -E systemctl daemon-reload
+          sudo -E apt -y autoremove --purge
+          sudo -E apt clean
+          sudo -E timedatectl set-timezone "Asia/Shanghai"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
       - name: git lede
@@ -104,17 +104,24 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
-      - name: Update feeds
-        run: | 
+
+      - name: Update Feeds
+        id: update
+        run: |
           cd openwrt
-          ./scripts/feeds update -a
+          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
+          echo "OPENWRTROOT=$PWD" >> $GITHUB_OUTPUT
+          mkdir cfeeds
+          git clone --depth=1 https://github.com/DHDAXCW/packages cfeeds/packages
+          git clone --depth=1 https://github.com/DHDAXCW/luci cfeeds/luci
+          chmod +x ../scriptx/hook-feeds.sh
+          ../scriptx/hook-feeds.sh
+        
+      - name: Install Feeds
+        run: |
+          cd $OPENWRTROOT
           ./scripts/feeds install -a
-      #- name: Cache
-      #  uses: klever1988/cachewrtbuild@main
-      #  with:
-      #    ccache: 'true'
-      #    prefix: 'openwrt'
-      #    mixkey: 'x86'
+
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
@@ -124,8 +131,9 @@ jobs:
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
-         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
+         #$GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
+         sed -i '$a\CONFIG_DEVEL=y\nCONFIG_LOCALMIRROR=\"https://openwrt.cc/dl/coolsnowwolf/lede\"' .config
       - name: Generate configuration file
 
         run: |
@@ -134,7 +142,7 @@ jobs:
       - name: Make download
         working-directory: ./openwrt
         run: |
-          make download -j40
+          make download -j50
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
                
@@ -154,13 +162,14 @@ jobs:
         run: |
          df -h
          cd openwrt 
+         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          mkdir -p files/etc/uci-defaults/
          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          kernelv=`cat *-x86-64-generic.manifest | grep 'kernel - ' |  awk -F '[- ]' '{print $4}'`
-         mv *-x86-64-generic-squashfs-combined-efi.img ${{ env.DATA }}-Plus-${{ kernelv }}-x86-64-squashfs-efi.img
-         # mv *-x86-64-generic-squashfs-combined.img  ${{ env.DATA }}-Plus-${{ kernelv }}-x86-64-squashfs.img
+         mv *-x86-64-generic-squashfs-combined-efi.img 20230301-Vip-Plus-${{ kernelv }}-x86-64-squashfs-efi.img
+         # mv *-x86-64-generic-squashfs-combined.img  ${{ env.DATA }}-Vip-Plus-${{ kernelv }}-x86-64-squashfs.img
          echo "KVER=$kernelv" >> $GITHUB_ENV
          rm -rf *-x86-64-generic-kernel.bin
          rm -rf *-x86-64-generic-rootfs*
