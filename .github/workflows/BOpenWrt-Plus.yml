@@ -115,9 +115,9 @@ jobs:
  
           cd $GITHUB_WORKSPACE/openwrt/cfeeds/packages
           export packages_feed="$(pwd)"
-          cd $GITHUB_WORKSPACE/openwrt/
           cd $GITHUB_WORKSPACE/openwrt/cfeeds/luci
           export luci_feed="$(pwd)"
+          cd $GITHUB_WORKSPACE/openwrt/
           sed -i '/src-git packages/d' feeds.conf.default
           echo "src-link packages $packages_feed" >> feeds.conf.default
           sed -i '/src-git luci/d' feeds.conf.default
