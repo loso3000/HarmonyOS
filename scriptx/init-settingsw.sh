@@ -21,5 +21,11 @@ b=$(echo "$a" | wc -l)
 	}
 uci commit network
 uci commit fstab
+uci set luci.main.mediaurlbase='/luci-static/kucat'
+uci commit luci
+#  
+
+# ipv6
+sed -i 's/^[^#].*option ula/#&/' /etc/config/network
 ntpd -n -q -p 1.lede.pool.ntp.org
 exit 0
