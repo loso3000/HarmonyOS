@@ -19,7 +19,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/br4s.lean
   DIY_P1_SH: script/binitmini.sh
-  DIY_P2_SH: script/clash-core.sh
+  DIY_P2_SH: script/clash-core-arm64.sh
   
   
 permissions:
