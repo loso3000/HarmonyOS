@@ -1,6 +1,6 @@
 #!/bin/bash
 # Svn checkout packages from immortalwrt's repository
-pushd customfeeds
+pushd cfeeds
 
 # Add luci-app-eqos
 svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-eqos luci/applications/luci-app-eqos
@@ -30,10 +30,10 @@ svn co https://github.com/openwrt/packages/trunk/net/smartdns packages/net/smart
 popd
 
 # Set to local feeds
-pushd customfeeds/packages
+pushd cfeeds/packages
 export packages_feed="$(pwd)"
 popd
-pushd customfeeds/luci
+pushd cfeeds/luci
 export luci_feed="$(pwd)"
 popd
 sed -i '/src-git packages/d' feeds.conf.default
