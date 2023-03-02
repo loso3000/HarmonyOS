@@ -175,12 +175,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Mini-Vip-Firmware
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Mini-Firmware
           path: ./firmwareipv6mini
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Mini-Vip-Ipk
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Mini-Ipk
           path: ./packageipv6mini
       - name: Upload Firmware wetransfer
         run: |
