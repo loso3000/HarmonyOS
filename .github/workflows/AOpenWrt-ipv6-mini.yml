@@ -22,7 +22,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: script/aipv6mini
   DIY_P1_SH: script/aipv6mini.sh
-  DIY_P2_SH: script/clash-core.sh
+  DIY_P2_SH: script/diy-clash-im.sh
   TZ: Asia/Shanghai
  
   
