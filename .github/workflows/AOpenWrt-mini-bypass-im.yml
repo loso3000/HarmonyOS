@@ -154,7 +154,7 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Bypass-Vip-Firmware
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Vip-Bypass-Firmware
           path: ./imminip/firmware
           
       - name: Upload  IPK
