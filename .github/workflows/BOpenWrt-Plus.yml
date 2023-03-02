@@ -176,7 +176,9 @@ jobs:
          pushd bin/targets/x86/64
          kernelv=`cat *-x86-64-generic.manifest | grep 'kernel - ' |  awk -F '[- ]' '{print $4}'`
          echo "KVER=$kernelv" >> $GITHUB_ENV
-         mv *-x86-64-generic-squashfs-combined-efi.img 20230301-${{ kernelv }}-Plus-x86-64-squashfs-efi.img
+         echo "KVER=$kernelv" >> $GITHUB_OUTPUT
+         echo  "DATA:${{ env.DATA }}-kernelv:${{ kernelv }}"
+         mv *-x86-64-generic-squashfs-combined-efi.img 20230301-Plus-x86-64-squashfs-efi.img
          # mv *-x86-64-generic-squashfs-combined.img  ${{ env.DATA }}-${{ kernelv }}-Plus-x86-64-squashfs.img
          rm -rf *-x86-64-generic-kernel.bin
          rm -rf *-x86-64-generic-rootfs*
@@ -185,14 +187,14 @@ jobs:
          rm -rf *-x86-64-generic.manifest
          rm -rf *-x86-64-generic-squashfs-combined.img*
          popd
-         make checksum
+         # make checksum
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmware
           mkdir -p ./package
           df -h
           find ./openwrt/bin/ -name "*.ipk" | xargs -i mv -f {}  ./package
-          find ./openwrt/bin/targets/ -name "*efi.img" | xargs -i mv -f {} ./firmware
+          find ./openwrt/bin/targets/ -name "*combined-efi.img*" | xargs -i mv -f {} ./firmware
           cd ./firmware
           ls
           # gzip *.img | true
