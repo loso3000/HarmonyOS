@@ -23,7 +23,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/aipv6all.lean
-  DIY_P1_SH: script/aipv6all.sh
+  DIY_P1_SH: script/aipv6all-lean.sh
   DIY_P2_SH: script/diy-clash-im.sh
   TZ: Asia/Shanghai
   
@@ -111,18 +111,18 @@ jobs:
           cd openwrt
           echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
           echo "OPENWRTROOT=$PWD" >> $GITHUB_OUTPUT
-          mkdir cfeeds
-          git clone --depth=1 https://github.com/DHDAXCW/packages cfeeds/packages
-          git clone --depth=1 https://github.com/DHDAXCW/luci cfeeds/luci
-          cd $GITHUB_WORKSPACE/openwrt/cfeeds/packages
-          export packages_feed="$(pwd)"
-          cd $GITHUB_WORKSPACE/openwrt/cfeeds/luci
-          export luci_feed="$(pwd)"
-          cd $GITHUB_WORKSPACE/openwrt
-          sed -i '/src-git packages/d' feeds.conf.default
-          echo "src-link packages $packages_feed" >> feeds.conf.default
-          sed -i '/src-git luci/d' feeds.conf.default
-          echo "src-link luci $luci_feed" >> feeds.conf.default
+          #mkdir cfeeds
+          #git clone --depth=1 https://github.com/DHDAXCW/packages cfeeds/packages
+          #git clone --depth=1 https://github.com/DHDAXCW/luci cfeeds/luci
+          #cd $GITHUB_WORKSPACE/openwrt/cfeeds/packages
+          #export packages_feed="$(pwd)"
+          #cd $GITHUB_WORKSPACE/openwrt/cfeeds/luci
+          #export luci_feed="$(pwd)"
+          #cd $GITHUB_WORKSPACE/openwrt
+          #sed -i '/src-git packages/d' feeds.conf.default
+          #echo "src-link packages $packages_feed" >> feeds.conf.default
+          #sed -i '/src-git luci/d' feeds.conf.default
+          #echo "src-link luci $luci_feed" >> feeds.conf.default
           
           ./scripts/feeds update -a
       - name: Install Feeds
