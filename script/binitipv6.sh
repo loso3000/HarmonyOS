@@ -100,7 +100,7 @@ mv -f  ./package/other/luci-app-mwan3 ./cfeeds/luci/applications/luci-app-mwan3
 
 rm -rf ./package/other/up/pass/mosdns
 rm -rf ./cfeeds/packages/net/mosdns
-rm -rf feeds/packages/net/mosdns package/cfeeds/packages/mosdns
+rm -rf cfeeds/packages/net/mosdns package/cfeeds/packages/mosdns
 svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns cfeeds/packages/net/mosdns
 svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/new/mosdns
 rm -rf package/cfeeds/packages/luci-app-mosdns ./cfeeds/luci/applications/luci-app-mosdns
