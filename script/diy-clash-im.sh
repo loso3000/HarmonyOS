@@ -13,17 +13,29 @@ wget -qO- $clash_tun_url | gunzip -c > files/etc/openclash/core/clash_tun
 wget -qO- $clash_game_url | tar xOvz > files/etc/openclash/core/clash_game
 chmod +x files/etc/openclash/core/clash*
 
-DEVICE_PLATFORM=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | awk -F '"' '{print $2}')
-DEVICE_TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
-DEVICE_SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
+## opkg ##
+PLATFORM=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | awk -F '"' '{print $2}')
+TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
+SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
+
+sed -i "s/subtarget/$SUBTARGET/g" ../configx/opkg/distfeeds*.conf
+sed -i "s/target\//$TARGET\//g" ../configx/opkg/distfeeds*.conf
+sed -i "s/platform/$PLATFORM/g" ../configx/opkg/distfeeds*.conf
+mkdir -p files/etc/opkg/keys
+cp ../configx/opkg/1035ac73cc4e59e3 files/etc/opkg/keys/1035ac73cc4e59e3
+cp ../configx/opkg/distfeeds-18.06-remote.conf files/etc/opkg/distfeeds.conf
+cp ../configx/opkg/distfeeds-packages-server.conf files/etc/opkg/distfeeds.conf.server
+cp files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
+sed -i "s/http:\/\/192.168.10.1:2345\/snapshots/https:\/\/openwrt.cc\/snapshots\/$(date +"%Y-%m-%d")\/lean/g" files/etc/opkg/distfeeds.conf.mirror
+     
 mkdir -p files/etc/opkg
 pushd files/etc/opkg
 cat <<-EOF > "distfeeds.conf"
-src/gz openwrt_core https://openwrt.cc/snapshots/targets/$DEVICE_TARGET/$DEVICE_SUBTARGET/packages
-src/gz openwrt_base https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/base
-src/gz openwrt_luci https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/luci
-src/gz openwrt_packages https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/packages
-src/gz openwrt_routing https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/routing
-src/gz openwrt_telephony https://openwrt.cc/snapshots/packages/$DEVICE_PLATFORM/telephony
+src/gz openwrt_core https://openwrt.cc/snapshots/targets/$TARGET/$SUBTARGET/packages
+src/gz openwrt_base https://openwrt.cc/snapshots/packages/$PLATFORM/base
+src/gz openwrt_luci https://openwrt.cc/snapshots/packages/$PLATFORM/luci
+src/gz openwrt_packages https://openwrt.cc/snapshots/packages/$PLATFORM/packages
+src/gz openwrt_routing https://openwrt.cc/snapshots/packages/$PLATFORM/routing
+src/gz openwrt_telephony https://openwrt.cc/snapshots/packages/$PLATFORM/telephony
 EOF
 popd
