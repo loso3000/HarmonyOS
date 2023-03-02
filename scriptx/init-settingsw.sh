@@ -1,6 +1,4 @@
 #!/bin/bash
-# Set default theme to luci-theme-opentopd
-# uci set luci.main.mediaurlbase='/luci-static/opentopd'
 
 # sed -i 's/string ListenIP.*/string ListenIP 0.0.0.0/g' /usr/libexec/softethervpn/vpn_server.config
 uci -q set fstab.@global[0].check_fs=1
@@ -25,7 +23,8 @@ uci set luci.main.mediaurlbase='/luci-static/kucat'
 uci commit luci
 #  
 
+sed -i "s/releases\/18.06.9/snapshots/g" /etc/opkg/distfeeds.conf
 # ipv6
-sed -i 's/^[^#].*option ula/#&/' /etc/config/network
+# sed -i 's/^[^#].*option ula/#&/' /etc/config/network
 ntpd -n -q -p 1.lede.pool.ntp.org
 exit 0
