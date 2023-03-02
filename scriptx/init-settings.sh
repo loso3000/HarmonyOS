@@ -23,6 +23,7 @@ uci set luci.main.mediaurlbase='/luci-static/kucat'
 uci commit luci
 #  
 
+sed -i "s/releases\/18.06.9/snapshots/g" /etc/opkg/distfeeds.conf
 # ipv6
 # sed -i 's/^[^#].*option ula/#&/' /etc/config/network
 ntpd -n -q -p 1.lede.pool.ntp.org
