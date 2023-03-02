@@ -176,9 +176,9 @@ jobs:
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          pushd bin/targets/x86/64
-         kernelv=`cat *-x86-64-generic.manifest | grep 'kernel - ' |  awk -F '[- ]' '{print $4}'`
-         echo "KVER=$kernelv" >> $GITHUB_ENV
-         mv *-x86-64-generic-squashfs-combined-efi.img 20230301-Vip-${{ kernelv }}-Plus-x86-64-squashfs-efi.img
+         # kernelv=`cat *-x86-64-generic.manifest | grep 'kernel - ' |  awk -F '[- ]' '{print $4}'`
+         # echo "KVER=$kernelv" >> $GITHUB_ENV
+         # mv *-x86-64-generic-squashfs-combined-efi.img 20230301-Vip-Plus-x86-64-squashfs-efi.img
          # mv *-x86-64-generic-squashfs-combined.img  ${{ env.DATA }}-Vip-${{ kernelv }}-Plus-x86-64-squashfs.img
          rm -rf *-x86-64-generic-kernel.bin
          rm -rf *-x86-64-generic-rootfs*
@@ -193,7 +193,7 @@ jobs:
           mkdir -p ./firmwareipv6all
           mkdir -p ./packageipv6all
           find ./openwrt/bin/ -name "*.ipk" | xargs -i mv -f {}  ./packageipv6all
-          find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./firmwareipv6all
+          find ./openwrt/bin/targets/ -name "*squashfs*img*" | xargs -i mv -f {} ./firmwareipv6all
           cd ./firmwareipv6all
           # gzip *.img |true
           echo -e "Sirpdboy-Ipv6-Vip-Plus-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
