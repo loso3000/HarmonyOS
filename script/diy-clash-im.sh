@@ -18,6 +18,7 @@ PLATFORM=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | awk -F '"' '{print $
 TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
 SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
 
+mkdir -p files/etc/opkg
 sed -i "s/subtarget/$SUBTARGET/g" ../configx/opkg/distfeeds*.conf
 sed -i "s/target\//$TARGET\//g" ../configx/opkg/distfeeds*.conf
 sed -i "s/platform/$PLATFORM/g" ../configx/opkg/distfeeds*.conf
