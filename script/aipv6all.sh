@@ -30,13 +30,16 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
 echo advancedplus
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./package/lean/luci-app-advancedplus
+# svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./package/lean/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-qcatplus ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
+sed -i 's/pdadplus/advancedplus/g' ./feeds/luci/applications/luci-app-advancedplus
 
-svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./package/lean/luci-theme-kucat
-svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./cfeeds/luci/themes/luci-theme-kucat
+echo kucat
+# mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
+# svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./package/lean/luci-theme-kucat
+svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-qcatn ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
-sed -i 's/qcatku/kucat/g' ./cfeeds/luci/themes/luci-theme-kucat
 
 # alist
 # git clone https://github.com/sbwml/luci-app-alist package/alist
