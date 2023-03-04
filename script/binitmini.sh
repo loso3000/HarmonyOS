@@ -28,15 +28,16 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
-
 echo advancedplus
-#svn export https://github.com/loso3000/mypk/trunk/up/luci-app-pdadplus ./package/lean/luci-app-advancedplus
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./package/lean/luci-app-advancedplus
+# svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./package/lean/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-qcatplus ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
+sed -i 's/pdadplus/advancedplus/g' ./feeds/luci/applications/luci-app-advancedplus
 
 echo kucat
 # mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
-svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./package/lean/luci-theme-kucat
+# svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./package/lean/luci-theme-kucat
+svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-qcatn ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 #管控
@@ -534,8 +535,8 @@ ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判�
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 date1='Ipv6-Mini-Sirpdboy-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-date1='Ipv6-Mini-R2023.03.01'
-sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20230301-Ipv6-Mini-5.15-/g' include/image.mk
+#date1='Ipv6-Mini-R2023.03.01'
+#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20230301-Ipv6-Mini-5.15-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
