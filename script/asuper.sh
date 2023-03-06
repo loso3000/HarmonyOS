@@ -466,6 +466,7 @@ mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > package/base-files/files/etc/profile
+cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 cp -rf ./package/other/luci/*  ./feeds/luci/*
  
  
