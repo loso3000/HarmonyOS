@@ -18,6 +18,21 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 
+#gpu
+CONFIG_PACKAGE_kmod-backlight=y
+CONFIG_PACKAGE_kmod-drm=y
+CONFIG_PACKAGE_kmod-drm-kms-helper=y
+CONFIG_PACKAGE_kmod-drm-rockchip=y
+CONFIG_PACKAGE_kmod-fb=y
+CONFIG_PACKAGE_kmod-fb-cfb-copyarea=y
+CONFIG_PACKAGE_kmod-fb-cfb-fillrect=y
+CONFIG_PACKAGE_kmod-fb-cfb-imgblt=y
+CONFIG_PACKAGE_kmod-fb-sys-fops=y
+CONFIG_PACKAGE_kmod-fb-sys-ram=y
+CONFIG_PACKAGE_kmod-gpu-lima=y
+CONFIG_PACKAGE_kmod-multimedia-input=y
+CONFIG_PACKAGE_kmod-video-core=y
+#usb
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb3=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
