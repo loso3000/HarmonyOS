@@ -26,19 +26,19 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
-# netwizard
-sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
+
 echo advancedplus
-# svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./package/lean/luci-app-advancedplus
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-qcatplus ./package/lean/luci-app-advancedplus
+# svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kplus ./package/lean/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-zplus ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./feeds/luci/applications/luci-app-advancedplus
 
 echo kucat
 # mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./package/lean/luci-theme-kucat
-svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-qcatn ./package/lean/luci-theme-kucat
+svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
+
 
 # alist
 # git clone https://github.com/sbwml/luci-app-alist package/alist
@@ -466,7 +466,7 @@ sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/
 cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > package/base-files/files/etc/profile
-cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
+cat ./package/other/patch/network.lua > ./cfeeds/luci/modules/luci-base/luasrc/model/network.lua
 cp -rf ./package/other/luci/*  ./cfeeds/luci/*
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
