@@ -373,6 +373,8 @@ CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_wget-ssl=y
 
+CONFIG_PACKAGE_umdns=y  #error
+
 CONFIG_PACKAGE_lm-sensors=y
 CONFIG_PACKAGE_coremark=y
 #docker
@@ -383,6 +385,5 @@ CONFIG_DOCKER_NET_ENCRYPT=y
 CONFIG_DOCKER_NET_MACVLAN=y
 CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
-
 # CONFIG_PACKAGE_kmod-fs-virtiofs is not set
 # CONFIG_PACKAGE_kmod-qca-mcs is not set
