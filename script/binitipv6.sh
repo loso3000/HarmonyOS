@@ -466,6 +466,7 @@ sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/
 cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > package/base-files/files/etc/profile
+cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 cp -rf ./package/other/luci/*  ./cfeeds/luci/*
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
