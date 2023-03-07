@@ -29,6 +29,14 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 # git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go 
 
+#管控
+sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
+mv -f  ./package/other/up/luci-app-jzgk ./package/other/up/luci-app-control-parentcontrol
+
+# netwizard
+sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
+mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
+
 echo advancedplus
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kplus ./package/lean/luci-app-advancedplus
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-zplus ./package/lean/luci-app-advancedplus
@@ -40,13 +48,6 @@ echo kucat
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./package/lean/luci-theme-kucat
 svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
-
-
-#管控
-sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
-
-# netwizard
-sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
 # git clone https://github.com/sirpdboy/luci-app-autotimeset  ./package/luci-app-autotimeset
 
@@ -67,7 +68,6 @@ svn export https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
 sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-
 
 rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
