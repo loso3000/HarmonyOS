@@ -26,24 +26,22 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
 #rm -rf ./package/other/up/OpenAppFilter
 #git clone https://github.com/destan19/OpenAppFilter ./package/OpenAppFilter
 
-
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 
 # netwizard
-
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
 echo advancedplus
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkad ./package/lean/luci-app-advancedplus
-#svn export https://github.com/loso3000/mypk/trunk/up/luci-app-gkplus ./package/lean/luci-app-advancedplus
+# svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kplus ./package/lean/luci-app-advancedplus
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-zplus ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
+sed -i 's/pdadplus/advancedplus/g' ./feeds/luci/applications/luci-app-advancedplus
 
 echo kucat
 # mv -f  ./package/other/up/luci-app-xkucat ./package/other/up/luci-app-kucat
-svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-qcat ./package/lean/luci-theme-kucat
-# svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-pdcat ./package/lean/luci-theme-kucat
-# rm -rf   ./package/other/up/luci-app-xkucat
+# svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./package/lean/luci-theme-kucat
+svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 # alist
@@ -160,6 +158,7 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns 
 
 rm -rf ./feeds/luci/applications/luci-app-control-speedlimit package/feeds/packages/luci-app-control-speedlimit
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./feeds/luci/applications/luci-app-control-speedlimit
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./packages//luci-app-control-speedlimit
 #svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-control-speedlimit ./packages/a/luci-app-control-speedlimit
 
 rm -rf ./feeds/packages/utils/cups
@@ -389,6 +388,9 @@ sed -i 's,default n,default y,g' package/bypass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
+rm -rf ./feeds/packages/net/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn export https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
@@ -408,7 +410,8 @@ line_number_INCLUDE_V2ray=$[`grep -m1 -n 'Include V2ray' package/passwall/luci-a
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-
+sed -i 's,-1,3,g' package/luci-app-passwall2/luasrc/controller/passwall2.lua
+sed -i 's,-1,2,g' package/passwall/luci-app-passwall/luasrc/controller/passwall2.lua
 
 
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook feeds/packages/net/brook
@@ -469,6 +472,7 @@ mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > package/base-files/files/etc/profile
+cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 cp -rf ./package/other/luci/*  ./feeds/luci/*
  
 
@@ -511,21 +515,22 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
-sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
+# sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
 
 # sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
+
 #zzz-default-settingsim
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settingsim > ./package/lean/default-settings/files/zzz-default-settings
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-sed -i "s/192.168.6.1/192.168.8.1/g"  package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
 
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
