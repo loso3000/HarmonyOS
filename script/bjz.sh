@@ -393,8 +393,12 @@ rm -rf ./feeds/packages/net/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hysteria
 svn export https://github.com/fw876/helloworld/trunk/sagernet-core package/lean/sagernet-core
+
+# svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
 rm -rf ./feeds/packages/net/xray-core
-svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
+
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
 svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
 svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/lean/shadowsocks-rust
