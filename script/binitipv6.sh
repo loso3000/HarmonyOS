@@ -25,8 +25,12 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
+mv -f  ./package/other/up/luci-app-jzgk ./package/other/up/luci-app-control-parentcontrol
 
-
+# netwizard
+sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
+mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
+ 
 echo advancedplus
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kplus ./package/lean/luci-app-advancedplus
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-zplus ./package/lean/luci-app-advancedplus
@@ -38,7 +42,6 @@ echo kucat
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-catq ./package/lean/luci-theme-kucat
 svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
-
 
 # alist
 # git clone https://github.com/sbwml/luci-app-alist package/alist
@@ -57,7 +60,6 @@ sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 # rm -rf ./cfeeds/luci/applications/netspeedtest
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
-
 
 #  git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
