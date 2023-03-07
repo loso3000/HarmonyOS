@@ -14,7 +14,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/dzn1
-  DIY_P1_SH: script/initipv6.sh
+  DIY_P1_SH: script/aipv6all-lean.sh
   DIY_AFTER: scriptx/diy-after.sh
   CLASH_BINARY_PLATFORM: armv8
 jobs:
@@ -76,7 +76,6 @@ jobs:
         run: |
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           cd openwrt
-          git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
           rm -rf ./tmp && rm -rf .config
       - name: Cache
         uses: klever1988/cachewrtbuild@main
