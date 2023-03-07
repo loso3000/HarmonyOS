@@ -388,6 +388,9 @@ sed -i 's,default n,default y,g' package/bypass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
+rm -rf ./feeds/packages/net/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
 
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn export https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
