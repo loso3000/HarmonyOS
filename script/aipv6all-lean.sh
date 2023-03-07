@@ -31,12 +31,6 @@ sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
 
 echo advancedplus
-# svn export https://github.com/loso3000/mypk/trunk/up/luci-app-newkucatplus ./package/lean/luci-app-advancedplus
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-qcatplus ./package/lean/luci-app-advancedplus
-sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
-sed -i 's/pdadplus/advancedplus/g' ./feeds/luci/applications/luci-app-advancedplus
-
-echo advancedplus
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kplus ./package/lean/luci-app-advancedplus
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-zplus ./package/lean/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
