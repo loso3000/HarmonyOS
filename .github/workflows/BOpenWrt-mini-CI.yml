@@ -160,9 +160,9 @@ jobs:
           mkdir -p ./mini/firmware
           mkdir -p ./mini/package
           cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./mini/package
-          find ./openwrt/bin/targets/ -name "*efi.img" | xargs -i mv -f {} ./mini/firmware
+          find ./openwrt/bin/targets/ -name "*efi.img*" | xargs -i mv -f {} ./mini/firmware
           cd ./mini/firmware
-          gzip *.img
+          gzip *.img | true
           echo -e "SirpdboyOpenWrt-Ipv6-Mini-${{ env.DATA }}-精简版--【EFI通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n" > 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
