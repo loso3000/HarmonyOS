@@ -28,10 +28,13 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
 
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
+mv -f  ./package/other/up/luci-app-jzgk ./package/other/up/luci-app-control-parentcontrol
 
 # netwizard
-sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 
+sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
+mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
+ 
 echo advancedplus
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kplus ./package/lean/luci-app-advancedplus
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-zplus ./package/lean/luci-app-advancedplus
