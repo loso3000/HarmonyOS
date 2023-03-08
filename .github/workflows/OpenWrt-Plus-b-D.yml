@@ -1,6 +1,5 @@
 
-name: BOpenWrt-Plus
-
+name: OpenWrt-Plus-b-D
 
 on:
   repository_dispatch:
@@ -10,8 +9,6 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-  watch:
-    types: started
 #  schedule:
 #    - cron: 0 21 */7 * * 
 
