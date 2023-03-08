@@ -65,6 +65,9 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimes
 # rm -rf ./feeds/luci/applications/netspeedtest
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
+#  coremark
+sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
+
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 
