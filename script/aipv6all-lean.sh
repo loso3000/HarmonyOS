@@ -53,6 +53,9 @@ sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 # sed -i 's/-D_GNU_SOURCE/-D_GNU_SOURCE -Wno-error=use-after-free/g' ./package/libs/elfutils/Makefile
 
+#  coremark
+sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
+
 # rm -rf ./feeds/luci/applications/netspeedtest
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
