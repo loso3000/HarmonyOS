@@ -54,6 +54,9 @@ sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 # rm -rf ./feeds/luci/applications/netspeedtest
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
+#  coremark
+sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
+
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # 可以设置汉字名字
