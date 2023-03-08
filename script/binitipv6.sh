@@ -61,6 +61,9 @@ sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 # rm -rf ./cfeeds/luci/applications/netspeedtest
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
+#  coremark
+sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
+
 #  git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
