@@ -73,6 +73,9 @@ sed -i 's/524288/16777216/g' cfeeds/packages/net/nlbwmon/files/nlbwmon.config
 sed -i '/o.datatype = "hostname"/d' cfeeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
+#  coremark
+sed -i '/echo/d' ./cfeeds/packages/utils/coremark/coremark
+
 rm -rf ./cfeeds/packages/utils/cups
 rm -rf ./cfeeds/packages/utils/cupsd
 rm -rf ./cfeeds/luci/applications/luci-app-cupsd
