@@ -1,0 +1,196 @@
+
+name: BOpenWrt-Plus
+
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+  watch:
+    types: started
+#  schedule:
+#    - cron: 0 21 */7 * * 
+
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: script/ballappdrv.config
+  DIY_P1_SH: script/binitipv6-l.sh
+  DIY_P2_SH: script/clash-core.sh
+  
+  TZ: Asia/Shanghai
+
+jobs:
+
+  build_openwrt:
+
+    permissions:
+      contents: write # for release creation
+
+    name: Build OpenWrt firmware
+
+
+    runs-on: ubuntu-20.04
+
+    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          
+      - name: Check server performance
+        run: |
+         echo "警告⚠"
+         echo "若分配的服务器性能不足，务必及时取消，重新运行！"
+         echo "已知编译成功CPU型号：8370C,8171M"
+         echo "已知性能不足CPU型号：8272CL E5-2673"
+         echo -e "-------------- ------------CPU信息------------------------------------------\n"
+         echo "CPU物理数量:$(cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)"
+         echo -e "CPU核心及版本信息：$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
+         echo "-------------------------------内存信息-------------------------------------------"
+         echo "已安装内存详细信息："
+         sudo lshw -short -C memory | grep GiB
+         echo -e "\n"
+         echo "-----------------------------硬盘信息---------------------------------------------"
+         echo -e  "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
+         echo "硬盘详情："
+         df -Th
+         
+         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
+          echo "CPU YES！！！"
+          echo "CKCPU=success" >> $GITHUB_ENV
+         else
+             echo "CPU NO！！！"
+             echo "CKCPU=failure" >> $GITHUB_ENV
+             exit 1
+         fi
+      - name: Space cleanup
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          docker rmi `docker images -q`
+          sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /usr/lib/jvm /opt/ghc /swapfile
+          sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+          sudo -E apt-mark hold grub-efi-amd64-signed
+          sudo -E apt update
+          sudo -E apt -y purge azure-cli* docker* ghc* zulu* llvm* firefox google* dotnet* powershell* openjdk* mysql* php* mongodb* dotnet* moby* snap*
+          sudo -E apt -y full-upgrade
+          sudo -E apt -y install ack antlr3 aria2 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python3 python3-pip libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
+          sudo -E systemctl daemon-reload
+          sudo -E apt -y autoremove --purge
+          sudo -E apt clean
+          sudo -E timedatectl set-timezone "Asia/Shanghai"
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+      - name: git lede
+        working-directory: /workdir
+        run: |
+          df -hT $PWD
+          git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          ls
+          df -h
+      - name: Update feeds
+        run: | 
+          cd openwrt
+          ./scripts/feeds update -a
+      - name: Install Feeds
+        run: |
+          cd openwrt
+          ./scripts/feeds install -a
+      - name: Update package
+        run: |
+         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
+         chmod +x ./$DIY_P1_SH
+         chmod +x ./$DIY_P2_SH
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
+         cd openwrt
+         $GITHUB_WORKSPACE/$DIY_P1_SH
+         # $GITHUB_WORKSPACE/$DIY_P2_SH amd64
+         chmod -R 755 .
+          df -h
+      - name: Generate configuration file
+        run: |
+         cd openwrt
+          make defconfig
+      - name: Make download
+        working-directory: ./openwrt
+        run: |
+          make download -j50
+          find dl -size -1024c -exec ls -l {} \;
+          find dl -size -1024c -exec rm -f {} \;
+          df -h
+      - name: Compile Packages
+        id: compile
+        run: |
+         df -h
+         cd openwrt
+         echo -e "$(nproc) thread compile"
+         make tools/compile -j$(nproc) || make tools/compile -j40
+         make toolchain/compile -j$(nproc) || make toolchain/compile -j40
+         make target/compile -j$(nproc) || make target/compile -j40 IGNORE_ERRORS=1
+         make diffconfig
+         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j40 IGNORE_ERRORS=1
+         make package/index
+         df -h
+      - name: Generate Firmware
+        run: |
+         df -h
+         cd openwrt 
+         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
+         mkdir -p files/etc/uci-defaults/
+         cp $GITHUB_WORKSPACE/scriptx/init-settingsw.sh files/etc/uci-defaults/99-init-settings
+         make package/install -j$(nproc) || make package/install -j1 V=s
+         make target/install -j$(nproc) || make target/install -j1 V=s
+         pushd bin/targets/x86/64
+         rm -rf *-x86-64-generic-kernel.bin
+         rm -rf *-x86-64-generic-rootfs*
+         rm -rf *-x86-64-generic-squashfs-rootfs.img*
+         rm -rf *-x86-64-generic-squashfs-combined-efi.vmdk
+         rm -rf *-x86-64-generic.manifest
+         rm -rf *-x86-64-generic-squashfs-combined.img*
+         popd
+         make checksum
+         df -h
+      - name: Prepare Artifact
+        run: |
+          mkdir -p ./firmware
+          mkdir -p ./package
+          df -h
+          find ./openwrt/bin/ -name "*.ipk" | xargs -i mv -f {}  ./package
+          find ./openwrt/bin/targets/ -name "*squashfs*img*" | xargs -i mv -f {}  ./firmware
+          cd ./firmware
+          ls
+          gzip *.img || true
+          # find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*combined-efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
+          # gzip *.img || true
+          echo -e "SirpdboyOpenWrt-Ipv6-Plus-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt
+
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Plus-Firmware
+          path: ./firmware
+      - name: Upload  IPK
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Plus-Ipk
+          path: ./package
+      - name: Upload Firmware wetransfer
+        run: |
+          curl -fsSL git.io/file-transfer | sh
+          ./transfer wet -s -p 16 --no-progress ./firmware 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
