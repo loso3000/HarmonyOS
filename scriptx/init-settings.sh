@@ -31,6 +31,8 @@ rm -f /etc/rc.d/S30stubby || true
 rm -f /etc/rc.d/S90stunnel || true
 rm -f /etc/rc.d/S98udptools || true
 rm -f /etc/rc.d/S99nft-qos || true
+mv /etc/seccomp/umdns.json /etc/seccomp/umdns.1json
+/etc/init.d/umdns restart
 # Disable opkg signature check
 sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
 
