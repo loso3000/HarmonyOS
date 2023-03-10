@@ -24,6 +24,8 @@ uci commit luci
 uci set dhcp.@dnsmasq[0].port='53'
 uci commit dhcp
 sed -i '/coremark/d' /etc/crontabs/root
+mv /etc/seccomp/umdns.json /etc/seccomp/umdns.1json
+/etc/init.d/umdns restart
 # sed -i "s/releases\/18.06.9/snapshots/g" /etc/opkg/distfeeds.conf
 # ipv6
 # sed -i 's/^[^#].*option ula/#&/' /etc/config/network
