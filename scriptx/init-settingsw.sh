@@ -21,8 +21,8 @@ uci commit network
 uci commit fstab
 uci set luci.main.mediaurlbase='/luci-static/kucat'
 uci commit luci
-#  
-
+uci set dhcp.@dnsmasq[0].port='53'
+uci commit dhcp
 sed -i '/coremark/d' /etc/crontabs/root
 # sed -i "s/releases\/18.06.9/snapshots/g" /etc/opkg/distfeeds.conf
 # ipv6
