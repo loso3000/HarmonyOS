@@ -17,12 +17,13 @@ b=$(echo "$a" | wc -l)
 	  done
 	  uci -q set network.lan.ifname="${lannet}"
 	}
+	
 uci commit network
 uci commit fstab
 uci set luci.main.mediaurlbase='/luci-static/kucat'
 uci commit luci
-#  
-
+uci set dhcp.@dnsmasq[0].port='53'
+uci commit dhcp
 # Disable autostart by default for some packages
 rm -f /etc/rc.d/S99dockerd || true
 rm -f /etc/rc.d/S99dockerman || true
