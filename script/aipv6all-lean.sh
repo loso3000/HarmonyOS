@@ -44,10 +44,14 @@ echo kucat
 svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
+
+# transmission web error
+sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
+
 #luci-app-easymesh
-# rm -rf ./feeds/luci/applications/luci-app-easymesh
-# svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-easymesh  ./feeds/luci/applications/luci-app-easymesh
-# sed -i "s/wpad-openssl/wpad-mesh-wolfssl/g" ./feeds/luci/applications/luci-app-easymesh/Makefile
+#rm -rf ./feeds/luci/applications/luci-app-easymesh
+#svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-easymesh  ./feeds/luci/applications/luci-app-easymesh
+#sed -i "s/wpad-openssl/wpad-mesh-wolfssl/g" ./feeds/luci/applications/luci-app-easymesh/Makefile
 
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
 
