@@ -409,6 +409,8 @@ CONFIG_boost-runtime-shared=y
 CONFIG_boost-static-and-shared-libs=y
 CONFIG_boost-variant-release=y
 
+CONFIG_PACKAGE_lsblk=y
+
 # Other Appliciations
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
