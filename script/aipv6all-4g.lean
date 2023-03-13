@@ -415,7 +415,7 @@ CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_wget-ssl=y
-
+CONFIG_PACKAGE_lsblk=y
 # CONFIG_PACKAGE_umdns=y  #error
 
 CONFIG_PACKAGE_lm-sensors=y
