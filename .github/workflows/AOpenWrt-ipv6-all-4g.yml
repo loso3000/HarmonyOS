@@ -83,6 +83,7 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
+          chmod +x ./free_disk_space.sh
           ./free_disk_space.sh
           sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
           sudo -E apt-get -qq update
