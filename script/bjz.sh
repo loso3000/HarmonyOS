@@ -392,8 +392,9 @@ svn export https://github.com/fw876/helloworld/trunk/tcping package/lean/tcping
 svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/lean/dns2tcp
 svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
-svn export https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
 
+# svn export https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy  #err
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/naiveproxy package/new/naiveproxy
 rm -rf ./feeds/packages/net/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hysteria
