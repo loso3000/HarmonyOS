@@ -10,53 +10,9 @@ CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
 # set
 CONFIG_TARGET_KERNEL_PARTSIZE=60
 CONFIG_TARGET_ROOTFS_PARTSIZE=920
-
-CONFIG_TARGET_ROOTFS_SQUASHFS=y
-
-CONFIG_PACKAGE_kmod-fuse=y
-CONFIG_PACKAGE_kmod-fs-f2fs=y
-CONFIG_PACKAGE_kmod-fs-nfs=y
-CONFIG_PACKAGE_kmod-fs-nfs-common=y
-CONFIG_PACKAGE_kmod-fs-nfs-common-rpcsec=y
-CONFIG_PACKAGE_kmod-fs-nfs-v3=y
-CONFIG_PACKAGE_kmod-fs-nfs-v4=y
-CONFIG_PACKAGE_kmod-fs-nfsd=y
-CONFIG_PACKAGE_kmod-fs-squashfs=y
-
-CONFIG_PACKAGE_f2fs-tools=y
-CONFIG_PACKAGE_f2fsck=y
-CONFIG_PACKAGE_resize2fs=y
-
-CONFIG_DOCKER_CGROUP_OPTIONS=y
-CONFIG_DOCKER_NET_MACVLAN=y
-CONFIG_DOCKER_STO_EXT4=y
-CONFIG_GNUTLS_ALPN=y
-CONFIG_GNUTLS_ANON=y
-CONFIG_GNUTLS_DTLS_SRTP=y
-CONFIG_GNUTLS_HEARTBEAT=y
-CONFIG_GNUTLS_OCSP=y
-CONFIG_GNUTLS_PSK=y
-CONFIG_KERNEL_CGROUP_DEVICE=y
-CONFIG_KERNEL_CGROUP_FREEZER=y
-CONFIG_KERNEL_CGROUP_NET_PRIO=y
-CONFIG_KERNEL_EXT4_FS_POSIX_ACL=y
-CONFIG_KERNEL_EXT4_FS_SECURITY=y
-CONFIG_KERNEL_FS_POSIX_ACL=y
-CONFIG_KERNEL_NET_CLS_CGROUP=y
-CONFIG_LIBMBEDTLS_HAVE_ARMV8CE_AES=y
-
 # ipv6
-# CONFIG_PACKAGE_ipv6helper=y
-# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-
-
-CONFIG_PACKAGE_luci-proto-ipv6=y
-
-CONFIG_PACKAGE_mount-utils=y
-CONFIG_PACKAGE_odhcp6c=y
-CONFIG_PACKAGE_odhcp6c_ext_cer_id=0
-CONFIG_PACKAGE_odhcpd-ipv6only=y
-CONFIG_PACKAGE_odhcpd_ipv6only_ext_cer_id=0
+CONFIG_PACKAGE_ipv6helper=y
+CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # 不压缩efi
 # CONFIG_TARGET_IMAGES_GZIP is not set
 ### Ethernet Support
@@ -84,7 +40,6 @@ CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 CONFIG_PACKAGE_kmod-gpu-lima=y
 CONFIG_PACKAGE_kmod-ath9k-htc=y
 CONFIG_PACKAGE_kmod-mt76x0u=y
-CONFIG_PACKAGE_kmod-ixgbevf=y
 CONFIG_PACKAGE_kmod-mt76x2u=y
 CONFIG_PACKAGE_kmod-r8125=y
 CONFIG_PACKAGE_kmod-rtw88=y
@@ -244,7 +199,7 @@ CONFIG_PACKAGE_luci-app-dnsfilter=n
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
 CONFIG_PACKAGE_luci-app-mentohust=y
-CONFIG_PACKAGE_luci-app-easymesh=y
+CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
@@ -389,29 +344,7 @@ CONFIG_DOCKER_KERNEL_OPTIONS=y
  CONFIG_DOCKER_NET_OVERLAY=y
  CONFIG_DOCKER_NET_TFTP=y
 
-#add 
-
-CONFIG_PACKAGE_mount-utils=y
-CONFIG_PACKAGE_odhcp6c=y
-CONFIG_PACKAGE_odhcp6c_ext_cer_id=0
-CONFIG_PACKAGE_odhcpd-ipv6only=y
-CONFIG_PACKAGE_odhcpd_ipv6only_ext_cer_id=0
-
-CONFIG_PACKAGE_smartmontools=y
-
-CONFIG_SAMBA4_SERVER_AVAHI=y
-CONFIG_SAMBA4_SERVER_NETBIOS=y
-CONFIG_SAMBA4_SERVER_VFS=y
-CONFIG_SAMBA4_SERVER_WSDD2=y
-# CONFIG_TARGET_IMAGES_GZIP=y
-# CONFIG_TARGET_ROOTFS_PARTSIZE=512
-CONFIG_boost-compile-visibility-hidden=y
-CONFIG_boost-runtime-shared=y
-CONFIG_boost-static-and-shared-libs=y
-CONFIG_boost-variant-release=y
-
 CONFIG_PACKAGE_lsblk=y
-
 # Other Appliciations
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
