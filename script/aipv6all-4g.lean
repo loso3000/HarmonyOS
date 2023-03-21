@@ -330,48 +330,30 @@ CONFIG_PACKAGE_luci-app-msd_lite=y
 
 CONFIG_PACKAGE_luci-app-arpbind=y
 
-# store
-CONFIG_PACKAGE_kmod-mt7921-common=y
-CONFIG_PACKAGE_kmod-mt79222=y
-CONFIG_PACKAGE_kmod-mt7922-common=y
-CONFIG_PACKAGE_kmod-mt7921e=y
-CONFIG_PACKAGE_kmod-mt7921-firmware=y
-CONFIG_PACKAGE_kmod-mt7921s=y
-CONFIG_PACKAGE_kmod-mt7921u=y
-CONFIG_PACKAGE_kmod-mt7922-firmware=y
-CONFIG_PACKAGE_kmod-mt7921bt-firmware=y
-CONFIG_PACKAGE_kmod-bluetooth=y
-CONFIG_PACKAGE_kmod-mt7922bt-firmware=y
+# usb wifi
+CONFIG_PACKAGE_ath10k-board-qca9888=y
+CONFIG_PACKAGE_ath10k-board-qca988x=y
+CONFIG_PACKAGE_ath10k-board-qca9984=y
+CONFIG_PACKAGE_ath10k-firmware-qca9888=y
+CONFIG_PACKAGE_ath10k-firmware-qca988x=y
+CONFIG_PACKAGE_ath10k-firmware-qca9984=y
+CONFIG_PACKAGE_ath9k-htc-firmware=y
+
+CONFIG_PACKAGE_kmod-cfg80211=y
+CONFIG_PACKAGE_kmod-iwlwifi=y
+CONFIG_PACKAGE_kmod-mac80211=y
+
+CONFIG_PACKAGE_MAC80211_DEBUGFS=y
+CONFIG_PACKAGE_MAC80211_MESH=y
+
+CONFIG_PACKAGE_kmod-rtlwifi=y
+CONFIG_PACKAGE_kmod-rtlwifi-btcoexist=y
+CONFIG_PACKAGE_kmod-rtlwifi-pci=y
+CONFIG_PACKAGE_kmod-rtlwifi-usb=y
 
 CONFIG_PACKAGE_iw=y
 CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_kmod-ata-core=y
-CONFIG_PACKAGE_luci-app-mtk=y
-CONFIG_PACKAGE_wifi-profile=y
-CONFIG_PACKAGE_wireless-regdb=y
-CONFIG_PACKAGE_wireless-tools=y
-# CONFIG_PACKAGE_kmod-mt_wifi=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
-
-CONFIG_PACKAGE_kmod-gpu-lima=y
-CONFIG_PACKAGE_kmod-ath9k-htc=y
-CONFIG_PACKAGE_kmod-mt76x0u=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
-CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-rtw88=y
-# CONFIG_PACKAGE_kmod-rtl8812au-ct=y
-CONFIG_PACKAGE_rtl8821ce-firmware=y
-
-# CONFIG_PACKAGE_kmod-cfg80211=y
-# CONFIG_PACKAGE_kmod-lib80211=y
-# CONFIG_PACKAGE_kmod-libertas-usb=y
-# CONFIG_PACKAGE_kmod-libipw=y
-# CONFIG_PACKAGE_kmod-mac80211=y
-# CONFIG_PACKAGE_MAC80211_DEBUGFS=y
-# CONFIG_PACKAGE_MAC80211_MESH=y
+CONFIG_PACKAGE_hostapd-common=y
 
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
