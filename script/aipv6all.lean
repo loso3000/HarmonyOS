@@ -326,6 +326,7 @@ CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-partexp=y
+CONFIG_PACKAGE_luci-app-msd_lite=y
 
 CONFIG_PACKAGE_luci-app-arpbind=y
 
