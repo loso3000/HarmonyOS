@@ -21,7 +21,6 @@ env:
   CONFIG_FILE: script/asuper.config
   DIY_P1_SH: script/asuper.sh
   DIY_P2_SH: script/diy-clash-im.sh
-  
 permissions:
   contents: read
 
@@ -114,7 +113,6 @@ jobs:
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
-         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
           make defconfig
           df -h
@@ -125,15 +123,29 @@ jobs:
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
           df -h
+               
       - name: Compile Packages
         id: compile
         run: |
+         df -h
+         cd openwrt
+         echo -e "$(nproc) thread compile"
+         make tools/compile -j$(nproc) || make tools/compile -j72
+         make toolchain/compile -j$(nproc) || make toolchain/compile -j72
+         make target/compile -j$(nproc) || make target/compile -j72 IGNORE_ERRORS=1
+         make diffconfig
+         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
+         make package/index
+      - name: Generate Firmware
+        run: |
+         df -h
          cd openwrt 
          mkdir -p files/etc/uci-defaults/
+         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-         
-         make -j$(($(nproc)+1)) || make -j1 V=s
-         df -h
+         make package/install -j$(nproc) || make package/install -j1 V=s
+         make target/install -j$(nproc) || make target/install -j1 V=s
+         make checksum
       - name: Prepare Artifact
         run: |
           mkdir -p ./jz/firmware
