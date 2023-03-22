@@ -141,6 +141,8 @@ CONFIG_PACKAGE_autosamba-ksmbd=n
 # CONFIG_PACKAGE_autosamba-samba4=y
 CONFIG_PACKAGE_autosamba=y
 
+# x550 2.5G
+CONFIG_PACKAGE_x550-nbase-t=y
 
 CONFIG_PACKAGE_kmod-inet-diag=y
 
