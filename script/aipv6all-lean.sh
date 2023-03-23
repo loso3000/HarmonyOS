@@ -379,54 +379,54 @@ echo ' ShadowsocksR Plus+'
 # rm -rf  ./package/ssr/luci-app-ssr-plus
 # ShadowsocksR Plus+ 依赖
 rm -rf ./feeds/packages/net/kcptun
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook feeds/packages/net/brook
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/tcping package/new/tcping
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook package/new/brook
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook feeds/packages/net/brook
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/new/trojan
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/ssocks package/new/ssocks
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/microsocks package/new/microsocks
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/dns2socks package/new/dns2socks
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/ipt2socks package/new/ipt2socks
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/pdnsd-alt package/new/pdnsd
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/sagernet-core package/new/sagernet-core
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/naiveproxy package/new/naiveproxy
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan-go package/new/trojan-go
 
-# svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+# svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan package/new/trojan
+# svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan-plus package/new/trojan-plus
+
+svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+
 # svn export https://github.com/sirpdboy/openwrt-trojan-go/trunk/trojan-go package/new/trojan-go
-# svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata  #用sbwml版本更多更好。
+# svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/v2ray-geodata package/lean/v2ray-geodata  #用sbwml版本更更好。
 # svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
 
-svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/lean/lua-neturl
+svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
 rm -rf ./feeds/packages/net/shadowsocks-libev
-svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
-svn export https://github.com/fw876/helloworld/trunk/redsocks2 package/lean/redsocks2
-svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
-svn export https://github.com/fw876/helloworld/trunk/trojan package/lean/trojan
-svn export https://github.com/fw876/helloworld/trunk/tcping package/lean/tcping
-svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/lean/dns2tcp
-svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
-svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/lean/simple-obfs
-
-# svn export https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy  #err
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/naiveproxy package/new/naiveproxy
-
+svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
+svn export https://github.com/fw876/helloworld/trunk/redsocks2 package/new/redsocks2
+svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/new/srelay
+svn export https://github.com/fw876/helloworld/trunk/trojan package/new/trojan
+svn export https://github.com/fw876/helloworld/trunk/tcping package/new/tcping
+svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/new/dns2tcp
+svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
+svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
 rm -rf ./feeds/packages/net/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hysteria
-svn export https://github.com/fw876/helloworld/trunk/sagernet-core package/lean/sagernet-core
+
 
 # svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
 rm -rf ./feeds/packages/net/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
 
-svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
-svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
-svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/lean/shadowsocks-rust
+svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
+svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
+svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
 rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
 ln -sf ../../../feeds/packages/net/kcptun ./package/feeds/packages/kcptun
@@ -525,7 +525,7 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 # sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
 
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.1/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.1/g' ./target/linux/*/Makefile
 # Fix mt76 wireless driver
 sed -i '/mt7662u_rom_patch.bin/a\\techo mt76-usb disable_usb_sg=1 > $\(1\)\/etc\/modules.d\/mt76-usb' package/kernel/mt76/Makefile
 
