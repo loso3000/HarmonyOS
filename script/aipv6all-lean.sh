@@ -105,14 +105,15 @@ mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 # cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/mwan3
 # cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 
-rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns
-rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns feeds/packages/net/mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/new/mosdns
+rm -rf ./package/other/up/pass/mosdns
+rm -rf ./feeds/packages/net/mosdns ./package/feeds/packages/mosdns
+svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/mosdns feeds/packages/net/mosdns
+svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/mosdns package/new/mosdns
 rm -rf package/feeds/packages/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/new/luci-app-mosdns
+rm -rf ./feeds/luci/applications/luci-app-mosdns
+svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
+svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/luci-app-mosdns package/new/luci-app-mosdns
 
 # git clone https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
 rm -rf ./feeds/packages/net/v2ray-geodata
