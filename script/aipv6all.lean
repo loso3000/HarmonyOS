@@ -23,7 +23,7 @@ CONFIG_GRUB_TITLE="OpenWrt"
 # CONFIG_VMDK_IMAGES is not set
 # CONFIG_SIGNATURE_CHECK is not set
 # CONFIG_SIGNED_PACKAGES is not set
-# 不压缩efi
+# 压缩efi
 CONFIG_TARGET_IMAGES_GZIP=y
 #ipv6
 CONFIG_PACKAGE_ipv6helper=y
@@ -51,7 +51,8 @@ CONFIG_DEFAULT_kmod-i40e=y
 CONFIG_DEFAULT_kmod-i40evf=y
 CONFIG_PACKAGE_kmod-ixgbevf=y
 CONFIG_DEFAULT_kmod-iavf=y
-CONFIG_DEFAULT_kmod-igb=y
+# CONFIG_DEFAULT_kmod-igb is not set
+CONFIG_DEFAULT_kmod-igb-intel=y
 CONFIG_DEFAULT_kmod-igbvf=y
 CONFIG_DEFAULT_kmod-igc=y
 CONFIG_DEFAULT_kmod-ipt-raw=y
@@ -149,7 +150,7 @@ CONFIG_PACKAGE_kmod-inet-diag=y
 CONFIG_PACKAGE_kmod-inet-diag=y
 # CONFIG_PACKAGE_kmod-br-netfilter=n  #透明网桥
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
-CONFIG_PACKAGE_luci-app-adbyby-plus=y
+# CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=y
 CONFIG_PACKAGE_luci-app-advancedplus=y
 CONFIG_PACKAGE_luci-app-advanced=n
@@ -166,9 +167,9 @@ CONFIG_PACKAGE_luci-app-cpulimit=n
 CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
-CONFIG_PACKAGE_luci-app-filetransfer=y
+# CONFIG_PACKAGE_luci-app-filetransfer is not set
 CONFIG_PACKAGE_luci-app-hd-idle=y
-CONFIG_PACKAGE_luci-app-jd-dailybonus=y
+CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=y
 CONFIG_PACKAGE_luci-app-onliner=n
@@ -186,6 +187,7 @@ CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM is not set
 CONFIG_PACKAGE_luci-app-passwall2=y
 # CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Brook is not set
+# CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-passwall_Transparent_Proxy=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
@@ -202,7 +204,7 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Server=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Server=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO=y
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=y
@@ -210,7 +212,7 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=y
 CONFIG_PACKAGE_luci-app-ssr-plusdns=n
 CONFIG_PACKAGE_luci-app-ssr-plus=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=y
@@ -219,7 +221,7 @@ CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Server=y
 # CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-bypass=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus=y
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
@@ -268,7 +270,7 @@ CONFIG_PACKAGE_luci-app-homeassistant=n
 CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-pptpserver=y
-CONFIG_PACKAGE_luci-app-n2n=n
+CONFIG_PACKAGE_luci-app-n2n=y
 CONFIG_PACKAGE_luci-app-netwizard=y
 CONFIG_PACKAGE_luci-app-fileassistant=y
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
@@ -334,25 +336,25 @@ CONFIG_PACKAGE_luci-app-arpbind=y
 
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
-CONFIG_PACKAGE_kmod-usb-serial=y
-CONFIG_PACKAGE_kmod-usb-serial-option=y
-CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-CONFIG_PACKAGE_usb-modeswitch=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_luci-proto-qmi=y
-CONFIG_PACKAGE_qmi-utils=y
-CONFIG_PACKAGE_umbim=y
-CONFIG_PACKAGE_uqmi=y
-CONFIG_PACKAGE_comgt-ncm=y
-CONFIG_PACKAGE_luci-proto-ncm=y
-CONFIG_PACKAGE_comgt=y
-CONFIG_PACKAGE_kmod-usb-acm=y
-CONFIG_PACKAGE_luci-proto-3g=y
+# CONFIG_PACKAGE_kmod-usb-serial=y
+# CONFIG_PACKAGE_kmod-usb-serial-option=y
+# CONFIG_PACKAGE_kmod-usb-serial-wwan=y
+# CONFIG_PACKAGE_usb-modeswitch=y
+# CONFIG_PACKAGE_kmod-mii=y
+# CONFIG_PACKAGE_luci-proto-qmi=y
+# CONFIG_PACKAGE_qmi-utils=y
+# CONFIG_PACKAGE_umbim=y
+# CONFIG_PACKAGE_uqmi=y
+# CONFIG_PACKAGE_comgt-ncm=y
+# CONFIG_PACKAGE_luci-proto-ncm=y
+# CONFIG_PACKAGE_comgt=y
+# CONFIG_PACKAGE_kmod-usb-acm=y
+# CONFIG_PACKAGE_luci-proto-3g=y
 
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
 CONFIG_PACKAGE_ipt2socks=y
-CONFIG_PACKAGE_wpad-openssl=y
+# CONFIG_PACKAGE_wpad-openssl=y
 CONFIG_PACKAGE_xz=y
 CONFIG_PACKAGE_xz-utils=y
 CONFIG_PACKAGE_ppp-mod-pppol2tp=y
@@ -374,7 +376,6 @@ CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_openssh-sftp-server=y
-CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_wget-ssl=y
 
 CONFIG_PACKAGE_lsblk=y
