@@ -385,19 +385,19 @@ echo ' ShadowsocksR Plus+'
 # ShadowsocksR Plus+ 依赖
 rm -rf ./feeds/packages/net/kcptun
 
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/tcping package/new/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook package/new/brook
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook feeds/packages/net/brook
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook feeds/packages/net/brook
 
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/ssocks package/new/ssocks
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/microsocks package/new/microsocks
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/dns2socks package/new/dns2socks
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/ipt2socks package/new/ipt2socks
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/pdnsd-alt package/new/pdnsd
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/sagernet-core package/new/sagernet-core
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/naiveproxy package/new/naiveproxy
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan-go package/new/trojan-go
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/sagernet-core package/new/sagernet-core
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/naiveproxy package/new/naiveproxy
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
 
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan package/new/trojan
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan-plus package/new/trojan-plus
@@ -405,7 +405,7 @@ svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/troja
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
 # svn export https://github.com/sirpdboy/openwrt-trojan-go/trunk/trojan-go package/new/trojan-go
-# svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/v2ray-geodata package/lean/v2ray-geodata  #用sbwml版本更更好。
+# svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata  #用sbwml版本更更好。
 # svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
 
 svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
