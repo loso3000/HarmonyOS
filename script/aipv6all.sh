@@ -103,21 +103,40 @@ mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 # svn export https://github.com/Lienol/openwrt-packages/branches/21.02/net/mwan3 ./feeds/packages/net/mwan3
 # svn export https://github.com/Lienol/openwrt-luci/branches/21.02/applications/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 # cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/mwan3
-# cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
+cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 
 rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns feeds/packages/net/mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/new/mosdns
+# svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns feeds/packages/net/mosdns
+# svn export https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/new/mosdns
 rm -rf package/feeds/packages/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
-svn export https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/new/luci-app-mosdns
-
+git clone https://github.com/firkerword/luci-app-mosdns.git package/OpenWrt-mosdns
 # git clone https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+sed -i "/filter_aaaa='1'/d" ./package/OpenWrt-mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+sed -i "/filter_aaaa='1'/d" ./package/luci-app-mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+sed -i "/filter_aaaa='1'/d" ./feeds/luci/applications/luci-app-mosdns/root/etc/init.d/mosdns
+
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
-sed -i "/filter_aaaa='1'/d" ./feeds/luci/applications/luci-app-mosdns/root/etc/init.d/mosdns
+
+
+# 添加额外软件包
+git clone https://github.com/sbwml/luci-app-alist package/alist
+sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+# Alist-3.2.0 依赖 1.19.x
+# sed -i 's/GO_VERSION_MAJOR_MINOR:=.*/GO_VERSION_MAJOR_MINOR:=1.19/g' feeds/packages/lang/golang/golang/Makefile
+# sed -i 's/GO_VERSION_PATCH:=.*/GO_VERSION_PATCH:=2/g' feeds/packages/lang/golang/golang/Makefile
+# sed -i 's/PKG_HASH:=.*/PKG_HASH:=2ce930d70a931de660fdaf271d70192793b1b240272645bf0275779f6704df6b/g' feeds/packages/lang/golang/golang/Makefile
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 19.x feeds/packages/lang/golang
+
+svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-syncthing package/luci-app-syncthing
+cp -r package/luci-app-syncthing/po/zh_Hans/ package/luci-app-syncthing/po/zh-cn/
+svn export https://github.com/immortalwrt/packages/trunk/utils/syncthing package/syncthing
+# Syncthing 1.20.4 -> 1.22.0 由于 golang 升级 1.19.X
+sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.22.0/g' package/syncthing/Makefile
+sed -i 's/PKG_HASH:=.*/PKG_HASH:=b9644e814b4c7844a59e4e7705c550361cb4ed6c36bf9b46617de386ee2dad45/g' package/syncthing/Makefile
 
 #dnsmasq
 #rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
@@ -356,16 +375,14 @@ sed -i 's,default n,default y,g' package/bypass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
-#  git clone https://github.com/loso3000/openwrt-passwall package/passwall
-# svn export https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
-svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
- pushd ./feeds/luci/applications/luci-app-passwall
- sed -i 's,default n,default y,g' Makefile
- popd
-pushd package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
-popd
+git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
+git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall
+# svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
+# svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
+
+# pushd package/passwall/luci-app-passwall
+# sed -i 's,default n,default y,g' Makefile
+# popd
 
 line_number_INCLUDE_Xray=$[`grep -m1 -n 'Include Xray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
 sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
@@ -382,19 +399,12 @@ echo ' ShadowsocksR Plus+'
 # ShadowsocksR Plus+ 依赖
 rm -rf ./feeds/packages/net/kcptun
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook feeds/packages/net/brook
-
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/sagernet-core package/new/sagernet-core
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/naiveproxy package/new/naiveproxy
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+git clone https://github.com/xiaorouji/openwrt-passwall.git package/openwrt-passwall
+rm -rf ./package/openwrt-passwall/trojan-plus
+rm -rf ./package/openwrt-passwall/v2ray-geodata
+rm -rf ./package/openwrt-passwall/xray-core
+rm -rf ./package/openwrt-passwall/trojan
 
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan package/new/trojan
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan-plus package/new/trojan-plus
@@ -402,7 +412,7 @@ svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
 # svn export https://github.com/sirpdboy/openwrt-trojan-go/trunk/trojan-go package/new/trojan-go
-# svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata  #用sbwml版本更更好。
+# svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/v2ray-geodata package/lean/v2ray-geodata  #用sbwml版本更更好。
 # svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
 
 svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
@@ -417,11 +427,11 @@ svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
 rm -rf ./feeds/packages/net/v2ray-core
-svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
-svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hysteria
+svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
+svn export https://github.com/fw876/helloworld/trunk/hysteria package/new/hysteria
 
 
-# svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+# svn export https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
 rm -rf ./feeds/packages/net/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
@@ -560,13 +570,10 @@ date1='Ipv6-Plus-Vip-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 #date1='Ipv6-Plus-Vip-R2023.03.01'
 #sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20230301-Ipv6-Plus-VIP-5.15-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220415-Ipv6-Plus-VIP-5.4-/g' include/image.mk
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-Vip-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220401-Ipv6-Plus-VIP-5.10-/g' include/image.mk
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-Vip-5.10-/g' include/image.mk
 elif [ "$VER2" = "5.15" ]; then
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20220415-Ipv6-Plus-VIP-5.15-/g' include/image.mk
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-Vip-5.15-/g' include/image.mk
 elif [ "$VER2" = "6.1" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-Vip-6.1-/g' include/image.mk
