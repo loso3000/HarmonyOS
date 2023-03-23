@@ -47,10 +47,10 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/l
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 # alist
-# git clone https://github.com/sbwml/luci-app-alist package/alist
-# rm -rf feeds/packages/lang/golang
-# svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+git clone https://github.com/sbwml/luci-app-alist package/alist
+rm -rf feeds/packages/lang/golang
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 
 
 # transmission web error
@@ -60,8 +60,7 @@ sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  f
 #rm -rf ./feeds/luci/applications/luci-app-easymesh
 #svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-easymesh  ./feeds/luci/applications/luci-app-easymesh
 #sed -i "s/wpad-openssl/wpad-mesh-wolfssl/g" ./feeds/luci/applications/luci-app-easymesh/Makefile
-
-
+# autotimeset
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
 
 # rm -rf ./feeds/luci/applications/netspeedtest
@@ -170,6 +169,7 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns 
 
 rm -rf ./feeds/luci/applications/luci-app-control-speedlimit package/feeds/packages/luci-app-control-speedlimit
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./feeds/luci/applications/luci-app-control-speedlimit
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./packages//luci-app-control-speedlimit
 #svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-control-speedlimit ./packages/a/luci-app-control-speedlimit
 
 rm -rf ./feeds/packages/utils/cups
@@ -201,6 +201,10 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-advanced 
 rm -rf ./feeds/luci/applications/luci-app-rebootschedule package/feeds/packages/luci-app-rebootschedule
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-rebootschedule ./feeds/luci/applications/luci-app-rebootschedule
 ln -sf ../../../feeds/luci/applications/luci-app-rebootschedule ./package/feeds/luci/luci-app-rebootschedule
+
+rm -rf ./feeds/luci/applications/luci-app-wizard package/feeds/packages/luci-app-wizard
+# git clone https://github.com/sirpdboy/luci-app-wizard  ./package/luci-app-wizard 
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard ./package/luci-app-wizard
 
 rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./feeds/packages/net/wrtbwmon
@@ -280,24 +284,24 @@ svn export https://github.com/loso3000/other/trunk/up/luci-app-samba4 ./feeds/lu
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+
+
 # 添加额外软件包
-# git clone https://github.com/sbwml/luci-app-alist package/alist
-# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+git clone https://github.com/sbwml/luci-app-alist package/alist
+sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 # Alist-3.2.0 依赖 1.19.x
-#rm -rf feeds/packages/lang/golang
-#cp -rf $GITHUB_WORKSPACE/general/golang feeds/packages/lang/golang
 # sed -i 's/GO_VERSION_MAJOR_MINOR:=.*/GO_VERSION_MAJOR_MINOR:=1.19/g' feeds/packages/lang/golang/golang/Makefile
 # sed -i 's/GO_VERSION_PATCH:=.*/GO_VERSION_PATCH:=2/g' feeds/packages/lang/golang/golang/Makefile
 # sed -i 's/PKG_HASH:=.*/PKG_HASH:=2ce930d70a931de660fdaf271d70192793b1b240272645bf0275779f6704df6b/g' feeds/packages/lang/golang/golang/Makefile
-# svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 19.x feeds/packages/lang/golang
 
-# svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-syncthing package/luci-app-syncthing
-# cp -r package/luci-app-syncthing/po/zh_Hans/ package/luci-app-syncthing/po/zh-cn/
-# svn export https://github.com/immortalwrt/packages/trunk/utils/syncthing package/syncthing
+svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-syncthing package/luci-app-syncthing
+cp -r package/luci-app-syncthing/po/zh_Hans/ package/luci-app-syncthing/po/zh-cn/
+svn export https://github.com/immortalwrt/packages/trunk/utils/syncthing package/syncthing
 # Syncthing 1.20.4 -> 1.22.0 由于 golang 升级 1.19.X
-# sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.22.0/g' package/syncthing/Makefile
-# sed -i 's/PKG_HASH:=.*/PKG_HASH:=b9644e814b4c7844a59e4e7705c550361cb4ed6c36bf9b46617de386ee2dad45/g' package/syncthing/Makefile
-
+sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.22.0/g' package/syncthing/Makefile
+sed -i 's/PKG_HASH:=.*/PKG_HASH:=b9644e814b4c7844a59e4e7705c550361cb4ed6c36bf9b46617de386ee2dad45/g' package/syncthing/Makefile
 
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 svn export https://github.com/loso3000/other/trunk/up/softethervpn5 ./feeds/packages/net/softethervpn5
@@ -395,6 +399,10 @@ sed -i 's,default n,default y,g' package/bypass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
+rm -rf ./feeds/packages/net/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
+
 #  git clone https://github.com/loso3000/openwrt-passwall package/passwall
 # svn export https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
@@ -413,11 +421,8 @@ line_number_INCLUDE_V2ray=$[`grep -m1 -n 'Include V2ray' package/passwall/luci-a
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-
-# svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
-rm -rf ./feeds/packages/net/xray-core
-svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
-svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
+sed -i 's,-1,3,g' package/luci-app-passwall2/luasrc/controller/passwall2.lua
+sed -i 's,-1,2,g' package/passwall/luci-app-passwall/luasrc/controller/passwall2.lua
 
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook feeds/packages/net/brook
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook package/new/brook
