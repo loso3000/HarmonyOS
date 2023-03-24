@@ -121,6 +121,7 @@ svn export https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns packag
 rm -rf ./cfeeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 sed -i "/filter_aaaa='1'/d" ./cfeeds/luci/applications/luci-app-mosdns/root/etc/init.d/mosdns
+sed -i "/filter_aaaa='1'/d" ./package/new/luci-app-mosdns/root/etc/init.d/mosdns
 
 #dnsmasq
 #rm -rf ./package/network/services/dnsmasq package/cfeeds/packages/dnsmasq
