@@ -116,8 +116,10 @@ git clone https://github.com/sbwml/luci-app-mosdns package/OpenWrt-mosdns
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 sed -i "/filter_aaaa='1'/d" ./package/OpenWrt-mosdns/luci-app-mosdns/root/etc/init.d/mosdns
-# sed -i "/filter_aaaa='1'/d" ./feeds/luci/applications/luci-app-mosdns/root/etc/init.d/mosdns
+sed -i "/filter_aaaa='1'/d" ./feeds/luci/applications/luci-app-mosdns/root/etc/init.d/mosdns
 
+rm -rf ./feeds/packages/net/v2ray-geodata
+git clone https://github.com/sbwml/v2ray-geodata package/geodata
 
 git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
 
