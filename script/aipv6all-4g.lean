@@ -185,6 +185,7 @@ CONFIG_PACKAGE_luci-app-passwall2=y
 CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-passwall_Transparent_Proxy=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Hysteria=y
@@ -198,7 +199,6 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Server=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Server=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_GO=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Plugin=y
@@ -206,7 +206,7 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=y
 CONFIG_PACKAGE_luci-app-ssr-plusdns=n
 CONFIG_PACKAGE_luci-app-ssr-plus=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=y
@@ -215,7 +215,7 @@ CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Server=y
 # CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-bypass=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus=y
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan
+# CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=n
@@ -337,20 +337,19 @@ CONFIG_PACKAGE_ath10k-board-qca9984=y
 CONFIG_PACKAGE_ath10k-firmware-qca9888=y
 CONFIG_PACKAGE_ath10k-firmware-qca988x=y
 CONFIG_PACKAGE_ath10k-firmware-qca9984=y
-CONFIG_PACKAGE_ath9k-htc-firmware=y
-
+# CONFIG_PACKAGE_ath9k-htc-firmware=y
 
 CONFIG_PACKAGE_kmod-mt7921e=y
 CONFIG_PACKAGE_kmod-mt7921-common=y
 CONFIG_PACKAGE_kmod-mt7922=y
 CONFIG_PACKAGE_kmod-mt7922-common=y
 
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
+# CONFIG_PACKAGE_iw=y
+# CONFIG_PACKAGE_iwinfo=y
+# CONFIG_PACKAGE_wpad-wolfssl=y
+# CONFIG_DRIVER_11AC_SUPPORT=y
+# CONFIG_DRIVER_11N_SUPPORT=y
+# CONFIG_DRIVER_11W_SUPPORT=y
 
 # CONFIG_PACKAGE_kmod-cfg80211=y
 # CONFIG_PACKAGE_kmod-iwlwifi=y
@@ -358,15 +357,14 @@ CONFIG_DRIVER_11W_SUPPORT=y
 # # CONFIG_PACKAGE_MAC80211_DEBUGFS=y
 # CONFIG_PACKAGE_MAC80211_MESH=y
 
-CONFIG_PACKAGE_kmod-rtlwifi=y
-CONFIG_PACKAGE_kmod-rtlwifi-btcoexist=y
-CONFIG_PACKAGE_kmod-rtlwifi-pci=y
-CONFIG_PACKAGE_kmod-rtlwifi-usb=y
+# CONFIG_PACKAGE_kmod-rtlwifi=y
+# CONFIG_PACKAGE_kmod-rtlwifi-btcoexist=y
+# CONFIG_PACKAGE_kmod-rtlwifi-pci=y
+# CONFIG_PACKAGE_kmod-rtlwifi-usb=y
 
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
+# CONFIG_PACKAGE_iw=y
+# CONFIG_PACKAGE_iwinfo=y
 CONFIG_PACKAGE_hostapd-common=y
-
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
 CONFIG_PACKAGE_kmod-usb-serial=y
@@ -382,7 +380,8 @@ CONFIG_PACKAGE_comgt-ncm=y
 CONFIG_PACKAGE_luci-proto-ncm=y
 CONFIG_PACKAGE_comgt=y
 CONFIG_PACKAGE_kmod-usb-acm=y
-CONFIG_PACKAGE_luci-proto-3g=y
+
+# CONFIG_PACKAGE_luci-proto-3g=y
 
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
