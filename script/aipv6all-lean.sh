@@ -391,6 +391,7 @@ rm -rf ./package/openwrt-passwall/trojan-plus
 rm -rf ./package/openwrt-passwall/v2ray-geodata
 # rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/trojan
+rm -rf ./package/openwrt-passwall/naiveproxy
 
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan package/new/trojan
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan-plus package/new/trojan-plus
