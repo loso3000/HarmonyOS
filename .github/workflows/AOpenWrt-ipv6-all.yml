@@ -207,8 +207,3 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Plus-Ipk
           path: ./packageipv6all
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./firmwareipv6all 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
