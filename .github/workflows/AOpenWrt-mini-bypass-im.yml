@@ -164,9 +164,9 @@ jobs:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-Bypass-Vip-Ipk
           path: ./imminip/package
           
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./imminip/firmware 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+      #- name: Upload Firmware wetransfer
+      #  run: |
+      #    curl -fsSL git.io/file-transfer | sh
+      #    ./transfer wet -s -p 16 --no-progress ./imminip/firmware 2>&1 | tee wetransfer.log
+      #    echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
           
