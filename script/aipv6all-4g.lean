@@ -563,3 +563,12 @@ CONFIG_PACKAGE_kmod-brcmutil=y
 CONFIG_PACKAGE_kmod-cfg80211=y
 CONFIG_PACKAGE_MAC80211_MESH=y
 CONFIG_PACKAGE_kmod-mac80211=y
+
+CONFIG_PACKAGE_wpa-supplicant=y
+CONFIG_PACKAGE_hostapd=y
+CONFIG_PACKAGE_kmod-iwlwifi=y
+CONFIG_PACKAGE_wireless-regdb=y
+CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_iwlwifi-firmware-ax200=y
+CONFIG_PACKAGE_iwlwifi-firmware-ax201=y
+CONFIG_PACKAGE_iwlwifi-firmware-ax210=y
