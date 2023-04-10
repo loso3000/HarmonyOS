@@ -487,7 +487,7 @@ git clone https://github.com/shenlijun/openwrt-x550-nbase-t package/openwrt-x550
 cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > package/base-files/files/etc/profile
-cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
+# cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 # 6.1 80211 error
 # cat ./package/other/patch/mac80211/intel.mk > ./package/kernel/mac80211/intel.mk
 cp -rf ./package/other/luci/*  ./feeds/luci/*
