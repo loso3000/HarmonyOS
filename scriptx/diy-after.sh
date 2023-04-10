@@ -48,6 +48,8 @@ export KERNEL_VERSION=$KERNEL_VERSION
     wget ${kernel_URL}/${kernel_VER}/dtb-rockchip-${KERNEL_VERSION}.tar.gz
     wget ${kernel_URL}/${kernel_VER}/modules-${KERNEL_VERSION}.tar.gz
     cd /opt/openwrt_packit
+    rm -rf ./index.html.patches
+    rm -rf ./index.html.patches.qemu-aarch64
     export ENABLE_WIFI_K510=1
     sudo -E ./mk_s905d_n1.sh 
     find -type f -size +100M -name 'openwrt*.img' -exec mv {} /opt/openwrt_packit/tmp/ \;
