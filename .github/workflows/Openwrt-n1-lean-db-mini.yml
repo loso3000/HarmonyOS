@@ -14,7 +14,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/dzn1
-  DIY_P1_SH: script/aipv6all-lean.sh
+  DIY_P1_SH: script/aipv6mini.sh
   DIY_AFTER: scriptx/diy-after.sh
   CLASH_BINARY_PLATFORM: armv8
 jobs:
@@ -165,8 +165,3 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenwrt-Ipv6-n1-Super
           path: ./n1
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./n1/ 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
