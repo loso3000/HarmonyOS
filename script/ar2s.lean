@@ -37,26 +37,6 @@ CONFIG_PACKAGE_kmod-usb3=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
 
-CONFIG_PACKAGE_kmod-gpu-lima=y
-CONFIG_PACKAGE_kmod-ath9k-htc=y
-CONFIG_PACKAGE_kmod-mt76x0u=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
-CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-rtw88=y
-# CONFIG_PACKAGE_kmod-rtl8812au-ct=y err
-CONFIG_PACKAGE_rtl8821ce-firmware=y
-CONFIG_PACKAGE_kmod-mt7921e=y
-CONFIG_PACKAGE_kmod-mt7921-common=y
-CONFIG_PACKAGE_kmod-mt7922=y
-CONFIG_PACKAGE_kmod-mt7922-common=y
-
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
-
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8125=y
@@ -301,50 +281,15 @@ CONFIG_PACKAGE_luci-app-partexp=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 
-# store
-CONFIG_PACKAGE_kmod-mt7921-common=y
-CONFIG_PACKAGE_kmod-mt79222=y
-CONFIG_PACKAGE_kmod-mt7922-common=y
-CONFIG_PACKAGE_kmod-mt7921e=y
-CONFIG_PACKAGE_kmod-mt7921-firmware=y
-CONFIG_PACKAGE_kmod-mt7921s=y
-CONFIG_PACKAGE_kmod-mt7921u=y
-CONFIG_PACKAGE_kmod-mt7922-firmware=y
-CONFIG_PACKAGE_kmod-mt7921bt-firmware=y
-# CONFIG_PACKAGE_kmod-bluetooth=y
-CONFIG_PACKAGE_kmod-mt7922bt-firmware=y
-
-CONFIG_PACKAGE_iw=y
-CONFIG_PACKAGE_iwinfo=y
-CONFIG_PACKAGE_kmod-ata-core=y
-CONFIG_PACKAGE_luci-app-mtk=y
-CONFIG_PACKAGE_wifi-profile=y
-CONFIG_PACKAGE_wireless-regdb=y
-CONFIG_PACKAGE_wireless-tools=y
-CONFIG_PACKAGE_kmod-mt_wifi=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_DRIVER_11AC_SUPPORT=y
-CONFIG_DRIVER_11N_SUPPORT=y
-CONFIG_DRIVER_11W_SUPPORT=y
-
-CONFIG_PACKAGE_kmod-gpu-lima=y
-CONFIG_PACKAGE_kmod-ath9k-htc=y
-CONFIG_PACKAGE_kmod-mt76x0u=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
-CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-rtw88=y
-# CONFIG_PACKAGE_kmod-rtl8812au-ct=y #error
-# CONFIG_PACKAGE_rtl8821ce-firmware=y
 #docker
 CONFIG_PACKAGE_luci-app-docker=y
 CONFIG_PACKAGE_luci-app-dockerman=y
 CONFIG_DOCKER_KERNEL_OPTIONS=y
- CONFIG_DOCKER_NET_ENCRYPT=y
- CONFIG_DOCKER_NET_MACVLAN=y
- CONFIG_DOCKER_NET_OVERLAY=y
- CONFIG_DOCKER_NET_TFTP=y
+CONFIG_DOCKER_NET_ENCRYPT=y
+CONFIG_DOCKER_NET_MACVLAN=y
+CONFIG_DOCKER_NET_OVERLAY=y
+CONFIG_DOCKER_NET_TFTP=y
 
-CONFIG_PACKAGE_lsblk=y
 # Other Appliciations
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
@@ -367,3 +312,5 @@ CONFIG_PACKAGE_fdisk=y #分区工具
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 CONFIG_PACKAGE_wget=y
+CONFIG_PACKAGE_wget-ssl=y
+CONFIG_PACKAGE_lsblk=y
