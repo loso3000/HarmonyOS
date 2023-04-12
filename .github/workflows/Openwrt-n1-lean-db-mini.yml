@@ -143,12 +143,6 @@ jobs:
            # 没 imageBuilder下也就是不做slim的设备此刻执行 after
            bash  ../scriptx/diy-after.sh
 
-          
-      - name: Upload bin ipk
-        uses: actions/upload-artifact@main
-        with:
-          name: SirpdboyOpenwrt-IPV6-n1-Super-Ipk
-          path: ./openwrt/bin
       - name: Prepare Artifact
         run: |
           mkdir ./n1
@@ -165,3 +159,10 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenwrt-Ipv6-n1-Super
           path: ./n1
+
+          
+      - name: Upload bin ipk
+        uses: actions/upload-artifact@main
+        with:
+          name: SirpdboyOpenwrt-IPV6-n1-Super-Ipk
+          path: ./openwrt/bin
