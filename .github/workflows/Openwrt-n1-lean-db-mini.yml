@@ -77,11 +77,6 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           cd openwrt
           rm -rf ./tmp && rm -rf .config
-      - name: Cache
-        uses: klever1988/cachewrtbuild@main
-        with:
-          ccache: 'true' 
-          prefix: ${{ github.workspace }}/openwrt
       - name: Update feeds
         run: |
           cd openwrt 
@@ -149,7 +144,7 @@ jobs:
           find ./openwrt/bin/targets/ -name "openwrt*.img*" | xargs -i mv -f {} ./n1/
           cd ./n1
           gzip *.img |true
-          echo -e "${{ env.DATA }}-SirpdboyOpenwrt-Ipv6-n1-Super\n" > 版本日期和MD5信息.txt
+          echo -e "${{ env.DATA }}-SirpdboyOpenwrt-Ipv6-n1-mini\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
@@ -157,12 +152,5 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenwrt-Ipv6-n1-Super
+          name: ${{ env.DATA }}-SirpdboyOpenwrt-Ipv6-n1-mini
           path: ./n1
-
-          
-      - name: Upload bin ipk
-        uses: actions/upload-artifact@main
-        with:
-          name: SirpdboyOpenwrt-IPV6-n1-Super-Ipk
-          path: ./openwrt/bin
