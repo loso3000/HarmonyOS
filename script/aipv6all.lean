@@ -5,6 +5,11 @@ CONFIG_TARGET_x86_64_DEVICE_generic=y
 CONFIG_TARGET_KERNEL_PARTSIZE=64
 CONFIG_TARGET_ROOTFS_PARTSIZE=925
 
+CONFIG_PACKAGE_diffutils=y
+
+CONFIG_BUSYBOX_CUSTOM=y
+CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
+
 # CONFIG_COREMARK_NUMBER_OF_THREADS=128
 # CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256 
 # CONFIG_PACKAGE_kmod-kvm-amd=y
@@ -86,8 +91,30 @@ CONFIG_PACKAGE_kmod-usb-core=y
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-tg3=y   #BCM5719
+CONFIG_DEFAULT_kmod-via-velocity=y
 CONFIG_DEFAULT_kmod-vmxnet3=y
 # CONFIG_PACKAGE_kmod-r8101=y #error
+
+
+# fibocom fm-160/fm-150 5G usb3.0
+CONFIG_PACKAGE_luci-app-usbmodem=y
+CONFIG_PACKAGE_minicom=y
+CONFIG_PACKAGE_fibocom-dial=y
+
+# AW7916-NPD is a WiFi6 3000 highly advanced Mini PCIe Module
+CONFIG_PACKAGE_hostapd-common=y
+CONFIG_PACKAGE_wpad=y
+CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_kmod-mac80211=y
+CONFIG_PACKAGE_kmod-cfg80211=y
+CONFIG_PACKAGE_kmod-mt76=y
+CONFIG_PACKAGE_kmod-mt76x2=y
+CONFIG_PACKAGE_kmod-mt7615e=y
+CONFIG_PACKAGE_kmod-mt7916-firmware=y
+CONFIG_PACKAGE_kmod-crypto-gcm=y
+CONFIG_PACKAGE_kmod-crypto-gf128=y
+CONFIG_PACKAGE_kmod-crypto-ghash=y
+
 ## File System Drivers
 CONFIG_DEFAULT_kmod-forcedeth=y
 CONFIG_PACKAGE_kmod-fs-f2fs=y
@@ -125,7 +152,6 @@ CONFIG_PACKAGE_luci-app-ddns=y
 # CONFIG_PACKAGE_automount   #取消AUTO挂载
 # CONFIG_PACKAGE_swconfig=y  #交换机功能
 # CONFIG_PACKAGE_hostapd=y
-# CONFIG_PACKAGE_hostapd-common=y
 CONFIG_PACKAGE_e2fsprogs=y
 # CONFIG_PACKAGE_smartmontools=y
 CONFIG_PACKAGE_luci-proto-ipip=y
@@ -136,11 +162,13 @@ CONFIG_PACKAGE_luci-proto-ipip=y
 CONFIG_PACKAGE_automount=y  #NTFS挂载
 
 CONFIG_PACKAGE_autocore-x86=y
-# CONFIG_PACKAGE_myautocore-x86=y
+CONFIG_PACKAGE_autocore-x86=y
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_autosamba-ksmbd=n
 # CONFIG_PACKAGE_autosamba-samba4=y
 CONFIG_PACKAGE_autosamba=y
+
+CONFIG_PACKAGE_ipt2socks=y
 
 # x550 2.5G
 CONFIG_PACKAGE_x550-nbase-t=y
@@ -171,6 +199,8 @@ CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 CONFIG_PACKAGE_luci-app-hd-idle=y
 CONFIG_PACKAGE_luci-app-jd-dailybonus=n
 CONFIG_PACKAGE_luci-app-koolproxyR=n
+
+CONFIG_PACKAGE_luci-app-n2n_v2=y
 CONFIG_PACKAGE_luci-app-netdata=y
 CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
@@ -336,24 +366,88 @@ CONFIG_PACKAGE_luci-app-arpbind=y
 
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
-# CONFIG_PACKAGE_kmod-usb-serial=y
-# CONFIG_PACKAGE_kmod-usb-serial-option=y
-# CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-# CONFIG_PACKAGE_usb-modeswitch=y
-# CONFIG_PACKAGE_kmod-mii=y
-# CONFIG_PACKAGE_luci-proto-qmi=y
-# CONFIG_PACKAGE_qmi-utils=y
-# CONFIG_PACKAGE_umbim=y
-# CONFIG_PACKAGE_uqmi=y
-# CONFIG_PACKAGE_comgt-ncm=y
-# CONFIG_PACKAGE_luci-proto-ncm=y
-# CONFIG_PACKAGE_comgt=y
-# CONFIG_PACKAGE_kmod-usb-acm=y
-# CONFIG_PACKAGE_luci-proto-3g=y
+CONFIG_PACKAGE_iperf3=y
+CONFIG_PACKAGE_minieap=y
+CONFIG_PACKAGE_rsync=y
+CONFIG_PACKAGE_rsyncd=y
+CONFIG_PACKAGE_bind-dig=y
+CONFIG_PACKAGE_bind-host=y
+CONFIG_PACKAGE_mentohust=y
+CONFIG_PACKAGE_odhcp6c=y
+CONFIG_PACKAGE_nginx=y
+CONFIG_PACKAGE_openssh-sftp-client=y
+CONFIG_PACKAGE_openssh-sftp-server=y
+CONFIG_PACKAGE_pandownload-fake-server=y
+CONFIG_PACKAGE_ppp-mod-pptp=y
+CONFIG_PACKAGE_xl2tpd=y
+CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+CONFIG_PACKAGE_ipv6helper=y
+CONFIG_PACKAGE_fullconenat=y
+
+CONFIG_PACKAGE_apk=y
+CONFIG_PACKAGE_alpine-keys=y
+CONFIG_PACKAGE_alpine-repositories=y
+CONFIG_PACKAGE_bsdtar=y
+CONFIG_PACKAGE_bzip2=y
+CONFIG_PACKAGE_e2fsprogs=y
+CONFIG_PACKAGE_gzip=y
+CONFIG_PACKAGE_unzip=y
+CONFIG_PACKAGE_zip=y
+CONFIG_PACKAGE_fdisk=y
+CONFIG_PACKAGE_fstrim=y
+CONFIG_PACKAGE_gpioctl-sysfs=y
+CONFIG_PACKAGE_gpiod-tools=y
+CONFIG_PACKAGE_irqbalance=y
+CONFIG_PACKAGE_lsblk=y
+CONFIG_PACKAGE_lscpu=y
+CONFIG_PACKAGE_nano=y
+CONFIG_PACKAGE_shadow-chsh=y
+CONFIG_PACKAGE_vim-full=y
+CONFIG_PACKAGE_f2fs-tools=y
+CONFIG_PACKAGE_f2fsck=y
+CONFIG_PACKAGE_resize2fs=y
+CONFIG_PACKAGE_zsh=y
+CONFIG_PACKAGE_snmpd=y
+CONFIG_PACKAGE_screen=y
+CONFIG_PACKAGE_tmux=y
+CONFIG_PACKAGE_tree=y
+CONFIG_PACKAGE_usbutils=y
+CONFIG_PACKAGE_whereis=y
+CONFIG_PACKAGE_gotop=y
+CONFIG_PACKAGE_tmate=y
+CONFIG_PACKAGE_udp2raw-tunnel=y
+CONFIG_PACKAGE_udpspeeder=y
+CONFIG_PACKAGE_uugamebooster=y
+CONFIG_PACKAGE_procd-ujail=y
+
+CONFIG_PACKAGE_kmod-usb-serial=y
+CONFIG_PACKAGE_kmod-usb-serial-option=y
+CONFIG_PACKAGE_kmod-usb-serial-wwan=y
+CONFIG_PACKAGE_usb-modeswitch=y
+CONFIG_PACKAGE_kmod-mii=y
+CONFIG_PACKAGE_luci-proto-qmi=y
+CONFIG_PACKAGE_qmi-utils=y
+CONFIG_PACKAGE_umbim=y
+CONFIG_PACKAGE_uqmi=y
+CONFIG_PACKAGE_comgt-ncm=y
+CONFIG_PACKAGE_luci-proto-ncm=y
+CONFIG_PACKAGE_comgt=y
+CONFIG_PACKAGE_kmod-usb-acm=y
+CONFIG_PACKAGE_luci-proto-3g=y
+
+CONFIG_PACKAGE_libimobiledevice-utils=y
+CONFIG_PACKAGE_libplist-utils=y
+CONFIG_PACKAGE_libusbmuxd-utils=y
+
+CONFIG_PACKAGE_usbmuxd=y
+CONFIG_PACKAGE_libwslay=y
+CONFIG_PACKAGE_libudev-fbsd=y
+
+CONFIG_HYSTERIA_COMPRESS_UPX=y
+CONFIG_PACKAGE_hysteria=y
 
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
-CONFIG_PACKAGE_ipt2socks=y
 # CONFIG_PACKAGE_wpad-openssl=y
 CONFIG_PACKAGE_xz=y
 CONFIG_PACKAGE_xz-utils=y
