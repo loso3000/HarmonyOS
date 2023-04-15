@@ -56,8 +56,8 @@ CONFIG_DEFAULT_kmod-i40e=y
 CONFIG_DEFAULT_kmod-i40evf=y
 CONFIG_PACKAGE_kmod-ixgbevf=y
 CONFIG_DEFAULT_kmod-iavf=y
-# CONFIG_DEFAULT_kmod-igb is not set
-CONFIG_DEFAULT_kmod-igb-intel=y
+CONFIG_DEFAULT_kmod-igb=y
+# CONFIG_DEFAULT_kmod-igb-intel=y
 CONFIG_DEFAULT_kmod-igbvf=y
 CONFIG_DEFAULT_kmod-igc=y
 CONFIG_DEFAULT_kmod-ipt-raw=y
@@ -367,59 +367,7 @@ CONFIG_PACKAGE_luci-app-arpbind=y
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
 CONFIG_PACKAGE_odhcp6c=y
-CONFIG_PACKAGE_nginx=y
-CONFIG_PACKAGE_openssh-sftp-client=y
-CONFIG_PACKAGE_openssh-sftp-server=y
-CONFIG_PACKAGE_ppp-mod-pptp=y
-CONFIG_PACKAGE_xl2tpd=y
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-CONFIG_PACKAGE_fullconenat=y
-
-CONFIG_PACKAGE_apk=y
-CONFIG_PACKAGE_bsdtar=y
-CONFIG_PACKAGE_bzip2=y
-CONFIG_PACKAGE_e2fsprogs=y
-CONFIG_PACKAGE_gzip=y
-CONFIG_PACKAGE_unzip=y
-CONFIG_PACKAGE_zip=y
-CONFIG_PACKAGE_fdisk=y
-CONFIG_PACKAGE_gpioctl-sysfs=y
-CONFIG_PACKAGE_gpiod-tools=y
-CONFIG_PACKAGE_irqbalance=y
-CONFIG_PACKAGE_lsblk=y
-CONFIG_PACKAGE_lscpu=y
-CONFIG_PACKAGE_f2fs-tools=y
-CONFIG_PACKAGE_f2fsck=y
-CONFIG_PACKAGE_resize2fs=y
-CONFIG_PACKAGE_zsh=y
-CONFIG_PACKAGE_tmux=y
-CONFIG_PACKAGE_usbutils=y
-
-CONFIG_PACKAGE_kmod-usb-serial=y
-CONFIG_PACKAGE_kmod-usb-serial-option=y
-CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-CONFIG_PACKAGE_usb-modeswitch=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_luci-proto-qmi=y
-CONFIG_PACKAGE_qmi-utils=y
-CONFIG_PACKAGE_umbim=y
-CONFIG_PACKAGE_uqmi=y
-CONFIG_PACKAGE_comgt-ncm=y
-CONFIG_PACKAGE_luci-proto-ncm=y
-CONFIG_PACKAGE_comgt=y
-CONFIG_PACKAGE_kmod-usb-acm=y
-CONFIG_PACKAGE_luci-proto-3g=y
-
-CONFIG_PACKAGE_libimobiledevice-utils=y
-CONFIG_PACKAGE_libplist-utils=y
-CONFIG_PACKAGE_libusbmuxd-utils=y
-
-CONFIG_PACKAGE_usbmuxd=y
-CONFIG_PACKAGE_libwslay=y
-CONFIG_PACKAGE_libudev-fbsd=y
-
-CONFIG_HYSTERIA_COMPRESS_UPX=y
-CONFIG_PACKAGE_hysteria=y
+CONFIG_PACKAGE_nginx=
 
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
@@ -446,6 +394,7 @@ CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_wget-ssl=y
+CONFIG_PACKAGE_openssh-sftp-client=y
 
 CONFIG_PACKAGE_openssl-util=y  #https
 
