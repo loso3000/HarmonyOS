@@ -48,8 +48,8 @@ CONFIG_MMC_SDHCI_ACPI=y
 CONFIG_MMC_SDHCI_PCI=y
 
 # 其他需要安装的软件包:
-CONFIG_PACKAGE_luci-ssl=n # uhttpd服务
-CONFIG_PACKAGE_luci-ssl-nginx=y # nginx
+# CONFIG_PACKAGE_luci-ssl=n # uhttpd服务
+# CONFIG_PACKAGE_luci-ssl-nginx=y # nginx
 
 #USB net driver
 CONFIG_PACKAGE_kmod-usb-dwc2=y
