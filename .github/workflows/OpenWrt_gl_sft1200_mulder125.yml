@@ -15,7 +15,7 @@ on:
 
 env:
   REPO_URL: https://github.com/mulder125/Openwrt-SFT1200
-  REPO_BRANCH: master
+  REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config.sft1200
   DIY_P1_SH: ipv4.sh
