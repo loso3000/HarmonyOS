@@ -1,5 +1,5 @@
 
-name: OpenWrtv4-CI
+name: OpenWrt-mulder125-gl-sft1200
 
 
 on:
@@ -14,10 +14,10 @@ on:
 #    - cron: 0 21 */7 * * 
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/mulder125/Openwrt-SFT1200
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: appdrv.config
+  CONFIG_FILE: .config.sft1200
   DIY_P1_SH: ipv4.sh
   DIY_P2_SH: uppackage.sh
 
@@ -53,26 +53,22 @@ jobs:
         run: |
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           cd openwrt
-          #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-          #sed -i 's/coolsnowwolf/sirpdboy/g' ./feeds.conf.default
-          git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-          # echo "DATA=$(date +' %Y%m%d')" >> $GITHUB_ENV
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
+          ./scripts/feeds update -a && ./scripts/feeds install -a
       - name: Update package
         run: |
-         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
-         chmod +x ./$DIY_P1_SH
-         chmod +x ./$DIY_P2_SH
+         # [ -e $CONFIG_FILE ] && mv ./openwrt/$CONFIG_FILE ./openwrt/.config
+         # chmod +x ./$DIY_P1_SH
+         # chmod +x ./$DIY_P2_SH
          cd openwrt
-         ../$DIY_P1_SH
-         ../$DIY_P2_SH
+         
+         # ../$DIY_P1_SH
+         # ../$DIY_P2_SH
          chmod -R 755 .
       
       - name: Generate configuration file
         working-directory: ./openwrt
         run: |
-          make defconfig
+          load $CONFIG_FILE
       - name: Make download
         working-directory: ./openwrt
         run: |
@@ -98,31 +94,20 @@ jobs:
           cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./new1/package
           find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./new1/firmware
           cd ./new1/firmware
-          gzip *.img
+          gzip *.img | true
           # echo "${{ env.DATA}}" > version.txt
           # md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
           # echo $md5 >> version.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-IPV4P-Firmware
+          name: SirpdboyOpenWrt-sf1200-Firmware
           path: ./new1/firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: SirpdboyOpenWrt-IPV4P-Ipk
+          name: SirpdboyOpenWrt-sf1200-Ipk
           path: ./new1/package
-
-      - name: Upload firmware to cowtransfer
-        run: |
-         curl -fsSL git.io/file-transfer | sh
-         ./transfer cow --block 2621440 -s -p 64 --no-progress ./new1/firmware 2>&1 | tee cowtransfer.log
-         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./new1/firmware 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
 
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
