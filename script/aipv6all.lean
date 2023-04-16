@@ -36,8 +36,21 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
 CONFIG_PACKAGE_6to4=y
-#network 
 
+
+#mmc
+CONFIG_ACPI=y
+CONFIG_X86_ACPI_CPUFREQ=y
+CONFIG_NR_CPUS=512
+CONFIG_MMC=y
+CONFIG_MMC_BLOCK=y
+CONFIG_SDIO_UART=y
+CONFIG_MMC_TEST=y
+CONFIG_MMC_DEBUG=y
+CONFIG_MMC_SDHCI=y
+CONFIG_MMC_SDHCI_ACPI=y
+CONFIG_MMC_SDHCI_PCI=y
+#network 
 CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_DEFAULT_kmod-8139cp=y
 CONFIG_DEFAULT_kmod-8139too=y
@@ -94,26 +107,6 @@ CONFIG_PACKAGE_kmod-tg3=y   #BCM5719
 CONFIG_DEFAULT_kmod-via-velocity=y
 CONFIG_DEFAULT_kmod-vmxnet3=y
 # CONFIG_PACKAGE_kmod-r8101=y #error
-
-
-# fibocom fm-160/fm-150 5G usb3.0
-CONFIG_PACKAGE_luci-app-usbmodem=y
-CONFIG_PACKAGE_minicom=y
-CONFIG_PACKAGE_fibocom-dial=y
-
-# AW7916-NPD is a WiFi6 3000 highly advanced Mini PCIe Module
-CONFIG_PACKAGE_hostapd-common=y
-CONFIG_PACKAGE_wpad=y
-CONFIG_PACKAGE_wireless-tools=y
-CONFIG_PACKAGE_kmod-mac80211=y
-CONFIG_PACKAGE_kmod-cfg80211=y
-CONFIG_PACKAGE_kmod-mt76=y
-CONFIG_PACKAGE_kmod-mt76x2=y
-CONFIG_PACKAGE_kmod-mt7615e=y
-CONFIG_PACKAGE_kmod-mt7916-firmware=y
-CONFIG_PACKAGE_kmod-crypto-gcm=y
-CONFIG_PACKAGE_kmod-crypto-gf128=y
-CONFIG_PACKAGE_kmod-crypto-ghash=y
 
 ## File System Drivers
 CONFIG_DEFAULT_kmod-forcedeth=y
@@ -367,7 +360,6 @@ CONFIG_PACKAGE_luci-app-arpbind=y
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
 CONFIG_PACKAGE_odhcp6c=y
-CONFIG_PACKAGE_nginx=y
 
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
