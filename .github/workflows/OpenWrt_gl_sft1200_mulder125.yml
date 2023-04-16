@@ -85,25 +85,26 @@ jobs:
       - name: Update feeds
         run: |
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-          cd openwrt
-          ./scripts/feeds update -a && ./scripts/feeds install -a
+          cd openwrt/openwrt-18.06
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
       - name: Update package
         run: |
          # [ -e $CONFIG_FILE ] && mv ./openwrt/$CONFIG_FILE ./openwrt/.config
          # chmod +x ./$DIY_P1_SH
          # chmod +x ./$DIY_P2_SH
-         cd openwrt
+         cd openwrt/openwrt-18.06
          
          # ../$DIY_P1_SH
          # ../$DIY_P2_SH
          chmod -R 755 .
       
       - name: Generate configuration file
-        working-directory: ./openwrt
+        working-directory: ./openwrt/openwrt-18.06
         run: |
           load $CONFIG_FILE
       - name: Make download
-        working-directory: ./openwrt
+        working-directory: ./openwrt/openwrt-18.06
         run: |
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
@@ -124,8 +125,8 @@ jobs:
         run: |
           mkdir -p ./new1/firmware
           mkdir -p ./new1/package
-          cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./new1/package
-          find ./openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./new1/firmware
+          cp -rf $(find ./openwrt/openwrt-18.06/bin/packages/ -type f -name "*.ipk") ./new1/package
+          find ./openwrt/openwrt-18.06/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./new1/firmware
           cd ./new1/firmware
           gzip *.img | true
           # echo "${{ env.DATA}}" > version.txt
