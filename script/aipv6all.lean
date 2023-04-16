@@ -367,7 +367,7 @@ CONFIG_PACKAGE_luci-app-arpbind=y
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
 CONFIG_PACKAGE_odhcp6c=y
-CONFIG_PACKAGE_nginx=
+CONFIG_PACKAGE_nginx=y
 
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
@@ -399,7 +399,7 @@ CONFIG_PACKAGE_openssh-sftp-client=y
 CONFIG_PACKAGE_openssl-util=y  #https
 
 CONFIG_PACKAGE_lsblk=y
-CONFIG_PACKAGE_umdns=y  #error
+# CONFIG_PACKAGE_umdns=y  #error
 
 CONFIG_PACKAGE_lm-sensors=y
 CONFIG_PACKAGE_coremark=y
