@@ -159,7 +159,7 @@ jobs:
           echo '--------------img file--------------'
           ls
           echo '--------------gz file--------------'
-          gzip *.img || true
+          gzip *.img | true
           ls
           popd
           make checksum
