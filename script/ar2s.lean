@@ -18,43 +18,6 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 #usbnetwork
-CONFIG_PACKAGE_kmod-inet-diag=y
-CONFIG_PACKAGE_kmod-fs-f2fs=y
-CONFIG_PACKAGE_kmod-fs-squashfs=y
-CONFIG_PACKAGE_kmod-usb-dwc2=y
-CONFIG_PACKAGE_kmod-usb-dwc3=y
-CONFIG_PACKAGE_kmod-usb-audio=y
-CONFIG_PACKAGE_kmod-usb-net=y
-CONFIG_PACKAGE_kmod-usb-net-asix=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
-CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
-CONFIG_PACKAGE_kmod-usb-net-hso=y
-CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
-CONFIG_PACKAGE_kmod-usb-net-kalmia=y
-CONFIG_PACKAGE_kmod-usb-net-kaweth=y
-CONFIG_PACKAGE_kmod-usb-net-pegasus=y
-CONFIG_PACKAGE_kmod-usb-net-pl=y
-CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
-CONFIG_PACKAGE_kmod-usb-net-sierrawireless=y
-CONFIG_PACKAGE_kmod-usb-ohci=y
-CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-CONFIG_PACKAGE_kmod-usb-printer=y
-CONFIG_PACKAGE_kmod-usb-storage=y
-CONFIG_PACKAGE_kmod-usb-storage-extras=y
-CONFIG_PACKAGE_kmod-usb-storage-uas=y
-CONFIG_PACKAGE_kmod-usb-uhci=y
-CONFIG_PACKAGE_kmod-usb2=y
-CONFIG_PACKAGE_kmod-usb2-pci=y
-CONFIG_PACKAGE_kmod-usb3=y
-CONFIG_PACKAGE_kmod-lib80211=y
-CONFIG_PACKAGE_kmod-libertas-usb=y
-CONFIG_PACKAGE_kmod-mac80211=y
-CONFIG_PACKAGE_kmod-rtl8821cu=y
-CONFIG_PACKAGE_kmod-rtlwifi=y
-CONFIG_PACKAGE_kmod-rtlwifi-usb=y
 #usb
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb3=y
@@ -63,17 +26,6 @@ CONFIG_PACKAGE_libmbedtls=y
 CONFIG_PACKAGE_usbmuxd=y
 CONFIG_PACKAGE_kmod-usb-net-ipheth=y
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
-# onliner update
-CONFIG_PACKAGE_squashfs-tools-mksquashfs=y
-CONFIG_PACKAGE_squashfs-tools-unsquashfs=y
-CONFIG_SQUASHFS_TOOLS_XZ_SUPPORT=y
-CONFIG_SQUASHFS_TOOLS_ZSTD_SUPPORT=y
-CONFIG_PACKAGE_liblzma=y
-CONFIG_PACKAGE_libzstd=y
-CONFIG_PACKAGE_zlib=y
-CONFIG_PACKAGE_libpthread=y
-CONFIG_PACKAGE_kmod-lib-zlib-deflate=y
-CONFIG_PACKAGE_kmod-lib-zlib-inflate=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
@@ -100,13 +52,7 @@ CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_luci-app-ddns=y
 
 #diy
-# CONFIG_PACKAGE_automount   #取消AUTO挂载
 # CONFIG_PACKAGE_swconfig=y  #交换机功能
-# CONFIG_PACKAGE_hostapd=y
-# CONFIG_PACKAGE_hostapd-common=y
-# CONFIG_PACKAGE_e2fsprogs=y
-# CONFIG_PACKAGE_smartmontools=y
-# CONFIG_PACKAGE_luci-proto-ipip=y
 # CONFIG_PACKAGE_fstools=y   #挂载功能
 # CONFIG_PACKAGE_block-mount=y  #挂载功能
 # CONFIG_PACKAGE_ntfsprogs=y  #ntfs.mks分区格式化
@@ -156,7 +102,7 @@ CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
 CONFIG_PACKAGE_luci-app-smartdns=y
 CONFIG_PACKAGE_luci-app-ttyd=y
-CONFIG_PACKAGE_luci-app-turboacc=n
+CONFIG_PACKAGE_luci-app-turboacc=y
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE is not set
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM is not set
