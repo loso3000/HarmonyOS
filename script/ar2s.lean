@@ -21,11 +21,6 @@ CONFIG_PACKAGE_kmod-usb-net-rndis=y
 #usb
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb3=y
-# share network
-CONFIG_PACKAGE_libmbedtls=y
-CONFIG_PACKAGE_usbmuxd=y
-CONFIG_PACKAGE_kmod-usb-net-ipheth=y
-CONFIG_PACKAGE_kmod-usb-net-rndis=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
@@ -150,7 +145,7 @@ CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 CONFIG_PACKAGE_luci-app-kodexplorer=n
 CONFIG_PACKAGE_luci-app-uhttpd=n
-CONFIG_PACKAGE_luci-app-mentohust=y
+CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
@@ -252,13 +247,13 @@ CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-partexp=y
 
 #docker
-CONFIG_PACKAGE_luci-app-docker=y
-CONFIG_PACKAGE_luci-app-dockerman=y
-CONFIG_DOCKER_KERNEL_OPTIONS=y
-CONFIG_DOCKER_NET_ENCRYPT=y
-CONFIG_DOCKER_NET_MACVLAN=y
-CONFIG_DOCKER_NET_OVERLAY=y
-CONFIG_DOCKER_NET_TFTP=y
+#CONFIG_PACKAGE_luci-app-docker=y
+#CONFIG_PACKAGE_luci-app-dockerman=y
+#CONFIG_DOCKER_KERNEL_OPTIONS=y
+#CONFIG_DOCKER_NET_ENCRYPT=y
+#CONFIG_DOCKER_NET_MACVLAN=y
+#CONFIG_DOCKER_NET_OVERLAY=y
+#CONFIG_DOCKER_NET_TFTP=y
 
 # Other Appliciations
 CONFIG_PACKAGE_bash=y
