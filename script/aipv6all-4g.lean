@@ -282,6 +282,7 @@ CONFIG_PACKAGE_luci-app-linkease=n
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set
 CONFIG_PACKAGE_luci-app-ramfree=n
 
+CONFIG_PACKAGE_luci-app-watchcat-plus=y
 CONFIG_PACKAGE_luci-app-bridge=n
 CONFIG_PACKAGE_luci-app-cowbping=n
 CONFIG_PACKAGE_luci-app-beardropper=y
