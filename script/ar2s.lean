@@ -14,7 +14,7 @@ CONFIG_TARGET_ROOTFS_PARTSIZE=920
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # 不压缩efi
-# CONFIG_TARGET_IMAGES_GZIP is not set
+CONFIG_TARGET_IMAGES_GZIP=y
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 #usbnetwork
