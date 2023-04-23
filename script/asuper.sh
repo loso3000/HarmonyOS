@@ -386,10 +386,21 @@ svn export https://github.com/openwrt/packages/trunk/utils/apk package/new/
 
 rm -rf ./feeds/luci/applications/chinadns-ng package/feeds/packages/chinadns-ng
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
+
 # CPU 控制相关
-rm -rf  feeds/luci/applications/luci-app-cpufreq
-svn export -r 19495 https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
-ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
+# rm -rf  feeds/luci/applications/luci-app-cpufreq
+# svn export -r 19495 https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
+# ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
+# sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
+# sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
+# sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
+# Add cpufreq
+rm -rf ./feeds/luci/applications/luci-app-cpufreq 
+svn export https://github.com/DHDAXCW/luci-bt/trunk/applications/luci-app-cpufreq ./feeds/luci/applications/luci-app-cpufreq
+ls -lah ./feeds/luci/applications/luci-app-cpufreq/po/zh_Hans
+mv ./feeds/luci/applications/luci-app-cpufreq/po/zh_Hans ./feeds/luci/applications/luci-app-cpufreq/po/zh-cn
+ls -lah ./feeds/luci/applications/luci-app-cpufreq/po/zh-cn
+ln -sf ./feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
 sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
@@ -574,6 +585,17 @@ echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/
 echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
+
+# panfrost gpu
+rm ./target/linux/rockchip/modules.mk
+rm ./package/kernel/linux/modules/video.mk
+cp ../build/patch/modules-5.4/modules.mk ./target/linux/rockchip/modules.mk
+cp ../build/patch/modules-5.4/video.mk ./package/kernel/linux/modules/video.mk
+
+# overclock
+rm -f ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
+cp ../build/patch/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
+
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
