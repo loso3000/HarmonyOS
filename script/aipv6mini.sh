@@ -580,14 +580,14 @@ echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 
 # panfrost gpu
-rm ./target/linux/rockchip/modules.mk
-rm ./package/kernel/linux/modules/video.mk
-cp ../build/patch/modules-5.4/modules.mk ./target/linux/rockchip/modules.mk
-cp ../build/patch/modules-5.4/video.mk ./package/kernel/linux/modules/video.mk
+# rm ./target/linux/rockchip/modules.mk
+# rm ./package/kernel/linux/modules/video.mk
+# cp ../build/patch/modules-5.4/modules.mk ./target/linux/rockchip/modules.mk
+# cp ../build/patch/modules-5.4/video.mk ./package/kernel/linux/modules/video.mk
 
 # overclock
-rm -f ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
-cp ../build/patch/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
+# rm -f ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
+# cp ../build/patch/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
