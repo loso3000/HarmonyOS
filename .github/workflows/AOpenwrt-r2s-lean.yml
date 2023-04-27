@@ -21,7 +21,7 @@ env:
   REPO_BRANCH: stable
   #REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
-  DIY_P1_SH: script/aipv6mini.sh
+  DIY_P1_SH: script/ar2s.sh
   DIY_P2_SH: script/clash-core.sh
   CONFIG_FILE: script/ar2s.lean
   TZ: Asia/Shanghai
