@@ -128,7 +128,10 @@ svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/kernel/mac80211
 svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
 svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/network/services/hostapd package/network/services/hostapd
 
-git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
+# alist 
+git clone https://github.com/sbwml/luci-app-alist package/alist
+rm -rf feeds/packages/lang/golang
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 
 #dnsmasq
 #rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
