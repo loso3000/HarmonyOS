@@ -126,7 +126,10 @@ rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 
 
-git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
+# alist 
+git clone https://github.com/sbwml/luci-app-alist package/alist
+rm -rf feeds/packages/lang/golang
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 
 rm -rf package/kernel/mac80211
 rm -rf package/kernel/mt76
