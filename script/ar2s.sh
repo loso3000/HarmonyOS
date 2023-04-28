@@ -551,8 +551,8 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/defaul
 
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-# sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
 
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
@@ -575,37 +575,6 @@ echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/
 echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-
-# mt7921
-rm -rf package/kernel/rtl8821cu
-rm -rf package/kernel/mac80211
-rm -rf package/network/services/hostapd
-
-svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
-svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
-
-# Change default shell to zsh
-sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
-
-# Modify default IP
-sed -i 's/192.168.1.1/10.0.2.1/g' package/base-files/files/bin/config_generate
-
-# panfrost gpu
-rm ./target/linux/rockchip/modules.mk
-rm ./package/kernel/linux/modules/video.mk
-cp ../patch/modules-6.1/modules.mk ./target/linux/rockchip/modules.mk
-cp ../patch/modules-6.1/video.mk ./package/kernel/linux/modules/video.mk
-
-# tty console
-cp ../patch/armv8/base-files/etc/inittab ./target/linux/rockchip/armv8/base-files/etc/inittab
-
-# build image
-rm -rf target/linux/rockchip/image/armv8.mk
-cp -f ../patch/rockchip/image/armv8-r5c.mk ./target/linux/rockchip/image/armv8.mk
-
-# kernel-6.1 patches
-sed -i 's/5.4/6.1/g' ./target/linux/rockchip/Makefile
-cp -r ../patch/rockchip/patches-6.1/ ./target/linux/rockchip/patches-6.1/
 
 sed -i 's/+"), 10)/+"), 0)/g' ./package/ssr/luci-app-ssr-plus//luasrc/controller/shadowsocksr.lua  #shadowsocksr
 sed -i 's/+"), 10)/+"), 0)/g' ./package/lean/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua  #shadowsocksr
