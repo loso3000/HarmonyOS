@@ -61,17 +61,6 @@ CONFIG_PACKAGE_kmod-rtl8821cu=y
 CONFIG_PACKAGE_kmod-rtlwifi=y
 CONFIG_PACKAGE_kmod-rtlwifi-usb=y
 
-# onliner update
-CONFIG_PACKAGE_squashfs-tools-mksquashfs=y
-CONFIG_PACKAGE_squashfs-tools-unsquashfs=y
-CONFIG_SQUASHFS_TOOLS_XZ_SUPPORT=y
-CONFIG_SQUASHFS_TOOLS_ZSTD_SUPPORT=y
-CONFIG_PACKAGE_liblzma=y
-CONFIG_PACKAGE_libzstd=y
-CONFIG_PACKAGE_zlib=y
-CONFIG_PACKAGE_libpthread=y
-CONFIG_PACKAGE_kmod-lib-zlib-deflate=y
-CONFIG_PACKAGE_kmod-lib-zlib-inflate=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
@@ -208,7 +197,7 @@ CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-ikoolproxy=n
+CONFIG_PACKAGE_luci-app-ikoolproxy=y
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 # CONFIG_PACKAGE_luci-app-wireguard is not set
 CONFIG_PACKAGE_luci-app-aliyundrive-webdav=n
@@ -298,13 +287,13 @@ CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-partexp=y
 
 #docker
-#CONFIG_PACKAGE_luci-app-docker=y
-#CONFIG_PACKAGE_luci-app-dockerman=y
-#CONFIG_DOCKER_KERNEL_OPTIONS=y
-#CONFIG_DOCKER_NET_ENCRYPT=y
-#CONFIG_DOCKER_NET_MACVLAN=y
-#CONFIG_DOCKER_NET_OVERLAY=y
-#CONFIG_DOCKER_NET_TFTP=y
+CONFIG_PACKAGE_luci-app-docker=y
+CONFIG_PACKAGE_luci-app-dockerman=y
+CONFIG_DOCKER_KERNEL_OPTIONS=y
+CONFIG_DOCKER_NET_ENCRYPT=y
+CONFIG_DOCKER_NET_MACVLAN=y
+CONFIG_DOCKER_NET_OVERLAY=y
+CONFIG_DOCKER_NET_TFTP=y
 
 # Other Appliciations
 CONFIG_PACKAGE_bash=y
