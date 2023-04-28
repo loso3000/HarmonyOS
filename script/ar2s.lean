@@ -72,29 +72,6 @@ CONFIG_PACKAGE_zlib=y
 CONFIG_PACKAGE_libpthread=y
 CONFIG_PACKAGE_kmod-lib-zlib-deflate=y
 CONFIG_PACKAGE_kmod-lib-zlib-inflate=y
-
-# share network
-CONFIG_PACKAGE_libmbedtls=y
-CONFIG_PACKAGE_usbmuxd=y
-CONFIG_PACKAGE_kmod-usb-net-ipheth=y
-CONFIG_PACKAGE_kmod-usb-net-rndis=y
-# gpu support
-CONFIG_PACKAGE_kmod-drm-panfrost=y
-CONFIG_PACKAGE_kmod-backlight=y
-CONFIG_PACKAGE_kmod-backlight-pwm=y
-CONFIG_PACKAGE_kmod-drm=y
-CONFIG_PACKAGE_kmod-drm-display-helper=y
-CONFIG_PACKAGE_kmod-drm-kms-helper=y
-CONFIG_PACKAGE_kmod-drm-ttm=y
-CONFIG_PACKAGE_kmod-fb=y
-CONFIG_PACKAGE_kmod-fb-cfb-copyarea=y
-CONFIG_PACKAGE_kmod-fb-cfb-fillrect=y
-CONFIG_PACKAGE_kmod-fb-cfb-imgblt=y
-CONFIG_PACKAGE_kmod-fb-sys-fops=y
-CONFIG_PACKAGE_kmod-fb-sys-ram=y
-CONFIG_PACKAGE_kmod-multimedia-input=y
-CONFIG_PACKAGE_kmod-video-core=y
-CONFIG_PACKAGE_kmod-drm-rockchip=y
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
