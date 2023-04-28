@@ -128,6 +128,13 @@ git clone https://github.com/sbwml/v2ray-geodata package/geodata
 
 git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
 
+rm -rf package/kernel/mac80211
+rm -rf package/kernel/mt76
+rm -rf package/network/services/hostapd
+svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/kernel/mac80211 package/kernel/mac80211
+svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
+svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/network/services/hostapd package/network/services/hostapd
+
 #dnsmasq
 #rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
 #svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dnsmasq ./package/network/services/dnsmasq
