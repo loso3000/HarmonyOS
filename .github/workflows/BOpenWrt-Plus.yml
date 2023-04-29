@@ -122,6 +122,12 @@ jobs:
          # $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
           df -h
+
+      - name: 设置缓存
+        uses: klever1988/cachewrtbuild@main
+        with:
+         ccache: 'true'
+         prefix: ${{ github.workspace }}/openwrt
       - name: Generate configuration file
         run: |
          cd openwrt
@@ -192,10 +198,4 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Plus-Ipk
           path: ./package
-          
-      #- name: Upload Firmware wetransfer
-      #  run: |
-      #    curl -fsSL git.io/file-transfer | sh
-      #    ./transfer wet -s -p 16 --no-progress ./imminip/firmware 2>&1 | tee wetransfer.log
-      #    echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
           
