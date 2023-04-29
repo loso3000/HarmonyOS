@@ -63,12 +63,6 @@ sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 # rm -rf ./feeds/luci/applications/netspeedtest
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
 
-# mt7921
-rm -rf package/kernel/rtl8821cu
-rm -rf package/kernel/mac80211
-rm -rf package/network/services/hostapd
-svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
-svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
 
 #  git clone https://github.com/gdy666/luci-app-lucky ./package/luck ./package/lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
@@ -115,10 +109,8 @@ rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
 rm -rf package/feeds/packages/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
-
-# git clone https://github.com/firkerword/luci-app-mosdns.git package/OpenWrt-mosdns
-
-git clone https://github.com/sbwml/luci-app-mosdns package/OpenWrt-mosdns
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+# git clone https://github.com/sbwml/luci-app-mosdns package/OpenWrt-mosdns
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 sed -i "/filter_aaaa='1'/d" ./package/OpenWrt-mosdns/luci-app-mosdns/root/etc/init.d/mosdns
@@ -128,22 +120,28 @@ rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 
 
-# 添加额外软件包
+# 80211 
+rm -rf package/kernel/mac80211
+rm -rf package/kernel/mt76
+rm -rf package/network/services/hostapd
+svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/kernel/mac80211 package/kernel/mac80211
+svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
+svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/network/services/hostapd package/network/services/hostapd
+
+# alist 
 git clone https://github.com/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
-# Alist-3.2.0 依赖 1.19.x
-# sed -i 's/GO_VERSION_MAJOR_MINOR:=.*/GO_VERSION_MAJOR_MINOR:=1.19/g' feeds/packages/lang/golang/golang/Makefile
-# sed -i 's/GO_VERSION_PATCH:=.*/GO_VERSION_PATCH:=2/g' feeds/packages/lang/golang/golang/Makefile
-# sed -i 's/PKG_HASH:=.*/PKG_HASH:=2ce930d70a931de660fdaf271d70192793b1b240272645bf0275779f6704df6b/g' feeds/packages/lang/golang/golang/Makefile
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 19.x feeds/packages/lang/golang
-
-# svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-syncthing package/luci-app-syncthing
-# cp -r package/luci-app-syncthing/po/zh_Hans/ package/luci-app-syncthing/po/zh-cn/
-# svn export https://github.com/immortalwrt/packages/trunk/utils/syncthing package/syncthing
-# Syncthing 1.20.4 -> 1.22.0 由于 golang 升级 1.19.X
-# sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=1.22.0/g' package/syncthing/Makefile
-# sed -i 's/PKG_HASH:=.*/PKG_HASH:=b9644e814b4c7844a59e4e7705c550361cb4ed6c36bf9b46617de386ee2dad45/g' package/syncthing/Makefile
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+# Add Pandownload 
+svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
+ 
+# Alist-3.2.0 依赖 1.19.x
+#rm -rf feeds/packages/lang/golang
+#cp -rf $GITHUB_WORKSPACE/general/golang feeds/packages/lang/golang
+#sed -i 's/GO_VERSION_MAJOR_MINOR:=.*/GO_VERSION_MAJOR_MINOR:=1.19/g' feeds/packages/lang/golang/golang/Makefile
+#sed -i 's/GO_VERSION_PATCH:=.*/GO_VERSION_PATCH:=2/g' feeds/packages/lang/golang/golang/Makefile
+#sed -i 's/PKG_HASH:=.*/PKG_HASH:=2ce930d70a931de660fdaf271d70192793b1b240272645bf0275779f6704df6b/g' feeds/packages/lang/golang/golang/Makefile 
 
 #dnsmasq
 #rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
@@ -164,6 +162,7 @@ rm -rf ./package/other/up/myautocore
 rm -rf  ./package/emortal/autocore package/feeds/packages/autocore
 svn export https://github.com/loso3000/other/trunk/up/myautocore ./package/lean/autocore
 sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
+
 #无链接
 mv -f ./package/other/patch/index.htm ./package/lean/autocore/files/x86/index.htm
 
@@ -209,6 +208,7 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-netdata .
 svn export https://github.com/loso3000/mypk/trunk/up/netdata ./feeds/packages/admin/netdata
 ln -sf ../../../feeds/luci/applications/luci-app-netdata ./package/feeds/luci/luci-app-netdata
 rm -rf ./feeds/luci/applications/luci-app-netdata/root/etc/uci-defaults/
+
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 svn export https://github.com/loso3000/other/trunk/up/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
@@ -261,9 +261,9 @@ svn export https://github.com/loso3000/other/trunk/up/luci-app-samba4 ./feeds/lu
 # rm -rf ./feeds/packages/net/zerotier
 # svn export https://github.com/openwrt/packages/trunk/net/zerotier feeds/packages/net/zerotier
 # rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
-sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+# sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+# sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+# sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 svn export https://github.com/loso3000/other/trunk/up/softethervpn5 ./feeds/packages/net/softethervpn5
@@ -409,6 +409,7 @@ echo ' ShadowsocksR Plus+'
 # ShadowsocksR Plus+ 依赖
 rm -rf ./feeds/packages/net/kcptun
 
+
 git clone https://github.com/xiaorouji/openwrt-passwall.git package/openwrt-passwall
 rm -rf ./package/openwrt-passwall/trojan-plus
 rm -rf ./package/openwrt-passwall/v2ray-geodata
@@ -512,7 +513,7 @@ cp -rf ./package/other/luci/*  ./feeds/luci/*
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 # temporary fix for upx
-sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
+# sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
 
   # enable r2s oled plugin by default
   sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
@@ -538,8 +539,8 @@ sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 
 # 修改makefile
-# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
-# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
@@ -572,13 +573,14 @@ wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/frien
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
 
+
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 date1='Ipv6-Plus-Vip-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-#date1='Ipv6-Plus-Vip-R2023.03.01'
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20230301-Ipv6-Plus-VIP-5.15-/g' include/image.mk
+date1='Ipv6-Plus-Vip-R2023.05.01'
+sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20230501-Ipv6-Plus-VIP-5.15-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
     sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Plus-Vip-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
