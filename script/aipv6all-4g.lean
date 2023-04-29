@@ -56,7 +56,7 @@ CONFIG_MMC_SDHCI_PCI=y
 # CONFIG_PACKAGE_luci-ssl is not set
 # uhttpd服务
 CONFIG_PACKAGE_luci-ssl-nginx=y # nginx
-#network 
+
 CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_DEFAULT_kmod-8139cp=y
 CONFIG_DEFAULT_kmod-8139too=y
@@ -73,10 +73,8 @@ CONFIG_DEFAULT_kmod-fs-f2fs=y
 CONFIG_DEFAULT_kmod-fs-vfat=y
 CONFIG_DEFAULT_kmod-i40e=y
 CONFIG_DEFAULT_kmod-i40evf=y
-CONFIG_PACKAGE_kmod-ixgbevf=y
 CONFIG_DEFAULT_kmod-iavf=y
-# CONFIG_DEFAULT_kmod-igb is not set
-CONFIG_DEFAULT_kmod-igb-intel=y
+CONFIG_DEFAULT_kmod-igb=y
 CONFIG_DEFAULT_kmod-igbvf=y
 CONFIG_DEFAULT_kmod-igc=y
 CONFIG_DEFAULT_kmod-ipt-raw=y
@@ -106,13 +104,28 @@ CONFIG_DEFAULT_kmod-usb-net-rtl8150=y
 CONFIG_DEFAULT_kmod-usb-net-rtl8152-vendor=y
 CONFIG_PACKAGE_kmod-usb-dwc2=y
 CONFIG_PACKAGE_kmod-usb-dwc3=y
-CONFIG_PACKAGE_kmod-usb-core=y
-CONFIG_PACKAGE_kmod-usb-ohci=y
-CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-CONFIG_PACKAGE_kmod-tg3=y   #BCM5719
+CONFIG_PACKAGE_kmod-tg3=y
 CONFIG_DEFAULT_kmod-via-velocity=y
 CONFIG_DEFAULT_kmod-vmxnet3=y
-# CONFIG_PACKAGE_kmod-r8101=y #error
+
+# fibocom fm-160/fm-150 5G usb3.0
+CONFIG_PACKAGE_luci-app-usbmodem=y
+CONFIG_PACKAGE_minicom=y
+CONFIG_PACKAGE_fibocom-dial=y
+
+# AW7916-NPD is a WiFi6 3000 highly advanced Mini PCIe Module
+CONFIG_PACKAGE_hostapd-common=y
+CONFIG_PACKAGE_wpad=y
+CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_kmod-mac80211=y
+CONFIG_PACKAGE_kmod-cfg80211=y
+CONFIG_PACKAGE_kmod-mt76=y
+CONFIG_PACKAGE_kmod-mt76x2=y
+CONFIG_PACKAGE_kmod-mt7615e=y
+CONFIG_PACKAGE_kmod-mt7916-firmware=y
+CONFIG_PACKAGE_kmod-crypto-gcm=y
+CONFIG_PACKAGE_kmod-crypto-gf128=y
+CONFIG_PACKAGE_kmod-crypto-ghash=y
 
 ## File System Drivers
 CONFIG_DEFAULT_kmod-forcedeth=y
@@ -366,19 +379,7 @@ CONFIG_PACKAGE_luci-app-arpbind=y
 
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
-CONFIG_PACKAGE_rsync=y
-CONFIG_PACKAGE_rsyncd=y
-CONFIG_PACKAGE_bind-dig=y
-CONFIG_PACKAGE_bind-host=y
-CONFIG_PACKAGE_odhcp6c=y
 CONFIG_PACKAGE_nginx=y
-CONFIG_PACKAGE_openssh-sftp-client=y
-CONFIG_PACKAGE_openssh-sftp-server=y
-CONFIG_PACKAGE_ppp-mod-pptp=y
-CONFIG_PACKAGE_xl2tpd=y
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-CONFIG_PACKAGE_ipv6helper=y
-CONFIG_PACKAGE_fullconenat=y
 
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
@@ -402,12 +403,12 @@ CONFIG_PACKAGE_fdisk=y #分区工具
 CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_htop=y
+CONFIG_PACKAGE_htop=yy
+CONFIG_PACKAGE_openssh-sftp-client=y
 CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_wget-ssl=y
 
-CONFIG_PACKAGE_openssl-util=y  #https
-
+#istore
 CONFIG_PACKAGE_lsblk=y
 CONFIG_PACKAGE_umdns=y  #error
 
