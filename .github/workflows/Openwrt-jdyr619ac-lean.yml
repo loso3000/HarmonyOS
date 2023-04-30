@@ -26,10 +26,6 @@ jobs:
 
     name: OpenWrt_Build 
 
-  build_openwrt:
-
-    name: OpenWrt_Build 
-
 
     runs-on: ubuntu-latest
 
