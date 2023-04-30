@@ -364,8 +364,8 @@ CONFIG_PACKAGE_odhcp6c=y
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
 # CONFIG_PACKAGE_wpad-openssl=y
-CONFIG_PACKAGE_xz=y
-CONFIG_PACKAGE_xz-utils=y
+# CONFIG_PACKAGE_xz=y
+# CONFIG_PACKAGE_xz-utils=y
 CONFIG_PACKAGE_ppp-mod-pppol2tp=y
 CONFIG_PACKAGE_kmod-pppol2tp=y
 CONFIG_PACKAGE_ppp-mod-pptp=y
