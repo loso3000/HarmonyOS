@@ -147,6 +147,12 @@ jobs:
         run: |
          cd openwrt
           make defconfig
+
+      - name: 设置缓存
+        uses: klever1988/cachewrtbuild@main
+        with:
+         ccache: 'true'
+         prefix: ${{ github.workspace }}/openwrt
       - name: Make download
         working-directory: ./openwrt
         run: |
@@ -154,11 +160,6 @@ jobs:
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
 
-      - name: 设置缓存
-        uses: klever1988/cachewrtbuild@main
-        with:
-         ccache: 'true'
-         prefix: ${{ github.workspace }}/openwrt
       - name: Compile Packages
         id: compile
         run: |
