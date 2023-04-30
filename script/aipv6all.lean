@@ -359,7 +359,7 @@ CONFIG_PACKAGE_luci-app-arpbind=y
 
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
-CONFIG_PACKAGE_odhcp6c=y
+# CONFIG_PACKAGE_odhcp6c=y
 
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
