@@ -167,7 +167,7 @@ jobs:
           mkdir -p ./package
           df -h
           find ./openwrt/bin/ -name "*.ipk" | xargs -i mv -f {}  ./package
-          find ./openwrt/bin/targets/ -name "*squashfs*img*" | xargs -i mv -f {}  ./firmware
+          find ./openwrt/bin/targets/ -name "*combined-efi.img*"  | xargs -i mv -f {}  ./firmware
           cd ./firmware
           ls
           gzip *.img || true
