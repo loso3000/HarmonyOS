@@ -160,38 +160,35 @@ jobs:
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
 
-      - name: Compile Packages
-        id: compile
-        run: |
-         df -h
-         cd openwrt
-         echo -e "$(nproc) thread compile"
-         echo -e "$(nproc) thread compile"
-         make tools/compile -j$(nproc)
-         make toolchain/compile -j$(nproc)
-         make target/compile -j$(nproc)
-         make diffconfig
-      - name: Generate Firmware
+      - name: Generate init
         run: |
          df -h
          cd openwrt 
          $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          mkdir -p files/etc/uci-defaults/
-         cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-         echo -e "$(nproc) thread compile"
-         make package/compile -j$(nproc) || make package/compile -j$(nproc)
-         make package/index
-         make package/install -j$(nproc) || make package/install -j1 V=s
-         make target/install -j$(nproc) || make target/install -j1 V=s
-         make checksum
+         cp $GITHUB_WORKSPACE/scriptx/init-settingsw.sh files/etc/uci-defaults/99-init-settings
+         df -h
+      - name: Compile firmware
+        run: |
+          cd openwrt 
+          make -j$(nproc) || make -j1 V=s
+          echo "======================="
+          echo "Space usage:"
+          echo "======================="
+          df -h
+          echo "======================="
+          du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
+          du -h --max-depth=1 ./build_dir
+          du -h --max-depth=1 ./bin
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwareipv6all
           mkdir -p ./packageipv6all
           find ./openwrt/bin/ -name "*.ipk" | xargs -i mv -f {}  ./packageipv6all
-          find ./openwrt/bin/targets/ -name "*combined*.img" | xargs -i mv -f {} ./firmwareipv6all
+          # find ./openwrt/bin/targets/ -name "*combined*.img" | xargs -i mv -f {} ./firmwareipv6all
+          find ./openwrt/bin/targets/ -name "*combined-efi.img*"  | xargs -i mv -f {} ./firmwareipv6all
           cd ./firmwareipv6all
-          # gzip *.img |true
+          gzip *.img |true
           echo -e "Sirpdboy-Ipv6-Vip-Plus-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
