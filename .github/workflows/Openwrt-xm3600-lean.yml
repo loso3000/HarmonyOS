@@ -129,11 +129,6 @@ jobs:
           du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
           du -h --max-depth=1 ./build_dir
           du -h --max-depth=1 ./bin
-      - name: Upload  IPK
-        uses: actions/upload-artifact@main
-        with:
-          name: OpenWrt-IPV6-xm7628a-Ipk
-          path: ./openwrt/bin/packages
       - name: Prepare Artifact
         run: |
           mkdir ./xm7628a
@@ -142,7 +137,17 @@ jobs:
           cd ./xm7628a
           # rename -v "s/friendlyarm_//" *
           gzip *.bin | true
+      - name: Upload  bin
+        uses: actions/upload-artifact@main
+        with:
+          name: OpenWrt-IPV6-xmax3600-bin
+          path: ./xm7628a/
 
+      - name: Upload  IPK
+        uses: actions/upload-artifact@main
+        with:
+          name: OpenWrt-IPV6-xmax3600-Ipk
+          path: ./openwrt/bin/packages
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
         with:
