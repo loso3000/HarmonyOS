@@ -408,6 +408,8 @@ CONFIG_PACKAGE_openssh-sftp-client=y
 CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_wget-ssl=y
 
+CONFIG_PACKAGE_zsh=y
+
 #istore
 CONFIG_PACKAGE_lsblk=y
 CONFIG_PACKAGE_umdns=y  #error
