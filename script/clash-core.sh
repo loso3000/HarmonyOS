@@ -12,20 +12,29 @@
 #修改默认时区
 sed -i "s/timezone='.*'/timezone='CST-8'/g" ./package/base-files/files/bin/config_generate
 sed -i "/timezone='.*'/a\\\t\t\set system.@system[-1].zonename='Asia/Shanghai'" ./package/base-files/files/bin/config_generate
-
-# rm -rf /package/lean/r8168/patches/020-5.18-support.patch
-mkdir -p files/etc/openclash/core
 # sed -i "s/PKG_HASH:=.*/PKG_HASH:=5de8c8e29aaa3fb9cc6b47bb27299f271354ebb72514e3accadc7d38b5bbaa72/g"  ./feeds/packages/utils/jq/Makefile
-open_clash_main_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-# offical_clash_main_url=$(curl -sL https://api.github.com/repos/Dreamacro/clash/releases/tags/v1.3.5 | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-clash_tun_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-$1 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-wget -qO- $open_clash_main_url | tar xOvz > files/etc/openclash/core/clash
-# wget -qO- $offical_clash_main_url | gunzip -c > files/etc/openclash/core/clash
-wget -qO- $clash_tun_url | gunzip -c > files/etc/openclash/core/clash_tun
-wget -qO- $clash_game_url | tar xOvz > files/etc/openclash/core/clash_game
-chmod +x files/etc/openclash/core/clash*
+# rm -rf /package/lean/r8168/patches/020-5.18-support.patch
 
+#预置OpenClash内核和GEO数据
+mkdir -p files/etc/openclash/core
+# cd ./OpenClash/luci-app-openclash/root/etc/openclash
+pushd files/etc/openclash/core
+export CORE_TYPE=$1
+export CORE_VER=https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/core_version
+export CORE_TUN=https://github.com/vernesong/OpenClash/raw/core/dev/premium/clash-linux
+export CORE_DEV=https://github.com/vernesong/OpenClash/raw/core/dev/dev/clash-linux
+export CORE_MATE=https://github.com/vernesong/OpenClash/raw/core/dev/meta/clash-linux
+export TUN_VER=$(curl -sfL $CORE_VER | sed -n "2{s/\r$//;p;q}")
+
+curl -sfL -o ./tun.gz "$CORE_TUN"-"$CORE_TYPE"-"$TUN_VER".gz
+gzip -d ./tun.gz && mv ./tun ./clash_tun
+curl -sfL -o ./meta.tar.gz "$CORE_MATE"-"$CORE_TYPE".tar.gz
+tar -zxf ./meta.tar.gz && mv ./clash ./clash_meta
+curl -sfL -o ./dev.tar.gz "$CORE_DEV"-"$CORE_TYPE".tar.gz
+tar -zxf ./dev.tar.gz
+chmod +x ./clash* ; rm -rf ./*.gz
+# chmod +x files/etc/openclash/core/clash*
+popd
 GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
