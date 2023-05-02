@@ -393,6 +393,7 @@ CONFIG_PACKAGE_openssl-util=y  #https
 CONFIG_PACKAGE_lsblk=y
 # CONFIG_PACKAGE_umdns=y  #error
 
+CONFIG_PACKAGE_zsh=y
 CONFIG_PACKAGE_lm-sensors=y
 CONFIG_PACKAGE_coremark=y
 #docker
