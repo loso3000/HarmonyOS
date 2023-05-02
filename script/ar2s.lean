@@ -317,3 +317,5 @@ CONFIG_PACKAGE_openssh-sftp-server=y  #sftp
 CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_wget-ssl=y
 CONFIG_PACKAGE_lsblk=y
+
+CONFIG_PACKAGE_zsh=y
