@@ -21,7 +21,7 @@ env:
   REPO_URL: https://github.com/DHDAXCW/lede-rockchip
   REPO_BRANCH: stable
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/r5c.config
+  CONFIG_FILE: script/ar5c.config
   DIY_P1_SH: script/aipv6mini.sh
   DIY_P2_SH: script/clash-core.sh
   TZ: Asia/Shanghai
@@ -125,6 +125,31 @@ jobs:
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
          $GITHUB_WORKSPACE/$DIY_P2_SH arm64
+         
+         # mt7921
+         rm -rf package/kernel/rtl8821cu
+         rm -rf package/kernel/mac80211
+         rm -rf package/network/services/hostapd
+
+         svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
+         svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
+
+         # panfrost gpu
+         rm ./target/linux/rockchip/modules.mk
+         rm ./package/kernel/linux/modules/video.mk
+         cp ../patch/modules-6.1/modules.mk ./target/linux/rockchip/modules.mk
+         cp ../patch/modules-6.1/video.mk ./package/kernel/linux/modules/video.mk
+
+         # tty console
+         cp ../patch/armv8/base-files/etc/inittab ./target/linux/rockchip/armv8/base-files/etc/inittab
+
+         # build image
+         rm -rf target/linux/rockchip/image/armv8.mk
+         cp -f ../patch/rockchip/image/armv8-r5c.mk ./target/linux/rockchip/image/armv8.mk
+
+         # kernel-6.1 patches
+         # sed -i 's/5.4/6.1/g' ./target/linux/rockchip/Makefile
+         cp -r ../build/patch/rockchip/patches-6.1/ ./target/linux/rockchip/patches-6.1/
          chmod -R 755 .
       - name: Generate configuration file
         working-directory: ./openwrt
