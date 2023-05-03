@@ -40,7 +40,6 @@ wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 
 # shell zsh
 sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
-
 # oh-my-zsh
 mkdir -p files/root
 pushd files/root
@@ -48,15 +47,9 @@ git clone https://github.com/robbyrussell/oh-my-zsh ./.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ./.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
-cp $GITHUB_WORKSPACE/file/zsh/.zshrc .
 popd
-
-# speedtest
-# mkdir -p files/bin
-# wget -qO- https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz | tar xOvz > files/bin/speedtest
-# wget -qO- https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz | tar xOvz > files/bin/speedtest
-# chmod +x files/bin/speedtest
-
+cp ../../../file/zsh/.zshrc files/root/
+cp ../..package/other/patch/profiles files/etc/
 
 ## opkg ##
 PLATFORM=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | awk -F '"' '{print $2}')
