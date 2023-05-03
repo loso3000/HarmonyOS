@@ -28,9 +28,10 @@ sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/M
 mv -f  ./package/other/up/luci-app-jzgk ./package/other/up/luci-app-control-parentcontrol
 
 # netwizard
-
+rm -rf ./package/diy/luci-app-netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
+ 
  
 echo advancedplus
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kplus ./package/lean/luci-app-advancedplus
@@ -586,14 +587,14 @@ sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-def
 sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 
 # overclock
-rm -f ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
-cp ../patch/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
+# rm -f ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
+# cp ../patch/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 
 # panfrost gpu
-rm ./target/linux/rockchip/modules.mk
-rm ./package/kernel/linux/modules/video.mk
-cp ../patch/modules-5.4/modules.mk ./target/linux/rockchip/modules.mk
-cp ../patch/modules-5.4/video.mk ./package/kernel/linux/modules/video.mk
+# rm ./target/linux/rockchip/modules.mk
+# rm ./package/kernel/linux/modules/video.mk
+# cp ../patch/modules-5.4/modules.mk ./target/linux/rockchip/modules.mk
+# cp ../patch/modules-5.4/video.mk ./package/kernel/linux/modules/video.mk
 
 # 风扇脚本
 sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
