@@ -158,20 +158,42 @@ jobs:
         
       - name: Prepare Artifact
         run: |
-          mkdir -p ./firmwarer2s
-          find ./openwrt/bin/targets/ -name "*r5*sysupgrade.img*" | xargs -i mv -f {} ./firmwarer2s
-          cd ./firmwarer2s
-          gzip *.img | true
-          
-          
-          echo -e "Sirpdboy-R5S-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          mkdir -p ./firmwarer68s
+          mkdir -p ./firmwarer5c
+          mkdir -p ./firmwarer66s
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r5c*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer5c
+          cd ${{ env.FIRMWARE }}/firmwarer5c
+          #gzip *.img || true
+          echo -e "Sirpdboy-r5c-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
-          
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r66*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer66s
+          cd ${{ env.FIRMWARE }}/firmwarer66s
+          #gzip *.img || true
+          echo -e "Sirpdboy-r66s-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r68*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer68s
+          cd ${{ env.FIRMWARE }}/firmwarer68s
+          #gzip *.img || true
+          echo -e "Sirpdboy-r68s-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-R5sOpenWrt-Ipv6-Vip-Firmware
-          path: ./firmwarer2s
-      
+          name: ${{ env.DATA }}-R5cOpenWrt-Ipv6-Vip-Firmware
+          path: ./firmwarer5c
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-R66sOpenWrt-Ipv6-Vip-Firmware
+          path: ./firmwarer66s
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-R68sOpenWrt-Ipv6-Vip-Firmware
+          path: ./firmwarer68s
