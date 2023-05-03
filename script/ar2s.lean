@@ -1,27 +1,20 @@
 # Target Config
 CONFIG_TARGET_rockchip=y
 CONFIG_TARGET_rockchip_armv8=y
-# CONFIG_TARGET_MULTI_PROFILE=y
-# CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
-# CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
-# CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
-# CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
-# CONFIG_TARGET_ALL_PROFILES=y
-
-#R2S R4S R5C R66S R68S
 CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
+
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c=y
-#LEDE源专用
+
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_fastrhino_r66s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_fastrhino_r68s=y
-#IMMORTALWRT源专用
+
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_lunzn_fastrhino-r66s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_lunzn_fastrhino-r68s=y
 
-# set
+
 CONFIG_TARGET_KERNEL_PARTSIZE=60
 CONFIG_TARGET_ROOTFS_PARTSIZE=920
 
@@ -260,7 +253,7 @@ CONFIG_PACKAGE_luci-app-ikoolproxy=y
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 # CONFIG_PACKAGE_luci-app-wireguard is not set
 CONFIG_PACKAGE_luci-app-aliyundrive-webdav=n
-CONFIG_PACKAGE_luci-app-cpufreq=n
+CONFIG_PACKAGE_luci-app-cpufreq=y
 # CONFIG_PACKAGE_BitSrunLoginGo=n   #学校签到
 CONFIG_PACKAGE_luci-app-v2raya=n
 CONFIG_PACKAGE_luci-app-linkease=n
