@@ -77,6 +77,8 @@ jobs:
              echo "CPU NO！！！"
              echo "CKCPU=failure" >> $GITHUB_ENV
              # exit 1
+             npm run lint
+             #- travis_retry npm test
              npm AOpenWrt-ipv6-mini
          fi
       - name: Space cleanup
