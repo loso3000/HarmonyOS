@@ -38,7 +38,6 @@ GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/dow
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 
-
 # oh-my-zsh
 mkdir -p files/root
 pushd files/root
@@ -46,9 +45,9 @@ git clone https://github.com/robbyrussell/oh-my-zsh ./.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ./.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
-cp ../../../file/zsh/.zshrc  ./.zshrc
+cp ../../../file/zsh/.zshrc .
 popd
-cat ../file/zsh/.zshrc > files/root/.zshrc
+# cat ../file/zsh/.zshrc > files/root/.zshrc
 cat ./package/other/patch/profiles > ./files/etc/profiles
 
 ## opkg ##
