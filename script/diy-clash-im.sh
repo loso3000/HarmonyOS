@@ -45,10 +45,13 @@ git clone https://github.com/robbyrussell/oh-my-zsh ./.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ./.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
-cp ../../../file/zsh/.zshrc .
+# cp ../../../file/zsh/.zshrc .
+mv -f ../../package/other/patch/z.zshrc ./.zshrc
+mv -f ../../package/other/patch/profiles ../etc/profiles
 popd
 # cat ../file/zsh/.zshrc > files/root/.zshrc
-cat ./package/other/patch/profiles > ./files/etc/profiles
+mv -f ./package/other/patch/z.zshrc ./files/etc/.zshrc
+mv -f ./package/other/patch/profiles ./files/etc/profiles
 
 ## opkg ##
 PLATFORM=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | awk -F '"' '{print $2}')
