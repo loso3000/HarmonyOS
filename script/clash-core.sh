@@ -50,10 +50,10 @@ git clone https://github.com/robbyrussell/oh-my-zsh ./.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ./.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
+cp ../../../file/zsh/.zshrc  ./.zshrc
 popd
-cp ../file/zsh/.zshrc files/root/
-cp ./package/other/patch/profiles files/etc/
-
+cat ../file/zsh/.zshrc > files/root/.zshrc
+cat ./package/other/patch/profiles > ./files/etc/profiles
 # speedtest
 # mkdir -p files/bin
 # wget -qO- https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz | tar xOvz > files/bin/speedtest
