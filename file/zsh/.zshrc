@@ -98,6 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias menu="bash +x /etc/profiles"
 autoload -U compinit && compinit
 cat /etc/banner
-bash +x /etc/profile
+bash +x /etc/profiles
