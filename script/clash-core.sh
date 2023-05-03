@@ -52,12 +52,15 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
 # cp ../../../file/zsh/.zshrc .
 mv -f ../../package/other/patch/z.zshrc ./.zshrc
-mv -f ../../package/other/patch/profiles ../etc/profiles
+mv -f ../../package/other/patch/profiles ../etc/
+ls -a
 popd
 # cat ../file/zsh/.zshrc > files/root/.zshrc
-mv -f ./package/other/patch/z.zshrc ./files/etc/.zshrc
-mv -f ./package/other/patch/profiles ./files/etc/profiles
-ls -a
+mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
+mv -f ./package/other/patch/profiles ./files/etc
+ls -a ./files/root
+ls -a ./files/etc
+echo "================== zshrc ==================="
 # speedtest
 # mkdir -p files/bin
 # wget -qO- https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz | tar xOvz > files/bin/speedtest
