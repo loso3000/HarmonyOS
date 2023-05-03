@@ -57,7 +57,7 @@ popd
 # cat ../file/zsh/.zshrc > files/root/.zshrc
 mv -f ./package/other/patch/z.zshrc ./files/etc/.zshrc
 mv -f ./package/other/patch/profiles ./files/etc/profiles
-
+ls -a
 # speedtest
 # mkdir -p files/bin
 # wget -qO- https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz | tar xOvz > files/bin/speedtest
