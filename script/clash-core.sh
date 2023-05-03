@@ -50,9 +50,9 @@ git clone https://github.com/robbyrussell/oh-my-zsh ./.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ./.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
-cp ../../../file/zsh/.zshrc  ./.zshrc
+cp ../../../file/zsh/.zshrc .
 popd
-cat ../file/zsh/.zshrc > files/root/.zshrc
+# cat ../file/zsh/.zshrc > files/root/.zshrc
 cat ./package/other/patch/profiles > ./files/etc/profiles
 # speedtest
 # mkdir -p files/bin
