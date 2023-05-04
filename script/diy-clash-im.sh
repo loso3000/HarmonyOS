@@ -46,14 +46,14 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ./.oh-my-zsh/custom/p
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
 # cp ../../../file/zsh/.zshrc .
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./.zshrc
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./.zshrc
 mv -f ../../package/other/patch/z.zshrc ./.zshrc
 mv -f ../../package/other/patch/profiles ../etc/profiles
 ls -a 
 popd
 # cat ../file/zsh/.zshrc > files/root/.zshrc
-mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
-mv -f ./package/other/patch/profiles ./files/etc/profiles
+# mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
+# mv -f ./package/other/patch/profiles ./files/etc/profiles
 ls -a ./files/root
 echo "------------------"
 ls -a ./files/etc
