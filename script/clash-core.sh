@@ -56,8 +56,8 @@ mv -f ../../package/other/patch/profiles ../etc/
 ls -a
 popd
 # cat ../file/zsh/.zshrc > files/root/.zshrc
-mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
-mv -f ./package/other/patch/profiles ./files/etc
+# mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
+# mv -f ./package/other/patch/profiles ./files/etc
 ls -a ./files/root
 ls -a ./files/etc
 echo "================== zshrc ==================="
