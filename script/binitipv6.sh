@@ -397,6 +397,9 @@ svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/ne
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
+
+sed -i 's,PKG_HASH.*,PKG_HASH:=5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7,g' package/new/ipt2socks/Makefile
+sed -i 's,PKG_HASH.*,PKG_HASH:=5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7,g' ./package/openwrt-passwall/ipt2socks/Makefile
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
