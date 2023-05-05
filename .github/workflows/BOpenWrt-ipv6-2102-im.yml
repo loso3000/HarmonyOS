@@ -176,10 +176,4 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-imIpv6-Vip-Mini-imIpk
           path: ./packageipv6mini
-          
-      - name: 删除工作流
-        uses: Mattraks/delete-workflow-runs@main
-        with:
-          retain_days: 1
-          keep_minimum_runs: 0
 
