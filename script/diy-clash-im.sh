@@ -38,10 +38,10 @@ GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/dow
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 
+
 # oh-my-zsh
 mkdir -p files/root
 pushd files/root
-
 ## Install oh-my-zsh
 # Clone oh-my-zsh repository
 git clone https://github.com/ohmyzsh/ohmyzsh ./.oh-my-zsh
@@ -50,21 +50,22 @@ git clone https://github.com/ohmyzsh/ohmyzsh ./.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ./.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
-
 # Get .zshrc dotfile
 # cp $GITHUB_WORKSPACE/scripts/.zshrc .
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./.zshrc
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./.zshrc
+mv -f ../../package/other/patch/z.zshrc ./.zshrc
 popd
 
 # shell zsh
 sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
+
 mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
 mv -f ./package/other/patch/profiles ./files/etc/profiles
 ls -a ./files/root
 echo "------------------------------------------------------"
 ls -a ./files/etc
-echo "------------------------------------------------------"
+echo "================== zshrc ==================="
+
 ## opkg ##
 PLATFORM=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | awk -F '"' '{print $2}')
 TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
