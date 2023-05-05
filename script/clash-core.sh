@@ -40,9 +40,6 @@ GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/dow
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 
-# shell zsh
-sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
-
 # oh-my-zsh
 mkdir -p files/root
 pushd files/root
@@ -56,16 +53,20 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
 # Get .zshrc dotfile
 # cp $GITHUB_WORKSPACE/scripts/.zshrc .
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./.zshrc
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./.zshrc
+mv -f ../../package/other/patch/z.zshrc ./.zshrc
 popd
 
-# mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
+# shell zsh
+sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
+
+mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
 mv -f ./package/other/patch/profiles ./files/etc/profiles
 ls -a ./files/root
 echo "------------------------------------------------------"
 ls -a ./files/etc
-echo "------------------------------------------------------"
 echo "================== zshrc ==================="
+
 # speedtest
 # mkdir -p files/bin
 # wget -qO- https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz | tar xOvz > files/bin/speedtest
