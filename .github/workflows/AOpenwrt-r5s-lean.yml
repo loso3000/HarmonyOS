@@ -132,15 +132,15 @@ jobs:
          svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
          svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
          # panfrost gpu
-          rm ./target/linux/rockchip/modules.mk
-          rm ./package/kernel/linux/modules/video.mk
-          cp ../patch/modules-6.1/modules.mk ./target/linux/rockchip/modules.mk
-          cp ../patch/modules-6.1/video.mk ./package/kernel/linux/modules/video.mk
+          #  rm ./target/linux/rockchip/modules.mk
+          #  rm ./package/kernel/linux/modules/video.mk
+          #  cp ../patch/modules-6.1/modules.mk ./target/linux/rockchip/modules.mk
+          #  cp ../patch/modules-6.1/video.mk ./package/kernel/linux/modules/video.mk
          # tty console
          # cp ../patch/armv8/base-files/etc/inittab ./target/linux/rockchip/armv8/base-files/etc/inittab
          # build image
-          rm -rf target/linux/rockchip/image/armv8.mk
-          cp -f ../patch/rockchip/image/armv8-r5c.mk ./target/linux/rockchip/image/armv8.mk
+          #  rm -rf target/linux/rockchip/image/armv8.mk
+          #  cp -f ../patch/rockchip/image/armv8-r5c.mk ./target/linux/rockchip/image/armv8.mk
          # kernel-6.1 patches
          # sed -i 's/5.4/6.1/g' ./target/linux/rockchip/Makefile
          # cp -r ../patch/rockchip/patches-6.1/ ./target/linux/rockchip/patches-6.1/
