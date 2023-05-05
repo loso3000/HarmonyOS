@@ -41,22 +41,27 @@ wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 # oh-my-zsh
 mkdir -p files/root
 pushd files/root
-git clone https://github.com/robbyrussell/oh-my-zsh ./.oh-my-zsh
+
+## Install oh-my-zsh
+# Clone oh-my-zsh repository
+git clone https://github.com/ohmyzsh/ohmyzsh ./.oh-my-zsh
+
+# Install extra plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ./.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugins/zsh-completions
-# cp ../../../file/zsh/.zshrc .
+
+# Get .zshrc dotfile
+# cp $GITHUB_WORKSPACE/scripts/.zshrc .
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./.zshrc
-mv -f ../../package/other/patch/z.zshrc ./.zshrc
-mv -f ../../package/other/patch/profiles ../etc/profiles
-ls -a 
 popd
-# cat ../file/zsh/.zshrc > files/root/.zshrc
-# mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
-# mv -f ./package/other/patch/profiles ./files/etc/profiles
+
+mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
+mv -f ./package/other/patch/profiles ./files/etc/profiles
 ls -a ./files/root
-echo "------------------"
+echo "------------------------------------------------------"
 ls -a ./files/etc
+echo "------------------------------------------------------"
 ## opkg ##
 PLATFORM=$(cat .config | grep CONFIG_TARGET_ARCH_PACKAGES | awk -F '"' '{print $2}')
 TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
