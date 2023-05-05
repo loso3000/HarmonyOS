@@ -380,7 +380,6 @@ rm -rf ./feeds/packages/net/trojan*
 #bypass
 # rm -rf package/other/up/pass/luci-app-bypass 
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
-# git clone https://github.com/kiddin9/openwrt-bypass package/bypass
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/bypass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
@@ -390,6 +389,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
 git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
+
 
 # pushd package/passwall/luci-app-passwall
 # sed -i 's,default n,default y,g' Makefile
@@ -417,6 +417,8 @@ rm -rf ./package/openwrt-passwall/v2ray-geodata
 # rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/trojan
 rm -rf ./package/openwrt-passwall/naiveproxy
+
+sed -i 's,PKG_HASH.*,PKG_HASH:=5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7,g' ./package/openwrt-passwall/ipt2socks/Makefile
 
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan package/new/trojan
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan-plus package/new/trojan-plus
