@@ -442,6 +442,8 @@ CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-partexp=y
+CONFIG_PACKAGE_luci-app-chatgpt=y
+CONFIG_PACKAGE_luci-app-chatgpt-web=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 
