@@ -309,6 +309,8 @@ CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-app-partexp=y
 
+CONFIG_PACKAGE_luci-app-chatgpt=y
+CONFIG_PACKAGE_luci-app-chatgpt-web=y
 #docker
 CONFIG_PACKAGE_luci-app-docker=y
 CONFIG_PACKAGE_luci-app-dockerman=y
