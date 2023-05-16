@@ -252,7 +252,7 @@ CONFIG_PACKAGE_luci-app-ddnsto=n
 CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 CONFIG_PACKAGE_luci-app-kodexplorer=y
-CONFIG_PACKAGE_luci-app-uhttpd=y
+CONFIG_PACKAGE_luci-app-uhttpd=n
 CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
@@ -361,18 +361,15 @@ CONFIG_PACKAGE_luci-app-arpbind=y
 
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
-# CONFIG_PACKAGE_odhcp6c=y
-
 # Other Appliciations
-# CONFIG_PACKAGE_luci-ssl-openssl=y
-# CONFIG_PACKAGE_wpad-openssl=y
-# CONFIG_PACKAGE_xz=y
-# CONFIG_PACKAGE_xz-utils=y
+CONFIG_PACKAGE_ppp-mod-pptp=y
+CONFIG_PACKAGE_xl2tpd=y 
 CONFIG_PACKAGE_ppp-mod-pppol2tp=y
 CONFIG_PACKAGE_kmod-pppol2tp=y
-CONFIG_PACKAGE_ppp-mod-pptp=y
-CONFIG_PACKAGE_xl2tpd=y
-# 工具
+CONFIG_PACKAGE_block-mount=y
+CONFIG_PACKAGE_ipt2socks=y
+
+CONFIG_PACKAGE_coremark=y
 CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_blkid=y
 # CONFIG_PACKAGE_qemu-ga=y
@@ -386,18 +383,33 @@ CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
-CONFIG_PACKAGE_openssh-sftp-server=y
-CONFIG_PACKAGE_wget-ssl=y
 CONFIG_PACKAGE_openssh-sftp-client=y
+CONFIG_PACKAGE_openssh-sftp-server=y
+CONFIG_PACKAGE_wget=y
+CONFIG_PACKAGE_wget-ssl=y
+CONFIG_PACKAGE_lsblk=y
+# CONFIG_PACKAGE_umdns=y  #error
+CONFIG_PACKAGE_zsh=y
+CONFIG_PACKAGE_lm-sensors=y
+
+CONFIG_PACKAGE_nginx=y
+CONFIG_PACKAGE_odhcp6c=y
+CONFIG_PACKAGE_apk=y
+CONFIG_PACKAGE_alpine-keys=y
+CONFIG_PACKAGE_alpine-repositories=y
+
+CONFIG_PACKAGE_usbutils=y
+
+CONFIG_PACKAGE_libimobiledevice-utils=y
+CONFIG_PACKAGE_libplist-utils=y
+CONFIG_PACKAGE_libusbmuxd-utils=y
+
+CONFIG_PACKAGE_usbmuxd=y
+CONFIG_PACKAGE_libwslay=y
+CONFIG_PACKAGE_libudev-fbsd=y
 
 CONFIG_PACKAGE_openssl-util=y  #https
 
-CONFIG_PACKAGE_lsblk=y
-# CONFIG_PACKAGE_umdns=y  #error
-
-CONFIG_PACKAGE_zsh=y
-CONFIG_PACKAGE_lm-sensors=y
-CONFIG_PACKAGE_coremark=y
 #docker
 CONFIG_PACKAGE_luci-app-docker=y
 CONFIG_PACKAGE_luci-app-dockerman=y
