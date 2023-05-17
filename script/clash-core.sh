@@ -15,31 +15,46 @@ sed -i "/timezone='.*'/a\\\t\t\set system.@system[-1].zonename='Asia/Shanghai'" 
 # sed -i "s/PKG_HASH:=.*/PKG_HASH:=5de8c8e29aaa3fb9cc6b47bb27299f271354ebb72514e3accadc7d38b5bbaa72/g"  ./feeds/packages/utils/jq/Makefile
 # rm -rf /package/lean/r8168/patches/020-5.18-support.patch
 
-#预置OpenClash内核和GEO数据
 mkdir -p files/etc/openclash/core
-# cd ./OpenClash/luci-app-openclash/root/etc/openclash
-pushd files/etc/openclash/core
-export CORE_TYPE=$1
-export CORE_VER=https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/core_version
-export CORE_TUN=https://github.com/vernesong/OpenClash/raw/core/dev/premium/clash-linux
-export CORE_DEV=https://github.com/vernesong/OpenClash/raw/core/dev/dev/clash-linux
-export CORE_MATE=https://github.com/vernesong/OpenClash/raw/core/dev/meta/clash-linux
-export TUN_VER=$(curl -sfL $CORE_VER | sed -n "2{s/\r$//;p;q}")
-
-curl -sfL -o ./tun.gz "$CORE_TUN"-"$CORE_TYPE"-"$TUN_VER".gz
-gzip -d ./tun.gz && mv ./tun ./clash_tun
-curl -sfL -o ./meta.tar.gz "$CORE_MATE"-"$CORE_TYPE".tar.gz
-tar -zxf ./meta.tar.gz && mv ./clash ./clash_meta
-curl -sfL -o ./dev.tar.gz "$CORE_DEV"-"$CORE_TYPE".tar.gz
-tar -zxf ./dev.tar.gz
-chmod +x ./clash* ; rm -rf ./*.gz
-# chmod +x files/etc/openclash/core/clash*
-popd
+CLASH_DEV_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/dev/clash-linux-${1}.tar.gz"
+CLASH_TUN_URL=$(curl -fsSL https://api.github.com/repos/vernesong/OpenClash/contents/master/premium\?ref\=core | grep download_url | grep amd64 | awk -F '"' '{print $4}' | grep "v3" )
+CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-${1}.tar.gz"
 GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+wget -qO- $CLASH_DEV_URL | tar xOvz > files/etc/openclash/core/clash
+wget -qO- $CLASH_TUN_URL | gunzip -c > files/etc/openclash/core/clash_tun
+wget -qO- $CLASH_META_URL | tar xOvz > files/etc/openclash/core/clash_meta
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
+chmod +x files/etc/openclash/core/clash*
 
+#预置OpenClash内核和GEO数据 DEV
+# mkdir -p files/etc/openclash/core
+# cd ./OpenClash/luci-app-openclash/root/etc/openclash
+# pushd files/etc/openclash/core
+# export CORE_TYPE=$1
+# export CORE_VER=https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/core_version
+# export CORE_TUN=https://github.com/vernesong/OpenClash/raw/core/dev/premium/clash-linux
+# export CORE_DEV=https://github.com/vernesong/OpenClash/raw/core/dev/dev/clash-linux
+# export CORE_MATE=https://github.com/vernesong/OpenClash/raw/core/dev/meta/clash-linux
+# export TUN_VER=$(curl -sfL $CORE_VER | sed -n "2{s/\r$//;p;q}")
+# curl -sfL -o ./tun.gz "$CORE_TUN"-"$CORE_TYPE"-"$TUN_VER".gz
+# gzip -d ./tun.gz && mv ./tun ./clash_tun
+# curl -sfL -o ./meta.tar.gz "$CORE_MATE"-"$CORE_TYPE".tar.gz
+# tar -zxf ./meta.tar.gz && mv ./clash ./clash_meta
+# curl -sfL -o ./dev.tar.gz "$CORE_DEV"-"$CORE_TYPE".tar.gz
+# tar -zxf ./dev.tar.gz
+# chmod +x ./clash* ; rm -rf ./*.gz
+# chmod +x files/etc/openclash/core/clash*
+# popd
+# GEOIP_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+# GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+# wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
+# wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
+
+
+# shell zsh
+sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
 # oh-my-zsh
 mkdir -p files/root
 pushd files/root
@@ -56,10 +71,6 @@ git clone https://github.com/zsh-users/zsh-completions ./.oh-my-zsh/custom/plugi
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./.zshrc
 mv -f ../../package/other/patch/z.zshrc ./.zshrc
 popd
-
-# shell zsh
-sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
-
 mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
 mv -f ./package/other/patch/profiles ./files/etc/profiles
 ls -a ./files/root
