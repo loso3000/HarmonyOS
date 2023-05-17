@@ -7,8 +7,8 @@ CONFIG_TARGET_ROOTFS_PARTSIZE=925
 
 CONFIG_PACKAGE_diffutils=y
 
-CONFIG_BUSYBOX_CUSTOM=y
-CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
+# CONFIG_BUSYBOX_CUSTOM=y
+# CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
 
 # CONFIG_COREMARK_NUMBER_OF_THREADS=128
 # CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256 
@@ -311,7 +311,7 @@ CONFIG_PACKAGE_luci-theme-edge=y
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
-CONFIG_PACKAGE_luci-theme-darkmatter=y
+CONFIG_PACKAGE_luci-theme-darkmatter=n
 CONFIG_PACKAGE_luci-theme-neobird=y
 CONFIG_PACKAGE_luci-app-argon-config=n
 #增加其它插件
@@ -335,7 +335,7 @@ CONFIG_PACKAGE_luci-app-koolddns=n
 CONFIG_PACKAGE_luci-app-syncdial=y
 CONFIG_PACKAGE_luci-app-softethervpn=y
 CONFIG_PACKAGE_luci-app-uugamebooster=y
-CONFIG_PACKAGE_luci-app-udpxy=y
+CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
 CONFIG_PACKAGE_luci-app-transmission=y
@@ -386,7 +386,7 @@ CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_openssh-sftp-client=y
 CONFIG_PACKAGE_openssh-sftp-server=y
-CONFIG_PACKAGE_wget=y
+# CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_wget-ssl=y
 CONFIG_PACKAGE_lsblk=y
 # CONFIG_PACKAGE_umdns=y  #error
@@ -394,22 +394,22 @@ CONFIG_PACKAGE_zsh=y
 CONFIG_PACKAGE_lm-sensors=y
 
 CONFIG_PACKAGE_nginx=y
-CONFIG_PACKAGE_odhcp6c=y
-CONFIG_PACKAGE_apk=y
-CONFIG_PACKAGE_alpine-keys=y
-CONFIG_PACKAGE_alpine-repositories=y
+#CONFIG_PACKAGE_odhcp6c=y
+#CONFIG_PACKAGE_apk=y
+#CONFIG_PACKAGE_alpine-keys=y
+#CONFIG_PACKAGE_alpine-repositories=y
 
-CONFIG_PACKAGE_usbutils=y
+#CONFIG_PACKAGE_usbutils=y
 
-CONFIG_PACKAGE_libimobiledevice-utils=y
-CONFIG_PACKAGE_libplist-utils=y
-CONFIG_PACKAGE_libusbmuxd-utils=y
+#CONFIG_PACKAGE_libimobiledevice-utils=y
+#CONFIG_PACKAGE_libplist-utils=y
+#CONFIG_PACKAGE_libusbmuxd-utils=y
 
-CONFIG_PACKAGE_usbmuxd=y
-CONFIG_PACKAGE_libwslay=y
-CONFIG_PACKAGE_libudev-fbsd=y
+#CONFIG_PACKAGE_usbmuxd=y
+#CONFIG_PACKAGE_libwslay=y
+#CONFIG_PACKAGE_libudev-fbsd=y
 
-CONFIG_PACKAGE_openssl-util=y  #https
+# CONFIG_PACKAGE_openssl-util=y  #https
 
 #docker
 CONFIG_PACKAGE_luci-app-docker=y
