@@ -451,7 +451,7 @@ svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus ./feeds/pa
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
 # VSSR
-rm -rf ./feeds/luci/applications/luci-app-vssr ./package/feeds/packages/luci-app-vssr
+# rm -rf ./feeds/luci/applications/luci-app-vssr ./package/feeds/packages/luci-app-vssr
 # svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
 # pushd package/diy/luci-app-vssr
 # sed -i 's,default n,default y,g' Makefile
