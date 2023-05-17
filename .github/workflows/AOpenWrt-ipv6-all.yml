@@ -26,11 +26,6 @@ env:
   DIY_P1_SH: script/aipv6all-lean.sh
   DIY_P2_SH: script/clash-core.sh
   TZ: Asia/Shanghai
-  
-  
-  
-permissions:
-  contents: read
 
 jobs:
 
@@ -49,7 +44,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: master
           
@@ -141,18 +136,11 @@ jobs:
          $GITHUB_WORKSPACE/$DIY_P1_SH
          #$GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
-         sed -i '$a\CONFIG_DEVEL=y\nCONFIG_LOCALMIRROR=\"https://openwrt.cc/dl/coolsnowwolf/lede\"' .config
+         # sed -i '$a\CONFIG_DEVEL=y\nCONFIG_LOCALMIRROR=\"https://openwrt.cc/dl/coolsnowwolf/lede\"' .config
       - name: Generate configuration file
-
         run: |
          cd openwrt
           make defconfig
-
-      - name: 设置缓存
-        uses: klever1988/cachewrtbuild@main
-        with:
-         ccache: 'true'
-         prefix: ${{ github.workspace }}/openwrt
       - name: Make download
         working-directory: ./openwrt
         run: |
