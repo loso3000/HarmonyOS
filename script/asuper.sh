@@ -86,6 +86,15 @@ sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
+rm -rf package/libs/libnl-tiny
+rm -rf package/kernel/mac80211
+rm -rf package/kernel/mt76
+rm -rf package/network/services/hostapd
+svn export https://github.com/openwrt/openwrt/trunk/package/libs/libnl-tiny package/libs/libnl-tiny
+svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
+svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
+svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
+
 
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./package/other/up/pass/mosdns
@@ -375,8 +384,9 @@ git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoo
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
 
 # svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
-svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash package/new/luci-app-openclash
-sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
+# # svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash package/new/luci-app-openclash
+# sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
+# svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
 
 # Fix libssh
 # rm -rf feeds/packages/libs
@@ -449,7 +459,7 @@ svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus ./feeds/pa
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
 # VSSR
-# rm -rf ./feeds/luci/applications/luci-app-vssr ./package/feeds/packages/luci-app-vssr
+rm -rf ./feeds/luci/applications/luci-app-vssr ./package/feeds/packages/luci-app-vssr
 # svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
 # pushd package/diy/luci-app-vssr
 # sed -i 's,default n,default y,g' Makefile
@@ -504,7 +514,6 @@ cat ./package/other/patch/profile > package/base-files/files/etc/profile
 #cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 
 cp -rf ./package/other/luci/*  ./feeds/luci/*
- 
  
 
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
