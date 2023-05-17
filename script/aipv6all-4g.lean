@@ -38,24 +38,10 @@ CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
-CONFIG_PACKAGE_6to4=y
-#mmc
-CONFIG_ACPI=y
-CONFIG_X86_ACPI_CPUFREQ=y
-CONFIG_NR_CPUS=512
-CONFIG_MMC=y
-CONFIG_MMC_BLOCK=y
-CONFIG_SDIO_UART=y
-CONFIG_MMC_TEST=y
-CONFIG_MMC_DEBUG=y
-CONFIG_MMC_SDHCI=y
-CONFIG_MMC_SDHCI_ACPI=y
-CONFIG_MMC_SDHCI_PCI=y
+CONFIG_PACKAGE_6to4=
 
-# 其他需要安装的软件包:
-# CONFIG_PACKAGE_luci-ssl is not set
-# uhttpd服务
-CONFIG_PACKAGE_luci-ssl-nginx=y # nginx
+CONFIG_BUSYBOX_CUSTOM=y
+CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
 
 CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_DEFAULT_kmod-8139cp=y
@@ -104,12 +90,15 @@ CONFIG_DEFAULT_kmod-usb-net-rtl8150=y
 CONFIG_DEFAULT_kmod-usb-net-rtl8152-vendor=y
 CONFIG_PACKAGE_kmod-usb-dwc2=y
 CONFIG_PACKAGE_kmod-usb-dwc3=y
+CONFIG_PACKAGE_kmod-usb-core=y
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-tg3=y
 CONFIG_DEFAULT_kmod-via-velocity=y
 CONFIG_DEFAULT_kmod-vmxnet3=y
 
 # fibocom fm-160/fm-150 5G usb3.0
-CONFIG_PACKAGE_luci-app-usbmodem=y
+CONFIG_PACKAGE_luci-app-usbmodem=m
 CONFIG_PACKAGE_minicom=y
 CONFIG_PACKAGE_fibocom-dial=y
 
@@ -127,17 +116,6 @@ CONFIG_PACKAGE_kmod-crypto-gcm=y
 CONFIG_PACKAGE_kmod-crypto-gf128=y
 CONFIG_PACKAGE_kmod-crypto-ghash=y
 
-## File System Drivers
-CONFIG_DEFAULT_kmod-forcedeth=y
-CONFIG_PACKAGE_kmod-fs-f2fs=y
-CONFIG_PACKAGE_kmod-fs-nfs=y
-CONFIG_PACKAGE_kmod-fs-nfs-v3=y
-CONFIG_PACKAGE_kmod-fs-nfs-v4=y
-CONFIG_PACKAGE_kmod-fs-squashfs=y
-CONFIG_PACKAGE_kmod-fs-vfat=y
-# CONFIG_PACKAGE_antfs-mount is not set
-# CONFIG_PACKAGE_kmod-fs-antfs is not set
-# CONFIG_PACKAGE_kmod-fs-ntfs is not set
 
 #Tailscale
 #CONFIG_PACKAGE_libustream-openssl=y
@@ -426,5 +404,86 @@ CONFIG_DOCKER_NET_ENCRYPT=y
 CONFIG_DOCKER_NET_MACVLAN=y
 CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
+# CONFIG_PACKAGE_kmod-fs-virtiofs is not set
+# CONFIG_PACKAGE_kmod-qca-mcs is not set
+
+
+CONFIG_PACKAGE_ariang=y
+CONFIG_PACKAGE_coremark=y
+CONFIG_PACKAGE_collectd-mod-thermal=y
+CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
+CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
+CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
+CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
+CONFIG_PACKAGE_ddns-scripts_nsupdate=y
+CONFIG_PACKAGE_ddns-scripts_route53-v1=y
+CONFIG_PACKAGE_iperf3=y
+CONFIG_PACKAGE_minieap=y
+CONFIG_PACKAGE_rsync=y
+CONFIG_PACKAGE_rsyncd=y
+CONFIG_PACKAGE_bind-dig=y
+CONFIG_PACKAGE_bind-host=y
+CONFIG_PACKAGE_mentohust=y
+CONFIG_PACKAGE_odhcp6c=y
+CONFIG_PACKAGE_nginx=y
+CONFIG_PACKAGE_openssh-sftp-client=y
+CONFIG_PACKAGE_openssh-sftp-server=y
+CONFIG_PACKAGE_pandownload-fake-server=y
+CONFIG_PACKAGE_ppp-mod-pptp=y
+CONFIG_PACKAGE_xl2tpd=y
+CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+CONFIG_PACKAGE_ipv6helper=y
+CONFIG_PACKAGE_fullconenat=y
+
+CONFIG_PACKAGE_apk=y
+CONFIG_PACKAGE_bsdtar=y
+CONFIG_PACKAGE_bzip2=y
+CONFIG_PACKAGE_e2fsprogs=y
+CONFIG_PACKAGE_gzip=y
+CONFIG_PACKAGE_unzip=y
+CONFIG_PACKAGE_zip=y
+CONFIG_PACKAGE_fstrim=y
+CONFIG_PACKAGE_gpioctl-sysfs=y
+CONFIG_PACKAGE_gpiod-tools=y
+CONFIG_PACKAGE_irqbalance=y
+CONFIG_PACKAGE_shadow-chsh=y
+CONFIG_PACKAGE_f2fs-tools=y
+CONFIG_PACKAGE_f2fsck=y
+CONFIG_PACKAGE_resize2fs=y
+CONFIG_PACKAGE_tmux=y
+CONFIG_PACKAGE_usbutils=y
+CONFIG_PACKAGE_whereis=y
+CONFIG_PACKAGE_gotop=y
+CONFIG_PACKAGE_tmate=y
+CONFIG_PACKAGE_udp2raw-tunnel=y
+CONFIG_PACKAGE_procd-ujail=y
+
+CONFIG_PACKAGE_kmod-usb-serial=y
+CONFIG_PACKAGE_kmod-usb-serial-option=y
+CONFIG_PACKAGE_kmod-usb-serial-wwan=y
+CONFIG_PACKAGE_usb-modeswitch=y
+CONFIG_PACKAGE_kmod-mii=y
+CONFIG_PACKAGE_luci-proto-qmi=y
+CONFIG_PACKAGE_qmi-utils=y
+CONFIG_PACKAGE_umbim=y
+CONFIG_PACKAGE_uqmi=y
+CONFIG_PACKAGE_comgt-ncm=y
+CONFIG_PACKAGE_luci-proto-ncm=y
+CONFIG_PACKAGE_comgt=y
+CONFIG_PACKAGE_kmod-usb-acm=y
+CONFIG_PACKAGE_luci-proto-3g=y
+
+CONFIG_PACKAGE_libimobiledevice-utils=y
+CONFIG_PACKAGE_libplist-utils=y
+CONFIG_PACKAGE_libusbmuxd-utils=y
+
+CONFIG_PACKAGE_usbmuxd=y
+CONFIG_PACKAGE_libwslay=y
+CONFIG_PACKAGE_libudev-fbsd=y
+
+CONFIG_HYSTERIA_COMPRESS_UPX=y
+CONFIG_PACKAGE_hysteria=y
+# 存放禁用的东西
+
 # CONFIG_PACKAGE_kmod-fs-virtiofs is not set
 # CONFIG_PACKAGE_kmod-qca-mcs is not set
