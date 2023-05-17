@@ -120,12 +120,14 @@ git clone https://github.com/sbwml/v2ray-geodata package/geodata
 
 
 # 80211 
+rm -rf package/libs/libnl-tiny
 rm -rf package/kernel/mac80211
 rm -rf package/kernel/mt76
 rm -rf package/network/services/hostapd
-svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/kernel/mac80211 package/kernel/mac80211
+svn export https://github.com/openwrt/openwrt/trunk/package/libs/libnl-tiny package/libs/libnl-tiny
+svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
 svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
-svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/network/services/hostapd package/network/services/hostapd
+svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
 
 # alist 
 git clone https://github.com/sbwml/luci-app-alist package/alist
@@ -334,9 +336,9 @@ git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoo
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
 
 # svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
-svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash package/new/luci-app-openclash
-sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
-
+# svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash package/new/luci-app-openclash
+# Add OpenClash
+svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
 # Fix libssh
 # rm -rf feeds/packages/libs
 svn export https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
@@ -551,7 +553,7 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 sed -i '/mt7662u_rom_patch.bin/a\\techo mt76-usb disable_usb_sg=1 > $\(1\)\/etc\/modules.d\/mt76-usb' package/kernel/mt76/Makefile
 
 # Change default shell to zsh
-# sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 # 删除定时coremark
 # rm -rf ./feeds/packages/utils/coremark
