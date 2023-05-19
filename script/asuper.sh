@@ -85,17 +85,7 @@ svn export https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
 sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-
-rm -rf package/libs/libnl-tiny
-rm -rf package/kernel/mac80211
-rm -rf package/kernel/mt76
-rm -rf package/network/services/hostapd
-svn export https://github.com/openwrt/openwrt/trunk/package/libs/libnl-tiny package/libs/libnl-tiny
-svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
-svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
-svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
-
-
+ 
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns ./package/feeds/packages/mosdns
