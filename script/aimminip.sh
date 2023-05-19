@@ -379,16 +379,7 @@ sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/kool
 # sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
 # Add OpenClash
 svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
-
-rm -rf package/libs/libnl-tiny
-rm -rf package/kernel/mac80211
-rm -rf package/kernel/mt76
-rm -rf package/network/services/hostapd
-svn export https://github.com/openwrt/openwrt/trunk/package/libs/libnl-tiny package/libs/libnl-tiny
-svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
-svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
-svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
-
+ 
 # Fix libssh
 # rm -rf feeds/packages/libs
 svn export https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/libs/
