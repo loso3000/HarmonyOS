@@ -338,7 +338,8 @@ git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoo
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
 
 # Add OpenClash
-svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
+svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
 
 # Fix libssh
 # rm -rf feeds/packages/libs
