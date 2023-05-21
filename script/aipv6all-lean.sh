@@ -555,9 +555,6 @@ sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.1/g' ./target/linux/*/Makefil
 # Fix mt76 wireless driver
 sed -i '/mt7662u_rom_patch.bin/a\\techo mt76-usb disable_usb_sg=1 > $\(1\)\/etc\/modules.d\/mt76-usb' package/kernel/mt76/Makefile
 
-# Change default shell to zsh
-sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
-
 # 删除定时coremark
 # rm -rf ./feeds/packages/utils/coremark
 # svn export https://github.com/DHDAXCW/packages/trunk/utils/coremark feeds/packages/utils/coremark
