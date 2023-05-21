@@ -30,7 +30,7 @@ chmod +x files/etc/openclash/core/clash*
 
 # oh-my-zsh
 # shell zsh
-sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
+# sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
 mkdir -p files/root
 pushd files/root
 ## Install oh-my-zsh
