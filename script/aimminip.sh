@@ -376,9 +376,9 @@ sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/kool
 
 # svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
 # svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash package/new/luci-app-openclash
-# sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
 # Add OpenClash
-svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
+svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
  
 # Fix libssh
 # rm -rf feeds/packages/libs
