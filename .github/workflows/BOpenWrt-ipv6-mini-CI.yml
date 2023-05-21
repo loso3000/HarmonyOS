@@ -1,4 +1,4 @@
-name: BOpenWrt-mini-CI
+name: BOpenWrt-ipv6-mini-CI
 
 on:
   repository_dispatch:
