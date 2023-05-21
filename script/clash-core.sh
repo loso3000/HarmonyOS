@@ -54,7 +54,7 @@ chmod +x files/etc/openclash/core/clash*
 
 
 # shell zsh
-sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
+# sed -i "s/\/bin\/ash/\/usr\/bin\/zsh/g" package/base-files/files/etc/passwd
 # oh-my-zsh
 mkdir -p files/root
 pushd files/root
