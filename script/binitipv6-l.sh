@@ -235,13 +235,6 @@ svn export https://github.com/loso3000/other/trunk/up/luci-app-samba4 ./feeds/lu
 # sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 # sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
-rm -rf package/kernel/mac80211
-rm -rf package/kernel/mt76
-rm -rf package/network/services/hostapd
-svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/kernel/mac80211 package/kernel/mac80211
-svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
-svn export https://github.com/DHDAXCW/openwrt-beta/trunk/package/network/services/hostapd package/network/services/hostapd
-
 # alist 
 git clone https://github.com/sbwml/luci-app-alist package/alist
 rm -rf feeds/packages/lang/golang
