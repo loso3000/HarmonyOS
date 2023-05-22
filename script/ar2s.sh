@@ -589,6 +589,11 @@ sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-def
 # rm -f ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 # cp ../patch/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 
+# dmc 调频，开了让跑满千兆
+if ls -l ./target/linux/rockchip/patches-${kernel_ver}/*nanopi-r2s*-dmc-*.patch 2>/dev/null;then
+        sed -ri '/auto-freq-en/s#0#1#' ./target/linux/rockchip/patches-${kernel_ver}/*nanopi-r2s*-dmc-*.patch
+    fi
+    
 # panfrost gpu
 # rm ./target/linux/rockchip/modules.mk
 # rm ./package/kernel/linux/modules/video.mk
