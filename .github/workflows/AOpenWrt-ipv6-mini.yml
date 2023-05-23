@@ -132,11 +132,11 @@ jobs:
          cd openwrt
           make defconfig
 
-      - name: Set ccache
-        uses: klever1988/cachewrtbuild@main
-        with:
-         ccache: 'true'
-         prefix: ${{ github.workspace }}/openwrt
+      #- name: Set ccache
+       # uses: klever1988/cachewrtbuild@main
+       # with:
+       #  ccache: 'true'
+       #  prefix: ${{ github.workspace }}/openwrt
       - name: Make download
         working-directory: ./openwrt
         run: |
