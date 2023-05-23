@@ -45,6 +45,10 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/l
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 
+rm -rf ./package/diy/luci-app-autotimeset
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
+
+
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
 
