@@ -116,6 +116,14 @@ CONFIG_PACKAGE_kmod-crypto-gcm=y
 CONFIG_PACKAGE_kmod-crypto-gf128=y
 CONFIG_PACKAGE_kmod-crypto-ghash=y
 
+#nginx 
+#CONFIG_PACKAGE_nginx=y
+#CONFIG_PACKAGE_nginx-util=y
+#CONFIG_PACKAGE_nginx-ssl=y
+#CONFIG_PACKAGE_openssl-util=y
+
+#uhttpd 
+CONFIG_PACKAGE_libustream-openssl=y
 
 #Tailscale
 #CONFIG_PACKAGE_libustream-openssl=y
@@ -359,7 +367,6 @@ CONFIG_PACKAGE_luci-app-arpbind=y
 
 CONFIG_PACKAGE_i915-firmware=y
 CONFIG_PACKAGE_kmod-drm-i915=y
-CONFIG_PACKAGE_nginx=y
 
 # Other Appliciations
 # CONFIG_PACKAGE_luci-ssl-openssl=y
@@ -425,7 +432,6 @@ CONFIG_PACKAGE_bind-dig=y
 CONFIG_PACKAGE_bind-host=y
 CONFIG_PACKAGE_mentohust=y
 CONFIG_PACKAGE_odhcp6c=y
-CONFIG_PACKAGE_nginx=y
 CONFIG_PACKAGE_openssh-sftp-client=y
 CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_pandownload-fake-server=y
