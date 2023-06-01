@@ -98,6 +98,15 @@ CONFIG_PACKAGE_luci-app-upnp=y
 # CONFIG_PACKAGE_luci-app-wol is not set
 CONFIG_PACKAGE_luci-app-wolplus=y
 
+#nginx 
+#CONFIG_PACKAGE_nginx=y
+#CONFIG_PACKAGE_nginx-util=y
+#CONFIG_PACKAGE_nginx-ssl=y
+#CONFIG_PACKAGE_openssl-util=y
+
+#uhttpd https
+CONFIG_PACKAGE_libustream-openssl=y
+
 #base插件
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts_dnspod=y
