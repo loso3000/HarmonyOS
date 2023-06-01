@@ -120,6 +120,15 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 # CONFIG_PACKAGE_kmod-fs-antfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
 
+#nginx 
+#CONFIG_PACKAGE_nginx=y
+#CONFIG_PACKAGE_nginx-util=y
+#CONFIG_PACKAGE_nginx-ssl=y
+#CONFIG_PACKAGE_openssl-util=y
+
+#uhttpd https
+CONFIG_PACKAGE_libustream-openssl=y
+
 #Tailscale
 #CONFIG_PACKAGE_libustream-openssl=y
 #CONFIG_PACKAGE_ca-bundle=y
@@ -393,7 +402,6 @@ CONFIG_PACKAGE_lsblk=y
 CONFIG_PACKAGE_zsh=y
 CONFIG_PACKAGE_lm-sensors=y
 
-CONFIG_PACKAGE_nginx=y
 #CONFIG_PACKAGE_odhcp6c=y
 #CONFIG_PACKAGE_apk=y
 #CONFIG_PACKAGE_alpine-keys=y
