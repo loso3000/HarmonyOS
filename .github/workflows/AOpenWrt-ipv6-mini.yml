@@ -170,11 +170,12 @@ jobs:
         run: |
           mkdir -p ./firmwareipv6mini
           mkdir -p ./packageipv6mini
-          cp -rf $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./packageipv6mini
+          mv -f $(find ./openwrt/bin/packages/ -type f -name "*.ipk") ./packageipv6mini
           # find ./openwrt/bin/targets/ -name "*squashfs*img" | xargs -i mv -f {} ./firmwareipv6mini
+          find ./openwrt/bin/targets/  -name "*squashfs*efi.img" | xargs -i mv -f {} ./firmwareipv6mini
           cd ./firmwareipv6mini
-          gzip *.img |true
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwareipv6mini
+          # gzip *.img |true
+          # find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwareipv6mini
           gzip *.img |true
           echo -e "Sirpdboy-Ipv6-Mini-Vip-${{ env.DATA }}-【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
