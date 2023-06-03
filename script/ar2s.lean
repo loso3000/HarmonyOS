@@ -76,10 +76,10 @@ CONFIG_PACKAGE_kmod-rtlwifi=y
 CONFIG_PACKAGE_kmod-rtlwifi-usb=y
 
 # share network
-CONFIG_PACKAGE_libmbedtls=y
-CONFIG_PACKAGE_usbmuxd=y
-CONFIG_PACKAGE_kmod-usb-net-ipheth=y
-CONFIG_PACKAGE_kmod-usb-net-rndis=y
+# CONFIG_PACKAGE_libmbedtls=y
+# CONFIG_PACKAGE_usbmuxd=y
+# CONFIG_PACKAGE_kmod-usb-net-ipheth=y
+# CONFIG_PACKAGE_kmod-usb-net-rndis=y
 
 #USB驱动 sd
 CONFIG_PACKAGE_kmod-usb2=y
@@ -126,6 +126,7 @@ CONFIG_PACKAGE_luci-app-ddns=y
 # CONFIG_PACKAGE_automount-ntfs=y  #NTFS挂载
 CONFIG_PACKAGE_automount=y  #NTFS挂载
 
+CONFIG_PACKAGE_autocore=y
 CONFIG_PACKAGE_autocore-arm=y
 # CONFIG_PACKAGE_myautocore-x86=y
 CONFIG_PACKAGE_default-settings=y
@@ -384,8 +385,8 @@ CONFIG_PACKAGE_tmate=y
 CONFIG_PACKAGE_procd-ujail=y
 CONFIG_PACKAGE_coreutils-dd=y
 CONFIG_PACKAGE_wg-quick=y
-CONFIG_PACKAGE_tailscale=y
-CONFIG_PACKAGE_tailscaled=y
+# CONFIG_PACKAGE_tailscale=y
+# CONFIG_PACKAGE_tailscaled=y
 
 CONFIG_PACKAGE_iptables-mod-nat-extra=y
 CONFIG_PACKAGE_kmod-usb-serial=y
