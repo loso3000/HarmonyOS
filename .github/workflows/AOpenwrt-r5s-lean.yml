@@ -39,7 +39,6 @@ jobs:
 
     name: Build OpenWrt firmware
 
-
     runs-on: ubuntu-latest
 
     if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
@@ -75,7 +74,8 @@ jobs:
          else
              echo "CPU NO！！！"
              echo "CKCPU=failure" >> $GITHUB_ENV
-             exit 1
+             npm AOpenwrt-r2s-lean
+             #exit 1
          fi
       - name: Space cleanup
         env:
@@ -102,17 +102,12 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
+          df -h
       - name: Update feeds
         run: | 
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-      #- name: Cache
-      #  uses: klever1988/cachewrtbuild@main
-      #  with:
-      #    ccache: 'true'
-      #    prefix: 'openwrt'
-      #    mixkey: 'x86'
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
@@ -121,42 +116,24 @@ jobs:
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
-         
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
-         $GITHUB_WORKSPACE/$DIY_P2_SH arm64
-
-         rm -rf package/kernel/rtl8821cu
-         rm -rf package/kernel/mac80211
-         rm -rf package/network/services/hostapd
-         svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
-         svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
-         # panfrost gpu
-          #  rm ./target/linux/rockchip/modules.mk
-          #  rm ./package/kernel/linux/modules/video.mk
-          #  cp ../patch/modules-6.1/modules.mk ./target/linux/rockchip/modules.mk
-          #  cp ../patch/modules-6.1/video.mk ./package/kernel/linux/modules/video.mk
-         # tty console
-         # cp ../patch/armv8/base-files/etc/inittab ./target/linux/rockchip/armv8/base-files/etc/inittab
-         # build image
-          #  rm -rf target/linux/rockchip/image/armv8.mk
-          #  cp -f ../patch/rockchip/image/armv8-r5c.mk ./target/linux/rockchip/image/armv8.mk
-         # kernel-6.1 patches
-         # sed -i 's/5.4/6.1/g' ./target/linux/rockchip/Makefile
-         # cp -r ../patch/rockchip/patches-6.1/ ./target/linux/rockchip/patches-6.1/
          chmod -R 755 .
-      - name: Generate configuration file
-        working-directory: ./openwrt
-        run: |
           make defconfig
-          make download -j8
+          df -h
+      - name: Generate configuration file
+        run: |
+          cd openwrt
+          make download -j32
+          find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
+          df -h
+               
       - name: Compile Packages
         id: compile
         run: |
          df -h
          cd openwrt
-         
          echo -e "$(nproc) thread compile"
          make tools/compile -j$(nproc) || make tools/compile -j72
          make toolchain/compile -j$(nproc) || make toolchain/compile -j72
@@ -165,17 +142,16 @@ jobs:
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
       - name: Generate Firmware
-        id: generate
         run: |
-          cd openwrt
-          df -h
-          mkdir -p files/etc/uci-defaults/
-          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-          make package/install -j$(nproc) || make package/install -j1 V=s
-          make target/install -j$(nproc) || make target/install -j1 V=s
-          make checksum
-          df -h
-        
+         df -h
+         cd openwrt 
+         mkdir -p files/etc/uci-defaults/
+         $GITHUB_WORKSPACE/$DIY_P2_SH arm64
+         cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+         make package/install -j$(nproc) || make package/install -j1 V=s
+         make target/install -j$(nproc) || make target/install -j1 V=s
+         make checksum
+
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwarer68s
@@ -183,7 +159,8 @@ jobs:
           mkdir -p ./firmwarer66s
           ls
 
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r5c*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer5c
+          find ./openwrt/bin/targets/ -name "*r5c-ext4-sysupgrade.img*" | xargs -i mv -f {} ./firmwarer5c
+          find ./openwrt/bin/targets/ -name "*r5c-squashfs-sysupgrade.img*" | xargs -i mv -f {} ./firmwarer5c
           cd ${{ env.FIRMWARE }}/firmwarer5c
           #gzip *.img || true
           echo -e "Sirpdboy-r5c-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
@@ -192,7 +169,7 @@ jobs:
           md5sum *img* >> 版本日期和MD5信息.txt
           ls
 
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r66*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer66s
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r66-squashfs-sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer66s
           cd ${{ env.FIRMWARE }}/firmwarer66s
           #gzip *.img || true
           echo -e "Sirpdboy-r66s-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
@@ -201,7 +178,7 @@ jobs:
           md5sum *img* >> 版本日期和MD5信息.txt
           ls
 
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r68*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer68s
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r68-squashfs-sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer68s
           cd ${{ env.FIRMWARE }}/firmwarer68s
           #gzip *.img || true
           echo -e "Sirpdboy-r68s-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
