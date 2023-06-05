@@ -553,24 +553,24 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/defaul
 
 
 #sed -i 's/US/CN/g ; s/OpenWrt/iNet/g ; s/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+sed -i "s/192.168.6.1/192.168.8.1/g"  package/base-files/files/bin/config_generate
 
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 
-date1='Ipv6-Mini-Vip-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
-#date1='Ipv6-Mini-Vip-R2023.05.01'
-#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20230601-Ipv6-Mini-VIP-6.1-/g' include/image.mk
+date1='Ipv6-Mini-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
+#date1='Ipv6-Mini-R2023.07.01'
+#sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/20230701-Ipv6-Mini-6.1-/g' include/image.mk
 if [ "$VER2" = "5.4" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-Vip-5.4-/g' include/image.mk
+    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-5.4-/g' include/image.mk
 elif [ "$VER2" = "5.10" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-Vip-5.10-/g' include/image.mk
+    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-5.10-/g' include/image.mk
 elif [ "$VER2" = "5.15" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-Vip-5.15-/g' include/image.mk
+    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-5.15-/g' include/image.mk
 elif [ "$VER2" = "6.1" ]; then
-    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-Vip-6.1-/g' include/image.mk
+    sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(IMG_PREFIX_EXTRA)/$(shell TZ=UTC-8 date +%Y%m%d -d +12hour)-Ipv6-Mini-6.1-/g' include/image.mk
 fi
 
 echo "DISTRIB_REVISION='${date1} by Sirpdboy'" > ./package/base-files/files/etc/openwrt_release1
@@ -594,9 +594,9 @@ sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-def
 # cp ../patch/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 
 # dmc 调频，开了让跑满千兆
-if ls -l ./target/linux/rockchip/patches-${kernel_ver}/*nanopi-r2s*-dmc-*.patch 2>/dev/null;then
-        sed -ri '/auto-freq-en/s#0#1#' ./target/linux/rockchip/patches-${kernel_ver}/*nanopi-r2s*-dmc-*.patch
-    fi
+#if ls -l ./target/linux/rockchip/patches-${kernel_ver}/*nanopi-r2s*-dmc-*.patch 2>/dev/null;then
+#        sed -ri '/auto-freq-en/s#0#1#' ./target/linux/rockchip/patches-${kernel_ver}/*nanopi-r2s*-dmc-*.patch
+#    fi
     
 # panfrost gpu
 # rm ./target/linux/rockchip/modules.mk
@@ -604,6 +604,14 @@ if ls -l ./target/linux/rockchip/patches-${kernel_ver}/*nanopi-r2s*-dmc-*.patch 
 # cp ../patch/modules-5.4/modules.mk ./target/linux/rockchip/modules.mk
 # cp ../patch/modules-5.4/video.mk ./package/kernel/linux/modules/video.mk
 
+# mt7921 mt7916
+rm -rf package/kernel/mac80211
+rm -rf package/kernel/rtl8821cu
+rm -rf package/network/services/hostapd
+svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
+svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
+rm -rf package/kernel/mac80211/Makefile
+cp -f $GITHUB_WORKSPACE/Makefile package/kernel/mac80211/Makefile
 # 风扇脚本
 sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
