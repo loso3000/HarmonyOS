@@ -22,7 +22,7 @@ env:
   REPO_BRANCH: stable
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/ar5c.config
-  DIY_P1_SH: script/ar2s.sh
+  DIY_P1_SH: script/ar5s.sh
   DIY_P2_SH: script/clash-core.sh
   TZ: Asia/Shanghai
   
