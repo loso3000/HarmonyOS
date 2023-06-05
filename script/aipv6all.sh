@@ -43,8 +43,6 @@ echo kucat
 svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
-
-
 rm -rf ./package/diy/luci-app-autotimeset
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
 
@@ -122,16 +120,6 @@ sed -i "/filter_aaaa='1'/d" ./feeds/luci/applications/luci-app-mosdns/root/etc/i
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 
-
-# 80211 
-rm -rf package/libs/libnl-tiny
-rm -rf package/kernel/mac80211
-rm -rf package/kernel/mt76
-rm -rf package/network/services/hostapd
-svn export https://github.com/openwrt/openwrt/trunk/package/libs/libnl-tiny package/libs/libnl-tiny
-svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
-svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
-svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
 
 # alist 
 git clone https://github.com/sbwml/luci-app-alist package/alist
