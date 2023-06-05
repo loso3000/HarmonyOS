@@ -14,14 +14,17 @@ on:
 #    - cron: 0 21 */7 * * 
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  #  https://github.com/loso3000/immortalwrt-1.git
+  REPO_BRANCH: stable
+  #REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/br4s.lean
-  DIY_P1_SH: script/binitmini.sh
-  DIY_P2_SH: script/clash-core-arm64.sh
+  DIY_P1_SH: script/ar2s.sh
+  DIY_P2_SH: script/clash-core.sh
   
   
+
 permissions:
   contents: read
 
@@ -33,9 +36,6 @@ jobs:
       contents: write # for release creation
 
     name: Build OpenWrt firmware
-
-
-
 
     runs-on: ubuntu-latest
 
@@ -72,23 +72,25 @@ jobs:
          else
              echo "CPU NO！！！"
              echo "CKCPU=failure" >> $GITHUB_ENV
-             exit 1
+             npm AOpenwrt-r2s-lean
+             #exit 1
          fi
       - name: Space cleanup
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
           docker rmi `docker images -q`
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
-          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
-          sudo -E apt-get update
-
-          sudo apt install -y install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib  git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz  mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools  libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip  vim wget xmlto xxd zlib1g-dev
-          # sudo -E apt-get -qq install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
-          # sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
-          sudo timedatectl set-timezone "Asia/Shanghai"
+          sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /usr/lib/jvm /opt/ghc /swapfile
+          sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+          sudo -E apt-mark hold grub-efi-amd64-signed
+          sudo -E apt update
+          sudo -E apt -y purge azure-cli* docker* ghc* zulu* llvm* firefox google* dotnet* powershell* openjdk* mysql* php* mongodb* dotnet* moby* snap*
+          sudo -E apt -y full-upgrade
+          sudo -E apt -y install ack antlr3 aria2 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python3 python3-pip libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
+          sudo -E systemctl daemon-reload
+          sudo -E apt -y autoremove --purge
+          sudo -E apt clean
+          sudo -E timedatectl set-timezone "Asia/Shanghai"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
       - name: git lede
@@ -98,17 +100,12 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
+          df -h
       - name: Update feeds
         run: | 
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-      #- name: Cache
-      #  uses: klever1988/cachewrtbuild@main
-      #  with:
-      #    ccache: 'true'
-      #    prefix: 'openwrt'
-      #    mixkey: 'x86'
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
@@ -117,79 +114,68 @@ jobs:
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
-         
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
-         $GITHUB_WORKSPACE/$DIY_P2_SH arm64
          chmod -R 755 .
-      - name: Generate configuration file
-        working-directory: ./openwrt
-        run: |
           make defconfig
-          make download -j40
+          df -h
+      - name: Generate configuration file
+        run: |
+          cd openwrt
+          make download -j32
+          find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
+          df -h
+               
       - name: Compile Packages
         id: compile
         run: |
          df -h
          cd openwrt
-         
          echo -e "$(nproc) thread compile"
-         make tools/compile -j$(nproc) || make tools/compile -j40
-         make toolchain/compile -j$(nproc) || make toolchain/compile -j40
-         make target/compile -j$(nproc) || make target/compile -j40 IGNORE_ERRORS=1
+         make tools/compile -j$(nproc) || make tools/compile -j72
+         make toolchain/compile -j$(nproc) || make toolchain/compile -j72
+         make target/compile -j$(nproc) || make target/compile -j72 IGNORE_ERRORS=1
          make diffconfig
-         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j40 IGNORE_ERRORS=1
+         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
       - name: Generate Firmware
-        id: generate
         run: |
-          cd openwrt
-          df -h
-          # mkdir -p files/etc/uci-defaults/
-          # cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-          make package/install -j$(nproc) || make package/install -j1 V=s
-          make target/install -j$(nproc) || make target/install -j1 V=s
-          pushd bin/targets/rockchip/armv8
-          rm -rf openwrt-rockchip-armv8-friendlyarm_nanopi-r2s.manifest
-          rm -rf openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-rootfs.tar.gz
-          rm -rf config.buildinfo
-          rm -rf packages-server.zip
-          
-          echo '--------------img file--------------'
-          ls
-          echo '--------------gz file--------------'
-          gzip *.img || true
-          ls
-          popd
-          make checksum
+         df -h
+         cd openwrt 
+         mkdir -p files/etc/uci-defaults/
+         $GITHUB_WORKSPACE/$DIY_P2_SH arm64
+         cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
+         make package/install -j$(nproc) || make package/install -j1 V=s
+         make target/install -j$(nproc) || make target/install -j1 V=s
+         make checksum
           
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.DATA }}-RxsOpenWrt-Ipv6-Vip-bin-Firmware
           path: ./openwrt/bin/targets/
-          
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwarer2s
           mkdir -p ./firmwarer4s
           ls
-          find ./openwrt/bin/targets/ -name "*r2s*sysupgrade.img*" | xargs -i mv -f {} ./firmwarer2s
+          find ./openwrt/bin/targets/ -name "*r2s-ext4-sysupgrade.img*" | xargs -i mv -f {} ./firmwarer2s
+          find ./openwrt/bin/targets/ -name "*r2s-squashfs-sysupgrade.img*" | xargs -i mv -f {} ./firmwarer2s
           cd ./firmwarer2s
           #gzip *.img || true
           echo -e "Sirpdboy-R2S-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r4s*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r4s-ext4-sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r4s-squashfs-sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
           cd ${{ env.FIRMWARE }}/firmwarer4s
           #gzip *.img || true
-          echo -e "Sirpdboy-R4Sp-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-R4S-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r5*sysupgrade.img*" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer4s
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
