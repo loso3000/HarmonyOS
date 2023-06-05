@@ -4,52 +4,45 @@ CONFIG_TARGET_rockchip_armv8=y
 CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
 # CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
 # CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
 # CONFIG_TARGET_ALL_PROFILES=y
 # set
+
 CONFIG_TARGET_KERNEL_PARTSIZE=60
 CONFIG_TARGET_ROOTFS_PARTSIZE=920
+
+CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+CONFIG_TARGET_ROOTFS_TARGZ=y
+CONFIG_TARGET_EXT4_JOURNAL=y
+CONFIG_TARGET_ROOTFS_SQUASHFS=y
+
+CONFIG_PACKAGE_kmod-libphy=y
+CONFIG_PACKAGE_kmod-fuse=y
+CONFIG_BUSYBOX_CUSTOM=y
+CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
 # ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+CONFIG_PACKAGE_ip6tables-extra=y
+CONFIG_PACKAGE_ip6tables-mod-nat=y
+CONFIG_PACKAGE_luci-compat=y
+CONFIG_PACKAGE_luci-lib-ipkg=y
+
+
+#删除参数
+CONFIG_TARGET_ROOTFS_EXT4FS=n
 # 不压缩efi
-# CONFIG_TARGET_IMAGES_GZIP is not set
+CONFIG_TARGET_IMAGES_GZIP=y
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 
-#gpu
-CONFIG_PACKAGE_kmod-backlight=y
-CONFIG_PACKAGE_kmod-drm=y
-CONFIG_PACKAGE_kmod-drm-kms-helper=y
-CONFIG_PACKAGE_kmod-drm-rockchip=y
-CONFIG_PACKAGE_kmod-fb=y
-CONFIG_PACKAGE_kmod-fb-cfb-copyarea=y
-CONFIG_PACKAGE_kmod-fb-cfb-fillrect=y
-CONFIG_PACKAGE_kmod-fb-cfb-imgblt=y
-CONFIG_PACKAGE_kmod-fb-sys-fops=y
-CONFIG_PACKAGE_kmod-fb-sys-ram=y
-CONFIG_PACKAGE_kmod-gpu-lima=y
-CONFIG_PACKAGE_kmod-multimedia-input=y
-CONFIG_PACKAGE_kmod-video-core=y
 #usb
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb3=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152 is not set
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
-
-CONFIG_PACKAGE_kmod-gpu-lima=y
-CONFIG_PACKAGE_kmod-ath9k-htc=y
-CONFIG_PACKAGE_kmod-mt76x0u=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
-CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-rtw88=y
-# CONFIG_PACKAGE_kmod-rtl8812au-ct=y err
-CONFIG_PACKAGE_rtl8821ce-firmware=y
-CONFIG_PACKAGE_kmod-mt7921e=y
-CONFIG_PACKAGE_kmod-mt7921-common=y
-CONFIG_PACKAGE_kmod-mt7922=y
-CONFIG_PACKAGE_kmod-mt7922-common=y
 
 CONFIG_PACKAGE_iw=y
 CONFIG_PACKAGE_iwinfo=y
@@ -108,6 +101,7 @@ CONFIG_PACKAGE_luci-app-ddns=y
 # CONFIG_PACKAGE_automount-ntfs=y  #NTFS挂载
 CONFIG_PACKAGE_automount=y  #NTFS挂载
 
+CONFIG_PACKAGE_autocore=y
 CONFIG_PACKAGE_autocore-arm=y
 # CONFIG_PACKAGE_myautocore-x86=y
 CONFIG_PACKAGE_default-settings=y
