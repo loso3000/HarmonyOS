@@ -20,7 +20,7 @@ env:
   #REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/br4s.lean
-  DIY_P1_SH: script/ar2s.sh
+  DIY_P1_SH: script/br2s.sh
   DIY_P2_SH: script/clash-core.sh
   
   
