@@ -568,6 +568,7 @@ sed -i "s/192.168.6.1/192.168.10.1/g"  package/base-files/files/bin/config_gener
 # echo '默认开启 Irqbalance'
 ver1=`grep "KERNEL_PATCHVER:="  target/linux/x86/Makefile | cut -d = -f 2` #判断当前默认内核版本号如5.10
 export VER2="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
+export VER2="5.10"
 
 date1='Ipv6-Super-Vip-R'`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 
@@ -592,10 +593,10 @@ echo ${date1}' by Sirpdboy ' >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 
 # panfrost gpu
-rm ./target/linux/rockchip/modules.mk
-rm ./package/kernel/linux/modules/video.mk
-cp ../build/patch/modules-5.4/modules.mk ./target/linux/rockchip/modules.mk
-cp ../build/patch/modules-5.4/video.mk ./package/kernel/linux/modules/video.mk
+# rm ./target/linux/rockchip/modules.mk
+# rm ./package/kernel/linux/modules/video.mk
+# cp ../build/patch/modules-5.4/modules.mk ./target/linux/rockchip/modules.mk
+# cp ../build/patch/modules-5.4/video.mk ./package/kernel/linux/modules/video.mk
 
 # overclock
 rm -f ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
