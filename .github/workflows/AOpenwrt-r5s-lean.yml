@@ -152,11 +152,11 @@ jobs:
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
 
-      - name: Upload Firmware bin
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ env.DATA }}-bin-OpenWrt-Ipv6-Vip-Firmware
-          path: ./openwrt/bin
+      #- name: Upload Firmware bin
+      #  uses: actions/upload-artifact@main
+      #  with:
+       #   name: ${{ env.DATA }}-bin-OpenWrt-Ipv6-Vip-Firmware
+       #   path: ./openwrt/bin
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwarer5c
@@ -182,12 +182,12 @@ jobs:
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *.gz" >> 版本日期和MD5信息.txt || true
 
-      - name: Upload Firmware
+      - name: Upload Firmware R5c
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.DATA }}-R5c-OpenWrt-Ipv6-Vip-Firmware
           path: ./firmwarer5c
-      - name: Upload Firmware
+      - name: Upload Firmware R5s
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.DATA }}-R5s-OpenWrt-Ipv6-Vip-Firmware
