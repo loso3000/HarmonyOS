@@ -162,26 +162,22 @@ jobs:
           mkdir -p ./firmwarer5c
           mkdir -p ./firmwarer5s
           ls
-
           find ./openwrt/bin/targets/ -name "*r5c-ext4-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5c/${{ env.DATA }}-Sirpdboy-Vip-r5c-ext4-sysupgrade.img.gz
           find ./openwrt/bin/targets/ -name "*r5c-squashfs-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5c/${{ env.DATA }}-Sirpdboy-Vip-r5c-squashfs-sysupgrade.img.gz
           cd ./firmwarer5c
-          ls
           echo -e "Sirpdboy-r5c-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
-          md5sum *.gz" >> 版本日期和MD5信息.txt || true
-
-
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r5s-ext4-sysupgrade.img.gz" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-ext4-sysupgrade.img.gz
-          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r5s-squashfs-sysupgrade.img.gz" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-squashfs-sysupgrade.img.gz
-          cd ${{ env.FIRMWARE }}/firmwarer5s
+          md5sum *.gz" >> 版本日期和MD5信息.txt
           ls
+          cd ${{ env.FIRMWARE }}/firmwarer5s
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r5s-ext4-sysupgrade.img.gz" | xargs -i mv -f {} ./${{ env.DATA }}-Sirpdboy-Vip-r5s-ext4-sysupgrade.img.gz
+          find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*r5s-squashfs-sysupgrade.img.gz" | xargs -i mv -f {} ./${{ env.DATA }}-Sirpdboy-Vip-r5s-squashfs-sysupgrade.img.gz
           echo -e "Sirpdboy-r5s-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
-          md5sum *.gz" >> 版本日期和MD5信息.txt || true
-
+          md5sum *.gz" >> 版本日期和MD5信息.txt
+          ls
       - name: Upload Firmware R5c
         uses: actions/upload-artifact@main
         with:
