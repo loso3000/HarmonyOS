@@ -36,7 +36,9 @@ mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
 rm -rf ./package/diy/luci-app-autotimeset
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
 
- 
+
+rm -rf ./package/diy/luci-app-control-speedlimit
+svn export https://github.com/loso3000/mypk/trunk/up/luci-app-control-speedlimit ./package/lean/luci-app-control-speedlimit
 echo advancedplus
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kplus ./package/lean/luci-app-advancedplus
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-zplus ./package/lean/luci-app-advancedplus
