@@ -152,11 +152,11 @@ jobs:
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
           
-      - name: Upload bin Firmware
+      - name: Upload ipk Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-RxsOpenWrt-Ipv6-Vip-bin-Firmware
-          path: ./openwrt/bin/targets/
+          name: ${{ env.DATA }}-RxsOpenWrt-Ipv6-Vip-ipk-Firmware
+          path: ./openwrt/bin/packages/
           
       - name: Prepare Artifact
         run: |
