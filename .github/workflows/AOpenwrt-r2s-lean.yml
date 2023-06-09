@@ -152,19 +152,16 @@ jobs:
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
           
-      #- name: Upload Firmware
-      #  uses: actions/upload-artifact@main
-      #  with:
-      #    name: ${{ env.DATA }}-RxsOpenWrt-Ipv6-Vip-bin-Firmware
-      #    path: ./openwrt/bin/targets/
+      - name: Upload bin Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-RxsOpenWrt-Ipv6-Vip-bin-Firmware
+          path: ./openwrt/bin/targets/
           
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwarer2s
           mkdir -p ./firmwarer4s
-          mkdir -p ./firmwarer5c
-          mkdir -p ./firmwarer66s
-          mkdir -p ./firmwarer68s
           mkdir -p ./firmwarer4se
           ls
           find ./openwrt/bin/targets/ -name "*r2s-ext4-sysupgrade.img*" | xargs -i mv -f {} ./firmwarer2s
