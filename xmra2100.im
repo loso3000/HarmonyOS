@@ -17,6 +17,8 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # CONFIG_PACKAGE_kmod-mt7603 is not set
 # CONFIG_PACKAGE_kmod-mt7615e is not set
 
+#https 
+CONFIG_PACKAGE_libustream-openssl=y
 # Wireless 驱动程序(闭源)
 CONFIG_PACKAGE_kmod-mt7603e=y
 CONFIG_PACKAGE_kmod-mt7615d=y
@@ -54,7 +56,6 @@ CONFIG_PACKAGE_luci-app-rebootschedule=n
 # CONFIG_PACKAGE_luci-app-control-timewol=n
 CONFIG_PACKAGE_luci-app-control-weburl=n
 # CONFIG_PACKAGE_luci-app-control-webrestriction=n
-CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-timecontrol=n
 # CONFIG_PACKAGE_luci-app-webadmin=n
 # CONFIG_PACKAGE_luci-app-cpulimit=n
@@ -174,6 +175,8 @@ CONFIG_PACKAGE_luci-app-usb-printer=n
 # CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-app-vlmcsd=y
+
+CONFIG_PACKAGE_luci-app-eqosplus=y
 
 CONFIG_PACKAGE_luci-ssl-openssl=y
 
