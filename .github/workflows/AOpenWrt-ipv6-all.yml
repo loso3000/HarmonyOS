@@ -173,7 +173,7 @@ jobs:
           mkdir -p ./firmwareipv6all
           mkdir -p ./packageipv6all
           find ./openwrt/bin/ -name "*.ipk" | xargs -i mv -f {}  ./packageipv6all
-          find ./openwrt/bin/targets/ -name "*squashfs-combined" | xargs -i mv -f {} ./firmwareipv6all
+          find ./openwrt/bin/targets/ -name "*squashfs-combined*" | xargs -i mv -f {} ./firmwareipv6all
           # find ./openwrt/bin/targets/ -name "*combined-efi.img*"  | xargs -i mv -f {} ./firmwareipv6all
           cd ./firmwareipv6all
           gzip *.img |true
