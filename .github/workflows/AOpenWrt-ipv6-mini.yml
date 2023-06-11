@@ -174,7 +174,7 @@ jobs:
           find ./openwrt/bin/targets/ -name "*squashfs-combined*" | xargs -i mv -f {} ./firmwareipv6mini
           # find ./openwrt/bin/targets/  -name "*squashfs*efi.img" | xargs -i mv -f {} ./firmwareipv6mini
           cd ./firmwareipv6mini
-          gzip *.img |true
+          #gzip *.img |true
           #find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*squashfs*efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmwareipv6mini
           #gzip *.img |true
           echo -e "Sirpdboy-Ipv6-Mini-Vip-${{ env.DATA }}-【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
