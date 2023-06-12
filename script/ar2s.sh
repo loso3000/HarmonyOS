@@ -39,6 +39,18 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./pack
 
 rm -rf ./package/diy/luci-app-control-speedlimit
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-control-speedlimit ./package/lean/luci-app-control-speedlimit
+
+mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-eqosplus
+rm -rf ./package/diy/luci-app-wrtbwmon
+rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
+rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci-app-wrtbwmon
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./feeds/packages/net/wrtbwmon
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./package/new/wrtbwmon
+# ln -sf ../../../feeds/luci/applications/wrtbwmon ./package/feeds/luci/wrtbwmon
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./feeds/luci/applications/luci-app-wrtbwmon
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./package/new/luci-app-wrtbwmon
+# ln -sf ../../../feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/luci/luci-app-wrtbwmon
+
 echo advancedplus
 # svn export https://github.com/loso3000/mypk/trunk/up/luci-app-kplus ./package/lean/luci-app-advancedplus
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-zplus ./package/lean/luci-app-advancedplus
