@@ -86,7 +86,7 @@ CONFIG_PACKAGE_luci-app-turboacc=y
 CONFIG_PACKAGE_luci-app-cpufreq=n
 CONFIG_PACKAGE_luci-app-mac=n
 CONFIG_PACKAGE_luci-app-vssr=n
-# CONFIG_PACKAGE_luci-app-wrtbwmon is not set
+CONFIG_PACKAGE_luci-app-wrtbwmon=y
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-netspeedtest=n
 # CONFIG_PACKAGE_luci-app-dnsto=n
@@ -103,7 +103,7 @@ CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_Obfs=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_obfs_server=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_V2ray_Plugin=y
-CONFIG_PACKAGE_luci-app-dnsfilter=y
+CONFIG_PACKAGE_luci-app-dnsfilter=n
 # CONFIG_PACKAGE_luci-app-kodexplorer=n
 # CONFIG_PACKAGE_luci-app-uhttpd=n
 # CONFIG_PACKAGE_luci-app-mentohust=n
