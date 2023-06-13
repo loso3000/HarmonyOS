@@ -148,7 +148,6 @@ CONFIG_PACKAGE_luci-app-rebootschedule=n
 CONFIG_PACKAGE_luci-app-control-timewol=n
 CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
-CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-timecontrol=n
 CONFIG_PACKAGE_luci-app-webadmin=y
 CONFIG_PACKAGE_luci-app-cpulimit=n
@@ -225,7 +224,6 @@ CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
 CONFIG_PACKAGE_luci-app-wifidog=n
-CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
@@ -318,6 +316,7 @@ CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-app-partexp=y
 
+CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-netspeedlimit=y
 CONFIG_PACKAGE_luci-app-eqosplus=n
