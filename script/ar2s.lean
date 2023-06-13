@@ -318,8 +318,8 @@ CONFIG_PACKAGE_luci-app-partexp=y
 
 CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
-CONFIG_PACKAGE_luci-app-netspeedlimit=y
-CONFIG_PACKAGE_luci-app-eqosplus=n
+CONFIG_PACKAGE_luci-app-netspeedlimit=n
+CONFIG_PACKAGE_luci-app-eqosplus=y
 CONFIG_PACKAGE_luci-app-chatgpt=y
 CONFIG_PACKAGE_luci-app-chatgpt-web=y
 #docker
