@@ -114,9 +114,6 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/c
 #rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
 #svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dnsmasq ./package/network/services/dnsmasq
 
-rm -rf ./package/network/utils/iproute2/
-svn export https://github.com/openwrt/openwrt/trunk/package/network/utils/iproute2 ./package/network/utils/iproute2
-
 #upnp
 #rm -rf ./feeds/packages/net/miniupnpd
 #svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
@@ -218,17 +215,14 @@ rm -rf ./feeds/luci/applications/luci-app-wizard package/feeds/packages/luci-app
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard ./package/luci-app-wizard
 
 
+
+rm -rf ./package/network/utils/iproute2/
+svn export https://github.com/openwrt/openwrt/trunk/package/network/utils/iproute2 ./package/network/utils/iproute2
+
 mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-eqosplus
-rm -rf ./package/other/up/luci-app-wrtbwmon
 rm -rf ./package/diy/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci-app-wrtbwmon
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./feeds/packages/net/wrtbwmon
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./package/new/wrtbwmon
-ln -sf ../../../feeds/luci/applications/wrtbwmon ./package/feeds/luci/wrtbwmon
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./feeds/luci/applications/luci-app-wrtbwmon
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./package/new/luci-app-wrtbwmon
-ln -sf ../../../feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/luci/luci-app-wrtbwmon
 
 rm -rf ./feeds/luci/applications/luci-app-wolplus  package/feeds/packages/luci-app-wolplus 
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wolplus ./feeds/luci/applications/luci-app-wolplus
