@@ -49,8 +49,8 @@ rm -rf ./package/diy/luci-app-autotimeset
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
 
 
-rm -rf ./package/network/utils/iproute2/
-svn export https://github.com/openwrt/openwrt/trunk/package/network/utils/iproute2 ./package/network/utils/iproute2
+# rm -rf ./package/network/utils/iproute2/
+# svn export https://github.com/openwrt/openwrt/trunk/package/network/utils/iproute2 ./package/network/utils/iproute2
 
 mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-eqosplus
 rm -rf ./package/diy/luci-app-wrtbwmon
