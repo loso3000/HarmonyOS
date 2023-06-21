@@ -215,10 +215,8 @@ rm -rf ./feeds/luci/applications/luci-app-wizard package/feeds/packages/luci-app
 # git clone https://github.com/sirpdboy/luci-app-wizard  ./package/luci-app-wizard 
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard ./package/luci-app-wizard
 
-
-
-rm -rf ./package/network/utils/iproute2/
-svn export https://github.com/openwrt/openwrt/trunk/package/network/utils/iproute2 ./package/network/utils/iproute2
+# rm -rf ./package/network/utils/iproute2/
+# svn export https://github.com/openwrt/openwrt/trunk/package/network/utils/iproute2 ./package/network/utils/iproute2
 
 mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-eqosplus
 rm -rf ./package/diy/luci-app-wrtbwmon
