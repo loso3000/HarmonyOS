@@ -240,7 +240,7 @@ CONFIG_PACKAGE_luci-app-ramfree=n
 
 CONFIG_PACKAGE_luci-app-bridge=n
 CONFIG_PACKAGE_luci-app-cowbping=n
-CONFIG_PACKAGE_luci-app-beardropper=y
+CONFIG_PACKAGE_luci-app-beardropper=n
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 CONFIG_PACKAGE_luci-app-parentcontrol=y
 CONFIG_PACKAGE_luci-app-https-dns-proxy=n
