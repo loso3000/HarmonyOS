@@ -34,7 +34,7 @@ CONFIG_PACKAGE_ip6tables-mod-nat=y
 CONFIG_PACKAGE_luci-compat=y
 CONFIG_PACKAGE_luci-lib-ipkg=y
 #删除参数
-CONFIG_TARGET_ROOTFS_EXT4FS=n
+CONFIG_TARGET_ROOTFS_EXT4FS=y
 # 不压缩efi
 CONFIG_TARGET_IMAGES_GZIP=y
 ### Ethernet Support
