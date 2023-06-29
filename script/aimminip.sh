@@ -26,6 +26,11 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go  ./package/ddns-go
 #rm -rf ./package/other/up/OpenAppFilter
 #git clone https://github.com/destan19/OpenAppFilter ./package/OpenAppFilter
 
+#ua2f
+ rm -rf ./package/libs/libnetfilter-queue
+svn checkout https://github.com/openwrt/packages/trunk/libs/libnetfilter-queue package/libs/libnetfilter-queue
+git clone https://github.com/Zxilly/UA2F.git ./package/UA2F
+
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 mv -f  ./package/other/up/luci-app-jzgk ./package/other/up/luci-app-control-parentcontrol
