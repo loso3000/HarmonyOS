@@ -349,7 +349,6 @@ CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
 CONFIG_PACKAGE_luci-app-transmission=y
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
-CONFIG_PACKAGE_kmod-usb-printer=y
 CONFIG_PACKAGE_luci-app-p910nd=y
 CONFIG_PACKAGE_luci-app-mwan3helper=n
 CONFIG_PACKAGE_luci-app-qbittorrent=y
@@ -424,6 +423,8 @@ CONFIG_PACKAGE_lm-sensors=y
 
 # CONFIG_PACKAGE_openssl-util=y  #https
 
+CONFIG_PACKAGE_kmod-lp=y
+CONFIG_PACKAGE_kmod-usb-printer=y
 #docker
 CONFIG_PACKAGE_luci-app-docker=y
 CONFIG_PACKAGE_luci-app-dockerman=y
