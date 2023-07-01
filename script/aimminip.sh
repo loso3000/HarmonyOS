@@ -224,6 +224,7 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wizard ./
 # svn export https://github.com/openwrt/openwrt/trunk/package/network/utils/iproute2 ./package/network/utils/iproute2
 
 mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-nqos
+mv -f  ./package/other/up/luci-app-eqospl ./package/other/up/luci-app-eqosplus
 rm -rf ./package/diy/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci-app-wrtbwmon
