@@ -36,7 +36,9 @@ mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
 rm -rf ./package/diy/luci-app-autotimeset
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
 
-mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-eqosplus
+mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-nqos
+mv -f  ./package/other/up/luci-app-eqospl ./package/other/up/luci-app-eqosplus
+rm -rf ./feeds/luci/applications/luci-app-p910nd
 rm -rf ./package/diy/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci-app-wrtbwmon
