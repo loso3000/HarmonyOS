@@ -41,6 +41,9 @@ rm -rf ./package/diy/luci-app-control-speedlimit
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-control-speedlimit ./package/lean/luci-app-control-speedlimit
 
 mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-nqos
+mv -f  ./package/other/up/luci-app-eqospl ./package/other/up/luci-app-eqosplus
+rm -rf ./feeds/luci/applications/luci-app-p910nd
+mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-nqos
 # rm -rf ./package/other/up/luci-app-wrtbwmon
 rm -rf ./package/diy/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
