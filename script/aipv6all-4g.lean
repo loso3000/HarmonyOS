@@ -20,7 +20,7 @@ CONFIG_VIRTIO=y
 CONFIG_VIRTIO_BLK=y
 CONFIG_VIRTIO_NET=y
 
-CONFIG_GRUB_IMAGES=y
+# CONFIG_GRUB_IMAGES is not set
 CONFIG_GRUB_EFI_IMAGES=y
 # CONFIG_GRUB_CONSOLE is not set
 CONFIG_GRUB_TIMEOUT="0"
@@ -39,38 +39,6 @@ CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
 CONFIG_PACKAGE_6to4=y
-
-
-#mmc
-CONFIG_ACPI=y
-CONFIG_X86_ACPI_CPUFREQ=y
-CONFIG_NR_CPUS=512
-CONFIG_MMC=y
-CONFIG_MMC_BLOCK=y
-CONFIG_SDIO_UART=y
-CONFIG_MMC_TEST=y
-CONFIG_MMC_DEBUG=y
-CONFIG_MMC_SDHCI=y
-CONFIG_MMC_SDHCI_ACPI=y
-CONFIG_MMC_SDHCI_PCI=y
-
-# 其他需要安装的软件包:
-# CONFIG_PACKAGE_luci-ssl=n # uhttpd服务
-# CONFIG_PACKAGE_luci-ssl-nginx=y # nginx
-
-
-
-# onliner update
-CONFIG_PACKAGE_squashfs-tools-mksquashfs=y
-CONFIG_PACKAGE_squashfs-tools-unsquashfs=y
-CONFIG_SQUASHFS_TOOLS_XZ_SUPPORT=y
-CONFIG_SQUASHFS_TOOLS_ZSTD_SUPPORT=y
-CONFIG_PACKAGE_liblzma=y
-CONFIG_PACKAGE_libzstd=y
-CONFIG_PACKAGE_zlib=y
-CONFIG_PACKAGE_libpthread=y
-CONFIG_PACKAGE_kmod-lib-zlib-deflate=y
-CONFIG_PACKAGE_kmod-lib-zlib-inflate=y
 
 # share network
 CONFIG_PACKAGE_libmbedtls=y
@@ -189,7 +157,7 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 ### USB Audio 
 CONFIG_PACKAGE_kmod-usb-audio=y
 #Tailscale
-#CONFIG_PACKAGE_libustream-openssl=y
+CONFIG_PACKAGE_libustream-openssl=y
 #CONFIG_PACKAGE_ca-bundle=y
 #CONFIG_PACKAGE_kmod-tun=y
 
@@ -327,7 +295,7 @@ CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
 CONFIG_PACKAGE_luci-app-vsftpd=n
 CONFIG_PACKAGE_luci-app-wifidog=n
-CONFIG_PACKAGE_luci-app-sqm=y
+CONFIG_PACKAGE_luci-app-sqm=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
@@ -419,7 +387,7 @@ CONFIG_PACKAGE_luci-app-openvpn-server=y
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
-CONFIG_PACKAGE_luci-app-lucky=y
+CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-app-partexp=y
 CONFIG_PACKAGE_luci-app-msd_lite=y
 CONFIG_PACKAGE_luci-app-chatgpt=y
@@ -645,18 +613,4 @@ CONFIG_DOCKER_NET_ENCRYPT=y
 CONFIG_DOCKER_NET_MACVLAN=y
 CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
-#ua2f
-CONFIG_PACKAGE_ua2f=y
-CONFIG_PACKAGE_ipset=y
-CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
-CONFIG_PACKAGE_iptables-mod-filter=y
-CONFIG_PACKAGE_iptables-mod-ipopt=y
-CONFIG_PACKAGE_iptables-mod-nfqueue=y			   
-CONFIG_PACKAGE_iptables-mod-u32=y
-CONFIG_PACKAGE_kmod-ipt-conntrack-extra=y
-CONFIG_PACKAGE_kmod-ipt-filter=y
-CONFIG_PACKAGE_kmod-ipt-ipopt=y
-CONFIG_PACKAGE_kmod-ipt-nfqueue=y			   
-CONFIG_PACKAGE_kmod-ipt-u32=y
-CONFIG_PACKAGE_kmod-nfnetlink-queue=y
-#
+
