@@ -48,6 +48,9 @@ sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 rm -rf ./package/diy/luci-app-autotimeset
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
 
+#package\kernel\linux\modules\fs.mk
+sed -i 's/fs\/cifs/fs\/smb\/client/g'  ./package/kernel/linux/modules/fs.mk
+sed -i 's/fs\/smbfs_common/fs\/smb\/common/g'  ./package/kernel/linux/modules/fs.mk
 
 mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-nqos
 mv -f  ./package/other/up/luci-app-eqospl ./package/other/up/luci-app-eqosplus
