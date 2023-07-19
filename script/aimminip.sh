@@ -445,6 +445,7 @@ sed -i 's,-1,3,g' package/luci-app-passwall2/luasrc/controller/passwall2.lua
 sed -i 's,-1,2,g' package/passwall/luci-app-passwall/luasrc/controller/passwall2.lua
 
 
+svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook feeds/packages/net/brook
 
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook package/new/brook
