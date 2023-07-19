@@ -463,6 +463,7 @@ svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
 rm -rf ./feeds/packages/net/v2ray-core
+svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
 svn export https://github.com/fw876/helloworld/trunk/hysteria package/new/hysteria
 
