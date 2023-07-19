@@ -412,7 +412,7 @@ rm -rf ./feeds/packages/net/kcptun
 git clone https://github.com/xiaorouji/openwrt-passwall.git package/openwrt-passwall
 rm -rf ./package/openwrt-passwall/trojan-plus
 rm -rf ./package/openwrt-passwall/v2ray-geodata
-# rm -rf ./package/openwrt-passwall/xray-core
+rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/trojan
 rm -rf ./package/openwrt-passwall/naiveproxy
 
@@ -440,6 +440,7 @@ svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hyste
 
 
 # svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 rm -rf ./feeds/packages/net/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
