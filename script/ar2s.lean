@@ -320,6 +320,7 @@ CONFIG_PACKAGE_luci-app-partexp=y
 CONFIG_PACKAGE_luci-app-nft-qos=n
 CONFIG_PACKAGE_luci-app-sqm=y
 
+CONFIG_PACKAGE_luci-app-poweroffdevice=y
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-netspeedlimit=n
 CONFIG_PACKAGE_luci-app-eqosplus=y
