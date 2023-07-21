@@ -52,9 +52,11 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./pack
 sed -i 's/fs\/cifs/fs\/smb\/client/g'  ./package/kernel/linux/modules/fs.mk
 sed -i 's/fs\/smbfs_common/fs\/smb\/common/g'  ./package/kernel/linux/modules/fs.mk
 
-mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-nqos
-mv -f  ./package/other/up/luci-app-eqospl ./package/other/up/luci-app-eqosplus
+# mv -f  ./package/other/up/luci-app-eqosp ./package/other/up/luci-app-nqos
+# mv -f  ./package/other/up/luci-app-eqospl ./package/other/up/luci-app-eqosplus
 rm -rf ./feeds/luci/applications/luci-app-p910nd
+rm -rf ./package/diy/luci-app-eqosplus
+rm -rf ./package/diy/luci-app-poweroffdevice
 rm -rf ./package/diy/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci-app-wrtbwmon
