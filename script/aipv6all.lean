@@ -180,7 +180,7 @@ CONFIG_PACKAGE_kmod-inet-diag=y
 CONFIG_PACKAGE_kmod-inet-diag=y
 # CONFIG_PACKAGE_kmod-br-netfilter=n  #透明网桥
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
-CONFIG_PACKAGE_luci-app-adbyby-plus=y
+# CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 CONFIG_PACKAGE_luci-app-adguardhome=y
 CONFIG_PACKAGE_luci-app-advancedplus=y
 CONFIG_PACKAGE_luci-app-advanced=n
@@ -269,7 +269,7 @@ CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
 CONFIG_PACKAGE_luci-app-vsftpd=n
 CONFIG_PACKAGE_luci-app-wifidog=n
-CONFIG_PACKAGE_luci-app-sqm=y
+CONFIG_PACKAGE_luci-app-sqm=n
 CONFIG_PACKAGE_luci-app-nft-qos=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
@@ -370,7 +370,6 @@ CONFIG_PACKAGE_luci-app-control-speedlimit=n
 CONFIG_PACKAGE_luci-app-netspeedlimit=n
 CONFIG_PACKAGE_luci-app-eqosplus=y
 CONFIG_PACKAGE_luci-app-chatgpt=y
-CONFIG_PACKAGE_luci-app-chatgpt-web=y
 CONFIG_PACKAGE_luci-app-arpbind=y
 
 
