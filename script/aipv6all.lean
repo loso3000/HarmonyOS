@@ -5,17 +5,9 @@ CONFIG_TARGET_x86_64_DEVICE_generic=y
 CONFIG_TARGET_KERNEL_PARTSIZE=64
 CONFIG_TARGET_ROOTFS_PARTSIZE=925
 
-# CONFIG_PACKAGE_diffutils=y
-
-# CONFIG_BUSYBOX_CUSTOM=y
-# CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
-
-# CONFIG_COREMARK_NUMBER_OF_THREADS=128
-# CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256 
-# CONFIG_PACKAGE_kmod-kvm-amd=y
-CONFIG_VIRTIO=y
-CONFIG_VIRTIO_BLK=y
-CONFIG_VIRTIO_NET=y
+# CONFIG_VIRTIO=y
+# CONFIG_VIRTIO_BLK=y
+# CONFIG_VIRTIO_NET=y
 
 CONFIG_GRUB_IMAGES=y
 CONFIG_GRUB_EFI_IMAGES=y
@@ -37,19 +29,6 @@ CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
 CONFIG_PACKAGE_6to4=y
 
-
-#mmc
-CONFIG_ACPI=y
-CONFIG_X86_ACPI_CPUFREQ=y
-CONFIG_NR_CPUS=512
-CONFIG_MMC=y
-CONFIG_MMC_BLOCK=y
-CONFIG_SDIO_UART=y
-CONFIG_MMC_TEST=y
-CONFIG_MMC_DEBUG=y
-CONFIG_MMC_SDHCI=y
-CONFIG_MMC_SDHCI_ACPI=y
-CONFIG_MMC_SDHCI_PCI=y
 #network 
 CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_DEFAULT_kmod-8139cp=y
@@ -69,8 +48,8 @@ CONFIG_DEFAULT_kmod-i40e=y
 CONFIG_DEFAULT_kmod-i40evf=y
 CONFIG_PACKAGE_kmod-ixgbevf=y
 CONFIG_DEFAULT_kmod-iavf=y
-CONFIG_DEFAULT_kmod-igb=y
-# CONFIG_DEFAULT_kmod-igb-intel=y
+# CONFIG_DEFAULT_kmod-igb is not set
+CONFIG_DEFAULT_kmod-igb-intel=y
 CONFIG_DEFAULT_kmod-igbvf=y
 CONFIG_DEFAULT_kmod-igc=y
 CONFIG_DEFAULT_kmod-ipt-raw=y
@@ -259,8 +238,8 @@ CONFIG_PACKAGE_luci-app-netspeedtest=y
 CONFIG_PACKAGE_luci-app-ddnsto=n
 CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=n
-CONFIG_PACKAGE_luci-app-kodexplorer=y
-CONFIG_PACKAGE_luci-app-uhttpd=y
+CONFIG_PACKAGE_luci-app-kodexplorer=n
+CONFIG_PACKAGE_luci-app-uhttpd=n
 CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-easymesh=n
 CONFIG_PACKAGE_luci-app-wifimac=n
@@ -356,7 +335,7 @@ CONFIG_PACKAGE_luci-app-familycloud=n
 CONFIG_PACKAGE_luci-app-nps=y
 CONFIG_PACKAGE_luci-app-frpc=y
 CONFIG_PACKAGE_luci-app-frps=y
-CONFIG_PACKAGE_luci-app-nfs=y
+CONFIG_PACKAGE_luci-app-nfs=n
 CONFIG_PACKAGE_luci-app-openvpn-server=y
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=y
@@ -405,23 +384,6 @@ CONFIG_PACKAGE_lsblk=y
 # CONFIG_PACKAGE_umdns=y  #error
 CONFIG_PACKAGE_zsh=y
 CONFIG_PACKAGE_lm-sensors=y
-
-#CONFIG_PACKAGE_odhcp6c=y
-#CONFIG_PACKAGE_apk=y
-#CONFIG_PACKAGE_alpine-keys=y
-#CONFIG_PACKAGE_alpine-repositories=y
-
-#CONFIG_PACKAGE_usbutils=y
-
-#CONFIG_PACKAGE_libimobiledevice-utils=y
-#CONFIG_PACKAGE_libplist-utils=y
-#CONFIG_PACKAGE_libusbmuxd-utils=y
-
-#CONFIG_PACKAGE_usbmuxd=y
-#CONFIG_PACKAGE_libwslay=y
-#CONFIG_PACKAGE_libudev-fbsd=y
-
-# CONFIG_PACKAGE_openssl-util=y  #https
 
 CONFIG_PACKAGE_kmod-lp=y
 CONFIG_PACKAGE_kmod-usb-printer=y
