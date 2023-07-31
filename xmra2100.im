@@ -8,8 +8,8 @@ CONFIG_TARGET_ramips_mt7621_DEVICE_xiaomi_mi-router-cr660x=y
 # CONFIG_SIGNATURE_CHECK is not set
 # CONFIG_SIGNED_PACKAGES is not set
 
-# 不压缩efi
-# CONFIG_TARGET_IMAGES_GZIP is not set
+#  压缩 
+CONFIG_TARGET_IMAGES_GZIP=y
 # 其他需要安装的软件包:
 # add ipv6 support
 CONFIG_PACKAGE_ipv6helper=y
