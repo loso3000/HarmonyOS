@@ -227,7 +227,7 @@ CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-ikoolproxy=y
+CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 # CONFIG_PACKAGE_luci-app-wireguard is not set
 CONFIG_PACKAGE_luci-app-aliyundrive-webdav=n
@@ -273,7 +273,7 @@ CONFIG_PACKAGE_luci-theme-edge=y
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
-CONFIG_PACKAGE_luci-theme-darkmatter=y
+CONFIG_PACKAGE_luci-theme-darkmatter=n
 CONFIG_PACKAGE_luci-theme-neobird=y
 CONFIG_PACKAGE_luci-app-argon-config=y
 #增加其它插件
@@ -284,7 +284,7 @@ CONFIG_PACKAGE_luci-app-cifs-mount=y
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
-CONFIG_PACKAGE_luci-app-mwan3=y
+CONFIG_PACKAGE_luci-app-mwan3=n
 CONFIG_PACKAGE_luci-app-minidlna=n
 CONFIG_PACKAGE_luci-app-rclone=n
 CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
@@ -294,7 +294,7 @@ CONFIG_PACKAGE_luci-app-pppoe-server=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-server=n
 CONFIG_PACKAGE_luci-app-koolddns=n
-CONFIG_PACKAGE_luci-app-syncdial=y
+CONFIG_PACKAGE_luci-app-syncdial=n
 CONFIG_PACKAGE_luci-app-softethervpn=n
 CONFIG_PACKAGE_luci-app-uugamebooster=y
 CONFIG_PACKAGE_luci-app-udpxy=n
@@ -318,7 +318,7 @@ CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-app-partexp=y
 
 CONFIG_PACKAGE_luci-app-nft-qos=n
-CONFIG_PACKAGE_luci-app-sqm=y
+CONFIG_PACKAGE_luci-app-sqm=n
 
 CONFIG_PACKAGE_luci-app-poweroffdevice=y
 CONFIG_PACKAGE_luci-app-control-speedlimit=n
@@ -362,51 +362,3 @@ CONFIG_PACKAGE_wget-ssl=y
 CONFIG_PACKAGE_lsblk=y
 
 CONFIG_PACKAGE_zsh=y
-
-CONFIG_PACKAGE_acme-dnsapi=y
-CONFIG_PACKAGE_coremark=y
-CONFIG_PACKAGE_collectd-mod-thermal=y
-CONFIG_PACKAGE_bind-host=y
-
-CONFIG_PACKAGE_odhcp6c=y
-
-CONFIG_PACKAGE_sed=y
-CONFIG_PACKAGE_tar=y
-CONFIG_PACKAGE_e2fsprogs=y
-CONFIG_PACKAGE_gzip=y
-CONFIG_PACKAGE_fstrim=y
-CONFIG_PACKAGE_gpioctl-sysfs=y
-CONFIG_PACKAGE_gpiod-tools=y
-CONFIG_PACKAGE_irqbalance=y
-CONFIG_PACKAGE_lsblk=y
-CONFIG_PACKAGE_lscpu=y
-CONFIG_PACKAGE_lsof=y
-CONFIG_PACKAGE_pciutils=y
-CONFIG_PACKAGE_f2fs-tools=y
-CONFIG_PACKAGE_f2fsck=y
-CONFIG_PACKAGE_resize2fs=y
-CONFIG_PACKAGE_usbutils=y
-CONFIG_PACKAGE_tmate=y
-CONFIG_PACKAGE_procd-ujail=y
-CONFIG_PACKAGE_coreutils-dd=y
-CONFIG_PACKAGE_wg-quick=y
-# CONFIG_PACKAGE_tailscale=y
-# CONFIG_PACKAGE_tailscaled=y
-
-CONFIG_PACKAGE_iptables-mod-nat-extra=y
-CONFIG_PACKAGE_kmod-usb-serial=y
-CONFIG_PACKAGE_kmod-usb-serial-option=y
-CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-CONFIG_PACKAGE_usb-modeswitch=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_luci-proto-qmi=y
-CONFIG_PACKAGE_qmi-utils=y
-CONFIG_PACKAGE_umbim=y
-CONFIG_PACKAGE_uqmi=y
-CONFIG_PACKAGE_comgt-ncm=y
-CONFIG_PACKAGE_luci-proto-ncm=y
-CONFIG_PACKAGE_comgt=y
-CONFIG_PACKAGE_kmod-usb-acm=y
-CONFIG_PACKAGE_luci-proto-3g=y
-CONFIG_PACKAGE_shadow-utils=y
-CONFIG_PACKAGE_shadow-chsh=y
