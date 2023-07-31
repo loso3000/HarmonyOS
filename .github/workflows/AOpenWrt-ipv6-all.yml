@@ -32,8 +32,12 @@ env:
 
 jobs:
 
-  Build:
-    runs-on: self-hosted
+  build_openwrt:
+
+    name: Build OpenWrt firmware
+
+    runs-on: ubuntu-20.04
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -150,7 +154,14 @@ jobs:
          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
-         make checksum
+         pushd bin/targets/x86/64  
+         rm -rf *-x86-64-generic-kernel.bin
+         rm -rf *t-x86-64-generic-rootfs.tar.gz
+         rm -rf *-x86-64-generic-squashfs-rootfs.img.gz
+         rm -rf *-x86-64-generic-squashfs-combined-efi.vmdk
+         rm -rf *-x86-64-generic.manifest 
+         popd
+          make checksum
           echo $?
       - name: Prepare Artifact
         run: |
