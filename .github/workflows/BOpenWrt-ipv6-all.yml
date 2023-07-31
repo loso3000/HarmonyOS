@@ -55,7 +55,7 @@ jobs:
          echo "硬盘详情："
          df -Th
          
-         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
+         if grep  "8370" "/proc/cpuinfo" ; then
           echo "CPU YES！！！"
           echo "CKCPU=success" >> $GITHUB_ENV
          else
