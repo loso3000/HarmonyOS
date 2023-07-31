@@ -1,4 +1,4 @@
-name: AOpenWrt-ipv6-all-4g
+name: AOpenWrt-ipv6-all-im
 
 
 on:
@@ -19,15 +19,14 @@ env:
   
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   #  https://github.com/loso3000/immortalwrt-1.git
-  REPO_BRANCH: openwrt-18.06-k5.4
+  # REPO_BRANCH: openwrt-18.06-k5.4
+  REPO_BRANCH: openwrt-18.06
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/aipv6all-4g.lean
-  DIY_P1_SH: script/aipv6all.sh
+  CONFIG_FILE: script/aipv6all.im
+  DIY_P1_SH: script/aipv6all-im.sh
   DIY_P2_SH: script/diy-clash-im.sh
   TZ: Asia/Shanghai
-  
-  
-  
+    
 permissions:
   contents: read
 
@@ -39,8 +38,6 @@ jobs:
       contents: write # for release creation
 
     name: Build OpenWrt firmware
-
-
 
     runs-on: ubuntu-latest
 
@@ -71,7 +68,7 @@ jobs:
          echo "硬盘详情："
          df -Th
          
-         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
+         if grep  "8370" "/proc/cpuinfo" ; then
           echo "CPU YES！！！"
           echo "CKCPU=success" >> $GITHUB_ENV
          else
@@ -79,6 +76,7 @@ jobs:
              echo "CKCPU=failure" >> $GITHUB_ENV
              exit 1
          fi
+         
       - name: Space cleanup
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -110,7 +108,6 @@ jobs:
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
@@ -121,71 +118,44 @@ jobs:
           echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
-         #$GITHUB_WORKSPACE/$DIY_P2_SH amd64
+         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
-         # sed -i '$a\CONFIG_DEVEL=y\nCONFIG_LOCALMIRROR=\"https://openwrt.cc/dl/coolsnowwolf/lede\"' .config
-      - name: Generate configuration file
-
-        run: |
-         cd openwrt
           make defconfig
-      - name: Make download
-        working-directory: ./openwrt
+          df -h
+      - name: Generate configuration file
         run: |
+          cd openwrt
           make download -j32
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
-               
+          df -h
       - name: Compile Packages
         id: compile
         run: |
-         df -h
-         cd openwrt
-         echo -e "$(nproc) thread compile"
-         make tools/compile -j$(nproc) || make tools/compile -j40
-         make toolchain/compile -j$(nproc) || make toolchain/compile -j40
-         make target/compile -j$(nproc) || make target/compile -j40 IGNORE_ERRORS=1
-         make diffconfig
-         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j40 IGNORE_ERRORS=1
-         make package/index
-      - name: Generate Firmware
-        run: |
-         df -h
+
          cd openwrt 
-         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          mkdir -p files/etc/uci-defaults/
          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
-         make package/install -j$(nproc) || make package/install -j1 V=s
-         make target/install -j$(nproc) || make target/install -j1 V=s
-         pushd bin/targets/x86/64
+         make -j$(($(nproc)+1)) || make -j1 V=s
+         pushd bin/targets/x86/64  
          rm -rf *-x86-64-generic-kernel.bin
-         rm -rf *-x86-64-generic-rootfs*
-         rm -rf *-x86-64-generic-squashfs-rootfs.img*
+         rm -rf *t-x86-64-generic-rootfs.tar.gz
+         rm -rf *-x86-64-generic-squashfs-rootfs.img.gz
          rm -rf *-x86-64-generic-squashfs-combined-efi.vmdk
-         rm -rf *-x86-64-generic.manifest
-         rm -rf *-x86-64-generic-squashfs-combined.img*
+         rm -rf *-x86-64-generic.manifest 
          popd
-         make checksum
+         df -h
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwareipv6all
-          mkdir -p ./packageipv6all
-          find ./openwrt/bin/ -name "*.ipk" | xargs -i mv -f {}  ./packageipv6all
           find ./openwrt/bin/targets/ -name "*squashfs-combined*" | xargs -i mv -f {} ./firmwareipv6all
           cd ./firmwareipv6all
-          # gzip *.img |true
           echo -e "Sirpdboy-Ipv6-Vip-Plus-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
-
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Plus-Firmware
           path: ./firmwareipv6all
-      - name: Upload  IPK
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Plus-Ipk
-          path: ./packageipv6all 
