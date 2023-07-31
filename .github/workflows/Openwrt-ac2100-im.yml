@@ -130,19 +130,44 @@ jobs:
          make checksum
       - name: Prepare Artifact
         run: |
-          mkdir ./ac2100
-          find ./openwrt/bin/targets/ -name "*squashfs*" | xargs -i mv -f {} ./ac2100/
-          cd ./ac2100
-          # rename -v "s/friendlyarm_//" *
-          gzip *.bin | true
-          # gzip *.img | true
+
+          mkdir -p ./rm2100
+          mkdir -p ./xm2100
+          mkdir -p ./cr660x
+          ls
+          find ./openwrt/bin/targets/ -name "*redmi-router-ac2100-squashfs*" | xargs -i mv -f {} ./rm2100
+          cd ./rm2100
+          echo -e "Sirpdboy-RM2100-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt
+          find ./openwrt/bin/targets/ -name "*mi-router-ac2100-squashfs*" | xargs -i mv -f {} ./xm2100
+          cd ./xm2100
+          echo -e "Sirpdboy-XM2100-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt
+          find ./openwrt/bin/targets/ -name "*mi-router-cr660x-squashfs*" | xargs -i mv -f {} ./cr660x
+          cd ./cr660x
+          echo -e "Sirpdboy-CR660X-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
+          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
+          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt
+
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-xmra2100-Firmware
-          path: ./ac2100
-      - name: Upload  bin
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-RM2100-Firmware
+          path: ./rm2100
+
+      - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-xmra2100-bin
-          path: ./openwrt/bin/
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-XM2100-Firmware
+          path: ./xm2100
+
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-cr660x-Firmware
+          path: ./cr660x
