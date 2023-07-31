@@ -29,26 +29,15 @@ env:
   DIY_P2_SH: script/clash-core.sh
   TZ: Asia/Shanghai
 
+
 jobs:
 
-  build_openwrt:
-
-    permissions:
-      contents: write # for release creation
-
-    name: Build OpenWrt firmware
-
-
-    runs-on: ubuntu-20.04
-
-    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
-
+  Build:
+    runs-on: self-hosted
     steps:
-
       - name: Checkout
-        uses: actions/checkout@v3.1.0
-        with:
-          ref: master
+        uses: actions/checkout@v3
+        
           
       - name: Check server performance
         run: |
