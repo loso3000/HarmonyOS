@@ -13,8 +13,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/dzwifi
-  DIY_P1_SH: script/dzwifi.sh
+  CONFIG_FILE: script/dzn1
+  DIY_P1_SH: script/aipv6mini.sh
 jobs:
   build_openwrt:
     name: OpenWrt_Build 
