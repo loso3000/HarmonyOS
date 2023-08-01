@@ -121,7 +121,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-bin-Firmware
-          path: ./bin
+          path: ./openwrt/bin
       - name: Prepare Artifact
         run: |
 
