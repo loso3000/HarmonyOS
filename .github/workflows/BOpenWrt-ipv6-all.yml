@@ -127,7 +127,6 @@ jobs:
           df -h
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
-          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
           df -h
                
       - name: Compile Packages
