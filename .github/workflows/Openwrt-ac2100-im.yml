@@ -122,7 +122,6 @@ jobs:
           mkdir -p ./rm2100
           mkdir -p ./xm2100
           mkdir -p ./cr660x
-          ls bin/targets/*/*
           find ./openwrt/bin/targets/ -name "*redmi-router-ac2100-squashfs*" | xargs -i mv -f {} ./rm2100
           cd ./rm2100
           echo -e "Sirpdboy-RM2100-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
