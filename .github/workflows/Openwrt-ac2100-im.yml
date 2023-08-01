@@ -116,6 +116,12 @@ jobs:
          #mkdir -p files/etc/uci-defaults/
          #cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
          make -j$(($(nproc)+1)) || make -j1 V=s
+
+      - name: Upload Firmware
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-bin-Firmware
+          path: ./bin
       - name: Prepare Artifact
         run: |
 
@@ -129,15 +135,15 @@ jobs:
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt | true
           ls
-          find ./openwrt/bin/targets/ -name "*mi-router-ac2100-squashfs*" | xargs -i mv -f {} ./xm2100
           cd ${{ env.FIRMWARE }}/xm2100
+          find ./openwrt/bin/targets/ -name "*mi-router-ac2100-squashfs*" | xargs -i mv -f {} ./
           echo -e "Sirpdboy-XM2100-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt | true
           ls
-          find ./openwrt/bin/targets/ -name "*mi-router-cr660x-squashfs*" | xargs -i mv -f {} ./cr660x
           cd ${{ env.FIRMWARE }}/cr660x
+          find ./openwrt/bin/targets/ -name "*mi-router-cr660x-squashfs*" | xargs -i mv -f {} ./
           echo -e "Sirpdboy-CR660X-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
