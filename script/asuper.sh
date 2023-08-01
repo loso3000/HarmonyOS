@@ -155,7 +155,7 @@ echo "poweroff"
 
 
 # kernel-5.4
-curl -fsSL  https://raw.githubusercontent.com/coolsnowwolf/lede/master/include/kernel-5.10 > ./include/kernel-5.10
+# curl -fsSL  https://raw.githubusercontent.com/coolsnowwolf/lede/master/include/kernel-5.10 > ./include/kernel-5.10
 
 sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
