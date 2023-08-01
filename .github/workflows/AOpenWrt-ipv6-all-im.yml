@@ -19,8 +19,8 @@ env:
   
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   #  https://github.com/loso3000/immortalwrt-1.git
-  # REPO_BRANCH: openwrt-18.06-k5.4
-  REPO_BRANCH: openwrt-18.06
+  REPO_BRANCH: openwrt-18.06-k5.4
+  # REPO_BRANCH: openwrt-18.06
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/aipv6all.im
   DIY_P1_SH: script/aipv6all-im.sh
