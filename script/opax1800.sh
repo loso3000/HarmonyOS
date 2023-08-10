@@ -2,8 +2,8 @@
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
 rm -rf ./feeds/luci/themes/luci-theme-argon
-rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
-# rm -rf feeds/luci/applications/luci-app-openvpn-server
+rm -rf ./extra/luci/themes/luci-theme-argon
+rm -rf ./extra/luci/applications//luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 
@@ -22,25 +22,25 @@ done
 
 # R8168驱动
 # git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8168 package/new/r8168
+# svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8168 package/new/r8168
 # patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # R8152驱动
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8152 package/new/r8152
 sed -i 's,kmod-usb-net-rtl8152,kmod-usb-net-rtl8152-vendor,g' target/linux/rockchip/image/armv8.mk
 # UPX 可执行软件压缩
-svn checkout https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
-svn checkout https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
-sed -i 'N;24a\tools-y += ucl upx' tools/Makefile
-sed -i 'N;40a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
+# svn checkout https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
+# svn checkout https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
+# sed -i 'N;24a\tools-y += ucl upx' tools/Makefile
+# sed -i 'N;40a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 
 sed -i 's,kmod-r8169,kmod-r8168,g' target/linux/x86/image/64.mk
 
 # rm -rf ./tools/upx
-rm -rf ./feeds/packages/utils/coremark
-svn co https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
+# rm -rf ./feeds/packages/utils/coremark
+# svn co https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 
 #修正nat回流 
-curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/set/sysctl.conf   >>  ./package/base-files/files/etc/sysctl.conf
+# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/build/set/sysctl.conf   >>  ./package/base-files/files/etc/sysctl.conf
 #修正连接数 
 sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' package/base-files/files/etc/sysctl.conf
 # 最大连接数
@@ -103,31 +103,30 @@ echo ${date1}  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 sed -i 's/192.168.1.1/192.168.89.1/g' package/base-files/files/bin/config_generate
 
-sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D $date1\"" package/base-files/files/etc/openwrt_release
-sed -i "/CONFIG_VERSION_CODE=/c\CONFIG_VERSION_CODE=\"$date1\"" ./.config
+# sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D $date1\"" package/base-files/files/etc/openwrt_release
+# sed -i "/CONFIG_VERSION_CODE=/c\CONFIG_VERSION_CODE=\"$date1\"" ./.config
 
-popd
 # Fix libssh
-pushd feeds/packages/libs
-rm -rf libssh
-svn co https://github.com/openwrt/packages/trunk/libs/libssh
-popd
+# pushd feeds/packages/libs
+# rm -rf libssh
+# svn co https://github.com/openwrt/packages/trunk/libs/libssh
+# popd
 
 # Use Lienol's https-dns-proxy package
-pushd feeds/packages/net
-rm -rf https-dns-proxy
-svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy
-popd
+# pushd feeds/packages/net
+# rm -rf https-dns-proxy
+# svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy
+# popd
 
 # Use passwall package
 git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall
 git clone https://github.com/xiaorouji/openwrt-passwall.git package/openwrt-passwall
 pushd package/passwall/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
+sed -i 's,default n,default y,g' ./package/passwall/luci-app-passwall/Makefile
 popd
 
 # Use snapshots syncthing package
-pushd feeds/packages/utils
-rm -rf syncthing
-svn co https://github.com/openwrt/packages/trunk/utils/syncthing
-popd
+# pushd feeds/packages/utils
+# rm -rf syncthing
+# svn co https://github.com/openwrt/packages/trunk/utils/syncthing
+# popd
