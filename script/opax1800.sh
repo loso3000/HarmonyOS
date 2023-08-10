@@ -1,6 +1,11 @@
 #!/bin/bash
 #=================================================
 # Description: Build OpenWrt using GitHub Actions
+rm -rf ./feeds/luci/themes/luci-theme-argon
+rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+# rm -rf feeds/luci/applications/luci-app-openvpn-server
+rm -rf ./feeds/packages/net/mentohust
+rm -rf ./feeds/packages/net/open-app-filter
 
 # sed -i 's/Os/O3 -funsafe-math-optimizations -funroll-loops -ffunction-sections -fdata-sections -Wl,--gc-sections/g' include/target.mk
 
@@ -56,25 +61,19 @@ sed -i 's/65535/165535/g' ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/lean/autocore
 # Argon 主题
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/new/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-app-argon-config package/new/luci-app-argon-config
 
 
 # 动态DNS
 svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_aliyun package/lean/ddns-scripts_dnspod
 svn co https://github.com/sirpdboy/build/trunk/ddns-scripts_dnspod package/lean/ddns-scripts_aliyun
 
-rm -rf ./feeds/packages/devel/gcc
+# rm -rf ./feeds/packages/devel/gcc
 
-rm -rf ./packages/build/gcc
+# rm -rf ./packages/build/gcc
 
 #svn co https://github.com/sirpdboy/build/trunk/gcc  ./feeds/packages/devel/gcc
 
-# UPX 可执行软件压缩
-rm -rf   tools/ucl
-rm -rf  tools/upx
-svn checkout https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
-svn checkout https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
-sed -i 'N;24a\tools-y += ucl upx' tools/Makefile
-sed -i 'N;40a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 
 # R8168驱动
 # svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8152 package/new/r8152
@@ -102,16 +101,11 @@ sed -i 's/$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX_VERCODE)$(I
 
 echo ${date1}  >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.89.1/g' package/base-files/files/bin/config_generate
 
 sed -i "/DISTRIB_DESCRIPTION/c\DISTRIB_DESCRIPTION=\"%D $date1\"" package/base-files/files/etc/openwrt_release
 sed -i "/CONFIG_VERSION_CODE=/c\CONFIG_VERSION_CODE=\"$date1\"" ./.config
-# Add cpufreq
-rm -rf ../../customfeeds/luci/applications/luci-app-cpufreq
-svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq
-sed -i 's,1608,1800,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-sed -i 's,2016,2208,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
-sed -i 's,1512,1608,g' luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+
 popd
 # Fix libssh
 pushd feeds/packages/libs
@@ -123,6 +117,13 @@ popd
 pushd feeds/packages/net
 rm -rf https-dns-proxy
 svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy
+popd
+
+# Use passwall package
+git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall
+git clone https://github.com/xiaorouji/openwrt-passwall.git package/openwrt-passwall
+pushd package/passwall/luci-app-passwall
+sed -i 's,default n,default y,g' Makefile
 popd
 
 # Use snapshots syncthing package
