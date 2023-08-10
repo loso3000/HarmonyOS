@@ -1,5 +1,5 @@
 
-name: OpenWrt-Plus-b-D
+name: Openwrt-gl-ax1800
 
 on:
   repository_dispatch:
@@ -13,11 +13,11 @@ on:
 #    - cron: 0 21 */7 * * 
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/coolsnowwolf/openwrt-gl-ax1800
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/ballappdrv.config
-  DIY_P1_SH: script/binitipv6.sh
+  CONFIG_FILE: script/opax1800
+  DIY_P1_SH: script/opax1800.sh
   DIY_P2_SH: script/clash-core.sh
   
   TZ: Asia/Shanghai
@@ -99,26 +99,6 @@ jobs:
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
           df -h
-          
-      - name: Update Feeds
-        id: update
-        run: |
-          cd openwrt
-          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
-          echo "OPENWRTROOT=$PWD" >> $GITHUB_OUTPUT
-          mkdir cfeeds
-          git clone --depth=1 https://github.com/DHDAXCW/packages cfeeds/packages
-          git clone --depth=1 https://github.com/DHDAXCW/luci cfeeds/luci
- 
-          cd $GITHUB_WORKSPACE/openwrt/cfeeds/packages
-          export packages_feed="$(pwd)"
-          cd $GITHUB_WORKSPACE/openwrt/cfeeds/luci
-          export luci_feed="$(pwd)"
-          cd $GITHUB_WORKSPACE/openwrt/
-          sed -i '/src-git packages/d' feeds.conf.default
-          echo "src-link packages $packages_feed" >> feeds.conf.default
-          sed -i '/src-git luci/d' feeds.conf.default
-          echo "src-link luci $luci_feed" >> feeds.conf.default
         
       - name: Install Feeds
         run: |
@@ -165,49 +145,14 @@ jobs:
         run: |
          df -h
          cd openwrt 
-         $GITHUB_WORKSPACE/$DIY_P2_SH amd64
+         # $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          mkdir -p files/etc/uci-defaults/
          cp $GITHUB_WORKSPACE/scriptx/init-settingsw.sh files/etc/uci-defaults/99-init-settings
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
-         pushd bin/targets/x86/64
-         rm -rf *-x86-64-generic-kernel.bin
-         rm -rf *-x86-64-generic-rootfs*
-         rm -rf *-x86-64-generic-squashfs-rootfs.img*
-         rm -rf *-x86-64-generic-squashfs-combined-efi.vmdk
-         rm -rf *-x86-64-generic.manifest
-         rm -rf *-x86-64-generic-squashfs-combined.img*
-         popd
          # make checksum
-      - name: Prepare Artifact
-        run: |
-          mkdir -p ./firmware
-          mkdir -p ./package
-          df -h
-          find ./openwrt/bin/ -name "*.ipk" | xargs -i mv -f {}  ./package
-          find ./openwrt/bin/targets/ -name "*combined-efi.img*" | xargs -i mv -f {} ./firmware
-          cd ./firmware
-          ls
-          # gzip *.img | true
-          # find ${{ env.FIRMWARE }}/openwrt/bin/targets/ -name "*combined-efi.img" | xargs -i mv -f {} ${{ env.FIRMWARE }}/firmware
-          # gzip *.img || true
-          echo -e "SirpdboyOpenWrt-Ipv6-Plus-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
-          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
-          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
-          md5sum *img* >> 版本日期和MD5信息.txt || true
-      - name: Upload Firmware
+      - name: Upload bin Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Plus-Firmware
-          path: ./firmware
-      - name: Upload  IPK
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Plus-Ipk
-          path: ./package
-
-      - name: Upload Firmware wetransfer
-        run: |
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ./firmware 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-bin-Firmware
+          path: ./openwrt/bin
