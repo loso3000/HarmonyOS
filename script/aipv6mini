@@ -409,7 +409,8 @@ CONFIG_PACKAGE_xl2tpd=y
 CONFIG_PACKAGE_ppp-mod-pppol2tp=y
 CONFIG_PACKAGE_kmod-pppol2tp=y
 CONFIG_PACKAGE_block-mount=y
-CONFIG_PACKAGE_ipt2socks=y
+#passwall base
+CONFIG_PACKAGE_iptables-mod-socket=y
 
 CONFIG_PACKAGE_coremark=y
 CONFIG_PACKAGE_acpid=y
