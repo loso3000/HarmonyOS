@@ -448,12 +448,12 @@ svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/sim
 
 svn export https://github.com/fw876/helloworld/trunk/hysteria package/new/hysteria
 
-#rm -rf ./package/openwrt-passwall/xray-core
+rm -rf ./feeds/packages/net/v2ray-core
+rm -rf ./package/openwrt-passwall/xray-core
 #svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
-svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
-#rm -rf ./feeds/packages/net/xray-core
-#svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
-#svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
 
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
 svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
