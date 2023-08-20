@@ -431,6 +431,9 @@ sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefil
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
+rm -rf ./feeds/packages/net/v2ray-core
+rm -rf ./package/openwrt-passwall/xray-core
+#svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
 rm -rf ./feeds/packages/net/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
