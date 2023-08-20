@@ -468,12 +468,12 @@ svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/new/dns2tcp
 svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
-#rm -rf ./package/openwrt-passwall/xray-core
+rm -rf ./feeds/packages/net/v2ray-core
+rm -rf ./package/openwrt-passwall/xray-core
 #svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
 rm -rf ./feeds/packages/net/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
-
 svn export https://github.com/fw876/helloworld/trunk/hysteria package/new/hysteria
 
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
