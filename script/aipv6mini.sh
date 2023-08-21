@@ -138,15 +138,12 @@ rm -rf ./feeds/luci/applications/luci-app-mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/luci-app-mosdns package/new/luci-app-mosdns
 
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-# git clone https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
-rm -rf ./feeds/packages/net/v2ray-geodata
-git clone https://github.com/sbwml/v2ray-geodata package/geodata
-# sed -i "/filter_aaaa='1'/d" ./feeds/luci/applications/luci-app-mosdns/root/etc/init.d/mosdns
-# sed -i "/filter_aaaa='1'/d" ./package/new/luci-app-mosdns/root/etc/init.d/mosdns
+find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+find ./ | grep Makefile | grep mosdns | xargs rm -f
 
-rm -rf ./feeds/packages/net/v2ray-geodata
-git clone https://github.com/sbwml/v2ray-geodata package/geodata
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
 
 # 80211 
 rm -rf package/libs/libnl-tiny
