@@ -318,7 +318,7 @@ CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-app-partexp=y
 
 CONFIG_PACKAGE_luci-app-nft-qos=n
-CONFIG_PACKAGE_luci-app-sqm=n
+CONFIG_PACKAGE_luci-app-sqm=y
 #passwall base
 CONFIG_PACKAGE_iptables-mod-socket=y
 
