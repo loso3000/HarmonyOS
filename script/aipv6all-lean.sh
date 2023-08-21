@@ -45,6 +45,10 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/l
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 
+#package/network/services/dropbear
+rm -rf package/network/services/dropbear
+svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dropbear ./package/network/services/dropbear
+
 rm -rf ./package/diy/luci-app-autotimeset
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
 #fserror
