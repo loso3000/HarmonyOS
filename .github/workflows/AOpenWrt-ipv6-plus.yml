@@ -36,7 +36,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
+        
       - name: Set time zone
         run: sudo timedatectl set-timezone 'Asia/Shanghai'
 
@@ -66,7 +67,6 @@ jobs:
              echo "CKCPU=failure" >> $GITHUB_ENV
              exit 1
          fi
-      - name: Space cleanup
       - name: Free disk space
         run: |
           sudo rm -rf /etc/apt/sources.list.d
