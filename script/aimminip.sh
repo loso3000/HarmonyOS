@@ -55,11 +55,6 @@ sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 rm -rf ./package/diy/luci-app-control-speedlimit
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-control-speedlimit ./package/lean/luci-app-control-speedlimit
-# alist
-git clone https://github.com/sbwml/luci-app-alist package/alist
-rm -rf feeds/packages/lang/golang
-svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
@@ -304,15 +299,11 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/contr
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 
-# 添加额外软件包
+# 添加额外软件包alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
-# Alist-3.2.0 依赖 1.19.x
-# sed -i 's/GO_VERSION_MAJOR_MINOR:=.*/GO_VERSION_MAJOR_MINOR:=1.19/g' feeds/packages/lang/golang/golang/Makefile
-# sed -i 's/GO_VERSION_PATCH:=.*/GO_VERSION_PATCH:=2/g' feeds/packages/lang/golang/golang/Makefile
-# sed -i 's/PKG_HASH:=.*/PKG_HASH:=2ce930d70a931de660fdaf271d70192793b1b240272645bf0275779f6704df6b/g' feeds/packages/lang/golang/golang/Makefile
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 19.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
 
 svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-syncthing package/luci-app-syncthing
 cp -r package/luci-app-syncthing/po/zh_Hans/ package/luci-app-syncthing/po/zh-cn/
