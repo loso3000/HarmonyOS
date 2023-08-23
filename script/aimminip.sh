@@ -405,12 +405,26 @@ sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-def
 # svn export https://github.com/loso3000/openwrt-passwall/trunk/luci-app-passwall  package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
- pushd ./feeds/luci/applications/luci-app-passwall
+
+line_number_INCLUDE_Xray=$[`grep -m1 -n 'Include Xray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
+sed -i $line_number_INCLUDE_Xray'd' package/passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_Xray'd' package/passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_Xray'd' package/passwall/luci-app-passwall/Makefile
+line_number_INCLUDE_V2ray=$[`grep -m1 -n 'Include V2ray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
+sed -i $line_number_INCLUDE_V2ray'd' package/passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_V2ray'd' package/passwall/luci-app-passwall/Makefile
+sed -i $line_number_INCLUDE_V2ray'd' package/passwall/luci-app-passwall/Makefile
+sed -i 's,-1,3,g' package/luci-app-passwall2/luasrc/controller/passwall2.lua
+sed -i 's,-1,2,g' package/passwall/luci-app-passwall/luasrc/controller/passwall2.lua
+
+pushd ./feeds/luci/applications/luci-app-passwall
  sed -i 's,default n,default y,g' Makefile
- popd
+popd
+ 
 pushd package/passwall/luci-app-passwall
 sed -i 's,default n,default y,g' Makefile
 popd
+
 #bypass
 # rm -rf package/other/up/pass/luci-app-bypass 
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
@@ -422,24 +436,12 @@ sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Make
 
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 
-rm -rf ./feeds/packages/net/v2ray-core
-svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
+# rm -rf ./feeds/packages/net/v2ray-core
+# svn export https://github.com/fw876/helloworld/trunk/v2ray-core package/new/v2ray-core
 # rm -rf ./package/openwrt-passwall/xray-core
 # rm -rf ./feeds/packages/net/xray-core
 # svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
 # svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
-
-line_number_INCLUDE_Xray=$[`grep -m1 -n 'Include Xray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
-sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-sed -i $line_number_INCLUDE_Xray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-line_number_INCLUDE_V2ray=$[`grep -m1 -n 'Include V2ray' package/passwall/luci-app-passwall/Makefile|cut -d: -f1`-1]
-sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-sed -i 's,-1,3,g' package/luci-app-passwall2/luasrc/controller/passwall2.lua
-sed -i 's,-1,2,g' package/passwall/luci-app-passwall/luasrc/controller/passwall2.lua
-
 
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook feeds/packages/net/brook
 
