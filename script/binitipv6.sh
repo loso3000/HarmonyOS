@@ -44,11 +44,12 @@ echo kucat
 svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
-# alist
-# git clone https://github.com/sbwml/luci-app-alist package/alist
-# rm -rf cfeeds/packages/lang/golang
-# svn export https://github.com/sbwml/packages_lang_golang/branches/19.x cfeeds/packages/lang/golang
-# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+# 添加额外软件包alist
+git clone https://github.com/sbwml/luci-app-alist package/alist
+sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+rm -rf feeds/packages/lang/golang
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+
 
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
