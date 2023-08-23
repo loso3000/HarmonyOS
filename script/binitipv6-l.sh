@@ -128,11 +128,10 @@ rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
 rm -rf package/feeds/packages/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
+rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-# sed -i "/filter_aaaa='1'/d" ./package/mosdns/luci-app-mosdns/root/etc/init.d/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
-rm -rf ./feeds/packages/net/v2ray-geodata
-git clone https://github.com/sbwml/v2ray-geodata package/geodata
 
 #dnsmasq
 #rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
