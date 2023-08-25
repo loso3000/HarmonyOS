@@ -1,4 +1,4 @@
-name: Openwrt-ac2100-im
+name: Openwrt-rm-ac2100-im
 
 
 on:
@@ -125,20 +125,15 @@ jobs:
       - name: Prepare Artifact
         run: |
           mkdir -p ./rm2100
-          mkdir -p ./xm2100
-          find ./openwrt/bin/targets/ -name "*redmi-router-ac2100-squashfs*" | xargs -i mv -f {} ./rm2100
+          find ./openwrt/bin/ -name "*ac2100-squashfs*.bin" | xargs -i mv -f {} ./rm2100
+          
           cd ./rm2100
+          rm -rf *rootfs0.bin *kernel1.bin *kernel.bin  
+          gzip *.bin || true
           echo -e "Sirpdboy-RM2100-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
-          md5sum *img* >> 版本日期和MD5信息.txt | true
-          ls
-          cd ${{ env.FIRMWARE }}/xm2100
-          find ./openwrt/bin/targets/ -name "*mi-router-ac2100-squashfs*" | xargs -i mv -f {} ./
-          echo -e "Sirpdboy-XM2100-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
-          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
-          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
-          md5sum *img* >> 版本日期和MD5信息.txt | true
+          md5sum *2100* >> 版本日期和MD5信息.txt || true
           ls
 
       - name: Upload Firmware
@@ -146,10 +141,3 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-RM2100-Firmware
           path: ./rm2100
-
-      - name: Upload Firmware
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-IPV6-XM2100-Firmware
-          path: ./xm2100
-
