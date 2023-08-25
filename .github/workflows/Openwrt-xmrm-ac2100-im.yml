@@ -1,4 +1,4 @@
-name: Openwrt-rm-ac2100-im
+name: Openwrt-xmrm-ac2100-im
 
 
 on:
@@ -18,8 +18,8 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: xmra2100.im
-  DIY_P1_SH: im.sh
+  CONFIG_FILE: /script/xmra2100.im
+  DIY_P1_SH: /script/im.sh
   CLASH_BINARY_PLATFORM: mipsle-softfloat
   
 jobs:
