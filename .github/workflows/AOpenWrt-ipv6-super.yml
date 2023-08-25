@@ -12,15 +12,18 @@ on:
     types: started
 
 env:
-  # REPO_URL: https://github.com/coolsnowwolf/lede
-  
-  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  #REPO_URL: https://github.com/immortalwrt/immortalwrt
   #  https://github.com/loso3000/immortalwrt-1.git
-  REPO_BRANCH: openwrt-18.06-k5.4
+  #REPO_BRANCH: openwrt-18.06-k5.4
+  REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  #  https://github.com/loso3000/immortalwrt-1.git
+  REPO_BRANCH: stable
+  #REPO_URL: https://github.com/coolsnowwolf/lede
+  #REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/asuper.config
   DIY_P1_SH: script/asuper.sh
-  DIY_P2_SH: script/diy-clash-im.sh
+  DIY_P2_SH: script/diy-clash.sh
 permissions:
   contents: read
 
