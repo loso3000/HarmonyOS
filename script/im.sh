@@ -140,7 +140,6 @@ rm -rf  package/emortal/autosamba package/feeds/packages/autosamba
 svn export https://github.com/loso3000/other/trunk/up/autosamba-samba4 ./package/lean/autosamba
 sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
 
-
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount-ntfs3g
 rm -rf ./package/lean/automount
 rm -rf ./package/other/up/automount
@@ -155,8 +154,8 @@ rm -rf ./package/other/up/default-settings package/feeds/packages/default-settin
 svn export https://github.com/loso3000/other/trunk/up/default-settings ./package/lean/default-settings
 
 echo "poweroff"
-curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
-curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
+# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
+# curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
 
 
 sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
@@ -179,11 +178,6 @@ svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-smartdns 
 # svn export https://github.com/Lienol/openwrt-packages/trunk/net/smartdns feeds/packages/net/smartdns
 # rm -rf ./feeds/luci/applications/luci-app-smartdns ./package/feeds/packages/luci-app-smartdns
 # svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
-
-rm -rf ./feeds/luci/applications/luci-app-control-speedlimit package/feeds/packages/luci-app-control-speedlimit
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./feeds/luci/applications/luci-app-control-speedlimit
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-control-speedlimit ./packages//luci-app-control-speedlimit
-#svn export https://github.com/sirpdboy/sirpdboy-package/branches/master/luci-app-control-speedlimit ./packages/a/luci-app-control-speedlimit
 
 rm -rf ./feeds/packages/utils/cups
 rm -rf ./feeds/packages/utils/cupsd
@@ -499,7 +493,7 @@ cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > package/base-files/files/etc/profile
 # 80211
 # cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
-cp -rf ./package/other/luci/*  ./feeds/luci/*
+# cp -rf ./package/other/luci/*  ./feeds/luci/*
  
 
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
