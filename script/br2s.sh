@@ -123,15 +123,12 @@ mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns ./package/feeds/packages/mosdns
-# svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/mosdns feeds/packages/net/mosdns
-# svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/mosdns package/new/mosdns
 rm -rf package/feeds/packages/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/luci-app-mosdns package/new/luci-app-mosdns
 
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-# git clone https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+#git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata package/geodata
 # sed -i "/filter_aaaa='1'/d" ./feeds/luci/applications/luci-app-mosdns/root/etc/init.d/mosdns
