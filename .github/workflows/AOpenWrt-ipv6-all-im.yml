@@ -15,16 +15,18 @@ on:
 #    - cron: 0 21 */7 * * 
 
 env:
-  # REPO_URL: https://github.com/coolsnowwolf/lede
-  
-  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  #REPO_URL: https://github.com/immortalwrt/immortalwrt
   #  https://github.com/loso3000/immortalwrt-1.git
-  REPO_BRANCH: openwrt-18.06-k5.4
-  # REPO_BRANCH: openwrt-18.06
+  #REPO_BRANCH: openwrt-18.06-k5.4
+  REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  #  https://github.com/loso3000/immortalwrt-1.git
+  REPO_BRANCH: stable
+  #REPO_URL: https://github.com/coolsnowwolf/lede
+  #REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: script/aipv6all.im
   DIY_P1_SH: script/aipv6all-im.sh
-  DIY_P2_SH: script/diy-clash-im.sh
+  DIY_P2_SH: script/clash-core.sh
   TZ: Asia/Shanghai
     
 permissions:
@@ -68,7 +70,7 @@ jobs:
          echo "硬盘详情："
          df -Th
          
-         if grep  "8370" "/proc/cpuinfo" ; then
+         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
           echo "CPU YES！！！"
           echo "CKCPU=success" >> $GITHUB_ENV
          else
@@ -160,18 +162,28 @@ jobs:
          rm -rf *-x86-64-generic-squashfs-combined-efi.vmdk
          rm -rf *-x86-64-generic.manifest
          popd
+        
          df -h
       - name: Prepare Artifact
         run: |
-          mkdir -p ./firmwareipv6all
-          find ./openwrt/bin/targets/ -name "*squashfs-combined*" | xargs -i mv -f {} ./firmwareipv6all
-          cd ./firmwareipv6all
-          echo -e "Sirpdboy-Ipv6-Vip-Plus-${{ env.DATA }}-大全版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          mkdir -p ./imminip/firmware
+          mkdir -p ./imminip/package
+          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./imminip/package
+          find ./openwrt/bin/targets/ -name "*squashfs-combined*" | xargs -i mv -f {} ./imminip/firmware
+          cd ./imminip/firmware
+          gzip *.img | true
+          echo -e "SirpdboyOpenWrt-Bypass-Vip-${{ env.DATA }}-旁路由--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
-          md5sum *img* >> 版本日期和MD5信息.txt
+          md5sum *img* >> 版本日期和MD5信息.txt || true
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Plus-Firmware
-          path: ./firmwareipv6all
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Vip-Bypass-Firmware
+          path: ./imminip/firmware
+          
+      - name: Upload  IPK
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Bypass-Vip-Ipk
+          path: ./imminip/package
