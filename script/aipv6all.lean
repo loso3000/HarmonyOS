@@ -29,17 +29,6 @@ CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
 CONFIG_PACKAGE_6to4=y
 
-### Firewall
-CONFIG_PACKAGE_ip6tables-nft=y
-CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
-CONFIG_PACKAGE_iptables-mod-iprange=y
-CONFIG_PACKAGE_iptables-mod-nat-extra=y
-CONFIG_PACKAGE_iptables-mod-socket=y
-CONFIG_PACKAGE_iptables-mod-tproxy=y
-CONFIG_PACKAGE_iptables-nft=y
-CONFIG_PACKAGE_xtables-nft=y
-# CONFIG_PACKAGE_iptables-legacy is not set
-
 #network 
 CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_DEFAULT_kmod-8139cp=y
