@@ -129,14 +129,15 @@ mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 # cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
 
 
-rm -rf ./feeds/packages/net/mosdns
-rm -rf ./package/other/up/pass/mosdns
-rm -rf ./feeds/packages/net/mosdns ./package/feeds/packages/mosdns
+
+# rm -rf ./feeds/packages/net/mosdns
+# rm -rf ./package/other/up/pass/mosdns
+# rm -rf ./feeds/packages/net/mosdns ./package/feeds/packages/mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/mosdns feeds/packages/net/mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/mosdns package/new/mosdns
 # rm -rf package/feeds/packages/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
-rm -rf ./feeds/luci/applications/luci-app-mosdns
-rm -rf feeds/packages/net/v2ray-geodata
+# rm -rf ./feeds/luci/applications/luci-app-mosdns
+# rm -rf feeds/packages/net/v2ray-geodata
 
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
@@ -147,9 +148,7 @@ rm -rf package/mosdns/luci-app-mosdns
 git clone https://github.com/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
-# svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
-# git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 
 # 80211 
 # rm -rf package/libs/libnl-tiny
