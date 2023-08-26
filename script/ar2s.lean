@@ -275,7 +275,7 @@ CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-darkmatter=n
 CONFIG_PACKAGE_luci-theme-neobird=y
-CONFIG_PACKAGE_luci-app-argon-config=y
+CONFIG_PACKAGE_luci-app-argon-config=n
 #增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
@@ -315,7 +315,7 @@ CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=n
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=n
-CONFIG_PACKAGE_luci-app-partexp=y
+CONFIG_PACKAGE_luci-app-partexp=n
 
 CONFIG_PACKAGE_luci-app-nft-qos=n
 CONFIG_PACKAGE_luci-app-sqm=y
