@@ -44,12 +44,6 @@ echo kucat
 svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
-# 添加额外软件包alist
-git clone https://github.com/sbwml/luci-app-alist package/alist
-sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
-rm -rf feeds/packages/lang/golang
-svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-
 
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
@@ -125,6 +119,7 @@ mv -f  ./package/other/luci-app-mwan3 ./cfeeds/luci/applications/luci-app-mwan3
 # cp -f ./package/other/patch/mwan3  ./cfeeds/packages/net/mwan3/files/etc/config/mwan3
 # cat   ./package/other/patch/mwan3 > ./cfeeds/packages/net/mwan3/files/etc/config/mwan3
 
+
 rm -rf ./package/other/up/pass/mosdns
 rm -rf ./feeds/packages/net/mosdns
 rm -rf feeds/packages/net/mosdns package/feeds/packages/mosdns
@@ -132,6 +127,13 @@ rm -rf package/feeds/packages/luci-app-mosdns ./feeds/luci/applications/luci-app
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
+
+# 添加额外软件包alist
+git clone https://github.com/sbwml/luci-app-alist package/alist
+sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+rm -rf feeds/packages/lang/golang
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 
 
 #sed -i "/filter_aaaa='1'/d" ./cfeeds/luci/applications/luci-app-mosdns/root/etc/init.d/mosdns
