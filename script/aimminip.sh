@@ -493,6 +493,7 @@ rm -rf ./feeds/packages/net/trojan-plus package/feeds/packages/trojan-plus
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus ./feeds/packages/net/trojan-plus
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
+svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 # VSSR
 # rm -rf ./feeds/luci/applications/luci-app-vssr ./package/feeds/packages/luci-app-vssr
 # svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
