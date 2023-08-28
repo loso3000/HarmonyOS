@@ -626,7 +626,7 @@ sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-def
 
 
 # Fix mt76 wireless driver
-sed -i '/mt7662u_rom_patch.bin/a\\techo mt76-usb disable_usb_sg=1 > $\(1\)\/etc\/modules.d\/mt76-usb' package/kernel/mt76/Makefile
+# sed -i '/mt7662u_rom_patch.bin/a\\techo mt76-usb disable_usb_sg=1 > $\(1\)\/etc\/modules.d\/mt76-usb' package/kernel/mt76/Makefile
 
 # mt7921 mt7916
 # rm -rf package/kernel/mac80211
