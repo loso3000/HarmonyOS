@@ -176,13 +176,9 @@ jobs:
           ls
           cd  ../firmwarer5s
           echo -e "Sirpdboy-r5s-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
-          
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
-          
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
-          
-          md5sum *.gz >> 版本日期和MD5信息.txt
-          
+          md5sum *.gz >> 版本日期和MD5信息.txt  || true
           ls
           
       - name: Upload Firmware R5c
