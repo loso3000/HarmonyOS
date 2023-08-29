@@ -155,8 +155,6 @@ CONFIG_PACKAGE_ipt2socks=y
 CONFIG_PACKAGE_x550-nbase-t=y
 
 CONFIG_PACKAGE_kmod-inet-diag=y
-
-CONFIG_PACKAGE_kmod-inet-diag=y
 # CONFIG_PACKAGE_kmod-br-netfilter=n  #透明网桥
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 CONFIG_PACKAGE_luci-app-adbyby-plus=y
@@ -256,7 +254,7 @@ CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-ikoolproxy=n
 CONFIG_PACKAGE_luci-app-haproxy-tcp=n
 CONFIG_PACKAGE_luci-app-wireguard=y
-CONFIG_PACKAGE_luci-app-aliyundrive-webdav=y
+CONFIG_PACKAGE_luci-app-aliyundrive-webdav=n
 CONFIG_PACKAGE_luci-app-cpufreq=n
 # CONFIG_PACKAGE_BitSrunLoginGo=n   #学校签到
 CONFIG_PACKAGE_luci-app-v2raya=n
@@ -340,7 +338,7 @@ CONFIG_PACKAGE_luci-app-openvpn-server=y
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
-CONFIG_PACKAGE_luci-app-lucky=n
+CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-partexp=y
 CONFIG_PACKAGE_luci-app-msd_lite=y
 
