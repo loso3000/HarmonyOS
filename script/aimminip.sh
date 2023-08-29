@@ -92,13 +92,10 @@ sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  f
 # sed -i 's/-D_GNU_SOURCE/-D_GNU_SOURCE -Wno-error=use-after-free/g' ./package/libs/elfutils/Makefile
 
 #  coremark
-sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
+# sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 
 # rm -rf ./feeds/luci/applications/netspeedtest
 # svn export https://github.com/sirpdboy/netspeedtest  ./packages/netspeedtest
-
-#  coremark
-sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
