@@ -438,21 +438,16 @@ svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
 
-# rm -rf ./package/openwrt-passwall/xray-core
-# rm -rf ./feeds/packages/net/xray-core
-# svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
-# svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
-
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
-
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
 
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/xray-plugin
-svn export https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
-svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-plugin  package/passwall/xray-plugin
+
 svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
 rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
