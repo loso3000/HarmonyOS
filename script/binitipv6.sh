@@ -419,10 +419,10 @@ sed -i 's,PKG_HASH.*,PKG_HASH:=5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df2
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
 
 svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/new/trojan
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
+# svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan package/new/trojan
+# svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
 
-# svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 # svn export https://github.com/sirpdboy/openwrt-trojan-go/trunk/trojan-go package/new/trojan-go
 # svn export https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/lean/v2ray-geodata  #用sbwml版本更多更好。
 # svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
@@ -447,12 +447,19 @@ svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hyste
 svn export https://github.com/fw876/helloworld/trunk/sagernet-core package/lean/sagernet-core
 
 # svn export https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
-rm -rf ./feeds/packages/net/xray-core
-svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
-svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
+#rm -rf ./feeds/packages/net/xray-core
+#svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+#svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
 
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
-svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
+
+rm -rf ./package/openwrt-passwall/xray-core
+rm -rf ./package/openwrt-passwall/xray-plugin
+rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/xray-plugin
+svn export https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
+svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
+
 svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/lean/shadowsocks-rust
 rm -rf ./cfeeds/packages/net/kcptun
 svn export https://github.com/immortalwrt/packages/trunk/net/kcptun cfeeds/packages/net/kcptun
