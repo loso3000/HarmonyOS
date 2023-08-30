@@ -303,7 +303,7 @@ CONFIG_PACKAGE_luci-app-argon-config=n
 #增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
-CONFIG_PACKAGE_luci-app-cifs-mount=n
+CONFIG_PACKAGE_luci-app-cifs-mount=y
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
@@ -338,7 +338,7 @@ CONFIG_PACKAGE_luci-app-openvpn-server=y
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
-CONFIG_PACKAGE_luci-app-lucky=y
+CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-app-partexp=y
 CONFIG_PACKAGE_luci-app-msd_lite=y
 
