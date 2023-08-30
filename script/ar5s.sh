@@ -473,8 +473,9 @@ rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/xray-plugin
-svn export https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
-svn export https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-plugin  package/passwall/xray-plugin
+
 
 svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
 rm -rf ./feeds/packages/net/kcptun
