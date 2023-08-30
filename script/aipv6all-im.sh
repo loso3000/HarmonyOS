@@ -474,10 +474,10 @@ svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/new/dns2tcp
 svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
-
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/xray-plugin
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
 svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-plugin  package/passwall/xray-plugin
 
