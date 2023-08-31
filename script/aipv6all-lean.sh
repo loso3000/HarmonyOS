@@ -137,13 +137,13 @@ mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
 
 
-# rm -rf ./feeds/packages/net/mosdns
-# rm -rf ./package/other/up/pass/mosdns
-# rm -rf ./feeds/packages/net/mosdns ./package/feeds/packages/mosdns
+rm -rf ./feeds/packages/net/mosdns
+rm -rf ./package/other/up/pass/mosdns
+rm -rf ./feeds/packages/net/mosdns ./package/feeds/packages/mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/mosdns feeds/packages/net/mosdns
 # svn export https://github.com/sbwml/luci-app-mosdns/branches/v4/mosdns package/new/mosdns
-# rm -rf package/feeds/packages/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
-# rm -rf ./feeds/luci/applications/luci-app-mosdns
+rm -rf package/feeds/packages/luci-app-mosdns ./feeds/luci/applications/luci-app-mosdns
+rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
@@ -155,8 +155,8 @@ git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodat
 git clone https://github.com/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
-svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-
+# svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
 # 80211 
 # rm -rf package/libs/libnl-tiny
 # rm -rf package/kernel/mac80211
@@ -471,12 +471,12 @@ svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
 
-# rm -rf ./package/openwrt-passwall/xray-core
-# rm -rf ./package/openwrt-passwall/xray-plugin
-# rm -rf ./feeds/packages/net/xray-core
-# rm -rf ./feeds/packages/net/xray-plugin
-# svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
-# svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-plugin  package/passwall/xray-plugin
+ rm -rf ./package/openwrt-passwall/xray-core
+ rm -rf ./package/openwrt-passwall/xray-plugin
+ rm -rf ./feeds/packages/net/xray-core
+ rm -rf ./feeds/packages/net/xray-plugin
+ svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+ svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-plugin  package/passwall/xray-plugin
 
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 
