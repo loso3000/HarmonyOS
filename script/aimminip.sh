@@ -405,7 +405,7 @@ sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall
 sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
 
 # echo '默认开启 Irqbalance'
-# sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
+sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust package/luci-app-mentohust
