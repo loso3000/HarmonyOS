@@ -341,7 +341,7 @@ sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/n
 # sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 
 # echo '默认开启 Irqbalance'
-# sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
+sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust package/luci-app-mentohust
