@@ -179,3 +179,9 @@ jobs:
         with:
           name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Plus-Firmware
           path: ./firmwareipv6all
+
+      - name: Upload  IPK
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Plus-Ipk
+          path: ./packageipv6all
