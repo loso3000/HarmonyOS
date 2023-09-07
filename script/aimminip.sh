@@ -488,6 +488,8 @@ sed -i 's,-1,2,g' package/passwall/luci-app-passwall/luasrc/controller/passwall2
 
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/sing-box ./package/new/sing-box
+
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook feeds/packages/net/brook
 
 svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook package/new/brook
