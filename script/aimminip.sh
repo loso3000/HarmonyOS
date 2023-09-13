@@ -441,7 +441,7 @@ svn export https://github.com/openwrt/packages/trunk/utils/apk package/new/
 # git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 
 rm -rf ./feeds/luci/applications/chinadns-ng package/feeds/packages/chinadns-ng
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
+svn export https://github.com/xiaorouji/openwrt-passwall-packages/trunk/chinadns-ng package/new/chinadns-ng
 
 # CPU 控制相关
 rm -rf  feeds/luci/applications/luci-app-cpufreq
