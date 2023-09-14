@@ -21,7 +21,7 @@ env:
   REPO_URL: https://github.com/DHDAXCW/lede-rockchip
   REPO_BRANCH: stable
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/ar5c.config
+  CONFIG_FILE: script/ar5s.config
   DIY_P1_SH: script/ar5s.sh
   DIY_P2_SH: script/clash-core.sh
   TZ: Asia/Shanghai
@@ -159,33 +159,17 @@ jobs:
        #   path: ./openwrt/bin
       - name: Prepare Artifact
         run: |
-          mkdir -p ./firmwarer5c
           mkdir -p ./firmwarer5s
-          ls
-          find ./openwrt/bin/targets/ -name "*r5c-ext4-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5c/${{ env.DATA }}-Sirpdboy-Vip-r5c-ext4-sysupgrade.img.gz
-          find ./openwrt/bin/targets/ -name "*r5c-squashfs-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5c/${{ env.DATA }}-Sirpdboy-Vip-r5c-squashfs-sysupgrade.img.gz
-          find ./openwrt/bin/targets/ -name "*r5s-ext4-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-ext4-sysupgrade.img.gz
+          ls        find ./openwrt/bin/targets/ -name "*r5s-ext4-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-ext4-sysupgrade.img.gz
           find ./openwrt/bin/targets/ -name "*r5s-squashfs-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-squashfs-sysupgrade.img.gz
- 
-          cd  firmwarer5c
-          
-          echo -e "Sirpdboy-r5c-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
-          echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
-          echo -e "MD5: \n" >> 版本日期和MD5信息.txt
-          md5sum *.gz >> 版本日期和MD5信息.txt
-          ls
+
           cd  ../firmwarer5s
           echo -e "Sirpdboy-r5s-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *.gz >> 版本日期和MD5信息.txt  || true
           ls
-          
-      - name: Upload Firmware R5c
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ env.DATA }}-R5c-OpenWrt-Ipv6-Vip-Firmware
-          path: ./firmwarer5c
+
       - name: Upload Firmware R5s
         uses: actions/upload-artifact@main
         with:
