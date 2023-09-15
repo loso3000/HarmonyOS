@@ -392,7 +392,7 @@ sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefil
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plusdns/Makefile
 
 git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
-git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall
+git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/passwall/luci-app-passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
 
