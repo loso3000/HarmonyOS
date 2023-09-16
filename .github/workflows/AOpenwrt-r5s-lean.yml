@@ -163,7 +163,7 @@ jobs:
           ls        find ./openwrt/bin/targets/ -name "*ext4-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-ext4-sysupgrade.img.gz
           find ./openwrt/bin/targets/ -name "*squashfs-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-squashfs-sysupgrade.img.gz
 
-          cd  ../firmwarer5s
+          cd  ./firmwarer5s
           echo -e "Sirpdboy-r5s-Vip-${{ env.DATA }}\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n"  >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
