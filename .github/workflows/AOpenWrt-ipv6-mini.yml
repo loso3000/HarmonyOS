@@ -31,27 +31,16 @@ permissions:
   contents: read
 
 jobs:
-
-  build_openwrt:
-
-    permissions:
-      contents: write # for release creation
-
+  build:
     name: Build OpenWrt firmware
-
-
-
     runs-on: ubuntu-latest
-
-    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
-
     steps:
-
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ref: master
-          
+        
+      - name: Set time zone
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+
       - name: Check server performance
         run: |
          echo "警告⚠"
@@ -70,28 +59,28 @@ jobs:
          echo "硬盘详情："
          df -Th
          
-         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
+         if grep  "8370" "/proc/cpuinfo" ; then
           echo "CPU YES！！！"
           echo "CKCPU=success" >> $GITHUB_ENV
          else
              echo "CPU NO！！！"
              echo "CKCPU=failure" >> $GITHUB_ENV
-             # exit 1
-             npm run lint
-             #- travis_retry npm test
-             npm AOpenWrt-ipv6-mini
+             exit 1
          fi
-      - name: Space cleanup
+      - name: Build System Setup
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          docker rmi `docker images -q`
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
-          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
-          sudo -E apt-get update
-          sudo -E apt-get -y install libfuse-dev build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
+          docker rmi $(docker images -q)
+          sudo -E rm -rf $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "1{s/\r$//;p;q}")
+          sudo -E apt -yqq update
+          sudo -E apt -yqq purge $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "2{s/\r$//;p;q}")
+          sudo -E apt -yqq full-upgrade
+          sudo -E apt -yqq install $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "3{s/\r$//;p;q}")
+          sudo -E apt -yqq autoremove --purge
+          sudo -E apt -yqq autoclean
+          sudo -E apt -yqq clean
+          sudo -E systemctl daemon-reload
           sudo timedatectl set-timezone "Asia/Shanghai"
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
@@ -102,17 +91,17 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
+      - name: Cache
+        uses: klever1988/cachewrtbuild@main
+        with:
+          ccache: 'true'
+          clean:  'false'  # 'false'
+          prefix: ${{ github.workspace }}/openwrt
       - name: Update feeds
         run: | 
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-      #- name: Cache
-      #  uses: klever1988/cachewrtbuild@main
-      #  with:
-      #    ccache: 'true'
-      #    prefix: 'openwrt'
-      #    mixkey: 'x86'
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
@@ -126,23 +115,18 @@ jobs:
          $GITHUB_WORKSPACE/$DIY_P1_SH
          $GITHUB_WORKSPACE/$DIY_P2_SH amd64
          chmod -R 755 .
+          df -h
       - name: Generate configuration file
 
         run: |
          cd openwrt
           make defconfig
-
-      #- name: Set ccache
-       # uses: klever1988/cachewrtbuild@main
-       # with:
-       #  ccache: 'true'
-       #  prefix: ${{ github.workspace }}/openwrt
       - name: Make download
         working-directory: ./openwrt
         run: |
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
-          
+          df -h
                
       - name: Compile Packages
         id: compile
@@ -160,12 +144,21 @@ jobs:
         run: |
          df -h
          cd openwrt 
+         rm -rf ./dl
          mkdir -p files/etc/uci-defaults/
          cp $GITHUB_WORKSPACE/scriptx/init-settings.sh files/etc/uci-defaults/99-init-settings
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
-          echo $?
+         pushd bin/targets/x86/64
+         ls
+         rm -rf *-x86-64-generic-kernel.bin
+         rm -rf *t-x86-64-generic-rootfs.tar.gz
+         rm -rf *-x86-64-generic-squashfs-rootfs.img.gz
+         rm -rf *-x86-64-generic-squashfs-combined-efi.vmdk
+         rm -rf *-x86-64-generic.manifest
+         popd
+         df -h
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwareipv6mini
