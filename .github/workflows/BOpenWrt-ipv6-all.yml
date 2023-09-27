@@ -66,9 +66,24 @@ jobs:
              #- travis_retry npm test
              npm AOpenWrt-ipv6-mini
          fi
-      - name: Free disk space
+         
+      - name: free Ubuntu
+        uses: jlumbroso/free-disk-space@main
+        with:
+          # this might remove tools that are actually needed,
+          # if set to "true" but frees about 6 GB
+          tool-cache: true
+          # all of these default to true, but feel free to set to
+          # "false" if necessary for your workflow
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          swap-storage: true
+      - name: Build System Setup
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: |
-
           docker rmi $(docker images -q)
           sudo -E rm -rf $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "1{s/\r$//;p;q}")
           sudo -E apt -yqq update
@@ -79,16 +94,15 @@ jobs:
           sudo -E apt -yqq autoclean
           sudo -E apt -yqq clean
           sudo -E systemctl daemon-reload
-          sudo -E timedatectl set-timezone "Asia/Shanghai"
-          # sudo timedatectl set-timezone "Asia/Shanghai"
-          sudo mkdir -p /workdir
-          sudo chown $USER:$GROUPS /workdir
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          #sudo mkdir -p /workdir
+          #sudo chown $USER:$GROUPS /workdir
       - name: git lede
-        working-directory: /workdir
+        #working-directory: /workdir
         run: |
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          #ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
       - name: Cache
         uses: klever1988/cachewrtbuild@main
