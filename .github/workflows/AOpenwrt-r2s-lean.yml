@@ -156,7 +156,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.DATA }}-RxsOpenWrt-Ipv6-Vip-ipk-Firmware
-          path: ./openwrt/bin/packages/
+          path: ./openwrt/bin/
           
       - name: Prepare Artifact
         run: |
