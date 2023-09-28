@@ -31,11 +31,11 @@ env:
 jobs:
   build_openwrt:
     name: Build OpenWrt firmware
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Check server performance
         run: |
@@ -61,10 +61,7 @@ jobs:
          else
              echo "CPU NO！！！"
              echo "CKCPU=failure" >> $GITHUB_ENV
-             # exit 1
-             npm run lint
-             #- travis_retry npm test
-             npm AOpenWrt-ipv6-mini
+             exit 1
          fi
          
       - name: free Ubuntu
@@ -80,14 +77,17 @@ jobs:
           haskell: true
           large-packages: true
           swap-storage: true
+          
       - name: Build System Setup
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
           bash <(curl -fsSL https://raw.githubusercontent.com/281677160/common/main/custom/ubuntu.sh)
           sudo timedatectl set-timezone "Asia/Shanghai"
+          
           #sudo mkdir -p /workdir
           #sudo chown $USER:$GROUPS /workdir
+          
       - name: git lede
         #working-directory: /workdir
         run: |
