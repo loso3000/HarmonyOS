@@ -50,7 +50,11 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/l
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 
-#package/network/services/dropbear
+#package/libs/openssl/Makefile
+rm -rf package/libs/openssl
+svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/libs/openssl ./package/libs/openssl
+
+
 rm -rf package/network/services/dropbear
 svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dropbear ./package/network/services/dropbear
 
