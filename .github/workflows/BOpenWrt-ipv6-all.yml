@@ -28,14 +28,14 @@ env:
   
   TZ: Asia/Shanghai
 
-jobs:
-  build_openwrt:
-    name: Build OpenWrt firmware
-    runs-on: ubuntu-22.04
 
+jobs:
+  build:
+    name: Build OpenWrt firmware
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Check server performance
         run: |
@@ -64,30 +64,24 @@ jobs:
              exit 1
          fi
          
-      - name: free Ubuntu
-        uses: jlumbroso/free-disk-space@main
-        with:
-          # this might remove tools that are actually needed,
-          # if set to "true" but frees about 6 GB
-          tool-cache: true
-          # all of these default to true, but feel free to set to
-          # "false" if necessary for your workflow
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          swap-storage: true
-          
-      - name: Build System Setup
+
+      - name: Space cleanup
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          bash <(curl -fsSL https://raw.githubusercontent.com/281677160/common/main/custom/ubuntu.sh)
+          docker rmi $(docker images -q)
+          sudo -E rm -rf $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "1{s/\r$//;p;q}")
+          sudo -E apt -yqq update
+          sudo -E apt -yqq purge $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "2{s/\r$//;p;q}")
+          sudo -E apt -yqq full-upgrade
+          sudo -E apt -yqq install $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "3{s/\r$//;p;q}")
+          sudo -E apt -yqq autoremove --purge
+          sudo -E apt -yqq autoclean
+          sudo -E apt -yqq clean
+          sudo -E systemctl daemon-reload
           sudo timedatectl set-timezone "Asia/Shanghai"
-          
           #sudo mkdir -p /workdir
           #sudo chown $USER:$GROUPS /workdir
-          
       - name: git lede
         #working-directory: /workdir
         run: |
@@ -95,6 +89,7 @@ jobs:
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           #ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
+
       - name: Cache
         uses: klever1988/cachewrtbuild@main
         with:
