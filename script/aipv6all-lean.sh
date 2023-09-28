@@ -52,11 +52,11 @@ sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 #package/libs/openssl/Makefile
 rm -rf package/libs/openssl
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/libs/openssl ./package/libs/openssl
+svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/libs/openssl ./package/libs/openssl
 
 #package/network/services/dropbear
-rm -rf package/network/services/dropbear
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dropbear ./package/network/services/dropbear
+#rm -rf package/network/services/dropbear
+#svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dropbear ./package/network/services/dropbear
 
 rm -rf ./package/diy/luci-app-autotimeset
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
@@ -161,12 +161,13 @@ sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.p
 rm -rf feeds/packages/lang/golang
 # svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+
 # 80211 
-# rm -rf package/libs/libnl-tiny
+rm -rf package/libs/libnl-tiny
 # rm -rf package/kernel/mac80211
 # rm -rf package/kernel/mt76
 # rm -rf package/network/services/hostapd
-# svn export https://github.com/openwrt/openwrt/trunk/package/libs/libnl-tiny package/libs/libnl-tiny
+svn export https://github.com/openwrt/openwrt/trunk/package/libs/libnl-tiny package/libs/libnl-tiny
 # svn export https://github.com/openwrt/openwrt/trunk/package/kernel/mac80211 package/kernel/mac80211
 # svn export https://github.com/DHDAXCW/lede-rockchip/trunk/package/kernel/mt76 package/kernel/mt76
 # svn export https://github.com/openwrt/openwrt/trunk/package/network/services/hostapd package/network/services/hostapd
