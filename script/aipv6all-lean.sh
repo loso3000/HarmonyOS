@@ -51,8 +51,8 @@ sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
 
 #package/libs/openssl/Makefile
-#rm -rf package/libs/openssl
-#svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/libs/openssl ./package/libs/openssl
+rm -rf package/libs/openssl
+svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/libs/openssl ./package/libs/openssl
 
 #package/network/services/dropbear
 #rm -rf package/network/services/dropbear
