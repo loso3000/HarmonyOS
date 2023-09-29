@@ -150,8 +150,8 @@ git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/l
 #svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dnsmasq ./package/network/services/dnsmasq
 
 #package/libs/openssl 
-rm -rf package/libs/openssl
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/libs/openssl ./package/libs/openssl
+#rm -rf package/libs/openssl
+#svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/libs/openssl ./package/libs/openssl
 
 #upnp
 #rm -rf ./feeds/packages/net/miniupnpd
