@@ -140,8 +140,8 @@ git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/l
 #sed -i "/filter_aaaa='1'/d" ./package/new/luci-app-mosdns/root/etc/init.d/mosdns
 
 #package/libs/openssl 
-rm -rf package/libs/openssl
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/libs/openssl ./package/libs/openssl
+#rm -rf package/libs/openssl
+#svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/libs/openssl ./package/libs/openssl
 
 #dnsmasq
 #rm -rf ./package/network/services/dnsmasq package/cfeeds/packages/dnsmasq
