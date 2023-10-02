@@ -49,6 +49,7 @@ echo kucat
 svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-kucat
 sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 
+ rm -rf ./feeds/packages/net/wget
 
 #package/libs/openssl 1.1.1
 #rm -rf package/libs/openssl
