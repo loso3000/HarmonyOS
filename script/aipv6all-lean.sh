@@ -15,6 +15,7 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 
+ rm -rf ./feeds/packages/net/wget
 # 清理
 rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web}
 rm -rf package/*/{autocore,autosamba,default-settings}
