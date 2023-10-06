@@ -221,11 +221,13 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=y
 CONFIG_PACKAGE_luci-app-ssr-plusdns=n
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria is not set
 CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Server=y
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Hysteria is not set
 # CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-bypass=y
 CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus=y
