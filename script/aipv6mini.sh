@@ -492,12 +492,12 @@ svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
 
- rm -rf ./package/openwrt-passwall/xray-core
- rm -rf ./package/openwrt-passwall/xray-plugin
- rm -rf ./feeds/packages/net/xray-core
- rm -rf ./feeds/packages/net/xray-plugin
- svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
- svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-plugin  package/passwall/xray-plugin
+#  rm -rf ./package/openwrt-passwall/xray-core
+#  rm -rf ./package/openwrt-passwall/xray-plugin
+#  rm -rf ./feeds/packages/net/xray-core
+#  rm -rf ./feeds/packages/net/xray-plugin
+ # svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
+#  svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-plugin  package/passwall/xray-plugin
 
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 
