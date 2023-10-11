@@ -148,9 +148,9 @@ git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodat
 # 添加额外软件包alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
-rm -rf feeds/packages/lang/golang
+# rm -rf feeds/packages/lang/golang
 #svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+# git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
 
 # 80211 
 # rm -rf package/libs/libnl-tiny
@@ -488,15 +488,6 @@ svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/sim
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
-
-
-
-rm -rf ./package/openwrt-passwall/xray-core
-rm -rf ./package/openwrt-passwall/xray-plugin
-rm -rf ./feeds/packages/net/xray-core
-rm -rf ./feeds/packages/net/xray-plugin
-svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
-svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-plugin  package/passwall/xray-plugin
 
 
 svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
