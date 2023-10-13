@@ -38,7 +38,6 @@ CONFIG_DEFAULT_kmod-amazon-ena=y
 CONFIG_DEFAULT_kmod-amd-xgbe=y
 CONFIG_DEFAULT_kmod-bnx2=y
 CONFIG_DEFAULT_kmod-bnx2x=y
-# CONFIG_DEFAULT_kmod-button-hotplug=y
 CONFIG_DEFAULT_kmod-e1000=y
 CONFIG_DEFAULT_kmod-e1000e=y
 CONFIG_DEFAULT_kmod-forcedeth=y
@@ -57,19 +56,10 @@ CONFIG_DEFAULT_kmod-ixgbe=y
 CONFIG_DEFAULT_kmod-mlx4-core=y
 CONFIG_DEFAULT_kmod-mlx5-core=y
 CONFIG_DEFAULT_kmod-mmc=y
-# CONFIG_DEFAULT_kmod-nf-nathelper=y
-# CONFIG_DEFAULT_kmod-nf-nathelper-extra=y
 CONFIG_DEFAULT_kmod-pcnet32=y
 CONFIG_DEFAULT_kmod-r8125=y
 CONFIG_DEFAULT_kmod-r8168=y
 CONFIG_DEFAULT_kmod-sdhci=y
-# CONFIG_DEFAULT_kmod-sound-hda-codec-hdmi=n
-# CONFIG_DEFAULT_kmod-sound-hda-codec-realtek=n
-# CONFIG_DEFAULT_kmod-sound-hda-codec-via=n
-# CONFIG_DEFAULT_kmod-sound-hda-core=n
-# CONFIG_DEFAULT_kmod-sound-hda-intel=n
-# CONFIG_DEFAULT_kmod-sound-i8x0=n
-# CONFIG_DEFAULT_kmod-sound-via82xx=n
 CONFIG_DEFAULT_kmod-tulip=y
 CONFIG_DEFAULT_kmod-usb-audio=y
 CONFIG_DEFAULT_kmod-usb-hid=y
@@ -77,24 +67,16 @@ CONFIG_DEFAULT_kmod-usb-net=y
 CONFIG_DEFAULT_kmod-usb-net-asix-ax88179=y
 CONFIG_DEFAULT_kmod-usb-net-rtl8150=y
 CONFIG_DEFAULT_kmod-usb-net-rtl8152-vendor=y
-# CONFIG_PACKAGE_kmod-usb-dwc2=y
-# CONFIG_PACKAGE_kmod-usb-dwc3=y
 CONFIG_PACKAGE_kmod-usb-core=y
 CONFIG_PACKAGE_kmod-usb-ohci=y
 CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-tg3=y   #BCM5719
-# CONFIG_DEFAULT_kmod-via-velocity=y
 CONFIG_DEFAULT_kmod-vmxnet3=y
-# CONFIG_PACKAGE_kmod-r8101=y #error
+CONFIG_PACKAGE_kmod-r8101=y #error
 
 ## File System Drivers
-# CONFIG_DEFAULT_kmod-forcedeth=y
 CONFIG_PACKAGE_kmod-fs-f2fs=y
-# CONFIG_PACKAGE_kmod-fs-nfs=y
-# CONFIG_PACKAGE_kmod-fs-nfs-v3=y
-# CONFIG_PACKAGE_kmod-fs-nfs-v4=y
 CONFIG_PACKAGE_kmod-fs-squashfs=y
-# CONFIG_PACKAGE_kmod-fs-vfat=y
 # CONFIG_PACKAGE_antfs-mount is not set
 # CONFIG_PACKAGE_kmod-fs-antfs is not set
 # CONFIG_PACKAGE_kmod-fs-ntfs is not set
@@ -314,9 +296,6 @@ CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 CONFIG_PACKAGE_luci-app-mwan3=y
 CONFIG_PACKAGE_luci-app-minidlna=y
 CONFIG_PACKAGE_luci-app-rclone=n
-CONFIG_PACKAGE_luci-app-rclone_INCLUDE_fuse-utils=n
-CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng=n
-CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui=n
 CONFIG_PACKAGE_luci-app-pppoe-server=n
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-server=y
@@ -353,7 +332,6 @@ CONFIG_PACKAGE_luci-app-chatgpt=y
 CONFIG_PACKAGE_luci-app-chatgpt-web=y
 CONFIG_PACKAGE_luci-app-arpbind=y
 
-
 #CONFIG_PACKAGE_i915-firmware=n
 #CONFIG_PACKAGE_kmod-drm-i915=n
 # Other Appliciations
@@ -365,7 +343,6 @@ CONFIG_PACKAGE_block-mount=y
 #passwall base
 CONFIG_PACKAGE_iptables-mod-socket=y
 
-CONFIG_PACKAGE_coremark=y
 CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_blkid=y
 # CONFIG_PACKAGE_qemu-ga=y
@@ -381,12 +358,10 @@ CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_openssh-sftp-client=y
 CONFIG_PACKAGE_openssh-sftp-server=y
-CONFIG_PACKAGE_wget=y
 CONFIG_PACKAGE_wget-ssl=y
 CONFIG_PACKAGE_lsblk=y
 # CONFIG_PACKAGE_umdns=y  #error
 CONFIG_PACKAGE_zsh=y
-# CONFIG_PACKAGE_lm-sensors=y
 
 CONFIG_PACKAGE_kmod-lp=y
 CONFIG_PACKAGE_kmod-usb-printer=y
@@ -398,5 +373,3 @@ CONFIG_DOCKER_NET_ENCRYPT=y
 CONFIG_DOCKER_NET_MACVLAN=y
 CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
-# CONFIG_PACKAGE_kmod-fs-virtiofs is not set
-# CONFIG_PACKAGE_kmod-qca-mcs is not set
