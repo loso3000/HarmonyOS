@@ -146,7 +146,7 @@ CONFIG_PACKAGE_luci-app-advanced=n
 CONFIG_PACKAGE_luci-app-autotimeset=y
 CONFIG_PACKAGE_luci-app-rebootschedule=n
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
-CONFIG_PACKAGE_luci-app-control-timewol=y
+CONFIG_PACKAGE_luci-app-control-timewol=n
 CONFIG_PACKAGE_luci-app-control-weburl=n
 CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-timecontrol=n
@@ -219,7 +219,7 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
 CONFIG_PACKAGE_luci-app-ddnsto=n
-CONFIG_PACKAGE_luci-app-pushbot=y
+CONFIG_PACKAGE_luci-app-pushbot=n
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 CONFIG_PACKAGE_luci-app-kodexplorer=y
 CONFIG_PACKAGE_luci-app-uhttpd=y
@@ -273,9 +273,6 @@ CONFIG_PACKAGE_luci-app-alist=n
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
-CONFIG_PACKAGE_luci-theme-btmod=n
-CONFIG_PACKAGE_luci-theme-opentomcat=n
-CONFIG_PACKAGE_luci-theme-chuqitopd=n
 CONFIG_PACKAGE_luci-theme-kucat=y
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-edge=n
@@ -290,7 +287,7 @@ CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
 CONFIG_PACKAGE_luci-app-cifs-mount=y
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
-CONFIG_PACKAGE_luci-app-zerotier=y
+# CONFIG_PACKAGE_luci-app-zerotier is not set
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=y
@@ -306,18 +303,18 @@ CONFIG_PACKAGE_luci-app-uugamebooster=y
 # CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
-CONFIG_PACKAGE_luci-app-transmission=y
+CONFIG_PACKAGE_luci-app-transmission=n
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
 CONFIG_PACKAGE_luci-app-p910nd=y
 CONFIG_PACKAGE_luci-app-mwan3helper=n
 CONFIG_PACKAGE_luci-app-qbittorrent=y
 CONFIG_PACKAGE_luci-app-familycloud=n
-CONFIG_PACKAGE_luci-app-nps=y
-CONFIG_PACKAGE_luci-app-frpc=y
-CONFIG_PACKAGE_luci-app-frps=y
-CONFIG_PACKAGE_luci-app-nfs=n
+CONFIG_PACKAGE_luci-app-nps=n
+CONFIG_PACKAGE_luci-app-frpc=n
+CONFIG_PACKAGE_luci-app-frps=n
+CONFIG_PACKAGE_luci-app-nfs=y
 CONFIG_PACKAGE_luci-app-openvpn-server=y
-CONFIG_PACKAGE_luci-app-aria2=y
+CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=n
