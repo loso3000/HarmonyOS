@@ -449,6 +449,8 @@ svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/sim
 # svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  ./feeds/packages/net/xray-core
 
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
+rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
+svn export https://github.com/fw876/helloworld/trunk/shadow-tls package/new/shadow-tls
 
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
 
