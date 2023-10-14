@@ -11,7 +11,7 @@ CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
 # set
 
 CONFIG_TARGET_KERNEL_PARTSIZE=60
-CONFIG_TARGET_ROOTFS_PARTSIZE=920
+CONFIG_TARGET_ROOTFS_PARTSIZE=925
 
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_ROOTFS_TARGZ=y
@@ -185,7 +185,7 @@ CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan_Plus=y
 # CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
-CONFIG_PACKAGE_luci-app-netspeedtest=n
+CONFIG_PACKAGE_luci-app-netspeedtest=y
 CONFIG_PACKAGE_luci-app-ddnsto=n
 CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=n
@@ -250,7 +250,7 @@ CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-kucat=y
 CONFIG_PACKAGE_luci-theme-opentopd=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
-CONFIG_PACKAGE_luci-theme-darkmatter=y
+CONFIG_PACKAGE_luci-theme-darkmatter=n
 CONFIG_PACKAGE_luci-theme-design=y
 CONFIG_PACKAGE_luci-app-argon-config=y
 #增加其它插件
