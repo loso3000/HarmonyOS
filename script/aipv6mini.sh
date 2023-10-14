@@ -492,6 +492,8 @@ svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/sim
  # svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-core  package/passwall/xray-core
 #  svn export https://github.com/loso3000/openwrt-passwall/trunk/xray-plugin  package/passwall/xray-plugin
 
+rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
+svn export https://github.com/fw876/helloworld/trunk/shadow-tls package/new/shadow-tls
 svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tuic-client
 
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
