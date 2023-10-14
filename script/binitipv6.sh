@@ -450,6 +450,8 @@ svn export https://github.com/fw876/helloworld/trunk/hysteria package/lean/hyste
 svn export https://github.com/fw876/helloworld/trunk/sagernet-core package/lean/sagernet-core
 
 
+rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
+svn export https://github.com/fw876/helloworld/trunk/shadow-tls package/new/shadow-tls
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
 
 svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/lean/shadowsocks-rust
