@@ -483,11 +483,8 @@ svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tui
 rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
 svn export https://github.com/fw876/helloworld/trunk/shadow-tls package/new/shadow-tls
  
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/sing-box ./package/new/sing-box
-
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook feeds/packages/net/brook
-
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/brook package/new/brook
+svn export https://github.com/xiaorouji/openwrt-passwall-packages/trunk/sing-box package/new/sing-box
+svn export https://github.com/xiaorouji/openwrt-passwall-packages/trunk/brook package/new/brook
 rm -rf ./feeds/packages/net/trojan-plus package/feeds/packages/trojan-plus
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus ./feeds/packages/net/trojan-plus
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
