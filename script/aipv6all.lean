@@ -303,7 +303,7 @@ CONFIG_PACKAGE_luci-app-uugamebooster=y
 # CONFIG_PACKAGE_luci-app-udpxy=n
 CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
-CONFIG_PACKAGE_luci-app-transmission=n
+CONFIG_PACKAGE_luci-app-transmission=y
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
 CONFIG_PACKAGE_luci-app-p910nd=y
 CONFIG_PACKAGE_luci-app-mwan3helper=n
@@ -314,7 +314,7 @@ CONFIG_PACKAGE_luci-app-frpc=n
 CONFIG_PACKAGE_luci-app-frps=n
 CONFIG_PACKAGE_luci-app-nfs=y
 CONFIG_PACKAGE_luci-app-openvpn-server=y
-CONFIG_PACKAGE_luci-app-aria2=n
+CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=n
