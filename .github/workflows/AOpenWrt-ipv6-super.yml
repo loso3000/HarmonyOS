@@ -21,8 +21,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/asuper.config
-  DIY_P1_SH: script/asuper.sh
+  CONFIG_FILE: script/aipv6all.im
+  DIY_P1_SH: script/aipv6all-im.sh
   DIY_P2_SH: script/clash-core.sh
 permissions:
   contents: read
@@ -152,11 +152,11 @@ jobs:
         run: |
           mkdir -p ./jz/firmware
           mkdir -p ./jz/package
-          cp -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./jz/package
+          mv -rf $(find ./openwrt/bin/ -type f -name "*.ipk") ./jz/package
           find ./openwrt/bin/targets/ -name "*squashfs-combined*"| xargs -i mv -f {} ./jz/firmware
           cd ./jz/firmware
           gzip *.img || true
-          echo -e "Sirpdboy-Ipv6-Super-Vip-${{ env.DATA }}-极致通用版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
+          echo -e "Sirpdboy-Ipv6-Vip-Bypass-${{ env.DATA }}-极致通用版--【efi通用不区分引导方式】\n" > 版本日期和MD5信息.txt
           echo -e "【固件插件说明与各版本下载链接】：https://github.com/sirpdboy/openwrt/ \n" >> 版本日期和MD5信息.txt
           echo -e "MD5: \n" >> 版本日期和MD5信息.txt
           md5sum *img* >> 版本日期和MD5信息.txt
@@ -164,12 +164,12 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Super-Firmware
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Bypass-Firmware
           path: ./jz/firmware
       - name: Upload  IPK
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Super-Ipk
+          name: ${{ env.DATA }}-SirpdboyOpenWrt-Ipv6-Vip-Bypass-Ipk
           path: ./jz/package
           
       #- name: Upload Firmware wetransfer
