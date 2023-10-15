@@ -1,6 +1,5 @@
 name: AOpenwrt-r5c-lean
 
-
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -9,8 +8,8 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
- #   watch:
- #     types: started
+  watch:
+    types: started
 #  schedule:
 #    - cron: 0 21 */7 * * 
 
