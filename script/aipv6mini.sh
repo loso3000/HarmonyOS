@@ -390,9 +390,6 @@ svn export https://github.com/openwrt/packages/trunk/utils/apk package/new/
 # ChinaDNS
 # git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 
-rm -rf ./feeds/luci/applications/chinadns-ng package/feeds/packages/chinadns-ng
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
-
 # CPU 控制相关
 # rm -rf  feeds/luci/applications/luci-app-cpufreq
 # svn export -r 19495 https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
@@ -464,14 +461,6 @@ rm -rf ./package/openwrt-passwall/trojan
 rm -rf ./package/other/up/naiveproxy
 # sed -i 's,PKG_HASH.*,PKG_HASH:=5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7,g' ./package/openwrt-passwall/ipt2socks/Makefile
 
-# svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan package/new/trojan
-# svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/trojan-plus package/new/trojan-plus
-
-svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
-
-# svn export https://github.com/sirpdboy/openwrt-trojan-go/trunk/trojan-go package/new/trojan-go
-# svn export https://github.com/xiaorouji/openwrt-passwall/branches/packages/v2ray-geodata package/lean/v2ray-geodata  #用sbwml版本更更好。
-# svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
 
 svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
 rm -rf ./feeds/packages/net/shadowsocks-libev
