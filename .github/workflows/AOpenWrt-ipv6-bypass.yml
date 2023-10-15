@@ -1,4 +1,4 @@
-name: AOpenWrt-ipv6-super
+name: AOpenWrt-ipv6-bypass
 
 on:
   repository_dispatch:
