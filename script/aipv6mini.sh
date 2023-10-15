@@ -474,6 +474,7 @@ svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
 
+svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 #  rm -rf ./package/openwrt-passwall/xray-core
 #  rm -rf ./package/openwrt-passwall/xray-plugin
 #  rm -rf ./feeds/packages/net/xray-core
