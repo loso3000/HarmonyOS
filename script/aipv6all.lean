@@ -152,7 +152,7 @@ CONFIG_PACKAGE_luci-app-control-webrestriction=n
 CONFIG_PACKAGE_luci-app-timecontrol=n
 CONFIG_PACKAGE_luci-app-webadmin=y
 CONFIG_PACKAGE_luci-app-cpulimit=n
-CONFIG_PACKAGE_luci-app-diskman=y
+# CONFIG_PACKAGE_luci-app-diskman is not set
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
 CONFIG_PACKAGE_luci-app-filetransfer=y
@@ -285,10 +285,10 @@ CONFIG_PACKAGE_luci-app-argon-config=n
 #增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
-CONFIG_PACKAGE_luci-app-cifs-mount=y
+CONFIG_PACKAGE_luci-app-cifs-mount=n
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
 # CONFIG_PACKAGE_luci-app-zerotier is not set
-CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
+CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=y
 CONFIG_PACKAGE_luci-app-minidlna=y
@@ -313,7 +313,7 @@ CONFIG_PACKAGE_luci-app-nps=n
 CONFIG_PACKAGE_luci-app-frpc=n
 CONFIG_PACKAGE_luci-app-frps=n
 CONFIG_PACKAGE_luci-app-nfs=y
-CONFIG_PACKAGE_luci-app-openvpn-server=y
+CONFIG_PACKAGE_luci-app-openvpn-server=n
 CONFIG_PACKAGE_luci-app-aria2=y
 CONFIG_PACKAGE_luci-app-openvpn=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
@@ -349,7 +349,7 @@ CONFIG_PACKAGE_ethtool=y #网卡工具
 CONFIG_PACKAGE_snmpd=y #旁路由穿透显示真机器MAC
 # CONFIG_PACKAGE_parted=n #128个区分区工具z
 CONFIG_PACKAGE_fdisk=y #分区工具
-CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
+# CONFIG_PACKAGE_hdparm=y  #移动硬盘设置
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_htop=y
@@ -363,7 +363,7 @@ CONFIG_PACKAGE_zsh=y
 CONFIG_PACKAGE_kmod-lp=y
 CONFIG_PACKAGE_kmod-usb-printer=y
 #docker
-CONFIG_PACKAGE_luci-app-docker=y
+#CONFIG_PACKAGE_luci-app-docker=n
 CONFIG_PACKAGE_luci-app-dockerman=y
 CONFIG_DOCKER_KERNEL_OPTIONS=y
 CONFIG_DOCKER_NET_ENCRYPT=y
