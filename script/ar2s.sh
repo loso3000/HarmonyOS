@@ -489,6 +489,9 @@ svn export https://github.com/fw876/helloworld/trunk/tuic-client package/new/tui
 svn export https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
 
 
+#rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
+svn export https://github.com/fw876/helloworld/trunk/shadow-tls package/new/shadow-tls
+
 svn export https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
 rm -rf ./feeds/packages/net/kcptun
 svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
