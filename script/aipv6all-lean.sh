@@ -65,12 +65,19 @@ sed -i 's/fs\/smbfs_common/fs\/smb\/common/g'  ./package/kernel/linux/modules/fs
 # rm -rf ./package/network/utils/iproute2/
 # svn export https://github.com/openwrt/openwrt/trunk/package/network/utils/iproute2 ./package/network/utils/iproute2
 
+
 rm -rf ./feeds/luci/applications/luci-app-p910nd
 rm -rf ./package/diy/luci-app-eqosplus
 rm -rf ./package/diy/luci-app-poweroffdevice
 rm -rf ./package/diy/luci-app-wrtbwmon
 rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci-app-wrtbwmon
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./feeds/packages/net/wrtbwmon
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/wrtbwmon  ./package/new/wrtbwmon
+# ln -sf ../../../feeds/luci/applications/wrtbwmon ./package/feeds/luci/wrtbwmon
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./feeds/luci/applications/luci-app-wrtbwmon
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-wrtbwmon  ./package/new/luci-app-wrtbwmon
+# ln -sf ../../../feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/luci/luci-app-wrtbwmon
 
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
