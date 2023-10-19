@@ -55,9 +55,6 @@ sed -i 's/qcatku/kucat/g' ./package/lean/luci-app-kucat
 rm -rf package/libs/openssl
 svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/libs/openssl ./package/libs/openssl
 
-
-rm -rf ./package/diy/luci-app-autotimeset
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
 #fserror
 sed -i 's/fs\/cifs/fs\/smb\/client/g'  ./package/kernel/linux/modules/fs.mk
 sed -i 's/fs\/smbfs_common/fs\/smb\/common/g'  ./package/kernel/linux/modules/fs.mk
