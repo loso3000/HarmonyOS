@@ -444,6 +444,7 @@ svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay packag
 svn export https://github.com/fw876/helloworld/trunk/trojan package/new/trojan
 svn export https://github.com/fw876/helloworld/trunk/tcping package/new/tcping
 svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/new/dns2tcp
+svn export https://github.com/fw876/helloworld/trunk/hysteria package/new/hysteria
 svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
