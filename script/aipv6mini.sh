@@ -423,6 +423,7 @@ rm -rf ./package/other/up/naiveproxy
 # sed -i 's,PKG_HASH.*,PKG_HASH:=5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7,g' ./package/openwrt-passwall/ipt2socks/Makefile
 
 
+svn export https://github.com/fw876/helloworld/trunk/hysteria package/new/hysteria
 svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
