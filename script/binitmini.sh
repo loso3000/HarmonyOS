@@ -426,6 +426,8 @@ rm -rf ./package/openwrt-passwall/trojan
 
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
+svn export https://github.com/fw876/helloworld/trunk/hysteria package/new/hysteria
+
 svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
