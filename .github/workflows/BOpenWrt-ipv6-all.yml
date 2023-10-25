@@ -88,8 +88,6 @@ jobs:
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-          ls
-
       - name: Cache
         uses: klever1988/cachewrtbuild@main
         with:
