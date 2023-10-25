@@ -5,9 +5,9 @@ CONFIG_TARGET_x86_64_DEVICE_generic=y
 CONFIG_TARGET_KERNEL_PARTSIZE=64
 CONFIG_TARGET_ROOTFS_PARTSIZE=925
 
-# CONFIG_VIRTIO=y
-# CONFIG_VIRTIO_BLK=y
-# CONFIG_VIRTIO_NET=y
+CONFIG_VIRTIO=y
+CONFIG_VIRTIO_BLK=y
+CONFIG_VIRTIO_NET=y
 
 CONFIG_GRUB_IMAGES=y
 CONFIG_GRUB_EFI_IMAGES=y
@@ -88,12 +88,12 @@ CONFIG_PACKAGE_kmod-fs-squashfs=y
 #CONFIG_PACKAGE_openssl-util=y
 
 #uhttpd https
-CONFIG_PACKAGE_libustream-openssl=y
+#CONFIG_PACKAGE_libustream-openssl=y
 
 #Tailscale
 #CONFIG_PACKAGE_libustream-openssl=y
-#CONFIG_PACKAGE_ca-bundle=y
-#CONFIG_PACKAGE_kmod-tun=y
+CONFIG_PACKAGE_ca-bundle=y
+CONFIG_PACKAGE_kmod-tun=y
 
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -166,7 +166,7 @@ CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
 # CONFIG_PACKAGE_luci-app-samba is not set
 CONFIG_PACKAGE_luci-app-samba4=y
-CONFIG_PACKAGE_luci-app-serverchan=n
+CONFIG_PACKAGE_luci-app-serverchan=y
 # CONFIG_PACKAGE_luci-app-sfe is not set
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
 CONFIG_PACKAGE_luci-app-smartdns=y
@@ -219,17 +219,17 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-nlbwmon=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
 CONFIG_PACKAGE_luci-app-ddnsto=n
-CONFIG_PACKAGE_luci-app-pushbot=n
+CONFIG_PACKAGE_luci-app-pushbot=y
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 CONFIG_PACKAGE_luci-app-kodexplorer=y
 CONFIG_PACKAGE_luci-app-uhttpd=y
-CONFIG_PACKAGE_luci-app-mentohust=n
-CONFIG_PACKAGE_luci-app-easymesh=n
+CONFIG_PACKAGE_luci-app-mentohust=y
+CONFIG_PACKAGE_luci-app-easymesh=y
 CONFIG_PACKAGE_luci-app-wifimac=n
 CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
-CONFIG_PACKAGE_luci-app-vsftpd=n
+CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-wifidog=n
 CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_luci-app-nft-qos=n
@@ -260,7 +260,7 @@ CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-store=y
 CONFIG_PACKAGE_luci-app-istorex=n
 CONFIG_PACKAGE_quickstart=n
-CONFIG_PACKAGE_luci-app-homeassistant=n
+CONFIG_PACKAGE_luci-app-homeassistant=y
 CONFIG_PACKAGE_luci-app-tencentddns=n
 CONFIG_PACKAGE_luci-app-aliddns=n
 CONFIG_PACKAGE_luci-app-pptpserver=y
@@ -269,7 +269,7 @@ CONFIG_PACKAGE_luci-app-netwizard=y
 CONFIG_PACKAGE_luci-app-fileassistant=y
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
 # CONFIG_PACKAGE_bandwidthd=y
-CONFIG_PACKAGE_luci-app-alist=n
+CONFIG_PACKAGE_luci-app-alist=y
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
@@ -293,7 +293,7 @@ CONFIG_PACKAGE_luci-app-unblockneteasemusic=n
 CONFIG_PACKAGE_luci-app-mwan3=y
 CONFIG_PACKAGE_luci-app-minidlna=y
 CONFIG_PACKAGE_luci-app-rclone=y
-CONFIG_PACKAGE_luci-app-pppoe-server=n
+CONFIG_PACKAGE_luci-app-pppoe-server=y
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 CONFIG_PACKAGE_luci-app-ipsec-server=y
 CONFIG_PACKAGE_luci-app-syncdial=y
@@ -328,8 +328,11 @@ CONFIG_PACKAGE_luci-app-chatgpt=y
 CONFIG_PACKAGE_luci-app-chatgpt-web=y
 CONFIG_PACKAGE_luci-app-arpbind=y
 
-#CONFIG_PACKAGE_i915-firmware=n
-#CONFIG_PACKAGE_kmod-drm-i915=n
+CONFIG_PACKAGE_i915-firmware=y
+CONFIG_PACKAGE_kmod-drm-i915=y
+CONFIG_PACKAGE_kmod-drm-amdgpu=y
+CONFIG_PACKAGE_i915-oot-firmware=y
+CONFIG_PACKAGE_kmod-drm-i915-coex=y
 # Other Appliciations
 CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y 
@@ -341,7 +344,7 @@ CONFIG_PACKAGE_iptables-mod-socket=y
 
 CONFIG_PACKAGE_acpid=y
 CONFIG_PACKAGE_blkid=y
-# CONFIG_PACKAGE_qemu-ga=y
+CONFIG_PACKAGE_qemu-ga=y
 # CONFIG_PACKAGE_smartmontools=y
 # CONFIG_PACKAGE_open-vm-tools=y #虚拟机支持管理性能更好
 CONFIG_PACKAGE_ethtool=y #网卡工具
