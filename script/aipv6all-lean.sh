@@ -259,9 +259,10 @@ svn export https://github.com/loso3000/other/trunk/up/luci-app-samba4 ./feeds/lu
 # rm -rf ./feeds/packages/net/zerotier
 # svn export https://github.com/openwrt/packages/trunk/net/zerotier feeds/packages/net/zerotier
 # rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
-sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+
+# sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+# sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+# sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 svn export https://github.com/loso3000/other/trunk/up/softethervpn5 ./feeds/packages/net/softethervpn5
