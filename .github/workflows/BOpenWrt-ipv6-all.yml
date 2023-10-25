@@ -124,6 +124,7 @@ jobs:
 
         run: |
          cd openwrt
+          echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
           make defconfig
           
           df -h
