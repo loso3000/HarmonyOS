@@ -94,18 +94,13 @@ jobs:
           df -hT $PWD
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-          ls
-      - name: Update feeds
-        run: | 
-          cd openwrt
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
-      #- name: Cache
-      #  uses: klever1988/cachewrtbuild@main
-      #  with:
-      #    ccache: 'true'
-      #    prefix: 'openwrt'
-      #    mixkey: 'x86'
+      - name: Cache
+        uses: klever1988/cachewrtbuild@main
+        with:
+          ccache: 'true'
+          mixkey: 'x86_64'
+          clean:  'false'  # 'false'
+          prefix: ${{ github.workspace }}/openwrt
       - name: Update package
         run: |
          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
@@ -123,6 +118,7 @@ jobs:
 
         run: |
          cd openwrt
+         echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
           make defconfig
 
       - name: Make download
