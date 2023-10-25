@@ -244,7 +244,7 @@ CONFIG_PACKAGE_luci-app-cpufreq=n
 # CONFIG_PACKAGE_BitSrunLoginGo=n   #学校签到
 CONFIG_PACKAGE_luci-app-v2raya=n
 CONFIG_PACKAGE_luci-app-linkease=n
-# CONFIG_PACKAGE_luci-app-vlmcsd is not set
+CONFIG_PACKAGE_luci-app-vlmcsd=y
 CONFIG_PACKAGE_luci-app-ramfree=n
 
 CONFIG_PACKAGE_luci-app-bridge=n
