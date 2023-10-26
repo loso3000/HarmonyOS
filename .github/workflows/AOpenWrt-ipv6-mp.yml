@@ -146,7 +146,7 @@ jobs:
          [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
          chmod +x ${DIY_P1_SH}
          cd openwrt
-         bash ../${DIY_P1_SH} || bash ./${DIY_P1_SH}
+         ../${DIY_P1_SH}
          chmod -R 755 .
     - name:  Download packages
       run: |
