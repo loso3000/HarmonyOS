@@ -52,7 +52,7 @@ sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  f
 
 #luci-app-easymesh
 rm -rf ./package/diy/luci-app-autotimeset
-svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
+#svn export https://github.com/loso3000/mypk/trunk/up/luci-app-autotimeset ./package/lean/luci-app-autotimeset
 # sed -i "s/wpad-openssl/wpad-mesh-wolfssl/g" ./feeds/luci/applications/luci-app-easymesh/Makefile
 
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/luci-app-autotimeset  ./package/luci-app-autotimeset
@@ -145,19 +145,19 @@ sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.p
 rm -rf feeds/packages/lang/golang
 # svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+#dnsmasq
+#rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
+#svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dnsmasq ./package/network/services/dnsmasq
 
 #package/libs/openssl 
 #rm -rf package/libs/openssl
 #svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/libs/openssl ./package/libs/openssl
 
-#dnsmasq
-#rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
-#svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dnsmasq ./package/network/services/dnsmasq
 #upnp
 #rm -rf ./feeds/packages/net/miniupnpd
 #svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
-rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
-svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
+# rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
+# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./package/diy/upnpd
 
 mkdir -p ./package/lean
@@ -353,9 +353,6 @@ svn export https://github.com/openwrt/packages/trunk/libs/libssh feeds/packages/
 # Add apk (Apk Packages Manager)
 svn export https://github.com/openwrt/packages/trunk/utils/apk package/new/
 
-# ChinaDNS
-# git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
-# svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 
 # CPU 控制相关
 # rm -rf  feeds/luci/applications/luci-app-cpufreq
@@ -426,7 +423,6 @@ rm -rf ./package/openwrt-passwall/trojan
 
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
 
-svn export https://github.com/fw876/helloworld/trunk/hysteria package/new/hysteria
 
 svn export https://github.com/fw876/helloworld/trunk/lua-neturl package/new/lua-neturl
 rm -rf ./feeds/packages/net/shadowsocks-libev
@@ -439,6 +435,7 @@ svn export https://github.com/fw876/helloworld/trunk/dns2tcp package/new/dns2tcp
 svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/trunk/simple-obfs package/new/simple-obfs
 
+svn export https://github.com/fw876/helloworld/trunk/hysteria package/new/hysteria
 
 rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
 svn export https://github.com/fw876/helloworld/trunk/shadow-tls package/new/shadow-tls
