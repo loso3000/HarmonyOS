@@ -50,7 +50,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  DIY_P1_SH: ./diy/diy
+  DIY_P1_SH: diy/diy
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -97,7 +97,7 @@ jobs:
          else
              echo "CPU NO！！！"
              echo "CKCPU=failure" >> $GITHUB_ENV
-             #exit 1
+             exit 1
          fi
 
     - name: Space cleanup
