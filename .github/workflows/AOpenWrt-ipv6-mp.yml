@@ -50,7 +50,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  DIY_P1_SH: ./diy/diyv
+  DIY_P1_SH: diy/diyv
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
