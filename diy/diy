@@ -653,5 +653,3 @@ EOF
 
 
 ./scripts/feeds update -i
-cat  ../config/${CONFIG_S}  > .config
-#cat  ../config/comm  >> .config
