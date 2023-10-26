@@ -26,7 +26,6 @@ on:
         required: true
         type: choice
         options: [ Super, Mini, Plus, Vip-Super, Vip-Mini, Vip-Bypass, Vip-Plus ]
-  
       cpu_s:
         description: 'CPU优选'
         required: true
@@ -37,14 +36,12 @@ on:
           - '8370C'
           - '8272CL'
           - '8171M'
-          
       target:
         description: '选择要生成的机型：'
         default: 'x86_64'
         required: true
         type: choice
         options: [ x86_64, rm2100, xm2100, r2s, r4s, r4se, r5s, r5c ]
-
       date_s:
         description: '固件日期'
         default: 'default'
@@ -65,7 +62,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-    name: immortalwrt-${{github.event.inputs.config_s}}-${{github.event.inputs.target}}-${{github.event.inputs.branch}}-${{github.event.inputs.date_s}}
+    name: lede-${{github.event.inputs.config_s}}-${{github.event.inputs.target}}-${{github.event.inputs.branch}}-${{github.event.inputs.date_s}}
     env:
       CONFIG_S: ${{github.event.inputs.config_s}}
       CPU_S: ${{github.event.inputs.cpu_s}}
