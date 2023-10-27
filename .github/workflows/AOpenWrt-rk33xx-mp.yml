@@ -38,7 +38,7 @@ on:
           - '8171M'
       target:
         description: '选择要生成的机型：'
-        default: 'x86_64'
+        default: 'r2s'
         required: true
         type: choice
         options: [ rm2100, xm2100, r2s, r4s, r4se, r5s, r5c ]
