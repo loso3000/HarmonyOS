@@ -342,15 +342,11 @@ svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packa
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
 
-
-	[[ -f feeds/packages/net/qBittorrent/Makefile ]] && grep -q "rblibtorrent" feeds/packages/net/qBittorrent/Makefile && \
-	sed -i 's/+rblibtorrent/+libtorrent-rasterbar/' feeds/packages/net/qBittorrent/Makefile
-# https://github.com/userdocs/qbittorrent-nox-static/releases
-xc=$(find package/ feeds/ -type d -name "qBittorrent-static" 2>/dev/null)
-[[ -d $xc ]] && sed -i 's/PKG_VERSION:=.*/PKG_VERSION:=4.5.5_v2.0.9/;s/userdocs/hong0980/;s/ARCH)-qbittorrent/ARCH)-qt6-qbittorrent/' $xc/Makefile
-# xd=$(find package/ feeds/luci/applications/ -type d -name "luci-app-turboacc" 2>/dev/null)
-# [[ -d $xd ]] && sed -i '/hw_flow/s/1/0/;/sfe_flow/s/1/0/;/sfe_bridge/s/1/0/' $xd/root/etc/config/turboacc
-
+#qbittorrent
+rm -rf ./feeds/packages/net/qbittorrent
+rm -rf ./feeds/packages/net/qBittorrent-Enhanced-Edition
+rm -rf ./feeds/packages/net/qBittorrent-static
+rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
 
 # Add OpenClash
 svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash ./package/diy/luci-app-openclash
