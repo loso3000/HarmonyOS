@@ -64,14 +64,9 @@ sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
 
 # samba4
 rm -rf ./package/lean/autosamba
-rm -rf ./package/other/up/samba4
 rm -rf ./package/other/up/autosamba-samba4
 rm -rf  package/emortal/autosamba package/feeds/packages/autosamba
-svn export https://github.com/loso3000/other/trunk/up/autosamba-samba4 ./package/lean/autosamba
-sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
-rm -rf ./feeds/luci/applications/luci-app-samba4  ./package/other/up/luci-app-samba4
-svn export https://github.com/loso3000/other/trunk/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
-
+rm -rf ./feeds/luci/applications/luci-app-samba4
 rm -rf ./package/other/up/automount
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount
 sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
