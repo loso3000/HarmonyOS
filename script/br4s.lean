@@ -157,22 +157,18 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan
-CONFIG_PACKAGE_luci-app-ssr-plusdns=n
-CONFIG_PACKAGE_luci-app-ssr-plusdns_Shadowsocks_Libev_Client=y 
-CONFIG_PACKAGE_luci-app-ssr-plusdns_INCLUDEINCLUDE_Hysteria=y 
-CONFIG_PACKAGE_luci-app-ssr-plusdns_INCLUDEINCLUDE_NaiveProxy=y 
-CONFIG_PACKAGE_luci-app-ssr-plusdns_INCLUDE_mosdns=y 
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NONE_V2RAY=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_V2ray=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Xray=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Kcptun=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Hysteria=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_IPT2Socks=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_NaiveProxy=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Redsocks2=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_Shadowsocks_Libev_Client=y 
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y 
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y 
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y 
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_IPT2Socks=y 
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=y 
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y 
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=y 
 CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Xray=y
 CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun=y
