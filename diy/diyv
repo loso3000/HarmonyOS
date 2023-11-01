@@ -219,7 +219,6 @@ svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundr
 svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav ./feeds/luci/applications/luci-app-aliyundrive-webdav 
 
 # samba4
-rm -rf ./package/other/up/samba4
 # rm -4f ./feeds/packages/net/samba4  package/feeds/packages/samba4
 # mv ./package/other/up/samba4 ./feeds/packages/net/samba4 
 # svn export https://github.com/loso3000/other/trunk/up/samba4 ./feeds/packages/net/samba4
