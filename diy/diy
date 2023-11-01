@@ -62,15 +62,13 @@ rm -rf ./package/lean/autocore
 mv ./package/other/up/myautocore ./package/lean/autocore
 sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
 
+
 # samba4
 rm -rf ./package/lean/autosamba
 rm -rf ./package/other/up/autosamba-samba4
 rm -rf  package/emortal/autosamba package/feeds/packages/autosamba
 rm -rf ./feeds/luci/applications/luci-app-samba4
-rm -rf ./package/other/up/automount
-mv ./package/other/up/automount-ntfs3g ./package/lean/automount
-sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
-
+mv -f ./package/other/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings 
 mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
@@ -487,30 +485,25 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 
+
 case "${CONFIG_S}" in
 Plus)
 ;;
 Bypass)
+mv -f  ./package/other/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 ;;
 Vip-Plus)
 ;;
 Vip-Bypass)
+mv -f  ./package/other/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 ;;
 *)
+mv -f  ./package/other/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
-;;
-esac
 
-case "${CONFIG_S}" in
-"Vip"-*)
-#修改默认IP地址
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-;;
-*)
-#修改默认IP地址
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/zerotier.lua 
 ;;
 esac
 
