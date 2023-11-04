@@ -172,7 +172,13 @@ sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
+rm -rf ./package/diy/smartdns
+rm -rf ./package/diy/luci-app-smartdns
+rm -rf ./feeds/luci/applications/luci-app-smartdns
 svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
+# svn export https://github.com/pymumu/luci-app-smartdns/branches/lede ./feeds/luci/applications/luci-app-smartdns
+# svn export https://github.com/pymumu/luci-app-smartdns/branches/lede ./feeds/luci/applications/luci-app-smartdns
+git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
