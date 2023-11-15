@@ -327,7 +327,6 @@ svn export https://github.com/openwrt/packages/trunk/utils/apk package/new/
 # sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/10-cpufreq
 
 rm -rf ./feeds/luci/applications/chinadns-ng package/feeds/packages/chinadns-ng
-# svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 
 # Passwall
 rm -rf ./feeds/packages/net/pdnsd-alt
@@ -410,11 +409,11 @@ svn export https://github.com/fw876/helloworld/branches/main/shadowsocks-rust pa
 
 # svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
 # VSSR
-# svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
-# pushd package/diy/luci-app-vssr
-# sed -i 's,default n,default y,g' Makefile
-# sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
-# popd
+svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
+pushd package/diy/luci-app-vssr
+sed -i 's,default n,default y,g' Makefile
+sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
+popd
 
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
