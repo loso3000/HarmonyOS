@@ -416,6 +416,7 @@ svn export https://github.com/fw876/helloworld/branches/main/dns2tcp package/new
 svn export https://github.com/fw876/helloworld/branches/main/shadowsocksr-libev package/new/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/branches/main/simple-obfs package/new/simple-obfs
 
+svn export https://github.com/fw876/helloworld/branches/main/chinadns-ng package/new/chinadns-ng
 svn export https://github.com/fw876/helloworld/branches/main/hysteria package/new/hysteria
 
 rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
