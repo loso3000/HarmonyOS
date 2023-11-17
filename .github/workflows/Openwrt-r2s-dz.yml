@@ -22,7 +22,7 @@ env:
   #REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: dz.sh
-  DIY_P2_SH: script/clash-core.sh
+  DIY_P2_SH: script/zsh.sh
   CONFIG_FILE: r2s.lienol
   TZ: Asia/Shanghai
   
@@ -50,8 +50,8 @@ jobs:
         with:
           ref: master
   
-    - name: Check server performance
-      run: |
+      - name: Check server performance
+        run: |
          echo "警告⚠"
          echo "若分配的服务器性能不足，务必及时取消，重新运行！"
          echo "已知编译成功CPU型号：8370C,8171M"
@@ -77,10 +77,10 @@ jobs:
              exit 1
          fi
 
-    - name: Space cleanup
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
+      - name: Space cleanup
+        env:
+         DEBIAN_FRONTEND: noninteractive
+        run: |
           docker rmi $(docker images -q)
           sudo -E rm -rf $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "1{s/\r$//;p;q}")
           sudo -E apt -yqq update
@@ -119,6 +119,7 @@ jobs:
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
+          echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
           make defconfig
           df -h
       - name: Generate configuration file
@@ -191,18 +192,18 @@ jobs:
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-R2sOpenWrt-Ipv6-Vip-Firmwaredz
+          name: ${{ env.DATA }}-R2sOpenWrt-Ipv4-Vip-Firmwaredz
           path: ./firmwarer2s
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-R4seOpenWrt-Ipv6-Vip-Firmwaredz
+          name: ${{ env.DATA }}-R4seOpenWrt-Ipv4-Vip-Firmwaredz
           path: ./firmwarer4se
 
       - name: Upload Firmware
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.DATA }}-R4sOpenWrt-Ipv6-Vip-Firmwaredz
+          name: ${{ env.DATA }}-R4sOpenWrt-Ipv4-Vip-Firmwaredz
           path: ./firmwarer4s
           retain_days: 14
           keep_minimum_runs: 3
