@@ -365,6 +365,7 @@ rm -rf ./feeds/packages/net/tcping
 rm -rf ./feeds/packages/net/v2ray*
 rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
+rm -rf ./feeds/packages/net/hysteria
 
 #bypass
 # rm -rf package/other/up/pass/luci-app-bypass 
@@ -417,7 +418,7 @@ svn export https://github.com/fw876/helloworld/branches/main/shadowsocksr-libev 
 svn export https://github.com/fw876/helloworld/branches/main/simple-obfs package/new/simple-obfs
 
 svn export https://github.com/fw876/helloworld/branches/main/chinadns-ng package/new/chinadns-ng
-svn export https://github.com/fw876/helloworld/branches/main/hysteria package/new/hysteria
+# svn export https://github.com/fw876/helloworld/branches/main/hysteria package/new/hysteria
 
 rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
 svn export https://github.com/fw876/helloworld/branches/main/shadow-tls package/new/shadow-tls
