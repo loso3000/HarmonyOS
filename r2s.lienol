@@ -92,12 +92,6 @@ CONFIG_PACKAGE_kmod-usb-storage-extras=y
 CONFIG_PACKAGE_kmod-fs-ext4=y
 CONFIG_PACKAGE_kmod-fs-vfat=y
 
-#add upnp
-CONFIG_PACKAGE_miniupnpd-igdv1=y
-CONFIG_PACKAGE_luci-app-upnp=y
-# CONFIG_PACKAGE_luci-app-wol is not set
-CONFIG_PACKAGE_luci-app-wolplus=y
-
 #nginx 
 #CONFIG_PACKAGE_nginx=y
 #CONFIG_PACKAGE_nginx-util=y
@@ -106,17 +100,6 @@ CONFIG_PACKAGE_luci-app-wolplus=y
 
 #uhttpd https
 CONFIG_PACKAGE_libustream-openssl=y
-
-#base插件
-CONFIG_PACKAGE_ddns-scripts=y
-CONFIG_PACKAGE_ddns-scripts_dnspod=y
-CONFIG_PACKAGE_ddns-scripts_aliyun=y
-CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
-CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
-CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
-CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
-CONFIG_PACKAGE_default-settings=y
-# CONFIG_PACKAGE_luci-app-ddns is not set
 
 #diy
 # CONFIG_PACKAGE_swconfig=y  #交换机功能
@@ -135,6 +118,23 @@ CONFIG_PACKAGE_autosamba-ksmbd=n
 CONFIG_PACKAGE_kmod-inet-diag=y
 
 # CONFIG_PACKAGE_kmod-br-netfilter=n  #透明网桥
+#base插件
+CONFIG_PACKAGE_ddns-scripts=y
+CONFIG_PACKAGE_ddns-scripts_dnspod=y
+CONFIG_PACKAGE_ddns-scripts_aliyun=y
+CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
+CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
+CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
+CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
+CONFIG_PACKAGE_default-settings=y
+# CONFIG_PACKAGE_luci-app-ddns is not set
+
+
+#add upnp
+CONFIG_PACKAGE_miniupnpd-igdv1=y
+CONFIG_PACKAGE_luci-app-upnp=y
+# CONFIG_PACKAGE_luci-app-wol is not set
+CONFIG_PACKAGE_luci-app-wolplus=n
 
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
@@ -261,7 +261,7 @@ CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-edge=n
 CONFIG_PACKAGE_luci-theme-ifit=n
 CONFIG_PACKAGE_luci-theme-opentopd=n
-CONFIG_PACKAGE_luci-theme-bootstrap=y
+# CONFIG_PACKAGE_luci-theme-bootstrap is not set
 CONFIG_PACKAGE_luci-theme-darkmatter=n
 CONFIG_PACKAGE_luci-theme-design=n
 CONFIG_PACKAGE_luci-app-argon-config=n
