@@ -72,8 +72,6 @@ jobs:
           echo "CKCPU=success" >> $GITHUB_ENV
          else
              echo "CPU NO！！！"
-             echo "CKCPU=failure" >> $GITHUB_ENV
-             npm AOpenwrt-r2s-lean
              #exit 1
          fi
       - name: Space cleanup
