@@ -158,7 +158,7 @@ jobs:
       - name: Prepare Artifact
         run: |
           mkdir -p ./firmwarer5s
-          ls        find ./openwrt/bin/targets/ -name "*ext4-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-ext4-sysupgrade.img.gz
+          find ./openwrt/bin/targets/ -name "*ext4-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-ext4-sysupgrade.img.gz
           find ./openwrt/bin/targets/ -name "*squashfs-sysupgrade.img.gz" | xargs -i mv -f {} ./firmwarer5s/${{ env.DATA }}-Sirpdboy-Vip-r5s-squashfs-sysupgrade.img.gz
 
           cd  ./firmwarer5s
