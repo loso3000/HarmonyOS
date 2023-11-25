@@ -527,19 +527,15 @@ case "${CONFIG_S}" in
 Plus)
 ;;
 Bypass)
-mv -f  ./package/other/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 ;;
 Vip-Plus)
 ;;
 Vip-Bypass)
-mv -f  ./package/other/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 ;;
 *)
-mv -f  ./package/other/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
-
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/zerotier.lua 
 ;;
 esac
@@ -638,9 +634,6 @@ nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
 #cp -rf ./package/other/patch/list.txt $bakkmodfile
-mkdir -p files/etc/uci-defaults/
-cp -rf ./package/other/patch/init-settings.sh files/etc/uci-defaults/99-init-settings
-[ -f files/etc/uci-defaults/99-init-settings ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/init-settings.sh > files/etc/uci-defaults/99-init-settings
 while IFS= read -r file; do
     a=`find ./bin/ -name "$file" `
     echo $a
