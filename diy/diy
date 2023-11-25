@@ -18,6 +18,8 @@ rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 rm -rf  ./feeds/packages/net/oaf
 rm -rf  ./feeds/packages/net/wget
+rm -rf ./feeds/packages/net/aria2
+rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
 
 # 清理
 rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web}
@@ -46,6 +48,8 @@ rm -rf ./package/diy/luci-app-netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
  
+#daed-next
+ git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
 echo advancedplus
 svn export https://github.com/loso3000/mypk/trunk/up/luci-app-zplus ./package/lean/luci-app-zplus
 mv -f  ./package/lean/luci-app-zplus ./package/lean/luci-app-advancedplus
@@ -69,6 +73,9 @@ rm -rf ./package/other/up/autosamba-samba4
 rm -rf  package/emortal/autosamba package/feeds/packages/autosamba
 rm -rf ./feeds/luci/applications/luci-app-samba4
 mv -f ./package/other/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+rm -rf ./package/other/up/automount
+mv ./package/other/up/automount-ntfs3g ./package/lean/automount
+sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings 
 mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
@@ -161,9 +168,11 @@ git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/l
 #upnp
 #rm -rf ./feeds/packages/net/miniupnpd
 #svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
-# rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
-# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
+rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
+svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./package/diy/upnpd
+# Add Pandownload 
+svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
 
 #设置
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
@@ -349,6 +358,7 @@ rm -rf ./feeds/packages/net/tcping
 rm -rf ./feeds/packages/net/v2ray*
 rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
+rm -rf ./feeds/packages/net/hysteria
 
 #bypass
 # rm -rf package/other/up/pass/luci-app-bypass 
@@ -400,9 +410,8 @@ svn export https://github.com/fw876/helloworld/branches/main/dns2tcp package/new
 svn export https://github.com/fw876/helloworld/branches/main/shadowsocksr-libev package/new/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/branches/main/simple-obfs package/new/simple-obfs
 
-# svn export https://github.com/fw876/helloworld/branches/main/hysteria package/new/hysteria
-
 svn export https://github.com/fw876/helloworld/branches/main/chinadns-ng package/new/chinadns-ng
+# svn export https://github.com/fw876/helloworld/branches/main/hysteria package/new/hysteria
 
 rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
 svn export https://github.com/fw876/helloworld/branches/main/shadow-tls package/new/shadow-tls
@@ -494,26 +503,36 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-
+# 风扇脚本
+sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
+wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
+wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
 
 case "${CONFIG_S}" in
 Plus)
 ;;
 Bypass)
-mv -f  ./package/other/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 ;;
 Vip-Plus)
 ;;
 Vip-Bypass)
-mv -f  ./package/other/patch/default-settings/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 ;;
 *)
-mv -f  ./package/other/patch/default-settings/zzz-default-settings1 > ./package/lean/default-settings/files/zzz-default-settings
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/zerotier.lua 
+;;
+esac
+case "${CONFIG_S}" in
+"Vip"-*)
+#修改默认IP地址
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+;;
+*)
+#修改默认IP地址
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 ;;
 esac
 
@@ -600,9 +619,6 @@ nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
 #cp -rf ./package/other/patch/list.txt $bakkmodfile
-mkdir -p files/etc/uci-defaults/
-cp -rf ./package/other/patch/init-settings.sh files/etc/uci-defaults/99-init-settings
-[ -f files/etc/uci-defaults/99-init-settings ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/init-settings.sh > files/etc/uci-defaults/99-init-settings
 while IFS= read -r file; do
     a=`find ./bin/ -name "$file" `
     echo $a
@@ -640,7 +656,11 @@ run_docker() {
 opkg update
 opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends
 opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends
-
+	uci -q get dockerd.globals 2>/dev/null && {
+		uci -q set dockerd.globals.data_root='/opt/docker/'
+		uci -q set dockerd.globals.auto_start='1'
+		uci commit dockerd
+	}
 }
 case "$IPK" in
 	"drv")
