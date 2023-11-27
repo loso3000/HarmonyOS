@@ -154,9 +154,8 @@ git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodat
 # 添加额外软件包alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
-rm -rf feeds/packages/lang/golang
-# svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
+# rm -rf feeds/packages/lang/golang
+#  git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
 #dnsmasq
 #rm -rf ./package/network/services/dnsmasq package/feeds/packages/dnsmasq
 #svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dnsmasq ./package/network/services/dnsmasq
@@ -235,6 +234,11 @@ svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app
 
 # Add Pandownload 
 svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
+# rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
+rm -rf ./feeds/luci/applications/luci-app-mwan3
+rm -rf ./feeds/packages/net/mwan3
+mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
+mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 svn export https://github.com/loso3000/other/trunk/up/softethervpn5 ./feeds/packages/net/softethervpn5
@@ -392,6 +396,11 @@ git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt
 rm -rf ./package/openwrt-passwall/trojan-plus
 rm -rf ./package/openwrt-passwall/v2ray-geodata
 rm -rf ./package/openwrt-passwall/trojan
+#20231119 error
+rm -rf ./package/openwrt-passwall/xray-core
+rm -rf ./package/openwrt-passwall/xray-plugin
+#rm -rf package/other/up/pass/xray-core
+#rm -rf package/other/up/pass/xray-plugin
 
 # sed -i 's,PKG_HASH.*,PKG_HASH:=5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7,g' ./package/openwrt-passwall/ipt2socks/Makefile
 
@@ -552,7 +561,7 @@ VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
-date1="${CONFIG_S}-${DATA}_by_Sirpdboy"
+date1="Ipv6-${CONFIG_S}-${DATA}_by_Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
 elif [ "$VER1" = "5.15" ]; then
