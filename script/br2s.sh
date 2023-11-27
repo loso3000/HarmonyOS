@@ -384,6 +384,8 @@ rm -rf ./feeds/packages/net/tcping
 rm -rf ./feeds/packages/net/v2ray*
 rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
+rm -rf ./feeds/packages/net/xray-core
+rm -rf ./feeds/packages/net/Hysteria
 
 #bypass
 # rm -rf package/other/up/pass/luci-app-bypass 
@@ -423,6 +425,7 @@ rm -rf ./package/openwrt-passwall/trojan-plus
 rm -rf ./package/openwrt-passwall/v2ray-geodata
 rm -rf ./package/openwrt-passwall/trojan
 
+rm -rf ./package/openwrt-passwall/Hysteria
 #20231119 error
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
