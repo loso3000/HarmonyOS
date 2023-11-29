@@ -73,7 +73,74 @@ CONFIG_PACKAGE_kmod-mac80211=y
 CONFIG_PACKAGE_kmod-rtl8821cu=y
 CONFIG_PACKAGE_kmod-rtlwifi=y
 CONFIG_PACKAGE_kmod-rtlwifi-usb=y
+### Ethernet Support
+CONFIG_PACKAGE_ipt2socks=y
+CONFIG_PACKAGE_kmod-crypto-gcm=y
+CONFIG_PACKAGE_kmod-crypto-gf128=y
+CONFIG_PACKAGE_kmod-crypto-ghash=y
+CONFIG_PACKAGE_kmod-fs-f2fs=y
+CONFIG_PACKAGE_kmod-fs-nfs=y
+CONFIG_PACKAGE_kmod-fs-nfs-common=y
+CONFIG_PACKAGE_kmod-fs-nfs-common-rpcsec=y
+CONFIG_PACKAGE_kmod-fs-nfs-v3=y
+CONFIG_PACKAGE_kmod-fs-nfs-v4=y
+CONFIG_PACKAGE_kmod-fs-nfsd=y
+CONFIG_PACKAGE_kmod-fs-squashfs=y
+CONFIG_PACKAGE_kmod-usb-dwc2=y
+CONFIG_PACKAGE_kmod-usb-dwc3=y
+CONFIG_PACKAGE_kmod-usb-audio=y
+CONFIG_PACKAGE_kmod-usb-net=y
+CONFIG_PACKAGE_kmod-usb-net-asix=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
+CONFIG_PACKAGE_kmod-usb-net-hso=y
+CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-ipheth=y
+CONFIG_PACKAGE_kmod-usb-net-kalmia=y
+CONFIG_PACKAGE_kmod-usb-net-kaweth=y
+CONFIG_PACKAGE_kmod-usb-net-pegasus=y
+CONFIG_PACKAGE_kmod-usb-net-pl=y
+CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
+CONFIG_PACKAGE_kmod-usb-net-sierrawireless=y
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+CONFIG_PACKAGE_kmod-usb-storage-uas=y
+CONFIG_PACKAGE_kmod-usb-uhci=y
+CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb2-pci=y
+CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_DEFAULT_kmod-igc=y
 
+# mt7916 mt7921 mt7922
+CONFIG_PACKAGE_hostapd-common=y
+CONFIG_PACKAGE_wpad-openssl=y
+CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_kmod-mac80211=y
+CONFIG_PACKAGE_kmod-cfg80211=y
+CONFIG_PACKAGE_kmod-mt7615e=y
+CONFIG_PACKAGE_kmod-mt7916-firmware=y
+CONFIG_PACKAGE_kmod-mt7921e=y
+CONFIG_PACKAGE_kmod-mt7922-firmware=y
+
+# GPU
+CONFIG_PACKAGE_kmod-drm-rockchip=y
+CONFIG_PACKAGE_kmod-drm-panfrost=y
+# sd
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+CONFIG_PACKAGE_kmod-usb-core=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+CONFIG_PACKAGE_kmod-fs-ext4=y
+CONFIG_PACKAGE_kmod-fs-vfat=y
 # share network
 # CONFIG_PACKAGE_libmbedtls=y
 # CONFIG_PACKAGE_usbmuxd=y
@@ -327,6 +394,48 @@ CONFIG_DOCKER_NET_ENCRYPT=y
 CONFIG_DOCKER_NET_MACVLAN=y
 CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
+
+
+#wifi
+CONFIG_PACKAGE_kmod-mt7921-common=y
+CONFIG_PACKAGE_kmod-mt79222=y
+CONFIG_PACKAGE_kmod-mt7922-common=y
+CONFIG_PACKAGE_kmod-mt7921e=y
+CONFIG_PACKAGE_kmod-mt7921-firmware=y
+CONFIG_PACKAGE_kmod-mt7921s=y
+CONFIG_PACKAGE_kmod-mt7921u=y
+CONFIG_PACKAGE_kmod-mt7922-firmware=y
+CONFIG_PACKAGE_kmod-mt7921bt-firmware=y
+CONFIG_PACKAGE_kmod-bluetooth=y
+CONFIG_PACKAGE_kmod-mt7922bt-firmware=y
+
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_kmod-ata-core=y
+CONFIG_PACKAGE_luci-app-mtk=y
+CONFIG_PACKAGE_wifi-profile=y
+CONFIG_PACKAGE_wireless-regdb=y
+CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_kmod-mt_wifi=y
+CONFIG_DRIVER_11AC_SUPPORT=y
+CONFIG_DRIVER_11N_SUPPORT=y
+CONFIG_DRIVER_11W_SUPPORT=y
+
+CONFIG_PACKAGE_kmod-gpu-lima=y
+CONFIG_PACKAGE_kmod-ath9k-htc=y
+CONFIG_PACKAGE_kmod-mt76x0u=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+CONFIG_PACKAGE_kmod-r8125=y
+CONFIG_PACKAGE_kmod-rtw88=y
+
+### Video Support
+CONFIG_PACKAGE_kmod-drm-rockchip=y
+CONFIG_PACKAGE_kmod-drm-panfrost=y
+
+### RTL8723D / RTL8821C / RTW89 firmware
+CONFIG_PACKAGE_rtl8723d-firmware=y
+CONFIG_PACKAGE_rtl8821c-firmware=y
+CONFIG_PACKAGE_rtw89-firmware=y
 
 # Other Appliciations
 CONFIG_PACKAGE_bash=y
