@@ -25,7 +25,7 @@ on:
         default: 'Vip-Mini'
         required: true
         type: choice
-        options: [ Mini, Vip-Mini ]
+        options: [ Free-Mini, Vip-Mini, Free-Super, Vip-Super, Free-Plus, Vip-Plus ]
       cpu_s:
         description: 'CPU优选'
         required: true
@@ -50,7 +50,7 @@ env:
   REPO_URL: https://github.com/DHDAXCW/lede-rockchip
   #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  DIY_P1_SH: diy/diyv
+  DIY_P1_SH: diy/diyr
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -132,7 +132,7 @@ jobs:
       uses: klever1988/cachewrtbuild@main
       with:
        ccache: 'true'
-       mixkey: 'x86_64'
+       mixkey: 'rockchip'
        clean:  'false'  # 'false'
        prefix: ${{ github.workspace }}/openwrt
     
@@ -197,26 +197,15 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-Firmware
+        name: ${{ env.DATA }}-EzOpWrt-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-Firmware
         path: ${{ env.FIRMWARE }}
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
       with:
-        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-ipk
+        name: ${{ env.DATA }}-EzOpWrt-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-ipk
         path: ./openwrt/bin/packages/
    
-
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN}}
-      with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
-
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2
       with:
