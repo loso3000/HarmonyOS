@@ -407,10 +407,10 @@ rm -rf ./package/openwrt-passwall/trojan-plus
 rm -rf ./package/openwrt-passwall/v2ray-geodata
 rm -rf ./package/openwrt-passwall/trojan
 #20231119 error
-#rm -rf ./package/openwrt-passwall/xray-core
-#rm -rf ./package/openwrt-passwall/xray-plugin
-rm -rf package/other/up/pass/xray-core
-rm -rf package/other/up/pass/xray-plugin
+rm -rf ./package/openwrt-passwall/xray-core
+rm -rf ./package/openwrt-passwall/xray-plugin
+#rm -rf package/other/up/pass/xray-core
+#rm -rf package/other/up/pass/xray-plugin
 
 # sed -i 's,PKG_HASH.*,PKG_HASH:=5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7,g' ./package/openwrt-passwall/ipt2socks/Makefile
 
@@ -421,32 +421,25 @@ svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/ne
 
 svn export https://github.com/fw876/helloworld/branches/main/lua-neturl ./package/new/lua-neturl
 
-rm -rf ./feeds/packages/net/shadowsocks-libev
-svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
 svn export https://github.com/fw876/helloworld/branches/main/redsocks2 package/new/redsocks2
 svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/new/srelay
-# svn export https://github.com/fw876/helloworld/branches/master/trojan package/new/trojan
-svn export https://github.com/fw876/helloworld/branches/master/tcping package/new/tcping
-# svn export https://github.com/fw876/helloworld/branches/master/dns2tcp package/new/dns2tcp
-svn export https://github.com/fw876/helloworld/branches/master/shadowsocksr-libev package/new/shadowsocksr-libev
-svn export https://github.com/fw876/helloworld/branches/master/simple-obfs package/new/simple-obfs
+svn export https://github.com/fw876/helloworld/branches/main/trojan package/new/trojan
+svn export https://github.com/fw876/helloworld/branches/main/tcping package/new/tcping
+svn export https://github.com/fw876/helloworld/branches/main/dns2tcp package/new/dns2tcp
+svn export https://github.com/fw876/helloworld/branches/main/shadowsocksr-libev package/new/shadowsocksr-libev
+svn export https://github.com/fw876/helloworld/branches/main/simple-obfs package/new/simple-obfs
 
-svn export https://github.com/fw876/helloworld/branches/master/chinadns-ng package/new/chinadns-ng
-# svn export https://github.com/fw876/helloworld/branches/master/hysteria package/new/hysteria
+svn export https://github.com/fw876/helloworld/branches/main/chinadns-ng package/new/chinadns-ng
+# svn export https://github.com/fw876/helloworld/branches/main/hysteria package/new/hysteria
 
-svn export https://github.com/fw876/helloworld/branches/master/shadow-tls package/new/shadow-tls
+svn export https://github.com/fw876/helloworld/branches/main/shadow-tls package/new/shadow-tls
 
-svn export https://github.com/fw876/helloworld/branches/master/tuic-client package/new/tuic-client
-svn export https://github.com/fw876/helloworld/branches/master/v2ray-plugin package/new/v2ray-plugin
-svn export https://github.com/fw876/helloworld/branches/master/shadowsocks-rust package/new/shadowsocks-rust
+svn export https://github.com/fw876/helloworld/branches/main/tuic-client package/new/tuic-client
+svn export https://github.com/fw876/helloworld/branches/main/v2ray-plugin package/new/v2ray-plugin
+svn export https://github.com/fw876/helloworld/branches/main/shadowsocks-rust package/new/shadowsocks-rust
 
 # svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
-# VSSR
-svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
-pushd package/diy/luci-app-vssr
-sed -i 's,default n,default y,g' Makefile
-sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
-popd
+
 
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
