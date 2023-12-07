@@ -426,7 +426,11 @@ svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay packag
 svn export https://github.com/fw876/helloworld/branches/main/trojan package/new/trojan
 svn export https://github.com/fw876/helloworld/branches/main/tcping package/new/tcping
 svn export https://github.com/fw876/helloworld/branches/main/dns2tcp package/new/dns2tcp
-svn export https://github.com/fw876/helloworld/branches/main/shadowsocksr-libev package/new/shadowsocksr-libev
+
+rm -rf ./feeds/packages/net/shadowsocks-libev
+svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev ./feeds/packages/net/shadowsocks-libev
+svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
+
 svn export https://github.com/fw876/helloworld/branches/main/simple-obfs package/new/simple-obfs
 
 svn export https://github.com/fw876/helloworld/branches/main/chinadns-ng package/new/chinadns-ng
