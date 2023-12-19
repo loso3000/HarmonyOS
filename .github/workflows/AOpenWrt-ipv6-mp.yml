@@ -136,7 +136,7 @@ jobs:
        ccache: 'true'
        mixkey: 'x86_64'
        clean:  'false'  # 'false'
-       prefix: $GITHUB_WORKSPACE/openwrt
+       prefix: /mnt/workdir/openwrt
     
     - name: Update feeds
       run: | 
