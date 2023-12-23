@@ -34,6 +34,8 @@ cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.co
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
 
+rm -rf  ./include/kernel-6.1
+svn export https://github.com/coolsnowwolf/lede/trunk/include/kernel-6.1 ./include/kernel-6.1
 # cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 # 6.1 80211 error
 # cat ./package/other/patch/mac80211/intel.mk > ./package/kernel/mac80211/intel.mk
@@ -134,24 +136,19 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
-# rm -rf ./feeds/luci/applications/luci-app-mwan3
-# rm -rf ./feeds/packages/net/mwan3
-# mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
-# mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
-# rm -rf ./feeds/luci/applications/luci-app-mwan3
-# rm -rf ./feeds/packages/net/mwan3
-# svn export https://github.com/Lienol/openwrt-packages/branches/21.02/net/mwan3 ./feeds/packages/net/mwan3
-# svn export https://github.com/Lienol/openwrt-luci/branches/21.02/applications/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
-# cp -f ./package/other/patch/mwan3  ./feeds/packages/net/mwan3/files/etc/config/mwan3
-# cat   ./package/other/patch/mwan3 > ./feeds/packages/net/mwan3/files/etc/config/mwan3
+rm -rf ./feeds/luci/applications/luci-app-mwan3
+rm -rf ./feeds/packages/net/mwan3
+mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
+mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
+
+rm -rf ./feeds/packages/net/mosdns
+rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
-# rm -rf package/mosdns/mosdns
-# rm -rf package/mosdns/luci-app-mosdns
 
 # 添加额外软件包alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
@@ -237,12 +234,6 @@ svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app
 
 # Add Pandownload 
 svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
-
-# rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
-rm -rf ./feeds/luci/applications/luci-app-mwan3
-rm -rf ./feeds/packages/net/mwan3
-mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
-mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
 
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
@@ -352,7 +343,7 @@ rm -rf ./feeds/luci/applications/chinadns-ng package/feeds/packages/chinadns-ng
 
 # Passwall
 rm -rf ./feeds/packages/net/pdnsd-alt
-rm -rf ./feeds/packages/net/shadowsocks-libev
+#rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/brook
@@ -360,6 +351,7 @@ rm -rf ./feeds/packages/net/chinadns-ng
 rm -rf ./feeds/packages/net/dns2socks
 rm -rf ./feeds/packages/net/hysteria
 rm -rf ./feeds/packages/net/ipt2socks
+rm -rf ./feeds/packages/net/dns2tcp
 rm -rf ./feeds/packages/net/microsocks
 rm -rf ./feeds/packages/net/naiveproxy
 rm -rf ./feeds/packages/net/shadowsocks-rust
@@ -397,6 +389,7 @@ echo ' ShadowsocksR Plus+'
 # ShadowsocksR Plus+ 依赖
 
 
+rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 rm -rf ./package/openwrt-passwall/trojan-plus
 rm -rf ./package/openwrt-passwall/v2ray-geodata
@@ -416,20 +409,19 @@ svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/ne
 
 svn export https://github.com/fw876/helloworld/branches/main/lua-neturl ./package/new/lua-neturl
 
-rm -rf ./feeds/packages/net/shadowsocks-libev
-svn export https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
 svn export https://github.com/fw876/helloworld/branches/main/redsocks2 package/new/redsocks2
 svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/new/srelay
 svn export https://github.com/fw876/helloworld/branches/main/trojan package/new/trojan
 svn export https://github.com/fw876/helloworld/branches/main/tcping package/new/tcping
 svn export https://github.com/fw876/helloworld/branches/main/dns2tcp package/new/dns2tcp
-svn export https://github.com/fw876/helloworld/branches/main/shadowsocksr-libev package/new/shadowsocksr-libev
+#rm -rf ./feeds/packages/net/shadowsocks-libev
+#svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev ./feeds/packages/net/shadowsocks-libev
+#svn export https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
 svn export https://github.com/fw876/helloworld/branches/main/simple-obfs package/new/simple-obfs
 
 svn export https://github.com/fw876/helloworld/branches/main/chinadns-ng package/new/chinadns-ng
 # svn export https://github.com/fw876/helloworld/branches/main/hysteria package/new/hysteria
 
-rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
 svn export https://github.com/fw876/helloworld/branches/main/shadow-tls package/new/shadow-tls
 
 svn export https://github.com/fw876/helloworld/branches/main/tuic-client package/new/tuic-client
@@ -437,12 +429,7 @@ svn export https://github.com/fw876/helloworld/branches/main/v2ray-plugin packag
 svn export https://github.com/fw876/helloworld/branches/main/shadowsocks-rust package/new/shadowsocks-rust
 
 # svn export https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
-# VSSR
-svn export https://github.com/jerrykuku/luci-app-vssr/trunk/  ./package/diy/luci-app-vssr
-pushd package/diy/luci-app-vssr
-sed -i 's,default n,default y,g' Makefile
-sed -i 's,+shadowsocks-libev-ss-local ,,g' Makefile
-popd
+
 
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
@@ -511,6 +498,8 @@ sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-script
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 
+# 修复 hostapd 报错
+cp -f $GITHUB_WORKSPACE/scriptx/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 # 取消主题默认设置
 find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
@@ -542,7 +531,7 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/contr
 esac
 
 case "${CONFIG_S}" in
-"Vip"-*)
+"Vip"*)
 #修改默认IP地址
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 ;;
@@ -633,12 +622,11 @@ md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
 md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
 exit 0
 EOF
-
 cat>bakkmod.sh<<-\EOF
 #!/bin/bash
 kmoddirdrv=./files/etc/kmod.d/drv
 kmoddirdocker=./files/etc/kmod.d/docker
-bakkmodfile=./kmod.source
+bakkmodfile=./package/other/patch/kmod.source
 nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
@@ -674,7 +662,6 @@ opkg update
 for file in `ls $nowkmoddir/*.ipk`;do
     opkg install "$file"  --force-depends
 done
-
 }
 run_docker() {
 opkg update
@@ -699,6 +686,4 @@ case "$IPK" in
 	;;
 esac
 EOF
-
-
 ./scripts/feeds update -i
