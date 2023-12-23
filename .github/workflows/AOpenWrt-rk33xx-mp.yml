@@ -25,7 +25,7 @@ on:
         default: 'Vip-Mini'
         required: true
         type: choice
-        options: [ Free-Mini, Vip-Mini, Free-Super, Vip-Super, Free-Plus, Vip-Plus ]
+        options: [ Free-Mini, Free-Plus, Vip-Mini, Vip-Plus ]
       cpu_s:
         description: 'CPU优选'
         required: true
@@ -50,7 +50,7 @@ env:
   REPO_URL: https://github.com/DHDAXCW/lede-rockchip
   #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  DIY_P1_SH: diy/diyr
+  DIY_P1_SH: diy/diyr.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
