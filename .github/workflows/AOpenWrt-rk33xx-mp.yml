@@ -47,7 +47,7 @@ on:
         default: 'default'
         required: false
 env:
-  REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  # branch REPO_URL: https://github.com/DHDAXCW/lede-rockchip
   #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diy/diyr.sh
@@ -115,14 +115,18 @@ jobs:
           sudo -E apt -yqq clean
           sudo -E systemctl daemon-reload
           sudo timedatectl set-timezone "Asia/Shanghai"
-          sudo mkdir -p /workdir
-          sudo chown $USER:$GROUPS /workdir
+          sudo mkdir -p /mnt/workdir
+          sudo chown $USER:$GROUPS /mnt/workdir
     - name: Clone source code
-      working-directory: /workdir
+      working-directory: /mnt/workdir
       run: |
         df -hT $PWD
-          git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        if [[ $ REPO_BRANCH == 'stable' ]]; then
+          git clone --depth 1 $REPO_URL -b  https://github.com/DHDAXCW/lede-rockchip openwrt
+        else 
+          git clone --depth 1 $REPO_URL -b  https://github.com/coolsnowwolf/lede openwrt
+        fi
+        ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
         else 
@@ -134,7 +138,7 @@ jobs:
        ccache: 'true'
        mixkey: 'rockchip'
        clean:  'false'  # 'false'
-       prefix: ${{ github.workspace }}/openwrt
+       prefix: /mnt/workdir/openwrt
     
     - name: Update feeds
       run: | 
@@ -189,7 +193,7 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        rm -rf packages
+        mv -f packages ../packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
