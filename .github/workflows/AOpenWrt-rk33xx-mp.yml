@@ -121,7 +121,7 @@ jobs:
       working-directory: /mnt/workdir
       run: |
         df -hT $PWD
-        if [[ $ REPO_BRANCH == 'stable' ]]; then
+        if [[ $REPO_BRANCH == 'stable' ]]; then
           git clone --depth 1 https://github.com/DHDAXCW/lede-rockchip -b  $REPO_BRANCH openwrt
         else 
           git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
