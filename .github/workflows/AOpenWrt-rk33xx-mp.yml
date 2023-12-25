@@ -122,9 +122,9 @@ jobs:
       run: |
         df -hT $PWD
         if [[ $ REPO_BRANCH == 'stable' ]]; then
-          git clone --depth 1 $REPO_URL -b  https://github.com/DHDAXCW/lede-rockchip openwrt
+          git clone --depth 1 https://github.com/DHDAXCW/lede-rockchip -b  $REPO_BRANCH openwrt
         else 
-          git clone --depth 1 $REPO_URL -b  https://github.com/coolsnowwolf/lede openwrt
+          git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
         fi
         ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
