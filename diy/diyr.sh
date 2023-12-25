@@ -581,25 +581,28 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
-rm -rf  bin/targets/x86/64/config.buildinfo
-rm -rf  bin/targets/x86/64/feeds.buildinfo
-rm -rf  bin/targets/x86/64/*x86-64-generic-kernel.bin
-rm -rf  bin/targets/x86/64/*x86-64-generic-squashfs-rootfs.img.gz
-rm -rf  bin/targets/x86/64/*x86-64-generic-rootfs.tar.gz
-rm -rf  bin/targets/x86/64/*x86-64-generic.manifest
-rm -rf  bin/targets/x86/64/sha256sums
-rm -rf  bin/targets/x86/64/version.buildinfo
-rm -rf bin/targets/x86/64/*x86-64-generic-ext4-rootfs.img.gz
-rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined-efi.img.gz
-rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined.img.gz
-rm -rf bin/targets/x86/64/profiles.json
+rm -rf  bin/targets/*/*/config.buildinfo
+rm -rf  bin/targets/*/*/feeds.buildinfo
+rm -rf  bin/targets/*/*/*.manifest
+rm -rf  bin/targets/*/*/*rootfs.tar.gz
+rm -rf  bin/targets/*/*/*generic-squashfs-rootfs.img.gz
+rm -rf  bin/targets/*/*/*generic-rootfs.tar.gz
+rm -rf  bin/targets/*/*/*generic.manifest
+rm -rf  bin/targets/*/*/sha256sums
+rm -rf  bin/targets/*/*/version.buildinfo
+rm -rf bin/targets/*/*/*generic-ext4-rootfs.img.gz
+rm -rf bin/targets/*/*/*generic-ext4-combined-efi.img.gz
+rm -rf bin/targets/*/*/*generic-ext4-combined.img.gz
+rm -rf bin/targets/*/*/profiles.json
 sleep 2
+
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
+VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 sleep 2
+
 if [ "$VER1" = "5.4" ]; then
 mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined.img.gz       bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver54}-x86-64-combined.img.gz   
 mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined-efi.img.gz   bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver54}-x86-64-combined-efi.img.gz
@@ -621,6 +624,31 @@ cd bin/targets/x86/64
 md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
 md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
 exit 0
+else
+
+if [ "$VER1" = "5.4" ]; then
+mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-squashfs-sysupgrade.img.gz 
+mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver54}-squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver54}-ext4-sysupgrade.img.gz
+elif [ "$VER1" = "5.15" ]; then
+mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-squashfs-sysupgrade.img.gz 
+mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver515}-squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver515}-ext4-sysupgrade.img.gz
+elif [ "$VER1" = "6.1" ]; then
+mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-squashfs-sysupgrade.img.gz 
+mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver61}-squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver61}-ext4-sysupgrade.img.gz
+fi
+#md5
+cd bin/targets/x86/64
+md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
+md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
+exit 0
+
+fi
 EOF
 cat>bakkmod.sh<<-\EOF
 #!/bin/bash
