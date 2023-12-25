@@ -687,3 +687,4 @@ case "$IPK" in
 esac
 EOF
 ./scripts/feeds update -i
+exit
