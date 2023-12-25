@@ -16,8 +16,8 @@ on:
 
 env:
 
-  REPO_URL: https://github.com/DHDAXCW/lede-rockchip
-  #  https://github.com/loso3000/immortalwrt-1.git
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  # REPO_URL: https://github.com/DHDAXCW/lede-rockchip
   REPO_BRANCH: stable
   #REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
