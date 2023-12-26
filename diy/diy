@@ -60,16 +60,14 @@ echo kucat
 svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-zcat
 mv -f  ./package/lean/luci-theme-zcat ./package/lean/luci-theme-kucat
 
-
 mkdir -p ./package/lean
-rm -rf ./package/lean/autocore  
-rm -rf  package/emortal/autocore
+rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv ./package/other/up/myautocore ./package/lean/autocore
 sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
 
 # samba4
 rm -rf ./package/lean/autosamba
-rm -rf  package/emortal/autosamba package/feeds/packages/autosamba
+rm -rf  package/emortal/autosamba
 mv ./package/other/up/autosamba-samba4 ./package/lean/autosamba
 sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
 
@@ -80,7 +78,6 @@ rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount
 sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
-
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings 
 mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
