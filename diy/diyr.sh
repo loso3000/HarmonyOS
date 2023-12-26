@@ -64,18 +64,21 @@ svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/l
 mv -f  ./package/lean/luci-theme-zcat ./package/lean/luci-theme-kucat
 
 mkdir -p ./package/lean
-rm -rf ./package/lean/autocore  
+rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv ./package/other/up/myautocore ./package/lean/autocore
 sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
 
 # samba4
 rm -rf ./package/lean/autosamba
-rm -rf ./package/other/up/autosamba-samba4
-rm -rf  package/emortal/autosamba package/feeds/packages/autosamba
+rm -rf  package/emortal/autosamba
+mv ./package/other/up/autosamba-samba4 ./package/lean/autosamba
+sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
+
 rm -rf ./feeds/luci/applications/luci-app-samba4
 mv -f ./package/other/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
-rm -rf ./package/other/up/automount
+rm -rf  package/emortal/automount
+rm -rf ./package/lean/automount
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount
 sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
 
