@@ -16,7 +16,7 @@ on:
     inputs:
       branch:
         description: '选择仓库的分支：'
-        default: 'stable'
+        default: 'master'
         required: true
         type: choice
         options: [ stable, openwrt-21.02, master, openwrt-23.05 ]
@@ -201,13 +201,13 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.DATA }}-EzOpWrt-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-Firmware
+        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-Firmware
         path: ${{ env.FIRMWARE }}
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
       with:
-        name: ${{ env.DATA }}-EzOpWrt-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-ipk
+        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-ipk
         path: ./openwrt/bin/packages/
    
     - name: Delete workflow runs
