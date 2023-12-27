@@ -156,7 +156,14 @@ jobs:
       run: |
         cd openwrt
         cat  $GITHUB_WORKSPACE/config/${TARGET_DEVICE}  > .config
-        #cat  $GITHUB_WORKSPACE/config/comm  >> .config
+        case "${CONFIG_S}" in
+        "Vip"*)        
+        cat  $GITHUB_WORKSPACE/config/Vip  >> .config
+        ;;
+        *)
+        cat  $GITHUB_WORKSPACE/config/Free  >> .config
+        ;;
+        esac
         echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
         make defconfig
         make download -j8
