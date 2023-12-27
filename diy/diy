@@ -62,8 +62,10 @@ mv -f  ./package/lean/luci-theme-zcat ./package/lean/luci-theme-kucat
 
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv ./package/other/up/myautocore ./package/lean/autocore
+mv -f ./package/other/up/myautocore ./package/lean/autocore
 sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
+rm -rf ./package/lean/autocore/files/x86/index.htm
+mv -f ./package/other/patch/index.htm ./package/lean/autocore/files/x86/index.htm
 
 # samba4
 rm -rf ./package/lean/autosamba
