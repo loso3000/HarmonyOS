@@ -19,13 +19,13 @@ on:
         default: 'master'
         required: true
         type: choice
-        options: [ stable, openwrt-21.02, master, openwrt-23.05 ]
+        options: [ master, stable, openwrt-21.02, openwrt-23.05 ]
       config_s:
         description: '配置文件'
         default: 'Vip-Mini'
         required: true
         type: choice
-        options: [ Free-Mini, Free-Plus, Vip-Mini, Vip-Plus ]
+        options: [ Vip-Mini,Free-Mini, Free-Plus,  Vip-Plus ]
       cpu_s:
         description: 'CPU优选'
         required: true
@@ -41,7 +41,7 @@ on:
         default: 'r2s'
         required: true
         type: choice
-        options: [ rm2100, xm2100, r2s, r4s, r4se, r5s, r5c ]
+        options: [  r2s, r4s, r4se, r5s, r5c,rm2100, xm2100 ]
       date_s:
         description: '固件日期'
         default: 'default'
