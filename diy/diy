@@ -526,7 +526,7 @@ wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/frien
 case "${CONFIG_S}" in
 Free-Plus)
 ;;
-Free-Bypass)
+Vip-Custom)
 ;;
 Vip-Plus)
 ;;
