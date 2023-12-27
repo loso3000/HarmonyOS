@@ -179,7 +179,8 @@ svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-se
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
-sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
+sed -i "s/ImmortalWrt/EzOpWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
+sed -i "s/OpenWrt/EzOpWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 #修改默认主机名
 sed -i "s/hostname='.*'/hostname='EzOpWrt'/g" ./package/base-files/files/bin/config_generate
@@ -609,23 +610,23 @@ sleep 2
 if [ "$VER1" = "5.4" ]; then
 mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
 mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver54}-squashfs-sysupgrade.img.gz  
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver54}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "5.15" ]; then
 mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
 mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver515}-squashfs-sysupgrade.img.gz  
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver515}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "6.1" ]; then
 mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
 mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz  
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 fi
 #md5
-cd bin/targets/x86/64
-md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
-md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
+cd bin/targets/*/*
+md5sum ${md5_EzOpWrt} > EzOpWrt_squashfs-sysupgrade.md5  || true
+md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_ext4-sysupgrade.md5 || true
 exit 0
 EOF
 cat>bakkmod.sh<<-\EOF
