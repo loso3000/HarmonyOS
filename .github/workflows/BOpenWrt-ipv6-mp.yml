@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: BOpenWrt-ipv6-mp
+name: AOpenWrt-ipv6-mp-C
 
 on:
   repository_dispatch:
@@ -22,10 +22,10 @@ on:
         options: [ openwrt-21.02, master, openwrt-23.05 ]
       config_s:
         description: '配置文件'
-        default: 'Mini'
+        default: 'Vip-Custom'
         required: true
         type: choice
-        options: [ Free-Mini, Free-Plus, Free-Super, Vip-Super, Vip-Mini, Vip-Bypass, Vip-Plus ]
+        options: [ Free-Mini, Free-Plus, Vip-Custom, Vip-Super, Vip-Mini, Vip-Bypass, Vip-Plus ]
       cpu_s:
         description: 'CPU优选'
         required: true
