@@ -19,7 +19,7 @@ on:
         default: 'master'
         required: true
         type: choice
-        options: [ openwrt-21.02, master, openwrt-23.05 ]
+        options: [ master, stable, openwrt-21.02, openwrt-23.05 ]
       config_s:
         description: '配置文件'
         default: 'Vip-Custom'
@@ -121,7 +121,11 @@ jobs:
       working-directory: /mnt/workdir
       run: |
         df -hT $PWD
-          git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+        if [[ $REPO_BRANCH == 'stable' ]]; then
+          git clone --depth 1 https://github.com/DHDAXCW/lede-rockchip -b  $REPO_BRANCH openwrt
+        else 
+          git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
+        fi
           ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
