@@ -18,7 +18,8 @@ env:
 
   REPO_URL: https://github.com/coolsnowwolf/lede
   # REPO_URL: https://github.com/DHDAXCW/lede-rockchip
-  REPO_BRANCH: stable
+  # REPO_BRANCH: stable
+  REPO_BRANCH: master
   #REPO_BRANCH: openwrt-18.06-k5.4
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: script/ar2s.sh
@@ -97,7 +98,7 @@ jobs:
         working-directory: /workdir
         run: |
           df -hT $PWD
-          git clone --depth 1 $REPO_URL -b master
+          git clone --depth 1 $REPO_URL -b master openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           ls
           df -h
