@@ -20,7 +20,7 @@ CONFIG_PACKAGE_luci-lib-ipkg=y
 #删除参数
 CONFIG_TARGET_ROOTFS_EXT4FS=n
 # 不压缩efi
-CONFIG_TARGET_IMAGES_GZIP=y
+# CONFIG_TARGET_IMAGES_GZIP is not set
 ### Ethernet Support
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 
