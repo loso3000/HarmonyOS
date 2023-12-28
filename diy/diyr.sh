@@ -589,14 +589,14 @@ rm -rf  bin/targets/*/*/config.buildinfo
 rm -rf  bin/targets/*/*/feeds.buildinfo
 rm -rf  bin/targets/*/*/*.manifest
 rm -rf  bin/targets/*/*/*rootfs.tar.gz
-rm -rf  bin/targets/*/*/*generic-squashfs-rootfs.img.gz
-rm -rf  bin/targets/*/*/*generic-rootfs.tar.gz
+rm -rf  bin/targets/*/*/*generic-squashfs-rootfs.img*
+rm -rf  bin/targets/*/*/*generic-rootfs*
 rm -rf  bin/targets/*/*/*generic.manifest
 rm -rf  bin/targets/*/*/sha256sums
 rm -rf  bin/targets/*/*/version.buildinfo
-rm -rf bin/targets/*/*/*generic-ext4-rootfs.img.gz
-rm -rf bin/targets/*/*/*generic-ext4-combined-efi.img.gz
-rm -rf bin/targets/*/*/*generic-ext4-combined.img.gz
+rm -rf bin/targets/*/*/*generic-ext4-rootfs.img*
+rm -rf bin/targets/*/*/*generic-ext4-combined-efi.img*
+rm -rf bin/targets/*/*/*generic-ext4-combined.img*
 rm -rf bin/targets/*/*/profiles.json
 sleep 2
 
@@ -605,8 +605,8 @@ VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
+gzip bin/targets/*/*/*.img | true
 sleep 2
-
 if [ "$VER1" = "5.4" ]; then
 mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
 mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
