@@ -34,6 +34,10 @@ cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.co
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
 
+
+rm -rf ./feeds/luci/applications/luci-app-udpxy
+rm -rf ./feeds/luci/applications/luci-app-msd_lite
+
 rm -rf  ./include/kernel-6.1
 svn export https://github.com/coolsnowwolf/lede/trunk/include/kernel-6.1 ./include/kernel-6.1
 
