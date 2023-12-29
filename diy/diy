@@ -33,6 +33,11 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
+
+
+rm -rf ./feeds/luci/applications/luci-app-udpxy
+rm -rf ./feeds/luci/applications/luci-app-msd_lite
+
 # 修复 hostapd 报错
 # cp -f  ./package/other/patch/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
