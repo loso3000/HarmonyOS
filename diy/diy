@@ -34,7 +34,7 @@ cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.co
 cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
 # 修复 hostapd 报错
-cp -f  ./package/other/patch/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
+# cp -f  ./package/other/patch/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
 # cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 # 6.1 80211 error
