@@ -373,6 +373,10 @@ CONFIG_PACKAGE_luci-app-netspeedlimit=n
 CONFIG_PACKAGE_luci-app-eqosplus=y
 CONFIG_PACKAGE_luci-app-chatgpt=y
 CONFIG_PACKAGE_luci-app-chatgpt-web=y
+
+# ssl
+CONFIG_PACKAGE_luci-ssl-openssl=y
+
 #docker
 CONFIG_PACKAGE_luci-app-docker=n
 CONFIG_PACKAGE_luci-app-dockerman=y
