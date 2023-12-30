@@ -448,7 +448,7 @@ CONFIG_PACKAGE_mt7622bt-firmware=y
 CONFIG_PACKAGE_mt7921bt-firmware=y
 CONFIG_PACKAGE_mt7922bt-firmware=y
 # openwrt say hostapd ，wpad
-CONFIG_PACKAGE_wpad-basic-mbedtls=y
+# CONFIG_PACKAGE_wpad-basic-mbedtls=y
 
 # CONFIG_PACKAGE_hostapd=y
 CONFIG_PACKAGE_hostapd-common=y
