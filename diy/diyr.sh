@@ -616,13 +616,13 @@ mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_vers
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "5.15" ]; then
-mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "6.1" ]; then
-mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 fi
