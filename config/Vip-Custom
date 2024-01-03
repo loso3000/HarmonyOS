@@ -353,6 +353,17 @@ CONFIG_PACKAGE_luci-app-vpnbypass=y
 # CONFIG_PACKAGE_luci-ssl-openssl=y
 #wifi
 
+
+CONFIG_PACKAGE_amdgpu-firmware=y
+CONFIG_PACKAGE_kmod-drm=y
+CONFIG_PACKAGE_kmod-drm-amdgpu=y
+CONFIG_PACKAGE_i915-firmware=y
+CONFIG_PACKAGE_kmod-drm-i915=y
+CONFIG_PACKAGE_i915-oot-firmware=y
+CONFIG_PACKAGE_kmod-drm-i915-coex=y
+
+CONFIG_ATH10K_LEDS=y
+CONFIG_ATH10K_THERMAL=y
 CONFIG_PACKAGE_ath10k-board-qca9888=y
 CONFIG_PACKAGE_ath10k-board-qca988x=y
 CONFIG_PACKAGE_ath10k-board-qca9984=y
@@ -378,16 +389,9 @@ CONFIG_PACKAGE_kmod-usb-acm=y
 CONFIG_PACKAGE_luci-proto-3g=y
 CONFIG_PACKAGE_shadow-utils=y
 
-
 CONFIG_PACKAGE_kmod-cfg80211=y
-
 CONFIG_PACKAGE_luci-app-mtk=y
 CONFIG_PACKAGE_kmod-hwmon-core=y
-CONFIG_PACKAGE_hostapd-common=y
-CONFIG_PACKAGE_wifi-profile=y
-CONFIG_PACKAGE_wireless-tools=y
-CONFIG_PACKAGE_wpad-wolfssl=y
-CONFIG_PACKAGE_wireless-regdb=y
 
 CONFIG_PACKAGE_kmod-ata-core=y
 CONFIG_PACKAGE_kmod-mt79222=y
@@ -400,22 +404,18 @@ CONFIG_PACKAGE_kmod-mt7622bt-firmware=y
 CONFIG_PACKAGE_mt7622bt-firmware=y
 CONFIG_PACKAGE_mt7921bt-firmware=y
 CONFIG_PACKAGE_mt7922bt-firmware=y
-CONFIG_ATH10K_LEDS=y
-CONFIG_ATH10K_THERMAL=y
+
+CONFIG_PACKAGE_hostapd-common=y
+CONFIG_PACKAGE_wifi-profile=y
+CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_wpad-wolfssl=y
+CONFIG_PACKAGE_wireless-regdb=y
 CONFIG_PACKAGE_kmod-mt7921s=y
 CONFIG_PACKAGE_kmod-mt7921u=y
 CONFIG_PACKAGE_kmod-mt792x-common=y
 CONFIG_PACKAGE_kmod-mt7921-common=y
 CONFIG_PACKAGE_kmod-mt7921-firmware=y
 CONFIG_PACKAGE_kmod-mt7921e=y
-
-CONFIG_PACKAGE_amdgpu-firmware=y
-CONFIG_PACKAGE_kmod-drm=y
-CONFIG_PACKAGE_kmod-drm-amdgpu=y
-CONFIG_PACKAGE_i915-firmware=y
-CONFIG_PACKAGE_kmod-drm-i915=y
-CONFIG_PACKAGE_i915-oot-firmware=y
-CONFIG_PACKAGE_kmod-drm-i915-coex=y
 # Other Appliciations
 CONFIG_PACKAGE_ppp-mod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y 
