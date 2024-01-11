@@ -53,7 +53,7 @@ rm -rf ./feeds/luci/applications/luci-app-msd_lite
 
 rm -rf  ./include/kernel-6.1
 
-svn_exp "master" "include/kernel-6.1" "include/kernel-6.1" "https://github.com/coolsnowwolf/lede"
+# svn_exp "master" "include/kernel-6.1" "include/kernel-6.1" "https://github.com/coolsnowwolf/lede"
 
 # cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 # 6.1 80211 error
