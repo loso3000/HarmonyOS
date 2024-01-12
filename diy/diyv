@@ -10,19 +10,18 @@ KEY=123456
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 svn_exp() {
-# 参数1是分支名, 参数2是子目录, 参数3是目标目录, 参数4仓库地址
+	# 参数1是分支名, 参数2是子目录, 参数3是目标目录, 参数4仓库地址
 	trap 'rm -rf "$TMP_DIR"' 0 1 2 3
 	TMP_DIR="$(mktemp -d)" || exit 1
-        ORI_DIR="$PWD"
 	[ -d "$3" ] || mkdir -p "$3"
 	TGT_DIR="$(cd "$3"; pwd)"
 	cd "$TMP_DIR" && \
 	git init >/dev/null 2>&1 && \
 	git remote add -f origin "$4" >/dev/null 2>&1 && \
 	git checkout "remotes/origin/$1" -- "$2" && \
-	cd "$2" && cp -a . "$TGT_DIR/" && cd "$ORI_DIR"
+	cd "$2" && cp -a . "$TGT_DIR/"
 }
-# svn_exp "master" "target/linux/x86" "route" "https://github.com/coolsnowwolf/lede"
+
 
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
 rm -rf ./feeds/luci/themes/luci-theme-argon
@@ -52,9 +51,8 @@ cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
 rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 
-rm -rf  ./include/kernel-6.1
-
-svn_exp "master" "include/kernel-6.1" "include/kernel-6.1" "https://github.com/coolsnowwolf/lede"
+#rm -rf  ./include/kernel-6.1
+curl -fsSL  https://raw.githubusercontent.com/coolsnowwolf/lede/master/include/kernel-6.1 > ./include/kernel-6.1
 
 # cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 # 6.1 80211 error
@@ -74,17 +72,13 @@ mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
  git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
 
 echo advancedplus
-svn_exp "master" "up/luci-app-zplus" "package/lean/luci-app-zplus" "https://github.com/loso3000/mypk"
-
-mv -f  ./package/lean/luci-app-zplus ./package/lean/luci-app-advancedplus
-sed -i 's/pdadplus/advancedplus/g' ./package/lean/luci-app-advancedplus
-sed -i 's/pdadplus/advancedplus/g' ./feeds/luci/applications/luci-app-advancedplus
-
-echo kucat
-#svn export https://github.com/loso3000/mypk/trunk/up/luci-theme-zcat ./package/lean/luci-theme-zcat
-
-svn_exp "master" "up/luci-theme-zcat" "package/lean/luci-theme-zcat" "https://github.com/loso3000/mypk"
-mv -f  ./package/lean/luci-theme-zcat ./package/lean/luci-theme-kucat
+# clone_repo firker/luci-app-wrtbwmon-zh luci-app-wrtbwmon-zh
+# clone_repo kiddin9/openwrt-packages luci-app-adguardhome adguardhome luci-app-bypass lua-neturl
+git_exp  loso3000/mypk  luci-app-zplus luci-theme-zcat
+mv -f  ./package/A/luci-app-zplus ./package/A/luci-app-advancedplus
+sed -i 's/pdadplus/advancedplus/g' ./package/A/luci-app-advancedplus
+# git_exp  loso3000/mypk  luci-theme-zcat
+mv -f  ./package/lean/luci-theme-zcat ./package/A/luci-theme-kucat
 
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
@@ -149,27 +143,26 @@ rm -rf ./feeds/packages/utils/cups
 rm -rf ./feeds/packages/utils/cupsd
 rm -rf ./feeds/luci/applications/luci-app-cupsd
 rm -rf ./package/feeds/packages/luci-app-cupsd 
-
-svn_exp "master" "luci-app-cupsd/cups" "feeds/packages/utils/cups" "https://github.com/sirpdboy/sirpdboy-package"
-svn_exp "master" "luci-app-cupsd" "feeds/luci/applications/luci-app-cupsd" "https://github.com/sirpdboy/sirpdboy-package"
-
+git_exp sirpdboy/luci-app-cupsd luci-app-cupsd cups
 
 # Add ddnsto & linkease
+git_exp linkease/nas-packages-luci luci
+git_exp linkease/nas-packages services ffmpeg-remux
+git_exp linkease/istore luci
 
-svn_exp "main" "luci" "package/diy1/luci" "https://github.com/linkease/nas-packages-luci"
-svn_exp "master" "network/services"  "package/diy1/linkease" "https://github.com/linkease/nas-packages"
-svn_exp "master" "multimedia/ffmpeg-remux" "package/diy1/ffmpeg-remux" "https://github.com/linkease/nas-packages"
-svn_exp "main" "luci" "package/diy1/istore" "https://github.com/linkease/istore"
-
+# svn export https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
+# svn export https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
+# svn export https://github.com/linkease/nas-packages/trunk/multimedia/ffmpeg-remux/ ./package/diy1/ffmpeg-remux
+# svn export https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
 sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
-# rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
-rm -rf ./feeds/luci/applications/luci-app-mwan3
-rm -rf ./feeds/packages/net/mwan3
-mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
-mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
+rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
+# rm -rf ./feeds/luci/applications/luci-app-mwan3
+# rm -rf ./feeds/packages/net/mwan3
+# mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
+# mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
 # rm -rf ./feeds/packages/net/mwan3
@@ -204,7 +197,7 @@ sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.p
 #svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/miniupnp   ./feeds/packages/net/miniupnp
 rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
 # svn export https://github.com/sirpdboy/sirpdboy-package/trunk/upnpd/luci-app-upnp ./feeds/luci/applications/luci-app-upnp
-svn_exp "master" "upnpd/luci-app-upnp" "feeds/luci/applications/luci-app-upnp" "https://github.com/sirpdboy/sirpdboy-package"
+git_exp sirpdboy/sirpdboy-package luci-app-upnp
 rm -rf  ./package/diy/upnpd
 # Add Pandownload 
 # svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
@@ -223,16 +216,15 @@ rm -rf ./feeds/packages/net/smartdns
 rm -rf ./package/diy/smartdns
 rm -rf ./package/diy/luci-app-smartdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
-svn_exp "master" "smartdns"  "feeds/packages/net/smartdns" "https://github.com/sirpdboy/sirpdboy-package"
+git_exp sirpdboy/sirpdboy-package smartdns
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
-
-svn_exp "master" "luci-app-netdata" "feeds/luci/applications/luci-app-netdata" "https://github.com/sirpdboy/sirpdboy-package"
+git_exp sirpdboy/sirpdboy-package  luci-app-netdata
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
-svn_exp "master" "up/luci-app-arpbind" "feeds/luci/applications/luci-app-arpbind " "https://github.com/loso3000/other"
+git_exp loso3000/other luci-app-arpbind 
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 rm -rf ./package/other/up/luci-app-arpbind
 
@@ -245,9 +237,9 @@ rm -rf ./package/diy/luci-app-dockerman
 # git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/new/luci-lib-docker
 # git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
+git_exp lisaac/luci-lib-docker luci-lib-docker
+git_exp lisaac/luci-app-dockerman luci-app-dockerman
 
-svn_exp "master" "collections/luci-lib-docker" "package/new/luci-lib-docke" "https://github.com/lisaac/luci-lib-docker"
-svn_exp "master" "applications/luci-app-dockerman" "package/new/luci-app-dockerman" "https://github.com/lisaac/luci-app-dockerman"
 # sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 # sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.10
@@ -264,23 +256,25 @@ svn_exp "master" "applications/luci-app-dockerman" "package/new/luci-app-dockerm
 # Add luci-aliyundrive-webdav
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
 rm -rf ./feeds/luci/applications/aliyundrive-webdav
-
-svn_exp "master" "openwrt/aliyundrive-webdav"  "feeds/luci/applications/aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav"
-svn_exp "master" "openwrt/luci-app-aliyundrive-webdav" "feeds/luci/applications/luci-app-aliyundrive-webdav" "https://github.com/messense/aliyundrive-webdav"
-
+git_exp messense/aliyundrive-webdav aliyundrive-webdav luci-app-aliyundrive-webdav
 
 # Add Pandownload 
-svn_exp "master" "net/pandownload-fake-server" "package/pandownload-fake-server" "https://github.com/immortalwrt/packages"
+# svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
+git_exp immortalwrt/packages pandownload-fake-server  
+# rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
+rm -rf ./feeds/luci/applications/luci-app-mwan3
+rm -rf ./feeds/packages/net/mwan3
+mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
+mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
 
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
-svn_exp "master" "up/softethervpn5"  "feeds/packages/net/softethervpn5" "https://github.com/loso3000/other"
-
+git_exp loso3000/other softethervpn5
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
-svn_exp "master" "luci-app-socat" "feeds/luci/applications/luci-app-socat" "https://github.com/sirpdboy/sirpdboy-package"
-sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
-ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/feeds/luci/luci-app-socat
+git_exp sirpdboy/sirpdboy-package luci-app-socat
+sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./package/A/luci-app-socat/po/zh-cn/socat.po
+ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/A/luci-app-socat
 
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
@@ -339,8 +333,7 @@ git clone -b master --single-branch https://github.com/tty228/luci-app-servercha
 git clone https://github.com/kiddin9/luci-app-dnsfilter package/luci-app-dnsfilter
 
 rm -rf ./feeds/packages/net/adguardhome
-svn_exp "master" "net/adguardhome" "feeds/packages/net/adguardhome" "https://github.com/openwrt/packages"
-
+git_exp openwrt/packages adguardhome
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
 
@@ -359,18 +352,17 @@ rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/lu
 # [[ -d $xd ]] && sed -i '/hw_flow/s/1/0/;/sfe_flow/s/1/0/;/sfe_bridge/s/1/0/' $xd/root/etc/config/turboacc
 
 # Add OpenClash
-svn_exp "master" "luci-app-openclash"  "package/diy/luci-app-openclash" "https://github.com/vernesong/OpenClash"
-
+git_exp vernesong/OpenClash luci-app-openclash
 # svn export https://github.com/vernesong/OpenClash/branches/dev/luci-app-openclash package/new/luci-app-openclash
 sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
 
 # Fix libssh
 # rm -rf feeds/packages/libs
-svn_exp "master" "libs/libssh" "feeds/packages/libs" "https://github.com/openwrt/packages"
-
+git_exp openwrt/packages libssh
 # Add apk (Apk Packages Manager)
-rm -rf ./packages/utils/apk
-svn_exp "master" "utils/apk" "packages/utils/apk" "https://github.com/openwrt/packages"
+# git_exp openwrt/packages apk
+# svn_exp "master" "utils/apk" "packages/utils/apk" "https://github.com/openwrt/packages"
+
 # CPU 控制相关
 # rm -rf  feeds/luci/applications/luci-app-cpufreq
 # svn export -r 19495 https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
@@ -424,10 +416,12 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 
 echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-# rm -rf  ./package/ssr/luci-app-ssr-plus
-# ShadowsocksR Plus+ 依赖
+git clone https://github.com/fw876/helloworld package/ssr
+rm -rf  ./package/ssr/luci-app-ssr-plus
+rm -rf  ./package/ssr/trojan-plus
+rm -rf  ./package/ssr/trojan
 
+# ShadowsocksR Plus+ 依赖
 
 rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
@@ -441,29 +435,6 @@ rm -rf ./package/openwrt-passwall/xray-plugin
 #rm -rf package/other/up/pass/xray-plugin
 
 # sed -i 's,PKG_HASH.*,PKG_HASH:=5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7,g' ./package/openwrt-passwall/ipt2socks/Makefile
-
-svn_exp "master" "trojan-plus" "package/new/trojan-plus" "https://github.com/QiuSimons/OpenWrt-Add"
-
-svn_exp "main"  "redsocks2" "./package/new/lua-neturl" "https://github.com/fw876/helloworld"
-svn_exp "main" "lua-neturl" "package/new/redsocks2" "https://github.com/fw876/helloworld"
-
-svn_exp "master" "package/lean/srelay" "package/new/srelay" "https://github.com/coolsnowwolf/lede"
-
-svn_exp "main" "trojan" "package/new/trojan" "https://github.com/fw876/helloworld"
-svn_exp "main" "tcping" "package/new/tcping" "https://github.com/fw876/helloworld"
-svn_exp "main" "dns2tcp" "package/new/dns2tcp" "https://github.com/fw876/helloworld"
-
-svn_exp "main" "simple-obfs"  "package/new/simple-obfs" "https://github.com/fw876/helloworld"
-
-svn_exp "main" "chinadns-ng" "package/new/chinadns-ng" "https://github.com/fw876/helloworld"
-
-svn_exp "main" "shadow-tls" "package/new/shadow-tls" "https://github.com/fw876/helloworld"
-
-svn_exp "main" "tuic-client" "package/new/tuic-client" "https://github.com/fw876/helloworld"
-svn_exp "main" "v2ray-plugin" "package/new/v2ray-plugin" "https://github.com/fw876/helloworld"
-svn_exp "main" "shadowsocks-rust" "package/new/shadowsocks-rust" "https://github.com/fw876/helloworld"
-
-svn_exp "master" "net/kcptun" "feeds/packages/net/kcptun" "https://github.com/immortalwrt/packages"
 
 
 # 在 X86 架构下移除 Shadowsocks-rust
