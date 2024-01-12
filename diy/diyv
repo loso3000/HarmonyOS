@@ -10,16 +10,17 @@ KEY=123456
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 svn_exp() {
-	# 参数1是分支名, 参数2是子目录, 参数3是目标目录, 参数4仓库地址
+# 参数1是分支名, 参数2是子目录, 参数3是目标目录, 参数4仓库地址
 	trap 'rm -rf "$TMP_DIR"' 0 1 2 3
 	TMP_DIR="$(mktemp -d)" || exit 1
+        ORI_DIR="$PWD"
 	[ -d "$3" ] || mkdir -p "$3"
 	TGT_DIR="$(cd "$3"; pwd)"
 	cd "$TMP_DIR" && \
 	git init >/dev/null 2>&1 && \
 	git remote add -f origin "$4" >/dev/null 2>&1 && \
 	git checkout "remotes/origin/$1" -- "$2" && \
-	cd "$2" && cp -a . "$TGT_DIR/"
+	cd "$2" && cp -a . "$TGT_DIR/" && cd "$ORI_DIR"
 }
 # svn_exp "master" "target/linux/x86" "route" "https://github.com/coolsnowwolf/lede"
 
@@ -53,7 +54,7 @@ rm -rf ./feeds/luci/applications/luci-app-msd_lite
 
 rm -rf  ./include/kernel-6.1
 
-# svn_exp "master" "include/kernel-6.1" "include/kernel-6.1" "https://github.com/coolsnowwolf/lede"
+svn_exp "master" "include/kernel-6.1" "include/kernel-6.1" "https://github.com/coolsnowwolf/lede"
 
 # cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
 # 6.1 80211 error
@@ -222,7 +223,6 @@ rm -rf ./feeds/packages/net/smartdns
 rm -rf ./package/diy/smartdns
 rm -rf ./package/diy/luci-app-smartdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
-# svn export https://github.com/sirpdboy/sirpdboy-package/trunk/smartdns ./feeds/packages/net/smartdns
 svn_exp "master" "smartdns"  "feeds/packages/net/smartdns" "https://github.com/sirpdboy/sirpdboy-package"
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
@@ -232,7 +232,6 @@ rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-ap
 svn_exp "master" "luci-app-netdata" "feeds/luci/applications/luci-app-netdata" "https://github.com/sirpdboy/sirpdboy-package"
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
-# svn export https://github.com/loso3000/other/trunk/up/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind 
 svn_exp "master" "up/luci-app-arpbind" "feeds/luci/applications/luci-app-arpbind " "https://github.com/loso3000/other"
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 rm -rf ./package/other/up/luci-app-arpbind
@@ -245,6 +244,7 @@ rm -rf ./package/diy/luci-app-dockerman
 # rm -rf ./feeds/packages/utils/docker
 # git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/new/luci-lib-docker
 # git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
+
 
 svn_exp "master" "collections/luci-lib-docker" "package/new/luci-lib-docke" "https://github.com/lisaac/luci-lib-docker"
 svn_exp "master" "applications/luci-app-dockerman" "package/new/luci-app-dockerman" "https://github.com/lisaac/luci-app-dockerman"
