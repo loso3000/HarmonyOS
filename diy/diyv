@@ -504,6 +504,16 @@ rm -rf ./feeds/packages/net/xray*
 rm -rf ./feeds/packages/net/trojan*
 rm -rf ./feeds/packages/net/hysteria
 
+echo ' ShadowsocksR Plus+'
+# git clone https://github.com/fw876/helloworld package/ssr
+git_url "
+	https://github.com/fw876/helloworld
+	https://github.com/xiaorouji/openwrt-passwall-packages
+"
+
+git_exp loso3000/other luci-app-bypass 
+git_exp loso3000/other luci-app-ssr-plus
+
 #bypass
 # rm -rf package/other/up/pass/luci-app-bypass 
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
@@ -523,13 +533,6 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
 # sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 # sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
 # sed -i $line_number_INCLUDE_V2ray'd' package/custom/openwrt-passwall/luci-app-passwall/Makefile
-
-echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-git_url "
-	https://github.com/fw876/helloworld
-	https://github.com/xiaorouji/openwrt-passwall-packages
-"
 
 rm -rf  ./package/A/luci-app-ssr-plus
 rm -rf  ./package/A/trojan-plus
