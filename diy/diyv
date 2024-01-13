@@ -143,6 +143,7 @@ rm -rf package/*/{autocore,autosamba,default-settings}
 rm -rf feeds/*/*/{luci-app-dockerman,luci-app-aria2,luci-app-beardropper,oaf,luci-app-adguardhome,luci-app-appfilter,open-app-filter,luci-app-openclash,luci-app-vssr,luci-app-ssr-plus,luci-app-passwall,luci-app-bypass,luci-app-wrtbwmon,luci-app-samba,luci-app-samba4,luci-app-unblockneteasemusic}
 
 git clone https://github.com/loso3000/other ./package/other
+git clone https://github.com/loso3000/mypk ./package/mypk
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 #修正nat回流 
@@ -172,16 +173,13 @@ sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
 
 #daed-next
- git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
+#  git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
 
 echo advancedplus
-# clone_repo firker/luci-app-wrtbwmon-zh luci-app-wrtbwmon-zh
-# clone_repo kiddin9/openwrt-packages luci-app-adguardhome adguardhome luci-app-bypass lua-neturl
-git_exp  loso3000/mypk  luci-app-zplus luci-theme-zcat
-mv -f  ./package/A/luci-app-zplus ./package/A/luci-app-advancedplus
-sed -i 's/pdadplus/advancedplus/g' ./package/A/luci-app-advancedplus
+mv -f  ./package/mypk/luci-app-zplus ./package/mypk/luci-app-advancedplus
+sed -i 's/pdadplus/advancedplus/g' ./package/mypk/luci-app-advancedplus
 # git_exp  loso3000/mypk  luci-theme-zcat
-mv -f  ./package/lean/luci-theme-zcat ./package/A/luci-theme-kucat
+mv -f  ./package/mypk/luci-theme-zcat ./package/mypk/luci-theme-kucat
 
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
@@ -315,10 +313,10 @@ sed -i "s/hostname='.*'/hostname='EzOpWrt'/g" ./package/base-files/files/bin/con
 
 echo '替换smartdns'
 rm -rf ./feeds/packages/net/smartdns
-rm -rf ./package/diy/smartdns
-rm -rf ./package/diy/luci-app-smartdns
+# rm -rf ./package/diy/smartdns
+# rm -rf ./package/diy/luci-app-smartdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
-git_exp sirpdboy/sirpdboy-package smartdns
+# git_exp sirpdboy/sirpdboy-package smartdns
 git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 # netdata 
