@@ -14,6 +14,15 @@ svn_exp() {
 	git checkout "remotes/origin/$1" -- "$2" && \
 	cd "$2" && cp -a . "$TGT_DIR/"
 }
+
+color() {
+	case $1 in
+		cy) echo -e "\033[1;33m$2\033[0m" ;;
+		cr) echo -e "\033[1;31m$2\033[0m" ;;
+		cg) echo -e "\033[1;32m$2\033[0m" ;;
+		cb) echo -e "\033[1;34m$2\033[0m" ;;
+	esac
+}
 clone_repo() {
   # 参数1是仓库地址，参数2是分支名，参数3是目标目录
   repo_url=$1
@@ -180,10 +189,10 @@ mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
 #  git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
 
 echo advancedplus
-mv -f  ./package/mypk/luci-app-zplus ./package/mypk/luci-app-advancedplus
+mv -f  ./package/mypk/my/luci-app-zplus ./package/mypk/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/mypk/luci-app-advancedplus
 # git_exp  loso3000/mypk  luci-theme-zcat
-mv -f  ./package/mypk/luci-theme-zcat ./package/mypk/luci-theme-kucat
+mv -f  ./package/mypk/my/luci-theme-zcat ./package/mypk/luci-theme-kucat
 
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
