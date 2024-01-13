@@ -14,7 +14,14 @@ svn_exp() {
 	git checkout "remotes/origin/$1" -- "$2" && \
 	cd "$2" && cp -a . "$TGT_DIR/"
 }
-
+clone_repo() {
+  # 参数1是仓库地址，参数2是分支名，参数3是目标目录
+  repo_url=$1
+  branch_name=$2
+  target_dir=$3
+  # 克隆仓库到目标目录，并指定分支名和深度为1
+  git clone -b $branch_name --depth 1 $repo_url $target_dir
+}
 git_exp() {
     local repo_url branch target_dir source_dir current_dir destination_dir
     if [[ "$1" == */* ]]; then
