@@ -272,11 +272,16 @@ sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
-rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
-# rm -rf ./feeds/luci/applications/luci-app-mwan3
-# rm -rf ./feeds/packages/net/mwan3
-# mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
-# mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
+
+# Add Pandownload
+# svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server package/pandownload-fake-server
+git_exp immortalwrt/packages pandownload-fake-server
+
+# rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
+rm -rf ./feeds/luci/applications/luci-app-mwan3
+rm -rf ./feeds/packages/net/mwan3
+mv -f ./package/other/mwan3 ./feeds/packages/net/mwan3
+mv -f ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
 # rm -rf ./feeds/packages/net/mwan3
@@ -319,7 +324,8 @@ git_exp immortalwrt/packages pandownload-fake-server
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
-sed -i "s/ImmortalWrt/OpenWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
+sed -i "s/ImmortalWrt/EzOpWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
+sed -i "s/OpenWrt/EzOpWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 #修改默认主机名
 sed -i "s/hostname='.*'/hostname='EzOpWrt'/g" ./package/base-files/files/bin/config_generate
@@ -370,16 +376,6 @@ git_exp lisaac/luci-app-dockerman luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
 rm -rf ./feeds/luci/applications/aliyundrive-webdav
 git_exp messense/aliyundrive-webdav aliyundrive-webdav luci-app-aliyundrive-webdav
-
-# Add Pandownload 
-# svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
-git_exp immortalwrt/packages pandownload-fake-server  
-# rm -rf ./package/other/luci-app-mwan3  ./package/other/mwan3
-rm -rf ./feeds/luci/applications/luci-app-mwan3
-rm -rf ./feeds/packages/net/mwan3
-mv -f  ./package/other/mwan3 ./feeds/packages/net/mwan3
-mv -f  ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
-
 
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 git_exp loso3000/other softethervpn5
