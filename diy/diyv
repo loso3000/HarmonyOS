@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
-#=================================================
-# Description: Build OpenWrt using GitHub Actions
-WORKDIR=/workdir
-HOSTNAME=OpenWrt
-IPADDRESS=192.168.8.1
-SSID=Sirpdboy
-ENCRYPTION=psk2
-KEY=123456
+
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 svn_exp() {
@@ -303,8 +296,7 @@ rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-
 git_exp sirpdboy/sirpdboy-package luci-app-upnp
 rm -rf  ./package/diy/upnpd
 # Add Pandownload 
-# svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server   package/pandownload-fake-server 
-svn_exp "master" "net/pandownload-fake-server" "package/pandownload-fake-server " "https://github.com/immortalwrt/packages"
+git_exp immortalwrt/packages pandownload-fake-server
 #设置
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
