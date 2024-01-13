@@ -60,6 +60,10 @@ git_exp() {
     rm -rf gitemp
 }
 
+_printf() {
+	awk '{printf "%s %-40s %s %s %s\n" ,$1,$2,$3,$4,$5}'
+}
+
 git_url() {
 	# set -x
 	for x in $@; do
