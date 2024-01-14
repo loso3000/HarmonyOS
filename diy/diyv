@@ -342,16 +342,18 @@ rm -rf ./package/feeds/packages/luci-app-cupsd
 git_exp sirpdboy/luci-app-cupsd luci-app-cupsd cups
 
 # Add ddnsto & linkease
-git_exp linkease/nas-packages-luci luci
-git_exp linkease/nas-packages services ffmpeg-remux
-git_exp linkease/istore luci
-
+# git_exp linkease/nas-packages-luci luci
+# git_exp linkease/nas-packages services ffmpeg-remux
+# git_exp linkease/istore luci
+git clone  https://github.com/linkease/nas-packages-luci ./package/nas-packages-luci
+git clone  https://github.com/linkease/nas-packages ./package/nas-packages
+git clone  https://github.com/linkease/istore ./package/istore
 # svn export https://github.com/linkease/nas-packages-luci/trunk/luci/ ./package/diy1/luci
 # svn export https://github.com/linkease/nas-packages/trunk/network/services/ ./package/diy1/linkease
 # svn export https://github.com/linkease/nas-packages/trunk/multimedia/ffmpeg-remux/ ./package/diy1/ffmpeg-remux
 # svn export https://github.com/linkease/istore/trunk/luci/ ./package/diy1/istore
-sed -i 's/1/0/g' ./package/diy1/linkease/linkease/files/linkease.config
-sed -i 's/luci-lib-ipkg/luci-base/g' package/diy1/istore/luci-app-store/Makefile
+sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
+sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 # svn export https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
 
 
