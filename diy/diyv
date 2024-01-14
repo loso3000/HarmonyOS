@@ -148,6 +148,7 @@ rm -rf  ./feeds/luci/applications/luci-app-netdata
 rm -rf  ./feeds/packages/net/oaf
 rm -rf  ./feeds/packages/net/wget
 rm -rf ./feeds/packages/net/aria2
+rm -rf ./feeds/packages/net/ariang
 rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
  
 # 清理
@@ -185,7 +186,6 @@ git_url "
 	https://github.com/fw876/helloworld
 	https://github.com/xiaorouji/openwrt-passwall-packages
 "
-
 git_exp loso3000/other luci-app-bypass 
 git_exp loso3000/other luci-app-ssr-plus
 
