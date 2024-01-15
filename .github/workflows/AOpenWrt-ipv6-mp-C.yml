@@ -132,13 +132,13 @@ jobs:
         else 
           echo "DATA=$DATE_S" >>$GITHUB_ENV
         fi
-    - name: Cache
-      uses: klever1988/cachewrtbuild@main
-      with:
-       ccache: 'true'
-       mixkey: 'x86_64'
-       clean:  'false'  # 'false'
-       prefix: ${{ github.workspace }}/openwrt
+    #- name: Cache
+    #  uses: klever1988/cachewrtbuild@main
+    #  with:
+    #   ccache: 'true'
+     #  mixkey: 'x86_64'
+    #   clean:  'false'  # 'false'
+    #   prefix: ${{ github.workspace }}/openwrt
     
     - name: Update feeds
       run: | 
@@ -159,30 +159,33 @@ jobs:
         #cat  $GITHUB_WORKSPACE/config/comm  >> .config
         echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
         make defconfig
-        make download -j8
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
-          df -h
+        make download -j50
+        # find dl -size -1024c -exec ls -l {} \;
+        # find dl -size -1024c -exec rm -f {} \;
+        df -h
     - name: Compile Packages
       id: compile
       run: |
         df -h
         cd openwrt
-        echo -e "$(nproc) thread compile"
-        make tools/compile -j$(nproc) || make tools/compile -j$(nproc)
-        make toolchain/compile -j$(nproc) || make toolchain/compile -j$(nproc)
-        make target/compile -j$(nproc) || make target/compile -j$(nproc) IGNORE_ERRORS=1
-        make diffconfig
-        make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
-        make package/index
-        bash  bakkmod.sh
+        #echo -e "$(nproc) thread compile"
+        #make tools/compile -j$(nproc) || make tools/compile -j$(nproc)
+        #make toolchain/compile -j$(nproc) || make toolchain/compile -j$(nproc)
+        #make target/compile -j$(nproc) || make target/compile -j$(nproc) IGNORE_ERRORS=1
+        #make diffconfig
+        #make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
+        #make package/index
+        #bash  bakkmod.sh
     - name: Generate Firmware
       run: |
         df -h
         cd openwrt 
-        make package/install -j$(nproc) || make package/install -j1 V=s
-        make target/install -j$(nproc) || make target/install -j1 V=s
-         make checksum
+        
+        echo -e "$(nproc) thread compile"
+        make -j$(nproc) || make -j1 || make -j1 V=s
+        #make package/install -j$(nproc) || make package/install -j1 V=s
+        #make target/install -j$(nproc) || make target/install -j1 V=s
+        # make checksum
          bash buildmd5.sh
     - name: Check space usage
       if: (!cancelled())
