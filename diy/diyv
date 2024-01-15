@@ -138,6 +138,19 @@ _delpackage() {
 		[[ $z =~ ^# ]] || sed -i -E "s/(CONFIG_PACKAGE_.*$z)=y/# \1 is not set/" .config
 	done
 }
+# Git稀疏克隆，只克隆指定目录到本地
+git_clone() {
+  branch="$1" repourl="$2" && shift 2
+  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
+  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
+  cd $repodir && git sparse-checkout set $@
+  mv -f $@ ../package
+  cd .. && rm -rf $repodir
+}
+
+# git_sparse_clone master https://github.com/syb999/openwrt-19.07.1 package/network/services/msd_lite
+# TTYD 免登录
+# sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
 rm -rf ./feeds/luci/themes/luci-theme-argon
@@ -480,7 +493,7 @@ sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefil
 
 # Fix libssh
 # rm -rf feeds/packages/libs
-git_exp openwrt/packages libssh
+# git_exp openwrt/packages libssh
 
 # 使用默认取消自动
 echo "修改默认主题"
@@ -534,7 +547,6 @@ sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-script
 # 修改makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
-
 
 # 修复 hostapd 报错
 #cp -f $GITHUB_WORKSPACE/scriptx/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
