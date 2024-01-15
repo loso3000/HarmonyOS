@@ -329,8 +329,7 @@ sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
 # Add Pandownload
-# svn export https://github.com/immortalwrt/packages/trunk/net/pandownload-fake-server package/pandownload-fake-server
-git_exp immortalwrt/packages pandownload-fake-server
+# git_exp immortalwrt/packages pandownload-fake-server
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
 rm -rf ./feeds/luci/applications/luci-app-mwan3
