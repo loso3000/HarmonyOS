@@ -639,6 +639,7 @@ cat>buildmd5.sh<<-\EOF
 rm -rf  bin/targets/x86/64/config.buildinfo
 rm -rf  bin/targets/x86/64/feeds.buildinfo
 rm -rf  bin/targets/x86/64/*x86-64-generic-kernel.bin
+rm -rf  bin/targets/x86/64/*rootfs.tar.gz
 rm -rf  bin/targets/x86/64/*x86-64-generic-squashfs-rootfs.img.gz
 rm -rf  bin/targets/x86/64/*x86-64-generic-rootfs.tar.gz
 rm -rf  bin/targets/x86/64/*x86-64-generic.manifest
@@ -648,6 +649,7 @@ rm -rf bin/targets/x86/64/*x86-64-generic-ext4-rootfs.img.gz
 rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined-efi.img.gz
 rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined.img.gz
 rm -rf bin/targets/x86/64/profiles.json
+rm -rf bin/targets/x86/64/*kernel.bin
 sleep 2
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
