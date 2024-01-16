@@ -159,10 +159,6 @@ rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 rm -rf  ./feeds/packages/net/oaf
 rm -rf  ./feeds/packages/net/wget
-rm -rf ./feeds/packages/net/aria2
-rm -rf ./feeds/packages/net/ariang
-rm -rf ./feeds/packages/net/webui-aria2
-rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
  
 # 清理
 rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web}
@@ -226,7 +222,11 @@ git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/loso3000/mypk ./package/mypk
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
-sed -i 's/ariang/ariang +webui-aria2/g' ./package/diy/luci-app-aria2/Makefile
+rm -rf ./feeds/packages/net/aria2
+#rm -rf ./feeds/packages/net/ariang
+#rm -rf ./feeds/packages/net/webui-aria2
+rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
+#sed -i 's/ariang/ariang +webui-aria2/g' ./package/diy/luci-app-aria2/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
@@ -570,11 +570,17 @@ wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/frien
 case "${CONFIG_S}" in
 Free-Plus)
 ;;
-Free-Bypass)
+Vip-Super)
+sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua 
 ;;
 Vip-Plus)
 ;;
 Vip-Bypass)
+sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
 *)
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
@@ -617,6 +623,7 @@ fi
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
+ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
 date1="${CONFIG_S}-${DATA}_by_Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
@@ -624,6 +631,8 @@ elif [ "$VER1" = "5.15" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver515}_by_Sirpdboy"
 elif [ "$VER1" = "6.1" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
+elif [ "$VER1" = "6.6" ]; then
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver66}_by_Sirpdboy"
 fi
 echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
