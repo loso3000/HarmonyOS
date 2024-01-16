@@ -161,6 +161,7 @@ rm -rf  ./feeds/packages/net/oaf
 rm -rf  ./feeds/packages/net/wget
 rm -rf ./feeds/packages/net/aria2
 rm -rf ./feeds/packages/net/ariang
+rm -rf ./feeds/packages/net/webui-aria2
 rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
  
 # 清理
@@ -225,6 +226,7 @@ git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/loso3000/mypk ./package/mypk
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+sed -i 's/ariang/ariang +webui-aria2/g' ./package/diy/luci-app-aria2/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
