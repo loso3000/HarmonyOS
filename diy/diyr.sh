@@ -658,6 +658,7 @@ rm -rf bin/targets/*/*/*generic-ext4-rootfs.img*
 rm -rf bin/targets/*/*/*generic-ext4-combined-efi.img*
 rm -rf bin/targets/*/*/*generic-ext4-combined.img*
 rm -rf bin/targets/*/*/profiles.json
+rm -rf bin/targets/*/*/*kernel.bin
 sleep 2
 
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
