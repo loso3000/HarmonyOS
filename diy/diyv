@@ -491,8 +491,9 @@ rm -rf ./feeds/packages/net/qBittorrent-static
 rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
 
 # Add OpenClash
-git_exp vernesong/OpenClash luci-app-openclash
-sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
+rm -rf  ./feeds/luci/applications/luci-app-openclash
+git clone https://github.com/vernesong/OpenClash.git package/openclash
+sed -i 's/+libcap /+libcap +libcap-bin /' package/openclash/luci-app-openclash/Makefile
 
 # Fix libssh
 # rm -rf feeds/packages/libs
