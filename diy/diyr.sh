@@ -492,8 +492,9 @@ rm -rf ./feeds/packages/net/qBittorrent-static
 rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
 
 # Add OpenClash
-git_exp vernesong/OpenClash luci-app-openclash
-sed -i 's/+libcap /+libcap +libcap-bin /' package/new/luci-app-openclash/Makefile
+rm -rf  ./feeds/luci/applications/luci-app-openclash
+git clone https://github.com/vernesong/OpenClash.git package/openclash
+sed -i 's/+libcap /+libcap +libcap-bin /' package/openclash/luci-app-openclash/Makefile
 
 # Fix libssh
 # rm -rf feeds/packages/libs
@@ -563,7 +564,7 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # 风扇脚本
-sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
+# sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
 wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
 
@@ -571,7 +572,7 @@ case "${CONFIG_S}" in
 Free-Plus)
 ;;
 Vip-Super)
-sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
@@ -580,7 +581,7 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/contr
 Vip-Plus)
 ;;
 Vip-Bypass)
-sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
 *)
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
