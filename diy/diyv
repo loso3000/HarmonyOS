@@ -192,17 +192,17 @@ rm -rf ./feeds/packages/net/hysteria
 
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
 rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
-git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+# git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 rm -rf ./package/openwrt-passwall/trojan-plus
 rm -rf ./package/openwrt-passwall/v2ray-geodata
 rm -rf ./package/openwrt-passwall/trojan
 
 echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-# git_url "
-# 	https://github.com/xiaorouji/openwrt-passwall-packages
-# 	https://github.com/fw876/helloworld
-# "
+git clone https://github.com/fw876/helloworld package/ssr
+git_url "
+ 	https://github.com/xiaorouji/openwrt-passwall-packages
+ 	https://github.com/fw876/helloworld
+"
 #git_exp loso3000/other luci-app-bypass 
 git_exp loso3000/other luci-app-ssr-plus
 
