@@ -345,7 +345,7 @@ git clone  https://github.com/linkease/nas-packages-luci ./package/nas-packages-
 git clone  https://github.com/linkease/nas-packages ./package/nas-packages
 git clone  https://github.com/linkease/istore ./package/istore
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
-sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
+# sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
 # Add Pandownload
 # git_exp immortalwrt/packages pandownload-fake-server
