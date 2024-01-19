@@ -377,7 +377,7 @@ git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/l
 #upnp
 rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
 git_exp sirpdboy/sirpdboy-package luci-app-upnp
-rm -rf  ./package/diy/upnpd
+# rm -rf  ./package/diy/upnpd
 #设置
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
