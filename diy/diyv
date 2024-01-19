@@ -160,7 +160,11 @@ rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 rm -rf  ./feeds/packages/net/oaf
 rm -rf  ./feeds/packages/net/wget
- 
+
+rm -rf  ./feeds/packages/net/zsh
+rm -rf  ./feeds/packages/net/homebox
+rm -rf  ./feeds/packages/net/naiveproxy
+
 # 清理
 rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web}
 rm -rf package/*/{autocore,autosamba,default-settings}
@@ -220,7 +224,7 @@ rm -rf ./package/A/mosdns
 git_exp QiuSimons/OpenWrt-Add  trojan-plus
 git_exp fw876/helloworld  lua-neturl
 git_exp fw876/helloworld  shadow-tls
-git_exp fw876/helloworld  redsocks2 
+git_exp fw876/helloworld  redsocks2
 
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/loso3000/mypk ./package/mypk
