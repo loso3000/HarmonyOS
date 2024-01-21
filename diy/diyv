@@ -205,8 +205,8 @@ echo ' ShadowsocksR Plus+'
 git clone https://github.com/fw876/helloworld package/ssr
 git_url "
  	https://github.com/xiaorouji/openwrt-passwall-packages
- 	https://github.com/fw876/helloworld
 "
+ 	#https://github.com/fw876/helloworld
 #git_exp loso3000/other luci-app-bypass 
 git_exp loso3000/other luci-app-ssr-plus
 
@@ -253,14 +253,6 @@ cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
 rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 
-#rm -rf  ./include/kernel-6.1
-curl -fsSL  https://raw.githubusercontent.com/coolsnowwolf/lede/master/include/kernel-6.1 > ./include/kernel-6.1
-
-# cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
-# 6.1 80211 error
-# cat ./package/other/patch/mac80211/intel.mk > ./package/kernel/mac80211/intel.mk
-#cp -rf ./package/other/luci/*  ./feeds/luci/*
-
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 mv -f  ./package/other/up/luci-app-jzgk ./package/other/up/luci-app-control-parentcontrol
@@ -298,14 +290,9 @@ rm -rf ./package/lean/automount
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount
 sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
 
-rm -rf ./package/lean/default-settings  
-rm -rf  package/emortal/default-settings 
+rm -rf ./package/lean/default-settings
+rm -rf  package/emortal/default-settings
 mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
-
-#package/network/services/dropbear
-#rm -rf package/network/services/dropbear
-#svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/network/services/dropbear ./package/network/services/dropbear
-
 
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
@@ -341,7 +328,7 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
 rm -rf ./feeds/packages/utils/cups
 rm -rf ./feeds/packages/utils/cupsd
 rm -rf ./feeds/luci/applications/luci-app-cupsd
-rm -rf ./package/feeds/packages/luci-app-cupsd 
+rm -rf ./package/feeds/packages/luci-app-cupsd
 git_exp sirpdboy/luci-app-cupsd luci-app-cupsd cups
 
 # Add ddnsto & linkease
@@ -350,9 +337,6 @@ git clone  https://github.com/linkease/nas-packages ./package/nas-packages
 git clone  https://github.com/linkease/istore ./package/istore
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
 # sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
-
-# Add Pandownload
-# git_exp immortalwrt/packages pandownload-fake-server
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
 rm -rf ./feeds/luci/applications/luci-app-mwan3
@@ -369,10 +353,11 @@ rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/luci/luci-app-mosdns
 
 # 添加额外软件包alist
+rm -rf ./feeds/luci/applications/luci-app-alist  package/feeds/packages/luci-app-alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
-sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
+# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+# rm -rf feeds/packages/lang/golang
+# git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
 
 #upnp
 rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
@@ -398,7 +383,7 @@ rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-ap
 git_exp sirpdboy/sirpdboy-package  luci-app-netdata
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
-git_exp loso3000/other luci-app-arpbind 
+git_exp loso3000/other luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 rm -rf ./package/other/up/luci-app-arpbind
 
@@ -527,7 +512,6 @@ rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci
 # sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 #Add x550
 git clone https://github.com/shenlijun/openwrt-x550-nbase-t package/openwrt-x550-nbase-t
-
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
