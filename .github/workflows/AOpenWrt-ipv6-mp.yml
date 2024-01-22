@@ -170,33 +170,20 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
         df -h
-    - name: Compile Packages
-      id: compile
+
+    - name: Compile Openwrt
+      id: compileopenwrt
+      continue-on-error: true
       run: |
-         df -h
-         cd openwrt
-         echo -e "$(nproc) thread compile"
-         make tools/compile -j$(nproc) || make tools/compile -j$(nproc)
-         make toolchain/compile -j$(nproc) || make toolchain/compile -j$(nproc)
-         make target/compile -j$(nproc) || make target/compile -j$(nproc) IGNORE_ERRORS=1
-         make diffconfig
-         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
-         make package/index
-         bash  bakkmod.sh
-    - name: Generate Firmware
+        cd openwrt
+        #echo | make kernel_oldconfig -j$(($(nproc) + 1)) 
+        IGNORE_ERRORS=1 make -j$(($(nproc) + 1))
+        echo $?
+    - name: If Error
+      if: steps.compileopenwrt.outcome == 'failure'
       run: |
-         df -h
-         cd openwrt 
-          make package/install -j$(nproc) || make package/install -j1 V=s
-          make target/install -j$(nproc) || make target/install -j1 V=s
-         pushd bin/targets/x86/64 
-         rm -rf *generic-kernel.bin
-         rm -rf *generic-rootfs.tar.gz
-         rm -rf *generic-squashfs-rootfs.img.gz
-         rm -rf *generic-squashfs-combined-efi.vmdk
-         rm -rf *generic.manifest
-         # mv openwrt-x86-64-generic-squashfs-combined-efi.img.gz $(date +"%Y.%m.%d")-docker-x86-64-kernel-6.1-squashfs-efi.img.gz
-         popd 
+        cat openwrt/.config
+        echo '================================================================'
          make checksum
          bash buildmd5.sh
     - name: Check space usage
