@@ -166,9 +166,9 @@ rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
 
 # 清理
-rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web}
-rm -rf package/*/{autocore,autosamba,default-settings}
-rm -rf feeds/*/*/{luci-app-dockerman,luci-app-aria2,luci-app-beardropper,oaf,luci-app-adguardhome,luci-app-appfilter,open-app-filter,luci-app-openclash,luci-app-vssr,luci-app-ssr-plus,luci-app-passwall,luci-app-bypass,luci-app-wrtbwmon,luci-app-samba,luci-app-samba4,luci-app-unblockneteasemusic}
+# rm -rf feeds/*/*/{smartdns,wrtbwmon,luci-app-smartdns,luci-app-timecontrol,luci-app-ikoolproxy,luci-app-smartinfo,luci-app-socat,luci-app-netdata,luci-app-wolplus,luci-app-arpbind,luci-app-baidupcs-web}
+# rm -rf package/*/{autocore,autosamba,default-settings}
+# rm -rf feeds/*/*/{luci-app-dockerman,luci-app-aria2,luci-app-beardropper,oaf,luci-app-adguardhome,luci-app-appfilter,open-app-filter,luci-app-openclash,luci-app-vssr,luci-app-ssr-plus,luci-app-passwall,luci-app-bypass,luci-app-wrtbwmon,luci-app-samba,luci-app-samba4,luci-app-unblockneteasemusic}
 
 # rm -rf ./feeds/luci/applications/chinadns-ng package/feeds/packages/chinadns-ng
 
@@ -268,7 +268,6 @@ mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
 echo advancedplus
 mv -f  ./package/mypk/my/luci-app-zplus ./package/mypk/luci-app-advancedplus
 sed -i 's/pdadplus/advancedplus/g' ./package/mypk/luci-app-advancedplus
-# git_exp  loso3000/mypk  luci-theme-zcat
 mv -f  ./package/mypk/my/luci-theme-zcat ./package/mypk/luci-theme-kucat
 
 mkdir -p ./package/lean
@@ -392,9 +391,9 @@ rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
 rm -rf ./package/diy/luci-app-dockerman
-
-git_exp lisaac/luci-lib-docker luci-lib-docker
-git_exp lisaac/luci-app-dockerman luci-app-dockerman
+#rm -rf ./feeds/packages/utils/docker
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/new/luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
 # sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
