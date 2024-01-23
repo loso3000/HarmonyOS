@@ -112,10 +112,10 @@ jobs:
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
         sudo -E timedatectl set-timezone "Asia/Shanghai"
-          sudo mkdir -p /mnt/workdir
-          sudo chown $USER:$GROUPS /mnt/workdir
+        #  sudo mkdir -p /mnt/workdir
+        #  sudo chown $USER:$GROUPS /mnt/workdir
     - name: Clone source code
-      working-directory: /mnt/workdir
+      #working-directory: /mnt/workdir
       run: |
         df -hT $PWD
         if [[ $REPO_BRANCH == 'stable' ]]; then
@@ -125,7 +125,7 @@ jobs:
         fi
         #  git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         # git clone --depth 1 $REPO_URL -b stable openwrt
-          ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        #  ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
         else 
@@ -145,7 +145,7 @@ jobs:
     #   ccache: 'true'
    #    mixkey: 'x86_64'
      #  clean:  'false'  # 'false'
-   #    prefix: /mnt/workdir/openwrt
+     #   prefix: ${{ github.workspace }}/openwrt
 
     - name: Update feeds
       run: | 
