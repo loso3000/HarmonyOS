@@ -112,10 +112,10 @@ jobs:
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
         sudo -E timedatectl set-timezone "Asia/Shanghai"
-        #  sudo mkdir -p /mnt/workdir
-        #  sudo chown $USER:$GROUPS /mnt/workdir
+          sudo mkdir -p /mnt/workdir
+          sudo chown $USER:$GROUPS /mnt/workdir
     - name: Clone source code
-      #working-directory: /mnt/workdir
+      working-directory: /mnt/workdir
       run: |
         df -hT $PWD
         if [[ $REPO_BRANCH == 'stable' ]]; then
@@ -125,7 +125,7 @@ jobs:
         fi
         #  git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         # git clone --depth 1 $REPO_URL -b stable openwrt
-        #  ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
         else 
@@ -176,21 +176,11 @@ jobs:
       continue-on-error: true
       run: |
         cd openwrt
+        df -hT
         #echo | make kernel_oldconfig -j$(($(nproc) + 1)) 
         #IGNORE_ERRORS=1 make -j$(($(nproc) + 1))
         make -j1 V=s
         echo $?
-    - name: If Error
-      if: steps.compileopenwrt.outcome == 'failure'
-      run: |
-        cat openwrt/.config
-        echo '================================================================'
-         make checksum
-         bash buildmd5.sh
-    - name: Check space usage
-      if: (!cancelled())
-      run: df -hT
-
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
