@@ -197,22 +197,21 @@ rm -rf ./feeds/packages/net/hysteria
 rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
 rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
 # git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-rm -rf ./package/openwrt-passwall/trojan-plus
-rm -rf ./package/openwrt-passwall/v2ray-geodata
-rm -rf ./package/openwrt-passwall/trojan
+# rm -rf ./package/openwrt-passwall/trojan-plus
+# rm -rf ./package/openwrt-passwall/v2ray-geodata
+# rm -rf ./package/openwrt-passwall/trojan
 
 echo ' ShadowsocksR Plus+'
-git clone https://github.com/fw876/helloworld package/ssr
+# git clone https://github.com/fw876/helloworld package/ssr
 git_url "
- 	https://github.com/xiaorouji/openwrt-passwall-packages
+ 	https://github.com/sbwml/openwrt_helloworld
 "
  	#https://github.com/fw876/helloworld
 #git_exp loso3000/other luci-app-bypass 
 git_exp loso3000/other luci-app-ssr-plus
 
-git_exp xiaorouji/openwrt-passwall luci-app-passwall
-git_exp xiaorouji/openwrt-passwall2 luci-app-passwall2
-
+# git_exp xiaorouji/openwrt-passwall luci-app-passwall
+# git_exp xiaorouji/openwrt-passwall2 luci-app-passwall2
 rm -rf  ./package/A/luci-app-ssr-plus
 rm -rf  ./package/A/trojan-plus
 rm -rf  ./package/A/trojan
@@ -222,9 +221,9 @@ rm -rf ./package/A/xray-plugin
 rm -rf ./package/A/mosdns
 
 git_exp QiuSimons/OpenWrt-Add  trojan-plus
-git_exp fw876/helloworld  lua-neturl
-git_exp fw876/helloworld  shadow-tls
-git_exp fw876/helloworld  redsocks2
+# git_exp fw876/helloworld  lua-neturl
+# git_exp fw876/helloworld  shadow-tls
+# git_exp fw876/helloworld  redsocks2
 
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/loso3000/mypk ./package/mypk
