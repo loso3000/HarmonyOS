@@ -180,12 +180,22 @@ jobs:
         #echo | make kernel_oldconfig -j$(($(nproc) + 1)) 
         #IGNORE_ERRORS=1 make -j$(($(nproc) + 1))
         make -j1 V=s
-        echo $?
+
+         rm -rf ./targets/x86/64/*x86-64-combined*
+         bash  bakkmod.sh
+         make package/install -j$(nproc) || make package/install -j1 V=s
+         make target/install -j$(nproc) || make target/install -j1 V=s
+         make json_overview_image_info
+         make checksum
+         bash buildmd5.sh
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
+        ls
+        echo "======================="
+        df -hT
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
