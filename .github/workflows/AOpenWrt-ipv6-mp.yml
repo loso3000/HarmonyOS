@@ -119,8 +119,8 @@ jobs:
         
         sudo -E timedatectl set-timezone "Asia/Shanghai"
         sudo mkdir -p /mnt/workdir
-        # sudo chown $USER:$GROUPS /mnt/workdir
-        sudo chown -R runner:runner/mnt/workdir
+        sudo chown $USER:$GROUPS /mnt/workdir
+         # sudo chown -R runner:runner/mnt/workdir
     - name: Clone source code
       working-directory: /mnt/workdir
       run: |
