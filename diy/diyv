@@ -1,152 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
-svn_exp() {
-	# 参数1是分支名, 参数2是子目录, 参数3是目标目录, 参数4仓库地址
-	trap 'rm -rf "$TMP_DIR"' 0 1 2 3
-	TMP_DIR="$(mktemp -d)" || exit 1
-	[ -d "$3" ] || mkdir -p "$3"
-	TGT_DIR="$(cd "$3"; pwd)"
-	cd "$TMP_DIR" && \
-	git init >/dev/null 2>&1 && \
-	git remote add -f origin "$4" >/dev/null 2>&1 && \
-	git checkout "remotes/origin/$1" -- "$2" && \
-	cd "$2" && cp -a . "$TGT_DIR/"
-}
-
-color() {
-	case $1 in
-		cy) echo -e "\033[1;33m$2\033[0m" ;;
-		cr) echo -e "\033[1;31m$2\033[0m" ;;
-		cg) echo -e "\033[1;32m$2\033[0m" ;;
-		cb) echo -e "\033[1;34m$2\033[0m" ;;
-	esac
-}
-clone_repo() {
-  # 参数1是仓库地址，参数2是分支名，参数3是目标目录
-  repo_url=$1
-  branch_name=$2
-  target_dir=$3
-  # 克隆仓库到目标目录，并指定分支名和深度为1
-  git clone -b $branch_name --depth 1 $repo_url $target_dir
-}
-git_exp() {
-    local repo_url branch target_dir source_dir current_dir destination_dir
-    if [[ "$1" == */* ]]; then
-        repo_url="$1"
-        shift
-    else
-        branch="-b $1"
-        repo_url="$2"
-        shift 2
-    fi
-
-    if ! git clone -q $branch --depth 1 "https://github.com/$repo_url" gitemp; then
-        echo -e "$(color cr 拉取) https://github.com/$repo_url [ $(color cr ✕) ]" | _printf
-        return 0
-    fi
-
-    for target_dir in "$@"; do
-        source_dir=$(find gitemp -maxdepth 5 -type d -name "$target_dir" -print -quit)
-        current_dir=$(find package/ feeds/ target/ -maxdepth 5 -type d -name "$target_dir" -print -quit)
-        destination_dir="${current_dir:-package/A/$target_dir}"
-        if [[ -d $current_dir && $destination_dir != $current_dir ]]; then
-            mv -f "$current_dir" ../
-        fi
-
-        if [[ -d $source_dir ]]; then
-            if mv -f "$source_dir" "$destination_dir"; then
-                if [[ $destination_dir = $current_dir ]]; then
-                    echo -e "$(color cg 替换) $target_dir [ $(color cg ✔) ]" | _printf
-                else
-                    echo -e "$(color cb 添加) $target_dir [ $(color cb ✔) ]" | _printf
-                fi
-            fi
-        fi
-    done
-
-    rm -rf gitemp
-}
-
-_printf() {
-	awk '{printf "%s %-40s %s %s %s\n" ,$1,$2,$3,$4,$5}'
-}
-
-git_url() {
-	# set -x
-	for x in $@; do
-		name="${x##*/}"
-		if [[ "$(grep "^https" <<<$x | egrep -v "helloworld$|build$|openwrt-passwall-packages$")" ]]; then
-			g=$(find package/ target/ feeds/ -maxdepth 5 -type d -name "$name" 2>/dev/null | grep "/${name}$" | head -n 1)
-			if [[ -d $g ]]; then
-				mv -f $g ../ && k="$g"
-			else
-				k="package/A/$name"
-			fi
-
-			git clone -q $x $k && f="1"
-
-			if [[ -n $f ]]; then
-				if [[ $k = $g ]]; then
-					echo -e "$(color cg 替换) $name [ $(color cg ✔) ]" | _printf
-				else
-					echo -e "$(color cb 添加) $name [ $(color cb ✔) ]" | _printf
-				fi
-			else
-				echo -e "$(color cr 拉取) $name [ $(color cr ✕) ]" | _printf
-				if [[ $k = $g ]]; then
-					mv -f ../${g##*/} ${g%/*}/ && \
-					echo -e "$(color cy 回退) ${g##*/} [ $(color cy ✔) ]" | _printf
-				fi
-			fi
-			unset -v f k g
-		else
-			for w in $(grep "^https" <<<$x); do
-				git clone -q $w ../${w##*/} && {
-					for z in `ls -l ../${w##*/} | awk '/^d/{print $NF}' | grep -Ev 'dump$|dtest$'`; do
-						g=$(find package/ feeds/ target/ -maxdepth 5 -type d -name $z 2>/dev/null | head -n 1)
-						if [[ -d $g ]]; then
-							rm -rf $g && k="$g"
-						else
-							k="package/A"
-						fi
-						if mv -f ../${w##*/}/$z $k; then
-							if [[ $k = $g ]]; then
-								echo -e "$(color cg 替换) $z [ $(color cg ✔) ]" | _printf
-							else
-								echo -e "$(color cb 添加) $z [ $(color cb ✔) ]" | _printf
-							fi
-						fi
-						unset -v k g
-					done
-				} && rm -rf ../${w##*/}
-			done
-		fi
-	done
-	# set +x
-}
-
-_packages() {
-	for z in $@; do
-		[[ $z =~ ^# ]] || echo "CONFIG_PACKAGE_$z=y" >>.config
-	done
-}
-
-_delpackage() {
-	for z in $@; do
-		[[ $z =~ ^# ]] || sed -i -E "s/(CONFIG_PACKAGE_.*$z)=y/# \1 is not set/" .config
-	done
-}
-# Git稀疏克隆，只克隆指定目录到本地
-git_clone() {
-  branch="$1" repourl="$2" && shift 2
-  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
-  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
-  cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package
-  cd .. && rm -rf $repodir
-}
 
 # TTYD 免登录
 # sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
@@ -181,7 +36,6 @@ rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
 
-git_exp QiuSimons/OpenWrt-Add  trojan-plus
 # git_exp fw876/helloworld  lua-neturl
 # git_exp fw876/helloworld  shadow-tls
 # git_exp fw876/helloworld  redsocks2
@@ -327,7 +181,6 @@ git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/l
 
 #upnp
 rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
-git_exp sirpdboy/sirpdboy-package luci-app-upnp
 # rm -rf  ./package/diy/upnpd
 #设置
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
@@ -346,12 +199,8 @@ git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
-git_exp sirpdboy/sirpdboy-package  luci-app-netdata
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
-git_exp loso3000/other luci-app-arpbind
-ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
-rm -rf ./package/other/up/luci-app-arpbind
 
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-dockerman
@@ -369,17 +218,10 @@ git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/l
 # sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' ./package/new/luci-app-dockerman/Makefile
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
 
-# Add luci-aliyundrive-webdav
-rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav 
-rm -rf ./feeds/luci/applications/aliyundrive-webdav
-git_exp messense/aliyundrive-webdav aliyundrive-webdav luci-app-aliyundrive-webdav
-
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
-git_exp loso3000/other softethervpn5
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
-git_exp sirpdboy/sirpdboy-package luci-app-socat
-sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./package/A/luci-app-socat/po/zh-cn/socat.po
+sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./package/other/up/luci-app-socat/po/zh-cn/socat.po
 ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/A/luci-app-socat
 
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
@@ -437,7 +279,6 @@ rm -rf ./feeds/luci/applications/luci-app-serverchan && \
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
 
 rm -rf ./feeds/packages/net/adguardhome
-git_exp openwrt/packages adguardhome
 
 git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
