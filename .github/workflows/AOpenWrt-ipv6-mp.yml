@@ -116,11 +116,10 @@ jobs:
         sudo -E git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
         sudo -E git config --global core.abbrev auto
         df -h
-        
         sudo -E timedatectl set-timezone "Asia/Shanghai"
         sudo mkdir -p /mnt/workdir
         sudo chown $USER:$GROUPS /mnt/workdir
-         # sudo chown -R runner:runner/mnt/workdir
+         # sudo chown -R runner:runner /mnt/workdir
     - name: Clone source code
       working-directory: /mnt/workdir
       run: |
@@ -136,13 +135,6 @@ jobs:
         else 
           echo "DATA=$DATE_S" >>$GITHUB_ENV
         fi
-    - name: Cache
-      uses: klever1988/cachewrtbuild@main
-      with:
-       ccache: 'true'
-       mixkey: 'x86_64'
-       clean:  'false'  # 'false'
-       prefix: ${{ github.workspace }}/openwrt
 
     - name: Update feeds
       run: | 
@@ -161,9 +153,9 @@ jobs:
         cd openwrt
         cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  > .config
         #cat  $GITHUB_WORKSPACE/config/comm  >> .config
-        echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
+        #echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
         make defconfig
-        make download -j50
+        make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
         df -h
