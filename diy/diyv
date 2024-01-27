@@ -140,14 +140,6 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
-#cups
-rm -rf ./feeds/packages/utils/cups
-rm -rf ./feeds/packages/utils/cupsd
-rm -rf ./feeds/luci/applications/luci-app-cupsd
-rm -rf ./package/feeds/packages/luci-app-cupsd
-git_exp sirpdboy/luci-app-cupsd luci-app-cupsd cups
-
-
 # Add ddnsto & linkease
 pushd package/community/linkease
 git clone --depth=1 https://github.com/linkease/nas-packages-luci
