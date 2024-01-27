@@ -148,18 +148,22 @@ jobs:
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
-    - name:  Download packages
+    - name:  defconfig
       run: |
         cd openwrt
         cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  > .config
         #cat  $GITHUB_WORKSPACE/config/comm  >> .config
         #echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
         make defconfig
+        df -h
+
+    - name:  Download packages
+      run: |
+        cd openwrt
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
         df -h
-
     - name: Compile Openwrt
       id: compileopenwrt
       # continue-on-error: true
