@@ -172,46 +172,11 @@ rm -rf  ./feeds/packages/net/naiveproxy
 
 # rm -rf ./feeds/luci/applications/chinadns-ng package/feeds/packages/chinadns-ng
 
-# Passwall
-rm -rf ./feeds/packages/net/pdnsd-alt
-# rm -rf ./feeds/packages/net/shadowsocks-libev
-rm -rf ./feeds/packages/net/xray-core
-# rm -rf ./feeds/packages/net/kcptun
-rm -rf ./feeds/packages/net/brook
-rm -rf ./feeds/packages/net/chinadns-ng
-rm -rf ./feeds/packages/net/dns2socks
-rm -rf ./feeds/packages/net/hysteria
-rm -rf ./feeds/packages/net/ipt2socks
-rm -rf ./feeds/packages/net/dns2tcp
-rm -rf ./feeds/packages/net/microsocks
-rm -rf ./feeds/packages/net/naiveproxy
-rm -rf ./feeds/packages/net/shadowsocks-rust
-rm -rf ./feeds/packages/net/simple-obfs
-rm -rf ./feeds/packages/net/ssocks
-rm -rf ./feeds/packages/net/tcping
-rm -rf ./feeds/packages/net/v2ray*
-rm -rf ./feeds/packages/net/xray*
-rm -rf ./feeds/packages/net/trojan*
-rm -rf ./feeds/packages/net/hysteria
+# Add luci-app-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 ./package/passwall2
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall ./package/passwall
 
-rm -rf ./feeds/luci/applications/luci-app-ssr-plus  package/feeds/packages/luci-app-ssr-plus
-rm -rf ./feeds/luci/applications/luci-app-passwall  package/feeds/packages/luci-app-passwall
-# git clone https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-# rm -rf ./package/openwrt-passwall/trojan-plus
-# rm -rf ./package/openwrt-passwall/v2ray-geodata
-# rm -rf ./package/openwrt-passwall/trojan
-
-echo ' ShadowsocksR Plus+'
-# git clone https://github.com/fw876/helloworld package/ssr
-git_url "
- 	https://github.com/sbwml/openwrt_helloworld
-"
- 	#https://github.com/fw876/helloworld
-#git_exp loso3000/other luci-app-bypass 
-git_exp loso3000/other luci-app-ssr-plus
-
-# git_exp xiaorouji/openwrt-passwall luci-app-passwall
-# git_exp xiaorouji/openwrt-passwall2 luci-app-passwall2
 rm -rf  ./package/A/luci-app-ssr-plus
 rm -rf  ./package/A/trojan-plus
 rm -rf  ./package/A/trojan
@@ -219,6 +184,9 @@ rm -rf  ./package/A/trojan
 rm -rf ./package/A/xray-core
 rm -rf ./package/A/xray-plugin
 rm -rf ./package/A/mosdns
+rm -rf ./package/openwrt-passwall/xray-core
+rm -rf ./package/openwrt-passwall/xray-plugin
+rm -rf ./package/openwrt-passwall/mosdns
 
 git_exp QiuSimons/OpenWrt-Add  trojan-plus
 # git_exp fw876/helloworld  lua-neturl
@@ -228,6 +196,9 @@ git_exp QiuSimons/OpenWrt-Add  trojan-plus
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/loso3000/mypk ./package/mypk
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+
+# add luci-app-daed
+git clone https://github.com/sbwml/luci-app-daed-next
 
 rm -rf ./feeds/packages/net/aria2
 #rm -rf ./feeds/packages/net/ariang
@@ -350,12 +321,10 @@ git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodat
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/luci/luci-app-mosdns
 
-# 添加额外软件包alist
-rm -rf ./feeds/luci/applications/luci-app-alist  package/feeds/packages/luci-app-alist
+# alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
-# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
-# rm -rf feeds/packages/lang/golang
-# git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
 
 #upnp
 rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
