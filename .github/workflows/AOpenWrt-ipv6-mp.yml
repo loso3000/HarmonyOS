@@ -130,7 +130,7 @@ jobs:
         else 
           git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
         fi
-          ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
         else 
@@ -186,12 +186,17 @@ jobs:
 
          #rm -rf ./targets/x86/64/*x86-64-combined*
          bash  bakkmod.sh
-         #make package/install -j$(nproc) || make package/install -j1 V=s
-         #make target/install -j$(nproc) || make target/install -j1 V=s
-         #make json_overview_image_info
-         #make checksum
+
+    - name: Generate Firmware
+      run: |
+
+        cd openwrt
+        make package/install -j$(nproc) || make package/install -j1 V=s
+        make target/install -j$(nproc) || make target/install -j1 V=s
+        make checksum
         df -h
-         bash buildmd5.sh
+        bash buildmd5.sh
+        
     - name: Organize files
       run: |
         cd openwrt/bin/targets/*/*
