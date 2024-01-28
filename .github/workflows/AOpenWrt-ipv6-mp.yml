@@ -183,6 +183,7 @@ jobs:
         bash buildmd5.sh
         
     - name: Organize files
+      id: organize
       run: |
         cd openwrt/bin/targets/*/*
         ls
@@ -193,7 +194,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
-      if: steps.organize.outputs.status == 'success' && !cancelled()
+      # if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-Firmware
         path: ${{ env.FIRMWARE }}
