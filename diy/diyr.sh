@@ -140,17 +140,13 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 
-# Add ddnsto & linkease
-pushd package/community/linkease
-git clone --depth=1 https://github.com/linkease/nas-packages-luci
-git clone --depth=1 https://github.com/linkease/nas-packages
-cd nas-packages-luci
-rm -rf luci-app-istorex luci-app-quickstart luci-app-linkease luci-app-unishare && cd ../
-cd nas-packages/network/services
-rm -rf linkease quickstart unishare webdav2 && cd ../../ && rm -rf multimedia/ffmpeg-remux && cd ../
-popd
 
-rm -rf nas-packages-luci/luci/luci-app-istorex
+ git clone  https://github.com/linkease/nas-packages-luci ./package/nas-packages-luci
+ git clone  https://github.com/linkease/nas-packages ./package/nas-packages
+ git clone  https://github.com/linkease/istore ./package/istore
+sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
+sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
+
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
 rm -rf ./feeds/luci/applications/luci-app-mwan3
