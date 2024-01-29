@@ -502,7 +502,6 @@ EOF
 
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
-# https://github.com/sirpdboy/openWrt
 # EzOpenWrt By Sirpdboy
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
