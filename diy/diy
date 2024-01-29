@@ -46,7 +46,7 @@ git clone https://github.com/loso3000/mypk ./package/mypk
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # add luci-app-daed
-git clone https://github.com/sbwml/luci-app-daed-next
+git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 rm -rf ./feeds/packages/net/aria2
 #rm -rf ./feeds/packages/net/ariang
 #rm -rf ./feeds/packages/net/webui-aria2
