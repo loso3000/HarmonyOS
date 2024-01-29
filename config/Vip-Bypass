@@ -323,7 +323,7 @@ CONFIG_PACKAGE_luci-app-netwizard=y
 CONFIG_PACKAGE_luci-app-fileassistant=y
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
 # CONFIG_PACKAGE_bandwidthd=y
-CONFIG_PACKAGE_luci-app-alist=y
+# CONFIG_PACKAGE_luci-app-alist=y
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
@@ -388,6 +388,10 @@ CONFIG_PACKAGE_luci-app-eqosplus=y
 CONFIG_PACKAGE_luci-app-nft-qos=n
 # store
 CONFIG_PACKAGE_kmod-fuse=y
+
+
+CONFIG_PACKAGE_iperf3-ssl=y
+CONFIG_PACKAGE_naiveproxy=y
 
 CONFIG_PACKAGE_luci-proto-ipv6=y
 CONFIG_PACKAGE_luci-proto-minieap=y
