@@ -114,8 +114,8 @@ rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
 mv ./package/other/up/automount-ntfs3g ./package/lean/automount
 sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
-rm -rf ./package/lean/default-settings  
-rm -rf  package/emortal/default-settings 
+rm -rf ./package/lean/default-settings
+rm -rf  package/emortal/default-settings
 mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
 
 
@@ -380,6 +380,9 @@ wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/frien
 
 case "${CONFIG_S}" in
 Free-Plus)
+;;
+Vip-Custom)
+sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
 Vip-Super)
 sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
