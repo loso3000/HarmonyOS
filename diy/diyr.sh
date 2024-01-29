@@ -18,6 +18,7 @@ rm -rf  ./feeds/packages/net/wget
 rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
+
 # 清理
 # Add luci-app-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
@@ -37,6 +38,7 @@ rm -rf ./package/A/mosdns
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
+rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/loso3000/mypk ./package/mypk
