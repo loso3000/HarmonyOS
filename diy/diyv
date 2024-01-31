@@ -118,10 +118,13 @@ sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  f
 #luci-app-easymesh
 rm -rf ./package/diy/luci-app-autotimeset
 
+rm -rf ./feeds/luci/applications/luci-app-beardropper
+
 rm -rf ./feeds/luci/applications/luci-app-p910nd
 rm -rf ./package/diy/luci-app-eqosplus
 rm -rf ./package/diy/luci-app-poweroffdevice
 #rm -rf ./package/diy/luci-app-wrtbwmon
+
 
 rm -rf ./package/other/up/wrtbwmon
 rm -rf ./package/other/up/luci-app-wrtbwmon
