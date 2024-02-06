@@ -4,7 +4,7 @@ config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
 # TTYD 免登录
-# sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
+sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
 rm -rf ./feeds/luci/themes/luci-theme-argon
@@ -45,12 +45,13 @@ git clone https://github.com/loso3000/mypk ./package/mypk
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # add luci-app-daed
-git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
+# git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 rm -rf ./feeds/packages/net/aria2
+# rm -rf ./package/diy/aria2
 #rm -rf ./feeds/packages/net/ariang
 #rm -rf ./feeds/packages/net/webui-aria2
 rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
-#sed -i 's/ariang/ariang +webui-aria2/g' ./package/diy/luci-app-aria2/Makefile
+sed -i 's/ariang/ariang +webui-aria2/g' ./package/diy/luci-app-aria2/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
@@ -117,6 +118,7 @@ sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  f
 #luci-app-easymesh
 rm -rf ./package/diy/luci-app-autotimeset
 
+rm -rf ./feeds/luci/applications/luci-app-beardropper
 rm -rf ./feeds/luci/applications/luci-app-p910nd
 rm -rf ./package/diy/luci-app-eqosplus
 rm -rf ./package/diy/luci-app-poweroffdevice
@@ -166,6 +168,7 @@ rm -rf ./feeds/luci/luci-app-mosdns
 
 # alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
+sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
 
