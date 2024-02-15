@@ -59,6 +59,7 @@ CONFIG_DEFAULT_kmod-igbvf=y
 CONFIG_DEFAULT_kmod-igc=y
 CONFIG_DEFAULT_kmod-ipt-raw=y
 CONFIG_DEFAULT_kmod-ixgbe=y
+CONFIG_DEFAULT_kmod-ixgbevf=y
 CONFIG_DEFAULT_kmod-mlx4-core=y
 CONFIG_DEFAULT_kmod-mlx5-core=y
 CONFIG_DEFAULT_kmod-mmc=y
