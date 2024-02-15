@@ -455,27 +455,29 @@ ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
+path=`pwd`
+cd  bin/targets/*/*
 sleep 2
 if [ "$VER1" = "5.4" ]; then
-mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+mv   *squashfs-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv  *ext4-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "5.15" ]; then
-mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+mv   *squashfs-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv   *ext4-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "6.1" ]; then
-mv  bin/targets/*/*/*squashfs-sysupgrade.img.gz       bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  bin/targets/*/*/*ext4-sysupgrade.img.gz   bin/targets/*/*/EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+mv *squashfs-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv *ext4-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 fi
 #md5
-cd bin/targets/*/*
 md5sum ${md5_EzOpWrt} > EzOpWrt_squashfs-sysupgrade.md5  || true
 md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_ext4-sysupgrade.md5 || true
+cd $path
 exit 0
 EOF
 cat>bakkmod.sh<<-\EOF
