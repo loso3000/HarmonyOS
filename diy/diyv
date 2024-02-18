@@ -41,7 +41,6 @@ rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://github.com/loso3000/other ./package/other
-git clone https://github.com/loso3000/mypk ./package/mypk
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # add luci-app-daed
