@@ -42,7 +42,6 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 
 
 git clone https://github.com/loso3000/other ./package/other
-git clone https://github.com/loso3000/mypk ./package/mypk
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # add luci-app-daed
@@ -90,10 +89,6 @@ mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
  
 #daed-next
 #  git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
-echo advancedplus
-mv -f  ./package/mypk/my/luci-app-zplus ./package/mypk/luci-app-advancedplus
-sed -i 's/pdadplus/advancedplus/g' ./package/mypk/luci-app-advancedplus
-mv -f  ./package/mypk/my/luci-theme-zcat ./package/mypk/luci-theme-kucat
 
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
