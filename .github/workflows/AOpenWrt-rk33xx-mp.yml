@@ -22,7 +22,7 @@ on:
         options: [ master, stable, openwrt-21.02, openwrt-23.05 ]
       config_s:
         description: '配置文件'
-        default: 'Vip-Mini'
+        default: 'Vip-Plus'
         required: true
         type: choice
         options: [ Vip-Mini,Free-Mini, Free-Plus,  Vip-Plus ]
@@ -41,7 +41,7 @@ on:
         default: 'r2s'
         required: true
         type: choice
-        options: [  r2s, r4s, r4se, r5s, r5c,rm2100, xm2100 ]
+        options: [  r2s, r4s, r4se, r5s, r5c,r6c,r5s,rm2100, xm2100 ]
       date_s:
         description: '固件日期'
         default: 'default'
