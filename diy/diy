@@ -4,7 +4,7 @@ config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
 # TTYD 免登录
-# sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
+sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
 rm -rf ./feeds/luci/themes/luci-theme-argon
@@ -45,8 +45,9 @@ git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 # add luci-app-daed
-git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
+# git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 rm -rf ./feeds/packages/net/aria2
+# rm -rf ./package/diy/aria2
 #rm -rf ./feeds/packages/net/ariang
 #rm -rf ./feeds/packages/net/webui-aria2
 rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
@@ -70,13 +71,7 @@ cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
 rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 
-#rm -rf  ./include/kernel-6.1
-# curl -fsSL  https://raw.githubusercontent.com/coolsnowwolf/lede/master/include/kernel-6.1 > ./include/kernel-6.1
 
-# cat ./package/other/patch/network.lua > ./feeds/luci/modules/luci-base/luasrc/model/network.lua
-# 6.1 80211 error
-# cat ./package/other/patch/mac80211/intel.mk > ./package/kernel/mac80211/intel.mk
-#cp -rf ./package/other/luci/*  ./feeds/luci/*
 
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
@@ -122,6 +117,7 @@ sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  f
 #luci-app-easymesh
 rm -rf ./package/diy/luci-app-autotimeset
 
+rm -rf ./feeds/luci/applications/luci-app-beardropper
 rm -rf ./feeds/luci/applications/luci-app-p910nd
 rm -rf ./package/diy/luci-app-eqosplus
 rm -rf ./package/diy/luci-app-poweroffdevice
@@ -154,16 +150,6 @@ git clone  https://github.com/linkease/istore ./package/istore
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
-# Add ddnsto & linkease
-# pushd package/community/linkease
-# git clone --depth=1 https://github.com/linkease/nas-packages-luci
-# git clone --depth=1 https://github.com/linkease/nas-packages
-# cd nas-packages-luci
-# rm -rf luci-app-istorex luci-app-quickstart luci-app-linkease luci-app-unishare && cd ../
-# cd nas-packages/network/services
-# rm -rf linkease quickstart unishare webdav2 && cd ../../ && rm -rf multimedia/ffmpeg-remux && cd ../
-# popd
-# rm -rf nas-packages-luci/luci/luci-app-istorex
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
 rm -rf ./feeds/luci/applications/luci-app-mwan3
@@ -310,6 +296,8 @@ echo "修改默认主题"
 sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci/Makefile
 # sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
+# set default theme to argon
+sed -i '/uci commit luci/i\uci set luci.main.mediaurlbase="/luci-static/kucat"' `find package -type f -path '*/default-settings/files/*-default-settings'`
 
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 
@@ -326,7 +314,8 @@ rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci
 # sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 #Add x550
 git clone https://github.com/shenlijun/openwrt-x550-nbase-t package/openwrt-x550-nbase-t
-
+git clone https://github.com/NateLol/luci-app-oled  package/luci-app-oled
+sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
 
 # version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
 # sed -i '/root:/d' ./package/base-files/files/etc/shadow
@@ -380,7 +369,7 @@ Free-Plus)
 Vip-Custom)
 sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
-Vip-Super)
+Vip-Super|Free-Super)
 sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
@@ -389,8 +378,8 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/contr
 ;;
 Vip-Plus)
 ;;
-Vip-Bypass)
-# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+Vip-Bypass|Vip-Mini)
+sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
 *)
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
