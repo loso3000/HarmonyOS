@@ -157,9 +157,9 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 rm -rf ./feeds/packages/net/mosdns
-rm -rf ./feeds/luci/luci-app-mosdns
-
 # alist
+rm -rf ./feeds/packages/net/alist
+rm -rf ./feeds/luci/applications/luci-app-alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
