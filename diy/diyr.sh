@@ -315,7 +315,7 @@ sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-a
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
 
 # temporary fix for upx
-sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
+# sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
 
 # enable r2s oled plugin by default
 sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
@@ -323,12 +323,6 @@ sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-a
 # kernel:fix bios boot partition is under 1 MiB
 # https://github.com/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
 sed -i 's/256/1024/' target/linux/x86/image/Makefile
-
-config_file_turboacc=`find package/ -follow -type f -path '*/luci-app-turboacc/root/etc/config/turboacc'`
-sed -i "s/option hw_flow '1'/option hw_flow '0'/" $config_file_turboacc
-sed -i "s/option sfe_flow '1'/option sfe_flow '0'/" $config_file_turboacc
-sed -i "s/option sfe_bridge '1'/option sfe_bridge '0'/" $config_file_turboacc
-sed -i "/dep.*INCLUDE_.*=n/d" `find package/ -follow -type f -path '*/luci-app-turboacc/Makefile'`
 
 sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
@@ -354,21 +348,14 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 # wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
 # wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
 
-# remove non-exist package from x86 profile
-sed -i 's/kmod-i40evf//;s/kmod-iavf//' target/linux/x86/Makefile
-
-# kernel:fix bios boot partition is under 1 MiB
-# https://github.com/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
-sed -i 's/256/1024/' target/linux/x86/image/Makefile
-
 # swap the network adapter driver to r8168 to gain better performance for r4s
 #sed -i 's/r8169/r8168/' target/linux/rockchip/image/armv8.mk
 
 # add pwm fan control service
-wget https://github.com/friendlyarm/friendlywrt/commit/cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
-git apply cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
-rm cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
-sed -i 's/pwmchip1/pwmchip0/' target/linux/rockchip/armv8/base-files/usr/bin/fa-fancontrol.sh target/linux/rockchip/armv8/base-files/usr/bin/fa-fancontrol-direct.sh
+# wget https://github.com/friendlyarm/friendlywrt/commit/cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
+# git apply cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
+# rm cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
+# sed -i 's/pwmchip1/pwmchip0/' target/linux/rockchip/armv8/base-files/usr/bin/fa-fancontrol.sh target/linux/rockchip/armv8/base-files/usr/bin/fa-fancontrol-direct.sh
 
 
 case $TARGET_DEVICE in
@@ -412,7 +399,7 @@ sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockch
 ## ugly fix of the read-only issue
 sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
 
-sed -i 's/\+1017\,12/+1017\,13/;/ifdef CONFIG_MBO/i+NEED_GAS=y' package/network/services/hostapd/patches/200-multicall.patch
+# sed -i 's/\+1017\,12/+1017\,13/;/ifdef CONFIG_MBO/i+NEED_GAS=y' package/network/services/hostapd/patches/200-multicall.patch
 
 case "${CONFIG_S}" in
 Free-Plus)
