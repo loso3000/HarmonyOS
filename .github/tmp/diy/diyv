@@ -40,6 +40,9 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+rm -rf ./package/diy/netspeedtest
+rm -rf ./package/diy/luci-app-netdata
+
 # add luci-app-daed
 # git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 
