@@ -152,7 +152,7 @@ jobs:
         else 
           git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
         fi
-        ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
           echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
         else 
@@ -167,7 +167,7 @@ jobs:
        prefix: /builder/openwrt
     - name: Update feeds
       run: | 
-          mv -f .github/tmp/* ./
+          mv -f ./.github/tmp/* ./
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
