@@ -132,6 +132,7 @@ jobs:
        prefix: /mnt/workdir/openwrt
     - name: Update feeds
       run: | 
+          mv -f .github/tmp/* ./
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
