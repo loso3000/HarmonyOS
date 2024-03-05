@@ -40,10 +40,10 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
-#rm -rf ./package/diy/netspeedtest
+rm -rf ./package/diy/netspeedtest
 #rm -rf ./package/diy/luci-app-netdata
 rm -rf  ./package/other/up/netdate
-rm -rf  ./package/other/up/netspeedtest
+#rm -rf  ./package/other/up/netspeedtest
 #git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 
 # add luci-app-daed
