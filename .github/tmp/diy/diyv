@@ -42,6 +42,8 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 rm -rf ./package/diy/netspeedtest
 rm -rf ./package/diy/luci-app-netdata
+rm -rf  ./package/other/up/netdate/netdata-ssl
+git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/openwrt-netdata-ssl
 
 # add luci-app-daed
 # git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
