@@ -8,8 +8,6 @@ rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
-rm -rf  ./feeds/luci/applications/luci-app-netdata
-rm -rf ./feeds/packages/admin/netdata
 rm -rf  ./feeds/packages/net/oaf
 rm -rf  ./feeds/packages/net/wget
 
@@ -52,6 +50,9 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+
+rm -rf  ./feeds/luci/applications/luci-app-netdata
+rm -rf ./feeds/packages/admin/netdata
 
 rm -rf ./package/diy/netspeedtest
 rm -rf ./package/diy/luci-app-netdata
