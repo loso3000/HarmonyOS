@@ -10,6 +10,7 @@ rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/luci/applications/luci-app-netdata
+rm -rf ./feeds/packages/admin/netdata
 rm -rf  ./feeds/packages/net/oaf
 rm -rf  ./feeds/packages/net/wget
 
@@ -41,6 +42,10 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+rm -rf ./package/diy/netspeedtest
+rm -rf ./package/diy/luci-app-netdata
+#rm -rf  ./package/other/up/netspeedtest
+#git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 # add luci-app-daed
 # git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 rm -rf ./feeds/packages/net/aria2
@@ -149,15 +154,17 @@ rm -rf ./feeds/packages/net/mwan3
 mv -f ./package/other/mwan3 ./feeds/packages/net/mwan3
 mv -f ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
+rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
-rm -rf ./feeds/packages/net/mosdns
+
 # alist
 rm -rf ./feeds/packages/net/alist
 rm -rf ./feeds/luci/applications/luci-app-alist
+# alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
@@ -306,14 +313,6 @@ git clone https://github.com/shenlijun/openwrt-x550-nbase-t package/openwrt-x550
 git clone https://github.com/NateLol/luci-app-oled  package/luci-app-oled
 sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
 
-
-
-
-# version=$(grep "DISTRIB_REVISION=" package/lean/default-settings/files/zzz-default-settings  | awk -F "'" '{print $2}')
-# sed -i '/root:/d' ./package/base-files/files/etc/shadow
-# sed -i 's/root::0:0:99999:7:::/root:$1$tzMxByg.$e0847wDvo3JGW4C3Qqbgb.:19052:0:99999:7:::/g' ./package/base-files/files/etc/shadow   #tiktok
-# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' ./package/base-files/files/etc/shadow    #password
-
 # temporary fix for upx
 # sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
 
@@ -345,8 +344,8 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # 风扇脚本
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
-# wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
-# wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
+wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
+wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
 
 # swap the network adapter driver to r8168 to gain better performance for r4s
 #sed -i 's/r8169/r8168/' target/linux/rockchip/image/armv8.mk
@@ -406,6 +405,13 @@ Free-Plus)
 ;;
 Vip-Super)
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua 
+;;
+Vip-Mini)
+#sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
