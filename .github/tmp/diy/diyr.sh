@@ -18,11 +18,13 @@ rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
 
-# 清理
+
 # Add luci-app-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 ./package/passwall2
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall ./package/passwall
+# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
+# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 ./package/passwall2
+# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall ./package/passwall
+
+git clone https://github.com/sbwml/openwrt_helloworld  ./package/ssr
 
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/trojan-plus
