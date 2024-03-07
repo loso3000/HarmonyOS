@@ -9,7 +9,6 @@ rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
-rm -rf  ./feeds/luci/applications/luci-app-netdata
 rm -rf  ./feeds/packages/net/oaf
 rm -rf  ./feeds/packages/net/wget
 
@@ -17,13 +16,22 @@ rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
 
-
+# 清理
 # Add luci-app-passwall
 # git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
 # git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 ./package/passwall2
 # git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall ./package/passwall
 
 git clone https://github.com/sbwml/openwrt_helloworld  ./package/ssr
+rm -rf ./package/ssr/xray-core
+rm -rf ./package/ssr/mosdns
+rm -rf ./package/ssr/trojan-plus
+rm -rf ./package/ssr/xray-plugin
+rm -rf ./package/ssr/luci-app-ssr-plus
+#rm -rf ./package/ssr/luci-app-passwall
+rm -rf ./package/ssr/naiveproxy
+rm -rf ./package/ssr/v2ray-plugin
+rm -rf ./package/ssr/v2ray-core
 
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/trojan-plus
@@ -43,6 +51,8 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+rm -rf  ./feeds/luci/applications/luci-app-netdata
+# rm -rf ./feeds/packages/admin/netdata
 rm -rf ./package/diy/netspeedtest
 rm -rf ./package/diy/luci-app-netdata
 #rm -rf  ./package/other/up/netspeedtest
@@ -142,6 +152,7 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
 
 
 
+# Add ddnsto & linkease
  git clone  https://github.com/linkease/nas-packages-luci ./package/nas-packages-luci
  git clone  https://github.com/linkease/nas-packages ./package/nas-packages
  git clone  https://github.com/linkease/istore ./package/istore
@@ -248,7 +259,7 @@ rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
-#断线不重拨
+#断线重拨
 sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #echo "其他修改"
@@ -323,6 +334,11 @@ sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-a
 # kernel:fix bios boot partition is under 1 MiB
 # https://github.com/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
 sed -i 's/256/1024/' target/linux/x86/image/Makefile
+ config_file_turboacc=`find package/ -follow -type f -path '*/luci-app-turboacc/root/etc/config/turboacc'`
+ sed -i "s/option hw_flow '1'/option hw_flow '0'/" $config_file_turboacc
+ sed -i "s/option sfe_flow '1'/option sfe_flow '0'/" $config_file_turboacc
+ sed -i "s/option sfe_bridge '1'/option sfe_bridge '0'/" $config_file_turboacc
+ sed -i "/dep.*INCLUDE_.*=n/d" `find package/ -follow -type f -path '*/luci-app-turboacc/Makefile'`
 
 sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
