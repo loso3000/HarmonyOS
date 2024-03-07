@@ -164,6 +164,7 @@ rm -rf ./feeds/packages/net/mwan3
 mv -f ./package/other/mwan3 ./feeds/packages/net/mwan3
 mv -f ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
+rm -rf ./feeds/packages/utils/v2dat
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/v2ray-geodata
