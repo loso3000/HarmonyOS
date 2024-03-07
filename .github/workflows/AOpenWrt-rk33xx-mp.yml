@@ -41,7 +41,7 @@ on:
         default: 'r2s'
         required: true
         type: choice
-        options: [  r2s, r4s, r4se, r5s, r5c,r6c,r6s,rm2100, xm2100 ]
+        options: [  x86_64,r2s, r4s, r4se, r5s, r5c,r6c,r6s,rm2100, xm2100 ]
       date_s:
         description: '固件日期'
         default: 'default'
