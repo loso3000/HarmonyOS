@@ -51,6 +51,8 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
+
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
 rm -rf ./package/diy/netspeedtest
