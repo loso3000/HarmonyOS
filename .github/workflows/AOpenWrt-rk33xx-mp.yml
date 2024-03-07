@@ -22,7 +22,7 @@ on:
         options: [ master, stable, openwrt-21.02, openwrt-23.05 ]
       config_s:
         description: '配置文件'
-        default: 'Vip-Plus'
+        default: 'Vip-Mini'
         required: true
         type: choice
         options: [ Vip-Mini,Free-Mini, Free-Plus,  Vip-Plus ]
