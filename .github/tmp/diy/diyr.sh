@@ -225,10 +225,13 @@ git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/l
 
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
-rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
-sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./package/other/up/luci-app-socat/po/zh-cn/socat.po
-ln -sf ../../../feeds/luci/applications/luci-app-socat ./package/A/luci-app-socat
+rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
+# rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
+sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
+
+rm -rf ./package/diy/luci-app-socat
+#sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./package/diy/luci-app-socat/po/zh-cn/socat.po
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
 sed -i 's/"网络存储"/"存储"/g' `grep "网络存储" -rl ./`
