@@ -424,6 +424,11 @@ sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `fi
 
 # sed -i 's/\+1017\,12/+1017\,13/;/ifdef CONFIG_MBO/i+NEED_GAS=y' package/network/services/hostapd/patches/200-multicall.patch
 
+if [[ ${CONFIG_S} == 'NO' ]]; then
+   rm -rf ./package/lean/autocore/files/x86/index.htm
+   mv -f ./package/other/patch/index.htm ./package/lean/autocore/files/x86/index.htm
+fi
+
 case "${CONFIG_S}" in
 Free-Plus)
 ;;
@@ -455,35 +460,39 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/contr
 esac
 
 case "${CONFIG_S}" in
-"Vip"*)
-#修改默认IP地址
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-;;
-*)
+"Free"*)
 #修改默认IP地址
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 ;;
+*)
+#修改默认IP地址
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+;;
 esac
 
-# 预处理下载相关文件，保证打包固件不用单独下载
-for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/other/common/*.sh`;do
-    source $sh_file arm64
-done
+
+# echo '默认开启 Irqbalance'
+if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
+VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
+CLASH="amd64"
+elif  [[ $TARGET_DEVICE == 'rm2100' ]  || [ $TARGET_DEVICE == 'xm2100' ]] ;then
+VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
+CLASH="mipsle_softfloat"
+else
+VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
+CLASH="arm64"
+fi
 
 if [[ $DATE_S == 'default' ]]; then
    DATA=`TZ=UTC-8 date +%Y.%m.%d -d +"12"hour`
 else 
    DATA=$DATE_S
 fi
+# 预处理下载相关文件，保证打包固件不用单独下载
+for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/other/common/*.sh`;do
+    source $sh_file $CLASH
+done
 
-# echo '默认开启 Irqbalance'
-if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
-elif  [[ $TARGET_DEVICE == 'rm2100' ]] ;then
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
-else
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
-fi
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
