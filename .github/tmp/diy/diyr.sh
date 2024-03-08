@@ -476,7 +476,7 @@ esac
 if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 CLASH="amd64"
-elif  [[ $TARGET_DEVICE == 'rm2100' ]  || [ $TARGET_DEVICE == 'xm2100' ]] ;then
+elif  [ $TARGET_DEVICE == 'rm2100' ]  || [ $TARGET_DEVICE == 'xm2100' ] ;then
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 CLASH="mipsle_softfloat"
 else
