@@ -1,38 +1,69 @@
-name: Openwrt-xmrm-ac2100-im
+name: AOpenWrt-xm-im
 
 
 on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
-      ssh:
-        description: 'SSH connection to Actions'
+      branch:
+        description: '选择仓库的分支：'
+        default: 'master'
+        required: true
+        type: choice
+        options: [ master, stable, openwrt-21.02, openwrt-23.05 ]
+      config_s:
+        description: '配置文件'
+        default: 'Vip-Mini'
+        required: true
+        type: choice
+        options: [ Vip-Mini,Free-Mini, Free-Plus,  Vip-Plus ]
+      cpu_s:
+        description: 'CPU优选'
+        required: true
+        default: '8'
+        type: choice
+        options:
+          - '8'
+          - '8370C'
+          - '8272CL'
+          - '8171M'
+      target:
+        description: '选择要生成的机型：'
+        default: 'r2s'
+        required: true
+        type: choice
+        options: [  rm2100, xm2100 ]
+      date_s:
+        description: '固件日期'
+        default: 'default'
         required: false
-        default: 'false'
- #   watch:
- #     types: started
-#  schedule:
-#    - cron: 0 21 */7 * * 
-
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt
-  REPO_BRANCH: master
+  # branch REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: script/xmrm2100.im
-  DIY_P1_SH: script/im.sh
-  CLASH_BINARY_PLATFORM: mipsle-softfloat
-  
+  DIY_P1_SH: diy/diyr.sh
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  UPLOAD_COWTRANSFER: false
+  UPLOAD_WETRANSFER: false
+  UPLOAD_RELEASE: true
+  TZ: Asia/Shanghai
+
 jobs:
-  build_openwrt:
-    name: OpenWrt_Build 
+  build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
+    name: lede-${{github.event.inputs.config_s}}-${{github.event.inputs.target}}-${{github.event.inputs.branch}}-${{github.event.inputs.date_s}}
+    env:
+      CONFIG_S: ${{github.event.inputs.config_s}}
+      CPU_S: ${{github.event.inputs.cpu_s}}
+      DATE_S: ${{github.event.inputs.date_s}}
+      TARGET_DEVICE: ${{github.event.inputs.target}}
+      REPO_BRANCH: ${{github.event.inputs.branch}}
     steps:
-
       - name: Checkout
         uses: actions/checkout@main
-        with:
-          ref: master
+      
       - name: Check server performance
         run: |
          echo "警告⚠"
@@ -51,55 +82,70 @@ jobs:
          echo "硬盘详情："
          df -Th
          
-         if grep  "8272" "/proc/cpuinfo" || grep  "8370" "/proc/cpuinfo" ; then
+         if grep  $CPU_S "/proc/cpuinfo" ; then
           echo "CPU YES！！！"
           echo "CKCPU=success" >> $GITHUB_ENV
          else
              echo "CPU NO！！！"
              echo "CKCPU=failure" >> $GITHUB_ENV
+             exit 1
          fi
       - name: Space cleanup
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          docker rmi `docker images -q`
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
-          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
-          sudo -E apt-get update
-          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
+          docker rmi $(docker images -q)
+          sudo -E rm -rf $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "1{s/\r$//;p;q}")
+          sudo -E apt -yqq update
+          sudo -E apt -yqq purge $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "2{s/\r$//;p;q}")
+          sudo -E apt -yqq full-upgrade
+          sudo -E apt -yqq install $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "3{s/\r$//;p;q}")
+          sudo -E apt -yqq autoremove --purge
+          sudo -E apt -yqq autoclean
+          sudo -E apt -yqq clean
+          sudo -E systemctl daemon-reload
           sudo timedatectl set-timezone "Asia/Shanghai"
-          sudo mkdir -p /workdir
-          sudo chown $USER:$GROUPS /workdir
-             sudo timedatectl set-timezone "Asia/Shanghai"
-             sudo mkdir -p /workdir
-             sudo chown $USER:$GROUPS /workdir
-      - name: download
+          sudo mkdir -p /mnt/workdir
+          sudo chown $USER:$GROUPS /mnt/workdir
+      - name: Clone source code
+        working-directory: /mnt/workdir
         run: |
           git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+          ln -sf /mnt/workdir/openwrt $GITHUB_WORKSPACE/openwrt
+          if [[ $DATE_S == 'default' ]]; then
+          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          else 
+          echo "DATA=$DATE_S" >>$GITHUB_ENV
+          fi
           cd openwrt
           rm -rf ./tmp && rm -rf .config
       - name: Update feeds
         run: |
+          mv -f ./.github/tmp/* ./
           cd openwrt 
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Update package
         run: |
-         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
-          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "DATA=`TZ=UTC-8 date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
-          echo "${{ env.FIRMWARE }} =----= ${{ env.DATA }}"
-         chmod +x ./$DIY_P1_SH
-         chmod +x ./script/clash-core.sh 
+         # [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
+         #[ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+         chmod +x ${DIY_P1_SH}
          cd openwrt
-         ../$DIY_P1_SH
-         # ../script/clash-core.sh $CLASH_BINARY_PLATFORM 
+         $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
       - name: Generate configuration file
         run: |
           cd openwrt
+          cat  $GITHUB_WORKSPACE/config/${TARGET_DEVICE}  > .config
+          case "${CONFIG_S}" in
+          Vip*)        
+          cat  $GITHUB_WORKSPACE/config/Vip  >> .config
+          ;;
+          Free*)
+          cat  $GITHUB_WORKSPACE/config/Free  >> .config
+          ;;
+          esac
+          echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
           make defconfig 
       - name: Make download
         run: |
