@@ -52,6 +52,7 @@ git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
 git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
+git clone https://github.com/op4packages/pdnsd-alt ./package/diy/pdnsd-alt
 
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
