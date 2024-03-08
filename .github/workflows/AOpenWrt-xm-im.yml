@@ -16,7 +16,7 @@ on:
         default: 'Vip-Mini'
         required: true
         type: choice
-        options: [ Vip-Mini,Free-Mini, Free-Plus,  Vip-Plus ]
+        options: [ Vip-Mini,Free-Mini, Free-Plus,  Vip-Plus,NO ]
       cpu_s:
         description: 'CPU优选'
         required: true
@@ -171,7 +171,7 @@ jobs:
       - name: Prepare Artifact
         run: |
           mkdir -p ./rm2100
-          find ./openwrt/bin/ -name "*ac2100-squashfs*.bin" | xargs -i mv -f {} ./rm2100
+          find ./openwrt/bin/ -name "*2100-squashfs*.bin" | xargs -i mv -f {} ./rm2100
           
           cd ./rm2100
           rm -rf *rootfs0.bin *kernel1.bin *kernel.bin  
