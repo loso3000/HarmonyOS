@@ -18,20 +18,20 @@ rm -rf  ./feeds/packages/net/naiveproxy
 # 清理
 # Add luci-app-passwall
 # git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
-# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 ./package/passwall2
-# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall ./package/passwall
-
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 ./package/passwall2
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall ./package/passwall
 git clone https://github.com/sbwml/openwrt_helloworld  ./package/ssr
+rm -rf ./package/ssr/luci-app-ssr-plus
+rm -rf ./package/ssr/luci-app-passwall
+rm -rf ./package/ssr/luci-app-passwall2
+
 rm -rf ./package/ssr/xray-core
 rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
 rm -rf ./package/ssr/xray-plugin
-rm -rf ./package/ssr/luci-app-ssr-plus
-#rm -rf ./package/ssr/luci-app-passwall
 rm -rf ./package/ssr/naiveproxy
 rm -rf ./package/ssr/v2ray-plugin
-rm -rf ./package/ssr/v2ray-core
-
+# rm -rf ./package/ssr/v2ray-core
 rm -rf ./package/ssr/pdnsd
 
 rm -rf ./feeds/packages/net/xray-core
