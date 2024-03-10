@@ -81,6 +81,7 @@ cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
 
 rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
+rm -rf  ./feeds/packages/net/msd_lite
 
 #管控
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
