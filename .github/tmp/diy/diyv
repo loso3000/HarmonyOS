@@ -49,6 +49,8 @@ git clone https://github.com/op4packages/pdnsd-alt ./package/diy/pdnsd-alt
 
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
+#daed
+cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
 
 rm -rf ./package/diy/netspeedtest
 rm -rf ./package/diy/luci-app-netdata
