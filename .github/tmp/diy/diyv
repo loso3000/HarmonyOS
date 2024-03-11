@@ -4,6 +4,8 @@ config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
+rm -rf ./feeds/luci/themes/luci-app-filter
+rm -rf ./feeds/luci/themes/luci-app-oaf
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
