@@ -50,7 +50,7 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 #daed
 cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
 # add luci-app-daed
-git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
+# git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 
 # rm -rf ./package/diy/netspeedtest
 
