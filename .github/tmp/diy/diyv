@@ -63,6 +63,7 @@ rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf  ./feeds/packages/net/smartdns
 rm -rf ./package/diy/luci-app-smartdns
 rm -rf ./package/diy/smartdns
+# git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 rm -rf ./feeds/packages/net/aria2
 # rm -rf ./package/diy/aria2
@@ -200,11 +201,6 @@ sed -i "s/OpenWrt/EzOpWrt/" {package/base-files/files/bin/config_generate,includ
 sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 #修改默认主机名
 sed -i "s/hostname='.*'/hostname='EzOpWrt'/g" ./package/base-files/files/bin/config_generate
-
-echo '替换smartdns'
-rm -rf ./feeds/packages/net/smartdns
-rm -rf ./feeds/luci/applications/luci-app-smartdns
-git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
