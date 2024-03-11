@@ -44,7 +44,6 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
-git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
 git clone https://github.com/op4packages/pdnsd-alt ./package/diy/pdnsd-alt
 
 rm -rf  ./feeds/luci/applications/luci-app-netdata
@@ -54,7 +53,7 @@ cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/ne
 # add luci-app-daed
 git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 
-rm -rf ./package/diy/netspeedtest
+# rm -rf ./package/diy/netspeedtest
 rm -rf ./package/diy/luci-app-netdata
 #rm -rf  ./package/other/up/netspeedtest
 #git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
@@ -63,6 +62,7 @@ rm -rf ./package/diy/luci-app-netdata
 rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf  ./feeds/packages/net/smartdns
 rm -rf ./package/diy/luci-app-smartdns
+rm -rf ./package/diy/smartdns
 
 rm -rf ./feeds/packages/net/aria2
 # rm -rf ./package/diy/aria2
@@ -98,9 +98,6 @@ rm -rf ./package/diy/luci-app-netwizard
 sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
 mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
 
-#daed-next
-#  git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
-
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv ./package/other/up/myautocore ./package/lean/autocore
@@ -128,7 +125,7 @@ mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
 
 #luci-app-easymesh
-rm -rf ./package/diy/luci-app-autotimeset
+# rm -rf ./package/diy/luci-app-autotimeset
 
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 
@@ -148,7 +145,7 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 
-git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
+# git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
 # nlbwmon
