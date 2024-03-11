@@ -51,14 +51,14 @@ rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
 #daed
 cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
+# add luci-app-daed
+git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 
 rm -rf ./package/diy/netspeedtest
 rm -rf ./package/diy/luci-app-netdata
 #rm -rf  ./package/other/up/netspeedtest
 #git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 
-# add luci-app-daed
-# git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 
 rm -rf ./feeds/packages/net/aria2
 # rm -rf ./package/diy/aria2
