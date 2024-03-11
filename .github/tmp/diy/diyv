@@ -59,6 +59,10 @@ rm -rf ./package/diy/luci-app-netdata
 #rm -rf  ./package/other/up/netspeedtest
 #git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 
+#samrtdns
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf  ./feeds/packages/net/smartdns
+rm -rf ./package/diy/luci-app-smartdns
 
 rm -rf ./feeds/packages/net/aria2
 # rm -rf ./package/diy/aria2
