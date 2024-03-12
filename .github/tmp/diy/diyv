@@ -70,9 +70,13 @@ endef
 $(eval $(call KernelPackage,xdp-sockets-diag))
 EOF
 
+
+rm -rf  ./package/diy/luci-theme-kucat
+rm -rf  ./package/diy/luci-app-advancedplus
+rm -rf  ./package/diy/luci-app-fileassistant
+
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
-#rm -rf  ./package/other/up/netspeedtest
 #git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 
 #samrtdns
