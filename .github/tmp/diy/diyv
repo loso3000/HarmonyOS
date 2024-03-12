@@ -51,6 +51,7 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 #cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
 # add luci-app-daed
 # git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
+cp -rf ./package/other/up/daed/bpf.mk ./include/bpf.mk
 cat>>package/kernel/linux/modules/netsupport.mk<<-\EOF
 define KernelPackage/xdp-sockets-diag
   SUBMENU:=$(NETWORK_SUPPORT_MENU)
