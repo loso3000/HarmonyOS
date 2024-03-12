@@ -200,6 +200,7 @@ jobs:
       run: |
         cd openwrt
         df -hT
+        make -j1 V=s
 
         echo -e "$(nproc) thread compile"
         make tools/compile -j$(nproc) || make tools/compile -j$(nproc)
@@ -210,8 +211,11 @@ jobs:
         make package/index
          #rm -rf ./targets/x86/64/*x86-64-combined*
          bash  bakkmod.sh
-
+        echo "status=success" >> $GITHUB_OUTPUT
     - name: Generate Firmware
+    
+      id: compile
+      if: steps.compileopenwrt.outputs.status  == 'success'
       run: |
         df -h
         cd openwrt
@@ -219,9 +223,10 @@ jobs:
         make target/install -j$(nproc) || make target/install -j1 V=s
         make checksum
         bash buildmd5.sh
-        
+        echo "status=success" >> $GITHUB_OUTPUT
     - name: Organize files
       id: organize
+      if: steps.compile.outputs.status  == 'success'
       run: |
         cd openwrt/bin/targets/*/*
         ls
@@ -229,7 +234,6 @@ jobs:
         df -hT
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "status=success" >> $GITHUB_OUTPUT
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
