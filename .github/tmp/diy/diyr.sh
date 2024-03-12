@@ -37,13 +37,6 @@ rm -rf ./package/ssr/pdnsd
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/trojan-plus
 
-rm -rf  ./package/A/luci-app-ssr-plus
-rm -rf  ./package/A/trojan-plus
-rm -rf  ./package/A/trojan
-#20231119 error
-rm -rf ./package/A/xray-core
-rm -rf ./package/A/xray-plugin
-rm -rf ./package/A/mosdns
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
@@ -52,17 +45,21 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
-git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
-git clone https://github.com/op4packages/pdnsd-alt ./package/diy/pdnsd-alt
+
+rm -rf  ./package/diy/luci-theme-kucat
+rm -rf  ./package/diy/luci-app-advancedplus
+rm -rf  ./package/diy/luci-app-fileassistant
 
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
-rm -rf ./package/diy/netspeedtest
-rm -rf ./package/diy/luci-app-netdata
-#rm -rf  ./package/other/up/netspeedtest
 #git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
-# add luci-app-daed
-# git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
+
+#samrtdns
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf  ./feeds/packages/net/smartdns
+rm -rf ./package/diy/luci-app-smartdns
+rm -rf ./package/diy/smartdns
+# git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 rm -rf ./feeds/packages/net/aria2
 # rm -rf ./package/diy/aria2
 #rm -rf ./feeds/packages/net/ariang
@@ -93,13 +90,7 @@ rm -rf  ./feeds/packages/net/msd_lite
 sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
 mv -f  ./package/other/up/luci-app-jzgk ./package/other/up/luci-app-control-parentcontrol
 
-# netwizard
-rm -rf ./package/diy/luci-app-netwizard
-sed -i 's/owizard/netwizard/g' ./package/other/up/luci-app-owizard/Makefile
-mv -f  ./package/other/up/luci-app-owizard ./package/other/up/luci-app-netwizard
 
-#daed-next
-#  git clone https://github.com/sbwml/luci-app-daed-next package/daed-next
 
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
@@ -127,8 +118,6 @@ mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
 
-#luci-app-easymesh
-rm -rf ./package/diy/luci-app-autotimeset
 
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 rm -rf ./feeds/luci/applications/luci-app-p910nd
@@ -146,8 +135,6 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 
-git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
-# git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -201,10 +188,6 @@ sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 #修改默认主机名
 sed -i "s/hostname='.*'/hostname='EzOpWrt'/g" ./package/base-files/files/bin/config_generate
 
-echo '替换smartdns'
-rm -rf ./feeds/packages/net/smartdns
-rm -rf ./feeds/luci/applications/luci-app-smartdns
-git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 # netdata 
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
@@ -229,10 +212,9 @@ git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/l
 
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
-rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
-# rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
-sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
+rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
+#sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
 
 rm -rf ./package/diy/luci-app-socat
 #sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./package/diy/luci-app-socat/po/zh-cn/socat.po
