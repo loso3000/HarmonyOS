@@ -4,6 +4,8 @@ config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
+rm -rf ./feeds/luci/themes/luci-app-filter
+rm -rf ./feeds/luci/themes/luci-app-oaf
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
@@ -25,14 +27,17 @@ rm -rf ./package/ssr/luci-app-ssr-plus
 rm -rf ./package/ssr/luci-app-passwall
 rm -rf ./package/ssr/luci-app-passwall2
 
-rm -rf ./package/ssr/xray-core
 rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
+rm -rf ./package/ssr/xray-core
 rm -rf ./package/ssr/xray-plugin
 rm -rf ./package/ssr/naiveproxy
 rm -rf ./package/ssr/v2ray-plugin
-# rm -rf ./package/ssr/v2ray-core
+rm -rf ./package/ssr/v2ray-core
 rm -rf ./package/ssr/pdnsd
+rm -rf ./package/ssr/lua-neturl
+rm -rf ./package/ssr/redsocks2
+rm -rf ./package/ssr/shadow-tls
 
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/trojan-plus
@@ -45,7 +50,26 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 git clone https://github.com/loso3000/other ./package/other
 git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 
+#daed
+#cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
+# add luci-app-daed
+# git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
+# cp -rf ./package/other/up/daed/bpf.mk ./include/bpf.mk
 
+#samrtdns
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf  ./feeds/packages/net/smartdns
+rm -rf ./package/diy/luci-app-smartdns
+rm -rf ./package/diy/smartdns
+# git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
+mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+
+rm -rf  ./package/diy/luci-app-netwizard
+rm -rf  ./package/diy/luci-app-autotimeset
+rm -rf  ./package/diy/luci-app-timecontrol
+rm -rf  ./package/diy/luci-app-socat
+rm -rf  ./package/diy/netspeedtest
 rm -rf  ./package/diy/luci-theme-kucat
 rm -rf  ./package/diy/luci-app-advancedplus
 rm -rf  ./package/diy/luci-app-fileassistant
@@ -54,12 +78,6 @@ rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
 #git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 
-#samrtdns
-rm -rf ./feeds/luci/applications/luci-app-smartdns
-rm -rf  ./feeds/packages/net/smartdns
-rm -rf ./package/diy/luci-app-smartdns
-rm -rf ./package/diy/smartdns
-# git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 rm -rf ./feeds/packages/net/aria2
 # rm -rf ./package/diy/aria2
 #rm -rf ./feeds/packages/net/ariang
@@ -477,6 +495,7 @@ for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/other/common/*.sh`;do
     source $sh_file $CLASH
 done
 
+VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
