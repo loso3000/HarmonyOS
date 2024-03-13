@@ -56,6 +56,14 @@ git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
 # git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
 # cp -rf ./package/other/up/daed/bpf.mk ./include/bpf.mk
 
+#samrtdns
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf  ./feeds/packages/net/smartdns
+rm -rf ./package/diy/luci-app-smartdns
+rm -rf ./package/diy/smartdns
+# git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
+mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 rm -rf  ./package/diy/luci-theme-kucat
 rm -rf  ./package/diy/luci-app-advancedplus
@@ -65,12 +73,6 @@ rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
 #git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 
-#samrtdns
-rm -rf ./feeds/luci/applications/luci-app-smartdns
-rm -rf  ./feeds/packages/net/smartdns
-rm -rf ./package/diy/luci-app-smartdns
-rm -rf ./package/diy/smartdns
-# git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 rm -rf ./feeds/packages/net/aria2
 # rm -rf ./package/diy/aria2
