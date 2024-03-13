@@ -65,6 +65,11 @@ rm -rf ./package/diy/smartdns
 mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
+rm -rf  ./package/diy/luci-app-netwizard
+rm -rf  ./package/diy/luci-app-autotimeset
+rm -rf  ./package/diy/luci-app-timecontrol
+rm -rf  ./package/diy/luci-app-socat
+rm -rf  ./package/diy/netspeedtest
 rm -rf  ./package/diy/luci-theme-kucat
 rm -rf  ./package/diy/luci-app-advancedplus
 rm -rf  ./package/diy/luci-app-fileassistant
