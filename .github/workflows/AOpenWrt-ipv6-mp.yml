@@ -235,7 +235,6 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
-      if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-Firmware
         path: ${{ env.FIRMWARE }}
