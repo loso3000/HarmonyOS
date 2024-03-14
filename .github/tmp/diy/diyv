@@ -77,6 +77,7 @@ rm -rf ./package/diy/smartdns
 mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
+rm -rf ./package/diy/luci-app-adguardhome
 rm -rf ./package/diy/luci-app-parentcontrol
 rm -rf ./package/diy/luci-app-partexp
 rm -rf  ./package/diy/luci-app-netwizard
