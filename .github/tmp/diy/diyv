@@ -1,5 +1,59 @@
 #!/bin/bash
 
+# private gitea
+export gitea=git.cooluc.com
+# github mirror
+export github=github.com
+export mirror=init.cooluc.com
+
+# x86 - disable intel_pstate
+sed -i 's/noinitrd/noinitrd intel_pstate=disable/g' target/linux/x86/image/grub-efi.cfg
+rm -rf  package/lean/r8168
+rm -rf  package/lean/r8152
+rm -rf  package/lean/r8101
+rm -rf  package/lean/r8125
+rm -rf  package/lean/r8126
+
+# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
+git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
+git clone https://$github/sbwml/package_kernel_r8152 package/kernel/r8152
+git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
+git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
+git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
+# mt76 - update to 2023-12-18
+
+# mac80211 - fix linux 6.6 & add rtw89
+rm -rf package/kernel/mac80211
+git clone https://$github/sbwml/package_kernel_mac80211 package/kernel/mac80211
+
+# ath10k-ct - fix mac80211 6.1-rc
+curl -s https://$mirror/openwrt/patch/openwrt-6.x/kmod-patches/ath10k-ct.patch | patch -p1
+
+# mt76 - update to 2023-12-18
+rm -rf package/kernel/mt76
+git clone https://$github/sbwml/package_kernel_mt76 package/kernel/mt76
+
+# iwinfo: add mt7922 device id
+mkdir -p package/network/utils/iwinfo/patches
+curl -s https://$mirror/openwrt/patch/openwrt-6.x/iwinfo/0001-devices-add-MediaTek-MT7922-device-id.patch > package/network/utils/iwinfo/patches/0001-devices-add-MediaTek-MT7922-device-id.patch
+
+# iwinfo: add rtl8812/14/21au devices
+curl -s https://$mirror/openwrt/patch/openwrt-6.x/iwinfo/0004-add-rtl8812au-devices.patch > package/network/utils/iwinfo/patches/0004-add-rtl8812au-devices.patch
+
+# mac80211 - fix linux 6.6 & add rtw89
+rm -rf package/kernel/mac80211
+git clone https://$github/sbwml/package_kernel_mac80211 package/kernel/mac80211
+
+# mac80211/patches/rtl - rtw88
+mkdir -p package/kernel/mac80211/patches/rtl
+pushd package/kernel/mac80211/patches/rtl
+    curl -Os https://$mirror/openwrt/patch/mac80211/900-hack-rtw88-phy.patch
+    curl -Os https://$mirror/openwrt/patch/mac80211/901-wifi-rtw88-8822b-disable-call-trace-when-write-RF-mo.patch
+    curl -Os https://$mirror/openwrt/patch/mac80211/905-wifi-rtw88-add-missing-call-to-cancel_work_sync.patch
+    curl -Os https://$mirror/openwrt/patch/mac80211/906-wifi-rtw88-8821c-Fix-beacon-loss-and-disconnect.patch
+    curl -Os https://$mirror/openwrt/patch/mac80211/907-wifi-rtw88-usb-Add-magic-missing-from-register-acces.patch
+popd
+
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
