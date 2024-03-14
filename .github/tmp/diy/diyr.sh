@@ -1,4 +1,16 @@
 #!/bin/bash
+github="github.com"
+rm -rf ./package/lean/r8101
+# rm -rf ./package/lean/r8168
+# rm -rf ./package/lean/r8152
+# rm -rf ./package/lean/r8125
+# rm -rf ./package/lean/r8126
+# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
+# git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
+# git clone https://$github/sbwml/package_kernel_r8152 package/kernel/r8152
+git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
+# git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
+# git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
 
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
@@ -19,10 +31,10 @@ rm -rf  ./feeds/packages/net/naiveproxy
 
 # 清理
 # Add luci-app-passwall
-# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 ./package/passwall2
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall ./package/passwall
-git clone https://github.com/sbwml/openwrt_helloworld  ./package/ssr
+# git clone --depth=1 https://$github/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
+git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwall2
+git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwall
+git clone https://$github/sbwml/openwrt_helloworld  ./package/ssr
 rm -rf ./package/ssr/luci-app-ssr-plus
 rm -rf ./package/ssr/luci-app-passwall
 rm -rf ./package/ssr/luci-app-passwall2
@@ -47,13 +59,13 @@ rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
-git clone https://github.com/loso3000/other ./package/other
-git clone https://github.com/sirpdboy/sirpdboy-package ./package/diy
+git clone https://$github/loso3000/other ./package/other
+git clone https://$github/sirpdboy/sirpdboy-package ./package/diy
 
 #daed
 #cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
 # add luci-app-daed
-# git clone https://github.com/sbwml/luci-app-daed-next ./package/daed-next
+# git clone https://$github/sbwml/luci-app-daed-next ./package/daed-next
 # cp -rf ./package/other/up/daed/bpf.mk ./include/bpf.mk
 
 #samrtdns
@@ -61,10 +73,12 @@ rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf  ./feeds/packages/net/smartdns
 rm -rf ./package/diy/luci-app-smartdns
 rm -rf ./package/diy/smartdns
-# git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+# git clone -b lede --single-branch https://$github/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
+rm -rf ./package/diy/luci-app-parentcontrol
+rm -rf ./package/diy/luci-app-partexp
 rm -rf  ./package/diy/luci-app-netwizard
 rm -rf  ./package/diy/luci-app-autotimeset
 rm -rf  ./package/diy/luci-app-timecontrol
@@ -76,7 +90,7 @@ rm -rf  ./package/diy/luci-app-fileassistant
 
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
-#git clone https://github.com/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
+#git clone https://$github/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 
 rm -rf ./feeds/packages/net/aria2
 # rm -rf ./package/diy/aria2
@@ -163,9 +177,9 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
 
 
 # Add ddnsto & linkease
- git clone  https://github.com/linkease/nas-packages-luci ./package/nas-packages-luci
- git clone  https://github.com/linkease/nas-packages ./package/nas-packages
- git clone  https://github.com/linkease/istore ./package/istore
+ git clone  https://$github/linkease/nas-packages-luci ./package/nas-packages-luci
+ git clone  https://$github/linkease/nas-packages ./package/nas-packages
+ git clone  https://$github/linkease/istore ./package/istore
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
@@ -180,19 +194,19 @@ rm -rf ./feeds/packages/utils/v2dat
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/v2ray-geodata
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
+git clone https://$github/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
+git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 
 # alist
 rm -rf ./feeds/packages/net/alist
 rm -rf ./feeds/luci/applications/luci-app-alist
 # alist
-git clone https://github.com/sbwml/luci-app-alist package/alist
+git clone https://$github/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
-# git clone https://github.com/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+# git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
+git clone https://$github/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 #upnp
 rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
 # rm -rf  ./package/diy/upnpd
@@ -218,8 +232,8 @@ rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
 rm -rf ./package/diy/luci-app-dockerman
 #rm -rf ./feeds/packages/utils/docker
-git clone --depth=1 https://github.com/lisaac/luci-lib-docker ./package/new/luci-lib-docker
-git clone --depth=1 https://github.com/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
+git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
+git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
 # sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
@@ -265,7 +279,7 @@ sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasr
 
 echo '灰色歌曲'
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
-git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
+git clone https://$github/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
 #断线重拨
@@ -281,20 +295,20 @@ sed -i 's/stderr 1/stderr 0/g' feeds/packages/net/nlbwmon/files/nlbwmon.init
 sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 # Add mentohust & luci-app-mentohust
-git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust package/luci-app-mentohust
-git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
+git clone --depth=1 https://$github/BoringCat/luci-app-mentohust package/luci-app-mentohust
+git clone --depth=1 https://$github/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
 
 # 全能推送
 rm -rf ./feeds/luci/applications/luci-app-pushbot && \
-git clone https://github.com/zzsj0928/luci-app-pushbot ./feeds/luci/applications/luci-app-pushbot
+git clone https://$github/zzsj0928/luci-app-pushbot ./feeds/luci/applications/luci-app-pushbot
 rm -rf ./feeds/luci/applications/luci-app-jd-dailybonus && \
-git clone https://github.com/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/applications/luci-app-jd-dailybonus
+git clone https://$github/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/applications/luci-app-jd-dailybonus
 rm -rf ./feeds/luci/applications/luci-app-serverchan && \
-git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
+git clone -b master --single-branch https://$github/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
 
 rm -rf ./feeds/packages/net/adguardhome
 
-git clone https://github.com/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
+git clone https://$github/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
 
 #qbittorrent
@@ -305,7 +319,7 @@ rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/lu
 
 # Add OpenClash
 rm -rf  ./feeds/luci/applications/luci-app-openclash
-git clone --depth=1 https://github.com/vernesong/OpenClash package/openclash
+git clone --depth=1 https://$github/vernesong/OpenClash package/openclash
 # sed -i 's/+libcap /+libcap +libcap-bin /' package/openclash/luci-app-openclash/Makefile
 
 
@@ -332,8 +346,8 @@ rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 #Add x550
-git clone https://github.com/shenlijun/openwrt-x550-nbase-t package/openwrt-x550-nbase-t
-git clone https://github.com/NateLol/luci-app-oled  package/luci-app-oled
+git clone https://$github/shenlijun/openwrt-x550-nbase-t package/openwrt-x550-nbase-t
+git clone https://$github/NateLol/luci-app-oled  package/luci-app-oled
 sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
 
 # temporary fix for upx
@@ -343,7 +357,7 @@ sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-a
 sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
 
 # kernel:fix bios boot partition is under 1 MiB
-# https://github.com/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
+# https://$github/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
 sed -i 's/256/1024/' target/linux/x86/image/Makefile
  config_file_turboacc=`find package/ -follow -type f -path '*/luci-app-turboacc/root/etc/config/turboacc'`
  sed -i "s/option hw_flow '1'/option hw_flow '0'/" $config_file_turboacc
@@ -372,14 +386,14 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # 风扇脚本
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
-wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
-wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
+wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
+wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
 
 # swap the network adapter driver to r8168 to gain better performance for r4s
 #sed -i 's/r8169/r8168/' target/linux/rockchip/image/armv8.mk
 
 # add pwm fan control service
-# wget https://github.com/friendlyarm/friendlywrt/commit/cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
+# wget https://$github/friendlyarm/friendlywrt/commit/cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
 # git apply cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
 # rm cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
 # sed -i 's/pwmchip1/pwmchip0/' target/linux/rockchip/armv8/base-files/usr/bin/fa-fancontrol.sh target/linux/rockchip/armv8/base-files/usr/bin/fa-fancontrol-direct.sh
@@ -403,15 +417,15 @@ esac
 # add r6s support to Lean's repo
 if [[ $TARGET_DEVICE == 'r6s' || $TARGET_DEVICE == 'r6c' ]]; then
   pip3 install pylibfdt
-  cd ~ && rm -rf immortalwrt/ && git clone -b master https://github.com/immortalwrt/immortalwrt && cd immortalwrt
+  cd ~ && rm -rf immortalwrt/ && git clone -b master https://$github/immortalwrt/immortalwrt && cd immortalwrt
   git revert --no-commit 3bc7cfe0923ea23626a4e8c666c4a4b64a78f195 #cpufreq
   mv include/kernel-6.1 ~/openwrt/include/
   rsync -a --delete target/linux/rockchip/. ~/openwrt/target/linux/rockchip/. && rsync -a --delete target/linux/generic/. ~/openwrt/target/linux/generic/. && rsync -a --delete package/boot/. ~/openwrt/package/boot/.
   cd ~/openwrt
-  wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
-  wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-6.1/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
+  wget https://$github/coolsnowwolf/lede/raw/master/target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
+  wget https://$github/coolsnowwolf/lede/raw/master/target/linux/generic/hack-6.1/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
   mv *.patch target/linux/generic/hack-6.1/
-  wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/pending-6.1/613-netfilter_optional_tcp_window_check.patch
+  wget https://$github/coolsnowwolf/lede/raw/master/target/linux/generic/pending-6.1/613-netfilter_optional_tcp_window_check.patch
   mv *.patch target/linux/generic/pending-6.1/
   sed -i "s/ucidef_set_interfaces_lan_wan 'eth0 eth1' 'eth2'/ucidef_set_interfaces_lan_wan 'eth1 eth0' 'eth2'/" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
   sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += autocore-arm/' target/linux/rockchip/Makefile
