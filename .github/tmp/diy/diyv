@@ -1,16 +1,16 @@
 #!/bin/bash
 github="github.com"
 rm -rf ./package/lean/r8101
-rm -rf ./package/lean/r8168
-rm -rf ./package/lean/r8152
-rm -rf ./package/lean/r8125
-rm -rf ./package/lean/r8126
+# rm -rf ./package/lean/r8168
+# rm -rf ./package/lean/r8152
+# rm -rf ./package/lean/r8125
+# rm -rf ./package/lean/r8126
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
-git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
-git clone https://$github/sbwml/package_kernel_r8152 package/kernel/r8152
+# git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
+# git clone https://$github/sbwml/package_kernel_r8152 package/kernel/r8152
 git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
-git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
-git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
+# git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
+# git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
 
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
