@@ -11,6 +11,9 @@ rm -rf ./package/lean/r8101
 git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 # git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
 # git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
+# curl/8.5.0 - fix passwall `time_pretransfer` check
+rm -rf feeds/packages/net/curl
+git clone https://$github/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
