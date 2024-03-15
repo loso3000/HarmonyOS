@@ -11,6 +11,13 @@ rm -rf ./package/lean/r8101
 git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 # git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
 # git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
+# mac80211 - fix linux 6.6 & add rtw89
+rm -rf package/kernel/mac80211
+git clone https://$github/sbwml/package_kernel_mac80211 package/kernel/mac80211
+# mt76 - update to 2023-12-18
+rm -rf package/kernel/mt76
+git clone https://$github/sbwml/package_kernel_mt76 package/kernel/mt76
+
 
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
