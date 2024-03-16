@@ -588,7 +588,6 @@ opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends
   		/etc/init.d/dockerd enabled
 		rm -rf /tmp/luci*
 		/etc/init.d/dockerd restart
-		/etc/init.d/rpcd restart
 	}
 }
 case "$IPK" in
