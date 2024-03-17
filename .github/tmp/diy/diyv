@@ -18,8 +18,8 @@ git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 # rm -rf package/kernel/mt76
 # git clone https://$github/sbwml/package_kernel_mt76 package/kernel/mt76
 # curl/8.5.0 - fix passwall `time_pretransfer` check
-rm -rf feeds/packages/net/curl
-git clone https://$github/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+# rm -rf feeds/packages/net/curl
+# git clone https://$github/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 
 config_generate=package/base-files/files/bin/config_generate
