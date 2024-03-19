@@ -96,6 +96,11 @@ rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
 #git clone https://$github/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 
+mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
+mv -f ./package/other/up/tool/oaf/*  ./package/other/
+mv -f ./package/other/up/tool/smartdns/*  ./package/other/
+
+
 rm -rf ./feeds/packages/net/aria2
 # rm -rf ./package/diy/aria2
 #rm -rf ./feeds/packages/net/ariang
