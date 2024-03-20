@@ -44,6 +44,9 @@ rm -rf  ./feeds/packages/net/naiveproxy
 # git clone --depth=1 https://$github/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
 git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwall2
 git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwall
+
+rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
+
 git clone https://$github/sbwml/openwrt_helloworld  ./package/ssr
 rm -rf ./package/ssr/luci-app-ssr-plus
 rm -rf ./package/ssr/luci-app-passwall
