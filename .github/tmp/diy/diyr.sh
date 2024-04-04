@@ -11,6 +11,12 @@ rm -rf ./package/lean/r8101
 git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 # git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
 # git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
+# mac80211 - fix linux 6.6 & add rtw89
+# rm -rf package/kernel/mac80211
+# git clone https://$github/sbwml/package_kernel_mac80211 package/kernel/mac80211
+# mt76 - update to 2023-12-18
+# rm -rf package/kernel/mt76
+# git clone https://$github/sbwml/package_kernel_mt76 package/kernel/mt76
 # curl/8.5.0 - fix passwall `time_pretransfer` check
 # rm -rf feeds/packages/net/curl
 # git clone https://$github/sbwml/feeds_packages_net_curl feeds/packages/net/curl
@@ -83,6 +89,9 @@ rm -rf ./package/diy/smartdns
 mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
+mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
+mv -f ./package/other/up/tool/oaf/*  ./package/other/
+mv -f ./package/other/up/tool/smartdns/*  ./package/other/
 rm -rf ./package/diy/luci-app-adguardhome
 rm -rf ./package/diy/luci-app-parentcontrol
 rm -rf ./package/diy/luci-app-partexp
@@ -99,9 +108,6 @@ rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/packages/admin/netdata
 #git clone https://$github/muink/openwrt-netdata-ssl ./package/diy/netdata-ssl
 
-mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
-mv -f ./package/other/up/tool/oaf/*  ./package/other/
-mv -f ./package/other/up/tool/smartdns/*  ./package/other/
 
 
 rm -rf ./feeds/packages/net/aria2
@@ -239,13 +245,13 @@ rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-ap
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
-rm -rf ./feeds/luci/applications/luci-app-dockerman
-rm -rf ./feeds/luci/applications/luci-app-docker
-rm -rf ./feeds/luci/collections/luci-lib-docker
-rm -rf ./package/diy/luci-app-dockerman
+# rm -rf ./feeds/luci/applications/luci-app-dockerman
+# rm -rf ./feeds/luci/applications/luci-app-docker
+# rm -rf ./feeds/luci/collections/luci-lib-docker
+# rm -rf ./package/diy/luci-app-dockerman
 #rm -rf ./feeds/packages/utils/docker
-git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
-git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
+# git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
+# git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
 # sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
@@ -654,6 +660,8 @@ opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends
   		/etc/init.d/dockerd enabled
 		rm -rf /tmp/luci*
 		/etc/init.d/dockerd restart
+		 /etc/init.d/avahi-daemon enabled
+		 /etc/init.d/avahi-daemon start
 	}
 }
 case "$IPK" in
