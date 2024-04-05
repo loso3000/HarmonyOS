@@ -426,6 +426,9 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/contr
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua 
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua 
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua 
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
 ;;
 *Plus)
 ;;
@@ -438,6 +441,9 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/contr
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua 
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua 
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua 
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
 ;;
 esac
 case "${CONFIG_S}" in
