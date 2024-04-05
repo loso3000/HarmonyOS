@@ -53,7 +53,7 @@ rm -rf ./package/ssr/luci-app-passwall2
 
 rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
-rm -rf ./package/ssr/xray-core
+# rm -rf ./package/ssr/xray-core
 rm -rf ./package/ssr/xray-plugin
 rm -rf ./package/ssr/naiveproxy
 rm -rf ./package/ssr/v2ray-plugin
@@ -61,7 +61,7 @@ rm -rf ./package/ssr/v2ray-core
 rm -rf ./package/ssr/pdnsd
 rm -rf ./package/ssr/lua-neturl
 rm -rf ./package/ssr/redsocks2
-rm -rf ./package/ssr/shadow-tls
+# rm -rf ./package/ssr/shadow-tls
 
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/trojan-plus
@@ -73,6 +73,8 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://$github/loso3000/other ./package/other
 git clone https://$github/sirpdboy/sirpdboy-package ./package/diy
+rm -rf ./package/other/up/pass/shadow-tls
+rm -rf ./package/other/up/pass/xray-core
 
 #daed
 #cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
@@ -220,7 +222,8 @@ git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 rm -rf ./feeds/packages/net/alist
 rm -rf ./feeds/luci/applications/luci-app-alist
 # alist
-git clone https://$github/sbwml/luci-app-alist package/alist
+# git clone https://$github/sbwml/luci-app-alist package/alist
+git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
 # git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
@@ -278,6 +281,7 @@ sed -i 's/实时流量监测/流量/g'  `grep "实时流量监测" -rl ./`
 sed -i 's/解锁网易云灰色歌曲/解锁灰色歌曲/g'  `grep "解锁网易云灰色歌曲" -rl ./`
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g'  `grep "解除网易云音乐播放限制" -rl ./`
 sed -i 's/家庭云//g'  `grep "家庭云" -rl ./`
+sed -i 's/msgstr "挂载 SMB 网络共享"/msgstr "挂载网络共享"/g' ./feeds/luci/applications/luci-app-cifs-mount/po/zh-cn/cifs.po
 
 sed -i 's/aMule设置/电驴下载/g' ./feeds/luci/applications/luci-app-amule/po/zh-cn/amule.po
 sed -i 's/监听端口/监听端口 用户名admin密码adminadmin/g' ./feeds/luci/applications/luci-app-qbittorrent/po/zh-cn/qbittorrent.po
@@ -469,15 +473,20 @@ if [[ ${CONFIG_S} == 'NO' ]]; then
 fi
 
 case "${CONFIG_S}" in
-Free-Plus)
+*Plus)
 ;;
-Vip-Super)
+*Super)
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua 
+sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
+sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 ;;
 Vip-Mini)
 #sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
@@ -485,10 +494,14 @@ sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zer
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua 
+sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
+sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 ;;
-Vip-Plus)
-;;
+
 Vip-Bypass)
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
@@ -498,8 +511,23 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/contr
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
+sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
+sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 ;;
 *)
+sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
+sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua 
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua 
+sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
+sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 ;;
 esac
 
