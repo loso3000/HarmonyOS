@@ -21,7 +21,6 @@ git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 # rm -rf feeds/packages/net/curl
 # git clone https://$github/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
-
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
@@ -273,7 +272,7 @@ sed -i 's/实时流量监测/流量/g'  `grep "实时流量监测" -rl ./`
 sed -i 's/解锁网易云灰色歌曲/解锁灰色歌曲/g'  `grep "解锁网易云灰色歌曲" -rl ./`
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g'  `grep "解除网易云音乐播放限制" -rl ./`
 sed -i 's/家庭云//g'  `grep "家庭云" -rl ./`
-sed -i 's/msgstr "挂载 SMB 网络共享"/msgstr "挂载网络共享"/g' ./feeds/luci/applications/luci-app-cifs-mount/po/zh-cn/cifs.po
+sed -i 's/msgstr "挂载 SMB 网络共享"/msgstr "CIFS挂载共享"/g' ./feeds/luci/applications/luci-app-cifs-mount/po/zh-cn/cifs.po
 
 sed -i 's/aMule设置/电驴下载/g' ./feeds/luci/applications/luci-app-amule/po/zh-cn/amule.po
 sed -i 's/监听端口/监听端口 用户名admin密码adminadmin/g' ./feeds/luci/applications/luci-app-qbittorrent/po/zh-cn/qbittorrent.po
