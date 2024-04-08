@@ -420,12 +420,12 @@ sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/s
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/admin_info.htm
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/alist_status.htm
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/admin_info.htm
+sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 ;;
 Vip-Mini)
@@ -438,13 +438,13 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/c
 sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
-sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/admin_info.htm
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/alist_status.htm
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/admin_info.htm
+sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 
 ;;
@@ -463,13 +463,13 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/c
 sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
-sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/admin_info.htm
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/alist_status.htm
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/admin_info.htm
+sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 ;;
 *)
@@ -480,11 +480,11 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/contr
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua 
 sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
-sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/admin_info.htm
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
+sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 ;;
 esac
 
@@ -547,6 +547,63 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
+
+r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
+ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
+ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
+ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
+ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
+# gzip bin/targets/*/*/*.img | true
+
+if [ ${TARGET_DEVICE} = "x86_64" ] ; then
+
+VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
+
+pushd bin/targets/*/*/
+rm -rf   config.buildinfo
+rm -rf   feeds.buildinfo
+rm -rf   *.manifest
+rm -rf   *rootfs.tar.gz
+rm -rf   *generic-squashfs-rootfs.img*
+rm -rf   *generic-rootfs*
+rm -rf  *generic.manifest
+rm -rf  sha256sums
+rm -rf version.buildinfo
+rm -rf *generic-ext4-rootfs.img*
+rm -rf  *generic-ext4-combined-efi.img*
+rm -rf  *generic-ext4-combined.img*
+rm -rf  profiles.json
+rm -rf  *kernel.bin
+# BINDIR=`pwd`
+sleep 2
+if [ "$VER1" = "5.4" ]; then
+mv  *generic-squashfs-combined.img.gz       EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
+elif [ "$VER1" = "5.15" ]; then
+mv  *generic-squashfs-combined.img.gz       EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
+elif [ "$VER1" = "6.1" ]; then
+mv  *generic-squashfs-combined.img.gz       EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
+elif [ "$VER1" = "6.6" ]; then
+mv  *generic-squashfs-combined.img.gz       EzOpenWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpenWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
+fi
+#md5
+md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
+md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
+
+else
+
+VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 pushd bin/targets/*/*/
 rm -rf   config.buildinfo
 rm -rf   feeds.buildinfo
@@ -564,39 +621,30 @@ rm -rf  profiles.json
 rm -rf  *kernel.bin
 BINDIR=`pwd`
 sleep 2
-popd
-r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
-ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
-ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
-ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
-ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
-sleep 2
+
 if [ "$VER1" = "5.4" ]; then
-mv  $BINDIR/*generic-squashfs-combined.img.gz       $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
-mv  $BINDIR/*generic-squashfs-combined-efi.img.gz   $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
+mv   *squashfs-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv  *ext4-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "5.15" ]; then
-mv  $BINDIR/*generic-squashfs-combined.img.gz       $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
-mv  $BINDIR/*generic-squashfs-combined-efi.img.gz   $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
+mv   *squashfs-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv   *ext4-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "6.1" ]; then
-mv  $BINDIR/*generic-squashfs-combined.img.gz       $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
-mv  $BINDIR/*generic-squashfs-combined-efi.img.gz   $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
-elif [ "$VER1" = "6.6" ]; then
-mv  $BINDIR/*generic-squashfs-combined.img.gz       $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined.img.gz   
-mv  $BINDIR/*generic-squashfs-combined-efi.img.gz   $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
+mv *squashfs-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv *ext4-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 fi
 #md5
 cd $BINDIR
 md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
 md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
+
+popd
+fi
 exit 0
 EOF
 
