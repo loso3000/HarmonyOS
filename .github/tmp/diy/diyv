@@ -547,21 +547,24 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
-rm -rf  bin/targets/x86/64/config.buildinfo
-rm -rf  bin/targets/x86/64/feeds.buildinfo
-rm -rf  bin/targets/x86/64/*x86-64-generic-kernel.bin
-rm -rf  bin/targets/x86/64/*rootfs.tar.gz
-rm -rf  bin/targets/x86/64/*x86-64-generic-squashfs-rootfs.img.gz
-rm -rf  bin/targets/x86/64/*x86-64-generic-rootfs.tar.gz
-rm -rf  bin/targets/x86/64/*x86-64-generic.manifest
-rm -rf  bin/targets/x86/64/sha256sums
-rm -rf  bin/targets/x86/64/version.buildinfo
-rm -rf bin/targets/x86/64/*x86-64-generic-ext4-rootfs.img.gz
-rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined-efi.img.gz
-rm -rf bin/targets/x86/64/*x86-64-generic-ext4-combined.img.gz
-rm -rf bin/targets/x86/64/profiles.json
-rm -rf bin/targets/x86/64/*kernel.bin
+pushd bin/targets/*/*/
+rm -rf   config.buildinfo
+rm -rf   feeds.buildinfo
+rm -rf   *.manifest
+rm -rf   *rootfs.tar.gz
+rm -rf   *generic-squashfs-rootfs.img*
+rm -rf   *generic-rootfs*
+rm -rf  *generic.manifest
+rm -rf  sha256sums
+rm -rf version.buildinfo
+rm -rf *generic-ext4-rootfs.img*
+rm -rf  *generic-ext4-combined-efi.img*
+rm -rf  *generic-ext4-combined.img*
+rm -rf  profiles.json
+rm -rf  *kernel.bin
+BINDIR=`pwd`
 sleep 2
+popd
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
@@ -570,28 +573,28 @@ ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
 sleep 2
 if [ "$VER1" = "5.4" ]; then
-mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined.img.gz       bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver54}-x86-64-combined.img.gz   
-mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined-efi.img.gz   bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver54}-x86-64-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver54}-x86-64-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver54}-x86-64-combined-efi.img.gz
+mv  $BINDIR/*generic-squashfs-combined.img.gz       $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
+mv  $BINDIR/*generic-squashfs-combined-efi.img.gz   $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
 elif [ "$VER1" = "5.15" ]; then
-mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined.img.gz       bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver515}-x86-64-combined.img.gz   
-mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined-efi.img.gz   bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver515}-x86-64-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver515}-x86-64-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver515}-x86-64-combined-efi.img.gz
+mv  $BINDIR/*generic-squashfs-combined.img.gz       $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
+mv  $BINDIR/*generic-squashfs-combined-efi.img.gz   $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
 elif [ "$VER1" = "6.1" ]; then
-mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined.img.gz       bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver61}-x86-64-combined.img.gz   
-mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined-efi.img.gz   bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver61}-x86-64-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver61}-x86-64-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver61}-x86-64-combined-efi.img.gz
+mv  $BINDIR/*generic-squashfs-combined.img.gz       $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
+mv  $BINDIR/*generic-squashfs-combined-efi.img.gz   $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
 elif [ "$VER1" = "6.6" ]; then
-mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined.img.gz       bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz   
-mv  bin/targets/x86/64/*-x86-64-generic-squashfs-combined-efi.img.gz   bin/targets/x86/64/EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
+mv  $BINDIR/*generic-squashfs-combined.img.gz       $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined.img.gz   
+mv  $BINDIR/*generic-squashfs-combined-efi.img.gz   $BINDIR/EzOpenWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined-efi.img.gz
 md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz   
 md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
 fi
 #md5
-cd bin/targets/x86/64
+cd $BINDIR
 md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
 md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
 exit 0
