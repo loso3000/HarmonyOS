@@ -21,6 +21,7 @@ git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 # rm -rf feeds/packages/net/curl
 # git clone https://$github/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
+
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
@@ -195,6 +196,8 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
+# luci-app-daed-next
+git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
 rm -rf ./feeds/luci/applications/luci-app-mwan3
