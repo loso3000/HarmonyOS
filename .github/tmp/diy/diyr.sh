@@ -216,8 +216,8 @@ git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 rm -rf ./feeds/packages/net/alist
 rm -rf ./feeds/luci/applications/luci-app-alist
 # alist
-git clone https://$github/sbwml/luci-app-alist package/alist
-# git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
+# git clone https://$github/sbwml/luci-app-alist package/alist
+git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
 # git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
