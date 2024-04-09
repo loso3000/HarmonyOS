@@ -83,6 +83,10 @@ rm -rf ./package/other/up/pass/xray-core
 # git clone https://$github/sbwml/luci-app-daed-next ./package/daed-next
 # cp -rf ./package/other/up/daed/bpf.mk ./include/bpf.mk
 
+
+# luci-app-daed-next
+git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
+
 #samrtdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf  ./feeds/packages/net/smartdns
@@ -195,9 +199,6 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
  git clone  https://$github/linkease/istore ./package/istore
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
-
-# luci-app-daed-next
-git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
 rm -rf ./feeds/luci/applications/luci-app-mwan3
