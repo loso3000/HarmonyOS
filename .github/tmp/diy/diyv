@@ -83,6 +83,9 @@ rm -rf ./package/other/up/pass/xray-core
 # git clone https://$github/sbwml/luci-app-daed-next ./package/daed-next
 # cp -rf ./package/other/up/daed/bpf.mk ./include/bpf.mk
 
+# luci-app-daed-next
+git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
+
 #samrtdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf  ./feeds/packages/net/smartdns
