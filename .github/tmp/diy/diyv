@@ -673,7 +673,7 @@ cat>./package/base-files/files/etc/kmodreg<<-\EOF
 # EzOpenWrt By Sirpdboy
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
-[ ! -d $nowkmoddir ]  || return
+[ -d $nowkmoddir ]  || exit
 is_docker() {
     [ -s "/usr/lib/lua/luci/controller/dockerman.lua" ] && return 0  || return 1
 }
@@ -746,8 +746,7 @@ cat>./package/base-files/files/etc/kmodreg<<-\EOF
 # EzOpenWrt By Sirpdboy
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
-[ ! -d $nowkmoddir ]  || return
-
+[ -d $nowkmoddir ]  || exit
 rede() { echo -e "\033[31m\033[01m[WARNING] $1\033[0m"; }
 run_drv() {
 rede "目前此功能仅限VIP版本提供！ \n"
