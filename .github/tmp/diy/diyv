@@ -1,4 +1,12 @@
 #!/bin/bash
+
+is_vip() {
+case "${CONFIG_S}" in
+     "Vip"*) return 0 ;;
+     *) return 1 ;;
+esac
+}
+
 github="github.com"
 rm -rf ./package/lean/r8101
 # rm -rf ./package/lean/r8168
@@ -479,17 +487,6 @@ sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status
 ;;
 esac
 
-case "${CONFIG_S}" in
-"Free"*)
-#修改默认IP地址
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-;;
-*)
-#修改默认IP地址
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-;;
-esac
-
 
 # echo '默认开启 Irqbalance'
 if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
@@ -664,7 +661,12 @@ while IFS= read -r file; do
     fi
 done < $bakkmodfile
 find ./bin/ -name "*dockerman*.ipk" | xargs -i cp -f {} $kmoddirdocker
+find ./bin/ -name "*dockerd*.ipk" | xargs -i cp -f {} $kmoddirdocker
 EOF
+
+if  is_vip ; then
+#修改默认IP地址
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
@@ -672,29 +674,58 @@ cat>./package/base-files/files/etc/kmodreg<<-\EOF
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
 [ ! -d $nowkmoddir ]  || return
-
+is_docker() {
+    [ -s "/usr/lib/lua/luci/controller/dockerman.lua" ] && return 0  || return 1
+}
+rede() { echo -e "\033[31m\033[01m[WARNING] $1\033[0m"; }
+green() { echo -e "\033[32m\033[01m[INFO] $1\033[0m"; }
 run_drv() {
 opkg update
+green "正在安装全部驱动（包括有线和无线）,请耐心等待...大约需要1-5分钟 \n"
 for file in `ls $nowkmoddir/*.ipk`;do
     opkg install "$file"  --force-depends
 done
-
+green "所有驱动已经安装完成！请重启系统生效！ \n"
 }
 run_docker() {
-opkg update
-opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends
-opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends
-	uci -q get dockerd.globals 2>/dev/null && {
+if is_docker; then
+	rede " Docker服务已经存在！无须安装！\n"
+else
+	opkg update
+	green "正在安装Docker及相关服务...请耐心等待...大约需要1-5分钟 \n"
+	opkg install $nowkmoddir/dockerd*.ipk --force-depends >/dev/null 2>&1
+	opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends  >/dev/null 2>&1
+	opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends  >/dev/null 2>&1
+	if is_docker; then
+		green "本地成功安装Docker及相关服务！\n"
+	else
+   		rede "本地安装失败！\n"
+   		green "在线重新安装Docker及相关服务...请耐心等待...大约需要1-5分钟\n"
+   		opkg install dockerd --force-depends >/dev/null 2>&1
+    		opkg install luci-app-dockerman >/dev/null 2>&1
+    		opkg install luci-i18n-dockerman-zh-cn >/dev/null 2>&1
+    		if is_docker; then 
+    		    green "在线成功安装Docker及相关服务！\n" 
+    		fi
+
+	fi
+fi
+if is_docker; then
+      		green "设置Docker服务自动启动成功！\n"
+      		rede "Docker菜单注销重新登陆才能看到！\n"
+		uci -q get dockerd.globals 2>/dev/null && {
 		uci -q set dockerd.globals.data_root='/opt/docker/'
 		uci -q set dockerd.globals.auto_start='1'
 		uci commit dockerd
   		/etc/init.d/dockerd enabled
 		rm -rf /tmp/luci*
-		/etc/init.d/dockerd restart
 		 /etc/init.d/avahi-daemon enabled
 		 /etc/init.d/avahi-daemon start
-
-	}
+		/etc/init.d/dockerd restart
+		}
+    else
+      rede "Docker失败！请检查网络和系统环境设置等！或者联系TG群：sirpdboy！\n"
+    fi
 }
 case "$IPK" in
 	"drv")
@@ -706,5 +737,33 @@ case "$IPK" in
 esac
 EOF
 
+else
 
+#修改默认IP地址
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+cat>./package/base-files/files/etc/kmodreg<<-\EOF
+#!/bin/bash
+# EzOpenWrt By Sirpdboy
+IPK=$1
+nowkmoddir=/etc/kmod.d/$IPK
+[ ! -d $nowkmoddir ]  || return
+
+rede() { echo -e "\033[31m\033[01m[WARNING] $1\033[0m"; }
+run_drv() {
+rede "目前此功能仅限VIP版本提供！ \n"
+}
+run_docker() {
+rede "目前此功能仅限VIP版本提供！ \n"
+}
+case "$IPK" in
+	"drv")
+		run_drv
+	;;
+	"docker")
+		run_docker
+	;;
+esac
+EOF
+
+fi
 ./scripts/feeds update -i
