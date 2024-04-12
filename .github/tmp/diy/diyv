@@ -533,6 +533,7 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/etc/profiles ] || mv -f ./package/other/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
+if [ ${TARGET_DEVICE} = "x86_64" ] ; then
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
@@ -543,7 +544,6 @@ ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
 
-if [ ${TARGET_DEVICE} = "x86_64" ] ; then
 
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
@@ -589,7 +589,18 @@ fi
 md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
 md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
 
+exit 0
+EOF
 else
+cat>buildmd5.sh<<-\EOF
+#!/bin/bash
+
+r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
+ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
+ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
+ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
+ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
+# gzip bin/targets/*/*/*.img | true
 
 VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 pushd bin/targets/*/*/
@@ -644,7 +655,6 @@ bakkmodfile=./package/other/patch/kmod.source
 nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
-#cp -rf ./package/other/patch/list.txt $bakkmodfile
 while IFS= read -r file; do
     a=`find ./bin/ -name "$file" `
     echo $a
@@ -685,6 +695,7 @@ for file in `ls $nowkmoddir/*.ipk`;do
     opkg install "$file"  --force-depends
 done
 echo "所有驱动已经安装完成！请重启系统生效！ "
+exit 0
 }
 run_docker() {
 if is_docker; then
@@ -728,6 +739,7 @@ if is_docker; then
     else
       echo "Docker失败！请检查网络和系统环境设置等！或者联系TG群：sirpdboy！"
     fi
+exit 0
 }
 case "$IPK" in
 	"drv")
@@ -737,7 +749,7 @@ case "$IPK" in
 		run_docker
 	;;
 esac
-exit
+exit 0
 
 EOF
 
