@@ -538,14 +538,12 @@ cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
+VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
-
-
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 pushd bin/targets/*/*/
 rm -rf   config.buildinfo
@@ -588,8 +586,8 @@ fi
 #md5
 md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
 md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
+popd
 
-exit 0
 EOF
 else
 cat>buildmd5.sh<<-\EOF
@@ -618,7 +616,7 @@ rm -rf  *generic-ext4-combined-efi.img*
 rm -rf  *generic-ext4-combined.img*
 rm -rf  profiles.json
 rm -rf  *kernel.bin
-BINDIR=`pwd`
+# BINDIR=`pwd`
 sleep 2
 
 if [ "$VER1" = "5.4" ]; then
@@ -638,15 +636,13 @@ md5_EzOpWrt=*squashfs-sysupgrade.img.gz
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 fi
 #md5
-cd $BINDIR
-md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
-md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
+md5sum ${md5_EzOpWrt} > EzOpWrt_squashfs-sysupgrade.md5  || true
+md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_ext4-sysupgrade.md5 || true
 
 popd
-fi
 exit 0
 EOF
-
+fi
 cat>bakkmod.sh<<-\EOF
 #!/bin/bash
 kmoddirdrv=./files/etc/kmod.d/drv
@@ -695,7 +691,6 @@ for file in `ls $nowkmoddir/*.ipk`;do
     opkg install "$file"  --force-depends
 done
 echo "所有驱动已经安装完成！请重启系统生效！ "
-exit 0
 }
 run_docker() {
 if is_docker; then
@@ -739,7 +734,6 @@ if is_docker; then
     else
       echo "Docker失败！请检查网络和系统环境设置等！或者联系TG群：sirpdboy！"
     fi
-exit 0
 }
 case "$IPK" in
 	"drv")
@@ -749,7 +743,6 @@ case "$IPK" in
 		run_docker
 	;;
 esac
-exit 0
 
 EOF
 
