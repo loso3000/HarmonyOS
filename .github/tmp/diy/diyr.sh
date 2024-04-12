@@ -440,7 +440,7 @@ sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 ;;
 Vip-Mini)
-sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+#sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
@@ -510,6 +510,7 @@ for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/other/common/*.sh`;do
     source $sh_file $CLASH
 done
 
+VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
@@ -672,7 +673,6 @@ find ./bin/ -name "*dockerman*.ipk" | xargs -i cp -f {} $kmoddirdocker
 find ./bin/ -name "*dockerd*.ipk" | xargs -i cp -f {} $kmoddirdocker
 EOF
 
-# 生成安装文件VIP和普通版到固件中
 if  is_vip ; then
 #修改默认IP地址
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
@@ -686,42 +686,43 @@ nowkmoddir=/etc/kmod.d/$IPK
 is_docker() {
     [ -s "/usr/lib/lua/luci/controller/dockerman.lua" ] && return 0  || return 1
 }
-rede() { echo -e "\033[31m\033[01m[WARNING] $1\033[0m"; }
-green() { echo -e "\033[32m\033[01m[INFO] $1\033[0m"; }
+
 run_drv() {
 opkg update
-green "正在安装全部驱动（包括有线和无线）,请耐心等待...大约需要1-5分钟 \n"
+echo "正在安装全部驱动（包括有线和无线）,请耐心等待...大约需要1-5分钟 "
 for file in `ls $nowkmoddir/*.ipk`;do
     opkg install "$file"  --force-depends
 done
-green "所有驱动已经安装完成！请重启系统生效！ \n"
+echo "所有驱动已经安装完成！请重启系统生效！ "
 }
 run_docker() {
 if is_docker; then
-	rede " Docker服务已经存在！无须安装！\n"
+	echo " Docker服务已经存在！无须安装！"
 else
+    local opkg_conf="/etc/opkg.conf"
+    sed -i '/option check_signature/d' "$opkg_conf"
 	opkg update
-	green "正在安装Docker及相关服务...请耐心等待...大约需要1-5分钟 \n"
+	echo "正在安装Docker及相关服务...请耐心等待...大约需要1-5分钟 "
 	opkg install $nowkmoddir/dockerd*.ipk --force-depends >/dev/null 2>&1
 	opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends  >/dev/null 2>&1
 	opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends  >/dev/null 2>&1
 	if is_docker; then
-		green "本地成功安装Docker及相关服务！\n"
+		echo "本地成功安装Docker及相关服务！"
 	else
-   		rede "本地安装失败！\n"
-   		green "在线重新安装Docker及相关服务...请耐心等待...大约需要1-5分钟\n"
+   		echo "本地安装失败！"
+   		echo "在线重新安装Docker及相关服务...请耐心等待...大约需要1-5分钟"
    		opkg install dockerd --force-depends >/dev/null 2>&1
     		opkg install luci-app-dockerman >/dev/null 2>&1
     		opkg install luci-i18n-dockerman-zh-cn >/dev/null 2>&1
     		if is_docker; then 
-    		    green "在线成功安装Docker及相关服务！\n" 
+    		    echo "在线成功安装Docker及相关服务！" 
     		fi
 
 	fi
 fi
 if is_docker; then
-      		green "设置Docker服务自动启动成功！\n"
-      		rede "Docker菜单注销重新登陆才能看到！\n"
+      		echo "设置Docker服务自动启动成功！"
+      		echo "Docker菜单注销重新登陆才能看到！"
 		uci -q get dockerd.globals 2>/dev/null && {
 		uci -q set dockerd.globals.data_root='/opt/docker/'
 		uci -q set dockerd.globals.auto_start='1'
@@ -733,7 +734,7 @@ if is_docker; then
 		/etc/init.d/dockerd restart
 		}
     else
-      rede "Docker失败！请检查网络和系统环境设置等！或者联系TG群：sirpdboy！\n"
+      echo "Docker失败！请检查网络和系统环境设置等！或者联系TG群：sirpdboy！"
     fi
 }
 case "$IPK" in
@@ -756,12 +757,13 @@ cat>./package/base-files/files/etc/kmodreg<<-\EOF
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
 [ -d $nowkmoddir ]  || exit
-rede() { echo -e "\033[31m\033[01m[WARNING] $1\033[0m"; }
 run_drv() {
-rede "目前此功能仅限VIP版本提供！ \n"
+echo "目前此功能仅限VIP版本提供！ "
+exit
 }
 run_docker() {
-rede "目前此功能仅限VIP版本提供！ \n"
+echo "目前此功能仅限VIP版本提供！ "
+exit
 }
 case "$IPK" in
 	"drv")
@@ -771,6 +773,7 @@ case "$IPK" in
 		run_docker
 	;;
 esac
+exit
 EOF
 
 fi
