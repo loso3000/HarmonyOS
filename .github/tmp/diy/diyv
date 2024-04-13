@@ -225,7 +225,6 @@ git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
  rm -rf  ./feeds/luci/applications/luci-app-alist
 # alist
 # git clone https://$github/sbwml/luci-app-alist package/alist
-git clone -b v3.33.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
 # git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
@@ -419,6 +418,7 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 
 case "${CONFIG_S}" in
 Free-Plus)
+git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
 ;;
 Vip-Super)
 sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
@@ -441,6 +441,7 @@ sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status
 ;;
 Vip-Mini)
 #sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+git clone   https://$github/sbwml/luci-app-alist package/alist
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
@@ -461,11 +462,13 @@ sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status
 ;;
 Vip-Plus)
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
 ;;
 Vip-Bypass)
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
 Free-Mini)
+git clone   https://$github/sbwml/luci-app-alist package/alist
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
