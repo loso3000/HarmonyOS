@@ -656,6 +656,8 @@ mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
 while IFS= read -r file; do
     a=`find ./bin/ -name "$file" `
+
+    find ./bin/ -name "$file*.ipk" | xargs -i cp -f {}  $kmoddirdrv
     echo $a
     if [ -z "$a" ]; then
         echo "no find: $file"
