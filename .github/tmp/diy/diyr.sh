@@ -217,6 +217,7 @@ rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://$github/sbwml/luci-app-mosdns -b v5-lua package/mosdns
+
 git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 
