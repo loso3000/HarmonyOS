@@ -54,6 +54,9 @@ git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwal
 
 rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
 
+#20240831error
+sed -i '/^UBOOT_TARGETS := rk3528-evb rk3588-evb/s/^/#/' package/boot/uboot-rk35xx/Makefile
+
 git clone https://$github/sbwml/openwrt_helloworld  ./package/ssr
 rm -rf ./package/ssr/luci-app-ssr-plus
 rm -rf ./package/ssr/luci-app-passwall
