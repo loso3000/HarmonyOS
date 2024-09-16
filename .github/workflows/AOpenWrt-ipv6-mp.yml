@@ -204,9 +204,9 @@ jobs:
         echo -e "$(nproc) thread compile"
         make tools/compile -j$(nproc) || make tools/compile -j$(nproc)
         make toolchain/compile -j$(nproc) || make toolchain/compile -j$(nproc)
-        make target/compile -j1 V=s || make target/compile -j$(nproc) IGNORE_ERRORS=1
+        make target/compile -j$(nproc) || make target/compile -j$(nproc) IGNORE_ERRORS=1
         make diffconfig
-        make package/compile -j1 V=s IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
+        make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
         make package/index
          #rm -rf ./targets/x86/64/*x86-64-combined*
          bash  bakkmod.sh
@@ -218,8 +218,8 @@ jobs:
       run: |
         df -h
         cd openwrt
-        make package/install -j1 V=s || make package/install -j1 V=s
-        make target/install -j1 V=s || make target/install -j1 V=s
+        make package/install -j$(nproc) || make package/install -j1 V=s
+        make target/install -j$(nproc) || make target/install -j1 V=s
         make checksum
         bash buildmd5.sh
         echo "status=success" >> $GITHUB_OUTPUT
