@@ -66,7 +66,7 @@ rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
 # rm -rf ./package/ssr/xray-core
 rm -rf ./package/ssr/xray-plugin
-rm -rf ./package/ssr/naiveproxy
+# rm -rf ./package/ssr/naiveproxy
 rm -rf ./package/ssr/v2ray-plugin
 rm -rf ./package/ssr/v2ray-core
 rm -rf ./package/ssr/pdnsd
@@ -77,16 +77,12 @@ rm -rf ./package/ssr/redsocks2
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/trojan-plus
 
-rm -rf ./package/openwrt-passwall/xray-core
-rm -rf ./package/openwrt-passwall/xray-plugin
-rm -rf ./package/openwrt-passwall/mosdns
-rm -rf ./package/openwrt-passwall/naiveproxy
-
 git clone https://$github/loso3000/other ./package/other
 git clone https://$github/sirpdboy/sirpdboy-package ./package/diy
 
 rm -rf ./package/other/up/pass/shadow-tls
 rm -rf ./package/other/up/pass/xray-core
+rm -rf ./package/other/up/pass/naiveproxy
 
 #daed
 #cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
