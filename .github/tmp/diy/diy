@@ -1,4 +1,10 @@
 #!/bin/bash
+is_vip() {
+case "${CONFIG_S}" in
+     "Vip"*) return 0 ;;
+     *) return 1 ;;
+esac
+}
 github="github.com"
 rm -rf ./package/lean/r8101
 # rm -rf ./package/lean/r8168
@@ -56,7 +62,7 @@ rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
 # rm -rf ./package/ssr/xray-core
 rm -rf ./package/ssr/xray-plugin
-rm -rf ./package/ssr/naiveproxy
+# rm -rf ./package/ssr/naiveproxy
 rm -rf ./package/ssr/v2ray-plugin
 rm -rf ./package/ssr/v2ray-core
 rm -rf ./package/ssr/pdnsd
@@ -76,6 +82,7 @@ git clone https://$github/loso3000/other ./package/other
 git clone https://$github/sirpdboy/sirpdboy-package ./package/diy
 rm -rf ./package/other/up/pass/shadow-tls
 rm -rf ./package/other/up/pass/xray-core
+rm -rf ./package/other/up/pass/naiveproxy
 
 #daed
 #cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
@@ -377,7 +384,7 @@ sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-a
 # sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
 
 # enable r2s oled plugin by default
-sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
+# sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
 
 # kernel:fix bios boot partition is under 1 MiB
 # https://$github/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
@@ -403,9 +410,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
-# 修复TINI错误
-# wget  -P feeds/packages/utils/tini/patches/ https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
-# curl -fsSL  https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch > ./feeds/packages/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 
 
 # sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
@@ -417,58 +421,8 @@ sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装�
 wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
 wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
 
-# swap the network adapter driver to r8168 to gain better performance for r4s
-#sed -i 's/r8169/r8168/' target/linux/rockchip/image/armv8.mk
-
-# add pwm fan control service
-# wget https://$github/friendlyarm/friendlywrt/commit/cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
-# git apply cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
-# rm cebdc1f94dcd6363da3a5d7e1e69fd741b8b718e.patch
-# sed -i 's/pwmchip1/pwmchip0/' target/linux/rockchip/armv8/base-files/usr/bin/fa-fancontrol.sh target/linux/rockchip/armv8/base-files/usr/bin/fa-fancontrol-direct.sh
-
-
-case $TARGET_DEVICE in
-  r2s|r2c|r1p|r1p-lts)
-    # change the voltage value for over-clock stablization
-    config_file_cpufreq=`find package/ -follow -type f -path '*/luci-app-cpufreq/root/etc/config/cpufreq'`
-    truncate -s-1 $config_file_cpufreq
-    echo -e "\toption governor0 'schedutil'" >> $config_file_cpufreq
-    echo -e "\toption minfreq0 '816000'" >> $config_file_cpufreq
-    echo -e "\toption maxfreq0 '1512000'\n" >> $config_file_cpufreq
-
-    line_number_CONFIG_CRYPTO_LIB_BLAKE2S=$[`grep -n 'CONFIG_CRYPTO_LIB_BLAKE2S' package/kernel/linux/modules/crypto.mk | cut -d: -f 1`+1]
-    sed -i $line_number_CONFIG_CRYPTO_LIB_BLAKE2S' s/HIDDEN:=1/DEPENDS:=@(LINUX_5_4||LINUX_5_10)/' package/kernel/linux/modules/crypto.mk
-    sed -i 's/libblake2s.ko@lt5.9/libblake2s.ko/;s/libblake2s-generic.ko@lt5.9/libblake2s-generic.ko/' package/kernel/linux/modules/crypto.mk
-    ;;
-esac
-
-# add r6s support to Lean's repo
-if [[ $TARGET_DEVICE == 'r6s' || $TARGET_DEVICE == 'r6c' ]]; then
-  pip3 install pylibfdt
-  cd ~ && rm -rf immortalwrt/ && git clone -b master https://$github/immortalwrt/immortalwrt && cd immortalwrt
-  git revert --no-commit 3bc7cfe0923ea23626a4e8c666c4a4b64a78f195 #cpufreq
-  mv include/kernel-6.1 ~/openwrt/include/
-  rsync -a --delete target/linux/rockchip/. ~/openwrt/target/linux/rockchip/. && rsync -a --delete target/linux/generic/. ~/openwrt/target/linux/generic/. && rsync -a --delete package/boot/. ~/openwrt/package/boot/.
-  cd ~/openwrt
-  wget https://$github/coolsnowwolf/lede/raw/master/target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch
-  wget https://$github/coolsnowwolf/lede/raw/master/target/linux/generic/hack-6.1/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
-  mv *.patch target/linux/generic/hack-6.1/
-  wget https://$github/coolsnowwolf/lede/raw/master/target/linux/generic/pending-6.1/613-netfilter_optional_tcp_window_check.patch
-  mv *.patch target/linux/generic/pending-6.1/
-  sed -i "s/ucidef_set_interfaces_lan_wan 'eth0 eth1' 'eth2'/ucidef_set_interfaces_lan_wan 'eth1 eth0' 'eth2'/" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
-  sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += autocore-arm/' target/linux/rockchip/Makefile
-  git diff --summary
-fi
-
-
-# ...
-sed -i 's/rk3399_bl31_v1.35.elf/rk3399_bl31_v1.36.elf/;s/rk3568_ddr_1560MHz_v1.13.bin/rk3568_ddr_1560MHz_v1.18.bin/;s/rk3568_bl31_v1.34.elf/rk3568_bl31_v1.43.elf/' package/boot/uboot-rockchip/Makefile
-sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
-
-## ugly fix of the read-only issue
-sed -i '3 i sed -i "/^exit.*/i\\/bin\\/mount -o remount,rw /" /etc/rc.local' `find package -type f -path '*/default-settings/files/*-default-settings'`
-
-# sed -i 's/\+1017\,12/+1017\,13/;/ifdef CONFIG_MBO/i+NEED_GAS=y' package/network/services/hostapd/patches/200-multicall.patch
+# wget  -P feeds/packages/utils/tini/patches/ https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
+#curl -fsSL  https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch > ./feeds/packages/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 
 if [[ ${CONFIG_S} == 'NO' ]]; then
    rm -rf ./package/lean/autocore/files/x86/index.htm
@@ -479,7 +433,7 @@ case "${CONFIG_S}" in
 Free-Plus)
 ;;
 Vip-Super)
-# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
@@ -498,7 +452,7 @@ sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 ;;
 Vip-Mini)
-#sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
@@ -518,10 +472,10 @@ sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status
 
 ;;
 Vip-Plus)
-# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
 Vip-Bypass)
-# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
 Free-Mini)
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
@@ -542,17 +496,7 @@ sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
 sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 ;;
 *)
-;;
-esac
 
-case "${CONFIG_S}" in
-"Free"*)
-#修改默认IP地址
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
-;;
-*)
-#修改默认IP地址
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 ;;
 esac
 
@@ -579,7 +523,7 @@ for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/other/common/*.sh`;do
     source $sh_file $CLASH
 done
 
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
+VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
@@ -602,19 +546,17 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/etc/profiles ] || mv -f ./package/other/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
+if [ ${TARGET_DEVICE} = "x86_64" ] ; then
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
+VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
-
-if [ ${TARGET_DEVICE} = "x86_64" ] ; then
-
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 
 pushd bin/targets/*/*/
 rm -rf   config.buildinfo
@@ -657,8 +599,19 @@ fi
 #md5
 md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
 md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
+popd
 
+EOF
 else
+cat>buildmd5.sh<<-\EOF
+#!/bin/bash
+
+r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
+ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
+ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
+ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
+ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
+# gzip bin/targets/*/*/*.img | true
 
 VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 pushd bin/targets/*/*/
@@ -676,7 +629,7 @@ rm -rf  *generic-ext4-combined-efi.img*
 rm -rf  *generic-ext4-combined.img*
 rm -rf  profiles.json
 rm -rf  *kernel.bin
-BINDIR=`pwd`
+# BINDIR=`pwd`
 sleep 2
 
 if [ "$VER1" = "5.4" ]; then
@@ -696,14 +649,13 @@ md5_EzOpWrt=*squashfs-sysupgrade.img.gz
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 fi
 #md5
-cd $BINDIR
-md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
-md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
+md5sum ${md5_EzOpWrt} > EzOpWrt_squashfs-sysupgrade.md5  || true
+md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_ext4-sysupgrade.md5 || true
 
 popd
-fi
 exit 0
 EOF
+fi
 cat>bakkmod.sh<<-\EOF
 #!/bin/bash
 kmoddirdrv=./files/etc/kmod.d/drv
@@ -712,52 +664,76 @@ bakkmodfile=./package/other/patch/kmod.source
 nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
-#cp -rf ./package/other/patch/list.txt $bakkmodfile
 while IFS= read -r file; do
-    a=`find ./bin/ -name "$file" `
-    echo $a
-    if [ -z "$a" ]; then
-        echo "no find: $file"
-    else
-        cp -f $a $kmoddirdrv
-	echo $file >> $nowkmodfile
-        if [ $? -eq 0 ]; then
-            echo "cp ok: $file"
-        else
-            echo "no cp:$file"
-        fi
-    fi
+    cp -v $(find bin/ -type f -name "*${file}*") $kmoddirdrv
+    a=`find bin/ -name $file `
+    echo "   ===cp file:" $a
 done < $bakkmodfile
 find ./bin/ -name "*dockerman*.ipk" | xargs -i cp -f {} $kmoddirdocker
+find ./bin/ -name "*dockerd*.ipk" | xargs -i cp -f {} $kmoddirdocker
 EOF
 
+if  is_vip ; then
+#修改默认IP地址
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
 # EzOpenWrt By Sirpdboy
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
-[ ! -d $nowkmoddir ]  || return
+[ -d $nowkmoddir ]  || exit
+is_docker() {
+    [ -s "/usr/lib/lua/luci/controller/dockerman.lua" ] && return 0  || return 1
+}
 
 run_drv() {
 opkg update
+echo "正在安装全部驱动（包括有线和无线）,请耐心等待...大约需要1-5分钟 "
 for file in `ls $nowkmoddir/*.ipk`;do
     opkg install "$file"  --force-depends
 done
+echo "所有驱动已经安装完成！请重启系统生效！ "
 }
 run_docker() {
+if is_docker; then
+	echo " Docker服务已经存在！无须安装！"
+else
+    local opkg_conf="/etc/opkg.conf"
+    sed -i '/option check_signature/d' "$opkg_conf"
 opkg update
-opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends
-opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends
+	echo "正在安装Docker及相关服务...请耐心等待...大约需要1-5分钟 "
+	opkg install $nowkmoddir/dockerd*.ipk --force-depends >/dev/null 2>&1
+	opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends  >/dev/null 2>&1
+	opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends  >/dev/null 2>&1
+	if is_docker; then
+		echo "本地成功安装Docker及相关服务！"
+	else
+   		echo "本地安装失败！"
+   		echo "在线重新安装Docker及相关服务...请耐心等待...大约需要1-5分钟"
+   		opkg install dockerd --force-depends >/dev/null 2>&1
+    		opkg install luci-app-dockerman >/dev/null 2>&1
+    		opkg install luci-i18n-dockerman-zh-cn >/dev/null 2>&1
+    		if is_docker; then 
+    		    echo "在线成功安装Docker及相关服务！" 
+    		fi
+	fi
+fi
+if is_docker; then
+      		echo "设置Docker服务自动启动成功！"
+      		echo "Docker菜单注销重新登陆才能看到！"
 	uci -q get dockerd.globals 2>/dev/null && {
 		uci -q set dockerd.globals.data_root='/opt/docker/'
 		uci -q set dockerd.globals.auto_start='1'
 		uci commit dockerd
   		/etc/init.d/dockerd enabled
 		rm -rf /tmp/luci*
-		/etc/init.d/dockerd restart
 		 /etc/init.d/avahi-daemon enabled
 		 /etc/init.d/avahi-daemon start
+		/etc/init.d/dockerd restart
 	}
+    else
+      echo "Docker失败！请检查网络和系统环境设置等！或者联系TG群：sirpdboy！"
+    fi
 }
 case "$IPK" in
 	"drv")
@@ -768,5 +744,33 @@ case "$IPK" in
 	;;
 esac
 EOF
-./scripts/feeds update -i
+
+else
+#修改默认IP地址
+sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+cat>./package/base-files/files/etc/kmodreg<<-\EOF
+#!/bin/bash
+# EzOpenWrt By Sirpdboy
+IPK=$1
+nowkmoddir=/etc/kmod.d/$IPK
+[ -d $nowkmoddir ]  || exit
+run_drv() {
+echo "目前此功能仅限VIP版本提供！ "
 exit
+}
+run_docker() {
+echo "目前此功能仅限VIP版本提供！ "
+exit
+}
+case "$IPK" in
+	"drv")
+		run_drv
+	;;
+	"docker")
+		run_docker
+	;;
+esac
+exit
+EOF
+fi
+./scripts/feeds update -i
