@@ -92,7 +92,7 @@ rm -rf ./package/other/up/pass/naiveproxy
 
 
 # luci-app-daed-next
-git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
+# git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
 
 #samrtdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
