@@ -108,6 +108,19 @@ mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
 mv -f ./package/other/up/tool/oaf/*  ./package/other/
 mv -f ./package/other/up/tool/smartdns/*  ./package/other/
 
+rm -rf ./package/other/up/luci-theme-argon
+rm -rf ./package/other/up/luci-app-wrtbwmon
+rm -rf ./package/other/up/luci-theme-design
+rm -rf ./package/other/up/luci-theme-edge
+rm -rf ./package/other/up/luci-theme-ifit
+rm -rf ./package/other/up/luci-theme-neobird
+rm -rf ./package/other/up/luci-theme-opentopd
+rm -rf ./package/other/up/lluci-app-udpxy
+rm -rf ./package/other/up/luci-app-arpbind
+rm -rf ./package/other/up/luci-app-argon-config
+rm -rf ./package/other/up/luci-app-arpbind
+
+
 rm -rf ./package/diy/luci-app-adguardhome
 rm -rf ./package/diy/luci-app-parentcontrol
 rm -rf ./package/diy/luci-app-partexp
@@ -193,6 +206,16 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 
+git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
+rm ./package/lucky/luci-app-lucky/po/zh_Hans
+mv ./package/lucky/luci-app-lucky/po/zh-cn ./package/ddns-go/luci-app-lucky/po/zh_Hans
+
+rm -rf ./feeds/packages/net/ddns-go
+rm -rf  ./feeds/luci/applications/luci-app-ddns-go
+git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
+rm ./package/ddns-go/luci-app-ddns-go/po/zh_Hans
+mv ./package/ddns-go/luci-app-ddns-go/po/zh-cn ./package/ddns-go/luci-app-ddns-go/po/zh_Hans
+
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # 可以设置汉字名字
@@ -217,8 +240,8 @@ rm -rf ./feeds/packages/utils/v2dat
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/v2ray-geodata
-#git clone https://$github/sbwml/luci-app-mosdns -b v5 package/mosdns
-git clone https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
+git clone https://$github/sbwml/luci-app-mosdns -b v5 package/mosdns
+#git clone https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
 git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 
@@ -371,6 +394,14 @@ rm -rf ./feeds/luci/applications/luci-app-argon-config ./feeds/luci/applications
 rm -rf ./package/diy/luci-theme-argon ./package/diy/luci-theme-opentopd  ./package/diy/luci-theme-ifit   ./package/diy/luci-theme-opentomcat
 rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci-theme-opentopd
 
+rm -rf ./feeds/luci/themes/luci-theme-design
+ git clone -b js https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
+rm -rf ./feeds/luci/themes/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-theme-argon.git  package/luci-theme-argon
+
+sed -i 's,media .. \"\/b,resource .. \"\/b,g' ./package/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm
+sed -i 's,media .. \"\/b,resource .. \"\/b,g' ./feeds/luci/themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm
+
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
@@ -398,6 +429,9 @@ sed -i 's/256/1024/' target/linux/x86/image/Makefile
 sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
 
+# 取消主题默认设置
+find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
+sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 
 # 修改makefile
@@ -407,13 +441,9 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 # 修复 hostapd 报错
 #cp -f $GITHUB_WORKSPACE/scriptx/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
-# 取消主题默认设置
-find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
-sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
-# sed -i 's/kmod-usb-net-rtl8152/kmod-usb-net-rtl8152-vendor/' target/linux/rockchip/image/armv8.mk target/linux/sunxi/image/cortexa53.mk target/linux/sunxi/image/cortexa7.mk
 
-#sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # 风扇脚本
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
@@ -653,15 +683,30 @@ cat>bakkmod.sh<<-\EOF
 #!/bin/bash
 kmoddirdrv=./files/etc/kmod.d/drv
 kmoddirdocker=./files/etc/kmod.d/docker
-bakkmodfile=./package/other/patch/kmod.source
+bakkmodfile=./kmod.source
+cp -rf ./patch/list.txt $bakkmodfile
 nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
-while IFS= read -r file; do
-    cp -v $(find bin/ -type f -name "*${file}*") $kmoddirdrv
-    a=`find bin/ -name $file `
-    echo "   ===cp file:" $a
-done < $bakkmodfile
+while IFS= read -r line; do  
+    cp -v $(find bin/ -type f -name "*${line}*") $kmoddirdrv
+    echo "$line"  
+        a=`find ./bin/ -name "$line" `
+    echo $a
+    if [ -z "$a" ]; then
+        echo "no find: $line"
+    else
+        cp -f $a $kmoddirdrv
+	echo $line >> $nowkmodfile
+        if [ $? -eq 0 ]; then
+            echo "cp ok: $line"
+        else
+            echo "no cp:$line"
+        fi
+    fi
+done < "$bakkmodfile"
+    # find ./bin/ -name  $file | xargs -i cp -f {}  $kmoddirdrv
+    # cp -v $(find bin/targets/ -type f -name "*${FIRMWARE_TYPE}*") ../firmware
 find ./bin/ -name "*dockerman*.ipk" | xargs -i cp -f {} $kmoddirdocker
 find ./bin/ -name "*dockerd*.ipk" | xargs -i cp -f {} $kmoddirdocker
 EOF
@@ -700,6 +745,7 @@ else
 	opkg install $nowkmoddir/dockerd*.ipk --force-depends >/dev/null 2>&1
 	opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends  >/dev/null 2>&1
 	opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends  >/dev/null 2>&1
+    	opkg install avahi-daemon >/dev/null 2>&1
 	if is_docker; then
 		echo "本地成功安装Docker及相关服务！"
 	else
@@ -707,7 +753,8 @@ else
    		echo "在线重新安装Docker及相关服务...请耐心等待...大约需要1-5分钟"
    		opkg install dockerd --force-depends >/dev/null 2>&1
     		opkg install luci-app-dockerman >/dev/null 2>&1
-    		opkg install luci-i18n-dockerman-zh-cn >/dev/null 2>&1
+    		opkg install luci-i18n-dockerman* >/dev/null 2>&1
+    		opkg install avahi-daemon >/dev/null 2>&1
     		if is_docker; then 
     		    echo "在线成功安装Docker及相关服务！" 
     		fi
@@ -728,7 +775,7 @@ if is_docker; then
 		/etc/init.d/dockerd restart
 		}
     else
-      echo "Docker失败！请检查网络和系统环境设置等！或者联系TG群：sirpdboy！"
+      echo "安装Docker失败！请保证出国插件线路和网络正常！BUG请联系TG群：sirpdboy！"
     fi
 }
 case "$IPK" in
