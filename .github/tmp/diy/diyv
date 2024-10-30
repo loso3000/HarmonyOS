@@ -731,7 +731,6 @@ nowkmoddir=/etc/kmod.d/$IPK
 is_docker() {
     [ -s "/usr/lib/lua/luci/controller/dockerman.lua" ] && return 0  || return 1
 }
-
 run_drv() {
 opkg update
 echo "正在安装全部驱动（包括有线和无线）,请耐心等待...大约需要1-5分钟 "
