@@ -3,7 +3,7 @@
 is_vip() {
 case "${CONFIG_S}" in
      "Vip"*) return 0 ;;
-     *) return 1 ;;
+     "Free"*) return 1 ;;
 esac
 }
 
