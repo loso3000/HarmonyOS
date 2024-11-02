@@ -712,8 +712,8 @@ done < "$bakkmodfile"
 find ./bin/ -name "*dockerman*.ipk" | xargs -i cp -f {} $kmoddirdocker
 find ./bin/ -name "*dockerd*.ipk" | xargs -i cp -f {} $kmoddirdocker
 EOF
-
-if  is_vip ; then
+case "${CONFIG_S}" in
+     "Vip"*) 
 #修改默认IP地址
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
@@ -794,8 +794,9 @@ case "$IPK" in
 esac
 
 EOF
+;;
+"Free"*) return 1 ;;
 
-else
  
 #修改默认IP地址
 sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
@@ -829,6 +830,6 @@ case "$IPK" in
 esac
 exit
 EOF
-
-fi
+;;
+esac
 ./scripts/feeds update -i
