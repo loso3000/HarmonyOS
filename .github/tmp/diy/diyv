@@ -160,10 +160,6 @@ rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
 
-#管控
-sed -i 's/gk-jzgk/control-parentcontrol/g' ./package/other/up/luci-app-gk-jzgk/Makefile
-mv -f  ./package/other/up/luci-app-jzgk ./package/other/up/luci-app-control-parentcontrol
-
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv ./package/other/up/myautocore ./package/lean/autocore
@@ -172,20 +168,20 @@ sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
 # samba4
 rm -rf ./package/lean/autosamba
 rm -rf  package/emortal/autosamba
-mv ./package/other/up/autosamba-samba4 ./package/lean/autosamba
-sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
+# mv ./package/other/up/autosamba-samba4 ./package/lean/autosamba
+# sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
 
 rm -rf ./feeds/luci/applications/luci-app-samba4
 mv -f ./package/other/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
 rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
-mv ./package/other/up/automount-ntfs3g ./package/lean/automount
-sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
+# mv ./package/other/up/automount-ntfs3g ./package/lean/automount
+# sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
 
 rm -rf ./package/lean/default-settings
 rm -rf  package/emortal/default-settings
-mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
+# mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
 
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
@@ -209,14 +205,14 @@ rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
-rm ./package/lucky/luci-app-lucky/po/zh_Hans
-mv ./package/lucky/luci-app-lucky/po/zh-cn ./package/ddns-go/luci-app-lucky/po/zh_Hans
+# rm ./package/lucky/luci-app-lucky/po/zh_Hans
+# mv ./package/lucky/luci-app-lucky/po/zh-cn ./package/ddns-go/luci-app-lucky/po/zh_Hans
 
 rm -rf ./feeds/packages/net/ddns-go
 rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
-rm ./package/ddns-go/luci-app-ddns-go/po/zh_Hans
-mv ./package/ddns-go/luci-app-ddns-go/po/zh-cn ./package/ddns-go/luci-app-ddns-go/po/zh_Hans
+# rm ./package/ddns-go/luci-app-ddns-go/po/zh_Hans
+# mv ./package/ddns-go/luci-app-ddns-go/po/zh-cn ./package/ddns-go/luci-app-ddns-go/po/zh_Hans
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -235,8 +231,8 @@ sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
 rm -rf ./feeds/luci/applications/luci-app-mwan3
 rm -rf ./feeds/packages/net/mwan3
-mv -f ./package/other/mwan3 ./feeds/packages/net/mwan3
-mv -f ./package/other/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
+mv -f ./package/other/up/mwan3 ./feeds/packages/net/mwan3
+mv -f ./package/other/up/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
 rm -rf ./feeds/packages/utils/v2dat
 rm -rf ./feeds/packages/net/mosdns
