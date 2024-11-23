@@ -123,6 +123,7 @@ rm -rf ./package/other/up/luci-app-arpbind
 rm -rf ./package/other/up/luci-app-argon-config
 rm -rf ./package/other/up/luci-app-arpbind
 
+
 rm -rf ./package/diy/luci-app-adguardhome
 rm -rf ./package/diy/luci-app-parentcontrol
 rm -rf ./package/diy/luci-app-partexp
@@ -134,7 +135,19 @@ rm -rf  ./package/diy/netspeedtest
 rm -rf  ./package/diy/luci-theme-kucat
 rm -rf  ./package/diy/luci-app-advancedplus
 rm -rf  ./package/diy/luci-app-fileassistant
-
+rm -rf  ./package/diy/luci-app-wrtbwmon
+rm -rf  ./package/diy/luci-app-cpulimit
+rm -rf  ./package/diy/luci-app-dockerman
+rm -rf  ./package/diy/luci-app-eqosplus
+rm -rf  ./package/diy/luci-app-lucky
+rm -rf  ./package/diy/luci-app-netdata
+rm -rf  ./package/diy/luci-app-poweroffdevice
+rm -rf  ./package/diy/luci-app-pppoe-server
+rm -rf  ./package/diy/luci-app-pptpserver
+rm -rf  ./package/diy/luci-app-smartdns
+rm -rf  ./package/diy/luci-app-wifidog
+rm -rf  ./package/diy/luci-app-wolplus
+rm -rf  ./package/diy/wrtbwmon
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 
 
