@@ -95,11 +95,20 @@ rm -rf ./package/other/up/pass/naiveproxy
 # cp -rf ./package/other/up/daed/bpf.mk ./include/bpf.mk
 
 # luci-app-daed-next
-git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
+# git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
 
 #samrtdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf ./feeds/luci/applications/luci-app-lucky
+rm -rf ./feeds/luci/applications/luci-app-ddns-go
+rm -rf ./feeds/luci/applications/luci-app-filetransfer
+rm -rf ./feeds/luci/applications/luci-app-fileassistant
+rm -rf ./feeds/luci/applications/luci-app-msd_lite
+rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf  ./feeds/packages/net/smartdns
+rm -rf  ./feeds/packages/net/lucky
+rm -rf  ./feeds/packages/net/ddns-go
+
 rm -rf ./package/diy/luci-app-smartdns
 rm -rf ./package/diy/smartdns
 # git clone -b lede --single-branch https://$github/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
@@ -242,10 +251,12 @@ sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
-rm -rf ./feeds/luci/applications/luci-app-mwan3
-rm -rf ./feeds/packages/net/mwan3
-mv -f ./package/other/up/mwan3 ./feeds/packages/net/mwan3
-mv -f ./package/other/up/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
+# rm -rf ./feeds/luci/applications/luci-app-mwan3
+# rm -rf ./feeds/packages/net/mwan3
+# mv -f ./package/other/up/mwan3 ./feeds/packages/net/mwan3
+rm -f ./package/other/up/mwan3 
+rm -f ./package/other/up/luci-app-mwan3
+# mv -f ./package/other/up/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
 
 rm -rf ./feeds/packages/utils/v2dat
 rm -rf ./feeds/packages/net/mosdns
