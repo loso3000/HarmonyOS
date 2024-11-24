@@ -287,13 +287,13 @@ rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-ap
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
-# rm -rf ./feeds/luci/applications/luci-app-dockerman
-# rm -rf ./feeds/luci/applications/luci-app-docker
-# rm -rf ./feeds/luci/collections/luci-lib-docker
-# rm -rf ./package/diy/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-docker
+rm -rf ./feeds/luci/collections/luci-lib-docker
+rm -rf ./package/diy/luci-app-dockerman
 #rm -rf ./feeds/packages/utils/docker
-# git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
-# git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
+git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
+git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
 # sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
