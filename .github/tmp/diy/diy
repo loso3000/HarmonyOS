@@ -39,7 +39,7 @@ rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/packages/net/oaf
-rm -rf  ./feeds/packages/net/wget
+#rm -rf  ./feeds/packages/net/wget
 
 rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
@@ -81,7 +81,6 @@ rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://$github/loso3000/other ./package/other
-git clone https://$github/sirpdboy/sirpdboy-package ./package/diy
 rm -rf ./package/other/up/pass/shadow-tls
 rm -rf ./package/other/up/pass/xray-core
 rm -rf ./package/other/up/pass/naiveproxy
@@ -98,9 +97,38 @@ rm -rf ./package/other/up/pass/naiveproxy
 
 #samrtdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf ./feeds/luci/applications/luci-app-lucky
+rm -rf ./feeds/luci/applications/luci-app-ddns-go
+rm -rf ./feeds/luci/applications/luci-app-filetransfer
+rm -rf ./feeds/luci/applications/luci-app-fileassistant
+rm -rf ./feeds/luci/applications/luci-app-msd_lite
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf ./feeds/luci/applications/luci-app-wolplus
+rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+rm -rf  ./feeds/packages/net/wrtbwmon
 rm -rf  ./feeds/packages/net/smartdns
-rm -rf ./package/diy/luci-app-smartdns
-rm -rf ./package/diy/smartdns
+rm -rf  ./feeds/packages/net/lucky
+rm -rf  ./feeds/packages/net/ddns-go
+
+#istore
+rm -rf  ./feeds/jjm2473_apps/homebox
+rm -rf  ./feeds/jjm2473_apps/luci-app-homebox
+rm -rf  ./feeds/third_party/luci-app-LingTiGameAcc
+rm -rf  ./feeds/third_party/luci-app-arpbind
+rm -rf  ./feeds/third_party/luci-app-fileassistant
+rm -rf  ./feeds/third_party/luci-app-smartdns
+rm -rf  ./feeds/third_party/luci-app-socat
+rm -rf  ./feeds/third_party/smartdns
+rm -rf  ./feeds/third_party/luci-app-netdata
+rm -rf  ./feeds/third_party/luci-app-autotimeset
+rm -rf ./feeds/openwrt-third/luci-app-netdata
+rm -rf ./feeds/openwrt-third/smartdns
+rm -rf ./feeds/openwrt-third/luci-app-autotimeset
+rm -rf ./feeds/luci/applications/luci-app-autotimeset
+rm -rf ./feeds/third/luci-app-autotimeset
+rm -rf  ./feeds/packages/ariang
+rm -rf  ./feeds/packages/webui-aria2
+
 # git clone -b lede --single-branch https://$github/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
@@ -108,63 +136,14 @@ mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applicatio
 mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
 mv -f ./package/other/up/tool/oaf/*  ./package/other/
 mv -f ./package/other/up/tool/smartdns/*  ./package/other/
-rm -rf ./package/other/up/luci-theme-argon
-rm -rf ./package/other/up/luci-app-wrtbwmon
-rm -rf ./package/other/up/luci-theme-design
-rm -rf ./package/other/up/luci-theme-edge
-rm -rf ./package/other/up/luci-theme-ifit
-rm -rf ./package/other/up/luci-theme-neobird
-rm -rf ./package/other/up/luci-theme-opentopd
-rm -rf ./package/other/up/lluci-app-udpxy
-rm -rf ./package/other/up/luci-app-arpbind
-rm -rf ./package/other/up/luci-app-argon-config
-rm -rf ./package/other/up/luci-app-arpbind
-rm -rf ./package/diy/luci-app-adguardhome
-rm -rf ./package/diy/luci-app-parentcontrol
-rm -rf ./package/diy/luci-app-partexp
-rm -rf  ./package/diy/luci-app-netwizard
-rm -rf  ./package/diy/luci-app-autotimeset
-rm -rf  ./package/diy/luci-app-timecontrol
-rm -rf  ./package/diy/luci-app-socat
-rm -rf  ./package/diy/netspeedtest
-rm -rf  ./package/diy/luci-theme-kucat
-rm -rf  ./package/diy/luci-app-advancedplus
-rm -rf  ./package/diy/luci-app-fileassistant
 
-rm -rf ./package/diy/luci-app-adguardhome
-rm -rf ./package/diy/luci-app-parentcontrol
-rm -rf ./package/diy/luci-app-partexp
-rm -rf  ./package/diy/luci-app-netwizard
-rm -rf  ./package/diy/luci-app-autotimeset
-rm -rf  ./package/diy/luci-app-timecontrol
-rm -rf  ./package/diy/luci-app-socat
-rm -rf  ./package/diy/netspeedtest
-rm -rf  ./package/diy/luci-theme-kucat
-rm -rf  ./package/diy/luci-app-advancedplus
-rm -rf  ./package/diy/luci-app-fileassistant
-rm -rf  ./package/diy/luci-app-wrtbwmon
-rm -rf  ./package/diy/luci-app-cpulimit
-rm -rf  ./package/diy/luci-app-dockerman
-rm -rf  ./package/diy/luci-app-eqosplus
-rm -rf  ./package/diy/luci-app-lucky
-rm -rf  ./package/diy/luci-app-netdata
-rm -rf  ./package/diy/luci-app-poweroffdevice
-rm -rf  ./package/diy/luci-app-pppoe-server
-rm -rf  ./package/diy/luci-app-pptpserver
-rm -rf  ./package/diy/luci-app-smartdns
-rm -rf  ./package/diy/luci-app-wifidog
-rm -rf  ./package/diy/luci-app-wolplus
-rm -rf  ./package/diy/wrtbwmon
-rm -rf  ./feeds/luci/applications/luci-app-netdata
 
-rm -rf ./feeds/packages/net/aria2
-rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
-sed -i 's/ariang/ariang +webui-aria2/g' ./package/diy/luci-app-aria2/Makefile
+#rm -rf ./feeds/packages/net/aria2
+#rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' package/diy/luci-app-vssr/Makefile
 sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
 sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
 sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plusdns/Makefile
@@ -181,26 +160,21 @@ rm -rf  ./feeds/packages/net/msd_lite
 
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv ./package/other/up/myautocore ./package/lean/autocore
-sed -i 's/myautocore/autocore/g' ./package/lean/autocore/Makefile
+mv ./package/other/up/tool/autocore ./package/lean/autocore 
+rm -rf ./package/lean/autocore/files/generic/inlink.htm
 
 # samba4
 rm -rf ./package/lean/autosamba
 rm -rf  package/emortal/autosamba
-# mv ./package/other/up/autosamba-samba4 ./package/lean/autosamba
-# sed -i 's/autosamba-samba4/autosamba/g' ./package/lean/autosamba/Makefile
 
-rm -rf ./feeds/luci/applications/luci-app-samba4
-mv -f ./package/other/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+#rm -rf ./feeds/luci/applications/luci-app-samba4
+#mv -f ./package/other/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
 rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
-# mv ./package/other/up/automount-ntfs3g ./package/lean/automount
-# sed -i 's/automount-ntfs/automount/g' ./package/lean/automount/Makefile
 
 rm -rf ./package/lean/default-settings  
 rm -rf  package/emortal/default-settings 
-# mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
 
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
@@ -208,28 +182,18 @@ sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  f
 
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 rm -rf ./feeds/luci/applications/luci-app-p910nd
-rm -rf ./package/diy/luci-app-eqosplus
-rm -rf ./package/diy/luci-app-poweroffdevice
-#rm -rf ./package/diy/luci-app-wrtbwmon
 
-rm -rf ./package/other/up/wrtbwmon
-rm -rf ./package/other/up/luci-app-wrtbwmon
-rm -rf ./feeds/packages/net/wrtbwmon ./package/feeds/packages/wrtbwmon
-rm -rf ./feeds/luci/applications/luci-app-wrtbwmon ./package/feeds/packages/luci-app-wrtbwmon
 
 # sed -i 's/-D_GNU_SOURCE/-D_GNU_SOURCE -Wno-error=use-after-free/g' ./package/libs/elfutils/Makefile
 
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
-
+rm -rf ./feeds/packages/net/lucky
+rm -rf  ./feeds/luci/applications/luci-app-lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
-# rm ./package/lucky/luci-app-lucky/po/zh_Hans
-# mv ./package/lucky/luci-app-lucky/po/zh-cn ./package/ddns-go/luci-app-lucky/po/zh_Hans
 rm -rf ./feeds/packages/net/ddns-go
 rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
-# rm ./package/ddns-go/luci-app-ddns-go/po/zh_Hans
-# mv ./package/ddns-go/luci-app-ddns-go/po/zh-cn ./package/ddns-go/luci-app-ddns-go/po/zh_Hans
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -246,10 +210,8 @@ sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
-rm -rf ./feeds/luci/applications/luci-app-mwan3
-rm -rf ./feeds/packages/net/mwan3
-mv -f ./package/other/up/mwan3 ./feeds/packages/net/mwan3
-mv -f ./package/other/up/luci-app-mwan3 ./feeds/luci/applications/luci-app-mwan3
+# rm -rf ./feeds/luci/applications/luci-app-mwan3
+# rm -rf ./feeds/packages/net/mwan3
 
 rm -rf ./feeds/packages/utils/v2dat
 rm -rf ./feeds/packages/net/mosdns
@@ -271,9 +233,7 @@ sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.p
 rm -rf feeds/packages/lang/golang
 # git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
 git clone https://$github/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
-#upnp
-rm -rf ./feeds/luci/applications/luci-app-upnp  package/feeds/packages/luci-app-upnp
-# rm -rf  ./package/diy/upnpd
+
 #设置
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
@@ -286,20 +246,20 @@ sed -i "s/hostname='.*'/hostname='EzOpWrt'/g" ./package/base-files/files/bin/con
 
 
 # netdata 
+
+rm -rf  ./feeds/luci/applications/luci-app-netdata
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
-# rm -rf ./feeds/luci/applications/luci-app-dockerman
-# rm -rf ./feeds/luci/applications/luci-app-docker
-# rm -rf ./feeds/luci/collections/luci-lib-docker
-# rm -rf ./package/diy/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-docker
+rm -rf ./feeds/luci/collections/luci-lib-docker
 #rm -rf ./feeds/packages/utils/docker
-# git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
-# git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
+git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
+git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
-# sed -i '/auto_start/d' ./package/diy/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 # sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.10
 # sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.15
@@ -310,10 +270,8 @@ rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
-#sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
+sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
 
-rm -rf ./package/diy/luci-app-socat
-#sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./package/diy/luci-app-socat/po/zh-cn/socat.po
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
 sed -i 's/"网络存储"/"存储"/g' `grep "网络存储" -rl ./`
@@ -347,8 +305,8 @@ sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasr
 
 echo '灰色歌曲'
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
-git clone https://$github/immortalwrt/luci-app-unblockneteasemusic.git  ./package/diy/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/diy/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
+git clone https://$github/immortalwrt/luci-app-unblockneteasemusic.git  ./package/luci-app-unblockneteasemusic
+sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
 #断线重拨
 sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
@@ -405,9 +363,8 @@ sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-script
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
 rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
-rm -rf ./feeds/luci/themes/luci-theme-argon package/feeds/packages/luci-theme-argon  ./package/diy/luci-theme-edge
+rm -rf ./feeds/luci/themes/luci-theme-argon package/feeds/packages/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-argon-config ./feeds/luci/applications/luci-theme-opentomcat ./feeds/luci/applications/luci-theme-ifit
-rm -rf ./package/diy/luci-theme-argon ./package/diy/luci-theme-opentopd  ./package/diy/luci-theme-ifit   ./package/diy/luci-theme-opentomcat
 rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci-theme-opentopd
 rm -rf ./feeds/luci/themes/luci-theme-design
  git clone -b js https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
@@ -467,10 +424,6 @@ wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://$github/friendly
 # wget  -P feeds/packages/utils/tini/patches/ https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 #curl -fsSL  https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch > ./feeds/packages/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 
-if [[ ${CONFIG_S} == 'NO' ]]; then
-   rm -rf ./package/lean/autocore/files/x86/index.htm
-   mv -f ./package/other/patch/index.htm ./package/lean/autocore/files/x86/index.htm
-fi
 
 case "${CONFIG_S}" in
 Free-Plus)
