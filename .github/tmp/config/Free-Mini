@@ -243,6 +243,7 @@ CONFIG_PACKAGE_kmod-ath11k=y
 CONFIG_PACKAGE_kmod-ath11k-pci=y
 CONFIG_PACKAGE_ath11k-firmware-qcn9074=y
 
+CONFIG_PACKAGE_luci-lib-ipkg=y
 ### USB Audio 
 CONFIG_PACKAGE_kmod-usb-audio=y
 #uhttpd https
