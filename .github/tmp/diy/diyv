@@ -263,7 +263,7 @@ git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci
 # sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' ./package/new/luci-app-dockerman/Makefile
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
 
-# rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
+rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
 sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
