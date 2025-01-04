@@ -40,7 +40,7 @@ rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/packages/net/oaf
-rm -rf  ./feeds/packages/net/wget
+# rm -rf  ./feeds/packages/net/wget
 
 rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
