@@ -494,7 +494,6 @@ CONFIG_PACKAGE_luci-app-msd_lite=y
 
 CONFIG_PACKAGE_luci-app-appfilter=y
 
-# CONFIG_PACKAGE_luci-app-tailscaler=y
 CONFIG_PACKAGE_luci-app-poweroffdevice=y
 CONFIG_PACKAGE_luci-app-control-speedlimit=y
 CONFIG_PACKAGE_luci-app-speedlimit=y
@@ -502,6 +501,9 @@ CONFIG_PACKAGE_luci-app-eqosplus=y
 CONFIG_PACKAGE_luci-app-chatgpt=y
 CONFIG_PACKAGE_luci-app-chatgpt-web=y
 CONFIG_PACKAGE_luci-app-arpbind=y
+
+CONFIG_PACKAGE_luci-app-strongswan-swanctl=y
+CONFIG_PACKAGE_luci-app-tailscale=y
 
 #CONFIG_PACKAGE_luci-app-daed-next=y
 #CONFIG_PACKAGE_daed-next=y
