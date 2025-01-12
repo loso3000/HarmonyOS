@@ -173,7 +173,7 @@ rm -rf  ./feeds/packages/net/msd_lite
 #rm -rf ./package/lean/autocore ./package/emortal/autocore
 #mv ./package/other/up/tool/autocore ./package/lean/autocore 
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
-rm -rf ./package/other/up/tool/autocore/files/generic/inlink.htm
+# rm -rf ./package/other/up/tool/autocore/files/generic/inlink.htm
 
 # samba4
 rm -rf ./package/lean/autosamba
