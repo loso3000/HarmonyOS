@@ -145,6 +145,11 @@ mv -f ./package/other/up/tool/oaf/*  ./package/other/
 mv -f ./package/other/up/tool/smartdns/*  ./package/other/
 
 
+# rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
+# rm -rf ./feeds/luci/applications/luci-app-mwan3
+rm -rf ./feeds/packages/net/mwan3
+mv ./package/other/up/tool/mwan3 ./feeds/packages/net/mwan3
+
 #rm -rf ./feeds/packages/net/aria2
 #rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
 sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
@@ -214,10 +219,6 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
  git clone  https://$github/linkease/istore ./package/istore
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
-
-# rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
-# rm -rf ./feeds/luci/applications/luci-app-mwan3
-rm -rf ./feeds/packages/net/mwan3
 
 
 rm -rf ./feeds/packages/utils/v2dat
