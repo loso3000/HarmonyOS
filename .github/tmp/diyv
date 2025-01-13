@@ -818,12 +818,12 @@ EOF
 esac
 ./scripts/feeds update -i
 cat  ./config/${CONFIG_S}  > .config
-case "${CONFIG_S}" in
-"Vip"*)
-cat  ./config/Vip  >> .config
-;;
-*)
-cat  ./config/Free  >> .config
-;;
-esac
+# case "${CONFIG_S}" in
+# "Vip"*)
+# cat  ./config/Vip  >> .config
+# ;;
+# *)
+# cat  ./config/Free  >> .config
+# ;;
+# esac
 exit
