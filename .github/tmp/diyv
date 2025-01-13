@@ -31,7 +31,9 @@ git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
-[[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
+[[ -n $CONFIG_S ]] || CONFIG_S=Free-Plus
+[[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
+
 rm -rf ./feeds/luci/themes/luci-app-filter
 rm -rf ./feeds/luci/themes/luci-app-oaf
 rm -rf ./feeds/luci/themes/luci-theme-argon
@@ -137,12 +139,11 @@ rm -rf  ./feeds/packages/ariang
 rm -rf  ./feeds/packages/webui-aria2
 
 # git clone -b lede --single-branch https://$github/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
-mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
-mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
-
-mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
-mv -f ./package/other/up/tool/oaf/*  ./package/other/
-mv -f ./package/other/up/tool/smartdns/*  ./package/other/
+# mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
+# mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+# mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
+# mv -f ./package/other/up/tool/oaf/*  ./package/other/
+# mv -f ./package/other/up/tool/smartdns/*  ./package/other/
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
