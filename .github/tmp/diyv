@@ -139,10 +139,10 @@ rm -rf  ./feeds/packages/ariang
 rm -rf  ./feeds/packages/webui-aria2
 
 # git clone -b lede --single-branch https://$github/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
-# mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
-# mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
-# mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
-# mv -f ./package/other/up/tool/oaf/*  ./package/other/
+mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
+mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
+mv -f ./package/other/up/tool/oaf/*  ./package/other/
 # mv -f ./package/other/up/tool/smartdns/*  ./package/other/
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
