@@ -173,6 +173,7 @@ mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv ./package/other/up/tool/autocore ./package/lean/autocore 
 # rm -rf ./package/lean/autocore/files/generic/inlink.htm
+# rm -rf ./package/other/up/tool/autocore/files/generic/inlink.htm
 
 # samba4
 rm -rf ./package/lean/autosamba
@@ -811,3 +812,13 @@ EOF
 ;;
 esac
 ./scripts/feeds update -i
+case "${CONFIG_S}" in
+"Vip"*)
+cat  ./config/${CONFIG_S}  > .config
+cat  ./config/comm  >> .config
+;;
+*)
+cat  ./config/${CONFIG_S}  > .config
+;;
+esac
+exit
