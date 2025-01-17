@@ -28,6 +28,7 @@ git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 # git clone https://$github/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 
+
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 
@@ -222,6 +223,9 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
+
+find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+find ./ | grep Makefile | grep mosdns | xargs rm -f
 
 rm -rf ./feeds/packages/utils/v2dat
 rm -rf ./feeds/packages/net/mosdns
