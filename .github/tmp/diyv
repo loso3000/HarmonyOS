@@ -143,7 +143,7 @@ mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
 mv -f ./package/other/up/tool/oaf/*  ./package/other/
-# mv -f ./package/other/up/tool/smartdns/*  ./package/other/
+mv -f ./package/other/up/tool/smartdns/*  ./package/other/
 
 # rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
@@ -170,9 +170,9 @@ rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
 
-#mkdir -p ./package/lean
-#rm -rf ./package/lean/autocore ./package/emortal/autocore
-#mv ./package/other/up/tool/autocore ./package/lean/autocore 
+mkdir -p ./package/lean
+rm -rf ./package/lean/autocore ./package/emortal/autocore
+mv ./package/other/up/tool/autocore ./package/lean/autocore 
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
 # rm -rf ./package/other/up/tool/autocore/files/generic/inlink.htm
 
@@ -276,7 +276,7 @@ git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci
 # sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' ./package/new/luci-app-dockerman/Makefile
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
 
-#rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
+rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
@@ -818,9 +818,9 @@ EOF
 ;;
 esac
 ./scripts/feeds update -i
-cat  ./config/${CONFIG_S}  > .config
 case "${CONFIG_S}" in
 "Vip"*)
+cat  ./config/${CONFIG_S}  > .config
 cat  ./config/comm  >> .config
 ;;
 *)
