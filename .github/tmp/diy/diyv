@@ -813,5 +813,4 @@ EOF
 esac
 ./scripts/feeds update -i
 
-esac
 exit
