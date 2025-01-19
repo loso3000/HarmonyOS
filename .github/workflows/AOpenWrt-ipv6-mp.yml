@@ -168,7 +168,7 @@ jobs:
     - name: Update feeds
       run: | 
       
-          mv -f ./.github/tmp/* ./openwrt/*
+          mv -f ./.github/tmp/* ./
           # cp -Rf ./lede/.github/tmp/* ./openwrt/*
           cd openwrt
           ./scripts/feeds update -a
@@ -176,15 +176,16 @@ jobs:
     - name: Update package
       run: |
          [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-         cd openwrt
          
-         chmod +x ${DIY_P1_SH}
-         ./$DIY_P1_SH
+         
+         chmod +x $GITHUB_WORKSPACE/${DIY_P1_SH}
+         cd openwrt
+         $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
     - name:  defconfig
       run: |
         cd openwrt
-        # cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  > .config
+        cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  > .config
         #cat  $GITHUB_WORKSPACE/config/comm  >> .config
         #echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
         make defconfig
