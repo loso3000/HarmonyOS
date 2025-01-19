@@ -817,13 +817,4 @@ EOF
 ;;
 esac
 ./scripts/feeds update -i
-case "${CONFIG_S}" in
-"Vip"*)
-cat  ./config/${CONFIG_S}  > .config
-cat  ./config/comm  >> .config
-;;
-*)
-cat  ./config/${CONFIG_S}  > .config
-;;
-esac
-exit
+
