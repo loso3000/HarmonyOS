@@ -184,10 +184,9 @@ jobs:
          chmod -R 755 .
     - name:  defconfig
       run: |
+      
+        cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  > openwrt/.config
         cd openwrt
-        cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  > .config
-        #cat  $GITHUB_WORKSPACE/config/comm  >> .config
-        #echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
         make defconfig
         df -h
 
