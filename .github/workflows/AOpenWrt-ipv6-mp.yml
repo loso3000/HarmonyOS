@@ -168,8 +168,8 @@ jobs:
     - name: Update feeds
       run: | 
       
-          mv -f ./.github/tmp/* ./
-          # cp -Rf ./lede/.github/tmp/* ./openwrt/*
+          # mv -f ./.github/tmp/* ./
+           cp -Rf ./.github/tmp/* ./
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
