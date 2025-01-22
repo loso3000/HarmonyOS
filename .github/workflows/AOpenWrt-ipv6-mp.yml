@@ -179,9 +179,14 @@ jobs:
          chmod -R 755 .
     - name:  defconfig
       run: |
-      
-        cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  > openwrt/.config
+
         cd openwrt
+         cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  >  .config
+        case "${CONFIG_S}" in
+        "Vip"*)        
+        cat  $GITHUB_WORKSPACE/config/comm  >>  .config
+        ;;
+        esac
         make defconfig
         df -h
     - name:  Download packages
