@@ -250,7 +250,6 @@ jobs:
  
     - name: Generate release tag
       id: tag
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
         echo "release_tag=$(cat openwrt/package/base-files/files/etc/ezopenwrt_version)" >> $GITHUB_OUTPUT
         echo -e "\n* The stable source code has been updated." >> release.txt
