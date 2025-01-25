@@ -247,16 +247,24 @@ jobs:
         name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-ipk
         path: ./openwrt/bin/packages/
    
-
+ 
+    - name: Generate release tag
+      id: tag
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      run: |
+        echo "release_tag=$(cat openwrt/package/base-files/files/etc/ezopenwrt_version)" >> $GITHUB_OUTPUT
+        echo -e "\n* The stable source code has been updated." >> release.txt
+        sed -i '1i ## Firmware Update Log' release.txt
+        
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN}}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
+
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2
@@ -271,4 +279,4 @@ jobs:
           keep_min_download_counts: 1 # Optional parameters
           delete_tags: true
       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
