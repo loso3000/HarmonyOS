@@ -1,0 +1,310 @@
+name: AOpenWrt-ipv6-ol
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: '选择仓库的分支：'
+        default: 'master'
+        required: true
+        type: choice
+        options: [ openwrt-21.02, master, stable,  openwrt-23.05 ]
+      config_s:
+        description: '配置文件'
+        default: 'Vip-Mini'
+        required: true
+        type: choice
+        options: [ Free-Super, Free-Mini, Free-Plus, Vip-Super,Vip-Bypass,Vip-Mini, Vip-Plus ]
+      cpu_s:
+        description: 'CPU优选'
+        required: true
+        default: '8'
+        type: choice
+        options:
+          - '8'
+          - '8370C'
+          - '8272CL'
+          - '8171M'
+      target:
+        description: '选择要生成的机型：'
+        default: 'x86_64'
+        required: true
+        type: choice
+        options: [ x86_64, rm2100, xm2100, r2s, r4s, r4se, r5s, r5c ]
+      date_s:
+        description: '固件日期'
+        default: 'default'
+        required: false
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  # REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  #REPO_BRANCH: openwrt-21.02
+  FEEDS_CONF: feeds.conf.default
+  DIY_P1_SH: diy/diyv
+  APT: apt
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  UPLOAD_COWTRANSFER: false
+  UPLOAD_WETRANSFER: false
+  UPLOAD_RELEASE: true
+  OPREPO: ${{ github.repository }}
+  TZ: Asia/Shanghai
+jobs:
+  Build:
+    runs-on: ubuntu-22.04
+    if: github.event.repository.owner.id == github.event.sender.id
+    name: lede-${{github.event.inputs.config_s}}-${{github.event.inputs.target}}-${{github.event.inputs.branch}}-${{github.event.inputs.date_s}}
+    env:
+      CONFIG_S: ${{github.event.inputs.config_s}}
+      CPU_S: ${{github.event.inputs.cpu_s}}
+      DATE_S: ${{github.event.inputs.date_s}}
+      TARGET_DEVICE: ${{github.event.inputs.target}}
+      REPO_BRANCH: ${{github.event.inputs.branch}}
+    outputs:
+      op_version: ${{ steps.check_version.outputs.latest_version }}
+      has_update: ${{ steps.check_version.outputs.has_update }}
+      prerelease: ${{ steps.check_version.outputs.prerelease }} 
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Set time zone
+      run: sudo timedatectl set-timezone 'Asia/Shanghai'
+    - name: Show system
+      run: |
+        echo -e "Total CPU cores\t: $(nproc)"
+        cat /proc/cpuinfo | grep 'model name'
+        
+        lscpu
+        free -h
+        df -Th
+        uname -a
+        cpu_name=$(cat /proc/cpuinfo | grep "model name" | head -n 1 | awk -F: '{print $2}' | sed 's/^[ \t]*//')
+        if [[ "$cpu_name" =~ "8370C" || "$cpu_name" =~ "7763" ]]; then
+          echo "CPU为8370C或7763，继续执行命令"
+          ulimit -a
+        else
+          echo "CPU不为8370C或7763，性能不足，停止执行命令"
+          # exit 1
+        fi
+    - name: Set release env
+      run: |
+        echo WORKDIR="/builder" >> "$GITHUB_ENV"
+    - name: Free disk space
+      run: |
+        sudo rm -rf /etc/apt/sources.list.d
+        sudo bash -c "curl -s https://us.cooluc.com/ubuntu-apt/sources-22.04.list > /etc/apt/sources.list"
+        sudo swapoff -a
+        sudo rm -f /swapfile /mnt/swapfile
+        sudo docker image prune -a -f
+        sudo systemctl stop docker
+        sudo snap set system refresh.retain=2
+        sudo apt-get -y purge firefox clang* ghc* google* llvm* mono* mongo* mysql* php*
+        sudo apt-get -y autoremove --purge
+        sudo apt-get clean
+        sudo rm -rf /etc/mysql /etc/php /usr/lib/jvm /usr/libexec/docker /usr/local /usr/src/* /var/lib/docker /var/lib/gems /var/lib/mysql /var/lib/snapd /etc/skel /opt/{microsoft,az,hostedtoolcache,cni,mssql-tools,pipx} /usr/share/{az*,dotnet,swift,miniconda,gradle*,java,kotlinc,ri,sbt} /root/{.sbt,.local,.npm}
+        sudo sed -i '/NVM_DIR/d;/skel/d' /root/{.bashrc,.profile}
+        rm -rf ~/{.cargo,.dotnet,.rustup}
+        df -Th
+    - name: Create VG & LV
+      run: |
+        mnt_size=$(expr $(df -h /mnt | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 1)
+        root_size=$(expr $(df -h / | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 4)
+        sudo truncate -s "$mnt_size"G /mnt/mnt.img
+        sudo truncate -s "$root_size"G /root.img
+        sudo losetup /dev/loop6 /mnt/mnt.img
+        sudo losetup /dev/loop7 /root.img
+        sudo pvcreate /dev/loop6
+        sudo pvcreate /dev/loop7
+        sudo vgcreate github /dev/loop6 /dev/loop7
+        sudo lvcreate -n runner -l 100%FREE github
+        sudo mkfs.xfs /dev/github/runner
+    - name: Mount LV
+      run: |
+        sudo mkdir -p /builder
+        sudo mount /dev/github/runner /builder
+        sudo chown -R runner.runner /builder
+        df -Th
+    - name: Build System Setup
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo sh -c 'echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-17 main" >> /etc/apt/sources.list'
+        sudo sh -c 'echo "deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-17 main" >> /etc/apt/sources.list'
+        wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+        sudo apt-get update
+        sudo apt-get install -y build-essential flex bison clang-17 cmake g++ gawk gcc-multilib g++-multilib gettext git libfuse-dev libncurses5-dev libssl-dev python3 python3-pip python3-ply python3-distutils python3-pyelftools rsync unzip zlib1g-dev file wget subversion patch upx-ucl autoconf automake curl asciidoc binutils bzip2 lib32gcc-s1 libc6-dev-i386 uglifyjs msmtp texinfo libreadline-dev libglib2.0-dev xmlto libelf-dev libtool autopoint antlr3 gperf ccache swig coreutils haveged scons libpython3-dev rename
+        sudo apt-get clean
+        git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
+        df -Th
+          sudo timedatectl set-timezone "$TZ"
+          sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    - name: Clone source code
+      working-directory: /builder
+      run: |
+        df -hT $PWD
+        if [[ $REPO_BRANCH == 'stable' ]]; then
+          git clone --depth 1 https://github.com/DHDAXCW/lede-rockchip -b $REPO_BRANCH openwrt
+        else 
+          git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
+        fi
+        
+        ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
+
+    - name: Cache
+      uses: klever1988/cachewrtbuild@main
+      with:
+       ccache: 'true'
+       mixkey: 'x86_64'
+       clean:  'false'  # 'false'
+       prefix: /builder/openwrt
+    - name: Update feeds
+      run: | 
+      
+          # mv -f ./.github/tmp/* ./
+           cp -Rf ./.github/tmp/* ./
+          cd openwrt
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+    - name: Update package
+      run: |
+         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+         
+         
+         chmod +x $GITHUB_WORKSPACE/${DIY_P1_SH}
+         cd openwrt
+         $GITHUB_WORKSPACE/$DIY_P1_SH
+         chmod -R 755 .
+
+
+    - name:  defconfig
+      run: |
+
+        cd openwrt
+         cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  >  .config
+        case "${CONFIG_S}" in
+        "Vip"*)        
+        cat  $GITHUB_WORKSPACE/config/comm  >>  .config
+        ;;
+        esac
+        make defconfig
+        df -h
+        
+    - name:  Download packages
+      run: |
+        cd openwrt
+        make download -j8
+        find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
+        df -h
+    - name: Compile Openwrt
+      id: compileopenwrt
+      # continue-on-error: true
+      run: |
+        cd openwrt
+        df -hT
+        #make -j1 V=s
+        echo -e "$(nproc) thread compile"
+        make tools/compile -j$(nproc) || make tools/compile -j$(nproc)
+        make toolchain/compile -j$(nproc) || make toolchain/compile -j$(nproc)
+        make target/compile -j$(nproc) || make target/compile -j$(nproc) IGNORE_ERRORS=1
+        make diffconfig
+        make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
+        make package/index
+         #rm -rf ./targets/x86/64/*x86-64-combined*
+         bash  bakkmod.sh
+        echo "status=success" >> $GITHUB_OUTPUT
+    - name: Generate Firmware
+    
+      id: compile
+      if: steps.compileopenwrt.outputs.status  == 'success'
+      run: |
+        df -h
+        cd openwrt
+        make package/install -j$(nproc) || make package/install -j1 V=s
+        make target/install -j$(nproc) || make target/install -j1 V=s
+        make checksum
+        bash buildmd5.sh
+        echo "status=success" >> $GITHUB_OUTPUT
+    - name: Organize files
+      id: organize
+      if: steps.compile.outputs.status  == 'success'
+      run: |
+        cd openwrt/bin/targets/*/*
+        ls
+        echo "======================="
+        df -hT
+        rm -rf packages
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      with:
+        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-Firmware
+        path: ${{ env.FIRMWARE }}
+
+    - name: Upload bin directory
+      uses: actions/upload-artifact@main
+      with:
+        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-ipk
+        path: ./openwrt/bin/packages/
+        
+    - name:  Check version
+      id: check_version
+      env:
+          url_tags: https://api.github.com/repos/${{ env.OPREPO }}/tags
+      run: |
+          
+          if [[ $DATE_S == 'default' ]]; then
+             echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+           else 
+            echo "DATA=$DATE_S" >>$GITHUB_ENV
+          fi
+          echo "release_tag=$(cat openwrt/package/base-files/files/etc/ezopenwrt_version)" >> $GITHUB_OUTPUT
+          latest_version=$(cat openwrt/package/base-files/files/etc/ezopenwrt_version)
+          has_update=$([ -z "$(wget -qO- -t1 -T2 ${{env.url_tags}} | grep \"${latest_version}\")" ] && echo true || echo false)
+          prerelease=$([ "${{ github.ref_name }}" == "main" ] && echo false || echo true)
+          echo "latest_version=${latest_version}" >> $GITHUB_OUTPUT
+          echo "has_update=${has_update}" >> $GITHUB_OUTPUT
+          echo "prerelease=${prerelease}" >> $GITHUB_OUTPUT
+          echo "latest_version: ${latest_version}"
+          echo "has_update: ${has_update}"
+          echo "prerelease: ${prerelease}"
+ 
+    - name: Generate release tag
+      id: tag
+      run: |
+        echo "release_tag=$(cat openwrt/package/base-files/files/etc/ezopenwrt_version)" >> $GITHUB_OUTPUT
+        echo "## :mega:Update content" >> release.txt
+          echo "![](https://img.shields.io/github/downloads/${{ env.passwall }}/${{steps.check_version.outputs.latest_version}}/total?style=flat-square)" >> release.txt
+          echo "### Passwall Info" >> release.txt
+          echo "**:minidisc: Passwall Version: ${{steps.check_version.outputs.latest_version}}**" >> release.txt
+        echo -e "\n* The stable source code has been updated." >> release.txt
+        sed -i '1i ## Firmware Update Log' release.txt
+        touch release.txt
+        echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v1
+      if: steps.tag.outputs.status == 'success' && !cancelled()
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
+        
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@v2
+      with:
+          retain_days: 1
+          keep_minimum_runs: 1
+
+    - name: Remove old Releases
+      uses: dev-drprasad/delete-older-releases@v0.3.4
+      with:
+          keep_latest: 1
+          keep_min_download_counts: 1 # Optional parameters
+          delete_tags: true
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
