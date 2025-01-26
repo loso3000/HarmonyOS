@@ -43,9 +43,9 @@ env:
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diy/diyv
   APT: apt
-  UPLOAD_BIN_DIR: true
+  UPLOAD_BIN_DIR: flase
   UPLOAD_FIRMWARE: true
-  UPLOAD_RELEASE: true
+  UPLOAD_RELEASE: flase
   TZ: Asia/Shanghai
 jobs:
   Build:
