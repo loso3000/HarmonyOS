@@ -41,7 +41,7 @@ env:
   # REPO_URL: https://github.com/DHDAXCW/lede-rockchip
   #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  DIY_P1_SH: diy/diyv
+  DIY_P1_SH: diyv
   APT: apt
   UPLOAD_BIN_DIR: flase
   UPLOAD_FIRMWARE: true
@@ -253,7 +253,7 @@ jobs:
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
       
-        echo "release_tag=$(cat openwrt/file/ez_version)" >> $GITHUB_OUTPUT
+        echo "release_tag=$(cat openwrt/file/etc/ezopenwrt_version  | cut -d _ -f 1)" >> $GITHUB_OUTPUT
         echo -e "\n* The stable source code has been updated." >> release.txt
         sed -i '1i ## Firmware Update Log' release.txt
         touch release.txt
