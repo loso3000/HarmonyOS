@@ -44,8 +44,9 @@ env:
   DIY_P1_SH: diyv
   APT: apt
   UPLOAD_BIN_DIR: flase
+  UPLOAD_IPK_DIR: flase
   UPLOAD_FIRMWARE: true
-  UPLOAD_RELEASE: flase
+  UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 jobs:
   Build:
@@ -144,10 +145,9 @@ jobs:
         else 
           git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
         fi
-        
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
-          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "DATA=`date +%y%m%d%H%M -d +"12"hour`" >> $GITHUB_ENV
         else 
           echo "DATA=$DATE_S" >>$GITHUB_ENV
         fi
@@ -160,7 +160,6 @@ jobs:
        prefix: /builder/openwrt
     - name: Update feeds
       run: | 
-      
           # mv -f ./.github/tmp/* ./
            cp -Rf ./.github/tmp/* ./
           cd openwrt
@@ -168,23 +167,14 @@ jobs:
           ./scripts/feeds install -a
     - name: Update package
       run: |
-         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-         
-         
          chmod +x $GITHUB_WORKSPACE/${DIY_P1_SH}
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
     - name:  defconfig
       run: |
-
         cd openwrt
-         cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  >  .config
-        case "${CONFIG_S}" in
-        "Vip"*)        
-        cat  $GITHUB_WORKSPACE/config/comm  >>  .config
-        ;;
-        esac
+        cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  >  .config
         make defconfig
         df -h
     - name:  Download packages
@@ -208,11 +198,9 @@ jobs:
         make diffconfig
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
         make package/index
-         #rm -rf ./targets/x86/64/*x86-64-combined*
-         bash  bakkmod.sh
+        bash  bakkmod.sh
         echo "status=success" >> $GITHUB_OUTPUT
     - name: Generate Firmware
-    
       id: compile
       if: steps.compileopenwrt.outputs.status  == 'success'
       run: |
@@ -237,16 +225,24 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       with:
-        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-Firmware
+        name: ${{ env.DATA }}-EzOpWrt-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-Firmware
         path: ${{ env.FIRMWARE }}
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
       if: env.UPLOAD_BIN_DIR == 'true' && !cancelled()
       with:
-        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-ipk
+        name: ${{ env.DATA }}-EzOpWrt-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-bin
+        path: ./openwrt/bin/
+
+    - name: Upload bin packages directory
+      uses: actions/upload-artifact@main
+      if: env.UPLOAD_IPK_DIR == 'true' && !cancelled()
+      with:
+        name: ${{ env.DATA }}-EzOpWrt-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-ipk
         path: ./openwrt/bin/packages/
    
+ 
  
     - name: Generate release tag
       id: tag
