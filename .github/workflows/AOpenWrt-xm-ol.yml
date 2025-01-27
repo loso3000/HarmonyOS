@@ -43,12 +43,9 @@ env:
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diy/diyv
   APT: apt
-  UPLOAD_BIN_DIR: false
+  UPLOAD_BIN_DIR: flase
   UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: true
-  OPREPO: ${{ github.repository }}
+  UPLOAD_RELEASE: flase
   TZ: Asia/Shanghai
 jobs:
   Build:
@@ -61,10 +58,8 @@ jobs:
       DATE_S: ${{github.event.inputs.date_s}}
       TARGET_DEVICE: ${{github.event.inputs.target}}
       REPO_BRANCH: ${{github.event.inputs.branch}}
-    outputs:
-      op_version: ${{ steps.check_version.outputs.latest_version }}
-      has_update: ${{ steps.check_version.outputs.has_update }}
-      prerelease: ${{ steps.check_version.outputs.prerelease }} 
+
+
     steps:
     - name: Checkout
       uses: actions/checkout@main
@@ -151,7 +146,11 @@ jobs:
         fi
         
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
-
+        if [[ $DATE_S == 'default' ]]; then
+          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+        else 
+          echo "DATA=$DATE_S" >>$GITHUB_ENV
+        fi
     - name: Cache
       uses: klever1988/cachewrtbuild@main
       with:
@@ -176,8 +175,6 @@ jobs:
          cd openwrt
          $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
-
-
     - name:  defconfig
       run: |
 
@@ -190,7 +187,6 @@ jobs:
         esac
         make defconfig
         df -h
-        
     - name:  Download packages
       run: |
         cd openwrt
@@ -239,72 +235,52 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       with:
         name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-Firmware
         path: ${{ env.FIRMWARE }}
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
+      if: env.UPLOAD_BIN_DIR == 'true' && !cancelled()
       with:
         name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-ipk
         path: ./openwrt/bin/packages/
-        
-    - name:  Check version
-      id: check_version
-      env:
-          url_tags: https://api.github.com/repos/${{ env.OPREPO }}/tags
-      run: |
-          
-          if [[ $DATE_S == 'default' ]]; then
-             echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
-           else 
-            echo "DATA=$DATE_S" >>$GITHUB_ENV
-          fi
-          echo "release_tag=$(cat openwrt/package/base-files/files/etc/ezopenwrt_version)" >> $GITHUB_OUTPUT
-          latest_version=$(cat openwrt/package/base-files/files/etc/ezopenwrt_version)
-          has_update=$([ -z "$(wget -qO- -t1 -T2 ${{env.url_tags}} | grep \"${latest_version}\")" ] && echo true || echo false)
-          prerelease=$([ "${{ github.ref_name }}" == "main" ] && echo false || echo true)
-          echo "latest_version=${latest_version}" >> $GITHUB_OUTPUT
-          echo "has_update=${has_update}" >> $GITHUB_OUTPUT
-          echo "prerelease=${prerelease}" >> $GITHUB_OUTPUT
-          echo "latest_version: ${latest_version}"
-          echo "has_update: ${has_update}"
-          echo "prerelease: ${prerelease}"
+   
  
     - name: Generate release tag
       id: tag
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(cat openwrt/package/base-files/files/etc/ezopenwrt_version)" >> $GITHUB_OUTPUT
-        echo "## :mega:Update content" >> release.txt
-          echo "![](https://img.shields.io/github/downloads/${{ env.passwall }}/${{steps.check_version.outputs.latest_version}}/total?style=flat-square)" >> release.txt
-          echo "### Passwall Info" >> release.txt
-          echo "**:minidisc: Passwall Version: ${{steps.check_version.outputs.latest_version}}**" >> release.txt
+      
+        echo "release_tag=$(cat openwrt/file/ez_version)" >> $GITHUB_OUTPUT
         echo -e "\n* The stable source code has been updated." >> release.txt
         sed -i '1i ## Firmware Update Log' release.txt
         touch release.txt
         echo "status=success" >> $GITHUB_OUTPUT
-
+        
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
-        
+
+
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2
       with:
           retain_days: 1
-          keep_minimum_runs: 1
+          keep_minimum_runs: 5
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.3.4
       with:
-          keep_latest: 1
+          keep_latest: 10
           keep_min_download_counts: 1 # Optional parameters
           delete_tags: true
       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
