@@ -1,4 +1,23 @@
 #!/bin/bash
+#安装和更新软件包
+UPDATE_PACKAGE() {
+	local PKG_NAME=$1
+	local PKG_REPO=$2
+	local PKG_BRANCH=$3
+	local PKG_SPECIAL=$4
+	local REPO_NAME=$(echo $PKG_REPO | cut -d '/' -f 2)
+
+	rm -rf $(find ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune)
+
+	git clone --depth=1 --single-branch --branch $PKG_BRANCH "https://github.com/$PKG_REPO.git"
+
+	if [[ $PKG_SPECIAL == "pkg" ]]; then
+		cp -rf $(find ./$REPO_NAME/*/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune) ./
+		rm -rf ./$REPO_NAME/
+	elif [[ $PKG_SPECIAL == "name" ]]; then
+		mv -f $REPO_NAME $PKG_NAME
+	fi
+}
 is_vip() {
 case "${CONFIG_S}" in
      "Vip"*) return 0 ;;
@@ -31,10 +50,10 @@ git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
-[ ! -d files/etc ] || mkdir -p files/etc
+[ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
 
-[[ -n $CONFIG_S ]] || CONFIG_S=Free-Plus
 [[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
+[[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
 
 rm -rf ./feeds/luci/themes/luci-app-filter
 rm -rf ./feeds/luci/themes/luci-app-oaf
@@ -526,7 +545,8 @@ VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f
 CLASH="arm64"
 fi
 if [[ $DATE_S == 'default' ]]; then
-   DATA=`TZ=UTC-8 date +%y%m%d%H%M -d +"12"hour`
+   # DATA=`TZ=UTC-8 date +%y%m%d -d +"12"hour`
+   DATA=`TZ=UTC-8 date +%y%m%d%H%M`
 else 
    DATA=$DATE_S
 fi
@@ -540,6 +560,7 @@ ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
+ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
 date1="${CONFIG_S}-${DATA}_by_Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
@@ -549,8 +570,10 @@ elif [ "$VER1" = "6.1" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
 elif [ "$VER1" = "6.6" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver66}_by_Sirpdboy"
+elif [ "$VER1" = "6.12" ]; then
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by_Sirpdboy"
 fi
-echo "${date1}" > ./files/etc/ezopenwrt_version
+echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 [ -f ./files/root/.zshrc ] || mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
@@ -562,12 +585,13 @@ if [ ${TARGET_DEVICE} = "x86_64" ] ; then
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
-r_version=`cat ./files/etc/ezopenwrt_version`
+r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
+ver12=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
 
 pushd bin/targets/*/*/
@@ -588,25 +612,31 @@ rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
 if [ "$VER1" = "5.4" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-dev.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-dev-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-dev.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-dev-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
 elif [ "$VER1" = "5.15" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-dev.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-dev-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-dev.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-dev-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
 elif [ "$VER1" = "6.1" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-dev.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-dev-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-dev.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-dev-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
 elif [ "$VER1" = "6.6" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-dev.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-dev-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-dev.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-dev-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
+
+elif [ "$VER1" = "6.12" ]; then
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver12}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver12}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver12}-x86-64-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver12}-x86-64-combined-efi.img.gz
 fi
 #md5
 [ -f ${md5_EzOpWrt}] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5
@@ -618,7 +648,7 @@ else
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
-r_version=`cat ./files/etc/ezopenwrt_version`
+r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
@@ -701,8 +731,8 @@ while IFS= read -r line; do
 done < "$bakkmodfile"
     # find ./bin/ -name  $file | xargs -i cp -f {}  $kmoddirdrv
     # cp -v $(find bin/targets/ -type f -name "*${FIRMWARE_TYPE}*") ../firmware
-find ./bin/ -name "*dockerman*.ipk" | xargs -i cp -f {} $kmoddirdocker
-find ./bin/ -name "*dockerd*.ipk" | xargs -i cp -f {} $kmoddirdocker
+find ./bin/ -name "*dockerman*" | xargs -i cp -f {} $kmoddirdocker
+find ./bin/ -name "*dockerd*" | xargs -i cp -f {} $kmoddirdocker
 EOF
 
 
