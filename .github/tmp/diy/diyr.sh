@@ -31,8 +31,9 @@ git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
+[ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
 
-[[ -n $CONFIG_S ]] || CONFIG_S=Vip-Mini
+[[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
 rm -rf ./feeds/luci/themes/luci-app-filter
 rm -rf ./feeds/luci/themes/luci-app-oaf
 rm -rf ./feeds/luci/themes/luci-theme-argon
@@ -83,17 +84,17 @@ rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
-git clone https://$github/loso3000/other ./package/other
+git clone https://$github/loso3000/other ./package/add
 
-rm -rf ./package/other/up/pass/shadow-tls
-rm -rf ./package/other/up/pass/xray-core
-rm -rf ./package/other/up/pass/naiveproxy
+rm -rf ./package/add/up/pass/shadow-tls
+rm -rf ./package/add/up/pass/xray-core
+rm -rf ./package/add/up/pass/naiveproxy
 
 #daed
-#cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
+#cp -rf ./package/add/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
 # add luci-app-daed
 # git clone https://$github/sbwml/luci-app-daed-next ./package/daed-next
-# cp -rf ./package/other/up/daed/bpf.mk ./include/bpf.mk
+# cp -rf ./package/add/up/daed/bpf.mk ./include/bpf.mk
 
 # luci-app-daed-next
 # git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
@@ -138,56 +139,55 @@ rm -rf ./feeds/third/luci-app-autotimeset
 rm -rf  ./feeds/packages/ariang
 rm -rf  ./feeds/packages/webui-aria2
 # git clone -b lede --single-branch https://$github/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
-mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
-mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
+mv -f ./package/add/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
-mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
-mv -f ./package/other/up/tool/oaf/*  ./package/other/
-mv -f ./package/other/up/tool/smartdns/*  ./package/other/
+mv -f ./package/add/up/tool/netspeedtest/*  ./package/add/
+mv -f ./package/add/up/tool/oaf/*  ./package/add/
+mv -f ./package/add/up/tool/smartdns/*  ./package/add/
 
 
+# rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
+# rm -rf ./feeds/luci/applications/luci-app-mwan3
+rm -rf ./feeds/packages/net/mwan3
+mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 #rm -rf ./feeds/packages/net/aria2
 #rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
-sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
+sed -i 's,default n,default y,g' package/add/up/pass/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' package/add/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
-sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plusdns/Makefile
+sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/add/up/pass/luci-ssr-plus/Makefile
+sed -i '/Rust:/d' ./package/add/up/pass/luci-ssr-plusdns/Makefile
 
 #修正nat回流 
-cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
-cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
-cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
+cat ./package/add/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
+cat ./package/add/patch/banner > ./package/base-files/files/etc/banner
+cat ./package/add/patch/profile > ./package/base-files/files/etc/profile
 
 rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
 
-# rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
-# rm -rf ./feeds/luci/applications/luci-app-mwan3
-rm -rf ./feeds/packages/net/mwan3
-mv ./package/other/up/tool/mwan3 ./feeds/packages/net/mwan3
-
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv ./package/other/up/tool/autocore ./package/lean/autocore 
+mv ./package/add/up/tool/autocore ./package/lean/autocore 
 # rm -rf ./package/lean/autocore/files/generic/inlink.htm
+# rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
 
 # samba4
 rm -rf ./package/lean/autosamba
 rm -rf  package/emortal/autosamba
 
 #rm -rf ./feeds/luci/applications/luci-app-samba4
-#mv -f ./package/other/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+#mv -f ./package/add/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
 rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
 
 rm -rf ./package/lean/default-settings
 rm -rf  package/emortal/default-settings
-# mv -rf  ./package/other/up/default-settings  ./package/lean/default-settings
 
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
@@ -233,13 +233,13 @@ git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 
 # alist
- rm -rf ./feeds/packages/net/alist
- rm -rf  ./feeds/luci/applications/luci-app-alist
+#  rm -rf ./feeds/packages/net/alist
+#  rm -rf  ./feeds/luci/applications/luci-app-alist
 # alist
-git clone https://$github/sbwml/luci-app-alist package/alist
+# git clone https://$github/sbwml/luci-app-alist package/alist
 # git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
-sed -i '/config.json/a\ rm -rf \/var\/run\/alist.sock' package/alist/alist/files/alist.init
-sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+# sed -i '/config.json/a\ rm -rf \/var\/run\/alist.sock' package/alist/alist/files/alist.init
+# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
 # git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
 git clone https://$github/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
@@ -505,9 +505,6 @@ esac
 if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 CLASH="amd64"
-elif  [ $TARGET_DEVICE == 'rm2100' ]  || [ $TARGET_DEVICE == 'xm2100' ] ;then
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
-CLASH="mipsle_softfloat"
 else
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 CLASH="arm64"
@@ -520,7 +517,7 @@ else
    DATA=$DATE_S
 fi
 # 预处理下载相关文件，保证打包固件不用单独下载
-for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/other/common/*.sh`;do
+for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/add/common/*.sh`;do
     source $sh_file $CLASH
 done
 
@@ -529,6 +526,7 @@ ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
+ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
 date1="${CONFIG_S}-${DATA}_by_Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
@@ -538,16 +536,17 @@ elif [ "$VER1" = "6.1" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
 elif [ "$VER1" = "6.6" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver66}_by_Sirpdboy"
+elif [ "$VER1" = "6.12" ]; then
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by_Sirpdboy"
 fi
 echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-[ -f ./files/root/.zshrc ] || mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
+[ -f ./files/root/.zshrc ] || mv -f ./package/add/patch/z.zshrc ./files/root/.zshrc
 [ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/.zshrc > ./files/root/.zshrc
-[ -f ./files/etc/profiles ] || mv -f ./package/other/patch/profiles ./files/etc/profiles
+[ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
-#判断固件版本
 if [ ${TARGET_DEVICE} = "x86_64" ] ; then
 
 cat>buildmd5.sh<<-\EOF
@@ -558,6 +557,7 @@ ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
+ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
 
 pushd bin/targets/*/*/
@@ -597,10 +597,16 @@ mv  *generic-squashfs-combined.img.gz       EzOpenWrt-${r_version}_${VER1}.${ver
 mv  *generic-squashfs-combined-efi.img.gz   EzOpenWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined-efi.img.gz
 md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz   
 md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
+
+elif [ "$VER1" = "6.12" ]; then
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver612}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver612}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver612}-x86-64-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver612}-x86-64-combined-efi.img.gz
 fi
 #md5
-md5sum ${md5_EzOpWrt} > EzOpWrt_combined.md5  || true
-md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_combined-efi.md5 || true
+[ -f ${md5_EzOpWrt}] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5
+[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5
 popd
 
 EOF
@@ -635,24 +641,29 @@ rm -rf  *kernel.bin
 sleep 2
 
 if [ "$VER1" = "5.4" ]; then
-mv   *squashfs-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  *ext4-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv  *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "5.15" ]; then
-mv   *squashfs-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv   *ext4-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv   *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 elif [ "$VER1" = "6.1" ]; then
-mv *squashfs-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv *ext4-sysupgrade.img.gz EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+mv *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
+md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
+elif [ "$VER1" = "6.6" ]; then
+mv *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 fi
 #md5
-md5sum ${md5_EzOpWrt} > EzOpWrt_squashfs-sysupgrade.md5  || true
-md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_ext4-sysupgrade.md5 || true
+[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_squashfs-sysupgrade.md5  || true
+[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_ext4-sysupgrade.md5 || true
 popd
 
 exit 0
@@ -705,7 +716,7 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" $(find ./feeds/luci/module
 
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
-# EzOpenWrt By Sirpdboy
+# EzOpWrt By Sirpdboy
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
 [ -d $nowkmoddir ]  || exit
@@ -815,3 +826,5 @@ EOF
 ;;
 esac
 ./scripts/feeds update -i
+
+exit
