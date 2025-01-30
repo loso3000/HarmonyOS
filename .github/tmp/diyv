@@ -103,16 +103,16 @@ rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
-git clone https://$github/loso3000/other ./package/other
-rm -rf ./package/other/up/pass/shadow-tls
-rm -rf ./package/other/up/pass/xray-core
-rm -rf ./package/other/up/pass/naiveproxy
+git clone https://$github/loso3000/other ./package/add
+rm -rf ./package/add/up/pass/shadow-tls
+rm -rf ./package/add/up/pass/xray-core
+rm -rf ./package/add/up/pass/naiveproxy
 
 #daed
-#cp -rf ./package/other/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
+#cp -rf ./package/add/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
 # add luci-app-daed
 # git clone https://$github/sbwml/luci-app-daed-next ./package/daed-next
-# cp -rf ./package/other/up/daed/bpf.mk ./include/bpf.mk
+# cp -rf ./package/add/up/daed/bpf.mk ./include/bpf.mk
 
 
 # luci-app-daed-next
@@ -160,31 +160,31 @@ rm -rf  ./feeds/packages/ariang
 rm -rf  ./feeds/packages/webui-aria2
 
 # git clone -b lede --single-branch https://$github/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
-mv -f ./package/other/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
-mv -f ./package/other/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
-mv -f ./package/other/up/tool/netspeedtest/*  ./package/other/
-mv -f ./package/other/up/tool/oaf/*  ./package/other/
-mv -f ./package/other/up/tool/smartdns/*  ./package/other/
+mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
+mv -f ./package/add/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+mv -f ./package/add/up/tool/netspeedtest/*  ./package/add/
+mv -f ./package/add/up/tool/oaf/*  ./package/add/
+mv -f ./package/add/up/tool/smartdns/*  ./package/add/
 
-# rm -rf ./package/other/luci-app-mwan3 ./package/other/mwan3
+# rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
 rm -rf ./feeds/packages/net/mwan3
-mv ./package/other/up/tool/mwan3 ./feeds/packages/net/mwan3
+mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
 #rm -rf ./feeds/packages/net/aria2
 #rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
-sed -i 's,default n,default y,g' package/other/up/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' package/other/up/pass/luci-app-ssr-plus/Makefile
+sed -i 's,default n,default y,g' package/add/up/pass/luci-app-bypass/Makefile
+sed -i 's,default n,default y,g' package/add/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' ./package/other/up/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plus/Makefile
-sed -i '/Rust:/d' ./package/other/up/pass/luci-ssr-plusdns/Makefile
+sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
+sed -i '/Rust:/d' ./package/add/up/pass/luci-ssr-plus/Makefile
+sed -i '/Rust:/d' ./package/add/up/pass/luci-ssr-plusdns/Makefile
 
 #修正nat回流 
-cat ./package/other/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
-cat ./package/other/patch/banner > ./package/base-files/files/etc/banner
-cat ./package/other/patch/profile > ./package/base-files/files/etc/profile
+cat ./package/add/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
+cat ./package/add/patch/banner > ./package/base-files/files/etc/banner
+cat ./package/add/patch/profile > ./package/base-files/files/etc/profile
 
 
 rm -rf ./feeds/luci/applications/luci-app-udpxy
@@ -193,16 +193,16 @@ rm -rf  ./feeds/packages/net/msd_lite
 
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv ./package/other/up/tool/autocore ./package/lean/autocore 
+mv ./package/add/up/tool/autocore ./package/lean/autocore 
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
-# rm -rf ./package/other/up/tool/autocore/files/generic/inlink.htm
+# rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
 
 # samba4
 rm -rf ./package/lean/autosamba
 rm -rf  package/emortal/autosamba
 
 #rm -rf ./feeds/luci/applications/luci-app-samba4
-#mv -f ./package/other/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
+#mv -f ./package/add/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
 
 rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
@@ -548,7 +548,7 @@ else
    DATA=$DATE_S
 fi
 # 预处理下载相关文件，保证打包固件不用单独下载
-for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/other/common/*.sh`;do
+for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/add/common/*.sh`;do
     source $sh_file $CLASH
 done
 
@@ -573,9 +573,9 @@ fi
 echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
-[ -f ./files/root/.zshrc ] || mv -f ./package/other/patch/z.zshrc ./files/root/.zshrc
+[ -f ./files/root/.zshrc ] || mv -f ./package/add/patch/z.zshrc ./files/root/.zshrc
 [ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/.zshrc > ./files/root/.zshrc
-[ -f ./files/etc/profiles ] || mv -f ./package/other/patch/profiles ./files/etc/profiles
+[ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
 if [ ${TARGET_DEVICE} = "x86_64" ] ; then
@@ -857,12 +857,5 @@ EOF
 esac
 ./scripts/feeds update -i
 cat  ./config/${CONFIG_S}  > .config
-case "${CONFIG_S}" in
-"Vip"*)
 cat  ./config/comm  >> .config
-;;
-*)
-cat  ./config/comm  >> .config
-;;
-esac
 exit
