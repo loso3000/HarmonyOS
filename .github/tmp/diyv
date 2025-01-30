@@ -1,23 +1,5 @@
 #!/bin/bash
-#安装和更新软件包
-UPDATE_PACKAGE() {
-	local PKG_NAME=$1
-	local PKG_REPO=$2
-	local PKG_BRANCH=$3
-	local PKG_SPECIAL=$4
-	local REPO_NAME=$(echo $PKG_REPO | cut -d '/' -f 2)
 
-	rm -rf $(find ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune)
-
-	git clone --depth=1 --single-branch --branch $PKG_BRANCH "https://github.com/$PKG_REPO.git"
-
-	if [[ $PKG_SPECIAL == "pkg" ]]; then
-		cp -rf $(find ./$REPO_NAME/*/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune) ./
-		rm -rf ./$REPO_NAME/
-	elif [[ $PKG_SPECIAL == "name" ]]; then
-		mv -f $REPO_NAME $PKG_NAME
-	fi
-}
 is_vip() {
 case "${CONFIG_S}" in
      "Vip"*) return 0 ;;
@@ -52,7 +34,6 @@ config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 [ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
 
-[[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
 
 rm -rf ./feeds/luci/themes/luci-app-filter
@@ -68,7 +49,7 @@ rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
 # 修复 hostapd 报错
-# cp -f diy/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
+cp -f diy/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
 # 清理
 # Add luci-app-passwall
@@ -244,9 +225,6 @@ sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
 
-find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
-find ./ | grep Makefile | grep mosdns | xargs rm -f
-
 rm -rf ./feeds/packages/utils/v2dat
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/luci/applications/luci-app-mosdns
@@ -257,13 +235,13 @@ git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 
 # alist
-rm -rf ./feeds/packages/net/alist
-rm -rf ./feeds/luci/applications/luci-app-alist
+#  rm -rf ./feeds/packages/net/alist
+#  rm -rf  ./feeds/luci/applications/luci-app-alist
 # alist
-git clone https://$github/sbwml/luci-app-alist package/alist
+# git clone https://$github/sbwml/luci-app-alist package/alist
 # git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
-sed -i '/config.json/a\ rm -rf \/var\/run\/alist.sock' package/alist/alist/files/alist.init
-sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+# sed -i '/config.json/a\ rm -rf \/var\/run\/alist.sock' package/alist/alist/files/alist.init
+# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
 # git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
 git clone https://$github/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
@@ -588,7 +566,7 @@ ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
-ver12=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
+ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
 
 pushd bin/targets/*/*/
@@ -630,10 +608,10 @@ md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz
 md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
 
 elif [ "$VER1" = "6.12" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver12}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver12}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver12}-x86-64-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver12}-x86-64-combined-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver612}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver612}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver612}-x86-64-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver612}-x86-64-combined-efi.img.gz
 fi
 #md5
 [ -f ${md5_EzOpWrt}] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5
@@ -747,7 +725,7 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" $(find ./feeds/luci/module
 
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
-# EzOpenWrt By Sirpdboy
+# EzOpWrt By Sirpdboy
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
 [ -d $nowkmoddir ]  || exit
@@ -831,7 +809,7 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.8\.1/g" $(find ./feeds/luci/modules
 
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
-# EzOpenWrt By Sirpdboy
+# EzOpWrt By Sirpdboy
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
 [ -d $nowkmoddir ]  || exit
@@ -858,4 +836,5 @@ esac
 ./scripts/feeds update -i
 cat  ./config/${CONFIG_S}  > .config
 cat  ./config/comm  >> .config
+
 exit
