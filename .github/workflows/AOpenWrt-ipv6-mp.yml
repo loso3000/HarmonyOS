@@ -147,7 +147,7 @@ jobs:
         
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
-          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "DATA=`date +%y%m%d%H -d +"12"hour`" >> $GITHUB_ENV
         else 
           echo "DATA=$DATE_S" >>$GITHUB_ENV
         fi
@@ -180,11 +180,7 @@ jobs:
 
         cd openwrt
          cat  $GITHUB_WORKSPACE/config/${CONFIG_S}  >  .config
-        case "${CONFIG_S}" in
-        "Vip"*)        
-        cat  $GITHUB_WORKSPACE/config/comm  >>  .config
-        ;;
-        esac
+
         make defconfig
         df -h
     - name:  Download packages
