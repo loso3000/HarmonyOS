@@ -49,7 +49,7 @@ rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
 # 修复 hostapd 报错
-cp -f diy/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
+# cp -f diy/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
 # 清理
 # Add luci-app-passwall
