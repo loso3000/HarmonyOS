@@ -173,15 +173,17 @@ jobs:
          
          chmod +x $GITHUB_WORKSPACE/${DIY_P1_SH}
          cd openwrt
+         
          $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
     - name:  defconfig
       run: |
         cd openwrt
          cat  $GITHUB_WORKSPACE/seed/${CONFIG_S}  >  .config
+        echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
         case "${CONFIG_S}" in
         "Vip"*)        
-        cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
+        # cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
         ;;
         esac
         make defconfig
@@ -234,14 +236,14 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      if: env.UPLOAD_FIRMWARE == 'true' && steps.compile.outputs.status  == 'success'
       with:
         name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-Firmware
         path: ${{ env.FIRMWARE }}
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
-      if: env.UPLOAD_BIN_DIR == 'true' && !cancelled()
+      if: env.UPLOAD_BIN_DIR == 'true' && steps.compile.outputs.status  == 'success'
       with:
         name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-ipk
         path: ./openwrt/bin/packages/
@@ -249,7 +251,7 @@ jobs:
  
     - name: Generate release tag
       id: tag
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status  == 'success'
       run: |
         echo "release_tag=${{ env.DATA }}" >> $GITHUB_OUTPUT
         echo -e "\n* The stable source code has been updated." >> release.txt
@@ -259,7 +261,7 @@ jobs:
         
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v2
-      if: steps.tag.outputs.status == 'success' && !cancelled()
+      if: steps.tag.outputs.status == 'success' && steps.compile.outputs.status  == 'success'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
       with:
@@ -277,7 +279,7 @@ jobs:
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.3.4
       with:
-          keep_latest: 10
+          keep_latest: 5
           keep_min_download_counts: 1 # Optional parameters
           delete_tags: true
       env:
