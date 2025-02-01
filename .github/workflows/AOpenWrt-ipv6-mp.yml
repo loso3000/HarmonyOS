@@ -147,7 +147,7 @@ jobs:
         
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
-          echo "DATA=`date +%y%m%d%H -d +"12"hour`" >> $GITHUB_ENV
+          echo "DATA=`date +%y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
         else 
           echo "DATA=$DATE_S" >>$GITHUB_ENV
         fi
@@ -162,7 +162,7 @@ jobs:
       run: | 
       
           # mv -f ./.github/tmp/* ./
-           cp -Rf ./.github/tmp/* ./openwrt
+           cp -Rf ./.github/tmp/* ./
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
@@ -170,14 +170,20 @@ jobs:
       run: |
          [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
          
+         
+         chmod +x $GITHUB_WORKSPACE/${DIY_P1_SH}
          cd openwrt
-         bash $DIY_P1_SH
+         $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
     - name:  defconfig
       run: |
-
         cd openwrt
-        cat   seed/${CONFIG_S}  >  .config
+         cat  $GITHUB_WORKSPACE/seed/${CONFIG_S}  >  .config
+        case "${CONFIG_S}" in
+        "Vip"*)        
+        cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
+        ;;
+        esac
         make defconfig
         df -h
     - name:  Download packages
