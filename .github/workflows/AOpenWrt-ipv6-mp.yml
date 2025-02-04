@@ -201,7 +201,7 @@ jobs:
       run: |
         cd openwrt
         df -hT
-        #make -j1 V=s
+        make -j1 V=s
         echo -e "$(nproc) thread compile"
         make tools/compile -j$(nproc) || make tools/compile -j$(nproc)
         make toolchain/compile -j$(nproc) || make toolchain/compile -j$(nproc)
