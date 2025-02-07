@@ -46,6 +46,8 @@ rm -rf  ./feeds/packages/net/oaf
 rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
+# 修复 hostapd 报错
+cp -f diyx/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
 # 清理
 # Add luci-app-passwall
@@ -97,9 +99,44 @@ rm -rf ./package/add/up/pass/naiveproxy
 
 #samrtdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf ./feeds/luci/applications/luci-app-lucky
+rm -rf ./feeds/luci/applications/luci-app-ddns-go
+rm -rf ./feeds/luci/applications/luci-app-filetransfer
+rm -rf ./feeds/luci/applications/luci-app-fileassistant
+rm -rf ./feeds/luci/applications/luci-app-msd_lite
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf ./feeds/luci/applications/luci-app-wolplus
+rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
+
+rm -rf ./feeds/luci/applications/luci-app-udpxy
+rm -rf ./feeds/luci/applications/luci-app-adguardhome
+rm -rf ./feeds/luci/applications/luci-app-mosdns
+rm -rf ./feeds/luci/applications/luci-app-passwall
+rm -rf ./feeds/luci/applications/luci-app-passwall2
+
+rm -rf  ./feeds/packages/net/wrtbwmon
 rm -rf  ./feeds/packages/net/smartdns
-rm -rf ./package/diy/luci-app-smartdns
-rm -rf ./package/diy/smartdns
+rm -rf  ./feeds/packages/net/lucky
+rm -rf  ./feeds/packages/net/ddns-go
+
+#istore
+rm -rf  ./feeds/jjm2473_apps/homebox
+rm -rf  ./feeds/jjm2473_apps/luci-app-homebox
+rm -rf  ./feeds/third_party/luci-app-LingTiGameAcc
+rm -rf  ./feeds/third_party/luci-app-arpbind
+rm -rf  ./feeds/third_party/luci-app-fileassistant
+rm -rf  ./feeds/third_party/luci-app-smartdns
+rm -rf  ./feeds/third_party/luci-app-socat
+rm -rf  ./feeds/third_party/smartdns
+rm -rf  ./feeds/third_party/luci-app-netdata
+rm -rf  ./feeds/third_party/luci-app-autotimeset
+rm -rf ./feeds/openwrt-third/luci-app-netdata
+rm -rf ./feeds/openwrt-third/smartdns
+rm -rf ./feeds/openwrt-third/luci-app-autotimeset
+rm -rf ./feeds/luci/applications/luci-app-autotimeset
+rm -rf ./feeds/third/luci-app-autotimeset
+rm -rf  ./feeds/packages/ariang
+rm -rf  ./feeds/packages/webui-aria2
 # git clone -b lede --single-branch https://$github/pymumu/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/add/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
@@ -394,8 +431,8 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 # wget  -P feeds/packages/utils/tini/patches/ https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 #curl -fsSL  https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch > ./feeds/packages/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 
-sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 case "${CONFIG_S}" in
 Free-Plus)
 ;;
