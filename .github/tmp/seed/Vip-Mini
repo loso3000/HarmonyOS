@@ -939,10 +939,7 @@ CONFIG_boost-compile-visibility-hidden=y
 CONFIG_boost-runtime-shared=y
 CONFIG_boost-static-and-shared-libs=y
 CONFIG_boost-variant-release=y
-CONFIG_KSMBD_SMB_INSECURE_SERVER=y
 CONFIG_PACKAGE_kmod-crypto-md4=y
-CONFIG_PACKAGE_kmod-fs-ksmbd=y
-CONFIG_PACKAGE_ksmbd-server=y
 CONFIG_PACKAGE_libnl-core=y
 CONFIG_PACKAGE_libnl-genl=y
 
