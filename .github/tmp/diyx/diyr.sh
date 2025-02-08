@@ -419,8 +419,6 @@ sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-script
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 
-# 修复 hostapd 报错
-#cp -f $GITHUB_WORKSPACE/scriptx/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
 
 
@@ -523,7 +521,6 @@ for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/add/common/*.sh`;do
     source $sh_file $CLASH
 done
 
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
@@ -532,14 +529,19 @@ ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
 date1="${CONFIG_S}-${DATA}_by_Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
 elif [ "$VER1" = "5.15" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver515}_by_Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver515}_by_Sirpdboy"
 elif [ "$VER1" = "6.1" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
 elif [ "$VER1" = "6.6" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver66}_by_Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver66}_by_Sirpdboy"
 elif [ "$VER1" = "6.12" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by_Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}_by_Sirpdboy"
 fi
 echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
@@ -554,12 +556,6 @@ cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
-VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
-ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
-ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
-ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
-ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
-ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
 
 pushd bin/targets/*/*/
@@ -579,33 +575,11 @@ rm -rf  profiles.json
 rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
-if [ "$VER1" = "5.4" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
-elif [ "$VER1" = "5.15" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
-elif [ "$VER1" = "6.1" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
-elif [ "$VER1" = "6.6" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}-${TARGET_DEVICE}-dev.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}-${TARGET_DEVICE}-dev-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}-${TARGET_DEVICE}-dev.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}-${TARGET_DEVICE}-dev-efi.img.gz
 
-elif [ "$VER1" = "6.12" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver612}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver612}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver612}-x86-64-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver612}-x86-64-combined-efi.img.gz
-fi
 #md5
 [ -f ${md5_EzOpWrt}] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5
 [ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5
@@ -617,10 +591,6 @@ cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
-ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
-ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
-ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
-ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
 
 VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
@@ -642,25 +612,12 @@ rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
 
-if [ "$VER1" = "5.4" ]; then
-mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
-md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
-elif [ "$VER1" = "5.15" ]; then
-mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv   *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
-md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
-elif [ "$VER1" = "6.1" ]; then
-mv *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
-md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
-fi
-#md5
-[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_squashfs-sysupgrade.md5  || true
-[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_ext4-sysupgrade.md5 || true
+mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv  *ext4-sysupgrade.img.gz EzOpWrt-${r_version}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5
+[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5
 
 popd
 exit 0
@@ -700,9 +657,18 @@ EOF
 
 if  is_vip ; then
 #修改默认IP地址
-sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
-sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/luci2/bin/config_generate
-sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/Makefile
+# sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+#修改immortalwrt.lan关联IP
+#sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+#修改默认IP地址
+#sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" package/base-files/files/bin/config_generate    #config_generate
+
+#修改默认IP地址
+sed -i 's/192\.168\.1\.1/192\.168\.10\.1/g' package/base-files/files/bin/config_generate
+
+#sed -i 's/192.168.100.1/192.168.10.1/g' package/istoreos-files/Makefile
+#sed -i 's/luci-theme-argon/luci-theme-kucat/g' package/istoreos-files/Makefile
+
 #修改immortalwrt.lan关联IP
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 #修改默认IP地址
@@ -788,13 +754,12 @@ else
 #修改默认IP地址
 sed -i 's/192\.168\.1\.1/192\.168\.8\.1/g' package/base-files/files/bin/config_generate
 
-sed -i "s/192.168.1.1/192.168.8.1/g" package/base-files/Makefile
-sed -i "s/192.168.1.1/192.168.8.1/g" package/base-files/luci2/bin/config_generate
+#sed -i 's/luci-theme-argon/luci-theme-kucat/g' package/istoreos-files/Makefile
+#sed -i 's/192.168.100.1/192.168.8.1/g' package/istoreos-files/Makefile
 #修改immortalwrt.lan关联IP
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.8\.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 #修改默认IP地址
-#sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.8\.1/g" package/base-files/files/bin/config_generate
-
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.8\.1/g" package/base-files/files/bin/config_generate
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
 # EzOpWrt By Sirpdboy
