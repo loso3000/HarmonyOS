@@ -187,13 +187,13 @@ jobs:
     - name:  Download packages
       run: |
         cd openwrt
-        cat  $GITHUB_WORKSPACE/config/${TARGET_DEVICE}  > .config
+        cat  $GITHUB_WORKSPACE/seed/${TARGET_DEVICE}  > .config
         case "${CONFIG_S}" in
         "Vip"*)        
-        cat  $GITHUB_WORKSPACE/config/Vip  >> .config
+        cat  $GITHUB_WORKSPACE/seed/Vip  >> .config
         ;;
         *)
-        cat  $GITHUB_WORKSPACE/config/Free  >> .config
+        cat  $GITHUB_WORKSPACE/seed/Free  >> .config
         ;;
         esac
         echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
