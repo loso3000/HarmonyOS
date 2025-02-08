@@ -526,7 +526,7 @@ CLASH="arm64"
 fi
 
 if [[ $DATE_S == 'default' ]]; then
-   DATA=`TZ=UTC-8 date +%y%m%d%H%M -d +"12"hour`
+   DATA=`TZ=UTC-8 date +%y%m%d%H%M`
    # DATA=`TZ=UTC-8 date +%y%m%d%H%M`
 else 
    DATA=$DATE_S
@@ -625,12 +625,14 @@ md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver12}-x86-64-combined.img.gz
 md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver12}-x86-64-combined-efi.img.gz
 fi
 #md5
-[ -f ${md5_EzOpWrt}] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5
+[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5
 [ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5
 popd
 
 EOF
+
 else
+
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
