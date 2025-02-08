@@ -3,7 +3,7 @@
 is_vip() {
 case "${CONFIG_S}" in
      "Vip"*) return 0 ;;
-     "Free"*) return 1 ;;
+     *) return 1 ;;
 esac
 }
 
@@ -41,13 +41,13 @@ rm -rf ./feeds/packages/net/mentohust
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/packages/net/oaf
-# rm -rf  ./feeds/packages/net/wget
+#rm -rf  ./feeds/packages/net/wget
 
 rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
 # 修复 hostapd 报错
-cp -f diy/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
+# cp -f diyx/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
 # 清理
 # Add luci-app-passwall
@@ -57,9 +57,6 @@ git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwal
 
 rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
 
-#20240831error
-sed -i '/^UBOOT_TARGETS := rk3528-evb rk3588-evb/s/^/#/' package/boot/uboot-rk35xx/Makefile
-
 git clone https://$github/sbwml/openwrt_helloworld  ./package/ssr
 rm -rf ./package/ssr/luci-app-ssr-plus
 rm -rf ./package/ssr/luci-app-passwall
@@ -67,7 +64,7 @@ rm -rf ./package/ssr/luci-app-passwall2
 
 rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
-# rm -rf ./package/ssr/xray-core
+rm -rf ./package/ssr/xray-core
 rm -rf ./package/ssr/xray-plugin
 # rm -rf ./package/ssr/naiveproxy
 rm -rf ./package/ssr/v2ray-plugin
@@ -79,6 +76,7 @@ rm -rf ./package/ssr/redsocks2
 
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/trojan-plus
+
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
@@ -87,7 +85,7 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 git clone https://$github/loso3000/other ./package/add
 
 rm -rf ./package/add/up/pass/shadow-tls
-rm -rf ./package/add/up/pass/xray-core
+# rm -rf ./package/add/up/pass/xray-core
 rm -rf ./package/add/up/pass/naiveproxy
 
 #daed
@@ -120,6 +118,7 @@ rm -rf  ./feeds/packages/net/wrtbwmon
 rm -rf  ./feeds/packages/net/smartdns
 rm -rf  ./feeds/packages/net/lucky
 rm -rf  ./feeds/packages/net/ddns-go
+
 #istore
 rm -rf  ./feeds/jjm2473_apps/homebox
 rm -rf  ./feeds/jjm2473_apps/luci-app-homebox
@@ -146,13 +145,15 @@ mv -f ./package/add/up/tool/netspeedtest/*  ./package/add/
 mv -f ./package/add/up/tool/oaf/*  ./package/add/
 mv -f ./package/add/up/tool/smartdns/*  ./package/add/
 
-
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
 rm -rf ./feeds/packages/net/mwan3
 mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
+
+
 #rm -rf ./feeds/packages/net/aria2
 #rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
+
 sed -i 's,default n,default y,g' package/add/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/add/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
@@ -170,10 +171,11 @@ rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
 
+
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv ./package/add/up/tool/autocore ./package/lean/autocore 
-# rm -rf ./package/lean/autocore/files/generic/inlink.htm
+#rm -rf ./package/lean/autocore/files/generic/inlink.htm
 # rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
 
 # samba4
@@ -195,6 +197,7 @@ sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  f
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 
 rm -rf ./feeds/luci/applications/luci-app-p910nd
+
 
 
 # sed -i 's/-D_GNU_SOURCE/-D_GNU_SOURCE -Wno-error=use-after-free/g' ./package/libs/elfutils/Makefile
@@ -238,8 +241,8 @@ git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 # alist
 # git clone https://$github/sbwml/luci-app-alist package/alist
 # git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
-# sed -i '/config.json/a\ rm -rf \/var\/run\/alist.sock' package/alist/alist/files/alist.init
-# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
+sed -i '/config.json/a\ rm -rf \/var\/run\/alist.sock' package/alist/alist/files/alist.init
+sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
 # git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
 git clone https://$github/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
@@ -277,7 +280,8 @@ git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
-sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
+#sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
+
 
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
@@ -372,13 +376,13 @@ rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-th
 rm -rf ./feeds/luci/themes/luci-theme-argon package/feeds/packages/luci-theme-argon
 rm -rf ./feeds/luci/applications/luci-app-argon-config ./feeds/luci/applications/luci-theme-opentomcat ./feeds/luci/applications/luci-theme-ifit
 rm -rf ./feeds/luci/applications/luci-theme-opentopd package/feeds/packages/luci-theme-opentopd
-
 rm -rf ./feeds/luci/themes/luci-theme-design
  git clone -b js https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
 rm -rf ./feeds/luci/themes/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon.git  package/luci-theme-argon
 sed -i 's,media .. \"\/b,resource .. \"\/b,g' ./package/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm
 sed -i 's,media .. \"\/b,resource .. \"\/b,g' ./feeds/luci/themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm
+
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
 # sed -i 's/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
@@ -430,6 +434,8 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 # wget  -P feeds/packages/utils/tini/patches/ https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 #curl -fsSL  https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch > ./feeds/packages/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 
+# sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 case "${CONFIG_S}" in
 Free-Plus)
 ;;
@@ -473,7 +479,6 @@ sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status
 Vip-Plus)
 ;;
 Vip-Bypass)
-# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 ;;
 Free-Mini)
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
@@ -545,9 +550,9 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
 if [ ${TARGET_DEVICE} = "x86_64" ] ; then
-
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
+
 r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
@@ -575,25 +580,25 @@ rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
 if [ "$VER1" = "5.4" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver54}-${TARGET_DEVICE}-combined-efi.img.gz
 elif [ "$VER1" = "5.15" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver515}-${TARGET_DEVICE}-combined-efi.img.gz
 elif [ "$VER1" = "6.1" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-combined-efi.img.gz
 elif [ "$VER1" = "6.6" ]; then
-mv  *generic-squashfs-combined.img.gz       EzOpenWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpenWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined-efi.img.gz
-md5_EzOpWrt=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz   
-md5_EzOpWrt_uefi=EzOpenWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${VER1}.${ver66}-${TARGET_DEVICE}-combined-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-combined.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${VER1}.${ver66}-x86-64-combined-efi.img.gz
 
 elif [ "$VER1" = "6.12" ]; then
 mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${VER1}.${ver612}-${TARGET_DEVICE}-combined.img.gz   
@@ -608,7 +613,6 @@ popd
 
 EOF
 else
-
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
@@ -618,6 +622,7 @@ ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
 # gzip bin/targets/*/*/*.img | true
+
 VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 pushd bin/targets/*/*/
 rm -rf   config.buildinfo
@@ -652,17 +657,12 @@ mv *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DE
 mv *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
 md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
-elif [ "$VER1" = "6.6" ]; then
-mv *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${VER1}.${ver61}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=*squashfs-sysupgrade.img.gz  
-md5_EzOpWrt_uefi=*ext4-sysupgrade.img.gz
 fi
 #md5
 [ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_squashfs-sysupgrade.md5  || true
 [ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_ext4-sysupgrade.md5 || true
-popd
 
+popd
 exit 0
 EOF
 fi
@@ -694,13 +694,11 @@ while IFS= read -r line; do
 done < "$bakkmodfile"
     # find ./bin/ -name  $file | xargs -i cp -f {}  $kmoddirdrv
     # cp -v $(find bin/targets/ -type f -name "*${FIRMWARE_TYPE}*") ../firmware
-find ./bin/ -name "*dockerman*.ipk" | xargs -i cp -f {} $kmoddirdocker
-find ./bin/ -name "*dockerd*.ipk" | xargs -i cp -f {} $kmoddirdocker
+find ./bin/ -name "*dockerman*" | xargs -i cp -f {} $kmoddirdocker
+find ./bin/ -name "*dockerd*" | xargs -i cp -f {} $kmoddirdocker
 EOF
 
-
-case "${CONFIG_S}" in
-     "Vip"*) 
+if  is_vip ; then
 #修改默认IP地址
 sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
 sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/luci2/bin/config_generate
@@ -733,6 +731,7 @@ run_docker() {
 if is_docker; then
 	echo " Docker服务已经存在！无须安装！"
 else
+
     local opkg_conf="/etc/opkg.conf"
     sed -i '/option check_signature/d' "$opkg_conf"
 	opkg update
@@ -781,10 +780,10 @@ case "$IPK" in
 		run_docker
 	;;
 esac
-EOF
-;;
-"Free"*)
 
+EOF
+
+else
 
 #修改默认IP地址
 sed -i 's/192\.168\.1\.1/192\.168\.8\.1/g' package/base-files/files/bin/config_generate
@@ -798,7 +797,7 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.8\.1/g" $(find ./feeds/luci/modules
 
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
-# EzOpenWrt By Sirpdboy
+# EzOpWrt By Sirpdboy
 IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
 [ -d $nowkmoddir ]  || exit
@@ -820,8 +819,7 @@ case "$IPK" in
 esac
 exit
 EOF
-;;
-esac
-./scripts/feeds update -i
 
+fi
+./scripts/feeds update -i
 exit
