@@ -1,0 +1,76 @@
+#########################################################################
+# File Name: 095-ula-prefix
+# Author: Carbon (ecrasy@gmail.com)
+# Description: try to figure out ula prefix and set model name
+# Created Time: 2022-09-26 01:39:07 UTC
+# Modified Time: 2023-02-21 00:45:03 UTC
+#########################################################################
+
+#!/bin/sh
+
+[ "${ACTION}" = ifup ] || exit 0
+[ "${INTERFACE}" = wan6 ] || exit 0
+
+#sleep 2s
+
+ula_log="/tmp/_ula_prefix"
+
+for try_times in `seq 1 8`
+do
+    echo -e "trying to figure out ula prefix in ${try_times} ... ... ...\n" > $ula_log
+
+    prefix_len=$(uci get network.lan.ip6assign)
+    if [ -z "${prefix_len}" ]; then
+        ip6_addr=$(ifconfig pppoe-wan | grep -m1 'inet6 addr:.*Scope:Global$' | sed -e 's/^.*inet6 addr://' -e 's/Scope:Global.*$//')
+        if [ ! -z "${ip6_addr}" ]; then
+            prefix_len=$(echo ${ip6_addr} | cut -d'/' -f 2)
+        else
+            ifpw=$(ifconfig pppoe-wan)
+            echo -e "ifconfig pppoe-wan:\n${ifpw}\n" >> $ula_log
+        fi
+    fi
+
+    if [ -z "${prefix_len}" ]; then
+        echo "set ula prefix to default 60" >> $ula_log
+        prefix_len="60"
+    fi
+    echo -e "prefix length:${prefix_len}\n" >> $ula_log
+
+    prefixs=$(ip -6 route show | grep 'default' | sed -e 's/^.*from //g' -e 's/ via.*$//g')
+    ula_prefix=""
+    echo -e "ula prefixs found:\n${prefixs}\n" >> $ula_log
+
+    for prefix in $prefixs
+    do
+        echo "try prefix:${prefix}" >> $ula_log
+        fr=$(echo $prefix | grep "/${prefix_len}")
+        if [ ! -z "${fr}" ]; then
+            ula_prefix=$prefix
+            echo "ula prefix match: ${prefix}" >> $ula_log
+            break
+        else
+            echo "ula prefix not match: ${prefix}" >> $ula_log
+        fi
+    done
+
+    if [ ! -z "${ula_prefix}" ]; then
+        echo -e "\nula prefix found with ${try_times} tries" >> $ula_log
+
+        # since dnsmasq set ula prefix by itself
+        # we wont bother to do so
+        # just clear the global ula prefix for dnsmasq
+        uci set network.globals.ula_prefix=""
+        uci commit network
+        #/etc/init.d/dnsmasq restart
+        #/sbin/ifup lan
+        break
+    else
+        iprs=$(ip -6 route show)
+        echo -e "ip route show:\n${iprs}\n" >> $ula_log
+        echo -e "found no match in prefixs:\n${prefixs}" >> $ula_log
+        sleep 1s
+    fi
+done
+
+. /etc/model.sh
+
