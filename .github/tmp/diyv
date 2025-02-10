@@ -25,6 +25,34 @@ case "${CONFIG_S}" in
 esac
 }
 
+# 拉取仓库文件夹
+merge_package() {
+	# 参数1是分支名,参数2是库地址,参数3是所有文件下载到指定路径。
+	# 同一个仓库下载多个文件夹直接在后面跟文件名或路径，空格分开。
+	# 示例:
+	# merge_package master https://github.com/WYC-2020/openwrt-packages package/openwrt-packages luci-app-eqos luci-app-openclash luci-app-ddnsto ddnsto 
+	# merge_package master https://github.com/lisaac/luci-app-dockerman package/lean applications/luci-app-dockerman
+	if [[ $# -lt 3 ]]; then
+		echo "Syntax error: [$#] [$*]" >&2
+		return 1
+	fi
+	trap 'rm -rf "$tmpdir"' EXIT
+	branch="$1" curl="$2" target_dir="$3" && shift 3
+	rootdir="$PWD"
+	localdir="$target_dir"
+	[ -d "$localdir" ] || mkdir -p "$localdir"
+	tmpdir="$(mktemp -d)" || exit 1
+	git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
+	cd "$tmpdir"
+	git sparse-checkout init --cone
+	git sparse-checkout set "$@"
+	# 使用循环逐个移动文件夹
+	for folder in "$@"; do
+		mv -f "$folder" "$rootdir/$localdir"
+	done
+	cd "$rootdir"
+}
+
 github="github.com"
 rm -rf ./package/lean/r8101
 # rm -rf ./package/lean/r8168
@@ -75,6 +103,9 @@ git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwa
 git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwall
 
 rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
+
+# 移除 openwrt feeds 自带的核心库
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,chinadns-ng,dns2socks,dns2tcp,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview}
 
 git clone https://$github/sbwml/openwrt_helloworld  ./package/ssr
 rm -rf ./package/ssr/luci-app-ssr-plus
@@ -169,7 +200,6 @@ mv -f ./package/add/up/tool/smartdns/*  ./package/add/
 rm -rf ./feeds/packages/net/mwan3
 mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
-
 #rm -rf ./feeds/packages/net/aria2
 #rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
 
@@ -189,7 +219,6 @@ cat ./package/add/patch/profile > ./package/base-files/files/etc/profile
 rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
-
 
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
@@ -217,8 +246,6 @@ rm -rf ./feeds/luci/applications/luci-app-beardropper
 
 rm -rf ./feeds/luci/applications/luci-app-p910nd
 
-
-
 # sed -i 's/-D_GNU_SOURCE/-D_GNU_SOURCE -Wno-error=use-after-free/g' ./package/libs/elfutils/Makefile
 
 #  coremark
@@ -236,6 +263,17 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
+# 修改Rockchip内核到6.6版
+# sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/rockchip/Makefile
+# 修改x86内核到6.6版
+# sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
+
+# 修复上移下移按钮翻译
+# sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
+# sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
+
+# 修复procps-ng-top导致首页cpu使用率无法获取
+sed -i 's#top -n1#\/bin\/busybox top -n1#g' feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 
 # Add ddnsto & linkease
  git clone  https://$github/linkease/nas-packages-luci ./package/nas-packages-luci
@@ -243,7 +281,6 @@ sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasr
  git clone  https://$github/linkease/istore ./package/istore
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
-
 
 rm -rf ./feeds/packages/utils/v2dat
 rm -rf ./feeds/packages/net/mosdns
@@ -264,7 +301,85 @@ git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 # sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
 # git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
-git clone https://$github/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+# git clone https://$github/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+# golang 1.23
+git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+
+# TTYD设置
+sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+
+# rpcd - fix timeout
+sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
+sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
+
+
+# 修正部分从第三方仓库拉取的软件 Makefile 路径问题
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
+
+# 精简 UPnP 菜单名称
+sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
+
+# ppp - 2.5.0
+rm -rf package/network/services/ppp
+git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
+
+# TTYD设置
+sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+
+# samba4
+rm -rf feeds/packages/net/samba4
+git clone https://github.com/sbwml/feeds_packages_net_samba4 feeds/packages/net/samba4
+# enable multi-channel
+sed -i '/workgroup/a \\n\t## enable multi-channel' feeds/packages/net/samba4/files/smb.conf.template
+sed -i '/enable multi-channel/a \\tserver multi channel support = yes' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#aio read size = 0/aio read size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
+
+# 取消一些预选的软件包
+sed -i 's/luci-app-vsftpd //g' include/target.mk
+sed -i 's/luci-app-ssr-plus //g' include/target.mk
+sed -i 's/luci-app-vlmcsd //g' include/target.mk
+sed -i 's/luci-app-accesscontrol //g' include/target.mk
+sed -i 's/luci-app-nlbwmon //g' include/target.mk
+sed -i 's/luci-app-turboacc //g' include/target.mk
+
+
+# 拉取immortalwrt仓库组件
+rm -rf feeds/packages/net/{haproxy,msd_lite,socat}
+merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite net/socat
+rm -rf feeds/packages/libs/nghttp2
+merge_package master https://github.com/immortalwrt/packages feeds/packages/libs libs/nghttp2
+rm -rf feeds/packages/utils/ttyd
+merge_package master https://github.com/immortalwrt/packages feeds/packages/utils utils/ttyd
+
+# 补充 firewall4 luci 中文翻译
+cat >> "feeds/luci/applications/luci-app-firewall/po/zh_Hans/firewall.po" <<-EOF
+	
+	msgid ""
+	"Custom rules allow you to execute arbitrary nft commands which are not "
+	"otherwise covered by the firewall framework. The rules are executed after "
+	"each firewall restart, right after the default ruleset has been loaded."
+	msgstr ""
+	"自定义规则允许您执行不属于防火墙框架的任意 nft 命令。每次重启防火墙时，"
+	"这些规则在默认的规则运行后立即执行。"
+	
+	msgid ""
+	"Applicable to internet environments where the router is not assigned an IPv6 prefix, "
+	"such as when using an upstream optical modem for dial-up."
+	msgstr ""
+	"适用于路由器未分配 IPv6 前缀的互联网环境，例如上游使用光猫拨号时。"
+
+	msgid "NFtables Firewall"
+	msgstr "NFtables 防火墙"
+
+	msgid "IPtables Firewall"
+	msgstr "IPtables 防火墙"
+EOF
 
 #设置
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
@@ -437,8 +552,6 @@ sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-script
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 
-
-
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # 风扇脚本
@@ -516,7 +629,6 @@ sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status
 *)
 ;;
 esac
-
 
 # echo '默认开启 Irqbalance'
 if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
