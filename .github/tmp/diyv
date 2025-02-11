@@ -350,8 +350,8 @@ sed -i 's/luci-app-turboacc //g' include/target.mk
 
 
 # 拉取immortalwrt仓库组件
-rm -rf feeds/packages/net/{haproxy,msd_lite,socat}
-merge_package master https://github.com/immortalwrt/packages feeds/packages/net net/haproxy net/msd_lite net/socat
+rm -rf feeds/packages/net/{ msd_lite,socat}
+merge_package master https://github.com/immortalwrt/packages  net/msd_lite net/socat
 rm -rf feeds/packages/libs/nghttp2
 merge_package master https://github.com/immortalwrt/packages feeds/packages/libs libs/nghttp2
 rm -rf feeds/packages/utils/ttyd
