@@ -218,6 +218,7 @@ cat ./package/add/patch/profile > ./package/base-files/files/etc/profile
 
 rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
+rm -rf ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./feeds/packages/net/msd_lite
 
 mkdir -p ./package/lean
