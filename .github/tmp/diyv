@@ -1,5 +1,12 @@
 #!/bin/bash
 
+is_vip() {
+case "${CONFIG_S}" in
+     "Vip"*) return 0 ;;
+     *) return 1 ;;
+esac
+}
+
 #安装和更新软件包
 UPDATE_PACKAGE() {
 	local PKG_NAME=$1
