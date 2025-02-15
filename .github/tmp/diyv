@@ -1,81 +1,87 @@
 #!/bin/bash
+
 #安装和更新软件包
 UPDATE_PACKAGE() {
 	local PKG_NAME=$1
 	local PKG_REPO=$2
 	local PKG_BRANCH=$3
 	local PKG_SPECIAL=$4
+	local CUSTOM_NAMES=($5)  # 第5个参数为自定义名称列表
 	local REPO_NAME=$(echo $PKG_REPO | cut -d '/' -f 2)
 
-	rm -rf $(find ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune)
+	echo " "
 
+	# 将 PKG_NAME 加入到需要查找的名称列表中
+	if [ ${#CUSTOM_NAMES[@]} -gt 0 ]; then
+		CUSTOM_NAMES=("$PKG_NAME" "${CUSTOM_NAMES[@]}")  # 将 PKG_NAME 添加到自定义名称列表的开头
+	else
+		CUSTOM_NAMES=("$PKG_NAME")  # 如果没有自定义名称，则只使用 PKG_NAME
+	fi
+
+	# 删除本地可能存在的不同名称的软件包
+	for NAME in "${CUSTOM_NAMES[@]}"; do
+		# 查找匹配的目录
+		echo "Searching directory: $NAME"
+		local FOUND_DIRS=$(find ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$NAME*" 2>/dev/null)
+
+		# 删除找到的目录
+		if [ -n "$FOUND_DIRS" ]; then
+			echo "$FOUND_DIRS" | while read -r DIR; do
+				rm -rf "$DIR"
+				echo "Deleted directory: $DIR"
+			done
+		else
+			echo "No directories found matching name: $NAME"
+		fi
+	done
+
+	# 克隆 GitHub 仓库
 	git clone --depth=1 --single-branch --branch $PKG_BRANCH "https://github.com/$PKG_REPO.git"
 
+	# 处理克隆的仓库
 	if [[ $PKG_SPECIAL == "pkg" ]]; then
-		cp -rf $(find ./$REPO_NAME/*/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune) ./
+		find ./$REPO_NAME/*/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune -exec cp -rf {} ./ \;
 		rm -rf ./$REPO_NAME/
 	elif [[ $PKG_SPECIAL == "name" ]]; then
 		mv -f $REPO_NAME $PKG_NAME
 	fi
 }
-is_vip() {
-case "${CONFIG_S}" in
-     "Vip"*) return 0 ;;
-     *) return 1 ;;
-esac
-}
 
-# 拉取仓库文件夹
-merge_package() {
-	# 参数1是分支名,参数2是库地址,参数3是所有文件下载到指定路径。
-	# 同一个仓库下载多个文件夹直接在后面跟文件名或路径，空格分开。
-	# 示例:
-	# merge_package master https://github.com/WYC-2020/openwrt-packages package/openwrt-packages luci-app-eqos luci-app-openclash luci-app-ddnsto ddnsto 
-	# merge_package master https://github.com/lisaac/luci-app-dockerman package/lean applications/luci-app-dockerman
-	if [[ $# -lt 3 ]]; then
-		echo "Syntax error: [$#] [$*]" >&2
-		return 1
+#更新软件包版本
+UPDATE_VERSION() {
+	local PKG_NAME=$1
+	local PKG_MARK=${2:-not}
+	local PKG_FILES=$(find ./ ../feeds/packages/ -maxdepth 3 -type f -wholename "*/$PKG_NAME/Makefile")
+
+	echo " "
+
+	if [ -z "$PKG_FILES" ]; then
+		echo "$PKG_NAME not found!"
+		return
 	fi
-	trap 'rm -rf "$tmpdir"' EXIT
-	branch="$1" curl="$2" target_dir="$3" && shift 3
-	rootdir="$PWD"
-	localdir="$target_dir"
-	[ -d "$localdir" ] || mkdir -p "$localdir"
-	tmpdir="$(mktemp -d)" || exit 1
-	git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
-	cd "$tmpdir"
-	git sparse-checkout init --cone
-	git sparse-checkout set "$@"
-	# 使用循环逐个移动文件夹
-	for folder in "$@"; do
-		mv -f "$folder" "$rootdir/$localdir"
+
+	echo "$PKG_NAME version update has started!"
+
+	for PKG_FILE in $PKG_FILES; do
+		local PKG_REPO=$(grep -Pho 'PKG_SOURCE_URL:=https://.*github.com/\K[^/]+/[^/]+(?=.*)' $PKG_FILE | head -n 1)
+		local PKG_VER=$(curl -sL "https://api.github.com/repos/$PKG_REPO/releases" | jq -r "map(select(.prerelease|$PKG_MARK)) | first | .tag_name")
+		local NEW_VER=$(echo $PKG_VER | sed "s/.*v//g; s/_/./g")
+		local NEW_HASH=$(curl -sL "https://codeload.github.com/$PKG_REPO/tar.gz/$PKG_VER" | sha256sum | cut -b -64)
+		local OLD_VER=$(grep -Po "PKG_VERSION:=\K.*" "$PKG_FILE")
+
+		echo "$OLD_VER $PKG_VER $NEW_VER $NEW_HASH"
+
+		if [[ $NEW_VER =~ ^[0-9].* ]] && dpkg --compare-versions "$OLD_VER" lt "$NEW_VER"; then
+			sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=$NEW_VER/g" "$PKG_FILE"
+			sed -i "s/PKG_HASH:=.*/PKG_HASH:=$NEW_HASH/g" "$PKG_FILE"
+			echo "$PKG_FILE version has been updated!"
+		else
+			echo "$PKG_FILE version is already the latest!"
+		fi
 	done
-	cd "$rootdir"
 }
 
 github="github.com"
-rm -rf ./package/lean/r8101
-# rm -rf ./package/lean/r8168
-# rm -rf ./package/lean/r8152
-# rm -rf ./package/lean/r8125
-# rm -rf ./package/lean/r8126
-# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
-# git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
-# git clone https://$github/sbwml/package_kernel_r8152 package/kernel/r8152
-git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
-# git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
-# git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
-# mac80211 - fix linux 6.6 & add rtw89
-# rm -rf package/kernel/mac80211
-# git clone https://$github/sbwml/package_kernel_mac80211 package/kernel/mac80211
-# mt76 - update to 2023-12-18
-# rm -rf package/kernel/mt76
-# git clone https://$github/sbwml/package_kernel_mt76 package/kernel/mt76
-# curl/8.5.0 - fix passwall `time_pretransfer` check
-# rm -rf feeds/packages/net/curl
-# git clone https://$github/sbwml/feeds_packages_net_curl feeds/packages/net/curl
-
-config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 [ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
 
@@ -137,15 +143,6 @@ git clone https://$github/loso3000/other ./package/add
 rm -rf ./package/add/up/pass/shadow-tls
 # rm -rf ./package/add/up/pass/xray-core
 rm -rf ./package/add/up/pass/naiveproxy
-
-#daed
-#cp -rf ./package/add/up/daed/netsupport.mk   ./package/kernel/linux/modules/netsupport.mk
-# add luci-app-daed
-# git clone https://$github/sbwml/luci-app-daed-next ./package/daed-next
-# cp -rf ./package/add/up/daed/bpf.mk ./include/bpf.mk
-
-# luci-app-daed-next
-# git clone --depth=1 https://github.com/QiuSimons/luci-app-daed-next ./package/luci-app-daed-next
 
 #samrtdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
@@ -292,23 +289,10 @@ git clone https://$github/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 
-# alist
-#  rm -rf ./feeds/packages/net/alist
-#  rm -rf  ./feeds/luci/applications/luci-app-alist
-# alist
-# git clone https://$github/sbwml/luci-app-alist package/alist
-# git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
-# sed -i '/config.json/a\ rm -rf \/var\/run\/alist.sock' package/alist/alist/files/alist.init
-# sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
-# git clone https://$github/sbwml/packages_lang_golang -b 21.x feeds/packages/lang/golang
-# git clone https://$github/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 # golang 1.23
 git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
-# TTYD设置
-sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
-sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
 # rpcd - fix timeout
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
@@ -327,10 +311,6 @@ sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/appli
 # ppp - 2.5.0
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
-
-# TTYD设置
-sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
-sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
 # samba4
 rm -rf feeds/packages/net/samba4
@@ -386,13 +366,17 @@ EOF
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
-sed -i "s/ImmortalWrt/EzOpWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
-sed -i "s/OpenWrt/EzOpWrt/" {package/base-files/files/bin/config_generate,include/version.mk}
-sed -i "/^VERSION_NUMBER:=.*SNAPSHOT/s/SNAPSHOT/24.10-SNAPSHOT/" include/version.mk
-
-sed -i "/listen_https/ {s/^/#/g}" package/*/*/*/files/uhttpd.config
 #修改默认主机名
-sed -i "s/hostname='.*'/hostname='EzOpWrt'/g" ./package/base-files/files/bin/config_generate
+sed -i "s/ImmortalWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
+sed -i "s/OpenWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
+sed -i "/^VERSION_NUMBER:=.*SNAPSHOT/s/SNAPSHOT/24.10-SNAPSHOT/" include/version.mk
+# TTYD设置
+sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' ./feeds/packages/utils/ttyd/files/ttyd.init
+sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' ./feeds/packages/utils/ttyd/files/ttyd.init
+
+sed -i 's|/bin/login|/bin/login -f root|' ./feeds/packages/utils/ttyd/files/ttyd.config
+
+sed -i "/listen_https/ {s/^/#/g}" ./package/*/*/*/files/uhttpd.config
 
 # netdata 
 rm -rf  ./feeds/luci/applications/luci-app-netdata
@@ -787,16 +771,17 @@ EOF
 if  is_vip ; then
 
 #修改默认IP地址
-#sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" package/base-files/files/bin/config_generate
-#sed -i 's/192\.168\.1\.1/192\.168\.10\.1/g' package/base-files/files/bin/config_generate
-#sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+#sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" ./package/base-files/files/bin/config_generate
+#sed -i 's/192\.168\.1\.1/192\.168\.10\.1/g' ./package/base-files/files/bin/config_generate
+#sed -i 's/192.168.1.1/192.168.10.1/g' ./package/base-files/files/bin/config_generate
 
-sed -i "s/192.168.1.1/192.168.10.1/" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.10.1/g' package/istoreos-files/Makefile
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+#修改默认IP地址
+# sed -i "s/192.168.1.1/192.168.10.1/" ./package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.1/g' ./package/istoreos-files/Makefile
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g"  ./package/base-files/files/bin/config_generate 
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 
 #sed -i 's/luci-theme-argon/luci-theme-kucat/g' package/istoreos-files/Makefile
-
 #修改immortalwrt.lan关联IP
 
 sed -i '/	refresh_config();/d' scripts/feeds
@@ -891,11 +876,9 @@ else
 
 #修改默认IP地址
 
-sed -i 's/192\.168\.1\.1/192\.168\.8\.1/g' package/base-files/files/bin/config_generate
-sed -i "s/192.168.1.1/192.168.8.1/" package/base-files/files/bin/config_generate
-sed -i 's/192.168.1.1/192.168.8.1/g' package/istoreos-files/Makefile
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.8\.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
-
+sed -i 's/192.168.1.1/192.168.8.1/g' ./package/istoreos-files/Makefile
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.8.1/g"  ./package/base-files/files/bin/config_generate 
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.8.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 #sed -i 's/luci-theme-argon/luci-theme-kucat/g' package/istoreos-files/Makefile
 
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
@@ -924,5 +907,34 @@ exit
 EOF
 
 fi
+
+UPDATE_PACKAGE "argon" "sbwml/luci-theme-argon" "openwrt-24.10"
+
+UPDATE_PACKAGE "homeproxy" "VIKINGYFY/homeproxy" "main"
+UPDATE_PACKAGE "nikki" "nikkinikki-org/OpenWrt-nikki" "main"
+UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
+
+UPDATE_PACKAGE "alist" "sbwml/luci-app-alist" "main"
+UPDATE_PACKAGE "mosdns" "sbwml/luci-app-mosdns" "v5"
+
+UPDATE_PACKAGE "luci-app-gecoosac" "lwb1978/openwrt-gecoosac" "main"
+UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
+
+UPDATE_PACKAGE "lazyoop" "lazyoop/networking-artifact" "main"
+
+#修复TailScale配置文件冲突
+TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
+if [ -f "$TS_FILE" ]; then
+	sed -i '/\/files/d' $TS_FILE
+	echo "tailscale has been fixed!"
+fi
+
+#修复Coremark编译失败
+CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
+if [ -f "$CM_FILE" ]; then
+	sed -i 's/mkdir/mkdir -p/g' $CM_FILE
+	echo "coremark has been fixed!"
+fi
+
 ./scripts/feeds update -i
 exit
