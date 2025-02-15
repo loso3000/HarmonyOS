@@ -92,8 +92,8 @@ CONFIG_DEFAULT_x550-nbase-t=y
 CONFIG_PACKAGE_kmod-usb-audio=y
 
 #add upnp
-CONFIG_PACKAGE_miniupnpd-igdv1=y
-CONFIG_PACKAGE_luci-app-upnp=y
+# CONFIG_PACKAGE_miniupnpd-igdv1=y
+# CONFIG_PACKAGE_luci-app-upnp=y   # iptables
 # CONFIG_PACKAGE_luci-app-wol is not set
 CONFIG_PACKAGE_luci-app-wolplus=y
 #base插件
@@ -148,7 +148,7 @@ CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE is not set
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM is not set
 
-CONFIG_PACKAGE_luci-app-wrtbwmon=y
+# CONFIG_PACKAGE_luci-app-wrtbwmon=y   # iptables
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-netspeedtest=y
 CONFIG_PACKAGE_luci-app-dnsto=n
