@@ -1,5 +1,23 @@
 #!/bin/bash
+#安装和更新软件包
+UPDATE_PACKAGE() {
+	local PKG_NAME=$1
+	local PKG_REPO=$2
+	local PKG_BRANCH=$3
+	local PKG_SPECIAL=$4
+	local REPO_NAME=$(echo $PKG_REPO | cut -d '/' -f 2)
 
+	rm -rf $(find ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune)
+
+	git clone --depth=1 --single-branch --branch $PKG_BRANCH "https://github.com/$PKG_REPO.git"
+
+	if [[ $PKG_SPECIAL == "pkg" ]]; then
+		cp -rf $(find ./$REPO_NAME/*/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune) ./
+		rm -rf ./$REPO_NAME/
+	elif [[ $PKG_SPECIAL == "name" ]]; then
+		mv -f $REPO_NAME $PKG_NAME
+	fi
+}
 is_vip() {
 case "${CONFIG_S}" in
      "Vip"*) return 0 ;;
@@ -8,39 +26,16 @@ esac
 }
 
 github="github.com"
-rm -rf ./package/lean/r8101
-# rm -rf ./package/lean/r8168
-# rm -rf ./package/lean/r8152
-# rm -rf ./package/lean/r8125
-# rm -rf ./package/lean/r8126
-# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
-# git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
-# git clone https://$github/sbwml/package_kernel_r8152 package/kernel/r8152
-git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
-# git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
-# git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
-# mac80211 - fix linux 6.6 & add rtw89
-# rm -rf package/kernel/mac80211
-# git clone https://$github/sbwml/package_kernel_mac80211 package/kernel/mac80211
-# mt76 - update to 2023-12-18
-# rm -rf package/kernel/mt76
-# git clone https://$github/sbwml/package_kernel_mt76 package/kernel/mt76
-# curl/8.5.0 - fix passwall `time_pretransfer` check
-# rm -rf feeds/packages/net/curl
-# git clone https://$github/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
 config_generate=package/base-files/files/bin/config_generate
 [ ! -d files/root ] || mkdir -p files/root
 [ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
 
+[[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
-rm -rf ./feeds/luci/themes/luci-app-filter
-rm -rf ./feeds/luci/themes/luci-app-oaf
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
-rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
-rm -rf  ./feeds/packages/net/oaf
 #rm -rf  ./feeds/packages/net/wget
 
 rm -rf  ./feeds/packages/net/zsh
@@ -142,7 +137,7 @@ mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/add/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 mv -f ./package/add/up/tool/netspeedtest/*  ./package/add/
-mv -f ./package/add/up/tool/oaf/*  ./package/add/
+
 mv -f ./package/add/up/tool/smartdns/*  ./package/add/
 
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
@@ -182,9 +177,6 @@ mv ./package/add/up/tool/autocore ./package/lean/autocore
 rm -rf ./package/lean/autosamba
 rm -rf  package/emortal/autosamba
 
-#rm -rf ./feeds/luci/applications/luci-app-samba4
-#mv -f ./package/add/up/luci-app-samba4 ./feeds/luci/applications/luci-app-samba4
-
 rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
 
@@ -198,8 +190,6 @@ rm -rf ./feeds/luci/applications/luci-app-beardropper
 
 rm -rf ./feeds/luci/applications/luci-app-p910nd
 
-
-
 # sed -i 's/-D_GNU_SOURCE/-D_GNU_SOURCE -Wno-error=use-after-free/g' ./package/libs/elfutils/Makefile
 
 #  coremark
@@ -210,6 +200,13 @@ git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 rm -rf ./feeds/packages/net/ddns-go
 rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
+
+
+rm -rf  ./feeds/packages/net/oaf
+rm -rf ./feeds/luci/themes/luci-app-filter
+rm -rf ./feeds/luci/themes/luci-app-oaf
+rm -rf ./feeds/packages/net/open-app-filter
+git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -236,11 +233,12 @@ git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 
 # alist
-#  rm -rf ./feeds/packages/net/alist
-#  rm -rf  ./feeds/luci/applications/luci-app-alist
+rm -rf ./feeds/packages/net/alist
+rm -rf ./feeds/packages/alist
+rm -rf  ./feeds/luci/applications/luci-app-alist
 # alist
 # git clone https://$github/sbwml/luci-app-alist package/alist
-# git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
+git clone -b v3.32.0 --depth 1 https://$github/sbwml/luci-app-alist package/alist
 sed -i '/config.json/a\ rm -rf \/var\/run\/alist.sock' package/alist/alist/files/alist.init
 sed -i 's/网络存储/存储/g' ./package/alist/luci-app-alist/po/zh-cn/alist.po
 rm -rf feeds/packages/lang/golang
@@ -410,9 +408,6 @@ sed -i 's/256/1024/' target/linux/x86/image/Makefile
 sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
 
-# 取消主题默认设置
-find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
-sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 
 # 修改makefile
@@ -657,24 +652,20 @@ EOF
 
 if  is_vip ; then
 #修改默认IP地址
-# sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.1/g' ./package/base-files/files/bin/config_generate
 #修改immortalwrt.lan关联IP
 #sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 #修改默认IP地址
 #sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" package/base-files/files/bin/config_generate    #config_generate
 
 #修改默认IP地址
-sed -i 's/192\.168\.1\.1/192\.168\.10\.1/g' package/base-files/files/bin/config_generate
-
-#sed -i 's/192.168.100.1/192.168.10.1/g' package/istoreos-files/Makefile
+# sed -i 's/192\.168\.1\.1/192\.168\.10\.1/g' ./package/base-files/files/bin/config_generate
+#sed -i 's/192.168.100.1/192.168.10.1/g' ./package/istoreos-files/Makefile
 #sed -i 's/luci-theme-argon/luci-theme-kucat/g' package/istoreos-files/Makefile
 
 #修改immortalwrt.lan关联IP
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
-#修改默认IP地址
-# sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" package/base-files/files/bin/config_generate
-
-
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" ./package/base-files/files/bin/config_generate
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
 # EzOpWrt By Sirpdboy
@@ -755,11 +746,11 @@ else
 sed -i 's/192\.168\.1\.1/192\.168\.8\.1/g' package/base-files/files/bin/config_generate
 
 #sed -i 's/luci-theme-argon/luci-theme-kucat/g' package/istoreos-files/Makefile
-#sed -i 's/192.168.100.1/192.168.8.1/g' package/istoreos-files/Makefile
+ sed -i 's/192.168.100.1/192.168.8.1/g' ./package/istoreos-files/Makefile
 #修改immortalwrt.lan关联IP
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.8\.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 #修改默认IP地址
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.8\.1/g" package/base-files/files/bin/config_generate
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.8\.1/g" ./package/base-files/files/bin/config_generate
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
 # EzOpWrt By Sirpdboy
