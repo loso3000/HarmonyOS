@@ -192,7 +192,6 @@ mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/add/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 mv -f ./package/add/up/tool/netspeedtest/*  ./package/add/
-mv -f ./package/add/up/tool/oaf/*  ./package/add/
 mv -f ./package/add/up/tool/smartdns/*  ./package/add/
 
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
@@ -257,7 +256,7 @@ rm -rf  ./feeds/packages/net/oaf
 rm -rf ./feeds/luci/themes/luci-app-filter
 rm -rf ./feeds/luci/themes/luci-app-oaf
 rm -rf ./feeds/packages/net/open-app-filter
-git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
+# git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
