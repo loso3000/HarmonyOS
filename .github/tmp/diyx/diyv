@@ -1,5 +1,15 @@
 #!/bin/bash
+
+
+github="github.com"
+
+[ ! -d files/root ] || mkdir -p files/root
+[ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
+
+[[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
+[[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
 #安装和更新软件包
+
 UPDATE_PACKAGE() {
 	local PKG_NAME=$1
 	local PKG_REPO=$2
@@ -25,13 +35,6 @@ case "${CONFIG_S}" in
 esac
 }
 
-github="github.com"
-
-[ ! -d files/root ] || mkdir -p files/root
-[ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
-
-[[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
-[[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
@@ -205,7 +208,7 @@ rm -rf  ./feeds/packages/net/oaf
 rm -rf ./feeds/luci/themes/luci-app-filter
 rm -rf ./feeds/luci/themes/luci-app-oaf
 rm -rf ./feeds/packages/net/open-app-filter
-git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
+# git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
