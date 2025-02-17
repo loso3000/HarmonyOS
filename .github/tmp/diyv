@@ -634,22 +634,22 @@ ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
 ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
-date1="${CONFIG_S}-${DATA}_by_Sirpdboy"
+date1="${TARGET_DEVICE}-${DATA}_by Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver54}_by_Sirpdboy"
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by Sirpdboy"
+date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver54}_by Sirpdboy"
 elif [ "$VER1" = "5.15" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver515}_by_Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver515}_by_Sirpdboy"
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver515}_by Sirpdboy"
+date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver515}_by Sirpdboy"
 elif [ "$VER1" = "6.1" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver61}_by_Sirpdboy"
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by Sirpdboy"
+date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver61}_by Sirpdboy"
 elif [ "$VER1" = "6.6" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver66}_by_Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver66}_by_Sirpdboy"
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver66}_by Sirpdboy"
+date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver66}_by Sirpdboy"
 elif [ "$VER1" = "6.12" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by_Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}_by_Sirpdboy"
+date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by Sirpdboy"
+date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver612}_by Sirpdboy"
 fi
 echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
@@ -688,8 +688,11 @@ mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}-${TARGET_DEVICE
 md5_EzOpWrt=EzOpWrt-${r_version}-${TARGET_DEVICE}-dev.img.gz   
 md5_EzOpWrt_uefi=EzOpWrt-${r_version}-${TARGET_DEVICE}-dev-efi.img.gz
 #md5
-[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5
-[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5
+
+ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
+[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 &&echo "ip=$ip" >> EzOpWrt_dev.md5
+[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 &&echo "ip=$ip" >> EzOpWrt_dev-efi.md5
+
 popd
 
 EOF
@@ -725,8 +728,9 @@ mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}-${TARGET_DEVICE}-squashfs-
 mv  *ext4-sysupgrade.img.gz EzOpWrt-${r_version}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=EzOpWrt-${r_version}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
 md5_EzOpWrt_uefi=EzOpWrt-${r_version}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5
-[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5
+[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 && echo "ip=$ip" >> EzOpWrt_dev.md5
+[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 && echo "ip=$ip" >> EzOpWrt_dev-efi.md5
+
 popd
 exit 0
 EOF
