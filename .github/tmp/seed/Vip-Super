@@ -178,6 +178,7 @@ CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh-cn=y
 CONFIG_PACKAGE_luci-theme-kucat=y
 #CONFIG_PACKAGE_luci-theme-darkmatter=y
+CONFIG_PACKAGE_luci-theme-material=y
 CONFIG_PACKAGE_luci-theme-design=y
 CONFIG_PACKAGE_luci-theme-argon=y
 #CONFIG_PACKAGE_luci-theme-edge=y
