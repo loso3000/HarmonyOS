@@ -634,22 +634,22 @@ ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
 ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
 ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
-date1="${TARGET_DEVICE}-${DATA}_by Sirpdboy"
+date1="${CONFIG_S}-${DATA}_by Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by Sirpdboy"
-date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver54}_by Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver54}_${TARGET_DEVICE}"
 elif [ "$VER1" = "5.15" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver515}_by Sirpdboy"
-date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver515}_by Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver515}_${TARGET_DEVICE}"
 elif [ "$VER1" = "6.1" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by Sirpdboy"
-date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver61}_by Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver61}_${TARGET_DEVICE}"
 elif [ "$VER1" = "6.6" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver66}_by Sirpdboy"
-date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver66}_by Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver66}_${TARGET_DEVICE}"
 elif [ "$VER1" = "6.12" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by Sirpdboy"
-date1="${TARGET_DEVICE}-${DATA}-${VER1}.${ver612}_by Sirpdboy"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}_${TARGET_DEVICE}"
 fi
 echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
