@@ -111,7 +111,7 @@ rm -rf  ./feeds/packages/net/naiveproxy
 git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwall2
 git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwall
 
-rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
+# rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
 
 # 移除 openwrt feeds 自带的核心库
 # rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,chinadns-ng,dns2socks,dns2tcp,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview}
