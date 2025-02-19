@@ -361,10 +361,19 @@ EOF
 sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
+# 修改默认IP地址
+#sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" ./package/base-files/files/bin/config_generate  || true
+sed -i 's/192.168.1.1/192.168.10.1/g' ./package/base-files/files/bin/config_generate  || true
+
+# sed -i 's/192.168.1.1/192.168.10.1/g' ./package/istoreos-files/Makefile
+# sed -i "s/192.168.1/192.168.10/" ./package/base-files/files/bin/config_generate
+#sed -i 's/192\.168\.1\.1/192\.168\.10\.1/g' ./package/base-files/files/bin/config_generate || true
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")  || true
+
 #修改默认主机名
 sed -i "s/ImmortalWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
 sed -i "s/OpenWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
-sed -i "/^VERSION_NUMBER:=.*SNAPSHOT/s/SNAPSHOT/24.10-SNAPSHOT/" include/version.mk
+# sed -i "/^VERSION_NUMBER:=.*SNAPSHOT/s/SNAPSHOT/24.10-SNAPSHOT/" include/version.mk
 # TTYD设置
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' ./feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' ./feeds/packages/utils/ttyd/files/ttyd.init
@@ -637,19 +646,19 @@ ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
 date1="${CONFIG_S}-${DATA}_by Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver54}_${TARGET_DEVICE}"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver54}"
 elif [ "$VER1" = "5.15" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver515}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver515}_${TARGET_DEVICE}"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver515}"
 elif [ "$VER1" = "6.1" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver61}_${TARGET_DEVICE}"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver61}"
 elif [ "$VER1" = "6.6" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver66}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver66}_${TARGET_DEVICE}"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver66}"
 elif [ "$VER1" = "6.12" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}_${TARGET_DEVICE}"
+date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}"
 fi
 echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
@@ -660,6 +669,7 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
 if [ ${TARGET_DEVICE} = "x86_64" ] ; then
+
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
@@ -683,10 +693,10 @@ rm -rf  profiles.json
 rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}-${TARGET_DEVICE}-dev.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}-${TARGET_DEVICE}-dev-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}-${TARGET_DEVICE}-dev.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}-${TARGET_DEVICE}-dev-efi.img.gz
+mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${TARGET_DEVICE}-dev.img.gz   
+mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${TARGET_DEVICE}-dev-efi.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev.img.gz   
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev-efi.img.gz
 #md5
 
 ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
@@ -724,10 +734,10 @@ rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
 
-mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  *ext4-sysupgrade.img.gz EzOpWrt-${r_version}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}-${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}-${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+mv  *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${TARGET_DEVICE}-ext4-sysupgrade.img.gz
+md5_EzOpWrt=EzOpWrt-${r_version}_${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
+md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 [ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 && echo "ip=$ip" >> EzOpWrt_dev.md5
 [ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 && echo "ip=$ip" >> EzOpWrt_dev-efi.md5
 
@@ -767,14 +777,6 @@ find ./bin/ -name "*dockerman*" | xargs -i cp -f {} $kmoddirdocker
 find ./bin/ -name "*dockerd*" | xargs -i cp -f {} $kmoddirdocker
 EOF
 
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/192\.168\.10\.1/g" ./package/base-files/files/bin/config_generate
-# sed -i 's/192.168.1.1/192.168.10.1/g' ./package/base-files/files/bin/config_generate
-
-# 修改默认IP地址
-# sed -i 's/192.168.1.1/192.168.10.1/g' ./package/istoreos-files/Makefile
-# sed -i "s/192.168.1/192.168.10/" ./package/base-files/files/bin/config_generate
-sed -i 's/192\.168\.1\.1/192\.168\.10\.1/g' ./package/base-files/files/bin/config_generate
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 
 #sed -i 's/luci-theme-argon/luci-theme-kucat/g' package/istoreos-files/Makefile
 
