@@ -776,5 +776,20 @@ exit
 EOF
 
 fi
+
+
+#修复TailScale配置文件冲突
+TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
+if [ -f "$TS_FILE" ]; then
+	sed -i '/\/files/d' $TS_FILE
+	echo "tailscale has been fixed!"
+fi
+
+#修复Coremark编译失败
+CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
+if [ -f "$CM_FILE" ]; then
+	sed -i 's/mkdir/mkdir -p/g' $CM_FILE
+	echo "coremark has been fixed!"
+fi
 ./scripts/feeds update -i
 exit
