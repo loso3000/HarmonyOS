@@ -404,9 +404,10 @@ sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
 sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
 # default LAN IP
-sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
-sed -i "s/192.168.1.1/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")  || true
+#sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
+#sed -i "s/192.168.1.1/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")  || true
 
+sed -i "s/192.168.1.1/192.168.10.1/" {./package/base-files/files/bin/config_generate,./feeds/luci/modules/luci-mod-system/*/*/flash.js,./feeds/luci/modules/luci-mod-system/*/flash.js,./feeds/luci/modules/luci-mod-system/*/*/*/flash.js} || true
 #修改默认主机名
 sed -i "s/ImmortalWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
 sed -i "s/OpenWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
