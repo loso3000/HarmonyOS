@@ -372,6 +372,10 @@ CONFIG_PACKAGE_libxml2=y
 CONFIG_PACKAGE_libyaml=y
 CONFIG_PACKAGE_libzstd=y
 
+CONFIG_PACKAGE_kmod-kvm-amd=y
+CONFIG_VIRTIO=y
+CONFIG_VIRTIO_BLK=y
+CONFIG_VIRTIO_NET=y
 #openssl
 CONFIG_PACKAGE_libopenssl-legacy=y
 # CONFIG_PACKAGE_kmod-br-netfilter=n
