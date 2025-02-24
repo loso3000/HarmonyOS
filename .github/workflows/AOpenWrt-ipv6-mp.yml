@@ -181,6 +181,8 @@ jobs:
         cd openwrt
          cat  $GITHUB_WORKSPACE/seed/${CONFIG_S}  >  .config
         echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
+        echo -e 'CONFIG_GRUB_IMAGES=y' >> .config 
+
         case "${CONFIG_S}" in
         "Vip"*)        
           cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
