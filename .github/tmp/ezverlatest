@@ -1,11 +1,10 @@
 <ul>
 <li>下面是具体更新内容：</li>
 </ul>
-1.升级设置向导，解决23.05以上分支设置防火墙不生效导致的网络不正常问题。
-2.升级进阶设置，优化清爽模式。酷猫主题更多玩法。登录背景可和桌面分开设置使用。
-3.升级酷猫主题，精细化优化设置，大力优化颜色搭配和手机使用效果。
-4.升级在线升插件，修复上一版本可重复更新问题，增加固件资料更新信息提示等。
-5.升级极致版，采用6.6内核的纯FW4模式，OPENWTCLASH和nikki专用。
+1.升级 流量监控，适配FW4版本。。
+2.升级酷猫主题，优化一些显示问题。
+3.升级极致版，采用6.6内核集成BYPASS，PASSWALL，SSR，OPENWTCLASH和nikki。
+4.增加一些常用插件，如流量监控，网速控制等常用插件，不保证有效。等有时间适配FW4专用版本。
 <ul>
-    <li><a href="https://github.com/sirpdboy/openwrt/discussions/533" target="_blank">点击这里</a>查看详情</li>
+    <li><a href="https://github.com/sirpdboy/openwrt/discussions/534" target="_blank">点击这里</a>查看详情</li>
 </ul>
