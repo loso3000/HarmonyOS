@@ -260,7 +260,8 @@ rm -rf ./feeds/packages/net/open-app-filter
 rm -rf ./feeds/packages/net/appfilter
 rm -rf ./feeds/luci/applications/luci-app-oaf
 rm -rf ./feeds/luci/applications/luci-app-appfilter
-# git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
+rm -rf ./package/add/up/tool/OpenAppFilter
+git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
