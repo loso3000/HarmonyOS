@@ -1,10 +1,9 @@
 <ul>
 <li>下面是具体更新内容：</li>
 </ul>
-1.升级 流量监控，适配FW4版本。。
-2.升级酷猫主题，优化一些显示问题。
-3.升级极致版，采用6.6内核集成BYPASS，PASSWALL，SSR，OPENWTCLASH和nikki。
-4.增加一些常用插件，如流量监控，网速控制等常用插件，不保证有效。等有时间适配FW4专用版本。
+1.升级酷猫主题，优化一些显示问题。
+2.升级极致版，采用6.6内核集成BYPASS，PASSWALL，SSR，OPENWTCLASH和nikki。
+3.增加一些常用插件，如流量监控，网速控制等常用插件，不保证有效。等有时间适配FW4专用版本。
 <ul>
     <li><a href="https://github.com/sirpdboy/openwrt/discussions/534" target="_blank">点击这里</a>查看详情</li>
 </ul>
