@@ -1,10 +1,9 @@
 <ul>
 <li>下面是具体更新内容：</li>
 </ul>
-1.升级酷猫主题，优化一些显示问题。
-2.升级极致版，采用6.6内核集成BYPASS，PASSWALL，SSR，OPENWTCLASH和nikki。
-3.升级插件依赖XRAY等到最新版本。
-4.增加一些常用插件，如应用过滤，定时限速，流量监控，家长控制等常用插件，不保证有效。等有时间适配FW4专用版本。
+1.升级homebox网络测试到最新版本。
+2.插件数和上一版本基本不变。
+3.同步插件到最新版本。。
 <ul>
-    <li><a href="https://github.com/sirpdboy/openwrt/discussions/534" target="_blank">点击这里</a>查看详情</li>
+    <li><a href="https://github.com/sirpdboy/openwrt/discussions/536" target="_blank">点击这里</a>查看详情</li>
 </ul>
