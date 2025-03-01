@@ -191,7 +191,6 @@ rm -rf ./feeds/third/luci-app-autotimeset
 rm -rf  ./feeds/packages/ariang
 rm -rf  ./feeds/packages/webui-aria2
 
-mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 mv -f ./package/add/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
 mv -f ./package/add/up/tool/netspeedtest/*  ./package/add/
@@ -210,8 +209,6 @@ sed -i 's,default n,default y,g' package/add/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
-sed -i '/Rust:/d' ./package/add/up/pass/luci-ssr-plus/Makefile
-sed -i '/Rust:/d' ./package/add/up/pass/luci-ssr-plusdns/Makefile
 
 #修正nat回流 
 cat ./package/add/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
@@ -266,7 +263,7 @@ git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # 可以设置汉字名字
-sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
+# sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 # 修改Rockchip内核到6.6版
@@ -333,18 +330,15 @@ sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/ut
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
 # UPnP
-rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
-git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
+# rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
+# git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
+# git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
+#设置
+# sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
+# sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
 # Luci diagnostics.js
-sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
-
-# NTP
-sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
-sed -i 's/1.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin/config_generate
-sed -i 's/2.openwrt.pool.ntp.org/time1.cloud.tencent.com/g' package/base-files/files/bin/config_generate
-sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/files/bin/config_generate
+# sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
 
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
@@ -376,34 +370,6 @@ sed -i 's/luci-app-accesscontrol //g' include/target.mk
 sed -i 's/luci-app-nlbwmon //g' include/target.mk
 sed -i 's/luci-app-turboacc //g' include/target.mk
 
-# 补充 firewall4 luci 中文翻译
-cat >> "feeds/luci/applications/luci-app-firewall/po/zh_Hans/firewall.po" <<-EOF
-	
-	msgid ""
-	"Custom rules allow you to execute arbitrary nft commands which are not "
-	"otherwise covered by the firewall framework. The rules are executed after "
-	"each firewall restart, right after the default ruleset has been loaded."
-	msgstr ""
-	"自定义规则允许您执行不属于防火墙框架的任意 nft 命令。每次重启防火墙时，"
-	"这些规则在默认的规则运行后立即执行。"
-	
-	msgid ""
-	"Applicable to internet environments where the router is not assigned an IPv6 prefix, "
-	"such as when using an upstream optical modem for dial-up."
-	msgstr ""
-	"适用于路由器未分配 IPv6 前缀的互联网环境，例如上游使用光猫拨号时。"
-
-	msgid "NFtables Firewall"
-	msgstr "NFtables 防火墙"
-
-	msgid "IPtables Firewall"
-	msgstr "IPtables 防火墙"
-EOF
-
-#设置
-sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
-sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
-
 # default LAN IP
 #sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
 #sed -i "s/192.168.1.1/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")  || true
@@ -414,7 +380,7 @@ sed -i "s/192.168.1.1/192.168.10.1/" {./package/base-files/files/bin/config_gene
 #修改默认主机名
 sed -i "s/ImmortalWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
 sed -i "s/OpenWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
-sed -i "s/OpenWrt/EzOpWrt/g" package/base-files/files/bin/config_generate package/base-files/image-config.in package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc config/Config-images.in Config.in include/u-boot.mk include/version.mk || true
+# sed -i "s/OpenWrt/EzOpWrt/g" package/base-files/files/bin/config_generate package/base-files/image-config.in config/Config-images.in Config.in include/u-boot.mk include/version.mk || true
 
 
 # TTYD设置
@@ -461,16 +427,15 @@ sed -i 's/实时流量监测/流量/g'  `grep "实时流量监测" -rl ./`
 sed -i 's/解锁网易云灰色歌曲/解锁灰色歌曲/g'  `grep "解锁网易云灰色歌曲" -rl ./`
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g'  `grep "解除网易云音乐播放限制" -rl ./`
 sed -i 's/家庭云//g'  `grep "家庭云" -rl ./`
-sed -i 's/msgstr "挂载 SMB 网络共享"/msgstr "CIFS挂载共享"/g' ./feeds/luci/applications/luci-app-cifs-mount/po/zh-cn/cifs.po
-
-sed -i 's/aMule设置/电驴下载/g' ./feeds/luci/applications/luci-app-amule/po/zh-cn/amule.po
-sed -i 's/监听端口/监听端口 用户名admin密码adminadmin/g' ./feeds/luci/applications/luci-app-qbittorrent/po/zh-cn/qbittorrent.po
-sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-cifsd/luasrc/controller/cifsd.lua   #挂问题
+# sed -i 's/msgstr "挂载 SMB 网络共享"/msgstr "CIFS挂载共享"/g' ./feeds/luci/applications/luci-app-cifs-mount/po/zh-cn/cifs.po
+# sed -i 's/aMule设置/电驴下载/g' ./feeds/luci/applications/luci-app-amule/po/zh-cn/amule.po
+# sed -i 's/监听端口/监听端口 用户名admin密码adminadmin/g' ./feeds/luci/applications/luci-app-qbittorrent/po/zh-cn/qbittorrent.po
+# sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-cifsd/luasrc/controller/cifsd.lua   #挂问题
 # echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP穿透问题
-sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
-sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
+# sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
+# sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP禁用IPV6问题
-sed -i 's/请输入用户名和密码。/管理登陆/g' ./feeds/luci/modules/luci-base/po/*/base.po   #用户名密码
+# sed -i 's/请输入用户名和密码。/管理登陆/g' ./feeds/luci/modules/luci-base/po/*/base.po   #用户名密码
 
 #cifs挂pan
 sed -i 's/mount -t cifs/busybox mount -t cifs/g' ./feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
@@ -480,8 +445,8 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/c
 sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-cifsd/luasrc/controller/cifsd.lua   #挂问题
 
 echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP穿透问题
-sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
-sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
+# sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
+# sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://$github/immortalwrt/luci-app-unblockneteasemusic.git  ./package/luci-app-unblockneteasemusic
@@ -491,7 +456,7 @@ sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/luci
 sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 #echo "其他修改"
-sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
+# sed -i 's/option commit_interval.*/option commit_interval 1h/g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为1h
 # sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 # nlbwmon - disable syslog
 sed -i 's/stderr 1/stderr 0/g' feeds/packages/net/nlbwmon/files/nlbwmon.init
@@ -506,8 +471,8 @@ git clone --depth=1 https://$github/KyleRicardo/MentoHUST-OpenWrt-ipk package/Me
 # 全能推送
 rm -rf ./feeds/luci/applications/luci-app-pushbot && \
 git clone https://$github/zzsj0928/luci-app-pushbot ./feeds/luci/applications/luci-app-pushbot
-rm -rf ./feeds/luci/applications/luci-app-jd-dailybonus && \
-git clone https://$github/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/applications/luci-app-jd-dailybonus
+# rm -rf ./feeds/luci/applications/luci-app-jd-dailybonus && \
+# git clone https://$github/jerrykuku/luci-app-jd-dailybonus ./feeds/luci/applications/luci-app-jd-dailybonus
 rm -rf ./feeds/luci/applications/luci-app-serverchan && \
 git clone -b master --single-branch https://$github/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
 
@@ -546,8 +511,8 @@ rm -rf ./feeds/luci/themes/luci-theme-design
  git clone -b js https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
 rm -rf ./feeds/luci/themes/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon.git  package/luci-theme-argon
-sed -i 's,media .. \"\/b,resource .. \"\/b,g' ./package/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm
-sed -i 's,media .. \"\/b,resource .. \"\/b,g' ./feeds/luci/themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm
+# sed -i 's,media .. \"\/b,resource .. \"\/b,g' ./package/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm
+# sed -i 's,media .. \"\/b,resource .. \"\/b,g' ./feeds/luci/themes/luci-theme-argon/luasrc/view/themes/argon/sysauth.htm
 
 # Remove some default packages
 # sed -i 's/luci-app-ddns//g;s/luci-app-upnp//g;s/luci-app-adbyby-plus//g;s/luci-app-vsftpd//g;s/luci-app-ssr-plus//g;s/luci-app-unblockmusic//g;s/luci-app-vlmcsd//g;s/luci-app-wol//g;s/luci-app-nlbwmon//g;s/luci-app-accesscontrol//g' include/target.mk
@@ -556,13 +521,7 @@ sed -i 's,media .. \"\/b,resource .. \"\/b,g' ./feeds/luci/themes/luci-theme-arg
 git clone https://$github/shenlijun/openwrt-x550-nbase-t package/openwrt-x550-nbase-t
 git clone https://$github/NateLol/luci-app-oled  package/luci-app-oled
 sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
-
-# temporary fix for upx
-# sed -i 's/a46b63817a9c6ad5af7cf519332e859f11558592/1050de5171f70fd4ba113016e4db994e898c7be3/' package/lean/upx/Makefile
-
-# enable r2s oled plugin by default
-# sed -i "s/enable '0'/enable '1'/" `find package/ -follow -type f -path '*/luci-app-oled/root/etc/config/oled'`
-
+ 
 # kernel:fix bios boot partition is under 1 MiB
 # https://$github/WYC-2020/lede/commit/fe628c4680115b27f1b39ccb27d73ff0dfeecdc2
 sed -i 's/256/1024/' target/linux/x86/image/Makefile
@@ -598,22 +557,19 @@ case "${CONFIG_S}" in
 Free-Plus)
 ;;
 Vip-Super)
-sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua   #zerotier
-sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/luasrc/view/zerotier/zerotier_status.htm   #zerotier
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua 
+# sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua 
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua 
 sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/admin_info.htm
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/alist_status.htm
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/admin_info.htm
-sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
+# sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+# sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/admin_info.htm
+# sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/alist_status.htm
+# sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
+# sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/admin_info.htm
+# sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
+# sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
+# sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 ;;
 Vip-Mini)
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
@@ -823,8 +779,7 @@ EOF
 
 #sed -i 's/luci-theme-argon/luci-theme-kucat/g' package/istoreos-files/Makefile
 
-sed -i '/	refresh_config();/d' scripts/feeds
-        package/base-files/files/lib/upgrade/keep.d/base-files-essential
+# sed -i '/	refresh_config();/d' scripts/feeds  package/base-files/files/lib/upgrade/keep.d/base-files-essential
 sed -i -e '/^\/etc\/profile/d' \
         -e '/^\/etc\/shinit/d' \
         package/base-files/Makefile
@@ -909,22 +864,6 @@ case "$IPK" in
 esac
 
 EOF
-
-
-
-#修复TailScale配置文件冲突
-TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
-if [ -f "$TS_FILE" ]; then
-	sed -i '/\/files/d' $TS_FILE
-	echo "tailscale has been fixed!"
-fi
-
-#修复Coremark编译失败
-CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
-if [ -f "$CM_FILE" ]; then
-	sed -i 's/mkdir/mkdir -p/g' $CM_FILE
-	echo "coremark has been fixed!"
-fi
 
 ./scripts/feeds update -i
 exit
