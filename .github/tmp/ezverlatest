@@ -1,9 +1,9 @@
 <ul>
 <li>下面是具体更新内容：</li>
 </ul>
-1.插件数和上一版本基本不变。
-2.升级homebox网络测试等其他相关插件到最新版本。
+1.升级酷猫主题，解决上一版本下拉列表指向和颜色等问题。
+2.升级upnp，解决UPNP设置麻烦不生效等问题。
 3.应xiafeng1128提议，加iStore依赖raid和MOD等到内核。
 <ul>
-    <li><a href="https://github.com/sirpdboy/openwrt/discussions/536" target="_blank">点击这里</a>查看详情</li>
+    <li><a href="https://github.com/sirpdboy/openwrt/discussions/537" target="_blank">点击这里</a>查看详情</li>
 </ul>
