@@ -330,9 +330,12 @@ sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/ut
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
 # UPnP
-rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
-git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
+# rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
+# git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
+# git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
+#设置
+# sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
+# sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
 # Luci diagnostics.js
 # sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
@@ -366,10 +369,6 @@ sed -i 's/luci-app-vlmcsd //g' include/target.mk
 sed -i 's/luci-app-accesscontrol //g' include/target.mk
 sed -i 's/luci-app-nlbwmon //g' include/target.mk
 sed -i 's/luci-app-turboacc //g' include/target.mk
-
-#设置
-sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
-sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
 # default LAN IP
 #sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
