@@ -293,6 +293,10 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
     curl -s $mirror/openwrt/patch/firewall4/nftables/0003-drop-rej-file.patch > package/network/utils/nftables/patches/0003-drop-rej-file.patch
 
 
+# alist
+rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
+git clone https://$github/sbwml/openwrt-alist package/new/alist
+
 # FullCone module
 git clone https://$gitea/sbwml/nft-fullcone package/new/nft-fullcone
 
@@ -603,15 +607,6 @@ Vip-Super)
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua 
 sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
-# sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-# sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/admin_info.htm
-# sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/alist_status.htm
-# sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
-# sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/admin_info.htm
-# sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-# sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
-# sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 ;;
 Vip-Mini)
 sed -i '/45)./d' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua  #zerotier
@@ -621,15 +616,6 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/contr
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua 
 sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/admin_info.htm
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/alist_status.htm
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/admin_info.htm
-sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 
 ;;
 Vip-Plus)
@@ -644,15 +630,6 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-samba4/luasrc/contr
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua 
 sed -i 's/vpn/services/g' ./feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/admin_info.htm
-sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-alist/view/alist/alist_status.htm
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/admin_info.htm
-sed -i '/NAS/d' ./feeds/luci/applications/luci-app-alist/luasrc/controller/alist.lua
-sed -i '/NAS/d' ./package/alist/luci-app-alist/luasrc/controller/alist.lua
-sed -i 's/nas/services/g' ./package/alist/luci-app-alist/view/alist/alist_status.htm
 ;;
 *)
 ;;
