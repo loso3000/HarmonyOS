@@ -673,7 +673,9 @@ IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
 [ -d $nowkmoddir ]  || exit
 is_docker() {
-    [ -s "/usr/lib/lua/luci/controller/dockerman.lua" ] && return 0  || return 1
+         if [ -f "/usr/bin/docker" ] || [ -f "/usr/sbin/dockerd" ] || [ -d "/etc/docker" ]; then
+        return 0
+    fi
 }
 
 run_drv() {
