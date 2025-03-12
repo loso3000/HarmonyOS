@@ -585,19 +585,10 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
+[ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds.conf ./files/etc/opkg/distfeeds.conf
+[ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds.conf > ./files/etc/opkg/distfeeds.conf
 if [ ${TARGET_DEVICE} = "x86_64" ] ; then
-mkdir -p files/etc/opkg
-pushd files/etc/opkg
-cat <<-EOF > "distfeeds.conf"
-src/gz ezopwrt_core https://downloads.immortalwrt.org/releases/23.05-SNAPSHOT/targets/x86/64/packages
-src/gz ezopwrt_base https://downloads.immortalwrt.org/releases/23.05-SNAPSHOT/packages/x86_64/base
-src/gz ezopwrt_luci https://downloads.immortalwrt.org/releases/23.05-SNAPSHOT/packages/x86_64/luci
-src/gz ezopwrt_packages https://downloads.immortalwrt.org/releases/23.05-SNAPSHOT/packages/x86_64/packages
-src/gz ezopwrt_routing https://downloads.immortalwrt.org/releases/23.05-SNAPSHOT/packages/x86_64/routing
-src/gz ezopwrt_telephony https://downloads.immortalwrt.org/releases/23.05-SNAPSHOT/packages/x86_64/telephony
-EOF
-cp distfeeds.conf distfeeds.conf.bak
-popd
+ 
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
