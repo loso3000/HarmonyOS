@@ -584,11 +584,11 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/.zshrc > ./files/root/.zshrc
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
+if [ ${TARGET_DEVICE} = "x86_64" ] ; then
+ 
 
 [ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds.conf ./files/etc/opkg/distfeeds.conf
 [ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds.conf > ./files/etc/opkg/distfeeds.conf
-if [ ${TARGET_DEVICE} = "x86_64" ] ; then
- 
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
@@ -632,6 +632,9 @@ EOF
 
 else
 
+
+[ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds2.conf ./files/etc/opkg/distfeeds.conf
+[ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds2.conf > ./files/etc/opkg/distfeeds.conf
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
