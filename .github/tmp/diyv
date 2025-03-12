@@ -539,9 +539,15 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 # echo '默认开启 Irqbalance'
 if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
+
+[ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds.conf ./files/etc/opkg/distfeeds.conf
+[ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds.conf > ./files/etc/opkg/distfeeds.conf
 CLASH="amd64"
 else
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
+
+[ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds.conf2 ./files/etc/opkg/distfeeds.conf
+[ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds.conf2 > ./files/etc/opkg/distfeeds.conf
 CLASH="arm64"
 fi
 
@@ -584,11 +590,8 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/.zshrc > ./files/root/.zshrc
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
-if [ ${TARGET_DEVICE} = "x86_64" ] ; then
- 
 
-[ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds.conf ./files/etc/opkg/distfeeds.conf
-[ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds.conf > ./files/etc/opkg/distfeeds.conf
+
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
@@ -630,48 +633,6 @@ popd
 
 EOF
 
-else
-
-
-[ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds2.conf ./files/etc/opkg/distfeeds.conf
-[ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds2.conf > ./files/etc/opkg/distfeeds.conf
-cat>buildmd5.sh<<-\EOF
-#!/bin/bash
-
-r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
-# gzip bin/targets/*/*/*.img | true
-
-VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
-pushd bin/targets/*/*/
-rm -rf   config.buildinfo
-rm -rf   feeds.buildinfo
-rm -rf   *.manifest
-rm -rf   *rootfs.tar.gz
-rm -rf   *generic-squashfs-rootfs.img*
-rm -rf   *generic-rootfs*
-rm -rf  *generic.manifest
-rm -rf  sha256sums
-rm -rf version.buildinfo
-rm -rf *generic-ext4-rootfs.img*
-rm -rf  *generic-ext4-combined-efi.img*
-rm -rf  *generic-ext4-combined.img*
-rm -rf  profiles.json
-rm -rf  *kernel.bin
-# BINDIR=`pwd`
-sleep 2
-
-mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 && echo "ip=$ip" >> EzOpWrt_dev.md5
-[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 && echo "ip=$ip" >> EzOpWrt_dev-efi.md5
-cp ../../../../ezotafooter  ./ota.footer
-cp ../../../../ezverlatest   ./ver.latest 
-popd
-exit 0
-EOF
-fi
 cat>bakkmod.sh<<-\EOF
 #!/bin/bash
 kmoddirdrv=./files/etc/kmod.d/drv
