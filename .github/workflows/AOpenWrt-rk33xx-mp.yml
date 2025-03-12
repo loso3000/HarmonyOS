@@ -215,6 +215,8 @@ jobs:
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
          bash  bakkmod.sh
+         [ -d files/etc/opkg ] || mkdir -p files/etc/opkg
+         [ -f files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds.conf2 > ./files/etc/opkg/distfeeds.conf2
     - name: Generate Firmware
       run: |
          df -h
