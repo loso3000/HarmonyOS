@@ -539,15 +539,9 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 # echo '默认开启 Irqbalance'
 if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
-
-[ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds.conf ./files/etc/opkg/distfeeds.conf
-[ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds.conf > ./files/etc/opkg/distfeeds.conf
 CLASH="amd64"
 else
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f 2)"
-
-[ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds.conf2 ./files/etc/opkg/distfeeds.conf
-[ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds.conf2 > ./files/etc/opkg/distfeeds.conf
 CLASH="arm64"
 fi
 
