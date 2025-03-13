@@ -328,17 +328,21 @@ sed -i 's/luci-app-accesscontrol //g' include/target.mk
 sed -i 's/luci-app-nlbwmon //g' include/target.mk
 sed -i 's/luci-app-turboacc //g' include/target.mk
 
+
 # default LAN IP
 #sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
 #sed -i "s/192.168.1.1/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")  || true
 
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
-sed -i "s/192.168.1.1/192.168.10.1/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
 
 #修改默认主机名
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+#Imm
 sed -i "s/ImmortalWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
 sed -i "s/OpenWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
-# sed -i "s/OpenWrt/EzOpWrt/g" package/base-files/files/bin/config_generate package/base-files/image-config.in config/Config-images.in Config.in include/u-boot.mk include/version.mk || true
+sed -i "s/192.168.1.1/192.168.10.1/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
+#LEDE
+sed -i "s/192.168.1.1/192.168.10.1/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
+sed -i "s/LEDE/EzOpWrt/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
 
 
 # TTYD设置
@@ -553,8 +557,6 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
-[ -f ./files/etc/opkg/distfeeds.conf ] || mv -f ./package/add/patch/distfeeds2.conf ./files/etc/opkg/distfeeds.conf
-[ -f ./files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds2.conf > ./files/etc/opkg/distfeeds.conf
 if [ ${TARGET_DEVICE} = "x86_64" ] ; then
 
 cat>buildmd5.sh<<-\EOF
@@ -586,9 +588,9 @@ md5_EzOpWrt=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev.img.gz
 md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev-efi.img.gz
 #md5
 
-ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
-[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 &&echo "ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`" >> EzOpWrt_dev.md5
-[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 &&echo "ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`" >> EzOpWrt_dev-efi.md5
+ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
+[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 &&echo "ip=` cat  package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`" >> EzOpWrt_dev.md5
+[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 &&echo "ip=` cat  package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`" >> EzOpWrt_dev-efi.md5
 
 if [ ${CONFIG_S} = "Vip-Super" ] ; then
 cp ../../../../ezotafooter  ./ota.footer
@@ -625,6 +627,7 @@ rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
 
+ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
 mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
 mv  *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${TARGET_DEVICE}-ext4-sysupgrade.img.gz
 md5_EzOpWrt=EzOpWrt-${r_version}_${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
