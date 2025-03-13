@@ -373,17 +373,21 @@ sed -i 's/luci-app-accesscontrol //g' include/target.mk
 sed -i 's/luci-app-nlbwmon //g' include/target.mk
 sed -i 's/luci-app-turboacc //g' include/target.mk
 
+
 # default LAN IP
 #sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
 #sed -i "s/192.168.1.1/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")  || true
 
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
-sed -i "s/192.168.1.1/192.168.10.1/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
 
 #修改默认主机名
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+#Imm
 sed -i "s/ImmortalWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
 sed -i "s/OpenWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
-# sed -i "s/OpenWrt/EzOpWrt/g" package/base-files/files/bin/config_generate package/base-files/image-config.in config/Config-images.in Config.in include/u-boot.mk include/version.mk || true
+sed -i "s/192.168.1.1/192.168.10.1/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
+#LEDE
+sed -i "s/192.168.1.1/192.168.10.1/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
+sed -i "s/LEDE/EzOpWrt/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
 
 
 # TTYD设置
@@ -637,9 +641,9 @@ md5_EzOpWrt=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev.img.gz
 md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev-efi.img.gz
 #md5
 
-ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
-[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 &&echo "ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`" >> EzOpWrt_dev.md5
-[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 &&echo "ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`" >> EzOpWrt_dev-efi.md5
+ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
+[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 &&echo "ip=` cat  cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`" >> EzOpWrt_dev.md5
+[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 &&echo "ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`" >> EzOpWrt_dev-efi.md5
 
 if [ ${CONFIG_S} = "Vip-Super" ] ; then
 cp ../../../../ezotafooter  ./ota.footer
