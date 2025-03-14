@@ -1,10 +1,9 @@
 <ul>
 <li>下面是具体更新内容：</li>
 </ul>
-1.升级酷猫主题，修正接口颜色显示，修复已经所有问题。力争做最好用的主题！
-2.升级在线升级，解决固件IP获取有时候不正确的问题！
-3.升级首页概览，独家版加入在线用户列表及各种参数显示。
-5.所有版都有在线升级，目前只支持升级到VIP-Super版，请知悉。
+1.升级进阶设置，解决插件加载中DOCKER无法加载问题。
+2.升级定时限速EQOSPLUS,适配到24.10版本。
+3.目前需要开发项目有：【上网时间控制】【网络速度限制】【登陆安全管控】【定时限速】等等，因时间和精力有限现招插件研究志愿者和提供开发经费的有缘人数位，请联系群主sirpdboy。
 <ul>
-    <li><a href="https://github.com/sirpdboy/openwrt/discussions/541" target="_blank">点击这里</a>查看详情</li>
+    <li><a href="https://github.com/sirpdboy/openwrt/discussions/550" target="_blank">点击这里</a>查看详情</li>
 </ul>
