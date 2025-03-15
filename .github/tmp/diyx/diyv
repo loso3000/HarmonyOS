@@ -777,10 +777,12 @@ else
     sed -i '/option check_signature/d' "$opkg_conf"
 	opkg update
 	echo "正在安装Docker及相关服务...请耐心等待...大约需要1-5分钟 "
-	opkg install $nowkmoddir/dockerd*.ipk --force-depends >/dev/null 2>&1
-	opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends  >/dev/null 2>&1
-	opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends  >/dev/null 2>&1
-    	opkg install avahi-daemon >/dev/null 2>&1
+	# opkg install $nowkmoddir/dockerd*.ipk --force-depends >/dev/null 2>&1
+	# opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends  >/dev/null 2>&1
+	# opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends  >/dev/null 2>&1
+	opkg install --force-depends luci-app-dockerman >/dev/null 2>&1
+    	opkg install --force-depends luci-i18n-dockerman-zh-cn	 >/dev/null 2>&1
+    	opkg install --force-depends avahi-daemon >/dev/null 2>&1
 	if is_docker; then
 		echo "本地成功安装Docker及相关服务！"
 	else
