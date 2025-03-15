@@ -7,5 +7,5 @@
 5.针对上网时间强力管控，管制的机器无法进路由器后台，可以在后台菜单9号功能中停用管制。
 6.修复进阶设置中加载docker后，使用不了的问题。
 <ul>
-    <li><a href="https://github.com/sirpdboy/openwrt/discussions/550" target="_blank">点击这里</a>查看详情</li>
+    <li><a href="https://github.com/sirpdboy/openwrt/discussions/551" target="_blank">点击这里</a>查看详情</li>
 </ul>
