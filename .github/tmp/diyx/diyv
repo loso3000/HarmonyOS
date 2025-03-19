@@ -148,8 +148,7 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 git clone https://$github/loso3000/other ./package/add
 
 rm -rf ./package/add/up/pass/shadow-tls
-# rm -rf ./package/add/up/pass/xray-core
-rm -rf ./package/add/up/pass/naiveproxy
+rm -rf ./package/add/up/pass/xray-core
 
 #samrtdns
 rm -rf ./feeds/luci/applications/luci-app-smartdns
@@ -272,7 +271,7 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # alist
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 git clone https://$github/sbwml/openwrt-alist package/new/alist
- 
+
 # 修复procps-ng-top导致首页cpu使用率无法获取
 sed -i 's#top -n1#\/bin\/busybox top -n1#g' feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 
@@ -293,12 +292,11 @@ git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 
 rm -rf feeds/packages/lang/golang
-# golang 1.23
-git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # luci-compat - fix translation
-sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
-sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
+# sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
+# sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
 
 # frpc translation
 sed -i 's,发送,Transmission,g' feeds/luci/applications/luci-app-transmission/po/zh_Hans/transmission.po
@@ -308,6 +306,7 @@ sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/p
 # luci-app-filemanager
 rm -rf feeds/luci/applications/luci-app-filemanager
 git clone https://$github/sbwml/luci-app-filemanager package/new/luci-app-filemanager
+
 
 
 # TTYD
@@ -340,8 +339,8 @@ sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support
 # git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
 
 #设置
-# sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
-# sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
+sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
+sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
 # Luci diagnostics.js
 # sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
@@ -376,7 +375,6 @@ sed -i 's/luci-app-accesscontrol //g' include/target.mk
 sed -i 's/luci-app-nlbwmon //g' include/target.mk
 sed -i 's/luci-app-turboacc //g' include/target.mk
 
-
 # default LAN IP
 #sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
 #sed -i "s/192.168.1.1/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")  || true
@@ -391,6 +389,10 @@ sed -i "s/192.168.1.1/192.168.10.1/" {./package/base-files/files/bin/config_gene
 #LEDE
 sed -i "s/192.168.1.1/192.168.10.1/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
 sed -i "s/LEDE/EzOpWrt/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
+
+# netdata 
+rm -rf  ./feeds/luci/applications/luci-app-netdata
+rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
@@ -412,6 +414,7 @@ rm -rf ./feeds/luci/collections/luci-app-pptp-server
 rm -rf ./feeds/luci/collections/luci-app-ipsec-server
 rm -rf ./feeds/luci/collections/luci-app-softethervpn
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
+
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
 #sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
@@ -445,8 +448,6 @@ sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/c
 sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-cifsd/luasrc/controller/cifsd.lua   #挂问题
 
 echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP穿透问题
-# sed -i 's/invalid/# invalid/g' ./package/network/services/samba36/files/smb.conf.template  #共享问题
-# sed -i '/mcsub_renew.datatype/d'  ./feeds/luci/applications/luci-app-udpxy/luasrc/model/cbi/udpxy.lua  #修复UDPXY设置延时55的错误
 
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://$github/immortalwrt/luci-app-unblockneteasemusic.git  ./package/luci-app-unblockneteasemusic
@@ -599,11 +600,10 @@ echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
 echo "${date2}" >> ./package/base-files/files/etc/banner
 echo '---------------------------------' >> ./package/base-files/files/etc/banner
 [ -f ./files/root/.zshrc ] || mv -f ./package/add/patch/z.zshrc ./files/root/.zshrc
-[ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/.zshrc > ./files/root/.zshrc
+[ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./files/root/.zshrc
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
-if [ ${TARGET_DEVICE} = "x86_64" ] ; then
 
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
@@ -633,6 +633,7 @@ mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${TARGET_DEVICE
 md5_EzOpWrt=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev.img.gz   
 md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev-efi.img.gz
 #md5
+
 ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
 [[ -n $ip ]] || ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
 [[ -n $ip ]] || ip=192.168.10.1
@@ -647,51 +648,6 @@ popd
 
 EOF
 
-else
-
-cat>buildmd5.sh<<-\EOF
-#!/bin/bash
-
-r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
-# gzip bin/targets/*/*/*.img | true
-
-VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
-pushd bin/targets/*/*/
-rm -rf   config.buildinfo
-rm -rf   feeds.buildinfo
-rm -rf   *.manifest
-rm -rf   *rootfs.tar.gz
-rm -rf   *generic-squashfs-rootfs.img*
-rm -rf   *generic-rootfs*
-rm -rf  *generic.manifest
-rm -rf  sha256sums
-rm -rf version.buildinfo
-rm -rf *generic-ext4-rootfs.img*
-rm -rf  *generic-ext4-combined-efi.img*
-rm -rf  *generic-ext4-combined.img*
-rm -rf  profiles.json
-rm -rf  *kernel.bin
-# BINDIR=`pwd`
-sleep 2
-
-mv   *squashfs-sysupgrade.img.gz EzOpWrt-${r_version}_${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-mv  *ext4-sysupgrade.img.gz EzOpWrt-${r_version}_${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${TARGET_DEVICE}-squashfs-sysupgrade.img.gz 
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${TARGET_DEVICE}-ext4-sysupgrade.img.gz
-ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
-[[ -n $ip ]] || ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
-[[ -n $ip ]] || ip=192.168.10.1
-[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 && echo "ip=$ip" >> EzOpWrt_dev.md5
-[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 && echo "ip=$ip" >> EzOpWrt_dev-efi.md5
-
-if [ ${CONFIG_S} = "Vip-Super" ] ; then
-cp ../../../../ezotafooter  ./ota.footer
-cp ../../../../ezverlatest   ./ver.latest 
-fi
-popd
-exit 0
-EOF
-fi
 cat>bakkmod.sh<<-\EOF
 #!/bin/bash
 kmoddirdrv=./files/etc/kmod.d/drv
@@ -725,20 +681,6 @@ find ./bin/ -name "*dockerd*" | xargs -i cp -f {} $kmoddirdocker
 EOF
 
 
-#sed -i 's/luci-theme-argon/luci-theme-kucat/g' package/istoreos-files/Makefile
-
-# sed -i '/	refresh_config();/d' scripts/feeds  package/base-files/files/lib/upgrade/keep.d/base-files-essential
-sed -i -e '/^\/etc\/profile/d' \
-        -e '/^\/etc\/shinit/d' \
-        package/base-files/Makefile
-sed -i "s/^.*vermagic$/\techo '1' > \$(LINUX_DIR)\/.vermagic/" include/kernel-defaults.mk
-
-sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
-sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
-
-sed -i "s/tty\(0\|1\)::askfirst/tty\1::respawn/g" target/linux/*/base-files/etc/inittab
-sed -i 's/max_requests 3/max_requests 20/g' package/network/services/uhttpd/files/uhttpd.config
-
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
 # EzOpWrt By Sirpdboy
@@ -746,7 +688,7 @@ IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
 [ -d $nowkmoddir ]  || exit
 is_docker() {
-     
+
      [ -s "/usr/lib/lua/luci/controller/dockerman.lua" ] && return 0  || return 1
 }
 
