@@ -170,7 +170,6 @@ jobs:
     
     - name: Update feeds
       run: | 
-          # mv -f ./.github/tmp/* ./
            cp -Rf ./.github/tmp/* ./
           cd openwrt
           ./scripts/feeds update -a
@@ -178,7 +177,6 @@ jobs:
     - name: Update package
       run: |
          [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-         
          
          chmod +x $GITHUB_WORKSPACE/${DIY_P1_SH}
          cd openwrt
@@ -214,20 +212,15 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
-         bash  bakkmod.sh
-         [ -d files/etc/opkg ] || mkdir -p files/etc/opkg
-         [ -f files/etc/opkg/distfeeds.conf ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/distfeeds.conf2 > ./files/etc/opkg/distfeeds.conf2
+         bash  bakkmod.sh  || true
     - name: Generate Firmware
       run: |
          df -h
          cd openwrt 
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
-         make checksum
-         bash buildmd5.sh
-    - name: Check space usage
-      if: (!cancelled())
-      run: df -hT
+         make checksum 
+         bash buildmd5.sh  || true
 
     - name: Organize files
       id: organize
