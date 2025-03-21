@@ -181,9 +181,8 @@ jobs:
     - name:  defconfig
       run: |
         cd openwrt
-        cat  $GITHUB_WORKSPACE/seed/${CONFIG_S}  > .config
-        cat  $GITHUB_WORKSPACE/config/comm  >> .config
-        echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
+        cat  $GITHUB_WORKSPACE/seed/${CONFIG_S}  >  .config
+        cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
         make defconfig
         df -h
     - name:  Download packages
