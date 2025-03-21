@@ -224,7 +224,10 @@ mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv ./package/add/up/tool/autocore ./package/lean/autocore 
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
-# rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
+
+#inlink
+[ ${CONFIG_S}" = "Vip-Custom" ] && rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
+
 
 # samba4
 rm -rf ./package/lean/autosamba
@@ -254,10 +257,15 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
 git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
 
-rm -rf ./feeds/packages/net/oaf
+rm -rf ./feeds/luci/themes/luci-theme-argon
+rm -rf ./feeds/packages/net/mentohust
+rm -rf  ./feeds/luci/applications/luci-app-arpbind
+rm -rf  ./feeds/packages/net/oaf
+#rm -rf  ./feeds/packages/net/wget
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf ./feeds/packages/net/appfilter
 rm -rf ./feeds/luci/applications/luci-app-oaf
+rm -rf ./feeds/luci/applications/luci-app-filter
 rm -rf ./feeds/luci/applications/luci-app-appfilter
 rm -rf ./package/add/up/tool/OpenAppFilter
 git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
@@ -565,7 +573,7 @@ CLASH="arm64"
 fi
 
 if [[ $DATE_S == 'default' ]]; then
-   DATA=`TZ=UTC-8 date +%y%m%d%H%M`
+   DATA=`TZ=UTC-8 date +%y%m%d%H%M -d +"12"hour`
    # DATA=`TZ=UTC-8 date +%y%m%d%H%M`
 else 
    DATA=$DATE_S
@@ -680,7 +688,6 @@ find ./bin/ -name "*dockerman*" | xargs -i cp -f {} $kmoddirdocker
 find ./bin/ -name "*dockerd*" | xargs -i cp -f {} $kmoddirdocker
 EOF
 
-
 cat>./package/base-files/files/etc/kmodreg<<-\EOF
 #!/bin/bash
 # EzOpWrt By Sirpdboy
@@ -688,10 +695,8 @@ IPK=$1
 nowkmoddir=/etc/kmod.d/$IPK
 [ -d $nowkmoddir ]  || exit
 is_docker() {
-
      [ -s "/usr/lib/lua/luci/controller/dockerman.lua" ] && return 0  || return 1
 }
-
 run_drv() {
 opkg update
 echo "正在安装全部驱动（包括有线和无线）,请耐心等待...大约需要1-5分钟 "
@@ -727,7 +732,6 @@ else
     		if is_docker; then 
     		    echo "在线成功安装Docker及相关服务！" 
     		fi
-
 	fi
 fi
 if is_docker; then
