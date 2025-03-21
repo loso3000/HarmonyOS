@@ -217,6 +217,7 @@ rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./feeds/packages/net/msd_lite
 
+git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
 #net eth0
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
