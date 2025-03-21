@@ -217,10 +217,12 @@ rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./feeds/packages/net/msd_lite
 
+
+git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
+
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv ./package/add/up/tool/autocore ./package/lean/autocore 
-#rm -rf ./package/lean/autocore/files/generic/inlink.htm
 #inlink
 [ "${CONFIG_S}" = "Vip-Custom" ] && rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
 
