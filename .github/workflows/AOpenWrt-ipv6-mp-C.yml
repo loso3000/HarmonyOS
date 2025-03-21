@@ -182,7 +182,7 @@ jobs:
       run: |
         cd openwrt
         cat  $GITHUB_WORKSPACE/seed/${CONFIG_S}  > .config
-        #cat  $GITHUB_WORKSPACE/config/comm  >> .config
+        cat  $GITHUB_WORKSPACE/config/comm  >> .config
         echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
         make defconfig
         df -h
