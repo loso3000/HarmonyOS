@@ -15,7 +15,7 @@ on:
         default: 'Vip-Mini'
         required: true
         type: choice
-        options: [ Free-Super, Free-Mini, Free-Plus, Vip-Super,Vip-Bypass,Vip-Mini, Vip-Plus ]
+        options: [ Vip-Custom, Free-Mini, Free-Plus, Vip-Super,Vip-Bypass,Vip-Mini, Vip-Plus ]
       cpu_s:
         description: 'CPU优选'
         required: true
@@ -169,11 +169,8 @@ jobs:
     - name: Update package
       run: |
          [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-         
-         
          chmod +x $GITHUB_WORKSPACE/${DIY_P1_SH}
          cd openwrt
-         
          $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
     - name:  defconfig
@@ -181,8 +178,7 @@ jobs:
         cd openwrt
          cat  $GITHUB_WORKSPACE/seed/${CONFIG_S}  >  .config
          echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
-
-        case "${CONFIG_S}" in
+         case "${CONFIG_S}" in
         "Vip"*)        
           cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
         ;;
@@ -269,7 +265,6 @@ jobs:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
-
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2
