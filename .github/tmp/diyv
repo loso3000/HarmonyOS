@@ -223,7 +223,7 @@ mv ./package/add/up/tool/autocore ./package/lean/autocore
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
 
 #inlink
-[ ${CONFIG_S}" = "Vip-Custom" ] && rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
+[ "${CONFIG_S}" = "Vip-Custom" ] && rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
 
 # samba4
 rm -rf ./package/lean/autosamba
@@ -740,6 +740,8 @@ case "$IPK" in
 esac
 
 EOF
+
+
 
 #修复TailScale配置文件冲突
 TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
