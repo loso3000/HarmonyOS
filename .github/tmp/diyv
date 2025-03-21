@@ -193,9 +193,6 @@ rm -rf  ./feeds/packages/webui-aria2
 
 mv -f ./package/add/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
 
-mv -f ./package/add/up/tool/netspeedtest/*  ./package/add/
-mv -f ./package/add/up/tool/smartdns/*  ./package/add/
-
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
 rm -rf ./feeds/packages/net/mwan3
@@ -224,6 +221,7 @@ mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv ./package/add/up/tool/autocore ./package/lean/autocore 
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
+
 #inlink
 [ ${CONFIG_S}" = "Vip-Custom" ] && rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
 
@@ -313,8 +311,6 @@ sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/p
 rm -rf feeds/luci/applications/luci-app-filemanager
 git clone https://$github/sbwml/luci-app-filemanager package/new/luci-app-filemanager
 
-
-
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
@@ -385,7 +381,6 @@ sed -i 's/luci-app-turboacc //g' include/target.mk
 #sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
 #sed -i "s/192.168.1.1/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")  || true
 
-
 #修改默认主机名
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 #Imm
@@ -415,16 +410,13 @@ git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci
 # sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.15
 # sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' ./package/new/luci-app-dockerman/Makefile
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
-
 rm -rf ./feeds/luci/collections/luci-app-pptp-server
 rm -rf ./feeds/luci/collections/luci-app-ipsec-server
 rm -rf ./feeds/luci/collections/luci-app-softethervpn
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
-
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
 #sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
-
 
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
@@ -571,7 +563,7 @@ CLASH="arm64"
 fi
 
 if [[ $DATE_S == 'default' ]]; then
-   DATA=`TZ=UTC-8 date +%y%m%d%H%M`
+   DATA=`TZ=UTC-8 date +%y%m%d%H%M -d +"12"hour`
    # DATA=`TZ=UTC-8 date +%y%m%d%H%M`
 else 
    DATA=$DATE_S
@@ -609,7 +601,6 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./files/root/.zshrc
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
-
 
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
@@ -733,7 +724,6 @@ else
     		if is_docker; then 
     		    echo "在线成功安装Docker及相关服务！" 
     		fi
-
 	fi
 fi
 if is_docker; then
