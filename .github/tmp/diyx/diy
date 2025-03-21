@@ -99,15 +99,6 @@ UPDATE_VERSION() {
 [[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
 
-rm -rf ./feeds/luci/luci-app-appfilter
-rm -rf ./feeds/luci/luci-app-filter
-rm -rf ./feeds/luci/luci-app-oaf
-rm -rf ./feeds/luci/themes/luci-theme-argon
-rm -rf ./feeds/packages/net/mentohust
-rm -rf ./feeds/packages/net/open-app-filter
-rm -rf  ./feeds/luci/applications/luci-app-arpbind
-rm -rf  ./feeds/packages/net/oaf
-#rm -rf  ./feeds/packages/net/wget
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
@@ -125,7 +116,7 @@ rm -rf  ./feeds/packages/net/naiveproxy
 git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwall2
 git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwall
 
-rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
+# rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
 
 # 移除 openwrt feeds 自带的核心库
 # rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,chinadns-ng,dns2socks,dns2tcp,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview}
@@ -264,10 +255,16 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
 git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
 
-rm -rf ./feeds/packages/net/oaf
+
+rm -rf ./feeds/luci/themes/luci-theme-argon
+rm -rf ./feeds/packages/net/mentohust
+rm -rf  ./feeds/luci/applications/luci-app-arpbind
+rm -rf  ./feeds/packages/net/oaf
+#rm -rf  ./feeds/packages/net/wget
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf ./feeds/packages/net/appfilter
 rm -rf ./feeds/luci/applications/luci-app-oaf
+rm -rf ./feeds/luci/applications/luci-app-filter
 rm -rf ./feeds/luci/applications/luci-app-appfilter
 rm -rf ./package/add/up/tool/OpenAppFilter
 git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
@@ -655,7 +652,7 @@ cp ../../../../ezotafooter  ./ota.footer
 cp ../../../../ezverlatest   ./ver.latest 
 fi
 popd
-exit 0
+
 EOF
 
 cat>bakkmod.sh<<-\EOF
