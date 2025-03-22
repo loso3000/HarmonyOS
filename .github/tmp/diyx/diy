@@ -11,6 +11,15 @@ case "${CONFIG_S}" in
      *) return 1 ;;
 esac
 }
+# Git稀疏克隆，只克隆指定目录到本地
+function git_sparse_clone() {
+  branch="$1" repourl="$2" && shift 2
+  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
+  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
+  cd $repodir && git sparse-checkout set $@
+  mv -f $@ ../package
+  cd .. && rm -rf $repodir
+}
 
 #安装和更新软件包
 UPDATE_PACKAGE() {
@@ -287,9 +296,15 @@ git clone https://$github/sbwml/openwrt-alist package/new/alist
 sed -i 's#top -n1#\/bin\/busybox top -n1#g' feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 
 # Add ddnsto & linkease
- git clone  https://$github/linkease/nas-packages-luci ./package/nas-packages-luci
- git clone  https://$github/linkease/nas-packages ./package/nas-packages
- git clone  https://$github/linkease/istore ./package/istore
+#  git clone  https://$github/linkease/nas-packages-luci ./package/nas-packages-luci
+#  git clone  https://$github/linkease/nas-packages ./package/nas-packages
+ # git clone  https://$github/linkease/istore ./package/istore
+
+# iStore
+git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+git_sparse_clone main https://github.com/linkease/istore luci
+git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
+git_sparse_clone master https://github.com/linkease/nas-packages network/services/ddnsto
 sed -i 's/1/0/g' ./package/nas-packages/network/services/linkease/files/linkease.config
 sed -i 's/luci-lib-ipkg/luci-base/g' package/istore/luci/luci-app-store/Makefile
 
@@ -409,7 +424,9 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
-#rm -rf ./feeds/packages/utils/docker
+rm -rf ./feeds/packages/utils/docker
+rm -rf ./feeds/packages/utils/dockerd 
+rm -rf ./feeds/packages/utils/docker-compose
 git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
 git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
@@ -418,6 +435,8 @@ git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci
 # sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.15
 # sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' ./package/new/luci-app-dockerman/Makefile
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
+
+#vpn
 rm -rf ./feeds/luci/collections/luci-app-pptp-server
 rm -rf ./feeds/luci/collections/luci-app-ipsec-server
 rm -rf ./feeds/luci/collections/luci-app-softethervpn
@@ -482,7 +501,9 @@ rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/lu
 
 # Add OpenClash
 rm -rf  ./feeds/luci/applications/luci-app-openclash
-git clone --depth=1 https://$github/vernesong/OpenClash package/openclash
+# git clone --depth=1 https://$github/vernesong/OpenClash package/openclash
+git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
+
 # sed -i 's/+libcap /+libcap +libcap-bin /' package/openclash/luci-app-openclash/Makefile
 
 # 使用默认取消自动
