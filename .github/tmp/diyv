@@ -11,6 +11,15 @@ case "${CONFIG_S}" in
      *) return 1 ;;
 esac
 }
+# Git稀疏克隆，只克隆指定目录到本地
+function git_sparse_clone() {
+  branch="$1" repourl="$2" && shift 2
+  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
+  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
+  cd $repodir && git sparse-checkout set $@
+  mv -f $@ ../package
+  cd .. && rm -rf $repodir
+}
 
 #安装和更新软件包
 UPDATE_PACKAGE() {
@@ -199,6 +208,8 @@ mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 rm -rf ./feeds/packages/net/mwan3
 mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
+#rm -rf ./feeds/packages/net/aria2
+#rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
 sed -i 's,default n,default y,g' package/add/up/pass/luci-app-bypass/Makefile
 sed -i 's,default n,default y,g' package/add/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
@@ -406,7 +417,14 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
-#rm -rf ./feeds/packages/utils/docker
+rm -rf ./feeds/packages/utils/docker
+rm -rf ./feeds/packages/utils/dockerd 
+rm -rf ./feeds/packages/utils/docker-compose
+
+mv ./package/add/add/up/docker/docker ./feeds/packages/utils/docker
+mv ./package/add/add/up/docker/dockerd  ./feeds/packages/utils/dockerd 
+mv ./package/add/add/up/docker/docker-compose ./feeds/packages/utils/docker-compose
+
 git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
 git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
@@ -461,10 +479,10 @@ git clone --depth=1 https://$github/BoringCat/luci-app-mentohust package/luci-ap
 git clone --depth=1 https://$github/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
 
 # 全能推送
-rm -rf ./feeds/luci/applications/luci-app-wechatpush 
-git clone https://$github/tty228/luci-app-wechatpush ./feeds/luci/applications/luci-app-wechatpush
-rm -rf ./feeds/luci/applications/luci-app-serverchan && \
-git clone -b master --single-branch https://$github/tty228/luci-app-serverchan ./feeds/luci/applications/luci-app-serverchan
+# rm -rf ./feeds/luci/applications/luci-app-pushbot
+# git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
+# rm -rf ./feeds/luci/applications/luci-app-wechatpush 
+# git clone https://$github/tty228/luci-app-wechatpush ./feeds/luci/applications/luci-app-wechatpush
 
 rm -rf ./feeds/packages/net/adguardhome
 
