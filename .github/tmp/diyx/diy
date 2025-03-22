@@ -192,6 +192,7 @@ rm -rf  ./feeds/packages/ariang
 rm -rf  ./feeds/packages/webui-aria2
 
 mv -f ./package/add/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
+mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns 
 
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
