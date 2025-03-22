@@ -223,7 +223,6 @@ cat ./package/add/patch/profile > ./package/base-files/files/etc/profile
 
 rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
-rm -rf ./feeds/luci/applications/luci-app-upnp
 rm -rf  ./feeds/packages/net/msd_lite
 
 git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
@@ -234,7 +233,7 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv ./package/add/up/tool/autocore ./package/lean/autocore 
+mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
 
 #inlink
@@ -314,8 +313,8 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # luci-compat - fix translation
-# sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
-# sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
+sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
+sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
 
 # frpc translation
 sed -i 's,发送,Transmission,g' feeds/luci/applications/luci-app-transmission/po/zh_Hans/transmission.po
@@ -351,7 +350,7 @@ sed -i 's/processes = 3/processes = 4/g' feeds/packages/net/uwsgi/files-luci-sup
 sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
 
 # UPnP
-# rm -rf ./package/add/up/luci-app-upnp
+rm -rf ./package/add/up/luci-app-upnp
 # rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 # git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
 # git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
@@ -417,14 +416,11 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
-# rm -rf ./feeds/packages/utils/docker
-# rm -rf ./feeds/packages/utils/dockerd 
-# mv ./package/add/add/up/docker/docker ./feeds/packages/utils/docker
-# mv ./package/add/add/up/docker/dockerd  ./feeds/packages/utils/dockerd 
-# mv ./package/add/add/up/docker/docker-compose ./feeds/packages/utils/docker-compose
-
-rm -rf package/add/up/docker/dockerd
+rm -rf ./feeds/packages/utils/docker
+rm -rf ./feeds/packages/utils/dockerd 
 rm -rf ./feeds/packages/utils/docker-compose
+mv -f ./package/add/add/up/docker/* ./feeds/packages/utils/*
+# rm -rf package/add/up/docker/dockerd
 git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
 git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
