@@ -197,7 +197,7 @@ mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
 rm -rf ./feeds/packages/net/mwan3
-mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
+mv -f ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
 #rm -rf ./feeds/packages/net/aria2
 #rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
@@ -226,7 +226,7 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv ./package/add/up/tool/autocore ./package/lean/autocore 
+mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
 
 #inlink
@@ -409,14 +409,11 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
-# rm -rf ./feeds/packages/utils/docker
-# rm -rf ./feeds/packages/utils/dockerd 
-# mv ./package/add/add/up/docker/docker ./feeds/packages/utils/docker
-# mv ./package/add/add/up/docker/dockerd  ./feeds/packages/utils/dockerd 
-# mv ./package/add/add/up/docker/docker-compose ./feeds/packages/utils/docker-compose
-
-rm -rf package/add/up/docker/dockerd
+rm -rf ./feeds/packages/utils/docker
+rm -rf ./feeds/packages/utils/dockerd 
 rm -rf ./feeds/packages/utils/docker-compose
+mv -f ./package/add/add/up/docker/* ./feeds/packages/utils/*
+# rm -rf package/add/up/docker/dockerd
 git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
 git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
 
