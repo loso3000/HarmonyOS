@@ -420,7 +420,7 @@ rm -rf ./feeds/luci/collections/luci-lib-docker
 # rm -rf ./feeds/packages/utils/dockerd 
 # rm -rf ./feeds/packages/utils/docker-compose
 
-rm -rf package/add/up/docker/dockerd
+rm -rf package/add/up/docker
 
 # mv ./package/add/add/up/docker/docker ./feeds/packages/utils/docker
 # mv ./package/add/add/up/docker/dockerd  ./feeds/packages/utils/dockerd 
