@@ -244,7 +244,6 @@ jobs:
         name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-ipk
         path: ./openwrt/bin/packages/
    
-
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
@@ -260,10 +259,3 @@ jobs:
       with:
           retain_days: 1
           keep_minimum_runs: 5
-
-    - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@v0.3.4
-      with:
-          keep_latest: 5
-          keep_min_download_counts: 1 # Optional parameters
-          delete_tags: true
