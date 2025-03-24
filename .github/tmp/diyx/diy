@@ -236,8 +236,8 @@ rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
 
-#inlink
-[ "${CONFIG_S}" = "Vip-Custom" ] && rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
+# inlink    [ "${CONFIG_S}" = "Vip-Custom" ] && 
+rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
 
 # samba4
 rm -rf ./package/lean/autosamba
