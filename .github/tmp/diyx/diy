@@ -236,7 +236,7 @@ rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
 
-# inlink    [ "${CONFIG_S}" = "Vip-Custom" ] && 
+#inlink
 rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
 
 # samba4
@@ -340,7 +340,7 @@ pushd feeds/luci
     # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
     curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 popd
-
+fi
 # uwsgi
 sed -i 's,procd_set_param stderr 1,procd_set_param stderr 0,g' feeds/packages/net/uwsgi/files/uwsgi.init
 sed -i 's,buffer-size = 10000,buffer-size = 131072,g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
@@ -415,13 +415,11 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-dockerman
-rm -rf ./feeds/luci/applications/luci-app-docker
+# rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
 # rm -rf ./feeds/packages/utils/docker
 # rm -rf ./feeds/packages/utils/dockerd 
 # rm -rf ./feeds/packages/utils/docker-compose
-
-rm -rf package/add/up/docker
 
 # mv ./package/add/add/up/docker/docker ./feeds/packages/utils/docker
 # mv ./package/add/add/up/docker/dockerd  ./feeds/packages/utils/dockerd 
