@@ -278,16 +278,16 @@ git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
 
 # qbittorrent
-#qbittorrent
-rm -rf ./feeds/packages/net/qbittorrent
-rm -rf ./feeds/packages/net/qBittorrent-Enhanced-Edition
-rm -rf ./feeds/packages/net/qBittorrent-static
-rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
-rm -rf ./feeds/luci/applications/luci-app-qbittorrent
-rm -rf ./feeds/packages/net/qBittorrent
-rm -rf ./feeds/packages/libs/rblibtorrent
 
-git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
+# rm -rf ./feeds/packages/net/qbittorrent
+# rm -rf ./feeds/packages/net/qBittorrent-Enhanced-Edition
+# rm -rf ./feeds/packages/net/qBittorrent-static
+# rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
+# rm -rf ./feeds/luci/applications/luci-app-qbittorrent
+# rm -rf ./feeds/packages/net/qBittorrent
+# rm -rf ./feeds/packages/libs/rblibtorrent
+
+# git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
