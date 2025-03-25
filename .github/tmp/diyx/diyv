@@ -416,12 +416,8 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-dockerman
-rm -rf ./feeds/luci/applications/luci-app-docker
+# rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
-rm -rf ./feeds/packages/utils/docker
-rm -rf ./feeds/packages/utils/dockerd 
-rm -rf ./feeds/packages/utils/docker-compose
-mv -f ./package/add/add/up/docker/* ./feeds/packages/utils/*
 # rm -rf package/add/up/docker/dockerd
 git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
 git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
