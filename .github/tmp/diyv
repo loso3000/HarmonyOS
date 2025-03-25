@@ -280,6 +280,13 @@ rm -rf ./feeds/luci/applications/luci-app-appfilter
 rm -rf ./package/add/up/tool/OpenAppFilter
 git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
+
+# qbittorrent
+rm -rf ../../customfeeds/packages/net/qBittorrent
+rm -rf ../../customfeeds/packages/libs/rblibtorrent
+git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent
+rm -rf luci-app-qbittorrent/luci-app-qbittorrent
+
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # 可以设置汉字名字
@@ -488,12 +495,6 @@ rm -rf ./feeds/packages/net/adguardhome
 
 git clone https://$github/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
-
-#qbittorrent
-rm -rf ./feeds/packages/net/qbittorrent
-rm -rf ./feeds/packages/net/qBittorrent-Enhanced-Edition
-rm -rf ./feeds/packages/net/qBittorrent-static
-rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
 
 # Add OpenClash
 rm -rf  ./feeds/luci/applications/luci-app-openclash
