@@ -233,12 +233,12 @@ curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
+
 #rm -rf ./package/lean/autocore/files/generic/inlink.htm
 
 #inlink
 [ "${CONFIG_S}" = "Vip-Custom" ] && rm -rf ./package/add/up/tool/autocore/files/generic/inlink.htm
-
+mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
 # samba4
 rm -rf ./package/lean/autosamba
 rm -rf  package/emortal/autosamba
@@ -416,7 +416,7 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-dockerman
-rm -rf ./feeds/luci/applications/luci-app-docker
+# rm -rf ./feeds/luci/applications/luci-app-docker
 rm -rf ./feeds/luci/collections/luci-lib-docker
 # rm -rf ./feeds/packages/utils/docker
 # rm -rf ./feeds/packages/utils/dockerd 
