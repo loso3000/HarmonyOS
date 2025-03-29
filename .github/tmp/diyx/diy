@@ -231,7 +231,7 @@ git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easy
 #net eth0
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/99-default_networketh0 > ./target/linux/x86/base-files/etc/board.d/99-default_network
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
 
 mkdir -p ./package/lean
@@ -424,7 +424,7 @@ rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-ap
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
-# rm -rf ./feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-dockerman
 # rm -rf ./feeds/luci/applications/luci-app-docker
 # rm -rf ./feeds/luci/collections/luci-lib-docker
 # rm -rf ./feeds/packages/utils/docker
@@ -440,8 +440,9 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
 
 # Docker
-# rm -rf feeds/luci/applications/luci-app-dockerman
-# git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+
 # rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 # git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
 # git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
