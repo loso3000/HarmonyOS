@@ -344,12 +344,10 @@ sed -i 's|/bin/login|/bin/login -f root|' ./feeds/packages/utils/ttyd/files/ttyd
 
 # sed -i "/listen_https/ {s/^/#/g}" ./package/*/*/*/files/uhttpd.config
 
-if [ $REPO_BRANCH != 'master' ] ;then
 pushd feeds/luci
     # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+    # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 popd
-fi
 
 # uwsgi
 sed -i 's,procd_set_param stderr 1,procd_set_param stderr 0,g' feeds/packages/net/uwsgi/files/uwsgi.init
@@ -426,22 +424,33 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 # rm -rf ./feeds/luci/applications/luci-app-docker
-rm -rf ./feeds/luci/collections/luci-lib-docker
+# rm -rf ./feeds/luci/collections/luci-lib-docker
 # rm -rf ./feeds/packages/utils/docker
 # rm -rf ./feeds/packages/utils/dockerd 
 # rm -rf ./feeds/packages/utils/docker-compose
 # mv ./package/add/add/up/docker/docker ./feeds/packages/utils/docker
 # mv ./package/add/add/up/docker/dockerd  ./feeds/packages/utils/dockerd 
 # mv ./package/add/add/up/docker/docker-compose ./feeds/packages/utils/docker-compose
-
-git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
-git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/luci-app-dockerman
-
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 # sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.10
 # sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.15
 # sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' ./package/new/luci-app-dockerman/Makefile
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
+# Docker
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+# rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+# git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
+# git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
+# git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
+# git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
+# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+# pushd feeds/packages
+#     curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+#     curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+#     curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+# popd
+rm -rf ./package/add/up/docke
 rm -rf ./feeds/luci/collections/luci-app-pptp-server
 rm -rf ./feeds/luci/collections/luci-app-ipsec-server
 rm -rf ./feeds/luci/collections/luci-app-softethervpn
