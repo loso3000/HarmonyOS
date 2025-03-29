@@ -332,12 +332,11 @@ sed -i 's|/bin/login|/bin/login -f root|' ./feeds/packages/utils/ttyd/files/ttyd
 
 # sed -i "/listen_https/ {s/^/#/g}" ./package/*/*/*/files/uhttpd.config
 
-if [ $REPO_BRANCH != 'master' ] ;then
 pushd feeds/luci
     # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+    # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 popd
-fi
+
 # uwsgi
 sed -i 's,procd_set_param stderr 1,procd_set_param stderr 0,g' feeds/packages/net/uwsgi/files/uwsgi.init
 sed -i 's,buffer-size = 10000,buffer-size = 131072,g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
@@ -412,7 +411,7 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 
 # Add luci-app-dockerman
-# rm -rf ./feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-dockerman
 # rm -rf ./feeds/luci/applications/luci-app-docker
 # rm -rf ./feeds/luci/collections/luci-lib-docker
 # rm -rf ./feeds/packages/utils/docker
@@ -428,8 +427,8 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
 
 # Docker
-# rm -rf feeds/luci/applications/luci-app-dockerman
-# git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 # rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 # git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
 # git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
@@ -499,12 +498,6 @@ rm -rf ./feeds/packages/net/adguardhome
 
 git clone https://$github/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
-
-#qbittorrent
-rm -rf ./feeds/packages/net/qbittorrent
-rm -rf ./feeds/packages/net/qBittorrent-Enhanced-Edition
-rm -rf ./feeds/packages/net/qBittorrent-static
-rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
 
 # Add OpenClash
 rm -rf  ./feeds/luci/applications/luci-app-openclash
