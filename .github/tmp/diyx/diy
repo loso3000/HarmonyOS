@@ -273,13 +273,15 @@ rm -rf ./feeds/packages/net/mentohust
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/packages/net/oaf
 #rm -rf  ./feeds/packages/net/wget
-rm -rf ./feeds/packages/net/open-app-filter
-rm -rf ./feeds/packages/net/appfilter
-rm -rf ./feeds/luci/applications/luci-app-oaf
-rm -rf ./feeds/luci/applications/luci-app-filter
+
+#oaf 
 rm -rf ./feeds/luci/applications/luci-app-appfilter
-rm -rf ./package/add/up/tool/OpenAppFilter
-git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
+rm -rf ./feeds/luci/applications/luci-app-filter
+rm -rf ./feeds/luci/applications/luci-app-oaf
+rm -rf ./feeds/packages/net/open-app-filter
+rm -rf  ./feeds/packages/net/oaf
+# rm -rf ./package/add/up/tool/OpenAppFilter
+# git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
 # qbittorrent
 #qbittorrent
