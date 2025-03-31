@@ -228,7 +228,11 @@ rm -rf  ./feeds/packages/net/msd_lite
 
 
 git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
-
+#net eth0
+rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
+rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
 mkdir -p ./package/lean
 rm -rf ./package/lean/autocore ./package/emortal/autocore
 mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
@@ -266,13 +270,25 @@ rm -rf ./feeds/packages/net/mentohust
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/packages/net/oaf
 #rm -rf  ./feeds/packages/net/wget
-rm -rf ./feeds/packages/net/open-app-filter
-rm -rf ./feeds/packages/net/appfilter
-rm -rf ./feeds/luci/applications/luci-app-oaf
-rm -rf ./feeds/luci/applications/luci-app-filter
+#oaf 
 rm -rf ./feeds/luci/applications/luci-app-appfilter
-rm -rf ./package/add/up/tool/OpenAppFilter
-git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
+rm -rf ./feeds/luci/applications/luci-app-filter
+rm -rf ./feeds/luci/applications/luci-app-oaf
+rm -rf ./feeds/packages/net/open-app-filter
+rm -rf  ./feeds/packages/net/oaf
+# rm -rf ./package/add/up/tool/OpenAppFilter
+# git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
+# qbittorrent
+#qbittorrent
+rm -rf ./feeds/packages/net/qbittorrent
+rm -rf ./feeds/packages/net/qBittorrent-Enhanced-Edition
+rm -rf ./feeds/packages/net/qBittorrent-static
+rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
+rm -rf ./feeds/luci/applications/luci-app-qbittorrent
+rm -rf ./feeds/packages/net/qBittorrent
+rm -rf ./feeds/packages/libs/rblibtorrent
+
+# git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -409,9 +425,6 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 # rm -rf ./feeds/luci/applications/luci-app-docker
 # rm -rf ./feeds/luci/collections/luci-lib-docker
-# rm -rf ./feeds/packages/utils/docker
-# rm -rf ./feeds/packages/utils/dockerd 
-# rm -rf ./feeds/packages/utils/docker-compose
 # mv ./package/add/add/up/docker/docker ./feeds/packages/utils/docker
 # mv ./package/add/add/up/docker/dockerd  ./feeds/packages/utils/dockerd 
 # mv ./package/add/add/up/docker/docker-compose ./feeds/packages/utils/docker-compose
@@ -424,17 +437,17 @@ rm -rf ./feeds/luci/applications/luci-app-dockerman
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
 git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
-# rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-# git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
-# git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
-# git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
-# git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
-# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-# pushd feeds/packages
-#     curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-#     curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-#     curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt-Action/refs/heads/master/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
-# popd
+rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
+git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
+sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+pushd feeds/packages
+    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+popd
 
 rm -rf ./package/add/up/docke
 
