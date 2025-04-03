@@ -239,7 +239,7 @@ CONFIG_PACKAGE_ath11k-firmware-qcn9074=y
 ### USB Audio 
 CONFIG_PACKAGE_kmod-usb-audio=y
 #uhttpd https
-# CONFIG_PACKAGE_libustream-openssl=y
+CONFIG_PACKAGE_libustream-openssl=y
 
 #add upnp
 CONFIG_PACKAGE_miniupnpd-igdv1=y
@@ -400,7 +400,6 @@ CONFIG_PACKAGE_luci-app-cowbping=n
 CONFIG_PACKAGE_luci-app-beardropper=y
 CONFIG_PACKAGE_luci-app-control-parentcontrol=y
 CONFIG_PACKAGE_luci-app-parentcontrol=y
-CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-lib-ipkg=y
 CONFIG_PACKAGE_luci-app-store=y
 CONFIG_PACKAGE_luci-app-istorex=n
