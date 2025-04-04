@@ -1,6 +1,6 @@
 CONFIG_TARGET_mediatek=y
 CONFIG_TARGET_mediatek_filogic=y
-CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_tr3000-mod=y
+CONFIG_TARGET_mediatek_filogic_DEVICE_cudy_tr3000-v1=y
 CONFIG_GNUTLS_ALPN=y
 CONFIG_GNUTLS_ANON=y
 CONFIG_GNUTLS_DTLS_SRTP=y
