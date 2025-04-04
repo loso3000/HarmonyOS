@@ -19,7 +19,7 @@ on:
         default: 'master'
         required: true
         type: choice
-        options: [ master, stable, openwrt-21.02, openwrt-23.05 ]
+        options: [ master, openwrt-24.10, openwrt-21.02, openwrt-23.05 ]
       config_s:
         description: '配置文件'
         default: 'Vip-Mini'
@@ -38,16 +38,17 @@ on:
           - '8171M'
       target:
         description: '选择要生成的机型：'
-        default: 'r2s'
+        default: 'rockchip'
         required: true
         type: choice
-        options: [  x86_64,r2s, r4s, r4se, r5s, r5c,r6c,r6s,rm2100, xm2100 ]
+        options: [  x86_64,r2s, r4s, r4se, r5s, r5c,r6c,r6s,rockchip ]
       date_s:
         description: '固件日期'
         default: 'default'
         required: false
 env:
-  # branch REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  REPO_LEDE: https://github.com/coolsnowwolf/lede
+  REPO_IM: https://github.com/immortalwrt/immortalwrt
   #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diyx/diyr.sh
@@ -149,10 +150,10 @@ jobs:
       working-directory: /builder
       run: |
         df -hT $PWD
-        if [[ $REPO_BRANCH == 'stable' ]]; then
-          git clone --depth 1 https://github.com/DHDAXCW/lede-rockchip -b  $REPO_BRANCH openwrt
+        if [[ $REPO_BRANCH == 'openwrt-24.10' ]]; then
+          git clone --depth 1 $REPO_IM -b  $REPO_BRANCH openwrt
         else 
-          git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
+          git clone --depth 1 $REPO_lede -b $REPO_BRANCH  openwrt
         fi
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
