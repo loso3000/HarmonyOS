@@ -22,10 +22,10 @@ on:
         options: [ master, stable, openwrt-21.02, openwrt-23.05 ]
       config_s:
         description: '配置文件'
-        default: 'Vip-Mini'
+        default: 'Vip-Super'
         required: true
         type: choice
-        options: [ Vip-Mini,Free-Mini, Free-Plus,  Vip-Plus ]
+        options: [ Vip-Mini,Vip-Super, Vip-Plus ]
       cpu_s:
         description: 'CPU优选'
         required: true
