@@ -41,7 +41,7 @@ on:
         default: 'tr3000'
         required: true
         type: choice
-        options: [  tr3000 ]
+        options: [  tr3000 ,cm520-79f ]
       date_s:
         description: '固件日期'
         default: 'default'
