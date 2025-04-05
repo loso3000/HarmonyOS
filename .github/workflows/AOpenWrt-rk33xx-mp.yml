@@ -49,13 +49,10 @@ on:
 env:
   REPO_LEDE: https://github.com/coolsnowwolf/lede
   REPO_IM: https://github.com/immortalwrt/immortalwrt
-  #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diyx/diyr.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
@@ -150,10 +147,10 @@ jobs:
       working-directory: /builder
       run: |
         df -hT $PWD
-        if [[ $REPO_BRANCH == 'openwrt-24.10' ]]; then
-          git clone --depth 1 $REPO_IM -b  $REPO_BRANCH openwrt
+        if [[ $REPO_BRANCH == 'master' ]]; then
+          git clone --depth 1  -b  $REPO_BRANCH $REPO_LEDE openwrt
         else 
-          git clone --depth 1 $REPO_lede -b $REPO_BRANCH  openwrt
+          git clone --depth 1 -b $REPO_BRANCH  $REPO_IM  openwrt
         fi
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
