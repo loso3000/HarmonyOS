@@ -734,6 +734,8 @@ esac
 
 EOF
 
+#cudy tr3000 114M
+sed   -i 's/0x4000/0x7000/g'    ./target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts
 
 #修复TailScale配置文件冲突
 TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
