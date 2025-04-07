@@ -233,19 +233,13 @@ rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
-mkdir -p ./package/lean
-rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
 
-# samba4
-rm -rf ./package/lean/autosamba
-rm -rf  package/emortal/autosamba
-
-rm -rf  package/emortal/automount
-rm -rf ./package/lean/automount
-
-rm -rf ./package/lean/default-settings
-rm -rf  package/emortal/default-settings
+# rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba  ./package/emortal/default-settings 
+# rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  ./package/lean/default-settings 
+rm -rf ./package/add/up/tool/autocore
+rm -rf ./package/add/up/tool/autosamba
+rm -rf ./package/add/up/tool/default-settings
+rm -rf ./package/autocore
 
 # transmission web error
 sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
