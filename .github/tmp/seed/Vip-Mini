@@ -486,14 +486,23 @@ CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_PACKAGE_iperf3-ssl=y
 CONFIG_PACKAGE_luci-lib-taskd=y
 CONFIG_PACKAGE_luci-lib-xterm=y
+CONFIG_PACKAGE_luci-proto-ncm=y
+# CONFIG_PACKAGE_minicom=y
 CONFIG_PACKAGE_luci-proto-3g=y
 CONFIG_PACKAGE_luci-proto-bonding=y
-CONFIG_PACKAGE_luci-proto-ncm=y
 CONFIG_PACKAGE_luci-proto-openconnect=y
 CONFIG_PACKAGE_luci-proto-qmi=y
-CONFIG_PACKAGE_luci-proto-relay=y
+
+### L2TP
 CONFIG_PACKAGE_luci-proto-wireguard=y
-CONFIG_PACKAGE_minicom=y
+CONFIG_PACKAGE_luci-proto-bonding=y
+CONFIG_PACKAGE_luci-proto-relay=y
+CONFIG_PACKAGE_kmod-wireguard=y
+# CONFIG_PACKAGE_kmod-pptp=y
+# CONFIG_PACKAGE_xl2tpd=y
+# CONFIG_PACKAGE_ppp-mod-pppol2tp=y
+# CONFIG_PACKAGE_kmod-pppol2tp=y
+# CONFIG_PACKAGE_ppp-mod-pptp=y
 
 
 
@@ -535,27 +544,12 @@ CONFIG_PACKAGE_iwinfo=y
 CONFIG_PACKAGE_mount-utils=y
 CONFIG_PACKAGE_msgpack-c=y
 
-### L2TP
-CONFIG_PACKAGE_kmod-l2tp=y
-CONFIG_PACKAGE_kmod-pppol2tp=y
-CONFIG_PACKAGE_ppp-mod-pppol2tp=y
-CONFIG_PACKAGE_xl2tpd=y
-CONFIG_PACKAGE_kmod-wireguard=y
-CONFIG_PACKAGE_kmod-pptp=y
-CONFIG_PACKAGE_ppp-mod-pptp=y
-
 CONFIG_COREMARK_OPTIMIZE_O3=y
 
 CONFIG_PACKAGE_openssh-sftp-client=y
 CONFIG_PACKAGE_openssh-sftp-server=y
 
-CONFIG_PACKAGE_kmod-wireguard=y
-CONFIG_PACKAGE_kmod-pppol2tp=y
-CONFIG_PACKAGE_kmod-pptp=y
-CONFIG_PACKAGE_xl2tpd=y
-CONFIG_PACKAGE_ppp-mod-pppol2tp=y
-CONFIG_PACKAGE_ppp-mod-pptp=y
-
+# Other Appliciations
 CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_blkid=y
 CONFIG_PACKAGE_coremark=y
@@ -693,4 +687,4 @@ CONFIG_PACKAGE_kmod-mt7916-firmware=y
 CONFIG_PACKAGE_kmod-mt7921-firmware=y
 CONFIG_PACKAGE_kmod-mt7922-firmware=y
 CONFIG_PACKAGE_kmod-mt7925-firmware=y
-CONFIG_PACKAGE_wpad-openssl=y
+# CONFIG_PACKAGE_wpad-openssl=y
