@@ -291,8 +291,8 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 # alist
-rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
-git clone https://$github/sbwml/openwrt-alist package/new/alist
+# rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
+# git clone https://$github/sbwml/openwrt-alist package/new/alist
 
 # 修复procps-ng-top导致首页cpu使用率无法获取
 sed -i 's#top -n1#\/bin\/busybox top -n1#g' feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
