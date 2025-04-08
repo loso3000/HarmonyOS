@@ -500,8 +500,6 @@ git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 rm -rf ./feeds/luci/applications/luci-app-wechatpush 
 git clone https://$github/tty228/luci-app-wechatpush ./feeds/luci/applications/luci-app-wechatpush
 
-rm -rf ./feeds/packages/net/adguardhome
-
 git clone https://$github/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
 
