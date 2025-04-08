@@ -160,14 +160,11 @@ git clone https://$github/loso3000/other ./package/add
 rm -rf ./package/add/up/pass/shadow-tls
 rm -rf ./package/add/up/pass/xray-core
 
-#samrtdns
-rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf ./feeds/luci/applications/luci-app-lucky
 rm -rf ./feeds/luci/applications/luci-app-ddns-go
 rm -rf ./feeds/luci/applications/luci-app-filetransfer
 rm -rf ./feeds/luci/applications/luci-app-fileassistant
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
-rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf ./feeds/luci/applications/luci-app-wolplus
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
@@ -178,7 +175,6 @@ rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-passwall2
 
 rm -rf  ./feeds/packages/net/wrtbwmon
-rm -rf  ./feeds/packages/net/smartdns
 rm -rf  ./feeds/packages/net/lucky
 rm -rf  ./feeds/packages/net/ddns-go
 
@@ -201,8 +197,8 @@ rm -rf ./feeds/third/luci-app-autotimeset
 rm -rf  ./feeds/packages/ariang
 rm -rf  ./feeds/packages/webui-aria2
 
-mv -f ./package/add/up/tool/smartdns/luci-app-smartdns ./feeds/luci/applications/luci-app-smartdns
-mv -f ./package/add/up/tool/smartdns/smartdns  ./feeds/packages/net/smartdns 
+# rm -rf ./feeds/luci/applications/luci-app-smartdns
+# rm -rf  ./feeds/packages/net/smartdns
 
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
