@@ -218,7 +218,7 @@ jobs:
          make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum 
-         bash buildmd5.sh  || true
+         # bash buildmd5.sh  || true
 
     - name: Organize files
       id: organize
@@ -226,6 +226,10 @@ jobs:
       run: |
         cd openwrt/bin/targets/*/*
         mv -f packages ../packages
+        
+        mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
+        tar -zcf Packages.tar.gz packages
+        rm -rf packages feeds.buildinfo version.buildinfo
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
