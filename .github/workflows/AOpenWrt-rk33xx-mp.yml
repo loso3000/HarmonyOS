@@ -210,22 +210,21 @@ jobs:
          make diffconfig
          make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j72 IGNORE_ERRORS=1
          make package/index
+         make package/install -j$(nproc) || make package/install -j1 V=s
          bash  bakkmod.sh  || true
     - name: Generate Firmware
       run: |
          df -h
          cd openwrt 
-         make package/install -j$(nproc) || make package/install -j1 V=s
          make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum 
-         # bash buildmd5.sh  || true
+         bash buildmd5.sh  || true
 
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        rm -rf packages
         rm -rf packages feeds.buildinfo version.buildinfo
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
