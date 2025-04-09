@@ -138,7 +138,7 @@ rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
 # rm -rf ./package/ssr/xray-core
 # rm -rf ./package/ssr/xray-plugin
-rm -rf ./package/ssr/naiveproxy
+# rm -rf ./package/ssr/naiveproxy
 # rm -rf ./package/ssr/v2ray-plugin
 # rm -rf ./package/ssr/v2ray-core
 # rm -rf ./package/ssr/pdnsd
@@ -159,23 +159,17 @@ git clone https://$github/loso3000/other ./package/add
 rm -rf ./package/add/up/pass/shadow-tls
 rm -rf ./package/add/up/pass/xray-core
 
-rm -rf ./feeds/luci/applications/luci-app-lucky
-rm -rf ./feeds/luci/applications/luci-app-ddns-go
 rm -rf ./feeds/luci/applications/luci-app-filetransfer
 rm -rf ./feeds/luci/applications/luci-app-fileassistant
-rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf ./feeds/luci/applications/luci-app-wolplus
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
-rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-passwall2
 
 rm -rf  ./feeds/packages/net/wrtbwmon
-rm -rf  ./feeds/packages/net/lucky
-rm -rf  ./feeds/packages/net/ddns-go
 
 #istore
 rm -rf  ./feeds/jjm2473_apps/homebox
@@ -187,12 +181,8 @@ rm -rf  ./feeds/third_party/luci-app-smartdns
 rm -rf  ./feeds/third_party/luci-app-socat
 rm -rf  ./feeds/third_party/smartdns
 rm -rf  ./feeds/third_party/luci-app-netdata
-rm -rf  ./feeds/third_party/luci-app-autotimeset
 rm -rf ./feeds/openwrt-third/luci-app-netdata
 rm -rf ./feeds/openwrt-third/smartdns
-rm -rf ./feeds/openwrt-third/luci-app-autotimeset
-rm -rf ./feeds/luci/applications/luci-app-autotimeset
-rm -rf ./feeds/third/luci-app-autotimeset
 rm -rf  ./feeds/packages/ariang
 rm -rf  ./feeds/packages/webui-aria2
 
@@ -204,14 +194,9 @@ rm -rf  ./feeds/packages/webui-aria2
 rm -rf ./feeds/packages/net/mwan3
 mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
-#rm -rf ./feeds/packages/net/aria2
-#rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
-
-sed -i 's,default n,default y,g' package/add/up/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' package/add/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
-sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
+# sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
+# sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
 
 #修正nat回流 
 cat ./package/add/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
@@ -222,17 +207,19 @@ rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
 
+rm -rf ./feeds/luci/applications/luci-app-beardropper
+
+rm -rf ./feeds/luci/applications/luci-app-p910nd
+#easytier 
 git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
 #net eth0
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
-mkdir -p ./package/lean
-rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
 
-# samba4
+rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba  ./package/emortal/default-settings 
+rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  ./package/lean/default-settings 
 rm -rf ./package/lean/autosamba
 rm -rf  package/emortal/autosamba
 
@@ -242,18 +229,12 @@ rm -rf ./package/lean/automount
 rm -rf ./package/lean/default-settings
 rm -rf  package/emortal/default-settings
 
-# transmission web error
-sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
-
-rm -rf ./feeds/luci/applications/luci-app-beardropper
-
-rm -rf ./feeds/luci/applications/luci-app-p910nd
-
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 rm -rf ./feeds/packages/net/lucky
 rm -rf  ./feeds/luci/applications/luci-app-lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
+# git clone https://github.com/gdy666/luci-app-lucky ./package/lucky
 rm -rf ./feeds/packages/net/ddns-go
 rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
@@ -295,8 +276,6 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 # git clone https://$github/sbwml/openwrt-alist package/new/alist
 
-# 修复procps-ng-top导致首页cpu使用率无法获取
-sed -i 's#top -n1#\/bin\/busybox top -n1#g' feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 
 # Add ddnsto & linkease
  git clone  https://$github/linkease/nas-packages-luci ./package/nas-packages-luci
@@ -356,13 +335,17 @@ sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support
 
 # UPnP
 rm -rf ./package/add/up/luci-app-upnp
-# rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-# git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
-# git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
+rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
+git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
+git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
+
+# 精简 UPnP 菜单名称
+sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
+
 
 #设置
-sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
-sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
+# sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
+# sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 
 # Luci diagnostics.js
 # sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
@@ -372,10 +355,6 @@ sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
-
-# 精简 UPnP 菜单名称
-sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
-
 # ppp - 2.5.0
 # rm -rf package/network/services/ppp
 # git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
@@ -432,8 +411,12 @@ rm -rf ./feeds/luci/applications/luci-app-dockerman
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
 
 # Docker
-rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/collections/luci-lib-docker
+git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
+git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/dockerman
+# rm -rf feeds/luci/applications/luci-app-dockerman
+# git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
 git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
@@ -666,16 +649,15 @@ cat>bakkmod.sh<<-\EOF
 kmoddirdrv=./files/etc/kmod.d/drv
 kmoddirdocker=./files/etc/kmod.d/docker
 bakkmodfile=./kmod.source
-cp -rf ./patch/list.txt $bakkmodfile
+cat ./patch/list.txt >$bakkmodfile
+[ ! -f "$bakkmodfile" ] && cat ./package/add/patch/list.txt >$bakkmodfile
 nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
 
-# 处理驱动模块
 while IFS= read -r line || [[ -n "$line" ]]; do
     echo "正在处理模块: $line"
-    # 尝试查找.ko文件
-    found=$(find bin/ -type f -name -name "*${line}" | head -n 1)
+    found=$(find bin/ -type f -name -name "${line}" | head -n 1)
     if [ -z "$found" ]; then
         echo "警告: 找不到模块 $line"
         continue
