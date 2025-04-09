@@ -206,6 +206,7 @@ jobs:
         make diffconfig
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
         make package/index
+        ls -a
         bash  bakkmod.sh
         echo "status=success" >> $GITHUB_OUTPUT
     - name: Generate Firmware
