@@ -647,7 +647,7 @@ mkdir -p $kmoddirdocker 2>/dev/null
 
 while IFS= read -r line || [[ -n "$line" ]]; do
     echo "正在处理模块: $line"
-    found=$(find bin/ -type f -name  "${line}" | head -n 1)
+    found=$(find bin/ -type f -name  "*${line}*" | head -n 1)
     if [ -z "$found" ]; then
         echo "警告: 找不到模块 $line"
         continue
