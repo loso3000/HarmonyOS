@@ -206,7 +206,6 @@ jobs:
         make diffconfig
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
         make package/index
-        make package/install -j$(nproc) || make package/install -j1 V=s
          bash  bakkmod.sh
         echo "status=success" >> $GITHUB_OUTPUT
     - name: Generate Firmware
@@ -216,6 +215,7 @@ jobs:
       run: |
         df -h
         cd openwrt
+        make package/install -j$(nproc) || make package/install -j1 V=s
         make target/install -j$(nproc) || make target/install -j1 V=s
         make checksum
         bash buildmd5.sh
