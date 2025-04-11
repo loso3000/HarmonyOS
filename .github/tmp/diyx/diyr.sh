@@ -640,7 +640,6 @@ sleep 2
 popd
 exit 0
 EOF
-fi
 
 cat>bakkmod.sh<<-\EOF
 #!/bin/bash
