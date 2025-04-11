@@ -748,6 +748,29 @@ esac
 
 EOF
 
+# /up/tool/autocore/files/generic/10_system.js
+INSERT_CODE=$(cat <<'EOF'
+        table.appendChild(E('tr', {'class': 'tr'}, [
+            E('td', {'class': 'td right', 'width': '33%'}, _('Help')),
+            E('td', {'class': 'td left'}, [
+                E('a', {
+                    'href': 'https://github.com/sirpdboy/openwrt/issues',
+                    'class': 'btn cbi-button cbi-button-reset',
+                    'target': '_blank'
+                }, _('Update suggestions')),
+                ' ',
+                E('a', {
+                    'href': 'https://t.me/joinchat/RV6mxIxZJVDByibQ',
+                    'class': 'btn cbi-button cbi-button-save',
+                    'target': '_blank'
+                }, _('TG Chat group'))
+            ])
+        ]));
+EOF
+)
+# 使用sed插入
+escaped_code=$(printf '%s\n' "$INSERT_CODE" | sed 's:[\/&]:\\&:g')
+sed -i "/return table;/i $escaped_code" ./package/add/up/tool/autocore/files/generic/10_system.js
 
 UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 
