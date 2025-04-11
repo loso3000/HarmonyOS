@@ -229,7 +229,7 @@ jobs:
         ls
         echo "======================="
         df -hT
-        rm -rf packages
+        mv -f packages ../../../packages/
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
 
     - name: Upload firmware directory
