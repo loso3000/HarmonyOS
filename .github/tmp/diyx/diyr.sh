@@ -619,54 +619,6 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
-if [ ${TARGET_DEVICE} = "x86_64" ] ; then
-
-cat>buildmd5.sh<<-\EOF
-#!/bin/bash
-
-r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
-# gzip bin/targets/*/*/*.img | true
-
-pushd bin/targets/*/*/
-rm -rf   config.buildinfo
-rm -rf   feeds.buildinfo
-rm -rf   *.manifest
-rm -rf   *rootfs.tar.gz
-rm -rf   *generic-squashfs-rootfs.img*
-rm -rf   *generic-rootfs*
-rm -rf  *generic.manifest
-rm -rf  sha256sums
-rm -rf version.buildinfo
-rm -rf *generic-ext4-rootfs.img*
-rm -rf  *generic-ext4-combined-efi.img*
-rm -rf  *generic-ext4-combined.img*
-rm -rf  profiles.json
-rm -rf  *kernel.bin
-# BINDIR=`pwd`
-sleep 2
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${r_version}_${TARGET_DEVICE}-dev.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${r_version}_${TARGET_DEVICE}-dev-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${r_version}_${TARGET_DEVICE}-dev-efi.img.gz
-#md5
-
-ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
-[ -n $ip ] || ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
-[ -n $ip ] || ip=192.168.10.1
-[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev.md5 &&echo "ip=$ip" >> EzOpWrt_dev.md5
-[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 &&echo "ip=$ip" >> EzOpWrt_dev-efi.md5
-
-
-if [ ${CONFIG_S} = "Vip-Super" ] ; then
-cp ../../../../ezotafooter  ./ota.footer
-cp ../../../../ezverlatest   ./ver.latest 
-fi
-popd
-
-EOF
-
-else
-
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
@@ -678,17 +630,10 @@ pushd bin/targets/*/*/
 rm -rf   config.buildinfo
 rm -rf   feeds.buildinfo
 rm -rf   *.manifest
-rm -rf   *rootfs.tar.gz
-rm -rf   *generic-squashfs-rootfs.img*
-rm -rf   *generic-rootfs*
 rm -rf  *generic.manifest
 rm -rf  sha256sums
 rm -rf version.buildinfo
-rm -rf *generic-ext4-rootfs.img*
-rm -rf  *generic-ext4-combined-efi.img*
-rm -rf  *generic-ext4-combined.img*
 rm -rf  profiles.json
-rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
 
@@ -696,36 +641,28 @@ popd
 exit 0
 EOF
 fi
+
 cat>bakkmod.sh<<-\EOF
 #!/bin/bash
 kmoddirdrv=./files/etc/kmod.d/drv
 kmoddirdocker=./files/etc/kmod.d/docker
 bakkmodfile=./kmod.source
-cp -rf ./patch/list.txt $bakkmodfile
+cat ./package/add/patch/list.r2s >$bakkmodfile  || true
 nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
-while IFS= read -r line; do  
-    cp -v $(find bin/ -type f -name "*${line}*") $kmoddirdrv
-    echo "$line"  
-        a=`find ./bin/ -name "$line" `
-    echo $a
-    if [ -z "$a" ]; then
-        echo "no find: $line"
-    else
-        cp -f $a $kmoddirdrv
-	echo $line >> $nowkmodfile
-        if [ $? -eq 0 ]; then
-            echo "cp ok: $line"
-        else
-            echo "no cp:$line"
-        fi
+while IFS= read -r line || [[ -n "$line" ]]; do
+    found=$(find bin/ -type f -name  "${line}" | head -n 1)
+    if [ -z "$found" ]; then
+        echo "警告: 找不到模块 $line"
+        continue
     fi
+    cp -fv "$found" "$kmoddirdrv"
 done < "$bakkmodfile"
-    # find ./bin/ -name  $file | xargs -i cp -f {}  $kmoddirdrv
-    # cp -v $(find bin/targets/ -type f -name "*${FIRMWARE_TYPE}*") ../firmware
-find ./bin/ -name "*dockerman*" | xargs -i cp -f {} $kmoddirdocker
-find ./bin/ -name "*dockerd*" | xargs -i cp -f {} $kmoddirdocker
+echo 'GITHUB_TOKEN="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"' > ./files/etc/ezgithub
+chmod 600 ./files/etc/ezgithub
+find bin/ -type f \( -name "*dockerman*" -o -name "*dockerd*" \) -exec cp -fv {} "$kmoddirdocker" \;
+
 EOF
 
 
