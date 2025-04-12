@@ -319,12 +319,14 @@ sed -i 's|/bin/login|/bin/login -f root|' ./feeds/packages/utils/ttyd/files/ttyd
 
 # sed -i "/listen_https/ {s/^/#/g}" ./package/*/*/*/files/uhttpd.config
 
+# luci
 pushd feeds/luci
     # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-     #curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-
-     #curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1
-     #curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/luci/0002-luci-mod-status-displays-actual-process-memory-usage.patch | patch -p1
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
 popd
 
 # uwsgi
