@@ -328,11 +328,11 @@ sed -i 's|/bin/login|/bin/login -f root|' ./feeds/packages/utils/ttyd/files/ttyd
 
 
 #nginx 
-    sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci/Makefile
-    sed -i 's/+uhttpd-mod-ubus //' feeds/luci/collections/luci/Makefile
-    sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci-light/Makefile
-    sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl-openssl/Makefile
-    sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl/Makefile
+#    sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci/Makefile
+#    sed -i 's/+uhttpd-mod-ubus //' feeds/luci/collections/luci/Makefile
+#    sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci-light/Makefile
+#    sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl-openssl/Makefile
+#    sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl/Makefile
 
 # sed -i "/listen_https/ {s/^/#/g}" ./package/*/*/*/files/uhttpd.config
 pushd feeds/luci
