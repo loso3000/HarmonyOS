@@ -329,8 +329,8 @@ sed -i 's/processes = 3/processes = 4/g' feeds/packages/net/uwsgi/files-luci-sup
 sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
 
 # UPnP
-rm -rf ./package/add/up/upnpfw4
-# rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
+# rm -rf ./package/add/up/upnpfw4
+rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 # git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
 # git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
 
