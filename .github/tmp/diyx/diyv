@@ -663,8 +663,11 @@ while IFS= read -r line || [[ -n "$line" ]]; do
     fi
     cp -fv "$found" "$kmoddirdrv"
 done < "$bakkmodfile"
-echo 'GITHUB_TOKEN="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"' > ./files/etc/ezgithub
+
+#tokenfile
+cp -r  ./package/add/patch/GithubvToken ./files/etc/ezgithub
 chmod 600 ./files/etc/ezgithub
+
 find bin/ -type f \( -name "*dockerman*" -o -name "*dockerd*" \) -exec cp -fv {} "$kmoddirdocker" \;
 
 EOF
