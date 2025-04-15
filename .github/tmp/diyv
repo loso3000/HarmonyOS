@@ -679,8 +679,10 @@ while IFS= read -r line; do
         fi
     fi
 done < "$bakkmodfile"
-    # find ./bin/ -name  $file | xargs -i cp -f {}  $kmoddirdrv
-    # cp -v $(find bin/targets/ -type f -name "*${FIRMWARE_TYPE}*") ../firmware
+
+#tokenfile
+cp -r  ./package/add/patch/GithubvToken ./files/etc/ezgithub
+chmod 600 ./files/etc/ezgithub
 find ./bin/ -name "*dockerman*" | xargs -i cp -f {} $kmoddirdocker
 find ./bin/ -name "*dockerd*" | xargs -i cp -f {} $kmoddirdocker
 EOF
