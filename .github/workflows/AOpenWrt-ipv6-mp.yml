@@ -215,8 +215,7 @@ jobs:
         make target/install -j$(nproc) || make target/install -j1 V=s
         make checksum
         bash buildmd5.sh
-        
-        . ../ezopenwrt_version
+         . ../ezopenwrt_version
         if [[ $DATE_S == 'default' ]]; then
           echo "DATA=$EZDATE" >> $GITHUB_ENV
         else 
