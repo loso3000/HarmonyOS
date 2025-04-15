@@ -222,7 +222,7 @@ jobs:
         else 
           echo "DATA=$DATE_S" >>$GITHUB_ENV
         fi
-        echo "release_tag=$EZVER" >> $GITHUB_OUTPUT
+        # echo "release_tag=$EZVER" >> $GITHUB_OUTPUT
         echo "status=success" >> $GITHUB_OUTPUT
     - name: Organize files
       id: organize
@@ -253,7 +253,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status  == 'success'
       run: |
-        echo "release_tag=${{ EZVER }}" >> $GITHUB_OUTPUT
+        echo "release_tag=${{ env.DATA }}" >> $GITHUB_OUTPUT
         echo -e "\n* The stable source code has been updated." >> release.txt
         sed -i '1i ## Firmware Update Log' release.txt
         touch release.txt
