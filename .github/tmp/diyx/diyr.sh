@@ -3,6 +3,7 @@
 # private gitea
 gitea=git.cooluc.com
 github="github.com"
+auth="sirpdboy/openwrt"
 mirror=https://init.cooluc.com
 
 is_vip() {
@@ -104,6 +105,8 @@ UPDATE_VERSION() {
 
 [ ! -d files/root ] || mkdir -p files/root
 [ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
+mkdir -p files/usr/share
+mkdir -p ./package/emortal
 
 [[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
@@ -138,7 +141,7 @@ rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
 # rm -rf ./package/ssr/xray-core
 # rm -rf ./package/ssr/xray-plugin
-rm -rf ./package/ssr/naiveproxy
+# rm -rf ./package/ssr/naiveproxy
 # rm -rf ./package/ssr/v2ray-plugin
 # rm -rf ./package/ssr/v2ray-core
 # rm -rf ./package/ssr/pdnsd
@@ -156,12 +159,9 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://$github/loso3000/other ./package/add
 
-rm -rf ./package/add/up/pass/shadow-tls
-rm -rf ./package/add/up/pass/xray-core
+rm -rf  ./feeds/packages/net/adguardhome
+rm -rf ./feeds/luci/applications/luci-app-adguardhome
 
-#samrtdns
-rm -rf ./feeds/luci/applications/luci-app-lucky
-rm -rf ./feeds/luci/applications/luci-app-ddns-go
 rm -rf ./feeds/luci/applications/luci-app-filetransfer
 rm -rf ./feeds/luci/applications/luci-app-fileassistant
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
@@ -169,7 +169,6 @@ rm -rf ./feeds/luci/applications/luci-app-wolplus
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
 rm -rf ./feeds/luci/applications/luci-app-udpxy
-rm -rf ./feeds/luci/applications/luci-app-adguardhome
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-passwall2
@@ -188,12 +187,8 @@ rm -rf  ./feeds/third_party/luci-app-smartdns
 rm -rf  ./feeds/third_party/luci-app-socat
 rm -rf  ./feeds/third_party/smartdns
 rm -rf  ./feeds/third_party/luci-app-netdata
-rm -rf  ./feeds/third_party/luci-app-autotimeset
 rm -rf ./feeds/openwrt-third/luci-app-netdata
 rm -rf ./feeds/openwrt-third/smartdns
-rm -rf ./feeds/openwrt-third/luci-app-autotimeset
-rm -rf ./feeds/luci/applications/luci-app-autotimeset
-rm -rf ./feeds/third/luci-app-autotimeset
 rm -rf  ./feeds/packages/ariang
 rm -rf  ./feeds/packages/webui-aria2
 
@@ -205,11 +200,6 @@ rm -rf  ./feeds/packages/webui-aria2
 rm -rf ./feeds/packages/net/mwan3
 mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
-#rm -rf ./feeds/packages/net/aria2
-#rm -rf ./feeds/luci/applications/luci-app-aria2  package/feeds/packages/luci-app-aria2
-
-sed -i 's,default n,default y,g' package/add/up/pass/luci-app-bypass/Makefile
-sed -i 's,default n,default y,g' package/add/up/pass/luci-app-ssr-plus/Makefile
 # 在 X86 架构下移除 Shadowsocks-rust
 sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
@@ -223,18 +213,19 @@ rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
 
+rm -rf ./feeds/luci/applications/luci-app-beardropper
 
+rm -rf ./feeds/luci/applications/luci-app-p910nd
+#easytier 
 git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
 #net eth0
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
-mkdir -p ./package/lean
-rm -rf ./package/lean/autocore ./package/emortal/autocore
-mv -f ./package/add/up/tool/autocore ./package/lean/autocore 
 
-# samba4
+rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba  ./package/emortal/default-settings 
+rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  ./package/lean/default-settings 
 rm -rf ./package/lean/autosamba
 rm -rf  package/emortal/autosamba
 
@@ -244,18 +235,12 @@ rm -rf ./package/lean/automount
 rm -rf ./package/lean/default-settings
 rm -rf  package/emortal/default-settings
 
-# transmission web error
-sed -i "s/procd_add_jail transmission log/procd_add_jail_mount '$web_home'/g"  feeds/packages/net/transmission/files/transmission.init
-
-rm -rf ./feeds/luci/applications/luci-app-beardropper
-
-rm -rf ./feeds/luci/applications/luci-app-p910nd
-
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 rm -rf ./feeds/packages/net/lucky
 rm -rf  ./feeds/luci/applications/luci-app-lucky
 git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
+# git clone https://github.com/gdy666/luci-app-lucky ./package/lucky
 rm -rf ./feeds/packages/net/ddns-go
 rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
@@ -294,11 +279,9 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 # alist
-rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
-git clone https://$github/sbwml/openwrt-alist package/new/alist
+# rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
+# git clone https://$github/sbwml/openwrt-alist package/new/alist
 
-# 修复procps-ng-top导致首页cpu使用率无法获取
-sed -i 's#top -n1#\/bin\/busybox top -n1#g' feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 
 # Add ddnsto & linkease
  git clone  https://$github/linkease/nas-packages-luci ./package/nas-packages-luci
@@ -355,14 +338,23 @@ sed -i 's/processes = 3/processes = 4/g' feeds/packages/net/uwsgi/files-luci-sup
 sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
 
 # UPnP
-rm -rf ./package/add/up/luci-app-upnp
+rm -rf ./package/add/up/upnpfw4
 # rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 # git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
 # git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
 
-#设置
-sed -i 's/option enabled.*/option enabled 0/' feeds/*/*/*/*/upnpd.config
-sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
+# 精简 UPnP 菜单名称
+# sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
+
+# luci
+pushd feeds/luci
+    # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
+popd
 
 # Luci diagnostics.js
 # sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
@@ -371,8 +363,6 @@ sed -i 's/option dports.*/option enabled 2/' feeds/*/*/*/*/upnpd.config
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
-# 精简 UPnP 菜单名称
-sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 
 # ppp - 2.5.0
 # rm -rf package/network/services/ppp
@@ -611,9 +601,14 @@ elif [ "$VER1" = "6.12" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by Sirpdboy"
 date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}"
 fi
-echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
-echo "${date2}" >> ./package/base-files/files/etc/banner
-echo '---------------------------------' >> ./package/base-files/files/etc/banner
+echo "EZVER=${date1}" > ./files/etc/ezopenwrt_version
+echo "EZDATE=$DATA" >> ./files/etc/ezopenwrt_version
+cp -r ./files/etc/ezopenwrt_version ../ezopenwrt_version
+echo "${date2}" >> ./files/etc/banner
+#tokenfile
+cp -r  ./package/add/patch/GithubvToken ./files/etc/ezgithub
+chmod 600 ./files/etc/ezgithub
+echo '---------------------------------' >> ./files/etc/banner
 [ -f ./files/root/.zshrc ] || mv -f ./package/add/patch/z.zshrc ./files/root/.zshrc
 [ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./files/root/.zshrc
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
@@ -621,8 +616,6 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
-
-r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
 # gzip bin/targets/*/*/*.img | true
 
 VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
@@ -658,14 +651,14 @@ while IFS= read -r line || [[ -n "$line" ]]; do
     fi
     cp -fv "$found" "$kmoddirdrv"
 done < "$bakkmodfile"
-echo 'GITHUB_TOKEN="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"' > ./files/etc/ezgithub
-chmod 600 ./files/etc/ezgithub
+
+
 find bin/ -type f \( -name "*dockerman*" -o -name "*dockerd*" \) -exec cp -fv {} "$kmoddirdocker" \;
 
 EOF
 
 
-cat>./package/base-files/files/etc/kmodreg<<-\EOF
+cat>./package/base-files/files/etc/kmodreg<<\EOF
 #!/bin/bash
 # EzOpWrt By Sirpdboy
 IPK=$1
@@ -693,9 +686,11 @@ else
 	opkg update
 	echo "正在安装Docker及相关服务...请耐心等待...大约需要1-5分钟 "
 
-   	opkg install --force-depends dockerd >/dev/null 2>&1
-    	opkg install --force-depends luci-i18n-dockerman-zh-cn	 >/dev/null 2>&1
+	# opkg install $nowkmoddir/dockerd*.ipk --force-depends >/dev/null 2>&1
+	# opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends  >/dev/null 2>&1
+	# opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends  >/dev/null 2>&1
 	opkg install --force-depends luci-app-dockerman >/dev/null 2>&1
+    	opkg install --force-depends luci-i18n-dockerman-zh-cn	 >/dev/null 2>&1
     	opkg install --force-depends avahi-daemon >/dev/null 2>&1
 	if is_docker; then
 		echo "本地成功安装Docker及相关服务！"
@@ -741,6 +736,10 @@ esac
 
 EOF
 
+# 广告链接 23.05专用
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+# sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
+UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 
 #修复TailScale配置文件冲突
 TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
@@ -757,4 +756,5 @@ if [ -f "$CM_FILE" ]; then
 fi
 
 ./scripts/feeds update -i
+./scripts/feeds install -i
 exit
