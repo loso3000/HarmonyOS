@@ -105,6 +105,8 @@ UPDATE_VERSION() {
 
 [ ! -d files/root ] || mkdir -p files/root
 [ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
+mkdir -p files/usr/share
+mkdir -p ./package/emortal
 
 [[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
@@ -157,21 +159,23 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://$github/loso3000/other ./package/add
 
-rm -rf ./package/add/up/pass/shadow-tls
-rm -rf ./package/add/up/pass/xray-core
+rm -rf  ./feeds/packages/net/adguardhome
+rm -rf ./feeds/luci/applications/luci-app-adguardhome
 
 rm -rf ./feeds/luci/applications/luci-app-filetransfer
 rm -rf ./feeds/luci/applications/luci-app-fileassistant
+rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf ./feeds/luci/applications/luci-app-wolplus
 rm -rf ./feeds/luci/applications/luci-app-wrtbwmon
 
-rm -rf ./feeds/luci/applications/luci-app-adguardhome
+rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-passwall2
 
 rm -rf  ./feeds/packages/net/wrtbwmon
-
+rm -rf  ./feeds/packages/net/lucky
+rm -rf  ./feeds/packages/net/ddns-go
 #istore
 rm -rf  ./feeds/jjm2473_apps/homebox
 rm -rf  ./feeds/jjm2473_apps/luci-app-homebox
@@ -632,42 +636,6 @@ rm -rf  profiles.json
 rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
-mv  *generic-squashfs-combined.img.gz       EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev.img.gz   
-mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev-efi.img.gz
-md5_EzOpWrt=EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev.img.gz   
-md5_EzOpWrt_uefi=EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev-efi.img.gz
-
-ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
-[[ -n $ip ]] || ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
-[[ -n $ip ]] || ip="192.168.10.1"
-OTA_URL="https://$github/$auth/releases/download"
-
-
-cat>buildmd5.sh<<\EOF
-#!/bin/bash
-
-github="github.com"
-auth="sirpdboy/openwrt"
-. ../ezopenwrt_version
-# gzip bin/targets/*/*/*.img | true
-
-pushd bin/targets/*/*/
-rm -rf   config.buildinfo
-rm -rf   feeds.buildinfo
-rm -rf   *.manifest
-rm -rf   *rootfs.tar.gz
-rm -rf   *generic-squashfs-rootfs.img*
-rm -rf   *generic-rootfs*
-rm -rf  *generic.manifest
-rm -rf  sha256sums
-rm -rf version.buildinfo
-rm -rf *generic-ext4-rootfs.img*
-rm -rf  *generic-ext4-combined-efi.img*
-rm -rf  *generic-ext4-combined.img*
-rm -rf  profiles.json
-rm -rf  *kernel.bin
-# BINDIR=`pwd`
-sleep 2
 
 mv  *generic-squashfs-combined.img.gz       EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev.img.gz   
 mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev-efi.img.gz
@@ -679,12 +647,12 @@ ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F 
 [[ -n $ip ]] || ip="192.168.10.1"
 OTA_URL="https://$github/$auth/releases/download"
 
-if [ -f ${md5_EzOpWrt} ] ;then
+[ -f ${md5_EzOpWrt} ] && {
 
 file_size=`du -m  ${md5_EzOpWrt} | cut -f1`
 SHA256=`sha256sum ${md5_EzOpWrt} | awk '{print $1}'`
 
-[ -f ${md5_EzOpWrt} ] && {
+
     cat>ezota.json<<'JSONEOF'
     {
         "${TARGET_DEVICE}": [
@@ -702,7 +670,11 @@ SHA256=`sha256sum ${md5_EzOpWrt} | awk '{print $1}'`
 JSONEOF
 }
 
-if [ -f ${md5_EzOpWrt_uefi} ] ;then
+
+[ -f ${md5_EzOpWrt_uefi} ]  && {
+
+file_size=`du -m  ${md5_EzOpWrt_uefi} | cut -f1`
+SHA256=`sha256sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
     cat>>ezota.json<<'JSONEOF'
     {
         "${TARGET_DEVICE}": [
@@ -718,6 +690,12 @@ if [ -f ${md5_EzOpWrt_uefi} ] ;then
         ]
     }
 JSONEOF
+}
+
+if [ ${CONFIG_S} = "Vip-Super" ] ; then
+cp ../../../../ezotafooter  ./ota.footer
+cp ../../../../ezverlatest   ./ver.latest 
+
 fi
 
 popd
@@ -830,7 +808,7 @@ EOF
 
 # /up/tool/autocore/files/generic/10_system.js
 INSERT_CODE=$(cat <<'EOF'
-        table.appendChild(E('tr', {'class': 'tr'}, [
+        ;table.appendChild(E('tr', {'class': 'tr'}, [
             E('td', {'class': 'td right', 'width': '33%'}, _('Help')),
             E('td', {'class': 'td left'}, [
                 E('a', {
@@ -852,6 +830,7 @@ EOF
 escaped_code=$(printf '%s\n' "$INSERT_CODE" | sed 's:[\/&]:\\&:g')
 sed -i "/return table;/i $escaped_code" ./package/add/up/tool/autocore/files/generic/10_system.js
 
+# sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
 UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 
 #修复TailScale配置文件冲突
