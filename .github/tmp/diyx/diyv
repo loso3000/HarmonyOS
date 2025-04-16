@@ -174,8 +174,7 @@ rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-passwall2
 
 rm -rf  ./feeds/packages/net/wrtbwmon
-rm -rf  ./feeds/packages/net/lucky
-rm -rf  ./feeds/packages/net/ddns-go
+
 #istore
 rm -rf  ./feeds/jjm2473_apps/homebox
 rm -rf  ./feeds/jjm2473_apps/luci-app-homebox
@@ -234,6 +233,13 @@ rm -rf ./package/lean/automount
 rm -rf ./package/lean/default-settings
 rm -rf  package/emortal/default-settings
 
+# Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101
+rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
+git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
+git clone https://$github/sbwml/package_kernel_r8152 package/kernel/r8152
+git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
+git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
+git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 rm -rf ./feeds/packages/net/lucky
@@ -322,8 +328,21 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 
 sed -i 's|/bin/login|/bin/login -f root|' ./feeds/packages/utils/ttyd/files/ttyd.config
 
-# sed -i "/listen_https/ {s/^/#/g}" ./package/*/*/*/files/uhttpd.config
 
+#nginx 
+#    sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci/Makefile
+#    sed -i 's/+uhttpd-mod-ubus //' feeds/luci/collections/luci/Makefile
+#    sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci-light/Makefile
+#    sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl-openssl/Makefile
+#    sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl/Makefile
+
+# sed -i "/listen_https/ {s/^/#/g}" ./package/*/*/*/files/uhttpd.config
+pushd feeds/luci
+    # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+    # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+    # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1
+     #curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/luci/0002-luci-mod-status-displays-actual-process-memory-usage.patch | patch -p1
+popd
 # uwsgi
 sed -i 's,procd_set_param stderr 1,procd_set_param stderr 0,g' feeds/packages/net/uwsgi/files/uwsgi.init
 sed -i 's,buffer-size = 10000,buffer-size = 131072,g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
@@ -334,8 +353,8 @@ sed -i 's/processes = 3/processes = 4/g' feeds/packages/net/uwsgi/files-luci-sup
 sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
 
 # UPnP
-# rm -rf ./package/add/up/upnpfw4
-rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
+rm -rf ./package/add/up/upnpfw4
+# rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 # git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
 # git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
 
@@ -420,6 +439,7 @@ rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/collections/luci-lib-docker
 git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
 git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/dockerman
+
 # rm -rf feeds/luci/applications/luci-app-dockerman
 # git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
@@ -699,6 +719,7 @@ cp ../../../../ezverlatest   ./ver.latest
 fi
 
 popd
+exit 0
 EOF
 
 
