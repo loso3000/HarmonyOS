@@ -827,8 +827,10 @@ INSERT_CODE=$(cat <<'EOF'
 EOF
 )
 # 使用sed插入
-escaped_code=$(printf '%s\n' "$INSERT_CODE" | sed 's:[\/&]:\\&:g')
-sed -i "/return table;/i $escaped_code" ./package/add/up/tool/autocore/files/generic/10_system.js
+#escaped_code=$(printf '%s\n' "$INSERT_CODE" | sed 's:[\/&]:\\&:g')
+#sed -i "/return table;/i $escaped_code" ./package/add/up/tool/autocore/files/generic/10_system.js
+# 广告链接 23.05专用
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 
 # sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
 UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
