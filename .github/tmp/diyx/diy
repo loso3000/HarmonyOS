@@ -159,8 +159,7 @@ rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://$github/loso3000/other ./package/add
-
-rm -rf  ./feeds/packages/net/adguardhome
+ 
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
 
 rm -rf ./feeds/luci/applications/luci-app-filetransfer
