@@ -216,12 +216,12 @@ jobs:
         make checksum
         bash buildmd5.sh
          . ../ezopenwrt_version
-        if [[ $DATE_S == 'default' ]]; then
-          echo "DATA=$EZDATE" >> $GITHUB_ENV
-        else 
-          echo "DATA=$DATE_S" >>$GITHUB_ENV
-        fi
-        # echo "release_tag=$EZVER" >> $GITHUB_OUTPUT
+         if [[ $DATE_S == 'default' ]]; then
+          echo "DATA=$DATE_S" >> $GITHUB_ENV
+         else 
+          echo "DATA=`echo  $(date -d "$EZDATE" "+%F_%H") `" >>$GITHUB_ENV
+         fi
+         echo "release_tag=$EZVER" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
     - name: Organize files
       id: organize
@@ -252,7 +252,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status  == 'success'
       run: |
-        echo "release_tag=${{ env.DATA }}" >> $GITHUB_OUTPUT
+        echo "release_tag=${{ env.release_tag }}" >> $GITHUB_OUTPUT
         echo -e "\n* The stable source code has been updated." >> release.txt
         sed -i '1i ## Firmware Update Log' release.txt
         touch release.txt
