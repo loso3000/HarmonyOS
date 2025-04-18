@@ -217,20 +217,17 @@ jobs:
         bash buildmd5.sh
          . ../ezopenwrt_version
          if [[ $DATE_S == 'default' ]]; then
-          echo "DATA=$DATE_S" >> $GITHUB_ENV
-         else 
           echo "DATA=`echo  $(date -d "$EZDATE" "+%F_%H") `" >>$GITHUB_ENV
+         else 
+          echo "DATA=$DATE_S" >> $GITHUB_ENV
          fi
-         echo "release_tag=$EZVER" >> $GITHUB_ENV
+         echo "TAG=$EZVER" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
     - name: Organize files
       id: organize
       if: steps.compile.outputs.status  == 'success'
       run: |
         cd openwrt/bin/targets/*/*
-        ls
-        echo "======================="
-        df -hT
         mv -f packages ../../../packages/
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
     - name: Upload firmware directory
@@ -252,7 +249,6 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status  == 'success'
       run: |
-        echo "release_tag=${{ env.release_tag }}" >> $GITHUB_OUTPUT
         echo -e "\n* The stable source code has been updated." >> release.txt
         sed -i '1i ## Firmware Update Log' release.txt
         touch release.txt
@@ -264,7 +260,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
+        tag_name: ${{ env.TAG }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
