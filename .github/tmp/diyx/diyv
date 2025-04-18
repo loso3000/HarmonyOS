@@ -621,7 +621,7 @@ date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}"
 fi
 echo "EZVER=${date1}" > ./files/etc/ezopenwrt_version
 echo "EZDATE=$DATA" >> ./files/etc/ezopenwrt_version
-cat ./files/etc/ezopenwrt_version >  /builder/ezopenwrt_version
+cat ./files/etc/ezopenwrt_version >  $GITHUB_WORKSPACE/ezopenwrt_version
 echo EZAPI="$ezapi" >>  $GITHUB_WORKSPACE/ezopenwrt_version
 echo "${date2}" >> ./files/etc/banner
 #tokenfile
