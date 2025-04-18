@@ -175,8 +175,6 @@ rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-passwall2
 
 rm -rf  ./feeds/packages/net/wrtbwmon
-rm -rf  ./feeds/packages/net/lucky
-rm -rf  ./feeds/packages/net/ddns-go
 
 #istore
 rm -rf  ./feeds/jjm2473_apps/homebox
@@ -202,8 +200,8 @@ rm -rf ./feeds/packages/net/mwan3
 mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
 # 在 X86 架构下移除 Shadowsocks-rust
-sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
-sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
+# sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
+# sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
 
 #修正nat回流 
 cat ./package/add/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
@@ -423,8 +421,12 @@ rm -rf ./feeds/luci/applications/luci-app-dockerman
 # sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
 
 # Docker
-rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/collections/luci-lib-docker
+git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
+git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/dockerman
+# rm -rf feeds/luci/applications/luci-app-dockerman
+# git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
 git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
@@ -616,8 +618,12 @@ echo '---------------------------------' >> ./files/etc/banner
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
-cat>buildmd5.sh<<-\EOF
+cat>buildmd5.sh<<\EOF
 #!/bin/bash
+
+github="github.com"
+auth="sirpdboy/openwrt"
+. $GITHUB_WORKSPACE/ezopenwrt_version
 # gzip bin/targets/*/*/*.img | true
 
 VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
@@ -636,7 +642,7 @@ popd
 exit 0
 EOF
 
-cat>bakkmod.sh<<-\EOF
+cat>bakkmod.sh<<\EOF
 #!/bin/bash
 kmoddirdrv=./files/etc/kmod.d/drv
 kmoddirdocker=./files/etc/kmod.d/docker
