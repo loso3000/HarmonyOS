@@ -674,7 +674,7 @@ OTA_URL="https://$github/$auth/releases/download"
 [ -f ${md5_EzOpWrt} ] && {
 file_size=`du -m  ${md5_EzOpWrt} | cut -f1`
 md5=`md5sum ${md5_EzOpWrt} | awk '{print $1}'`
-    cat>ezota.json<<'JSONEOF'
+    cat>ezota.json<<JSONEOF
     {
         "${TARGET_DEVICE}": [
         {
@@ -694,21 +694,29 @@ JSONEOF
 [ -f ${md5_EzOpWrt_uefi} ]  && {
 file_size=`du -m  ${md5_EzOpWrt_uefi} | cut -f1`
 md5=`md5sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
-    cat>>ezota.json<<'JSONEOF'
+    printf '{
+    "%s": [
     {
-        "${TARGET_DEVICE}": [
-            {
-                "ver": "${EZVER}",
-                "name": "${md5_EzOpWrt_uefi}",
-                "size": "${file_size}",
-                "date": "$EZDATE",
-                "md5": "$md5",
-                "ip": "${ip}",
-                "url": "${OTA_URL}/${EZVER}/${md5_EzOpWrt_uefi}"
-            }
-        ]
+        "ver": "%s",
+        "name": "%s",
+        "size": "%s",
+        "date": "%s",
+        "md5": "%s",
+        "ip": "%s",
+        "url": "%s/%s/%s"
     }
-JSONEOF
+    ]
+}\n' \
+    "${TARGET_DEVICE}" \
+    "${EZVER}" \
+    "${md5_EzOpWrt_uefi}" \
+    "${file_size}" \
+    "${EZDATE}" \
+    "${md5}" \
+    "${ip}" \
+    "${OTA_URL}" "${EZVER}" "${md5_EzOpWrt_uefi}" > ezota.json
+}
+
 }
 
 if [ ${CONFIG_S} = "Vip-Super" ] ; then
