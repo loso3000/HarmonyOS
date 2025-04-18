@@ -161,6 +161,7 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://$github/loso3000/other ./package/add
  
+# rm -rf  ./feeds/packages/net/adguardhome
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
 
 rm -rf ./feeds/luci/applications/luci-app-filetransfer
@@ -657,14 +658,52 @@ mv  *generic-squashfs-combined.img.gz       EzOpWrt-${EZVER}-${TARGET_DEVICE}-de
 mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev-efi.img.gz
 md5_EzOpWrt=EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev.img.gz   
 md5_EzOpWrt_uefi=EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev-efi.img.gz
-#md5
 
 ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
 [[ -n $ip ]] || ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
 [[ -n $ip ]] || ip="192.168.10.1"
-[ -f ${md5_EzOpWrt} ] && sha256sum ${md5_EzOpWrt} > EzOpWrt_dev.sha256sum &&echo "ip=$ip" >> EzOpWrt_dev.sha256sum
-[ -f ${md5_EzOpWrt_uefi} ] && sha256sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.sha256sum &&echo "ip=$ip" >> EzOpWrt_dev-efi.sha256sum
+OTA_URL="https://$github/$auth/releases/download"
+[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev-efi.md5 &&echo "ip=$ip" >> EzOpWrt_dev-efi.md5
+[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 &&echo "ip=$ip" >> EzOpWrt_dev-efi.md5
+[ -f ${md5_EzOpWrt} ] && {
+file_size=`du -m  ${md5_EzOpWrt} | cut -f1`
+md5=`md5sum ${md5_EzOpWrt} | awk '{print $1}'`
+    cat>ezota.json<<'JSONEOF'
+    {
+        "${TARGET_DEVICE}": [
+        {
+            "ver": "${EZVER}",
+            "name": "${md5_EzOpWrt}",
+            "size": "${file_size}",
+            "date": "$EZDATE",
+            "md5": "$md5",
+            "ip": "${ip}",
+            "url": "${OTA_URL}/${EZVER}/${md5_EzOpWrt}"
+        }
+        ]
+    }
+JSONEOF
+}
 
+[ -f ${md5_EzOpWrt_uefi} ]  && {
+file_size=`du -m  ${md5_EzOpWrt_uefi} | cut -f1`
+md5=`md5sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
+    cat>>ezota.json<<'JSONEOF'
+    {
+        "${TARGET_DEVICE}": [
+            {
+                "ver": "${EZVER}",
+                "name": "${md5_EzOpWrt_uefi}",
+                "size": "${file_size}",
+                "date": "$EZDATE",
+                "md5": "$md5",
+                "ip": "${ip}",
+                "url": "${OTA_URL}/${EZVER}/${md5_EzOpWrt_uefi}"
+            }
+        ]
+    }
+JSONEOF
+}
 if [ ${CONFIG_S} = "Vip-Super" ] ; then
 cp ../../../../ezotafooter  ./ota.footer
 cp ../../../../ezverlatest   ./ver.latest 
