@@ -6,6 +6,7 @@ github="github.com"
 auth="sirpdboy/openwrt"
 mirror=https://init.cooluc.com
 
+ezapi=https://api.github.com/repositories/256094735/releases
 is_vip() {
 case "${CONFIG_S}" in
      "Vip"*) return 0 ;;
@@ -603,7 +604,8 @@ date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}"
 fi
 echo "EZVER=${date1}" > ./files/etc/ezopenwrt_version
 echo "EZDATE=$DATA" >> ./files/etc/ezopenwrt_version
-cp -r ./files/etc/ezopenwrt_version ../ezopenwrt_version
+cat ./files/etc/ezopenwrt_version >  $GITHUB_WORKSPACE/ezopenwrt_version
+echo EZAPI="$ezapi" >>  $GITHUB_WORKSPACE/ezopenwrt_version
 echo "${date2}" >> ./files/etc/banner
 #tokenfile
 cp -r  ./package/add/patch/GithubvToken ./files/etc/ezgithub
