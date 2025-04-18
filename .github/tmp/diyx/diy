@@ -633,7 +633,7 @@ cat>buildmd5.sh<<\EOF
 
 github="github.com"
 auth="sirpdboy/openwrt"
-. ../ezopenwrt_version
+.  $GITHUB_WORKSPACE/ezopenwrt_version
 # gzip bin/targets/*/*/*.img | true
 
 pushd bin/targets/*/*/
