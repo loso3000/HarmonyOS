@@ -635,6 +635,7 @@ rm -rf  *generic.manifest
 rm -rf  sha256sums
 rm -rf version.buildinfo
 rm -rf  profiles.json
+rm -rf  *rootfs.*
 # BINDIR=`pwd`
 sleep 2
 
