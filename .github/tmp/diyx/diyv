@@ -717,7 +717,6 @@ md5=`md5sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
     "${OTA_URL}" "${EZVER}" "${md5_EzOpWrt_uefi}" > ezota.json
 }
 
-}
 
 if [ ${CONFIG_S} = "Vip-Super" ] ; then
 cp ../../../../ezotafooter  ./ota.footer
