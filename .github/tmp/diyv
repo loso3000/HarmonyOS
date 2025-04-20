@@ -3,7 +3,9 @@
 # private gitea
 gitea=git.cooluc.com
 github="github.com"
+auth="sirpdboy/openwrt"
 mirror=https://init.cooluc.com
+ezapi=https://api.github.com/repositories/256094735/releases
 
 is_vip() {
 case "${CONFIG_S}" in
@@ -158,7 +160,7 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://$github/loso3000/other ./package/add
 
-rm -rf  ./feeds/packages/net/adguardhome
+# rm -rf  ./feeds/packages/net/adguardhome
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
 
 rm -rf ./feeds/luci/applications/luci-app-filetransfer
@@ -284,9 +286,6 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # alist
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 git clone https://$github/sbwml/openwrt-alist package/new/alist
-
-# 修复procps-ng-top导致首页cpu使用率无法获取
-sed -i 's#top -n1#\/bin\/busybox top -n1#g' feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 
 # Add ddnsto & linkease
  git clone  https://$github/linkease/nas-packages-luci ./package/nas-packages-luci
@@ -424,16 +423,7 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-dockerman
-# rm -rf ./feeds/luci/applications/luci-app-docker
-# rm -rf ./feeds/luci/collections/luci-lib-docker
-# mv ./package/add/add/up/docker/docker ./feeds/packages/utils/docker
-# mv ./package/add/add/up/docker/dockerd  ./feeds/packages/utils/dockerd 
-# mv ./package/add/add/up/docker/docker-compose ./feeds/packages/utils/docker-compose
-# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-# sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.10
-# sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.15
-# sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' ./package/new/luci-app-dockerman/Makefile
-# sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
+
 # Docker
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 rm -rf ./feeds/luci/collections/luci-lib-docker
@@ -618,7 +608,8 @@ date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}"
 fi
 echo "EZVER=${date1}" > ./files/etc/ezopenwrt_version
 echo "EZDATE=$DATA" >> ./files/etc/ezopenwrt_version
-cp -r ./files/etc/ezopenwrt_version ../ezopenwrt_version
+cat ./files/etc/ezopenwrt_version >  $GITHUB_WORKSPACE/ezopenwrt_version
+echo EZAPI="$ezapi" >>  $GITHUB_WORKSPACE/ezopenwrt_version
 echo "${date2}" >> ./files/etc/banner
 #tokenfile
 cp -r  ./package/add/patch/GithubvToken ./files/etc/ezgithub
@@ -634,7 +625,7 @@ cat>buildmd5.sh<<\EOF
 
 github="github.com"
 auth="sirpdboy/openwrt"
-. ../ezopenwrt_version
+.  $GITHUB_WORKSPACE/ezopenwrt_version
 # gzip bin/targets/*/*/*.img | true
 
 pushd bin/targets/*/*/
@@ -663,50 +654,63 @@ ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F 
 [[ -n $ip ]] || ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
 [[ -n $ip ]] || ip="192.168.10.1"
 OTA_URL="https://$github/$auth/releases/download"
-
+[ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev-efi.md5 &&echo "ip=$ip" >> EzOpWrt_dev-efi.md5
+[ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 &&echo "ip=$ip" >> EzOpWrt_dev-efi.md5
 [ -f ${md5_EzOpWrt} ] && {
 
 file_size=`du -m  ${md5_EzOpWrt} | cut -f1`
-SHA256=`sha256sum ${md5_EzOpWrt} | awk '{print $1}'`
+md5=`md5sum ${md5_EzOpWrt} | awk '{print $1}'`
 
 
-    cat>ezota.json<<'JSONEOF'
+   printf '{
+    "%s": [
     {
-        "${TARGET_DEVICE}": [
-        {
-            "ver": "${EZVER}",
-            "name": "${md5_EzOpWrt}",
-            "size": "${file_size}",
-            "date": "$EZDATE",
-            "sha256": "$SHA256",
-            "ip": "${ip}",
-            "url": "${OTA_URL}/${EZVER}/${md5_EzOpWrt}"
-        }
-        ]
+        "ver": "%s",
+        "name": "%s",
+        "size": "%s",
+        "date": "%s",
+        "md5": "%s",
+        "ip": "%s",
+        "url": "%s/%s/%s"
     }
-JSONEOF
+    ]
+}\n' \
+    "${TARGET_DEVICE}" \
+    "${EZVER}" \
+    "${md5_EzOpWrt}" \
+    "${file_size}" \
+    "${EZDATE}" \
+    "${md5}" \
+    "${ip}" \
+    "${OTA_URL}" "${EZVER}" "${md5_EzOpWrt}" > ezota.json
 }
 
 
 [ -f ${md5_EzOpWrt_uefi} ]  && {
 
 file_size=`du -m  ${md5_EzOpWrt_uefi} | cut -f1`
-SHA256=`sha256sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
-    cat>>ezota.json<<'JSONEOF'
-    {
-        "${TARGET_DEVICE}": [
+md5=`md5sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
+    printf '{
+    "%s": [
             {
-                "ver": "${EZVER}",
-                "name": "${md5_EzOpWrt_uefi}",
-                "size": "${file_size}",
-                "date": "$EZDATE",
-                "sha256": "$SHA256",
-                "ip": "${ip}",
-                "url": "${OTA_URL}/${EZVER}/${md5_EzOpWrt_uefi}"
+        "ver": "%s",
+        "name": "%s",
+        "size": "%s",
+        "date": "%s",
+        "md5": "%s",
+        "ip": "%s",
+        "url": "%s/%s/%s"
             }
         ]
-    }
-JSONEOF
+}\n' \
+    "${TARGET_DEVICE}" \
+    "${EZVER}" \
+    "${md5_EzOpWrt_uefi}" \
+    "${file_size}" \
+    "${EZDATE}" \
+    "${md5}" \
+    "${ip}" \
+    "${OTA_URL}" "${EZVER}" "${md5_EzOpWrt_uefi}" > ezota.json
 }
 if [ ${CONFIG_S} = "Vip-Super" ] ; then
 cp ../../../../ezotafooter  ./ota.footer
@@ -735,11 +739,8 @@ while IFS= read -r line || [[ -n "$line" ]]; do
     cp -fv "$found" "$kmoddirdrv"
 done < "$bakkmodfile"
 
-#tokenfile
-cp -r  ./package/add/patch/GithubvToken ./files/etc/ezgithub
-chmod 600 ./files/etc/ezgithub
-find ./bin/ -name "*dockerman*" | xargs -i cp -f {} $kmoddirdocker
-find ./bin/ -name "*dockerd*" | xargs -i cp -f {} $kmoddirdocker
+find bin/ -type f \( -name "*dockerman*" -o -name "*dockerd*" \) -exec cp -fv {} "$kmoddirdocker" \;
+
 EOF
 
 
