@@ -668,21 +668,27 @@ OTA_URL="https://$github/$auth/releases/download"
 [ -f ${md5_EzOpWrt} ] && {
 file_size=`du -m  ${md5_EzOpWrt} | cut -f1`
 md5=`md5sum ${md5_EzOpWrt} | awk '{print $1}'`
-  cat>ezota.json<<JSONEOF
+   printf '{
+    "%s": [
     {
-        "${TARGET_DEVICE}": [
-        {
-            "ver": "${EZVER}",
-            "name": "${md5_EzOpWrt}",
-            "size": "${file_size}",
-            "date": "$EZDATE",
-            "md5": "$md5",
-            "ip": "${ip}",
-            "url": "${OTA_URL}/${EZVER}/${md5_EzOpWrt}"
-        }
-        ]
+        "ver": "%s",
+        "name": "%s",
+        "size": "%s",
+        "date": "%s",
+        "md5": "%s",
+        "ip": "%s",
+        "url": "%s/%s/%s"
     }
-JSONEOF
+    ]
+}\n' \
+    "${TARGET_DEVICE}" \
+    "${EZVER}" \
+    "${md5_EzOpWrt}" \
+    "${file_size}" \
+    "${EZDATE}" \
+    "${md5}" \
+    "${ip}" \
+    "${OTA_URL}" "${EZVER}" "${md5_EzOpWrt}" > ezota.json
 }
 
 [ -f ${md5_EzOpWrt_uefi} ]  && {
