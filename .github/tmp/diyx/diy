@@ -829,7 +829,7 @@ EOF
 
 
 # sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
-UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
+# UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 
 #修复TailScale配置文件冲突
 #TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
