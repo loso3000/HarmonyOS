@@ -253,6 +253,9 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
 git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
 
+#ddns
+sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
+rm -rf ./package/add/up/ddns-scripts
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
@@ -288,8 +291,8 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 # alist
-# rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
-# git clone https://$github/sbwml/openwrt-alist package/new/alist
+rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
+git clone https://$github/sbwml/openwrt-alist package/new/alist
 
 
 # Add ddnsto & linkease
@@ -526,7 +529,6 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci
 # set default theme to argon
 sed -i '/uci commit luci/i\uci set luci.main.mediaurlbase="/luci-static/kucat"' `find package -type f -path '*/default-settings/files/*-default-settings'`
 
-sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
@@ -562,7 +564,6 @@ sed -i 's/256/1024/' target/linux/x86/image/Makefile
 sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
 
-sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 
 # 修改makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
@@ -677,22 +678,31 @@ OTA_URL="https://$github/$auth/releases/download"
 [ -f ${md5_EzOpWrt} ] && {
 file_size=`du -m  ${md5_EzOpWrt} | cut -f1`
 md5=`md5sum ${md5_EzOpWrt} | awk '{print $1}'`
-    cat>ezota.json<<JSONEOF
+
+
+   printf '{
+    "%s": [
     {
-        "${TARGET_DEVICE}": [
-        {
-            "ver": "${EZVER}",
-            "name": "${md5_EzOpWrt}",
-            "size": "${file_size}",
-            "date": "$EZDATE",
-            "md5": "$md5",
-            "ip": "${ip}",
-            "url": "${OTA_URL}/${EZVER}/${md5_EzOpWrt}"
-        }
-        ]
+        "ver": "%s",
+        "name": "%s",
+        "size": "%s",
+        "date": "%s",
+        "md5": "%s",
+        "ip": "%s",
+        "url": "%s/%s/%s"
     }
-JSONEOF
+    ]
+}\n' \
+    "${TARGET_DEVICE}" \
+    "${EZVER}" \
+    "${md5_EzOpWrt}" \
+    "${file_size}" \
+    "${EZDATE}" \
+    "${md5}" \
+    "${ip}" \
+    "${OTA_URL}" "${EZVER}" "${md5_EzOpWrt}" > ezota.json
 }
+
 
 [ -f ${md5_EzOpWrt_uefi} ]  && {
 file_size=`du -m  ${md5_EzOpWrt_uefi} | cut -f1`
@@ -836,41 +846,21 @@ esac
 
 EOF
 
-# /up/tool/autocore/files/generic/10_system.js
-INSERT_CODE=$(cat <<'EOF'
-        ;table.appendChild(E('tr', {'class': 'tr'}, [
-            E('td', {'class': 'td right', 'width': '33%'}, _('Help')),
-            E('td', {'class': 'td left'}, [
-                E('a', {
-                    'href': 'https://github.com/sirpdboy/openwrt/issues',
-                    'class': 'btn cbi-button cbi-button-reset',
-                    'target': '_blank'
-                }, _('Update suggestions')),
-                ' ',
-                E('a', {
-                    'href': 'https://t.me/joinchat/RV6mxIxZJVDByibQ',
-                    'class': 'btn cbi-button cbi-button-save',
-                    'target': '_blank'
-                }, _('TG Chat group'))
-            ])
-        ]));
-EOF
-)
-# 使用sed插入
-#escaped_code=$(printf '%s\n' "$INSERT_CODE" | sed 's:[\/&]:\\&:g')
-#sed -i "/return table;/i $escaped_code" ./package/add/up/tool/autocore/files/generic/10_system.js
 # 广告链接 23.05专用
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 
 # sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
-UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
+#tailscale
+rm -rf feeds/{packages/net/tailscale,luci/applications/luci-app-tailscale}
 
+# sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
+# UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 #修复TailScale配置文件冲突
-TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
-if [ -f "$TS_FILE" ]; then
-	sed -i '/\/files/d' $TS_FILE
-	echo "tailscale has been fixed!"
-fi
+#TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
+#if [ -f "$TS_FILE" ]; then
+#	sed -i '/\/files/d' $TS_FILE
+#	echo "tailscale has been fixed!"
+#fi
 
 #修复Coremark编译失败
 CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
