@@ -193,7 +193,6 @@ rm -rf  ./feeds/packages/webui-aria2
 
 # rm -rf ./feeds/luci/applications/luci-app-smartdns
 # rm -rf  ./feeds/packages/net/smartdns
-
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
 rm -rf ./feeds/packages/net/mwan3
@@ -256,6 +255,8 @@ git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
 #ddns
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 rm -rf ./package/add/up/ddns-scripts
+
+
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
@@ -269,6 +270,8 @@ rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/packages/net/oaf
 # rm -rf ./package/add/up/tool/OpenAppFilter
 # git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
+
+
 # qbittorrent
 #qbittorrent
 rm -rf ./feeds/packages/net/qbittorrent
@@ -278,10 +281,8 @@ rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/lu
 rm -rf ./feeds/luci/applications/luci-app-qbittorrent
 rm -rf ./feeds/packages/net/qBittorrent
 rm -rf ./feeds/packages/libs/rblibtorrent
-
 #bbr 
 rm -rf  ./feeds/luci/applications/luci-app-turboacc
-
 # git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
 
 # nlbwmon
@@ -293,7 +294,6 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # alist
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 git clone https://$github/sbwml/openwrt-alist package/new/alist
-
 
 # Add ddnsto & linkease
  git clone  https://$github/linkease/nas-packages-luci ./package/nas-packages-luci
@@ -335,21 +335,21 @@ sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/ut
 
 sed -i 's|/bin/login|/bin/login -f root|' ./feeds/packages/utils/ttyd/files/ttyd.config
 
-
 #nginx 
 #    sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci/Makefile
 #    sed -i 's/+uhttpd-mod-ubus //' feeds/luci/collections/luci/Makefile
 #    sed -i 's/+uhttpd /+luci-nginx /g' feeds/luci/collections/luci-light/Makefile
 #    sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl-openssl/Makefile
 #    sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl/Makefile
-
 # sed -i "/listen_https/ {s/^/#/g}" ./package/*/*/*/files/uhttpd.config
+
 pushd feeds/luci
     # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
     # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
     # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1
      #curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/luci/0002-luci-mod-status-displays-actual-process-memory-usage.patch | patch -p1
 popd
+
 # uwsgi
 sed -i 's,procd_set_param stderr 1,procd_set_param stderr 0,g' feeds/packages/net/uwsgi/files/uwsgi.init
 sed -i 's,buffer-size = 10000,buffer-size = 131072,g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
@@ -386,6 +386,8 @@ popd
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
+
+
 # ppp - 2.5.0
 # rm -rf package/network/services/ppp
 # git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
@@ -427,19 +429,8 @@ rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-ap
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
-
 # Add luci-app-dockerman
 rm -rf ./feeds/luci/applications/luci-app-dockerman
-# rm -rf ./feeds/luci/applications/luci-app-docker
-# rm -rf ./feeds/luci/collections/luci-lib-docker
-# mv ./package/add/add/up/docker/docker ./feeds/packages/utils/docker
-# mv ./package/add/add/up/docker/dockerd  ./feeds/packages/utils/dockerd 
-# mv ./package/add/add/up/docker/docker-compose ./feeds/packages/utils/docker-compose
-# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-# sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.10
-# sed -i 's,# CONFIG_BLK_CGROUP_IOCOST is not set,CONFIG_BLK_CGROUP_IOCOST=y,g' target/linux/generic/config-5.15
-# sed -i 's/+dockerd/+dockerd +cgroupfs-mount/' ./package/new/luci-app-dockerman/Makefile
-# sed -i '$i /etc/init.d/dockerd restart &' ./package/new/luci-app-dockerman/root/etc/uci-defaults/*
 
 # Docker
 rm -rf ./feeds/luci/applications/luci-app-dockerman
@@ -460,9 +451,7 @@ pushd feeds/packages
     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
 popd
-
 rm -rf ./package/add/up/docke
-
 rm -rf ./feeds/luci/collections/luci-app-pptp-server
 rm -rf ./feeds/luci/collections/luci-app-ipsec-server
 rm -rf ./feeds/luci/collections/luci-app-softethervpn
@@ -592,8 +581,8 @@ CLASH="arm64"
 fi
 
 if [[ $DATE_S == 'default' ]]; then
-   # DATA=`TZ=UTC-8 date +%Y%m%d%H%M -d +"12"hour`
-   DATA=`TZ=UTC-8 date +%Y%m%d%H%M`
+   # DATA=`TZ=UTC-8 date +%y%m%d%H%M -d +"12"hour`
+   DATA=`TZ=UTC-8 date +%y%m%d%H%M`
 else 
    DATA=$DATE_S
 fi
@@ -642,7 +631,7 @@ cat>buildmd5.sh<<\EOF
 
 github="github.com"
 auth="sirpdboy/openwrt"
-. $GITHUB_WORKSPACE/ezopenwrt_version
+.  $GITHUB_WORKSPACE/ezopenwrt_version
 # gzip bin/targets/*/*/*.img | true
 
 pushd bin/targets/*/*/
@@ -662,7 +651,6 @@ rm -rf  profiles.json
 rm -rf  *kernel.bin
 # BINDIR=`pwd`
 sleep 2
-
 mv  *generic-squashfs-combined.img.gz       EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev.img.gz   
 mv  *generic-squashfs-combined-efi.img.gz   EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev-efi.img.gz
 md5_EzOpWrt=EzOpWrt-${EZVER}-${TARGET_DEVICE}-dev.img.gz   
@@ -672,10 +660,10 @@ ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F 
 [[ -n $ip ]] || ip=` cat package/base-files/luci2/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
 [[ -n $ip ]] || ip="192.168.10.1"
 OTA_URL="https://$github/$auth/releases/download"
-
 [ -f ${md5_EzOpWrt} ] && md5sum ${md5_EzOpWrt} > EzOpWrt_dev-efi.md5 &&echo "ip=$ip" >> EzOpWrt_dev-efi.md5
 [ -f ${md5_EzOpWrt_uefi} ] && md5sum ${md5_EzOpWrt_uefi} > EzOpWrt_dev-efi.md5 &&echo "ip=$ip" >> EzOpWrt_dev-efi.md5
 [ -f ${md5_EzOpWrt} ] && {
+
 file_size=`du -m  ${md5_EzOpWrt} | cut -f1`
 md5=`md5sum ${md5_EzOpWrt} | awk '{print $1}'`
 
@@ -705,11 +693,12 @@ md5=`md5sum ${md5_EzOpWrt} | awk '{print $1}'`
 
 
 [ -f ${md5_EzOpWrt_uefi} ]  && {
+
 file_size=`du -m  ${md5_EzOpWrt_uefi} | cut -f1`
 md5=`md5sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
     printf '{
     "%s": [
-    {
+            {
         "ver": "%s",
         "name": "%s",
         "size": "%s",
@@ -717,8 +706,8 @@ md5=`md5sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
         "md5": "%s",
         "ip": "%s",
         "url": "%s/%s/%s"
-    }
-    ]
+            }
+        ]
 }\n' \
     "${TARGET_DEVICE}" \
     "${EZVER}" \
@@ -729,18 +718,13 @@ md5=`md5sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
     "${ip}" \
     "${OTA_URL}" "${EZVER}" "${md5_EzOpWrt_uefi}" > ezota.json
 }
-
-
 if [ ${CONFIG_S} = "Vip-Super" ] ; then
 cp ../../../../ezotafooter  ./ota.footer
 cp ../../../../ezverlatest   ./ver.latest 
-
 fi
-
 popd
 exit 0
 EOF
-
 
 cat>bakkmod.sh<<\EOF
 #!/bin/bash
@@ -761,12 +745,9 @@ while IFS= read -r line || [[ -n "$line" ]]; do
     cp -fv "$found" "$kmoddirdrv"
 done < "$bakkmodfile"
 
-
-
 find bin/ -type f \( -name "*dockerman*" -o -name "*dockerd*" \) -exec cp -fv {} "$kmoddirdocker" \;
 
 EOF
-
 
 
 cat>./package/base-files/files/etc/kmodreg<<\EOF
