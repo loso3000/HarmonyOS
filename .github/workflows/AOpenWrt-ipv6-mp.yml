@@ -15,7 +15,7 @@ on:
         default: 'Vip-Mini'
         required: true
         type: choice
-        options: [ Vip-Custom, Free-Mini, Free-Plus, Vip-Super,Vip-Bypass,Vip-Mini, Vip-Plus ]
+        options: [ Vip-Custom, Vip-dz, Free-Plus, Vip-Super,Vip-Bypass,Vip-Mini, Vip-Plus ]
       cpu_s:
         description: 'CPU优选'
         required: true
