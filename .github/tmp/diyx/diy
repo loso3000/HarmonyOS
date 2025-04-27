@@ -131,6 +131,19 @@ git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwal
 
 # rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
 
+rm -rf ./feeds/luci/applications/luci-app-tailscale
+rm -rf ./feeds/packages/net/tailscale
+#tailscale
+rm -rf feeds/{packages/net/tailscale,luci/applications/luci-app-tailscale}
+# sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
+# UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
+#修复TailScale配置文件冲突
+#TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
+#if [ -f "$TS_FILE" ]; then
+#	sed -i '/\/files/d' $TS_FILE
+#	echo "tailscale has been fixed!"
+#fi
+
 # 移除 openwrt feeds 自带的核心库
 # rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,chinadns-ng,dns2socks,dns2tcp,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview}
 
@@ -203,6 +216,7 @@ mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 # 在 X86 架构下移除 Shadowsocks-rust
 # sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 # sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
+
 
 #修正nat回流 
 cat ./package/add/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
@@ -283,8 +297,10 @@ rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/lu
 rm -rf ./feeds/luci/applications/luci-app-qbittorrent
 rm -rf ./feeds/packages/net/qBittorrent
 rm -rf ./feeds/packages/libs/rblibtorrent
+
 #bbr 
 rm -rf  ./feeds/luci/applications/luci-app-turboacc
+
 # git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
 
 # nlbwmon
@@ -829,17 +845,7 @@ EOF
 
 # sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
 
-#tailscale
-rm -rf feeds/{packages/net/tailscale,luci/applications/luci-app-tailscale}
 
-# sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
-# UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
-#修复TailScale配置文件冲突
-#TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
-#if [ -f "$TS_FILE" ]; then
-#	sed -i '/\/files/d' $TS_FILE
-#	echo "tailscale has been fixed!"
-#fi
 
 #修复Coremark编译失败
 CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
