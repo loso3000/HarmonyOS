@@ -835,13 +835,14 @@ EOF
 # rm -rf feeds/{packages/net/tailscale,luci/applications/luci-app-tailscale}
 
 # sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
+sed -i '/\/files/d' feeds/packages/net/tailscale/Makefile
 # UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 #修复TailScale配置文件冲突
-#TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
-#if [ -f "$TS_FILE" ]; then
-#	sed -i '/\/files/d' $TS_FILE
-#	echo "tailscale has been fixed!"
-#fi
+TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
+if [ -f "$TS_FILE" ]; then
+	sed -i '/\/files/d' $TS_FILE
+	echo "tailscale has been fixed!"
+fi
 
 #修复Coremark编译失败
 CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
