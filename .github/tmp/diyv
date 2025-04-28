@@ -828,11 +828,11 @@ esac
 EOF
 
 # 广告链接 23.05专用
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 
 # sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
 #tailscale
-rm -rf feeds/{packages/net/tailscale,luci/applications/luci-app-tailscale}
+# rm -rf feeds/{packages/net/tailscale,luci/applications/luci-app-tailscale}
 
 # sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 # UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
