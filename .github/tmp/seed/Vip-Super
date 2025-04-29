@@ -172,6 +172,8 @@ CONFIG_PACKAGE_coremark=y
 CONFIG_COREMARK_OPTIMIZE_O3=y
 CONFIG_PACKAGE_zoneinfo-asia=y  #time fast 
 
+CONFIG_PACKAGE_xz=y
+CONFIG_PACKAGE_xz-utils=y
 # expdisk
 CONFIG_PACKAGE_bc=y
 CONFIG_PACKAGE_lsblk=y
