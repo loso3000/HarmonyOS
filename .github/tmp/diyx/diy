@@ -301,7 +301,7 @@ rm -rf ./feeds/packages/net/qBittorrent
 rm -rf ./feeds/packages/libs/rblibtorrent
 
 #bbr 
-rm -rf  ./feeds/luci/applications/luci-app-turboacc
+#rm -rf  ./feeds/luci/applications/luci-app-turboacc
 
 # git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
 
