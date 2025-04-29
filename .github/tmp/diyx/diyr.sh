@@ -473,9 +473,8 @@ sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-
 echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP穿透问题
 
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
-git clone https://$github/immortalwrt/luci-app-unblockneteasemusic.git  ./package/luci-app-unblockneteasemusic
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git  ./package/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
-
 #断线重拨
 sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
