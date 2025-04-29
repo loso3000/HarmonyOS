@@ -625,6 +625,9 @@ CONFIG_PACKAGE_comgt=y
 CONFIG_PACKAGE_kmod-usb-acm=y
 CONFIG_PACKAGE_luci-proto-3g=y
 CONFIG_PACKAGE_shadow-utils=y
+
+CONFIG_PACKAGE_xz=y
+CONFIG_PACKAGE_xz-utils=y
 #ap wifi
 #CONFIG_PACKAGE_kmod-cfg80211=y
 #CONFIG_PACKAGE_kmod-mac80211=y
