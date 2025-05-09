@@ -1,10 +1,11 @@
 下面是具体更新内容：
 
 1.增加luci-app-watchdog【看门狗】插件，解决OPENWRT 安全登陆管控问题【独家研发】。
-2.解决目前已知所有问题，更多细节优化请自行刷机体验。
+2.增加luci-app-chatgpt-web插件，适配deepseek,openwai,gemini等5大常用平台【独家研发】。
+3.解决目前已知所有问题，更多细节优化请自行刷机体验。
 
 【注意】根据虚拟机和实际情况出发，WAN口绑定方案：单网口时eth0为LAN口，多网口最后一个口为WAN其余是LAN口
 【公告】欢迎定制各种特殊驱动固件和特殊需要插件以及各种路由器固件。
 <ul>
-    <li><a href="https://github.com/sirpdboy/openwrt/discussions/574" target="_blank">点击这里</a> 查看详情</li>
+    <li><a href="https://github.com/sirpdboy/openwrt/discussions/576" target="_blank">点击这里</a> 查看详情</li>
 </ul>
