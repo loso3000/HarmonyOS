@@ -554,6 +554,51 @@ VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/rockchip/Makefile | cut -d = -f
 CLASH="arm64"
 fi
 
+if  [[ $TARGET_DEVICE == 'Mt6000' ]] ||  [[ $TARGET_DEVICE == 'glmt6000' ]]  ;then
+cat <<EOF > files/etc/modules.conf
+# examples:
+# options mod1 option=val
+# blacklist mod2
+options mt7915e wed_enable=Y
+EOF
+# enable wifi without password default
+mkdir -p files/etc/config
+cat <<EOF > files/etc/config/wireless
+
+config wifi-device 'radio0'
+        option type 'mac80211'
+        option path 'platform/soc/18000000.wifi'
+        option band '2g'
+        option channel '1'
+        option htmode 'HE20'
+        option cell_density '0'
+        option country 'US'
+
+config wifi-iface 'default_radio0'
+        option device 'radio0'
+        option network 'lan'
+        option mode 'ap'
+        option ssid 'OpenWrt'
+        option encryption 'none'
+
+config wifi-device 'radio1'
+        option type 'mac80211'
+        option path 'platform/soc/18000000.wifi+1'
+        option band '5g'
+        option channel '36'
+        option htmode 'HE160'
+        option cell_density '0'
+        option country 'US'
+
+config wifi-iface 'default_radio1'
+        option device 'radio1'
+        option network 'lan'
+        option mode 'ap'
+        option ssid 'OpenWrt_5G'
+        option encryption 'none'
+EOF
+fi
+
 if [[ $DATE_S == 'default' ]]; then
    # DATA=`TZ=UTC-8 date +%y%m%d%H%M -d +"12"hour`
    DATA=`TZ=UTC-8 date +%y%m%d%H%M`
