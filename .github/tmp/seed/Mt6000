@@ -10,63 +10,41 @@ CONFIG_TARGET_PROFILE="DEVICE_glinet_gl-mt6000"
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 CONFIG_TARGET_OPTIMIZATION="-O2 -pipe -mcpu=cortex-a53"
 
-#kmod
-CONFIG_PACKAGE_kmod-tun=y
-
-CONFIG_GRUB_TIMEOUT="0"
-CONFIG_GRUB_TITLE="EzOpWrt"
-
 #ipv6
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcp=y
 CONFIG_PACKAGE_6in4=y
 CONFIG_PACKAGE_6rd=y
 CONFIG_PACKAGE_6to4=y
-#WOLFSSL
-#CONFIG_PACKAGE_wpad-basic-wolfssl=m
-#CONFIG_PACKAGE_wpad-wolfssl=y
-#CONFIG_PACKAGE_libwolfssl=n
-
-#MBEDTLS
-CONFIG_PACKAGE_wpad-basic-mbedtls=m
-CONFIG_PACKAGE_wpad-mbedtls=y
-
 
 CONFIG_LUCI_LANG_en=y
 #CONFIG_LUCI_LANG_zh-cn=y
 CONFIG_LUCI_LANG_zh_Hans=y
-CONFIG_PACKAGE_autocore-x86=y
+CONFIG_PACKAGE_autocore-arm=y
 CONFIG_PACKAGE_autocore=y
 #CONFIG_PACKAGE_default-settings=y
 #CONFIG_PACKAGE_default-settings-chn=y
 
-#servicesandtools
-CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_iperf3=y
-CONFIG_PACKAGE_wget=y
-CONFIG_PACKAGE_arp-scan=y
-CONFIG_PACKAGE_bind-host=y
-CONFIG_PACKAGE_irqbalance=y
-
 #istore 
 CONFIG_PACKAGE_luci-lib-ipkg=y  #istore
+CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_PACKAGE_istoreos-files=y
 
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-kucat=y
 CONFIG_PACKAGE_luci-theme-argon=y
 
-# CONFIG_PACKAGE_luci-app-irqbalance=y
+CONFIG_PACKAGE_luci-app-irqbalance=y
 CONFIG_PACKAGE_luci-app-watchdog=y
 CONFIG_PACKAGE_luci-app-wolplus=y
 CONFIG_PACKAGE_luci-app-filemanager=y
 CONFIG_PACKAGE_luci-app-arpbind=y
-CONFIG_PACKAGE_luci-app-ttyd=y
+# CONFIG_PACKAGE_luci-app-ttyd=y
 CONFIG_PACKAGE_luci-app-appfilter=y
 CONFIG_PACKAGE_luci-app-package-manager=y
 CONFIG_PACKAGE_luci-app-taskplan=y
-CONFIG_PACKAGE_luci-app-netwizard=y
-CONFIG_PACKAGE_luci-app-eqosplus=y
+# CONFIG_PACKAGE_luci-app-netwizard=y
+# CONFIG_PACKAGE_luci-app-eqosplus=y
 CONFIG_PACKAGE_luci-app-advancedplus=y
 
 CONFIG_PACKAGE_luci-app-syncdial=y
@@ -82,11 +60,8 @@ CONFIG_PACKAGE_miniupnpd=y                   # UPnP 服务（自动端口映射�
 CONFIG_PACKAGE_luci-app-upnp=y               # UPnP 图形界面
 #Sonstiges
 # CONFIG_PACKAGE_luci-ssl=y
-CONFIG_PACKAGE_luci-app-statistics=y
+# CONFIG_PACKAGE_luci-app-statistics=y
 
-#qos
-# CONFIG_PACKAGE_sqm-scripts=y
-# CONFIG_PACKAGE_luci-app-sqm=y
 #wlantest
 #CONFIG_PACKAGE_dawn=y
 #CONFIG_PACKAGE_luci-app-dawn=y
@@ -97,7 +72,6 @@ CONFIG_PACKAGE_luci-lib-ip=y
 CONFIG_PACKAGE_luci-lib-ipkg=y
 CONFIG_PACKAGE_luci-lib-jsonc=y
 CONFIG_PACKAGE_luci-lib-nixio=y
-CONFIG_PACKAGE_luci-proto-wireguard=y
 # CONFIG_LUCI_CSSTIDY is not set
 # CONFIG_LUCI_JSMIN is not set
 #luci
@@ -121,12 +95,12 @@ CONFIG_PACKAGE_dnsmasq-full=y
 #CONFIG_PACKAGE_luci-proto-gre=y
 
 #mesh-batman
-CONFIG_PACKAGE_luci-proto-batman-adv=y
-CONFIG_PACKAGE_kmod-batman-adv=y
-CONFIG_PACKAGE_batctl-full=y
+#CONFIG_PACKAGE_luci-proto-batman-adv=y
+#CONFIG_PACKAGE_kmod-batman-adv=y
+#CONFIG_PACKAGE_batctl-full=y
 
 #Firewall
-CONFIG_PACKAGE_iptables-mod-ipopt=y
+#CONFIG_PACKAGE_iptables-mod-ipopt=y
 
 # CONFIG_PACKAGE_firewall=m
 # CONFIG_PACKAGE_firewall4=y
@@ -146,7 +120,6 @@ CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
 CONFIG_PACKAGE_ddns-scripts_no-ip_com=y 
 
 #组件调整
-CONFIG_PACKAGE_openssh-sftp-client=y
 CONFIG_PACKAGE_openssh-sftp-server=y
 
 CONFIG_PACKAGE_zsh=y
@@ -156,18 +129,4 @@ CONFIG_PACKAGE_bash=y
 CONFIG_PACKAGE_bc=y
 CONFIG_PACKAGE_wget-ssl=y
 
-#USB
-CONFIG_PACKAGE_luci-app-ksmbd=m
-CONFIG_PACKAGE_luci-app-hd-idle=y
-CONFIG_PACKAGE_kmod-fs-exfat=y
-CONFIG_PACKAGE_exfat-fsck=y
-CONFIG_DEFAULT_kmod-usb3=y
-CONFIG_PACKAGE_kmod-usb-storage-uas=y
-CONFIG_PACKAGE_usbutils=y
-CONFIG_PACKAGE_mount-utils=y
-
-CONFIG_PACKAGE_kmod-fuse=y
-
 CONFIG_PACKAGE_wpad-openssl=y
-CONFIG_PACKAGE_kmod-macvlan=y
-CONFIG_PACKAGE_kmod-tcp-bbr=y
