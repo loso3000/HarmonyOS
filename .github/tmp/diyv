@@ -211,6 +211,8 @@ rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
 
+rm -rf  ./feedspackages/net/speedtest-cli
+
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 
 rm -rf ./feeds/luci/applications/luci-app-p910nd
