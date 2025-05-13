@@ -112,6 +112,7 @@ rm -rf ./feeds/packages/net/mentohust
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
 #rm -rf  ./feeds/packages/net/wget
 
+rm -rf  ./feedspackages/net/speedtest-cli
 rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
