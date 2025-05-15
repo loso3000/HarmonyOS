@@ -640,6 +640,8 @@ echo '---------------------------------' >> ./package/base-files/files/etc/banne
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
+[ -f ./files/etc/opkg/distfeeds.conf.server ] || mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
+[ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
 cat>buildmd5.sh<<-\EOF
 #!/bin/bash
 
