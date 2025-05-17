@@ -168,7 +168,7 @@ jobs:
          chmod +x $GITHUB_WORKSPACE/${DIY_P1_SH}
          cd openwrt
          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
-         echo "::set-output name=OPENWRTROOT::$(echo $PWD)"
+         echo "OPENWRTROOT=$PWD"   >> $GITHUB_OUTPUT
          $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
     - name:  defconfig
@@ -208,15 +208,15 @@ jobs:
            cd $OPENWRTROOT/bin/packages/*
          PLATFORM=$(basename `pwd`)
          echo "PLATFORM=$PLATFORM" >> $GITHUB_ENV
-         echo "::set-output name=PLATFORM::$(echo $PLATFORM)"
+         echo "PLATFORM=$PLATFORM" >> $GITHUB_OUTPUT
          cd $OPENWRTROOT/bin/targets/*
          TARGET=$(basename `pwd`)
          echo "TARGET=$TARGET" >> $GITHUB_ENV
-         echo "::set-output name=TARGET::$(echo $TARGET)"
+         echo "TARGET=$TARGET" >> $GITHUB_OUTPUT
          cd *
          SUBTARGET=$(basename `pwd`)
          echo "SUBTARGET=$SUBTARGET" >> $GITHUB_ENV
-         echo "::set-output name=SUBTARGET::$(echo $SUBTARGET)"
+         echo "SUBTARGET=$SUBTARGET" >> $GITHUB_OUTPUT
          echo "status=success" >> $GITHUB_OUTPUT
     - name: Generate Firmware
       id: compile
