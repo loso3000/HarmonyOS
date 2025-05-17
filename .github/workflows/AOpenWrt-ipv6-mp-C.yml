@@ -173,7 +173,7 @@ jobs:
          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
          echo "OPENWRTROOT=$PWD" >> $GITHUB_OUTPUT
          chmod +x $DIY_P1_SH  || true
-         [ -e $DIY_P1_SH ] &&  ./$DIY_P1_SH ||  $GITHUB_WORKSPACE/$DIY_P1_SH
+         $GITHUB_WORKSPACE/$DIY_P1_SH
          ./scripts/feeds update -a && ./scripts/feeds install -a
     - name: Update package
       run: |
