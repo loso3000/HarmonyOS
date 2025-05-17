@@ -212,13 +212,33 @@ jobs:
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
         make package/index
         bash  bakkmod.sh
-        echo "status=success" >> $GITHUB_OUTPUT
+        
+         
+         cd $OPENWRTROOT/bin/packages/*
+         PLATFORM=$(basename `pwd`)
+         echo "PLATFORM=$PLATFORM" >> $GITHUB_ENV
+         echo "PLATFORM=$PLATFORM" >> $GITHUB_OUTPUT
+         cd $OPENWRTROOT/bin/targets/*
+         TARGET=$(basename `pwd`)
+         echo "TARGET=$TARGET" >> $GITHUB_ENV
+         echo "TARGET=$TARGET" >> $GITHUB_OUTPUT
+         cd *
+         SUBTARGET=$(basename `pwd`)
+         echo "SUBTARGET=$SUBTARGET" >> $GITHUB_ENV
+         echo "SUBTARGET=$SUBTARGET" >> $GITHUB_OUTPUT
+         echo "status=success" >> $GITHUB_OUTPUT
     - name: Generate Firmware
       id: compile
       if: steps.compileopenwrt.outputs.status  == 'success'
       run: |
         df -h
-        cd openwrt 
+        shopt -s extglob
+        cd $OPENWRTROOT
+         rm -rf ./dl
+         sed -i "s/subtarget/$SUBTARGET/g" files/etc/opkg/distfeeds.conf.server
+         sed -i "s/target\//$TARGET\//g" files/etc/opkg/distfeeds.conf.server
+         sed -i "s/platform/$PLATFORM/g" files/etc/opkg/distfeeds.conf.server
+         cp files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
         make package/install -j$(nproc) || make package/install -j1 V=s
         make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
