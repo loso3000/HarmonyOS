@@ -230,14 +230,14 @@ jobs:
       id: compile
       if: steps.compileopenwrt.outputs.status  == 'success'
       run: |
-        df -h
         shopt -s extglob
         cd $OPENWRTROOT
-         rm -rf ./dl
-         sed -i "s/subtarget/$SUBTARGET/g" files/etc/opkg/distfeeds.conf.server
-         sed -i "s/target\//$TARGET\//g" files/etc/opkg/distfeeds.conf.server
-         sed -i "s/platform/$PLATFORM/g" files/etc/opkg/distfeeds.conf.server
-         cp files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
+        ls
+        ls ./files/etc/opkg
+        # sed -i "s/subtarget/$SUBTARGET/g" ./files/etc/opkg/distfeeds.conf.server
+        # sed -i "s/target\//$TARGET\//g" ./files/etc/opkg/distfeeds.conf.server
+        #  sed -i "s/platform/$PLATFORM/g" ./files/etc/opkg/distfeeds.conf.server
+        # cp ./files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
         make package/install -j$(nproc) || make package/install -j1 V=s
         make target/install -j$(nproc) || make target/install -j1 V=s
          make checksum
