@@ -168,11 +168,10 @@ jobs:
     - name: Update feeds
       run: | 
          mv -f ./.github/tmp/* ./
+         chmod +x $DIY_P1_SH  || true
          cd openwrt
-
          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
          echo "OPENWRTROOT=$PWD" >> $GITHUB_OUTPUT
-         chmod +x $DIY_P1_SH  || true
          $GITHUB_WORKSPACE/$DIY_P1_SH
          ./scripts/feeds update -a && ./scripts/feeds install -a
     - name: Update package
