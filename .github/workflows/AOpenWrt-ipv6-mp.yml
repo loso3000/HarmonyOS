@@ -164,8 +164,7 @@ jobs:
           ./scripts/feeds install -a
     - name: Update package
       run: |
-         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-         chmod +x $GITHUB_WORKSPACE/${DIY_P1_SH}
+         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
          cd openwrt
          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
          echo "OPENWRTROOT=$PWD"   >> $GITHUB_OUTPUT
