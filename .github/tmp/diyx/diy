@@ -105,9 +105,9 @@ UPDATE_VERSION() {
 	done
 }
 
-[ ! -d files/root ] || mkdir -p files/root
-[ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
-mkdir -p files/usr/share
+mkdir -p ./files/root
+mkdir -p ./files/etc/opkg
+mkdir -p ./files/usr/share
 mkdir -p ./package/emortal
 
 [[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
