@@ -166,6 +166,8 @@ jobs:
       run: |
          # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
          cd openwrt
+         
+         chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
          echo "OPENWRTROOT=$PWD"   >> $GITHUB_OUTPUT
          $GITHUB_WORKSPACE/$DIY_P1_SH
