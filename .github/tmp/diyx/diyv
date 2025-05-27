@@ -13,8 +13,7 @@ case "${CONFIG_S}" in
      *) return 1 ;;
 esac
 }
-# Git稀疏克隆，只克隆指定目录到本地
-function git_sparse_clone() {
+# Git稀锟斤拷锟铰★拷锟街伙拷锟铰≈革拷锟侥柯硷拷锟斤拷锟斤拷锟?function git_sparse_clone() {
   branch="$1" repourl="$2" && shift 2
   git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
   repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
@@ -23,31 +22,28 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
-#安装和更新软件包
-UPDATE_PACKAGE() {
+#锟斤拷装锟酵革拷锟斤拷锟斤拷锟斤拷锟?UPDATE_PACKAGE() {
 	local PKG_NAME=$1
 	local PKG_REPO=$2
 	local PKG_BRANCH=$3
 	local PKG_SPECIAL=$4
-	local CUSTOM_NAMES=($5)  # 第5个参数为自定义名称列表
+	local CUSTOM_NAMES=($5)  # 锟斤拷5锟斤拷锟斤拷锟斤拷为锟皆讹拷锟斤拷锟斤拷锟斤拷锟叫憋拷
 	local REPO_NAME=$(echo $PKG_REPO | cut -d '/' -f 2)
 
 	echo " "
 
-	# 将 PKG_NAME 加入到需要查找的名称列表中
+	# 锟斤拷 PKG_NAME 锟斤拷锟诫到锟斤拷要锟斤拷锟揭碉拷锟斤拷锟斤拷锟叫憋拷锟斤拷
 	if [ ${#CUSTOM_NAMES[@]} -gt 0 ]; then
-		CUSTOM_NAMES=("$PKG_NAME" "${CUSTOM_NAMES[@]}")  # 将 PKG_NAME 添加到自定义名称列表的开头
+		CUSTOM_NAMES=("$PKG_NAME" "${CUSTOM_NAMES[@]}")  # 锟斤拷 PKG_NAME 锟斤拷拥锟斤拷远锟斤拷锟斤拷锟斤拷锟斤拷斜锟侥匡拷头
 	else
-		CUSTOM_NAMES=("$PKG_NAME")  # 如果没有自定义名称，则只使用 PKG_NAME
+		CUSTOM_NAMES=("$PKG_NAME")  # 锟斤拷锟矫伙拷锟斤拷远锟斤拷锟斤拷锟斤拷疲锟斤拷锟街皇癸拷锟?PKG_NAME
 	fi
 
-	# 删除本地可能存在的不同名称的软件包
-	for NAME in "${CUSTOM_NAMES[@]}"; do
-		# 查找匹配的目录
-		echo "Searching directory: $NAME"
+	# 删锟斤拷锟斤拷锟截匡拷锟杰达拷锟节的诧拷同锟斤拷锟狡碉拷锟斤拷锟斤拷锟?	for NAME in "${CUSTOM_NAMES[@]}"; do
+		# 锟斤拷锟斤拷匹锟斤拷锟侥柯?		echo "Searching directory: $NAME"
 		local FOUND_DIRS=$(find ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$NAME*" 2>/dev/null)
 
-		# 删除找到的目录
+		# 删锟斤拷锟揭碉拷锟斤拷目录
 		if [ -n "$FOUND_DIRS" ]; then
 			echo "$FOUND_DIRS" | while read -r DIR; do
 				rm -rf "$DIR"
@@ -58,11 +54,10 @@ UPDATE_PACKAGE() {
 		fi
 	done
 
-	# 克隆 GitHub 仓库
+	# 锟斤拷隆 GitHub 锟街匡拷
 	git clone --depth=1 --single-branch --branch $PKG_BRANCH "https://github.com/$PKG_REPO.git"
 
-	# 处理克隆的仓库
-	if [[ $PKG_SPECIAL == "pkg" ]]; then
+	# 锟斤拷锟斤拷锟铰★拷牟挚锟?	if [[ $PKG_SPECIAL == "pkg" ]]; then
 		find ./$REPO_NAME/*/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune -exec cp -rf {} ./ \;
 		rm -rf ./$REPO_NAME/
 	elif [[ $PKG_SPECIAL == "name" ]]; then
@@ -70,8 +65,7 @@ UPDATE_PACKAGE() {
 	fi
 }
 
-#更新软件包版本
-UPDATE_VERSION() {
+#锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷姹?UPDATE_VERSION() {
 	local PKG_NAME=$1
 	local PKG_MARK=${2:-not}
 	local PKG_FILES=$(find ./ ../feeds/packages/ -maxdepth 3 -type f -wholename "*/$PKG_NAME/Makefile")
@@ -120,10 +114,10 @@ rm -rf  ./feeds/packages/net/speedtest-cli
 rm -rf  ./feeds/packages/net/zsh
 rm -rf  ./feeds/packages/net/homebox
 rm -rf  ./feeds/packages/net/naiveproxy
-# 修复 hostapd 报错
+# 锟睫革拷 hostapd 锟斤拷锟斤拷
 # cp -f diyx/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
-# 清理
+# 锟斤拷锟斤拷
 # Add luci-app-passwall
 # git clone --depth=1 https://$github/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
 git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwall2
@@ -131,7 +125,7 @@ git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwal
 
 # rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
 
-# 移除 openwrt feeds 自带的核心库
+# 锟狡筹拷 openwrt feeds 锟皆达拷锟侥猴拷锟侥匡拷
 # rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,chinadns-ng,dns2socks,dns2tcp,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview}
 
 git clone https://$github/sbwml/openwrt_helloworld  ./package/ssr
@@ -199,11 +193,11 @@ rm -rf  ./feeds/packages/webui-aria2
 rm -rf ./feeds/packages/net/mwan3
 mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
-# 在 X86 架构下移除 Shadowsocks-rust
+# 锟斤拷 X86 锟杰癸拷锟斤拷锟狡筹拷 Shadowsocks-rust
 # sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
 # sed -i '/Rust:/d' ./package/add/up/pass/luci-app-bypass/Makefile
 
-#修正nat回流 
+#锟斤拷锟斤拷nat锟斤拷锟斤拷 
 cat ./package/add/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/add/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/add/patch/profile > ./package/base-files/files/etc/profile
@@ -212,6 +206,7 @@ rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
 
+rm -rf  ./feedspackages/net/speedtest-cli
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 
 rm -rf ./feeds/luci/applications/luci-app-p910nd
@@ -287,7 +282,7 @@ rm -rf ./feeds/packages/libs/rblibtorrent
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
-# 可以设置汉字名字
+# 锟斤拷锟斤拷锟斤拷锟矫猴拷锟斤拷锟斤拷锟斤拷
 # sed -i '/o.datatype = "hostname"/d' feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_system/system.lua
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
@@ -319,9 +314,9 @@ sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi
 sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
 
 # frpc translation
-sed -i 's,发送,Transmission,g' feeds/luci/applications/luci-app-transmission/po/zh_Hans/transmission.po
-sed -i 's,frp 服务器,FRP 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
-sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
+sed -i 's,锟斤拷锟斤拷,Transmission,g' feeds/luci/applications/luci-app-transmission/po/zh_Hans/transmission.po
+sed -i 's,frp 锟斤拷锟斤拷锟斤拷,FRP 锟斤拷锟斤拷锟斤拷,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
+sed -i 's,frp 锟酵伙拷锟斤拷,FRP 锟酵伙拷锟斤拷,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
 
 # luci-app-filemanager
 rm -rf feeds/luci/applications/luci-app-filemanager
@@ -365,7 +360,7 @@ rm -rf ./package/add/up/upnpfw4
 # git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
 # git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
 
-# 精简 UPnP 菜单名称
+# 锟斤拷锟斤拷 UPnP 锟剿碉拷锟斤拷锟斤拷
 # sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 
 # luci
@@ -381,7 +376,7 @@ popd
 # Luci diagnostics.js
 # sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
 
-# 修正部分从第三方仓库拉取的软件 Makefile 路径问题
+# 锟斤拷锟斤拷锟斤拷锟街从碉拷锟斤拷锟斤拷锟街匡拷锟斤拷取锟斤拷锟斤拷锟?Makefile 路锟斤拷锟斤拷锟斤拷
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
@@ -401,8 +396,7 @@ sed -i '/enable multi-channel/a \\tserver multi channel support = yes' feeds/pac
 sed -i 's/#aio read size = 0/aio read size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
 sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
 
-# 取消一些预选的软件包
-sed -i 's/luci-app-vsftpd //g' include/target.mk
+# 取锟斤拷一些预选锟斤拷锟斤拷锟斤拷锟?sed -i 's/luci-app-vsftpd //g' include/target.mk
 sed -i 's/luci-app-ssr-plus //g' include/target.mk
 sed -i 's/luci-app-vlmcsd //g' include/target.mk
 sed -i 's/luci-app-accesscontrol //g' include/target.mk
@@ -413,7 +407,7 @@ sed -i 's/luci-app-turboacc //g' include/target.mk
 #sed -i "s/192.168.1.1/192.168.10.1/g" package/base-files/files/bin/config_generate
 #sed -i "s/192.168.1.1/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")  || true
 
-#修改默认主机名
+#锟睫革拷默锟斤拷锟斤拷锟斤拷锟斤拷
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.10.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 #Imm
 sed -i "s/ImmortalWrt/EzOpWrt/" {./package/base-files/files/bin/config_generate,include/version.mk} || true
@@ -458,51 +452,50 @@ rm -rf ./feeds/luci/collections/luci-app-softethervpn
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
-#sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
+#sed -i 's/msgstr "Socat"/msgstr "锟剿匡拷转锟斤拷"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
 
-sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
-sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
-sed -i 's/"网络存储"/"存储"/g' `grep "网络存储" -rl ./`
-sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -rl ./`
-sed -i 's/"P910nd - 打印服务器"/"打印服务"/g' `grep "P910nd - 打印服务器" -rl ./`
-sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
-sed -i 's/实时流量监测/流量/g'  `grep "实时流量监测" -rl ./`
-sed -i 's/解锁网易云灰色歌曲/解锁灰色歌曲/g'  `grep "解锁网易云灰色歌曲" -rl ./`
-sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g'  `grep "解除网易云音乐播放限制" -rl ./`
-sed -i 's/家庭云//g'  `grep "家庭云" -rl ./`
-# echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP穿透问题
-sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP禁用IPV6问题
+sed -i 's/"Argon 锟斤拷锟斤拷锟斤拷锟斤拷"/"Argon锟斤拷锟斤拷"/g' `grep "Argon 锟斤拷锟斤拷锟斤拷锟斤拷" -rl ./`
+sed -i 's/"Turbo ACC 锟斤拷锟斤拷锟斤拷锟?/"锟斤拷锟斤拷锟斤拷锟?/g' `grep "Turbo ACC 锟斤拷锟斤拷锟斤拷锟? -rl ./`
+sed -i 's/"锟斤拷锟斤拷娲?/"锟芥储"/g' `grep "锟斤拷锟斤拷娲? -rl ./`
+sed -i 's/"USB 锟斤拷印锟斤拷锟斤拷锟斤拷"/"锟斤拷印锟斤拷锟斤拷"/g' `grep "USB 锟斤拷印锟斤拷锟斤拷锟斤拷" -rl ./`
+sed -i 's/"P910nd - 锟斤拷印锟斤拷锟斤拷锟斤拷"/"锟斤拷印锟斤拷锟斤拷"/g' `grep "P910nd - 锟斤拷印锟斤拷锟斤拷锟斤拷" -rl ./`
+sed -i 's/"锟斤拷锟斤拷锟斤拷"/"锟斤拷锟?/g' `grep "锟斤拷锟斤拷锟斤拷" -rl ./`
+sed -i 's/实时锟斤拷锟斤拷锟斤拷锟?锟斤拷锟斤拷/g'  `grep "实时锟斤拷锟斤拷锟斤拷锟? -rl ./`
+sed -i 's/锟斤拷锟斤拷锟斤拷锟斤拷锟狡伙拷色锟斤拷锟斤拷/锟斤拷锟斤拷锟斤拷色锟斤拷锟斤拷/g'  `grep "锟斤拷锟斤拷锟斤拷锟斤拷锟狡伙拷色锟斤拷锟斤拷" -rl ./`
+sed -i 's/锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷植锟斤拷锟斤拷锟斤拷锟?锟斤拷锟斤拷锟斤拷色锟斤拷锟斤拷/g'  `grep "锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷植锟斤拷锟斤拷锟斤拷锟? -rl ./`
+sed -i 's/锟斤拷庭锟斤拷//g'  `grep "锟斤拷庭锟斤拷" -rl ./`
+# echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP锟斤拷透锟斤拷锟斤拷
+sed -i '/filter_/d' ./package/network/services/dnsmasq/files/dhcp.conf   #DHCP锟斤拷锟斤拷IPV6锟斤拷锟斤拷
 
-#cifs挂pan
+#cifs锟斤拷pan
 sed -i 's/mount -t cifs/busybox mount -t cifs/g' ./feeds/luci/applications/luci-app-cifs-mount/root/etc/init.d/cifs
 
 #cifs
 sed -i 's/nas/services/g' ./feeds/luci/applications/luci-app-cifs-mount/luasrc/controller/cifs.lua   #dnsfilter
-sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-cifsd/luasrc/controller/cifsd.lua   #挂问题
+sed -i 's/a.default = "0"/a.default = "1"/g' ./feeds/luci/applications/luci-app-cifsd/luasrc/controller/cifsd.lua   #锟斤拷锟斤拷锟斤拷
 
-echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP穿透问题
+echo  "        option tls_enable 'true'" >> ./feeds/luci/applications/luci-app-frpc/root/etc/config/frp   #FRP锟斤拷透锟斤拷锟斤拷
 
 rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git  ./package/luci-app-unblockneteasemusic
-sed -i 's/解除网易云音乐播放限制/解锁灰色歌曲/g' ./package/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
+sed -i 's/锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷植锟斤拷锟斤拷锟斤拷锟?锟斤拷锟斤拷锟斤拷色锟斤拷锟斤拷/g' ./package/luci-app-unblockneteasemusic/luasrc/controller/unblockneteasemusic.lua
 
-#断线重拨
+#锟斤拷锟斤拷锟截诧拷
 sed -i 's/q reload/q restart/g' ./package/network/config/firewall/files/firewall.hotplug
 
 
-# echo '默认开启 Irqbalance'
+# echo '默锟较匡拷锟斤拷 Irqbalance'
 sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 # Add mentohust & luci-app-mentohust
 git clone --depth=1 https://$github/BoringCat/luci-app-mentohust package/luci-app-mentohust
 git clone --depth=1 https://$github/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
 
-# 全能推送
+# 全锟斤拷锟斤拷锟斤拷
 rm -rf ./feeds/luci/applications/luci-app-pushbot
 git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 rm -rf ./feeds/luci/applications/luci-app-wechatpush
-rm -rf ./feeds/luci/applications/luci-app-watchcat
-git clone https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
+git clone https://$github/tty228/luci-app-wechatpush ./feeds/luci/applications/luci-app-wechatpush
 
 git clone https://$github/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
@@ -512,7 +505,7 @@ rm -rf  ./feeds/luci/applications/luci-app-openclash
 git clone --depth=1 https://$github/vernesong/OpenClash package/openclash
 # sed -i 's/+libcap /+libcap +libcap-bin /' package/openclash/luci-app-openclash/Makefile
 
-# 使用默认取消自动
+# 使锟斤拷默锟斤拷取锟斤拷锟皆讹拷
 sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci/Makefile
 # sed -i 's/+luci-theme-bootstrap/+luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
@@ -520,7 +513,7 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci
 sed -i '/uci commit luci/i\uci set luci.main.mediaurlbase="/luci-static/kucat"' `find package -type f -path '*/default-settings/files/*-default-settings'`
 
 
-sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
+sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删锟斤拷IPK锟斤拷装签锟斤拷
 
 rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
 rm -rf ./feeds/luci/themes/luci-theme-argon package/feeds/packages/luci-theme-argon
@@ -555,13 +548,13 @@ sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -foll
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
 
 
-# 修改makefile
+# 锟睫革拷makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-# 风扇脚本
+# 锟斤拷锟饺脚憋拷
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 #wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
 #wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
@@ -572,7 +565,7 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 # sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
-# echo '默认开启 Irqbalance'
+# echo '默锟较匡拷锟斤拷 Irqbalance'
 if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
 VER1="$(grep "KERNEL_PATCHVER:="  ./target/linux/x86/Makefile | cut -d = -f 2)"
 CLASH="amd64"
@@ -587,7 +580,7 @@ if [[ $DATE_S == 'default' ]]; then
 else 
    DATA=$DATE_S
 fi
-# 预处理下载相关文件，保证打包固件不用单独下载
+# 预锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷募锟斤拷锟斤拷锟街わ拷锟斤拷锟教硷拷锟斤拷锟矫碉拷锟斤拷锟斤拷锟斤拷
 for sh_file in `ls ${GITHUB_WORKSPACE}/openwrt/package/add/common/*.sh`;do
     source $sh_file $CLASH
 done
@@ -742,7 +735,7 @@ mkdir -p $kmoddirdocker 2>/dev/null
 while IFS= read -r line || [[ -n "$line" ]]; do
     found=$(find bin/ -type f -name  "${line}" | head -n 1)
     if [ -z "$found" ]; then
-        echo "警告: 找不到模块 $line"
+        echo "锟斤拷锟斤拷: 锟揭诧拷锟斤拷模锟斤拷 $line"
         continue
     fi
     cp -fv "$found" "$kmoddirdrv"
@@ -766,21 +759,21 @@ is_docker() {
 
 run_drv() {
 opkg update
-echo "正在安装全部驱动（包括有线和无线）,请耐心等待...大约需要1-5分钟 "
+echo "锟斤拷锟节帮拷装全锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟竭猴拷锟斤拷锟竭ｏ拷,锟斤拷锟斤拷锟侥等达拷...锟斤拷约锟斤拷要1-5锟斤拷锟斤拷 "
 for file in `ls $nowkmoddir/*.ipk`;do
     opkg install "$file"  --force-depends
 done
-echo "所有驱动已经安装完成！请重启系统生效！ "
+echo "锟斤拷锟斤拷锟斤拷锟斤拷锟窖撅拷锟斤拷装锟斤拷桑锟斤拷锟斤拷锟斤拷锟较低筹拷锟叫э拷锟?"
 }
 run_docker() {
 if is_docker; then
-	echo " Docker服务已经存在！无须安装！"
+	echo " Docker锟斤拷锟斤拷锟窖撅拷锟斤拷锟节ｏ拷锟斤拷锟诫安装锟斤拷"
 else
 
     local opkg_conf="/etc/opkg.conf"
     sed -i '/option check_signature/d' "$opkg_conf"
 	opkg update
-	echo "正在安装Docker及相关服务...请耐心等待...大约需要1-5分钟 "
+	echo "锟斤拷锟节帮拷装Docker锟斤拷锟斤拷胤锟斤拷锟?..锟斤拷锟斤拷锟侥等达拷...锟斤拷约锟斤拷要1-5锟斤拷锟斤拷 "
 	# opkg install $nowkmoddir/dockerd*.ipk --force-depends >/dev/null 2>&1
 	# opkg install $nowkmoddir/luci-app-dockerman*.ipk --force-depends  >/dev/null 2>&1
 	# opkg install $nowkmoddir/luci-i18n-dockerman*.ipk --force-depends  >/dev/null 2>&1
@@ -788,23 +781,23 @@ else
     	opkg install --force-depends luci-i18n-dockerman-zh-cn	 >/dev/null 2>&1
     	opkg install --force-depends avahi-daemon >/dev/null 2>&1
 	if is_docker; then
-		echo "本地成功安装Docker及相关服务！"
+		echo "锟斤拷锟截成癸拷锟斤拷装Docker锟斤拷锟斤拷胤锟斤拷锟?
 	else
-   		echo "本地安装失败！"
-   		echo "在线重新安装Docker及相关服务...请耐心等待...大约需要1-5分钟"
+   		echo "锟斤拷锟截帮拷装失锟杰ｏ拷"
+   		echo "锟斤拷锟斤拷锟斤拷锟铰帮拷装Docker锟斤拷锟斤拷胤锟斤拷锟?..锟斤拷锟斤拷锟侥等达拷...锟斤拷约锟斤拷要1-5锟斤拷锟斤拷"
    		opkg install --force-depends dockerd >/dev/null 2>&1
     		opkg install --force-depends luci-i18n-dockerman* >/dev/null 2>&1
     		opkg install --force-depends luci-app-dockerman >/dev/null 2>&1
     		opkg install --force-depends avahi-daemon >/dev/null 2>&1
     		if is_docker; then 
-    		    echo "在线成功安装Docker及相关服务！" 
+    		    echo "锟斤拷锟竭成癸拷锟斤拷装Docker锟斤拷锟斤拷胤锟斤拷锟? 
     		fi
 	fi
 fi
 if is_docker; then
-      		echo "设置Docker服务自动启动成功！"
-      		echo "Docker菜单注销重新登陆才能看到！"
-      		echo "[注意]请用分区扩容工具扩容挂载/opt/docker盘，否则无法正常使用！"
+      		echo "锟斤拷锟斤拷Docker锟斤拷锟斤拷锟皆讹拷锟斤拷锟斤拷晒锟斤拷锟?
+      		echo "Docker锟剿碉拷注锟斤拷锟斤拷锟铰碉拷陆锟斤拷锟杰匡拷锟斤拷锟斤拷"
+      		echo "[注锟斤拷]锟斤拷锟矫凤拷锟斤拷锟斤拷锟捷癸拷锟斤拷锟斤拷锟捷癸拷锟斤拷/opt/docker锟教ｏ拷锟斤拷锟斤拷锟睫凤拷锟斤拷锟斤拷使锟矫ｏ拷"
 		uci -q get dockerd.globals 2>/dev/null && {
 		uci -q set dockerd.globals.data_root='/opt/docker/'
 		uci -q set dockerd.globals.auto_start='1'
@@ -816,7 +809,7 @@ if is_docker; then
 		/etc/init.d/dockerd restart
 		}
 else
-      echo "安装Docker失败！请保证出国插件线路和网络正常！BUG请联系TG群：sirpdboy！"
+      echo "锟斤拷装Docker失锟杰ｏ拷锟诫保证锟斤拷锟斤拷锟斤拷锟斤拷锟铰凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟紹UG锟斤拷锟斤拷系TG群锟斤拷sirpdboy锟斤拷"
 fi
 }
 case "$IPK" in
@@ -830,7 +823,7 @@ esac
 
 EOF
 
-# 广告链接 23.05专用
+# 锟斤拷锟斤拷锟斤拷锟?23.05专锟斤拷
 curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 
 # sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
@@ -839,14 +832,14 @@ rm -rf feeds/{packages/net/tailscale,luci/applications/luci-app-tailscale}
 
 # sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 # UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
-#修复TailScale配置文件冲突
+#锟睫革拷TailScale锟斤拷锟斤拷锟侥硷拷锟斤拷突
 #TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
 #if [ -f "$TS_FILE" ]; then
 #	sed -i '/\/files/d' $TS_FILE
 #	echo "tailscale has been fixed!"
 #fi
 
-#修复Coremark编译失败
+#锟睫革拷Coremark锟斤拷锟斤拷失锟斤拷
 CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
 if [ -f "$CM_FILE" ]; then
 	sed -i 's/mkdir/mkdir -p/g' $CM_FILE
