@@ -699,3 +699,5 @@ CONFIG_PACKAGE_luci-proto-quectel=m
 # CONFIG_PACKAGE_fibocom-dial is not set
 CONFIG_PACKAGE_modemband=m
 CONFIG_PACKAGE_quectel-cm=m
+
+# CONFIG_PACKAGE_pdnsd-alt is not set
