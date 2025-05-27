@@ -12,7 +12,7 @@ on:
         options: [ openwrt-21.02, master, stable,  openwrt-23.05 ]
       config_s:
         description: '配置文件'
-        default: 'Vip-Mini'
+        default: 'Vip-Plus'
         required: true
         type: choice
         options: [ Vip-Custom, Vip-dz, Free-Plus, Vip-Super,Vip-Bypass,Vip-Mini, Vip-Plus ]
@@ -176,7 +176,7 @@ jobs:
       run: |
         cd openwrt
          cat  $GITHUB_WORKSPACE/seed/${CONFIG_S}  >  .config
-         echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
+         #echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
          case "${CONFIG_S}" in
         "Vip"*)        
           cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
