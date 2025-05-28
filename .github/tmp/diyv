@@ -104,8 +104,8 @@ UPDATE_VERSION() {
 	done
 }
 
-[ ! -d files/root ] || mkdir -p files/root
-[ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
+mkdir -p files/root
+mkdir -p files/etc/opkg
 mkdir -p files/usr/share
 mkdir -p ./package/emortal
 
@@ -628,7 +628,7 @@ echo '---------------------------------' >> ./files/etc/banner
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
-[ -f ./files/etc/opkg/distfeeds.conf.server ] || mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
+mv ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
 [ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
 cat>buildmd5.sh<<\EOF
 #!/bin/bash
