@@ -432,27 +432,28 @@ rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-ap
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
-rm -rf ./feeds/luci/applications/luci-app-dockerman
 
-# Docker
-rm -rf ./feeds/luci/applications/luci-app-dockerman
-rm -rf ./feeds/luci/collections/luci-lib-docker
-git clone --depth=1 https://$github/lisaac/luci-lib-docker ./package/new/luci-lib-docker
-git clone --depth=1 https://$github/lisaac/luci-app-dockerman ./package/new/dockerman
+dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
+docker_repo="https://git.kejizero.online/zhao/packages_utils_docker"
+dockerd_repo="https://git.kejizero.online/zhao/packages_utils_dockerd"
+containerd_repo="https://git.kejizero.online/zhao/packages_utils_containerd"
+runc_repo="https://git.kejizero.online/zhao/packages_utils_runc"
 
-# rm -rf feeds/luci/applications/luci-app-dockerman
-# git clone https://git.kejizero.online/zhao/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+rm -rf ./feeds/luci/applications/luci-app-dockerman
+git clone $dockerman_repo feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
-git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
-git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
+git clone $docker_repo feeds/packages/utils/docker
+git clone $dockerd_repo feeds/packages/utils/dockerd
+git clone $containerd_repo feeds/packages/utils/containerd
+git clone $runc_repo feeds/packages/utils/runc
+sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 pushd feeds/packages
-    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
 popd
+
 rm -rf ./package/add/up/docke
 rm -rf ./feeds/luci/collections/luci-app-pptp-server
 rm -rf ./feeds/luci/collections/luci-app-ipsec-server
