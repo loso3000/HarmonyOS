@@ -434,25 +434,40 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
 
-dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
-docker_repo="https://git.kejizero.online/zhao/packages_utils_docker"
-dockerd_repo="https://git.kejizero.online/zhao/packages_utils_dockerd"
-containerd_repo="https://git.kejizero.online/zhao/packages_utils_containerd"
-runc_repo="https://git.kejizero.online/zhao/packages_utils_runc"
+# dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
+# docker_repo="https://github.com/sbwml/packages_utils_docker"
+# dockerd_repo="https://github.com/sbwml/packages_utils_dockerd"
+# containerd_repo="https://github.com/sbwml/packages_utils_containerd"
+# runc_repo="https://github.com/sbwml/packages_utils_runc"
+# rm -rf ./feeds/luci/applications/luci-app-dockerman
+# git clone $dockerman_repo feeds/luci/applications/luci-app-dockerman
+# rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+# git clone $docker_repo feeds/packages/utils/docker
+# git clone $dockerd_repo feeds/packages/utils/dockerd
+# git clone $containerd_repo feeds/packages/utils/containerd
+# git clone $runc_repo feeds/packages/utils/runc
+# sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
+# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+# pushd feeds/packages
+#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+# popd
 
-rm -rf ./feeds/luci/applications/luci-app-dockerman
-git clone $dockerman_repo feeds/luci/applications/luci-app-dockerman
+# Docker
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+# git clone https://$gitea/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone $docker_repo feeds/packages/utils/docker
-git clone $dockerd_repo feeds/packages/utils/dockerd
-git clone $containerd_repo feeds/packages/utils/containerd
-git clone $runc_repo feeds/packages/utils/runc
-sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
+    git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
+    git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+    git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+    git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
+    sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 pushd feeds/packages
-     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+    curl -s $mirror/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s $mirror/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
 popd
 
 
@@ -565,8 +580,6 @@ sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 
-# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # 风扇脚本
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 #wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
@@ -575,6 +588,9 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 # wget  -P feeds/packages/utils/tini/patches/ https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 #curl -fsSL  https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch > ./feeds/packages/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 
+# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.12/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
