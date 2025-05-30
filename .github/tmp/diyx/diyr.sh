@@ -104,8 +104,8 @@ UPDATE_VERSION() {
 	done
 }
 
-[ ! -d files/root ] || mkdir -p files/root
-[ ! -d files/etc/opkg ] || mkdir -p files/etc/opkg
+mkdir -p files/root
+mkdir -p files/etc/opkg
 mkdir -p files/usr/share
 mkdir -p ./package/emortal
 
@@ -213,6 +213,7 @@ rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
 
+rm -rf  ./feedspackages/net/speedtest-cli
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 
 rm -rf ./feeds/luci/applications/luci-app-p910nd
@@ -246,6 +247,11 @@ rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
 git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
+
+#ddns
+sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
+rm -rf ./package/add/up/ddns-scripts
+
 
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
@@ -409,25 +415,40 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Add luci-app-dockerman
 
-dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
-docker_repo="https://git.kejizero.online/zhao/packages_utils_docker"
-dockerd_repo="https://git.kejizero.online/zhao/packages_utils_dockerd"
-containerd_repo="https://git.kejizero.online/zhao/packages_utils_containerd"
-runc_repo="https://git.kejizero.online/zhao/packages_utils_runc"
+# dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
+# docker_repo="https://github.com/sbwml/packages_utils_docker"
+# dockerd_repo="https://github.com/sbwml/packages_utils_dockerd"
+# containerd_repo="https://github.com/sbwml/packages_utils_containerd"
+# runc_repo="https://github.com/sbwml/packages_utils_runc"
+# rm -rf ./feeds/luci/applications/luci-app-dockerman
+# git clone $dockerman_repo feeds/luci/applications/luci-app-dockerman
+# rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+# git clone $docker_repo feeds/packages/utils/docker
+# git clone $dockerd_repo feeds/packages/utils/dockerd
+# git clone $containerd_repo feeds/packages/utils/containerd
+# git clone $runc_repo feeds/packages/utils/runc
+# sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
+# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+# pushd feeds/packages
+#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+# popd
 
-rm -rf ./feeds/luci/applications/luci-app-dockerman
-git clone $dockerman_repo feeds/luci/applications/luci-app-dockerman
+# Docker
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+# git clone https://$gitea/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone $docker_repo feeds/packages/utils/docker
-git clone $dockerd_repo feeds/packages/utils/dockerd
-git clone $containerd_repo feeds/packages/utils/containerd
-git clone $runc_repo feeds/packages/utils/runc
-sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
+    git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
+    git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+    git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+    git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
+    sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 pushd feeds/packages
-     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-     curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+    curl -s $mirror/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s $mirror/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
 popd
 
 
@@ -484,7 +505,7 @@ git clone --depth=1 https://$github/KyleRicardo/MentoHUST-OpenWrt-ipk package/Me
 rm -rf ./feeds/luci/applications/luci-app-pushbot
 git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 rm -rf ./feeds/luci/applications/luci-app-wechatpush 
-git clone https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
+git clone https://$github/tty228/luci-app-wechatpush ./feeds/luci/applications/luci-app-wechatpush
 
 git clone https://$github/yaof2/luci-app-ikoolproxy.git package/luci-app-ikoolproxy
 sed -i 's/, 1).d/, 11).d/g' ./package/luci-app-ikoolproxy/luasrc/controller/koolproxy.lua
@@ -611,7 +632,7 @@ echo '---------------------------------' >> ./files/etc/banner
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
 
-[ -f ./files/etc/opkg/distfeeds.conf.server ] || mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
+mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
 [ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
 cat>buildmd5.sh<<\EOF
 #!/bin/bash
