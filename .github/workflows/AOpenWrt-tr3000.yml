@@ -19,7 +19,7 @@ on:
         default: 'master'
         required: true
         type: choice
-        options: [ master, stable, openwrt-21.02, openwrt-23.05 ]
+        options: [ master, main, openwrt-24.10, openwrt-23.05 ]
       config_s:
         description: '配置文件'
         default: 'Vip-Super'
@@ -41,7 +41,7 @@ on:
         default: 'tr3000'
         required: true
         type: choice
-        options: [  tr3000 ,cm520-79f,glmt6000,Mt6000 ]
+        options: [  tr3000 ,cm520-79f,glmt6000,Mt6000,gl6000 ]
       date_s:
         description: '固件日期'
         default: 'default'
@@ -149,10 +149,10 @@ jobs:
       working-directory: /builder
       run: |
         df -hT $PWD
-        if [[ $REPO_BRANCH == 'stable' ]]; then
-          git clone --depth 1 https://github.com/DHDAXCW/lede-rockchip -b  $REPO_BRANCH openwrt
-        else 
+        if [[ $REPO_BRANCH == 'master' ]]; then
           git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
+        else 
+          git clone --depth 1 https://github.com/openwrt/openwrt-b  $REPO_BRANCH openwrt
         fi
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
         if [[ $DATE_S == 'default' ]]; then
