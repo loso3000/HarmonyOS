@@ -510,6 +510,7 @@ git clone --depth=1 https://$github/BoringCat/luci-app-mentohust package/luci-ap
 git clone --depth=1 https://$github/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
 
 # 全能推送
+rm -rf ./feeds/luci/applications/luci-app-watchcat
 rm -rf ./feeds/luci/applications/luci-app-pushbot
 git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 rm -rf ./feeds/luci/applications/luci-app-wechatpush 
