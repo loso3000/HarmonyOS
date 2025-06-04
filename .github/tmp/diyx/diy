@@ -860,7 +860,7 @@ if [ -f "$TS_FILE" ]; then
 	sed -i '/\/files/d' $TS_FILE
 	echo "tailscale has been fixed!"
 fi
-
+sed -i '/\/files/d' ./feeds/packages/net/tailscale/Makefile
 
 #修复Coremark编译失败
 CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
