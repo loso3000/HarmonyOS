@@ -159,7 +159,7 @@ rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
-git clone https://$github/loso3000/other ./package/add
+git clone https://$github/loso3000/oth ./package/add
 
 # rm -rf  ./feeds/packages/net/adguardhome
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
@@ -221,8 +221,8 @@ git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easy
 #net eth0
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
 rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
+curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/99-default_networketh0 > ./target/linux/x86/base-files/etc/board.d/99-default_network
+curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
 
 rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba  ./package/emortal/default-settings 
 rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  ./package/lean/default-settings 
@@ -374,11 +374,11 @@ rm -rf ./package/add/up/upnpfw4
 # luci
 pushd feeds/luci
     # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
-    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
-    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
 popd
 
 # Luci diagnostics.js
@@ -539,8 +539,6 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci
 # set default theme to argon
 sed -i '/uci commit luci/i\uci set luci.main.mediaurlbase="/luci-static/kucat"' `find package -type f -path '*/default-settings/files/*-default-settings'`
 
-sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
-
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
 rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
@@ -645,12 +643,12 @@ cp -r  ./package/add/patch/GithubvToken ./files/etc/ezgithub
 chmod 600 ./files/etc/ezgithub
 echo '---------------------------------' >> ./files/etc/banner
 [ -f ./files/root/.zshrc ] || mv -f ./package/add/patch/z.zshrc ./files/root/.zshrc
-[ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./files/root/.zshrc
+[ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/z.zshrc > ./files/root/.zshrc
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
-[ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
+[ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/profiles > ./files/etc/profiles
 
 mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
-[ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
+[ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
 cat>buildmd5.sh<<\EOF
 #!/bin/bash
 
