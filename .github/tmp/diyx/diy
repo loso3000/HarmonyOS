@@ -273,7 +273,8 @@ git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
 
 #ddns
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
-rm -rf ./package/add/up/ddns-scripts
+# rm -rf ./package/add/up/ddns-scripts
+rm -rf  ./feeds/packages/net/ddns-scripts
 
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
