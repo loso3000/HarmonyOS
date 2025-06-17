@@ -442,8 +442,8 @@ rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-ap
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
+# Docker
 # Add luci-app-dockerman
-
 # dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
 # docker_repo="https://github.com/sbwml/packages_utils_docker"
 # dockerd_repo="https://github.com/sbwml/packages_utils_dockerd"
@@ -459,10 +459,9 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 # sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 
-
-# Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+# git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 # git clone https://$gitea/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
 
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
@@ -482,7 +481,6 @@ sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
       curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
       curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
  popd
-rm -rf ./package/add/up/docke
 
 
 rm -rf ./feeds/luci/collections/luci-app-pptp-server
