@@ -227,11 +227,11 @@ rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
 curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
 curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
 
-# rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba 
+rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba 
 rm -rf ./package/emortal/default-settings 
-# rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  
+rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  
 rm -rf ./package/lean/default-settings 
-rm -rf ./package/add/up/tool/autocore
+# rm -rf ./package/add/up/tool/autocore
 
 rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
