@@ -159,7 +159,7 @@ rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
-git clone https://$github/loso3000/other ./package/add
+git clone https://$github/loso3000/oth ./package/add
 
 #rm -rf  ./feeds/packages/net/adguardhome
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
@@ -216,6 +216,29 @@ rm -rf  ./feeds/packages/net/msd_lite
 rm -rf  ./feedspackages/net/speedtest-cli
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 
+rm -rf ./feeds/luci/applications/luci-app-p910nd
+#easytier 
+git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
+#net eth0
+rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
+rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
+#curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/99-default_networketh0 > ./target/linux/x86/base-files/etc/board.d/99-default_network
+#curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
+
+#curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
+#curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
+
+rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba 
+rm -rf ./package/emortal/default-settings 
+rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  
+rm -rf ./package/lean/default-settings 
+# rm -rf ./package/add/up/tool/autocore
+
+rm -rf  package/emortal/automount
+rm -rf ./package/lean/automount
+
+rm -rf ./package/lean/default-settings
+rm -rf  package/emortal/default-settings
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
 rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
 git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
@@ -224,25 +247,6 @@ git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
 git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
 git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
 git clone https://$github/sbwml/package_kernel_r8127 package/kernel/r8127
-rm -rf ./feeds/luci/applications/luci-app-p910nd
-#easytier 
-git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
-#net eth0
-rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
-rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
-
-rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba  ./package/emortal/default-settings 
-rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  ./package/lean/default-settings 
-rm -rf ./package/lean/autosamba
-rm -rf  package/emortal/autosamba
-
-rm -rf  package/emortal/automount
-rm -rf ./package/lean/automount
-
-rm -rf ./package/lean/default-settings
-rm -rf  package/emortal/default-settings
 
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
@@ -254,12 +258,14 @@ rm -rf ./feeds/packages/net/ddns-go
 rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
-git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
+rm -rf ./feeds/packages/net/watchdog
+git clone https://github.com/sirpdboy/luci-app-watchdog ./package/watchdog
+git clone https://github.com/sirpdboy/luci-app-netspeedtest ./package/netspeedtest
 
 #ddns
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 rm -rf ./package/add/up/ddns-scripts
-
+# rm -rf  ./feeds/packages/net/ddns-scripts
 
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
@@ -363,11 +369,11 @@ rm -rf ./package/add/up/upnpfw4
 # luci
 pushd feeds/luci
     # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
-    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
-    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
 popd
 
 # Luci diagnostics.js
@@ -421,6 +427,7 @@ rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-ap
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
+# Docker
 # Add luci-app-dockerman
 
 # dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
@@ -437,15 +444,10 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 # git clone $runc_repo feeds/packages/utils/runc
 # sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-# pushd feeds/packages
-#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
-# popd
 
-# Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+# git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 # git clone https://$gitea/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
     git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
@@ -454,10 +456,15 @@ rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
     git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
     sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-pushd feeds/packages
-    curl -s $mirror/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-    curl -s $mirror/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-popd
+# pushd feeds/packages
+#     curl -s $mirror/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+#     curl -s $mirror/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+# popd
+ pushd feeds/packages
+      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+ popd
 
 
 rm -rf ./package/add/up/docke
@@ -567,14 +574,11 @@ sed -i 's/256/1024/' target/linux/x86/image/Makefile
 sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
 
-sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 
 # 修改makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 
-# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # 风扇脚本
 # sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 #wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
@@ -583,6 +587,9 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 # wget  -P feeds/packages/utils/tini/patches/ https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 #curl -fsSL  https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch > ./feeds/packages/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 
+# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.12/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
@@ -637,12 +644,12 @@ cp -r  ./package/add/patch/GithubvToken ./files/etc/ezgithub
 chmod 600 ./files/etc/ezgithub
 echo '---------------------------------' >> ./files/etc/banner
 [ -f ./files/root/.zshrc ] || mv -f ./package/add/patch/z.zshrc ./files/root/.zshrc
-[ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./files/root/.zshrc
+[ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/z.zshrc > ./files/root/.zshrc
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
-[ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
+[ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/profiles > ./files/etc/profiles
 
 mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
-[ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
+[ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
 cat>buildmd5.sh<<\EOF
 #!/bin/bash
 
@@ -774,8 +781,10 @@ EOF
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 # 广告链接 24.10专用
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2410gg.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+#tailscale 
 
-# sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
+# sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
+sed -i '/\/files/d' feeds/packages/net/tailscale/Makefile
 # UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 
 #修复TailScale配置文件冲突
