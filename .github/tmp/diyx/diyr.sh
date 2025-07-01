@@ -780,7 +780,8 @@ EOF
 # 广告链接 23.05专用
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 # 广告链接 24.10专用
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2410gg.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+ 
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2410.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 #tailscale 
 
 # sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
