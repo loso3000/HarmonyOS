@@ -296,15 +296,15 @@ rm -rf  ./feeds/packages/net/oaf
 
 # qbittorrent
 #qbittorrent
-# rm -rf ./feeds/packages/net/qbittorrent
-# rm -rf ./feeds/packages/net/qBittorrent-Enhanced-Edition
-# rm -rf ./feeds/packages/net/qBittorrent-static
-# rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
-# rm -rf ./feeds/luci/applications/luci-app-qbittorrent
-# rm -rf ./feeds/packages/net/qBittorrent
-# rm -rf ./feeds/packages/libs/rblibtorrent
+rm -rf ./feeds/packages/net/qbittorrent
+rm -rf ./feeds/packages/net/qBittorrent-Enhanced-Edition
+rm -rf ./feeds/packages/net/qBittorrent-static
+rm -rf ./feeds/luci/applications/luci-app-qbittorrent  package/feeds/packages/luci-app-qbittorrent
+rm -rf ./feeds/luci/applications/luci-app-qbittorrent
+rm -rf ./feeds/packages/net/qBittorrent
+rm -rf ./feeds/packages/libs/rblibtorrent
 
-# git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
+ git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -858,6 +858,8 @@ EOF
 
 # sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
 
+# 广告链接 24.10专用
+curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2410.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 
 #修复TailScale配置文件冲突
 TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
