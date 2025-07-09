@@ -228,9 +228,11 @@ rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
 #curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
 #curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
 
-rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba 
+# rm -rf ./package/emortal/autocore 
+rm -rf ./package/emortal/automount  ./package/emortal/autosamba 
 rm -rf ./package/emortal/default-settings 
-rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  
+# rm -rf ./package/lean/autocore 
+rm -rf ./package/lean/automount  ./package/lean/autosamba  
 rm -rf ./package/lean/default-settings 
 # rm -rf ./package/add/up/tool/autocore
 
@@ -290,7 +292,7 @@ rm -rf ./feeds/luci/applications/luci-app-qbittorrent
 rm -rf ./feeds/packages/net/qBittorrent
 rm -rf ./feeds/packages/libs/rblibtorrent
 
-# git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
+ git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -538,8 +540,6 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci
 # set default theme to argon
 sed -i '/uci commit luci/i\uci set luci.main.mediaurlbase="/luci-static/kucat"' `find package -type f -path '*/default-settings/files/*-default-settings'`
 
-sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
-
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
 rm -rf ./feeds/luci/applications/luci-theme-argon package/feeds/packages/luci-theme-argon
@@ -778,10 +778,10 @@ esac
 EOF
 
 # 广告链接 23.05专用
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 # 广告链接 24.10专用
  
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2410.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/10_system2410.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 #tailscale 
 
 # sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
