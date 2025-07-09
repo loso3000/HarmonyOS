@@ -599,7 +599,9 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-# sed -i 's/KERNEL_PATCHVER:=6.12/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.12/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
 # echo '默认开启 Irqbalance'
 if  [[ $TARGET_DEVICE == 'x86_64' ]] ;then
@@ -859,8 +861,11 @@ EOF
 # sed -i "/return table/i $INSERT_CODE" /www/luci-static/resources/view/status/include/10_system.js
 
 # 广告链接 24.10专用
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2410.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/10_system2410.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 
+# sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
+sed -i '/\/files/d' feeds/packages/net/tailscale/Makefile
+# UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 #修复TailScale配置文件冲突
 TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
 if [ -f "$TS_FILE" ]; then
