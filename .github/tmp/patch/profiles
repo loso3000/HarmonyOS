@@ -266,12 +266,9 @@ function k_themenetwork(){
 }
 
 function is_vip() {
-     DISTRIB_FREE=$(cat /etc/openwrt_release | grep "Vip" | cut -d "'" -f 2 | cut -d "-" -f 1)
-    if [ "$DISTRIB_FREE" = "Vip" ]; then
-        return 0
-    else
-        return 1
-    fi
+    local ezver
+    ezver=$(grep -o "EZVER=\S*" /etc/ezopenwrt_version 2>/dev/null | cut -d'=' -f2)
+    [[ "${ezver^^}" =~ VIP ]]
 }
 
 function k_poweroff() {
@@ -683,8 +680,8 @@ function k_rebootpoweroff() {
     while :; do
         read -p " 输入功能编号(Enter the function number): " CHOOSES
         case $CHOOSES in
-            1) k_reboot ;;
-            2) k_poweroff ;;
+            1)  reboot -f ;;
+            2)  poweroff -f ;;
             0|Q|q) 
 	        pwait
               . /etc/profiles ;;
