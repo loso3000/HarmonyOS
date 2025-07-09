@@ -159,7 +159,7 @@ rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
-git clone https://$github/loso3000/other ./package/add
+git clone https://$github/loso3000/oth ./package/add
 
 # rm -rf  ./feeds/packages/net/adguardhome
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
@@ -216,6 +216,31 @@ rm -rf  ./feeds/packages/net/msd_lite
 rm -rf  ./feedspackages/net/speedtest-cli
 rm -rf ./feeds/luci/applications/luci-app-beardropper
 
+rm -rf ./feeds/luci/applications/luci-app-p910nd
+#easytier 
+git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
+#net eth0
+rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
+rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
+#curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/99-default_networketh0 > ./target/linux/x86/base-files/etc/board.d/99-default_network
+#curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
+
+#curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
+#curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
+
+# rm -rf ./package/emortal/autocore 
+rm -rf ./package/emortal/automount  ./package/emortal/autosamba 
+rm -rf ./package/emortal/default-settings 
+# rm -rf ./package/lean/autocore 
+rm -rf ./package/lean/automount  ./package/lean/autosamba  
+rm -rf ./package/lean/default-settings 
+# rm -rf ./package/add/up/tool/autocore
+
+rm -rf  package/emortal/automount
+rm -rf ./package/lean/automount
+
+rm -rf ./package/lean/default-settings
+rm -rf  package/emortal/default-settings
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
 rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
 git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
@@ -227,18 +252,6 @@ git clone https://$github/sbwml/package_kernel_r8127 package/kernel/r8127
 rm -rf ./feeds/luci/applications/luci-app-p910nd
 #easytier 
 git clone  https://github.com/EasyTier/luci-app-easytier ./package/luci-app-easytier
-#net eth0
-rm -rf ./target/linux/x86/base-files/etc/board.d/99-default_network
-rm -rf ./target/linux/x86/base-files/etc/board.d/99-virtualbox_network
-curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/99-default_network > ./target/linux/x86/base-files/etc/board.d/99-default_network
-curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/board.d/02_network > ./target/linux/x86/base-files/etc/board.d/02_network
-
-# rm -rf ./package/emortal/autocore ./package/emortal/automount  ./package/emortal/autosamba  ./package/emortal/default-settings 
-# rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  ./package/lean/default-settings 
-rm -rf ./package/add/up/tool/autocore
-rm -rf ./package/add/up/tool/autosamba
-rm -rf ./package/add/up/tool/default-settings
-rm -rf ./package/autocore
 
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
@@ -250,7 +263,13 @@ rm -rf ./feeds/packages/net/ddns-go
 rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
-git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
+rm -rf ./feeds/packages/net/watchdog
+git clone https://github.com/sirpdboy/luci-app-watchdog ./package/watchdog
+git clone https://github.com/sirpdboy/luci-app-netspeedtest ./package/netspeedtest
+#ddns
+sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
+rm -rf ./package/add/up/ddns-scripts
+# rm -rf  ./feeds/packages/net/ddns-scripts
 
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
@@ -275,7 +294,7 @@ rm -rf ./feeds/luci/applications/luci-app-qbittorrent
 rm -rf ./feeds/packages/net/qBittorrent
 rm -rf ./feeds/packages/libs/rblibtorrent
 
-# git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
+ git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
@@ -284,8 +303,8 @@ sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
 # sed -i '/= "hostname"/d' /usr/lib/lua/luci/model/cbi/admin_system/system.lua
 
 # alist
-rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
-git clone https://$github/sbwml/openwrt-alist package/new/alist
+# rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
+# git clone https://$github/sbwml/openwrt-alist package/new/alist
 
 # Add ddnsto & linkease
  git clone  https://$github/linkease/nas-packages-luci ./package/nas-packages-luci
@@ -358,11 +377,11 @@ rm -rf ./package/add/up/upnpfw4
 # luci
 pushd feeds/luci
     # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
-    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
-    # curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
 popd
 
 # Luci diagnostics.js
@@ -432,15 +451,10 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 # git clone $runc_repo feeds/packages/utils/runc
 # sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-# pushd feeds/packages
-#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-#      curl -s https://raw.githubusercontent.com/oppen321/OpenWrt-Patch/refs/heads/kernel-6.6/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
-# popd
 
-# Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+# git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 # git clone https://$gitea/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
     git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
@@ -449,6 +463,10 @@ rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
     git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
     sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+# pushd feeds/packages
+#     curl -s $mirror/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+#     curl -s $mirror/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+# popd
 pushd feeds/packages
     curl -s $mirror/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
     curl -s $mirror/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
@@ -504,6 +522,7 @@ git clone --depth=1 https://$github/BoringCat/luci-app-mentohust package/luci-ap
 git clone --depth=1 https://$github/KyleRicardo/MentoHUST-OpenWrt-ipk package/MentoHUST-OpenWrt-ipk
 
 # 全能推送
+rm -rf ./feeds/luci/applications/luci-app-watchcat
 rm -rf ./feeds/luci/applications/luci-app-pushbot
 git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 rm -rf ./feeds/luci/applications/luci-app-wechatpush 
@@ -523,8 +542,6 @@ sed -i 's/+luci-theme-bootstrap/+luci-theme-kucat/g' feeds/luci/collections/luci
 # sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 # set default theme to argon
 sed -i '/uci commit luci/i\uci set luci.main.mediaurlbase="/luci-static/kucat"' `find package -type f -path '*/default-settings/files/*-default-settings'`
-
-sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 
 sed -i '/check_signature/d' ./package/system/opkg/Makefile   # 删除IPK安装签名
 
@@ -572,6 +589,9 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 # wget  -P feeds/packages/utils/tini/patches/ https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 #curl -fsSL  https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch > ./feeds/packages/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
 
+# sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.12/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
@@ -661,27 +681,40 @@ elif [ "$VER1" = "6.12" ]; then
 date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by Sirpdboy"
 date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}"
 fi
-echo "${date1}" > ./package/base-files/files/etc/ezopenwrt_version
-echo "${date2}" >> ./package/base-files/files/etc/banner
-echo '---------------------------------' >> ./package/base-files/files/etc/banner
+echo "EZVER=${date1}" > ./files/etc/ezopenwrt_version
+echo "EZDATE=$DATA" >> ./files/etc/ezopenwrt_version
+cat ./files/etc/ezopenwrt_version >  $GITHUB_WORKSPACE/ezopenwrt_version
+echo EZAPI="$ezapi" >>  $GITHUB_WORKSPACE/ezopenwrt_version
+echo "${date2}" >> ./files/etc/banner
+#tokenfile
+cp -r  ./package/add/patch/GithubvToken ./files/etc/ezgithub
+chmod 600 ./files/etc/ezgithub
+echo '---------------------------------' >> ./files/etc/banner
 [ -f ./files/root/.zshrc ] || mv -f ./package/add/patch/z.zshrc ./files/root/.zshrc
-[ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/z.zshrc > ./files/root/.zshrc
+[ -f ./files/root/.zshrc ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/z.zshrc > ./files/root/.zshrc
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
-[ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/profiles > ./files/etc/profiles
+[ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/profiles > ./files/etc/profiles
 
-[ -f ./files/etc/opkg/distfeeds.conf.server ] || mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
-[ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
-cat>buildmd5.sh<<-\EOF
+mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
+[ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
+cat>buildmd5.sh<<\EOF
 #!/bin/bash
 
-r_version=`cat ./package/base-files/files/etc/ezopenwrt_version`
+github="github.com"
+auth="sirpdboy/openwrt"
+.  $GITHUB_WORKSPACE/ezopenwrt_version
 # gzip bin/targets/*/*/*.img | true
 
 VER1="$(grep "KERNEL_PATCHVER:=" ./target/linux/rockchip/Makefile | cut -d = -f 2)"
 pushd bin/targets/*/*/
+rm -rf   config.buildinfo
+rm -rf   feeds.buildinfo
+rm -rf   *.manifest
+rm -rf  *generic.manifest
 rm -rf  sha256sums
 rm -rf version.buildinfo
-rm -rf  *kernel.bin
+rm -rf  profiles.json
+rm -rf  *rootfs.*
 # BINDIR=`pwd`
 sleep 2
 ip=` cat  package/base-files/files/bin/config_generate | grep "n) ipad" |awk -F '\"' '{print $2}'`
@@ -692,7 +725,7 @@ popd
 exit 0
 EOF
 
-cat>bakkmod.sh<<-\EOF
+cat>bakkmod.sh<<\EOF
 #!/bin/bash
 kmoddirdrv=./files/etc/kmod.d/drv
 kmoddirdocker=./files/etc/kmod.d/docker
@@ -701,13 +734,22 @@ cp -rf ./patch/list.txt $bakkmodfile
 nowkmodfile=./files/etc/kmod.now
 mkdir -p $kmoddirdrv 2>/dev/null
 mkdir -p $kmoddirdocker 2>/dev/null
+while IFS= read -r line || [[ -n "$line" ]]; do
+    found=$(find bin/ -type f -name  "${line}" | head -n 1)
+    if [ -z "$found" ]; then
+        echo "警告: 找不到模块 $line"
+        continue
+    fi
+    cp -fv "$found" "$kmoddirdrv"
+done < "$bakkmodfile"
 
-find ./bin/ -name "*dockerman*" | xargs -i cp -f {} $kmoddirdocker
-find ./bin/ -name "*dockerd*" | xargs -i cp -f {} $kmoddirdocker
+
+find bin/ -type f \( -name "*dockerman*" -o -name "*dockerd*" \) -exec cp -fv {} "$kmoddirdocker" \;
+
 EOF
 
 
-cat>./package/base-files/files/etc/kmodreg<<-\EOF
+cat>./package/base-files/files/etc/kmodreg<<\EOF
 #!/bin/bash
 # EzOpWrt By Sirpdboy
 IPK=$1
@@ -785,10 +827,10 @@ esac
 
 EOF
 # 广告链接 23.05专用
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 
 # 广告链接 24.10专用
-curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2410.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/10_system2410.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 
 #cudy tr3000 114M
 sed   -i 's/0x4000/0x7000/g'    ./target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dts
@@ -808,4 +850,5 @@ if [ -f "$CM_FILE" ]; then
 fi
 
 ./scripts/feeds update -i
+./scripts/feeds install -i
 exit
