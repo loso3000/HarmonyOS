@@ -700,9 +700,10 @@ function otherpro() {
         case $CHOOSEO in
             1) 
 	        EY " 停卡家长控制插件成功!(Stop Parentcontrol completed!) \n"
-		
-	        /etc/init.d/timecontrol stop    2 > /dev/null 2>&1 
-	        /etc/init.d/parentcontrol stop    2 > /dev/null 2>&1 
+		sed -i '/enabled/d' /etc/config/timecontrol
+		sed -i '/enabled/d' /etc/config/parentcontrol
+	        /etc/init.d/timecontrol restart    2 > /dev/null 2>&1 
+	        /etc/init.d/parentcontrol restart    2 > /dev/null 2>&1 
 	        pwait
 	        . /etc/profiles  ;;
             2) k_kmodregdrv ;;
