@@ -164,6 +164,7 @@ git clone https://$github/loso3000/oth ./package/add
 #rm -rf  ./feeds/packages/net/adguardhome
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
 
+rm -rf  ./feeds/luci/applications/luci-app-timecontrol
 rm -rf ./feeds/luci/applications/luci-app-filetransfer
 rm -rf ./feeds/luci/applications/luci-app-fileassistant
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
