@@ -1,62 +1,35 @@
-name: Delete Old Workflows
+name: Clean All Workflows
 
 on:
-  repository_dispatch:
   workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
-#  watch:
-#    types: started
-#  schedule:
-#    - cron: 0 21 */7 * * 
+  #schedule:
+  #  - cron: '0 0 * * *'
 
 jobs:
-  Delete-Workflow-Archive:
+  cleanup:
     runs-on: ubuntu-latest
     steps:
-      - name: Delete Workflow Runs1
-        id: workflow
-        uses: GitRML/delete-workflow-runs@main
+      - name: Delete all workflow runs
+        uses: actions/github-script@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          retain_days: 2
-
-      - name: Delete workflow runs2
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          retain_days: 2
-          keep_minimum_runs: 1
-          
-      - name: Delete workflow runs3
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          token: ${{ secrets.AUTH_PAT }}
-          repository: ${{ github.repository }}
-          retain_days: 2
-
-      - name: Delete older releases
-        uses: dev-drprasad/delete-older-releases@master
-        if: env.DELETE_RELEASE == 'true'
-        with:
-          keep_latest: ${{ env.KEEP_MININUM_RELEASE }}
-          delete_tags: true
-          delete_tag_pattern: _
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Delete older workflow runs and artifacts
-        uses: Mattraks/delete-workflow-runs@main
-        if: env.DELETE_ARTIFACTS == 'true'
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          retain_days: ${{ env.KEEP_DAY }}
-          keep_minimum_runs: ${{ env.KEEP_MININUM_RUNS }}
-      - name: Remove old artifacts
-        uses: c-hive/gha-remove-artifacts@v1
-        with:
-         age: '2 day'
-         skip-recent: 3
+          script: |
+            // 获取所有工作流运行记录
+            const { data: runs } = await github.rest.actions.listWorkflowRunsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100
+            });
+            
+            // 遍历删除每个运行记录
+            for (const run of runs.workflow_runs) {
+              try {
+                await github.rest.actions.deleteWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: run.id
+                });
+                console.log(`Deleted run ${run.id} from workflow ${run.workflow_id}`);
+              } catch (error) {
+                console.error(`Failed to delete run ${run.id}: ${error.message}`);
+              }
+            }
