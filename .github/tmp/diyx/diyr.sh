@@ -242,14 +242,21 @@ rm -rf ./package/lean/automount
 
 rm -rf ./package/lean/default-settings
 rm -rf  package/emortal/default-settings
+
+
 # Realtek driver - R8168 & R8125 & R8126 & R8152 & R8101 & r8127
-rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
-git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
-git clone https://$github/sbwml/package_kernel_r8152 package/kernel/r8152
-git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
-git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
-git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
-git clone https://$github/sbwml/package_kernel_r8127 package/kernel/r8127
+# rm -rf package/kernel/{r8168,r8101,r8125,r8126,r8127}
+# git clone https://$github/sbwml/package_kernel_r8168 package/kernel/r8168
+# git clone https://$github/sbwml/package_kernel_r8152 package/kernel/r8152
+# git clone https://$github/sbwml/package_kernel_r8101 package/kernel/r8101
+# git clone https://$github/sbwml/package_kernel_r8125 package/kernel/r8125
+# git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
+#  git clone https://$github/sbwml/package_kernel_r8127 package/kernel/r8127
+
+rm -rf ./feeds/luci/applications/luci-app-openlist
+rm -rf  ./feeds/packages/net/openlist
+# openlist
+git clone https://$github/sbwml/luci-app-openlist package/new/openlist
 
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
@@ -478,10 +485,8 @@ rm -rf ./feeds/luci/collections/luci-app-softethervpn
 rm -rf ./feeds/packages/net/softethervpn5 package/feeds/packages/softethervpn5
 
 rm -rf ./feeds/luci/applications/luci-app-socat  ./package/feeds/luci/luci-app-socat
-#sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
 
 
-sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' ./feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
 
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
