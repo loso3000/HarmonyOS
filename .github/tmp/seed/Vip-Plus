@@ -624,12 +624,20 @@ CONFIG_PACKAGE_kmod-mt76x2=y
 CONFIG_PACKAGE_kmod-ngbe=y
 CONFIG_PACKAGE_kmod-r8101=y
 CONFIG_PACKAGE_kmod-r8168=y
-CONFIG_PACKAGE_kmod-r8152=y
 CONFIG_PACKAGE_kmod-r8125=y
 CONFIG_PACKAGE_kmod-r8126=y
 CONFIG_PACKAGE_kmod-r8127=y
 CONFIG_PACKAGE_kmod-txgbe=y
 # CONFIG_PACKAGE_kmod-r8169 is not set
+### Kernel Modules - out-of-tree driver
+CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
+### Kernel Modules - USB WiFi Adapter
+CONFIG_PACKAGE_kmod-mt7921u=y
+CONFIG_PACKAGE_kmod-rtw88-8812au=y
+CONFIG_PACKAGE_kmod-rtw88-8821au=y
+CONFIG_PACKAGE_kmod-rtw88-8822bu=y
+# CONFIG_PACKAGE_kmod-rtl8812au-ct is not set
+
 CONFIG_PACKAGE_kmod-nvme=y
 
 ### Display & Extra Drivers
@@ -676,7 +684,6 @@ CONFIG_PACKAGE_kmod-usb-net-qmi-wwan-fibocom=y
 CONFIG_PACKAGE_kmod-usb-net-qmi-wwan-quectel=y
 CONFIG_PACKAGE_kmod-usb-net-rndis=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
-CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 CONFIG_PACKAGE_kmod-usb-storage=y
 CONFIG_PACKAGE_kmod-usb-storage-extras=y
 CONFIG_PACKAGE_kmod-usb-storage-uas=y
