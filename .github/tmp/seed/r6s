@@ -47,3 +47,8 @@ CONFIG_COREMARK_NUMBER_OF_THREADS=6
 ### Video Support
 CONFIG_PACKAGE_kmod-drm-rockchip=y
 CONFIG_PACKAGE_kmod-drm-panfrost=y
+
+### RTL8723D / RTL8821C / RTW89 firmware
+CONFIG_PACKAGE_rtl8723d-firmware=y
+CONFIG_PACKAGE_rtl8821c-firmware=y
+CONFIG_PACKAGE_rtw89-firmware=y
