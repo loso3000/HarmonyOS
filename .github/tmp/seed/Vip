@@ -103,6 +103,13 @@ CONFIG_PACKAGE_kmod-mt7916-firmware=y
 CONFIG_PACKAGE_kmod-mt7921e=y
 CONFIG_PACKAGE_kmod-mt7922-firmware=y
 
+#kmod-r8125
+CONFIG_PACKAGE_kmod-mt7921e=y
+CONFIG_PACKAGE_kmod-mt76x0u=y
+CONFIG_PACKAGE_kmod-mt76x2u=y
+# CONFIG_PACKAGE_kmod-r8125=y
+CONFIG_PACKAGE_kmod-rtw88=y
+
 # CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
 # CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
 
@@ -121,6 +128,12 @@ CONFIG_PACKAGE_kmod-mac80211=y
 CONFIG_DEFAULT_kmod-mt7915e=y
 CONFIG_DEFAULT_kmod-mt7986-firmware=y
 CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
+
+
+### RTL8723D / RTL8821C / RTW89 firmware
+CONFIG_PACKAGE_rtl8723d-firmware=y
+CONFIG_PACKAGE_rtl8821c-firmware=y
+CONFIG_PACKAGE_rtw89-firmware=y
 
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
@@ -436,68 +449,6 @@ CONFIG_PACKAGE_shadow-utils=y
 
 CONFIG_PACKAGE_kmod-ata-core=y
 
-
-#kmod-r8125
-CONFIG_PACKAGE_kmod-mt7921e=y
-CONFIG_PACKAGE_kmod-mt76x0u=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
-# CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-rtw88=y
-
-### RTL8723D / RTL8821C / RTW89 firmware
-CONFIG_PACKAGE_rtl8723d-firmware=y
-CONFIG_PACKAGE_rtl8821c-firmware=y
-CONFIG_PACKAGE_rtw89-firmware=y
-
-CONFIG_PACKAGE_kmod-mt76-connac=y
-CONFIG_PACKAGE_kmod-mt76-core=y
-CONFIG_PACKAGE_kmod-mt76-usb=y
-CONFIG_PACKAGE_kmod-mt7603=y
-CONFIG_PACKAGE_kmod-mt7615-common=y
-CONFIG_PACKAGE_kmod-mt7615-firmware=y
-CONFIG_PACKAGE_kmod-mt7615e=y
-CONFIG_PACKAGE_kmod-mt7663-usb-sdio=y
-CONFIG_PACKAGE_kmod-mt7663u=y
-CONFIG_PACKAGE_kmod-mt76x0-common=y
-CONFIG_PACKAGE_kmod-mt76x02-common=y
-CONFIG_PACKAGE_kmod-mt76x02-usb=y
-CONFIG_PACKAGE_kmod-mt76x0e=y
-CONFIG_PACKAGE_kmod-mt76x0u=y
-CONFIG_PACKAGE_kmod-mt76x2=y
-CONFIG_PACKAGE_kmod-mt76x2-common=y
-CONFIG_PACKAGE_kmod-mt76x2u=y
-CONFIG_PACKAGE_kmod-mt7915e=y
-CONFIG_PACKAGE_kmod-mt7921-common=y
-CONFIG_PACKAGE_kmod-mt7921-firmware=y
-CONFIG_PACKAGE_kmod-mt7921e=y
-CONFIG_PACKAGE_kmod-mt792x-common=y
-CONFIG_PACKAGE_kmod-multimedia-input=y
-CONFIG_PACKAGE_kmod-mwifiex-pcie=y
-CONFIG_PACKAGE_kmod-mwl8k=y
-CONFIG_PACKAGE_kmod-netlink-diag=y
-CONFIG_PACKAGE_kmod-rsi91x=y
-CONFIG_PACKAGE_kmod-rsi91x-usb=y
-CONFIG_PACKAGE_kmod-rt2800-lib=y
-CONFIG_PACKAGE_kmod-rt2800-mmio=y
-CONFIG_PACKAGE_kmod-rt2800-pci=y
-CONFIG_PACKAGE_kmod-rt2800-usb=y
-CONFIG_PACKAGE_kmod-rt2x00-lib=y
-CONFIG_PACKAGE_kmod-rt2x00-mmio=y
-CONFIG_PACKAGE_kmod-rt2x00-pci=y
-CONFIG_PACKAGE_kmod-rt2x00-usb=y
-CONFIG_PACKAGE_kmod-rt61-pci=y
-CONFIG_PACKAGE_kmod-rt73-usb=y
-CONFIG_PACKAGE_kmod-rtl8192c-common=y
-CONFIG_PACKAGE_kmod-rtl8192ce=y
-CONFIG_PACKAGE_kmod-rtl8192cu=y
-CONFIG_PACKAGE_kmod-rtl8192d-common=y
-CONFIG_PACKAGE_kmod-rtl8192de=y
-CONFIG_PACKAGE_kmod-rtl8192se=y
-CONFIG_PACKAGE_kmod-rtl8821ae=y
-CONFIG_PACKAGE_kmod-rtlwifi=y
-CONFIG_PACKAGE_kmod-rtlwifi-btcoexist=y
-CONFIG_PACKAGE_kmod-rtlwifi-pci=y
-CONFIG_PACKAGE_kmod-rtlwifi-usb=y
 
 CONFIG_PACKAGE_rs9113-firmware=y
 CONFIG_PACKAGE_rt2800-pci-firmware=y
