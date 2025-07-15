@@ -376,16 +376,21 @@ rm -rf ./package/add/up/upnpfw4
 # 精简 UPnP 菜单名称
 # sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 
-# luci
+# luci 2305
+pushd feeds/luci
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
+popd
+# luci 2410
 pushd feeds/luci
     # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
     curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
-    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
-    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
-    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
+    curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
 popd
-
 # Luci diagnostics.js
 # sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
