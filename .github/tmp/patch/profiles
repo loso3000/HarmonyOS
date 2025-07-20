@@ -68,19 +68,15 @@ function show_network_interfaces() {
 eth_info=()
 echo -e "${Green}\n 当前网卡状态(Network Interfaces Status):${White}"
 for i in $(ls /sys/class/net/ | grep -E '^(eth[0-9]+|usb[0-9]+|lan[0-9]+|wan)$'); do
-     d=$(ethtool $i)
-    name=$(uci show network | grep "$i" | head -n1 |awk -F '.'  '{print $2}' | awk -F '_'  '{print $1}')
-    if [ x$name == x'@device[0]' ] ;then
-         iftype=$(uci get network.$name.name | awk -F '-' '{print $2}') 
-    else
-        if  [[ x`uci -q get network.wan.$ifname 2>/dev/null` == "x$i" ]] && [[ `uci -q get network.wan.$ifname 2>/dev/null` ]] ;then
-	     iftype='wan' 
-	else   
-	     iftype='-' 
-	fi 
-    fi
+     ifstatus=$(ubus call network.interface dump | jsonfilter -e "@.interface[@.device='$iface']")
+     iftype="-"
+      if [ -n "$ifstatus" ]; then
+           iftype=$(echo "$ifstatus" | jsonfilter -e "@.interface")
+       fi
+ 
+
     carrier=$(cat /sys/class/net/"$i"/carrier 2>/dev/null)
-    [ "$carrier" = "1" ] && status="已连接up"|| status="未连接down"
+     [[ "$carrier" == "1" ]] && status="已连接up"|| status="未连接down"
 	speed=$(cat /sys/class/net/"$i"/speed 2>/dev/null)
   	if [ -z "$speed" ] || [ "$speed" = "-" ]; then
  	       speed="-"
@@ -700,8 +696,8 @@ function otherpro() {
         case $CHOOSEO in
             1) 
 	        EY " 停卡家长控制插件成功!(Stop Parentcontrol completed!) \n"
-	        sed -i '/enable/d' /etc/config/timecontrol
-	        sed -i '/enable/d' /etc/config/parentcontrol
+		sed -i '/enable/d' /etc/config/timecontrol
+		sed -i '/enable/d' /etc/config/parentcontrol
 	        /etc/init.d/timecontrol restart    2 > /dev/null 2>&1 
 	        /etc/init.d/parentcontrol restart    2 > /dev/null 2>&1 
 	        pwait
