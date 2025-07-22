@@ -250,10 +250,10 @@ rm -rf  package/emortal/default-settings
 # git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
 #  git clone https://$github/sbwml/package_kernel_r8127 package/kernel/r8127
 
-rm -rf ./feeds/luci/applications/luci-app-openlist
-rm -rf  ./feeds/packages/net/openlist
+rm -rf ./feeds/luci/applications/luci-app-openlist2
+rm -rf  ./feeds/packages/net/openlist2
 # openlist
-git clone https://$github/sbwml/luci-app-openlist package/new/openlist
+git clone https://$github/sbwml/luci-app-openlist2 package/new/openlist2
 
 #  coremark
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
