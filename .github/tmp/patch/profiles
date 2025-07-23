@@ -68,12 +68,17 @@ function show_network_interfaces() {
 eth_info=()
 echo -e "${Green}\n 当前网卡状态(Network Interfaces Status):${White}"
 for i in $(ls /sys/class/net/ | grep -E '^(eth[0-9]+|usb[0-9]+|lan[0-9]+|wan)$'); do
-     ifstatus=$(ubus call network.interface dump | jsonfilter -e "@.interface[@.device='$iface']")
+     ifstatus=$(ubus call network.interface dump | jsonfilter -e "@.interface[@.device='$i']")
      iftype="-"
       if [ -n "$ifstatus" ]; then
            iftype=$(echo "$ifstatus" | jsonfilter -e "@.interface")
-       fi
- 
+        else
+             name=$(uci show network | grep "$i" | head -n1 | awk -F '.' '{print $2}' | awk -F '_' '{print $1}')
+            if [ "x$name" == "x@device[0]" ] && [ "$iftype" == "-" ]; then
+                  iftype="lan"
+            fi
+        fi
+
 
     carrier=$(cat /sys/class/net/"$i"/carrier 2>/dev/null)
      [[ "$carrier" == "1" ]] && status="已连接up"|| status="未连接down"
