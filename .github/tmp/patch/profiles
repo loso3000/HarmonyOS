@@ -86,11 +86,15 @@ for i in $(ls /sys/class/net/ | grep -E '^(eth[0-9]+|usb[0-9]+|lan[0-9]+|wan)$')
   	if [ -z "$speed" ] || [ "$speed" = "-" ]; then
  	       speed="-"
   	else
-  	      if [ "$speed" -ge 1000 ]; then
-  	          speed=`echo $speed | awk '{print $1/1000 " Gb/s"}'`
-  	      else
-   	         speed="${speed}Mb/s"
-  	      fi
+   	         if [ "$speed" -ge 1000 ]; then
+   	             if [ "$speed" -eq 2500 ]; then
+   	                 speed="2.5 Gb/s"
+   	             else
+   	                 speed=$(awk -v s=$speed 'BEGIN {printf "%.0f Gb/s", s/1000}')
+  	              fi
+  	          else
+  	              speed="${speed} Mb/s"
+   	         fi
  	fi
 
     eth_info+=("$iftype|$i|$status|$speed")
