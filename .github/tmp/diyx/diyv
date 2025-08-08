@@ -452,27 +452,14 @@ git clone https://github.com/fcshark-org/openwrt-fchomo package/fchomo
 
 # Docker
 
-# dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
-# docker_repo="https://github.com/sbwml/packages_utils_docker"
-# dockerd_repo="https://github.com/sbwml/packages_utils_dockerd"
-# containerd_repo="https://github.com/sbwml/packages_utils_containerd"
-# runc_repo="https://github.com/sbwml/packages_utils_runc"
-# git clone $dockerman_repo feeds/luci/applications/luci-app-dockerman
-# git clone $docker_repo feeds/packages/utils/docker
-# git clone $dockerd_repo feeds/packages/utils/dockerd
-# git clone $containerd_repo feeds/packages/utils/containerd
-# git clone $runc_repo feeds/packages/utils/runc
-
-rm -rf feeds/luci/applications/luci-app-dockerman
-rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+# rm -rf feeds/luci/applications/luci-app-dockerman
+# rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 # git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
-git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
-git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
-git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
-# sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
-# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+# git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+# git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
+# git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+# git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+# git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
 
 rm -rf ./feeds/luci/collections/luci-app-pptp-server
 rm -rf ./feeds/luci/collections/luci-app-ipsec-server
