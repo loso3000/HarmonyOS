@@ -62,11 +62,11 @@ CONFIG_PACKAGE_dnsmasq_full_nftset=y
 CONFIG_PACKAGE_firewall4=y
 
 CONFIG_PACKAGE_luci-app-homeproxy=y
-# CONFIG_PACKAGE_luci-app-nikki=y
-# CONFIG_PACKAGE_nikki=y
+CONFIG_PACKAGE_luci-app-nikki=y
+CONFIG_PACKAGE_nikki=y
 
-CONFIG_PACKAGE_luci-app-fchomo=y
-CONFIG_PACKAGE_fchomo=y
+# CONFIG_PACKAGE_luci-app-fchomo=y
+# CONFIG_PACKAGE_fchomo=y
 
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
 
