@@ -325,7 +325,7 @@ rm -rf ./feeds/packages/net/mosdns
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://$github/sbwml/luci-app-mosdns -b v5 package/mosdns
-#git clone https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
+# git clone https://$github/sbwml/luci-app-mosdns -b v5-lua package/mosdns
 git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://$github/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 
@@ -361,12 +361,6 @@ sed -i 's|/bin/login|/bin/login -f root|' ./feeds/packages/utils/ttyd/files/ttyd
 #    sed -i "s/+luci /+luci-nginx /g" feeds/luci/collections/luci-ssl/Makefile
 # sed -i "/listen_https/ {s/^/#/g}" ./package/*/*/*/files/uhttpd.config
 
-pushd feeds/luci
-    # curl -s https://git.kejizero.online/zhao/files/raw/branch/main/patch/luci/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    # curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1
-     #curl -fsSL  https://raw.githubusercontent.com/sirpdboy/other/master/patch/luci/0002-luci-mod-status-displays-actual-process-memory-usage.patch | patch -p1
-popd
 
 # uwsgi
 sed -i 's,procd_set_param stderr 1,procd_set_param stderr 0,g' feeds/packages/net/uwsgi/files/uwsgi.init
@@ -563,17 +557,8 @@ sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -foll
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
 
 # 修改makefile
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
-
-# 风扇脚本
-# sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
-#wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
-#wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://$github/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh
-
-# wget  -P feeds/packages/utils/tini/patches/ https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
-#curl -fsSL  https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch > ./feeds/packages/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch
-
+# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
+# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
@@ -591,8 +576,8 @@ CLASH="arm64"
 fi
 
 if [[ $DATE_S == 'default' ]]; then
-   # DATA=`TZ=UTC-8 date +%y%m%d%H%M -d +"12"hour`
-   DATA=`TZ=UTC-8 date +%y%m%d%H%M`
+   DATA=`TZ=UTC-8 date +%Y%m%d%H%M -d +"12"hour`
+   # DATA=`TZ=UTC-8 date +%y%m%d%H%M`
 else 
    DATA=$DATE_S
 fi
@@ -636,7 +621,7 @@ echo '---------------------------------' >> ./files/etc/banner
 [ -f ./files/etc/profiles ] || mv -f ./package/add/patch/profiles ./files/etc/profiles
 [ -f ./files/etc/profiles ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/profiles > ./files/etc/profiles
 
-mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
+[ -f ./files/etc/opkg/distfeeds.conf.server ] || mv -f ./package/add/feeds/distfeeds.conf ./files/etc/opkg/distfeeds.conf.server
 [ -f ./files/etc/opkg/distfeeds.conf.server ] || curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/feeds/distfeeds.conf > ./files/etc/opkg/distfeeds.conf.server
 cat>buildmd5.sh<<\EOF
 #!/bin/bash
@@ -840,14 +825,11 @@ esac
 EOF
 
 # 广告链接 23.05专用
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/10_system2305.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 # 广告链接 24.10专用
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/other/master/patch/10_system2410gg.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
+# curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/10_system2410gg.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
  
-#tailscale 
 
-# sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
-sed -i '/\/files/d' feeds/packages/net/tailscale/Makefile
 # UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 #修复TailScale配置文件冲突
 TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
@@ -855,6 +837,7 @@ if [ -f "$TS_FILE" ]; then
 	sed -i '/\/files/d' $TS_FILE
 	echo "tailscale has been fixed!"
 fi
+sed -i '/\/files/d' ./feeds/packages/net/tailscale/Makefile
 
 #修复Coremark编译失败
 CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
