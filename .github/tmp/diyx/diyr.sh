@@ -606,8 +606,8 @@ CLASH="arm64"
 fi
 
 if [[ $DATE_S == 'default' ]]; then
-   # DATA=`TZ=UTC-8 date +%y%m%d%H%M -d +"12"hour`
-   DATA=`TZ=UTC-8 date +%y%m%d%H%M`
+   DATA=`TZ=UTC-8 date +%y%m%d%H%M -d +"12"hour`
+  #  DATA=`TZ=UTC-8 date +%y%m%d%H%M`
 else 
    DATA=$DATE_S
 fi
