@@ -183,6 +183,7 @@ rm -rf ./feeds/luci/applications/luci-app-passwall2
 
 rm -rf  ./feeds/packages/net/wrtbwmon
 
+rm -rf ./feeds/helloworld/
 #istore
 rm -rf  ./feeds/jjm2473_apps/homebox
 rm -rf  ./feeds/jjm2473_apps/luci-app-homebox
@@ -315,7 +316,7 @@ rm -rf ./feeds/luci/applications/luci-app-qbittorrent
 rm -rf ./feeds/packages/net/qBittorrent
 rm -rf ./feeds/packages/libs/rblibtorrent
 
- git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
+git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent  package/luci-app-qbittorrent
 
 # nlbwmon
 sed -i 's/524288/16777216/g' feeds/packages/net/nlbwmon/files/nlbwmon.config
