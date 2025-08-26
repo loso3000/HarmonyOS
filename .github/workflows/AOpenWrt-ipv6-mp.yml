@@ -160,6 +160,8 @@ jobs:
           # mv -f ./.github/tmp/* ./
            cp -Rf ./.github/tmp/* ./
           cd openwrt
+          
+          sed -i '/helloworld/d'  ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
     - name: Update package
