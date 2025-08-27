@@ -256,7 +256,7 @@ jobs:
         cd openwrt/bin/targets/*/*
         rm -rf packages feeds.buildinfo version.buildinfo
         ls -a
-        mv -f packages ../../../packages/
+        mv -f packages ../../../packages/ || true
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
