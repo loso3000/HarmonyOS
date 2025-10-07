@@ -404,7 +404,6 @@ CONFIG_PACKAGE_luci-app-sqm=y
 # CONFIG_PACKAGE_luci-app-nft-qos=y
 CONFIG_PACKAGE_luci-app-cupsd=y
 CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-wireguard=y
 CONFIG_PACKAGE_luci-app-aliyundrive-webdav=n
 CONFIG_PACKAGE_luci-app-cpufreq=n
 # CONFIG_PACKAGE_BitSrunLoginGo=n   #学校签到
@@ -520,15 +519,21 @@ CONFIG_PACKAGE_luci-proto-minieap=y
 CONFIG_PACKAGE_luci-proto-relay=y
 CONFIG_PACKAGE_luci-proto-openconnect=y
 ### L2TP
+### L2TP
 CONFIG_PACKAGE_luci-proto-wireguard=y
 CONFIG_PACKAGE_luci-proto-bonding=y
 CONFIG_PACKAGE_luci-proto-relay=y
 CONFIG_PACKAGE_kmod-wireguard=y
-CONFIG_PACKAGE_kmod-pptp=y
+
+CONFIG_PACKAGE_kmod-ipsec4=y
+CONFIG_PACKAGE_kmod-ipsec6=y
+
+# CONFIG_PACKAGE_kmod-pptp=y
 CONFIG_PACKAGE_xl2tpd=y
 CONFIG_PACKAGE_ppp-mod-pppol2tp=y
 CONFIG_PACKAGE_kmod-pppol2tp=y
 CONFIG_PACKAGE_ppp-mod-pptp=y
+
 
 #istore 
 CONFIG_PACKAGE_luci-lib-ipkg=y  #istore
@@ -746,7 +751,6 @@ CONFIG_PACKAGE_kmod-usb-storage-uas=y  #高速读卡器
 #内核调整
 CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_PACKAGE_kmod-tun=y
-CONFIG_PACKAGE_kmod-wireguard=y
 CONFIG_PACKAGE_kmod-mtd-rw=y
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb3=y
