@@ -145,8 +145,8 @@ rm -rf ./package/ssr/xray-core
 
 # rm -rf ./package/ssr/xray-plugin
 # rm -rf ./package/ssr/naiveproxy
-# rm -rf ./package/ssr/v2ray-plugin
-# rm -rf ./package/ssr/v2ray-core
+rm -rf ./package/ssr/v2ray-plugin
+rm -rf ./package/ssr/v2ray-core
 # rm -rf ./package/ssr/pdnsd
 # rm -rf ./package/ssr/lua-neturl
 # rm -rf ./package/ssr/redsocks2
