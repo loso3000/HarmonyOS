@@ -141,7 +141,6 @@ rm -rf ./package/ssr/luci-app-passwall2
 
 rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
-rm -rf ./package/ssr/xray-core
 
 # rm -rf ./package/ssr/xray-plugin
 # rm -rf ./package/ssr/naiveproxy
@@ -155,7 +154,9 @@ rm -rf ./package/ssr/v2ray-core
 rm -rf ./package/ssr/chinadns-ng
 rm -rf ./feeds/packages/net/sing-box
 
-# rm -rf ./feeds/packages/net/xray-core
+rm -rf ./package/ssr/xray-core
+rm -rf ./feeds/packages/net/xray-core
+
 rm -rf ./feeds/packages/net/trojan-plus
 
 rm -rf ./package/openwrt-passwall/xray-core
