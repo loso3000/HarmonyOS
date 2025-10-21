@@ -305,9 +305,7 @@ rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/packages/net/oaf
 
 rm -rf ./package/add/up/oaf
-# rm -rf ./package/add/up/tool/OpenAppFilter
-# git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
-
+git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter    
 # qbittorrent
 #qbittorrent
 rm -rf ./feeds/packages/net/qbittorrent
