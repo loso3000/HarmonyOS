@@ -293,9 +293,9 @@ rm -rf ./feeds/luci/applications/luci-app-filter
 rm -rf ./feeds/luci/applications/luci-app-oaf
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/packages/net/oaf
-rm -rf ./package/add/up/oaf
 
-# git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
+rm -rf ./package/add/up/oaf
+git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter    
 # qbittorrent
 #qbittorrent
 rm -rf ./feeds/packages/net/qbittorrent
