@@ -293,7 +293,8 @@ rm -rf ./feeds/luci/applications/luci-app-filter
 rm -rf ./feeds/luci/applications/luci-app-oaf
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/packages/net/oaf
-# rm -rf ./package/add/up/tool/OpenAppFilter
+rm -rf ./package/add/up/oaf
+
 # git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 # qbittorrent
 #qbittorrent
@@ -594,7 +595,7 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
-sed -i 's/KERNEL_PATCHVER:=6.12/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
+# sed -i 's/KERNEL_PATCHVER:=6.12/KERNEL_PATCHVER:=6.6/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
