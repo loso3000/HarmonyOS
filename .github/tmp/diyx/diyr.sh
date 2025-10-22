@@ -295,8 +295,14 @@ rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/packages/net/oaf
 
 rm -rf ./package/add/up/oaf
-git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter    
-# qbittorrent
+
+git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
+
+#dockerdocker-compose
+rm -rf ./feeds/packages/utils/docker-compose
+mv -f  ./package/add/docker-compose ./feeds/packages/utils/
+
+
 #qbittorrent
 rm -rf ./feeds/packages/net/qbittorrent
 rm -rf ./feeds/packages/net/qBittorrent-Enhanced-Edition
