@@ -267,7 +267,7 @@ git clone https://$github/sbwml/luci-app-openlist2 package/new/openlist2
 sed -i '/echo/d' ./feeds/packages/utils/coremark/coremark
 rm -rf ./feeds/packages/net/lucky
 rm -rf  ./feeds/luci/applications/luci-app-lucky
-git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
+# git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 # git clone https://github.com/gdy666/luci-app-lucky ./package/lucky
 rm -rf ./feeds/packages/net/ddns-go
 rm -rf  ./feeds/luci/applications/luci-app-ddns-go
