@@ -296,7 +296,7 @@ git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
 #dockerdocker-compose
 rm -rf ./feeds/packages/utils/docker-compose
-mv -f  ./package/add/docker-compose ./feeds/packages/utils/
+mv -f  ./package/add/up/diy/docker-compose ./feeds/packages/utils/
 
 
 #qbittorrent
