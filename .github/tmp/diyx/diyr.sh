@@ -278,6 +278,11 @@ rm -rf ./feeds/packages/net/watchdog
 git clone https://github.com/sirpdboy/luci-app-watchdog ./package/watchdog
 git clone https://github.com/sirpdboy/luci-app-netspeedtest ./package/netspeedtest
 
+# bandix 
+rm -rf ./package/add/up/bandix
+git clone https://github.com/timsaya/openwrt-bandix ./package/openwrt-bandix
+git clone https://github.com/timsaya/luci-app-bandix ./package/bandix
+
 #ddns
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 rm -rf ./package/add/up/ddns-scripts
