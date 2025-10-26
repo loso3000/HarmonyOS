@@ -302,6 +302,11 @@ rm -rf ./package/add/up/oaf
 
 git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
+# bandix 
+rm -rf ./package/add/up/bandix
+git clone https://github.com/timsaya/openwrt-bandix ./package/openwrt-bandix
+git clone https://github.com/timsaya/luci-app-bandix ./package/bandix
+
 #dockerdocker-compose
 rm -rf ./feeds/packages/utils/docker-compose
 mv -f  ./package/add/up/diy/docker-compose ./feeds/packages/utils/
