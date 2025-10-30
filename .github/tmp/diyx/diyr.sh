@@ -157,6 +157,7 @@ rm -rf ./feeds/packages/net/sing-box
 rm -rf ./package/ssr/xray-core
 rm -rf ./feeds/packages/net/xray-core
 
+rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./feeds/packages/net/trojan-plus
 
 rm -rf ./package/openwrt-passwall/xray-core
