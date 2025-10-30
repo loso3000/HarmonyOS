@@ -151,6 +151,7 @@ rm -rf ./package/ssr/v2ray-plugin
 # rm -rf ./package/ssr/redsocks2
 # rm -rf ./package/ssr/shadow-tls
 
+rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./package/ssr/chinadns-ng
 rm -rf ./feeds/packages/net/sing-box
 
