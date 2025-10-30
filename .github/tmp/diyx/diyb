@@ -142,6 +142,7 @@ rm -rf ./package/ssr/luci-app-passwall2
 rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
 
+rm -rf ./feeds/packages/net/shadowsocks-libev
 # rm -rf ./package/ssr/xray-plugin
 # rm -rf ./package/ssr/naiveproxy
 # rm -rf ./package/ssr/v2ray-plugin
