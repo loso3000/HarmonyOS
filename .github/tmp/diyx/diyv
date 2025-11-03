@@ -300,7 +300,14 @@ rm -rf ./feeds/luci/applications/luci-app-oaf
 rm -rf ./feeds/packages/net/open-app-filter
 rm -rf  ./feeds/packages/net/oaf
 
-rm -rf ./package/add/up/oaf
+
+#netdata
+#rm -rf  packages/admin/netdata
+#rm -rf ./feeds/packages/admin/netdata
+rm -rf ./package/add/up/netdata/netdata 
+rm -rf  ./feeds/luci/applications/luci-app-netdata
+rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
+
 
 git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 
@@ -453,12 +460,6 @@ sed -i "s/192.168.1.1/192.168.10.1/" {./package/base-files/files/bin/config_gene
 #LEDE
 sed -i "s/192.168.1.1/192.168.10.1/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
 sed -i "s/LEDE/EzOpWrt/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
-
-#netdata
-rm -rf  packages/admin/netdata
-rm -rf ./feeds/packages/admin/netdata
-rm -rf  ./feeds/luci/applications/luci-app-netdata
-# rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
 
 #rtp2httpd
 git clone https://github.com/stackia/rtp2httpd package/rtp2httpd
