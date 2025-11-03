@@ -181,7 +181,7 @@ jobs:
          #echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
          case "${CONFIG_S}" in
         "Vip"*)        
-          cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
+          # cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
         ;;
         esac
         make defconfig
