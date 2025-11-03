@@ -463,6 +463,9 @@ rm -rf ./feeds/packages/admin/netdata
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 # rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
 
+#rtp2httpd
+git clone https://github.com/stackia/rtp2httpd package/rtp2httpd
+
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Docker
