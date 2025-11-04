@@ -285,6 +285,7 @@ rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 rm -rf ./package/add/up/bandix
 git clone https://github.com/timsaya/openwrt-bandix ./package/openwrt-bandix
 git clone https://github.com/timsaya/luci-app-bandix ./package/bandix
+sed -i 's/Bandix 流量监控/流量监控/g' ./package/bandix/luci-app-bandix/po/zh_Hans/bandix.po
 
 
 rm -rf ./feeds/packages/net/watchdog
