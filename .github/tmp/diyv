@@ -125,8 +125,8 @@ rm -rf  ./feeds/packages/net/naiveproxy
 # 清理
 # Add luci-app-passwall
 # git clone --depth=1 https://$github/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
-git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwall2
-git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwall
+# git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwall2
+# git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwall
 
 # rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
 
@@ -135,8 +135,8 @@ git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwal
 
 git clone https://$github/sbwml/openwrt_helloworld  ./package/ssr
 rm -rf ./package/ssr/luci-app-ssr-plus
-rm -rf ./package/ssr/luci-app-passwall
-rm -rf ./package/ssr/luci-app-passwall2
+# rm -rf ./package/ssr/luci-app-passwall
+# rm -rf ./package/ssr/luci-app-passwall2
 
 rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
@@ -157,7 +157,7 @@ rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/trojan-plus
 rm -rf ./feeds/packages/net/sing-box
 
-# rm -rf ./feeds/packages/net/v2ray-plugin
+rm -rf ./feeds/packages/net/v2ray-plugin
 
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
@@ -180,6 +180,8 @@ rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-passwall2
+
+sed -i '/_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks/d' ./package/ssr/luci-app-passwall/Makefile
 
 rm -rf  ./feeds/packages/net/wrtbwmon
 
