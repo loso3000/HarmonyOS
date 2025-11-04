@@ -155,7 +155,7 @@ rm -rf ./feeds/packages/net/shadowsocks-libev
 
 rm -rf ./package/ssr/xray-core
 rm -rf ./feeds/packages/net/xray-core
-rm -rf ./feeds/packages/net/trojan-plus
+# rm -rf ./feeds/packages/net/trojan-plus
 rm -rf ./feeds/packages/net/sing-box
 
 # rm -rf ./feeds/packages/net/v2ray-plugin
@@ -239,6 +239,8 @@ rm -rf ./package/emortal/default-settings
 rm -rf ./package/lean/autocore ./package/lean/automount  ./package/lean/autosamba  
 rm -rf ./package/lean/default-settings 
 # rm -rf ./package/add/up/tool/autocore
+
+rm -rf package/add/up/pass/trojan-plus
 
 rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
