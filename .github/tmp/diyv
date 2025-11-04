@@ -276,10 +276,12 @@ rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 rm -rf ./feeds/packages/net/watchdog
 git clone https://github.com/sirpdboy/luci-app-watchdog ./package/watchdog
 git clone https://github.com/sirpdboy/luci-app-netspeedtest ./package/netspeedtest
+
 # bandix 
 rm -rf ./package/add/up/bandix
 git clone https://github.com/timsaya/openwrt-bandix ./package/openwrt-bandix
 git clone https://github.com/timsaya/luci-app-bandix ./package/bandix
+sed -i 's/Bandix 流量监控/流量监控/g' ./package/bandix/luci-app-bandix/po/zh_Hans/bandix.po
 
 #ddns
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
