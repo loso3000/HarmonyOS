@@ -126,18 +126,21 @@ rm -rf  ./feeds/packages/net/naiveproxy
 # 清理
 # Add luci-app-passwall
 # git clone --depth=1 https://$github/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
-git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwall2
-git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwall
+# git clone --depth=1 https://$github/xiaorouji/openwrt-passwall2 ./package/passwall2
+# git clone --depth=1 https://$github/xiaorouji/openwrt-passwall ./package/passwall
 
 # rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
 
 # 移除 openwrt feeds 自带的核心库
 # rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,chinadns-ng,dns2socks,dns2tcp,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview}
 
+git clone https://$github/loso3000/oth ./package/add
 git clone https://$github/sbwml/openwrt_helloworld  ./package/ssr
 rm -rf ./package/ssr/luci-app-ssr-plus
-rm -rf ./package/ssr/luci-app-passwall
-rm -rf ./package/ssr/luci-app-passwall2
+# rm -rf ./package/ssr/luci-app-passwall
+# rm -rf ./package/ssr/luci-app-passwall2
+
+sed -i '/_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks/d' ./package/ssr/luci-app-passwall/Makefile
 
 rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
@@ -157,6 +160,7 @@ rm -rf ./feeds/packages/net/sing-box
 rm -rf ./package/ssr/xray-core
 rm -rf ./feeds/packages/net/xray-core
 
+rm -rf ./feeds/packages/net/v2ray-plugin
 rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./feeds/packages/net/trojan-plus
 
@@ -165,7 +169,6 @@ rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
-git clone https://$github/loso3000/oth ./package/add
 
 #rm -rf  ./feeds/packages/net/adguardhome
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
