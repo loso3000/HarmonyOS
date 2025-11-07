@@ -304,7 +304,7 @@ CONFIG_PACKAGE_kmod-inet-diag=y
 
 CONFIG_PACKAGE_luci-app-filemanager=y
 # CONFIG_PACKAGE_luci-app-vnstat2=y
-CONFIG_PACKAGE_luci-app-timecontrol=y
+# CONFIG_PACKAGE_luci-app-timecontrol=y
 CONFIG_PACKAGE_luci-app-nft-timecontrol=y
 
 CONFIG_PACKAGE_luci-app-control-parentcontrol=n
