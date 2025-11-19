@@ -610,7 +610,8 @@ CLASH="arm64"
 fi
 
 if [[ $DATE_S == 'default' ]]; then
-   DATA=`TZ=UTC-8 date +%Y%m%d%H%M -d +"12"hour`
+   DATA=`TZ=UTC-8 date +%Y%m%d`
+   # DATA=`TZ=UTC-8 date +%Y%m%d%H%M -d +"12"hour`
    # DATA=`TZ=UTC-8 date +%y%m%d%H%M`
 else 
    DATA=$DATE_S
@@ -622,26 +623,28 @@ done
 ver54=`grep "LINUX_VERSION-5.4 ="  include/kernel-5.4 | cut -d . -f 3`
 ver515=`grep "LINUX_VERSION-5.15 ="  include/kernel-5.15 | cut -d . -f 3`
 ver61=`grep "LINUX_VERSION-6.1 ="  include/kernel-6.1 | cut -d . -f 3`
-ver66=`grep "LINUX_VERSION-6.6 ="  include/kernel-6.6 | cut -d . -f 3`
-ver612=`grep "LINUX_VERSION-6.12 ="  include/kernel-6.12 | cut -d . -f 3`
-date1="${CONFIG_S}-${DATA}_by Sirpdboy"
+[ -f "include/kernel-6.6" ] && ver66=`grep "LINUX_VERSION-6.6"  include/kernel-6.6 | cut -d . -f 3`
+[ -f "include/kernel-6.12" ] && ver612=`grep "LINUX_VERSION-6.12"  include/kernel-6.12 | cut -d . -f 3`
+[ -f "target/linux/generic/kernel-6.6" ] && ver66=`grep "LINUX_VERSION-6.6"  target/linux/generic/kernel-6.6 | cut -d . -f 3` |head -1
+[ -f "target/linux/generic/kernel-6.12" ] &&  ver612=`grep "LINUX_VERSION-6.12"  target/linux/generic/kernel-6.12 | cut -d . -f 3` |head -1
+date1="${DATA}_${CONFIG_S}-Sirpdboy"
 if [ "$VER1" = "5.4" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver54}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver54}"
+date2="EzOpWrt-${DATA}-${VER1}.${ver54}-${CONFIG_S}_Sirpdboy"
+date1="${DATA}-${VER1}.${ver54}-${CONFIG_S}"
 elif [ "$VER1" = "5.15" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver515}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver515}"
+date2="EzOpWrt-${DATA}-${VER1}.${ver515}-${CONFIG_S}_Sirpdboy"
+date1="${DATA}-${VER1}.${ver515}-${CONFIG_S}"
 elif [ "$VER1" = "6.1" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver61}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver61}"
+date2="EzOpWrt-${DATA}-${VER1}.${ver61}-${CONFIG_S}_Sirpdboy"
+date1="${DATA}-${VER1}.${ver61}-${CONFIG_S}"
 elif [ "$VER1" = "6.6" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver66}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver66}"
+date2="EzOpWrt-${DATA}-${VER1}.${ver66}-${CONFIG_S}_Sirpdboy"
+date1="${DATA}-${VER1}.${ver66}-${CONFIG_S}"
 elif [ "$VER1" = "6.12" ]; then
-date2="EzOpWrt ${CONFIG_S}-${DATA}-${VER1}.${ver612}_by Sirpdboy"
-date1="${CONFIG_S}-${DATA}-${VER1}.${ver612}"
+date2="EzOpWrt-${DATA}-${VER1}.${ver612}-${CONFIG_S}_Sirpdboy"
+date1="${DATA}-${VER1}.${ver612}-${CONFIG_S}"
 fi
-echo "EZVER=${date1}" > ./files/etc/ezopenwrt_version
+echo "EZVER=v${date1}" > ./files/etc/ezopenwrt_version
 echo "EZDATE=$DATA" >> ./files/etc/ezopenwrt_version
 cat ./files/etc/ezopenwrt_version >  $GITHUB_WORKSPACE/ezopenwrt_version
 echo EZAPI="$ezapi" >>  $GITHUB_WORKSPACE/ezopenwrt_version
