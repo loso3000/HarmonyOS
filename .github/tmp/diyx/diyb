@@ -110,7 +110,7 @@ mkdir -p files/usr/share
 mkdir -p ./package/emortal
 
 [[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
-[[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
+[[ -n $CONFIG_S ]] || CONFIG_S=Vip_Super
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
