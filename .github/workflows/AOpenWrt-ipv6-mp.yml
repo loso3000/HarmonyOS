@@ -12,10 +12,10 @@ on:
         options: [ openwrt-21.02, master, stable,  openwrt-23.05 ]
       config_s:
         description: '配置文件'
-        default: 'Vip-Plus'
+        default: 'Vip_Plus'
         required: true
         type: choice
-        options: [ Vip-Custom, Vip-dz, Free-Plus, Vip-Super,Vip-Bypass,Vip-Mini, Vip-Plus ]
+        options: [ Vip_Custom, Vip_dz, Free_Plus, Vip_Super,Vip_Bypass,Vip_Mini, Vip_Plus ]
       cpu_s:
         description: 'CPU优选'
         required: true
