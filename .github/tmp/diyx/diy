@@ -111,7 +111,7 @@ mkdir -p files/usr/share
 mkdir -p ./package/emortal
 
 [[ -n $TARGET_DEVICE ]] || TARGET_DEVICE="x86_64"
-[[ -n $CONFIG_S ]] || CONFIG_S=Vip-Super
+[[ -n $CONFIG_S ]] || CONFIG_S=Vip_Super
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
 rm -rf  ./feeds/luci/applications/luci-app-arpbind
@@ -765,7 +765,7 @@ md5=`md5sum ${md5_EzOpWrt_uefi} | awk '{print $1}'`
     "${ip}" \
     "${OTA_URL}" "${EZVER}" "${md5_EzOpWrt_uefi}" > ezota.json
 }
-if [ ${CONFIG_S} = "Vip-Super" ] ; then
+if [ ${CONFIG_S} = "Vip_Super" ] ; then
 cp ../../../../ezotafooter  ./ota.footer
 cp ../../../../ezverlatest   ./ver.latest 
 fi
