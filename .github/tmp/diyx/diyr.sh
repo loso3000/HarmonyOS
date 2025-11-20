@@ -162,7 +162,8 @@ rm -rf ./feeds/packages/net/xray-core
 
 rm -rf ./feeds/packages/net/v2ray-plugin
 rm -rf ./feeds/packages/net/shadowsocks-libev
-rm -rf ./feeds/packages/net/trojan-plus
+# rm -rf ./feeds/packages/net/trojan-plus
+rm -rf package/add/up/pass/trojan-plus
 
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
