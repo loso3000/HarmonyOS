@@ -257,7 +257,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.UPLOAD_FIRMWARE == 'true' && steps.compile.outputs.status  == 'success'
       with:
-        name: ${{ env.DATA }}-${{ env.TAG }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-Firmware
+        name: ${{ env.DATA }}-${{ env.TAG }}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-Firmware
         path: ${{ env.FIRMWARE }}
 
     - name: Upload bin directory
