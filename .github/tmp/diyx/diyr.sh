@@ -140,7 +140,7 @@ rm -rf ./package/ssr/luci-app-ssr-plus
 # rm -rf ./package/ssr/luci-app-passwall
 # rm -rf ./package/ssr/luci-app-passwall2
 
-sed -i '/_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks/d' ./package/ssr/luci-app-passwall/Makefile
+# sed -i '/_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks/d' ./package/ssr/luci-app-passwall/Makefile
 
 rm -rf ./package/ssr/mosdns
 rm -rf ./package/ssr/trojan-plus
