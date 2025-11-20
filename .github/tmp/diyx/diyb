@@ -158,8 +158,6 @@ rm -rf ./feeds/packages/net/sing-box
 rm -rf ./package/ssr/xray-core
 rm -rf ./feeds/packages/net/xray-core
 
-#rm -rf ./feeds/packages/net/trojan-plus
-rm -rf package/add/up/pass/trojan-plus
 
 rm -rf ./package/openwrt-passwall/xray-core
 rm -rf ./package/openwrt-passwall/xray-plugin
@@ -168,6 +166,8 @@ rm -rf ./package/openwrt-passwall/naiveproxy
 
 git clone https://$github/loso3000/oth ./package/add
 
+#rm -rf ./feeds/packages/net/trojan-plus
+rm -rf package/add/up/pass/trojan-plus
 # rm -rf  ./feeds/packages/net/adguardhome
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
 
