@@ -426,15 +426,14 @@ popd
 # rm -rf package/network/services/ppp
 # git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
 
-# samba4
-rm -rf feeds/luci/applications/luci-app-samba4
-rm -rf feeds/packages/net/samba4
-git clone https://github.com/sbwml/feeds_packages_net_samba4 feeds/packages/net/samba4
+# rm -rf feeds/luci/applications/luci-app-samba4
+# rm -rf feeds/packages/net/samba4
+# git clone https://github.com/sbwml/feeds_packages_net_samba4 feeds/packages/net/samba4
 # enable multi-channel
-sed -i '/workgroup/a \\n\t## enable multi-channel' feeds/packages/net/samba4/files/smb.conf.template
-sed -i '/enable multi-channel/a \\tserver multi channel support = yes' feeds/packages/net/samba4/files/smb.conf.template
-sed -i 's/#aio read size = 0/aio read size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
-sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
+# sed -i '/workgroup/a \\n\t## enable multi-channel' feeds/packages/net/samba4/files/smb.conf.template
+# sed -i '/enable multi-channel/a \\tserver multi channel support = yes' feeds/packages/net/samba4/files/smb.conf.template
+# sed -i 's/#aio read size = 0/aio read size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
+# sed -i 's/#aio write size = 0/aio write size = 1/g' feeds/packages/net/samba4/files/smb.conf.template
 
 # 取消一些预选的软件包
 sed -i 's/luci-app-vsftpd //g' include/target.mk
