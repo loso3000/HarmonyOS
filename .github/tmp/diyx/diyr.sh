@@ -460,8 +460,8 @@ sed -i "s/192.168.1.1/192.168.10.1/" {package/base-files/luci2/bin/config_genera
 sed -i "s/LEDE/EzOpWrt/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
 
 # netdata 
-rm -rf  packages/admin/netdata
-rm -rf ./feeds/packages/admin/netdata
+# rm -rf  packages/admin/netdata
+# rm -rf ./feeds/packages/admin/netdata
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
 
