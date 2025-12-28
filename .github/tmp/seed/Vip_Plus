@@ -340,67 +340,24 @@ CONFIG_PACKAGE_luci-app-turboacc=y
 # CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM
 CONFIG_PACKAGE_luci-app-passwall2=y
 CONFIG_PACKAGE_luci-app-passwall=y
-CONFIG_PACKAGE_luci-app-passwall_Transparent_Proxy=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Haproxy=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_IPv6_Nat=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Kcptun=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_NaiveProxy=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Client=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_Libev_Server=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Simple_Obfs=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan_Plus=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin is not set
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray_Plugin=y
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=n
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NONE_V2RAY=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_V2ray=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Xray=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Kcptun=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_IPT2Socks=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_NaiveProxy=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Redsocks2=y 
-CONFIG_PACKAGE_luci-app-ssr-plus_Shadowsocks_Libev_Client=y 
-# CONFIG_PACKAGE_luci-app-bypass=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Kcptun=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Xray=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Redsocks2=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Client=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Client=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_Obfs=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Simple_obfs_server=y
-CONFIG_PACKAGE_luci-app-bypass_INCLUDE_Trojan-plus=y
-
-# CONFIG_PACKAGE_luci-app-bypass_INCLUDEINCLUDE_Hysteria is not set 
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDEINCLUDE_Hysteria is not set 
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Hysteria is not set
 # CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_Hysteria is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_sing-box is not set
-# CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_sing-box is not set
 
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
 CONFIG_PACKAGE_luci-app-netspeedtest=y
-CONFIG_PACKAGE_luci-app-dnsfilter=n
 # CONFIG_PACKAGE_luci-app-kodexplorer=y
 CONFIG_PACKAGE_luci-app-uhttpd=y
 CONFIG_PACKAGE_luci-app-mentohust=n
 CONFIG_PACKAGE_luci-app-easymesh=n
-CONFIG_PACKAGE_luci-app-ttnode=n
-CONFIG_PACKAGE_luci-app-adblock-plus=n
 CONFIG_PACKAGE_luci-app-mac=n
 CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-wifidog=n
-CONFIG_PACKAGE_luci-app-sqm=y
-# CONFIG_PACKAGE_luci-app-nft-qos=y
+# CONFIG_PACKAGE_luci-app-sqm=y
+CONFIG_PACKAGE_luci-app-nft-qos=y
 CONFIG_PACKAGE_luci-app-cupsd=y
 CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-aliyundrive-webdav=n
@@ -423,9 +380,7 @@ CONFIG_PACKAGE_luci-app-bandix=y
 CONFIG_PACKAGE_luci-app-watchdog=y
 
 CONFIG_PACKAGE_luci-app-bridge=n
-CONFIG_PACKAGE_luci-app-cowbping=n
-CONFIG_PACKAGE_luci-app-beardropper=n
-CONFIG_PACKAGE_luci-lib-ipkg=y
+# CONFIG_PACKAGE_luci-lib-ipkg=y
 CONFIG_PACKAGE_luci-app-store=y
 CONFIG_PACKAGE_luci-app-istorex=n
 CONFIG_PACKAGE_quickstart=n
@@ -444,7 +399,7 @@ CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-edge=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-design=y
-CONFIG_PACKAGE_luci-app-argon-config=n
+CONFIG_PACKAGE_luci-app-argon-config=y
 #增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
@@ -490,8 +445,8 @@ CONFIG_PACKAGE_luci-app-appfilter=y
 CONFIG_PACKAGE_luci-app-oaf=y
 
 CONFIG_PACKAGE_luci-app-poweroffdevice=y
-CONFIG_PACKAGE_luci-app-control-speedlimit=y
-CONFIG_PACKAGE_luci-app-speedlimit=y
+# CONFIG_PACKAGE_luci-app-control-speedlimit=y
+# CONFIG_PACKAGE_luci-app-speedlimit=y
 CONFIG_PACKAGE_luci-app-eqosplus=y
 CONFIG_PACKAGE_luci-app-chatgpt=y
 CONFIG_PACKAGE_luci-app-chatgpt-web=y
@@ -503,13 +458,6 @@ CONFIG_PACKAGE_luci-app-ua2f=y
 CONFIG_PACKAGE_luci-app-filemanager=y
 CONFIG_PACKAGE_luci-app-ota=y
 
-### ImmortalWrt Proxy - nft  firewall4
-CONFIG_PACKAGE_luci-app-homeproxy=y
-CONFIG_PACKAGE_luci-app-nikki=y
-CONFIG_PACKAGE_haproxy=y
-CONFIG_PACKAGE_nikki=y
-CONFIG_PACKAGE_luci-app-firewall=y
-CONFIG_PACKAGE_firewall4=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 
@@ -612,7 +560,7 @@ CONFIG_DOCKER_NET_MACVLAN=y
 CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
 CONFIG_PACKAGE_containerd=y
-CONFIG_PACKAGE_dockerd=y
+# CONFIG_PACKAGE_dockerd=y
 
 CONFIG_PACKAGE_kmod-mac80211=y
 CONFIG_PACKAGE_MAC80211_DEBUGFS=y
@@ -627,13 +575,12 @@ CONFIG_PACKAGE_iptables-mod-tproxy=y
 CONFIG_PACKAGE_iptables-nft=y
 
 ### ImmortalWrt Proxy - nft  firewall4
+#CONFIG_PACKAGE_luci-app-firewall=y
+#CONFIG_PACKAGE_firewall4=y
 #CONFIG_PACKAGE_luci-app-homeproxy=y
 CONFIG_PACKAGE_luci-app-nikki=y
 #CONFIG_PACKAGE_haproxy=y
 #CONFIG_PACKAGE_nikki=y
-#CONFIG_PACKAGE_luci-app-firewall=y
-#CONFIG_PACKAGE_firewall4=y
-
 
 ### Kernel driver
 CONFIG_PACKAGE_kmod-igb=y
