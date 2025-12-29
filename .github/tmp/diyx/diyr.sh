@@ -485,15 +485,15 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 # sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 
-rm -rf feeds/luci/applications/luci-app-dockerman
+# rm -rf feeds/luci/applications/luci-app-dockerman
 # git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
-git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+# git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 # git clone https://$gitea/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
-rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-    git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
-    # git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-    git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-    git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
+# rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+ # git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
+ # git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+ # git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+ # git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
 
 
 rm -rf ./package/add/up/docke
