@@ -470,23 +470,22 @@ sed -i "s/192.168.1.1/192.168.10.1/" {package/base-files/luci2/bin/config_genera
 sed -i "s/LEDE/EzOpWrt/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
 
 #rtp2httpd
-git clone https://github.com/stackia/rtp2httpd package/rtp2httpd
+# git clone https://github.com/stackia/rtp2httpd package/rtp2httpd
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 #fchomo
-git clone https://github.com/fcshark-org/openwrt-fchomo package/fchomo
+# git clone https://github.com/fcshark-org/openwrt-fchomo package/fchomo
 
 # Docker
-
-rm -rf feeds/luci/applications/luci-app-dockerman
-rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+# rm -rf feeds/luci/applications/luci-app-dockerman
+# rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 # git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
-git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
-git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
+# git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+# git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
 # git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
+# git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+# git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
 
 rm -rf ./feeds/luci/collections/luci-app-pptp-server
 rm -rf ./feeds/luci/collections/luci-app-ipsec-server
