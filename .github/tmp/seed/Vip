@@ -11,13 +11,24 @@ CONFIG_PACKAGE_kmod-libphy=y
 CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_BUSYBOX_CUSTOM=y
 CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
-# ipv6
+
+# ===== IPv6 支持 =====
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-CONFIG_PACKAGE_ip6tables-extra=y
-CONFIG_PACKAGE_ip6tables-mod-nat=y
-CONFIG_PACKAGE_luci-compat=y
-CONFIG_PACKAGE_luci-lib-ipkg=y
+CONFIG_PACKAGE_6in4=y
+CONFIG_PACKAGE_6rd=y
+CONFIG_PACKAGE_6to4=y
+
+# ===== DNS 和 SSL =====
+# CONFIG_PACKAGE_dnsmasq is not set
+CONFIG_PACKAGE_dnsmasq-full=y
+CONFIG_PACKAGE_dnsmasq_full_ipset=y
+# CONFIG_PACKAGE_dnsmasq_full_broken_rtc is not set
+CONFIG_PACKAGE_bind-host=y
+
+CONFIG_PACKAGE_uhttpd-mod-tls=y
+CONFIG_PACKAGE_libustream-openssl=y
+
 #删除参数
 CONFIG_TARGET_ROOTFS_EXT4FS=y
 # 不压缩efi
@@ -195,15 +206,16 @@ CONFIG_PACKAGE_ddns-scripts_cloudflare.com-v4=y
 CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
 CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
 CONFIG_PACKAGE_ddns-scripts_no-ip_com=y
+
 CONFIG_PACKAGE_luci-app-ddns=y
 ### Firewall
-CONFIG_PACKAGE_nat6=y
-CONFIG_PACKAGE_ip6tables-nft=y
-CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
-CONFIG_PACKAGE_iptables-mod-iprange=y
-CONFIG_PACKAGE_iptables-mod-nat-extra=y
-CONFIG_PACKAGE_iptables-mod-tproxy=y
-CONFIG_PACKAGE_iptables-nft=y
+# CONFIG_PACKAGE_nat6=y
+# CONFIG_PACKAGE_ip6tables-nft=y
+# CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
+# CONFIG_PACKAGE_iptables-mod-iprange=y
+# CONFIG_PACKAGE_iptables-mod-nat-extra=y
+# CONFIG_PACKAGE_iptables-mod-tproxy=y
+# CONFIG_PACKAGE_iptables-nft=y
 
 ### ImmortalWrt Proxy - nft  firewall4
 CONFIG_PACKAGE_firewall4=y
@@ -213,21 +225,13 @@ CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_haproxy=y
 CONFIG_PACKAGE_nikki=y
 #diy
-# CONFIG_PACKAGE_swconfig=y  #交换机功能
-# CONFIG_PACKAGE_fstools=y   #挂载功能
 CONFIG_PACKAGE_block-mount=y  #挂载功能
 CONFIG_PACKAGE_ntfsprogs=y  #ntfs.mks分区格式化
-# CONFIG_PACKAGE_automount-ntfs=y  #NTFS挂载
-# CONFIG_PACKAGE_automount=y  #NTFS挂载
-
 CONFIG_PACKAGE_istoreos-files=y
 
 CONFIG_PACKAGE_autocore=y
 CONFIG_PACKAGE_autocore-arm=y
-# CONFIG_PACKAGE_autocore-x86=y
 CONFIG_PACKAGE_default-settings=y
-# CONFIG_PACKAGE_autosamba-ksmbd=n
-# CONFIG_PACKAGE_autosamba-samba4=y
 CONFIG_PACKAGE_autosamba=y
 
 CONFIG_PACKAGE_kmod-inet-diag=y
@@ -296,12 +300,12 @@ CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
 # CONFIG_PACKAGE_luci-app-ikoolproxy=y
-CONFIG_PACKAGE_luci-app-cpufreq=y
+# CONFIG_PACKAGE_luci-app-cpufreq=y
 # CONFIG_PACKAGE_BitSrunLoginGo=n   #学校签到
 CONFIG_PACKAGE_luci-app-v2raya=n
 CONFIG_PACKAGE_luci-app-linkease=n
 CONFIG_PACKAGE_luci-app-vlmcsd=y
-CONFIG_PACKAGE_luci-app-ramfree=y
+# CONFIG_PACKAGE_luci-app-ramfree=y
 
 CONFIG_PACKAGE_luci-app-bridge=n
 CONFIG_PACKAGE_luci-app-cowbping=n
@@ -309,8 +313,7 @@ CONFIG_PACKAGE_luci-app-beardropper=n
 CONFIG_PACKAGE_luci-app-https-dns-proxy=n
 CONFIG_PACKAGE_luci-app-https-dns-proxy-whisky=n
 CONFIG_PACKAGE_luci-app-pwdHackDeny=n
-CONFIG_PACKAGE_luci-app-oaf=y
-# CONFIG_PACKAGE_luci-lib-ipkg=y
+# CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-store=y
 CONFIG_PACKAGE_luci-app-istorex=n
 CONFIG_PACKAGE_quickstart=n
@@ -533,9 +536,6 @@ CONFIG_PACKAGE_luci-proto-bonding=y
 CONFIG_PACKAGE_luci-proto-relay=y
 CONFIG_PACKAGE_kmod-wireguard=y
 
-CONFIG_PACKAGE_kmod-ipsec4=y
-CONFIG_PACKAGE_kmod-ipsec6=y
-
 CONFIG_PACKAGE_kmod-usb-acm=y
 CONFIG_PACKAGE_luci-proto-3g=y
 CONFIG_PACKAGE_shadow-utils=y
@@ -545,7 +545,6 @@ CONFIG_PACKAGE_shadow-utils=y
 # CONFIG_PACKAGE_hostapd=y #error
 #CONFIG_PACKAGE_wpa-supplicant=y
 #CONFIG_AP=y
-
 
 CONFIG_PACKAGE_kmod-mac80211=y
 CONFIG_PACKAGE_MAC80211_DEBUGFS=y
