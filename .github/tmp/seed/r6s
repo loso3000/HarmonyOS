@@ -2,32 +2,6 @@ CONFIG_TARGET_rockchip=y
 CONFIG_TARGET_rockchip_armv8=y
 CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r6s=y
 
-CONFIG_PACKAGE_gzip=y
-CONFIG_PACKAGE_irqbalance=y
-CONFIG_PACKAGE_lsblk=y
-CONFIG_PACKAGE_usbutils=y
-CONFIG_PACKAGE_procd-ujail=y
-CONFIG_PACKAGE_coreutils-dd=y
-
-CONFIG_PACKAGE_iptables-mod-nat-extra=y
-CONFIG_PACKAGE_kmod-usb-serial=y
-CONFIG_PACKAGE_kmod-usb-serial-option=y
-CONFIG_PACKAGE_kmod-usb-serial-wwan=y
-CONFIG_PACKAGE_usb-modeswitch=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_luci-proto-qmi=y
-CONFIG_PACKAGE_qmi-utils=y
-CONFIG_PACKAGE_umbim=y
-CONFIG_PACKAGE_uqmi=y
-CONFIG_PACKAGE_comgt-ncm=y
-CONFIG_PACKAGE_luci-proto-ncm=y
-CONFIG_PACKAGE_comgt=y
-CONFIG_PACKAGE_kmod-usb-acm=y
-CONFIG_PACKAGE_luci-proto-3g=y
-CONFIG_PACKAGE_shadow-utils=y
-CONFIG_PACKAGE_shadow-chsh=y
-
-
 ### Basic
 CONFIG_KERNEL_CFLAGS="-march=armv8.2-a+crypto+crc -mcpu=cortex-a55+crypto+crc -mtune=cortex-a55"
 CONFIG_KERNEL_MEMCG_V1=y
