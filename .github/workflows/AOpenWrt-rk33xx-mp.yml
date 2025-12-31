@@ -38,10 +38,10 @@ on:
           - '8171M'
       target:
         description: '选择要生成的机型：'
-        default: 'rockchip'
+        default: 'r2s'
         required: true
         type: choice
-        options: [  x86_64,r2s, r4s, r4se, r5s, r5c,r6c,r6s,rockchip ]
+        options: [  x86_64,r2s, r4s, r4se, r5s, r5c,r6c,r6s,r76s ]
       date_s:
         description: '固件日期'
         default: 'default'
