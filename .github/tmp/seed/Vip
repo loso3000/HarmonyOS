@@ -2,11 +2,11 @@
 CONFIG_TARGET_KERNEL_PARTSIZE=64
 CONFIG_TARGET_ROOTFS_PARTSIZE=1925
 
-CONFIG_TARGET_PER_DEVICE_ROOTFS=y
-CONFIG_TARGET_ROOTFS_TARGZ=y
-CONFIG_TARGET_EXT4_JOURNAL=y
-CONFIG_TARGET_ROOTFS_SQUASHFS=y
-CONFIG_TARGET_ROOTFS_EXT4FS=y
+# CONFIG_TARGET_PER_DEVICE_ROOTFS=y
+# CONFIG_TARGET_ROOTFS_TARGZ=y
+# CONFIG_TARGET_EXT4_JOURNAL=y
+# CONFIG_TARGET_ROOTFS_SQUASHFS=y
+# CONFIG_TARGET_ROOTFS_EXT4FS=y
 
 # ===== IPv6 支持 =====
 CONFIG_PACKAGE_ipv6helper=y
@@ -26,7 +26,7 @@ CONFIG_PACKAGE_luci=y
 CONFIG_PACKAGE_libustream-openssl=y
 
 # 不压缩efi
-CONFIG_TARGET_IMAGES_GZIP=y
+# CONFIG_TARGET_IMAGES_GZIP=y
 ### Ethernet Support
 # sd
 CONFIG_PACKAGE_kmod-usb-ohci=y
@@ -34,8 +34,8 @@ CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-usb-core=y
 CONFIG_PACKAGE_kmod-usb-storage=y
 CONFIG_PACKAGE_kmod-usb-storage-extras=y
-#CONFIG_PACKAGE_kmod-fs-ext4=y
-#CONFIG_PACKAGE_kmod-fs-vfat=y
+CONFIG_PACKAGE_kmod-fs-ext4=y
+CONFIG_PACKAGE_kmod-fs-vfat=y
 
 # share network
 # CONFIG_PACKAGE_libmbedtls=y
@@ -91,7 +91,7 @@ CONFIG_PACKAGE_nat6=y
 # CONFIG_PACKAGE_iptables-nft=y
 
 # Natflow
-CONFIG_PACKAGE_natflow=m
+# CONFIG_PACKAGE_natflow=m
 
 ### Zram
 CONFIG_PACKAGE_zram-swap=y
@@ -110,6 +110,7 @@ CONFIG_PACKAGE_block-mount=y  #挂载功能
 # CONFIG_PACKAGE_istoreos-files=y
 
 CONFIG_PACKAGE_ntfs3-mount=y
+
 CONFIG_PACKAGE_automount=y
 CONFIG_PACKAGE_autocore-arm=y
 CONFIG_PACKAGE_default-settings=y
