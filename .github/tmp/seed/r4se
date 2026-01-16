@@ -8,4 +8,4 @@ CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4se=y
 
 ### Video Support
 CONFIG_PACKAGE_kmod-drm-rockchip=y
-CONFIG_PACKAGE_kmod-drm-panfrost=y
+# CONFIG_PACKAGE_kmod-drm-panfrost=y
