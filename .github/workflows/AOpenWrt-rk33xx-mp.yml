@@ -205,7 +205,7 @@ jobs:
          cd openwrt
          echo -e "$(nproc) thread compile"
          
-         make -j1 V=s
+         # make -j1 V=s
          make tools/compile -j$(nproc) || make tools/compile -j72
          make toolchain/compile -j$(nproc) || make toolchain/compile -j72
          make target/compile -j$(nproc) || make target/compile -j72 IGNORE_ERRORS=1
