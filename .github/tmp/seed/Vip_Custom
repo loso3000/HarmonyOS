@@ -390,8 +390,8 @@ CONFIG_PACKAGE_luci-app-ttnode=n
 CONFIG_PACKAGE_luci-app-mac=n
 CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-wifidog=n
-CONFIG_PACKAGE_luci-app-sqm=y
-CONFIG_PACKAGE_luci-app-nft-qos=n
+# CONFIG_PACKAGE_luci-app-sqm=y
+CONFIG_PACKAGE_luci-app-nft-qos=y
 CONFIG_PACKAGE_wifidog=n
 CONFIG_PACKAGE_luci-app-cupsd=y
 CONFIG_PACKAGE_luci-app-mosdns=y
@@ -409,8 +409,8 @@ CONFIG_PACKAGE_luci-app-bridge=n
 CONFIG_PACKAGE_luci-app-cowbping=n
 CONFIG_PACKAGE_luci-app-beardropper=n
 CONFIG_PACKAGE_luci-app-watchdog=y
-CONFIG_PACKAGE_luci-app-control-parentcontrol=y
-CONFIG_PACKAGE_luci-app-parentcontrol=y
+# CONFIG_PACKAGE_luci-app-control-parentcontrol=y
+# CONFIG_PACKAGE_luci-app-parentcontrol=y
 CONFIG_PACKAGE_luci-lib-ipkg=y
 CONFIG_PACKAGE_luci-app-store=y
 CONFIG_PACKAGE_luci-app-homeassistant=y
@@ -481,13 +481,15 @@ CONFIG_PACKAGE_luci-app-wechatpush=y
 
 CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-poweroffdevice=y
-CONFIG_PACKAGE_luci-app-control-speedlimit=y
-CONFIG_PACKAGE_luci-app-speedlimit=y
+# CONFIG_PACKAGE_luci-app-control-speedlimit=y
+# CONFIG_PACKAGE_luci-app-speedlimit=y
 CONFIG_PACKAGE_luci-app-eqosplus=y
 CONFIG_PACKAGE_luci-app-chatgpt=y
 CONFIG_PACKAGE_luci-app-chatgpt-web=y
 CONFIG_PACKAGE_luci-app-arpbind=y
 CONFIG_PACKAGE_luci-app-filemanager=y
+
+CONFIG_PACKAGE_luci-app-rtp2httpd=y
 # store
 CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_PACKAGE_iperf3-ssl=y
@@ -531,12 +533,12 @@ CONFIG_PACKAGE_docker-compose=y
 
 ### Firewall
 CONFIG_PACKAGE_nat6=y
-CONFIG_PACKAGE_ip6tables-nft=y
-CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
-CONFIG_PACKAGE_iptables-mod-iprange=y
-CONFIG_PACKAGE_iptables-mod-nat-extra=y
-CONFIG_PACKAGE_iptables-mod-tproxy=y
-CONFIG_PACKAGE_iptables-nft=y
+# CONFIG_PACKAGE_ip6tables-nft=y
+# CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
+# CONFIG_PACKAGE_iptables-mod-iprange=y
+# CONFIG_PACKAGE_iptables-mod-nat-extra=y
+# CONFIG_PACKAGE_iptables-mod-tproxy=y
+# CONFIG_PACKAGE_iptables-nft=y
 
 ### ImmortalWrt Proxy - nft  firewall4
 CONFIG_PACKAGE_luci-app-homeproxy=y
