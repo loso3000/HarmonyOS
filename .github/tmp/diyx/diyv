@@ -274,7 +274,7 @@ git clone https://github.com/sirpdboy/luci-app-lucky ./package/lucky
 
 rm -rf ./feeds/packages/net/ddns-go
 rm -rf  ./feeds/luci/applications/luci-app-ddns-go
- git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
+# git clone https://github.com/sirpdboy/luci-app-ddns-go ./package/ddns-go
 
 # rm -rf ./package/add/up/luci-app-adguardhome
 # git clone https://$github/stevenjoezhang/luci-app-adguardhome ./package/luci-app-adguardhome
@@ -420,7 +420,7 @@ pushd feeds/luci
     curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1  #reboot
     curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0002-luci-mod-status-firewall-disable-legacy-firewall-rul2410.patch | patch -p1   #nftable2410
     
-# curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage error
+    # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1  #storeage
     # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val-storage2305.patch | patch -p1  #storeage2305lean
     # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/luci/0004-luci-luci-app-upnp-ipurl-upnp2305.patch | patch -p1  #upnp2305lean
 popd
@@ -473,7 +473,8 @@ sed -i "s/192.168.1.1/192.168.10.1/" {package/base-files/luci2/bin/config_genera
 sed -i "s/LEDE/EzOpWrt/" {package/base-files/luci2/bin/config_generate,include/version.mk} || true
 
 #rtp2httpd
-# git clone https://github.com/stackia/rtp2httpd package/rtp2httpd
+rm -rf ./feeds/luci/applications/luci-app-rtp2httpd
+git clone https://github.com/xuanranran/openwrt-rtp2httpd package/rtp2httpd
 
 rm -rf ./feeds/luci/applications/luci-app-arpbind
 
@@ -481,8 +482,22 @@ rm -rf ./feeds/luci/applications/luci-app-arpbind
 # git clone https://github.com/fcshark-org/openwrt-fchomo package/fchomo
 
 # Docker
-# rm -rf feeds/luci/applications/luci-app-dockerman
+# Add luci-app-dockerman
+# dockerman_repo="https://github.com/oppen321/luci-app-dockerman"
+# docker_repo="https://github.com/sbwml/packages_utils_docker"
+# dockerd_repo="https://github.com/sbwml/packages_utils_dockerd"
+# containerd_repo="https://github.com/sbwml/packages_utils_containerd"
+# runc_repo="https://github.com/sbwml/packages_utils_runc"
+# rm -rf ./feeds/luci/applications/luci-app-dockerman
+# git clone $dockerman_repo feeds/luci/applications/luci-app-dockerman
 # rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+# git clone $docker_repo feeds/packages/utils/docker
+# git clone $dockerd_repo feeds/packages/utils/dockerd
+# git clone $containerd_repo feeds/packages/utils/containerd
+# git clone $runc_repo feeds/packages/utils/runc
+# sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
+# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+# rm -rf feeds/luci/applications/luci-app-dockerman
 # git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
 # git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
 # git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
@@ -592,8 +607,8 @@ sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -foll
 sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/vsftpd-alt/files/vsftpd.uci'`
 
 # 修改makefile
-# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
-# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
 # sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/*/Makefile
@@ -868,14 +883,13 @@ EOF
 # curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/10_system2410gg.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
  
 
-# UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
-#修复TailScale配置文件冲突
-TS_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/tailscale/Makefile")
-if [ -f "$TS_FILE" ]; then
-	sed -i '/\/files/d' $TS_FILE
-	echo "tailscale has been fixed!"
-fi
-sed -i '/\/files/d' ./feeds/packages/net/tailscale/Makefile
+rm -rf  ./feeds/luci/applications/luci-app-tailscale
+rm -rf  ./feeds/packages/net/tailscale
+git clone https://github.com/asvow/luci-app-tailscale package/luci-app-tailscale
+sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
+
+mv -f  ./package/add/up/*   ./package/
+
 
 #修复Coremark编译失败
 CM_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/coremark/Makefile")
