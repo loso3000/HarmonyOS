@@ -885,7 +885,7 @@ EOF
 curl -fsSL  https://raw.githubusercontent.com/loso3000/oth/master/patch/10_system2410.js  >   ./package/add/up/tool/autocore/files/generic/10_system.js
 
 rm -rf  ./feeds/luci/applications/luci-app-tailscale
-rm -rf  ./feeds/packages/net/tailscale
+# rm -rf  ./feeds/packages/net/tailscale
 git clone https://github.com/asvow/luci-app-tailscale package/luci-app-tailscale
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 
