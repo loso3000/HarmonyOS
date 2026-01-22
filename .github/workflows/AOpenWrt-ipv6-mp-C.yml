@@ -172,6 +172,8 @@ jobs:
          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
          echo "OPENWRTROOT=$PWD" >> $GITHUB_OUTPUT
          sed -i '/helloworld/d'  ./feeds.conf.default
+         sed -i '/23\.05/d'  ./feeds.conf.default
+         sed -i '/openwrt-24\.10/s/^#//'  ./feeds.conf.default
          ./scripts/feeds update -a && ./scripts/feeds install -a
     - name: Update package
       run: |
