@@ -113,7 +113,7 @@ mkdir -p ./package/emortal
 [[ -n $CONFIG_S ]] || CONFIG_S=Vip_Super
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
-rm -rf  ./feeds/luci/applications/luci-app-arpbind
+# rm -rf  ./feeds/luci/applications/luci-app-arpbind
 #rm -rf  ./feeds/packages/net/wget
 
 rm -rf  ./feeds/packages/net/speedtest-cli
@@ -298,7 +298,6 @@ rm -rf ./package/add/up/ddns-scripts
 
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/packages/net/mentohust
-rm -rf  ./feeds/luci/applications/luci-app-arpbind
 rm -rf  ./feeds/packages/net/oaf
 #rm -rf  ./feeds/packages/net/wget
 #oaf 
@@ -467,8 +466,6 @@ sed -i "s/LEDE/EzOpWrt/" {package/base-files/luci2/bin/config_generate,include/v
 # rm -rf ./feeds/packages/admin/netdata
 rm -rf  ./feeds/luci/applications/luci-app-netdata
 rm -rf ./feeds/luci/applications/luci-app-netdata package/feeds/packages/luci-app-netdata
-
-rm -rf ./feeds/luci/applications/luci-app-arpbind
 
 # Docker
 # Add luci-app-dockerman
