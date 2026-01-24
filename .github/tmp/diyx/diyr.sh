@@ -154,7 +154,8 @@ rm -rf ./package/ssr/v2ray-core
 # rm -rf ./package/ssr/redsocks2
 # rm -rf ./package/ssr/shadow-tls
 
-rm -rf ./package/ssr/chinadns-ng
+
+# rm -rf ./package/ssr/chinadns-ng
 rm -rf ./feeds/packages/net/sing-box
 
 rm -rf ./package/ssr/xray-core
