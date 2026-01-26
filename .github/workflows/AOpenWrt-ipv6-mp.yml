@@ -255,22 +255,14 @@ jobs:
         cd openwrt/bin/targets/*/*
         mv -f packages ../../../packages/
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        
-        mkdir -p /builder/assets
-        gzip -dc EzOpWrt*.gz > "/builder/assets/ezopwrt.img"
-    - name: Clone ISO builder repository
-      run: |
-        # 克隆 ISO 构建工具到临时目录
-        git clone https://github.com/sirpdboy/openwrt-installer-iso.git /tmp/iso-builder
-
+         mkdir -p /builder/assets
+         gzip -dc EzOpWrt*efi.img.gz > "/builder/assets/ezopwrt.img"
     - name: Build ISO
-      run: |
-        # 直接执行克隆的脚本
-        chmod +x /tmp/iso-builder/dockerrun.sh
-        /tmp/iso-builder/dockerrun.sh \
-          "/builder/assets/ezopwrt.img" \
-          "${{ env.FIRMWARE }}" \
-          "${{ env.DATA }}-${{ env.TAG }}-${{ env.TARGET_DEVICE }}-${{ env.REPO_BRANCH }}-installer.iso"
+      uses: sirpdboy/openwrt-installer-iso@main
+      with:
+        INPUT_IMG: "/builder/assets/ezopwrt.img"
+        OUTPUT_DIR: "${{ env.FIRMWARE }}"
+        OUTPUT_ISO_NAME: "${{ env.DATA }}-${{ env.TAG }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-installer.iso"
         
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
