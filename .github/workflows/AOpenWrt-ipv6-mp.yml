@@ -255,14 +255,14 @@ jobs:
         cd openwrt/bin/targets/*/*
         mv -f packages ../../../packages/
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-         mkdir -p /builder/assets
-         gzip -dc EzOpWrt*efi.img.gz > "/builder/assets/ezopwrt.img"
-    - name: Build ISO
-      uses: sirpdboy/openwrt-installer-iso@main
-      with:
-        INPUT_IMG: "/builder/assets/ezopwrt.img"
-        OUTPUT_DIR: "${{ env.FIRMWARE }}"
-        OUTPUT_ISO_NAME: "${{ env.DATA }}-${{ env.TAG }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-installer.iso"
+         #mkdir -p /builder/assets
+         #gzip -dc EzOpWrt*efi.img.gz > "/builder/assets/ezopwrt.img"
+    #- name: Build ISO
+      #uses: sirpdboy/openwrt-installer-iso@main
+      #with:
+        #INPUT_IMG: "/builder/assets/ezopwrt.img"
+        #OUTPUT_DIR: "${{ env.FIRMWARE }}"
+        #OUTPUT_ISO_NAME: "${{ env.DATA }}-${{ env.TAG }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-installer.iso"
         
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
