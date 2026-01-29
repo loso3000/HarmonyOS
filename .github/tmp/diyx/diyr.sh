@@ -129,6 +129,9 @@ rm -rf  ./feeds/packages/net/naiveproxy
 git clone --depth=1 https://$github/Openwrt-Passwall/openwrt-passwall ./package/passwall2
 git clone --depth=1 https://$github/Openwrt-Passwall/openwrt-passwall  ./package/passwall
 
+sed -i '/Rust:/d' ./package/passwall/luci-app-passwall/Makefile
+sed -i '/Rust:/d' ./package/passwall/luci-app-passwall2/Makefile
+
 # rm -rf ./package/passwall2/luci-app-passwall2/htdocs/luci-static/resources/
 
 # 移除 openwrt feeds 自带的核心库
