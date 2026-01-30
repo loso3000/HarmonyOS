@@ -62,17 +62,12 @@ jobs:
       TARGET_DEVICE: ${{github.event.inputs.target}}
       REPO_BRANCH: ${{github.event.inputs.branch}}
 
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@main
-
     - name: Set time zone
       run: |
         sudo timedatectl set-timezone 'Asia/Shanghai'
         git config --global user.name 'actions'
         git config --global user.email 'action@github.com'
-        echo build-workdir="/builder" >> "$GITHUB_ENV"
         echo WORKDIR="/builder" >> "$GITHUB_ENV"
         if [[ "${{env.TARGET_DEVICE}}" == nanopi-* ]]; then
           echo ccache_target=nanopi >> "$GITHUB_ENV"
@@ -87,10 +82,13 @@ jobs:
       with:
         build-workdir: /builder
 
+    - name: Checkout
+      uses: actions/checkout@main
+        
     - name: Build System Setup
       uses: sirpdboy/actions@build-setup
 
-    - name: install Go
+    - name: install Go v6
       uses: actions/setup-go@v6
       with:
         go-version: '12.3'
