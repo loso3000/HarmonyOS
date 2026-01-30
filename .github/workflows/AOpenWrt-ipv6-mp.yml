@@ -68,6 +68,7 @@ jobs:
         sudo timedatectl set-timezone 'Asia/Shanghai'
         git config --global user.name 'actions'
         git config --global user.email 'action@github.com'
+        echo build-workdir="/builder" >> "$GITHUB_ENV"
         echo WORKDIR="/builder" >> "$GITHUB_ENV"
         if [[ "${{env.TARGET_DEVICE}}" == nanopi-* ]]; then
           echo ccache_target=nanopi >> "$GITHUB_ENV"
