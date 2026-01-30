@@ -110,11 +110,14 @@ jobs:
         else 
           git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
         fi
+        ls -l 
+        cp -Rf ./.github/tmp/* /builder
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Update feeds
       run: | 
       
+          ls -l 
           # mv -f ./.github/tmp/* ./
            cp -Rf ./.github/tmp/* ./
            cp -Rf ./.github/tmp/* /builder
