@@ -79,9 +79,9 @@ jobs:
       uses: sirpdboy/actions@show-system
 
     - name: Free disk space
-      uses: sirpdboy/actions@free-disk
+      uses: sbwml/actions@free-disk
       with:
-        build-workdir: /builder
+        build-mount-path: /builder
 
     - name: Build System Setup
       uses: sirpdboy/actions@build-setup
