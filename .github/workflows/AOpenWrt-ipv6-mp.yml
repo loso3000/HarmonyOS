@@ -62,7 +62,11 @@ jobs:
       TARGET_DEVICE: ${{github.event.inputs.target}}
       REPO_BRANCH: ${{github.event.inputs.branch}}
 
+
     steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
     - name: Set time zone
       run: |
         sudo timedatectl set-timezone 'Asia/Shanghai'
@@ -79,13 +83,18 @@ jobs:
       uses: sirpdboy/actions@show-system
 
     - name: Free disk space
-      uses: sbwml/actions@free-disk
+      uses: sirpdboy/actions@free-disk
       with:
-        build-mount-path: /builder
+        build-workdir: /builder
 
     - name: Build System Setup
       uses: sirpdboy/actions@build-setup
 
+    - name: install Go
+      uses: actions/setup-go@v6
+      with:
+        go-version: '12.3'
+        
     - name: Restore Cached
       uses: actions/cache/restore@v5
       with:
@@ -108,6 +117,7 @@ jobs:
       
           # mv -f ./.github/tmp/* ./
            cp -Rf ./.github/tmp/* ./
+           cp -Rf ./.github/tmp/* /builder
           cd openwrt
           sed -i '/helloworld/d'  ./feeds.conf.default
           sed -i '/openwrt-23/d'  ./feeds.conf.default
