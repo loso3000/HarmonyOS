@@ -79,7 +79,7 @@ jobs:
         git config --global user.name 'actions'
         git config --global user.email 'action@github.com'
         echo build_dir="/builder" >> "$GITHUB_ENV"
-
+      
     - name: Free disk space
       uses: sirpdboy/actions@free-disk
       with:
@@ -90,9 +90,6 @@ jobs:
 
     - name: Install LLVM
       uses: sirpdboy/actions@install-llvm
-
-    - name: Checkout
-      uses: actions/checkout@main
 
     - uses: actions/setup-go@v6
       with: 
