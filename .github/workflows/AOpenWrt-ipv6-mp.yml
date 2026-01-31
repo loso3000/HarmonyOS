@@ -116,16 +116,16 @@ jobs:
         else 
           git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
         fi
-        ls -l 
+        ls -la   || true
         # cp -Rf ./.github/tmp/* /builder
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Update feeds
       run: | 
       
-          ls -l 
+          ls -la   || true
           # mv -f ./.github/tmp/* ./
-           cp -Rf ./.github/tmp/* ./
+           cp -Rf ./.github/tmp/* ./  || true
            #cp -Rf ./.github/tmp/* /builder
           cd openwrt
           sed -i '/helloworld/d'  ./feeds.conf.default
