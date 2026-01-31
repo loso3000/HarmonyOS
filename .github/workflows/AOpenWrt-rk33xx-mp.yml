@@ -115,19 +115,15 @@ jobs:
         else 
           git clone --depth 1 -b $REPO_BRANCH  $REPO_IM  openwrt
         fi
+        cp -Rf $GITHUB_WORKSPACE/.github/tmp/*  ./
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
-
-    - name: Cache
-      uses: klever1988/cachewrtbuild@main
-      with:
-       ccache: 'true'
-       mixkey: 'rockchip'
-       clean:  'false'  # 'false'
-       prefix: /builder/openwrt
     
     - name: Update feeds
       run: | 
+      
+          ls -la
           cp -Rf ./.github/tmp/* ./  || true
+          ls -la
           cd openwrt
           sed -i '/helloworld/d'  ./feeds.conf.default
           sed -i '/23\.05/d'  ./feeds.conf.default
