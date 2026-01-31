@@ -127,7 +127,8 @@ jobs:
         else 
           git clone --depth 1 -b $REPO_BRANCH  $REPO_IM  openwrt
         fi
-        cp -Rf $GITHUB_WORKSPACE/.github/tmp/*  ./
+        ls
+        cp -Rf $GITHUB_WORKSPACE/.github/tmp/*  ./ || true
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
     
     - name: Update feeds
