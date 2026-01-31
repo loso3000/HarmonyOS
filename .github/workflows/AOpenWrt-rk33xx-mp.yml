@@ -127,7 +127,7 @@ jobs:
     
     - name: Update feeds
       run: | 
-          cp -Rf ./.github/tmp/* ./
+          cp -Rf ./.github/tmp/* ./  || true
           cd openwrt
           sed -i '/helloworld/d'  ./feeds.conf.default
           sed -i '/23\.05/d'  ./feeds.conf.default
