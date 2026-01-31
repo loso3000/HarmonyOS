@@ -86,7 +86,13 @@ jobs:
       uses: sirpdboy/actions@build-setup
       
     - name: Install LLVM
-      uses: sirpdboy/actions@install-llvm
+      shell: bash
+      run: |
+        sudo apt-get update
+        # Ubuntu 24.04 官方仓库中的 LLVM 版本
+        sudo apt-get -y install llvm clang libclang-dev
+    #- name: Install LLVM
+    #  uses: sirpdboy/actions@install-llvm
       
     - name: Checkout
       uses: actions/checkout@main
