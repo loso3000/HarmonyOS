@@ -1,0 +1,280 @@
+name: AOpenWrt-ipv6-mp-all
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: '选择仓库的分支：'
+        default: 'master'
+        required: true
+        type: choice
+        options: [ openwrt-21.02, master, stable,  openwrt-23.05 ]
+      cpu_s:
+        description: 'CPU优选'
+        required: true
+        default: '8'
+        type: choice
+        options:
+          - '8'
+          - '8370C'
+          - '8272CL'
+          - '8171M'
+      target:
+        description: '选择要生成的机型：'
+        default: 'x86_64'
+        required: true
+        type: choice
+        options: [ x86_64, rm2100, xm2100, r2s, r4s, r4se, r5s, r5c ]
+      date_s:
+        description: '固件日期'
+        default: 'default'
+        required: false
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  # REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  #REPO_BRANCH: openwrt-21.02
+  FEEDS_CONF: feeds.conf.default
+  DIY_P1_SH: diyx/diyv
+  APT: apt
+  UPLOAD_BIN_DIR: true
+  UPLOAD_FIRMWARE: true
+  UPLOAD_RELEASE: flase
+  TZ: Asia/Shanghai
+jobs:
+  Build:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        shell: bash
+    name: lede-${{ matrix.config }}-${{github.event.inputs.target}}-${{github.event.inputs.branch}}-${{github.event.inputs.date_s}}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - Vip_Plus
+          - Vip_Bypass
+    env:
+      CONFIG_S: ${{ matrix.config }}
+      CPU_S: ${{github.event.inputs.cpu_s}}
+      DATE_S: ${{github.event.inputs.date_s}}
+      TARGET_DEVICE: ${{github.event.inputs.target}}
+      REPO_BRANCH: ${{github.event.inputs.branch}}
+
+    steps:
+    - name: Set time zone
+      run: |
+        sudo timedatectl set-timezone 'Asia/Shanghai'
+        git config --global user.name 'actions'
+        git config --global user.email 'action@github.com'
+        echo WORKDIR="/builder" >> "$GITHUB_ENV"
+        if [[ "${{env.TARGET_DEVICE}}" == nanopi-* ]]; then
+          echo ccache_target=nanopi >> "$GITHUB_ENV"
+        else
+          echo ccache_target=${{env.TARGET_DEVICE}} >> "$GITHUB_ENV"
+        fi
+    - name: Show system info
+      uses: sirpdboy/actions@show-system
+
+    - name: Free disk space
+      uses: sirpdboy/actions@free-disk
+      with:
+        build-workdir: /builder
+
+    - name: Build System Setup
+      uses: sirpdboy/actions@build-setup
+      
+    - name: Install LLVM
+      shell: bash
+      run: |
+        sudo apt-get update
+        # Ubuntu 24.04 官方仓库中的 LLVM 版本
+        sudo apt-get -y install llvm clang libclang-dev
+    #- name: Install LLVM
+    #  uses: sirpdboy/actions@install-llvm
+      
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - uses: actions/setup-go@v6
+      with: 
+         go-version: '1.23'
+        
+    - name: Restore Cached
+      uses: actions/cache/restore@v5
+      with:
+        path: /builder/.ccache
+        key: ${{env.REPO_BRANCH}}-${{ env.ccache_target }}
+
+    - name: Clone source code
+      working-directory: /builder
+      run: |
+        df -hT $PWD
+        if [[ $REPO_BRANCH == 'stable' ]]; then
+          git clone --depth 1 https://github.com/DHDAXCW/lede-rockchip -b $REPO_BRANCH openwrt
+        else 
+          git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
+        fi
+        ls -la   || true
+        # cp -Rf ./.github/tmp/* /builder
+        ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
+
+    - name: Update feeds
+      run: | 
+      
+          ls -la   || true
+          # mv -f ./.github/tmp/* ./
+           cp -Rf ./.github/tmp/* ./  || true
+           #cp -Rf ./.github/tmp/* /builder
+          cd openwrt
+          sed -i '/helloworld/d'  ./feeds.conf.default
+          sed -i '/openwrt-23/d'  ./feeds.conf.default
+          sed -i '/openwrt-24/s/^#//'  ./feeds.conf.default
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+    - name: Update package
+      run: |
+         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+         cd openwrt
+         chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
+         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
+         echo "OPENWRTROOT=$PWD"   >> $GITHUB_OUTPUT
+         $GITHUB_WORKSPACE/$DIY_P1_SH
+         chmod -R 755 .
+    - name:  defconfig
+      run: |
+        cd openwrt
+         cat  $GITHUB_WORKSPACE/seed/${CONFIG_S}  >  .config
+         echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config #Cache.Speedup
+         case "${CONFIG_S}" in
+        "Vip"*)        
+          cat  $GITHUB_WORKSPACE/seed/comm  >>  .config
+        ;;
+        esac
+        make defconfig
+        df -h
+    - name:  Download packages
+      run: |
+        cd openwrt
+        make download -j8
+        find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
+        df -h
+    - name: Compile Openwrt
+      id: compileopenwrt
+      # continue-on-error: true
+      run: |
+        cd openwrt
+        df -hT
+        # make -j1 V=s
+        echo -e "$(nproc) thread compile"
+        make tools/compile -j$(nproc) || make tools/compile -j$(nproc)
+        make toolchain/compile -j$(nproc) || make toolchain/compile -j$(nproc)
+        make target/compile -j$(nproc) || make target/compile -j$(nproc) IGNORE_ERRORS=1
+        make diffconfig
+        make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j$(nproc) IGNORE_ERRORS=1
+        make package/index
+         bash  bakkmod.sh
+           cd $OPENWRTROOT/bin/packages/*
+         PLATFORM=$(basename `pwd`)
+         echo "PLATFORM=$PLATFORM" >> $GITHUB_ENV
+         echo "PLATFORM=$PLATFORM" >> $GITHUB_OUTPUT
+         cd $OPENWRTROOT/bin/targets/*
+         TARGET=$(basename `pwd`)
+         echo "TARGET=$TARGET" >> $GITHUB_ENV
+         echo "TARGET=$TARGET" >> $GITHUB_OUTPUT
+         cd *
+         SUBTARGET=$(basename `pwd`)
+         echo "SUBTARGET=$SUBTARGET" >> $GITHUB_ENV
+         echo "SUBTARGET=$SUBTARGET" >> $GITHUB_OUTPUT
+         echo "status=success" >> $GITHUB_OUTPUT
+    - name: Generate Firmware
+      id: compile
+      if: steps.compileopenwrt.outputs.status  == 'success'
+      run: |
+        df -h
+         shopt -s extglob
+         cd $OPENWRTROOT
+         rm -rf ./dl
+         sed -i "s/subtarget/$SUBTARGET/g" files/etc/opkg/distfeeds.conf.server
+         sed -i "s/target\//$TARGET\//g" files/etc/opkg/distfeeds.conf.server
+         sed -i "s/platform/$PLATFORM/g" files/etc/opkg/distfeeds.conf.server
+         cp files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
+        make package/install -j$(nproc) || make package/install -j1 V=s
+        make target/install -j$(nproc) || make target/install -j1 V=s
+        make checksum
+        bash buildmd5.sh
+         . $GITHUB_WORKSPACE/ezopenwrt_version
+         if [[ $DATE_S == 'default' ]]; then
+              echo "DATA=`date +%Y%m%d_%H -d +"5"hour`" >> $GITHUB_ENV
+              # echo "DATA=`echo  $(date -d "$EZDATE" "+%F_%H") `" >>$GITHUB_ENV
+         else 
+          echo "DATA=$DATE_S" >> $GITHUB_ENV
+         fi
+         echo "TAG=$EZVER" >> $GITHUB_ENV
+        echo "status=success" >> $GITHUB_OUTPUT
+    - name: Organize files
+      id: organize
+      if: steps.compile.outputs.status  == 'success'
+      run: |
+        cd openwrt/bin/targets/*/*
+        mv -f packages ../../../packages/
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+         #mkdir -p /builder/assets
+         #gzip -dc EzOpWrt*efi.img.gz > "/builder/assets/ezopwrt.img"
+    #- name: Build ISO
+      #uses: sirpdboy/openwrt-installer-iso@main
+      #with:
+        #INPUT_IMG: "/builder/assets/ezopwrt.img"
+        #OUTPUT_DIR: "${{ env.FIRMWARE }}"
+        #OUTPUT_ISO_NAME: "${{ env.DATA }}-${{ env.TAG }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-installer.iso"
+        
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      if: env.UPLOAD_FIRMWARE == 'true' && steps.compile.outputs.status  == 'success'
+      with:
+        name: ${{ env.DATA }}-${{ env.TAG }}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-Firmware
+        path: ${{ env.FIRMWARE }}
+
+    - name: Upload bin directory
+      uses: actions/upload-artifact@main
+      if: env.UPLOAD_BIN_DIR == 'true' && steps.compile.outputs.status  == 'success'
+      with:
+        name: ${{ env.DATA }}-${{ env.TAG }}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-ipk
+        path: ./openwrt/bin/packages/
+   
+ 
+    - name: Generate release tag
+      id: tag
+      if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status  == 'success'
+      run: |
+        echo -e "\n* The stable source code has been updated." >> release.txt
+        sed -i '1i ## Firmware Update Log' release.txt
+        touch release.txt
+        echo "status=success" >> $GITHUB_OUTPUT
+        
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v2
+      if: steps.tag.outputs.status == 'success' && steps.compile.outputs.status  == 'success'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+      with:
+        tag_name: ${{ env.TAG }}
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
+
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@v2
+      with:
+          retain_days: 1
+          keep_minimum_runs: 5
+
+    - name: Remove old Releases
+      uses: dev-drprasad/delete-older-releases@v0.3.4
+      with:
+          keep_latest: 5
+          keep_min_download_counts: 1 # Optional parameters
+          delete_tags: true
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
