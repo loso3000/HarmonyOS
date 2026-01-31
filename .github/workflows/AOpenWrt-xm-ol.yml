@@ -74,7 +74,7 @@ jobs:
           - r5s
           - r5c
           - r6s
-          - r5c
+          - r6c
           - r76s
     env:
       CONFIG_S: ${{github.event.inputs.config_s}}
