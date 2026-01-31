@@ -82,14 +82,14 @@ jobs:
       with:
         build-workdir: /builder
 
+    - name: Build System Setup
+      uses: sirpdboy/actions@build-setup
+      
     - name: Install LLVM
       uses: sirpdboy/actions@install-llvm
       
     - name: Checkout
       uses: actions/checkout@main
-
-    - name: Build System Setup
-      uses: sirpdboy/actions@build-setup
 
     - uses: actions/setup-go@v6
       with: 
