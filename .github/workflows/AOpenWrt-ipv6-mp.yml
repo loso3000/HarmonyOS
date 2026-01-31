@@ -82,16 +82,18 @@ jobs:
       with:
         build-workdir: /builder
 
+    - name: Install LLVM
+      uses: sirpdboy/actions@install-llvm
+      
     - name: Checkout
       uses: actions/checkout@main
-        
+
     - name: Build System Setup
       uses: sirpdboy/actions@build-setup
 
-    - name: install Go v6
-      uses: actions/setup-go@v6
-      with:
-        go-version: '12.3'
+    - uses: actions/setup-go@v6
+      with: 
+         go-version: '1.23'
         
     - name: Restore Cached
       uses: actions/cache/restore@v5
@@ -109,7 +111,7 @@ jobs:
           git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
         fi
         ls -l 
-        cp -Rf ./.github/tmp/* /builder
+        # cp -Rf ./.github/tmp/* /builder
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Update feeds
@@ -118,7 +120,7 @@ jobs:
           ls -l 
           # mv -f ./.github/tmp/* ./
            cp -Rf ./.github/tmp/* ./
-           cp -Rf ./.github/tmp/* /builder
+           #cp -Rf ./.github/tmp/* /builder
           cd openwrt
           sed -i '/helloworld/d'  ./feeds.conf.default
           sed -i '/openwrt-23/d'  ./feeds.conf.default
