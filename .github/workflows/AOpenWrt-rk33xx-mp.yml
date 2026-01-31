@@ -71,15 +71,16 @@ jobs:
       TARGET_DEVICE: ${{github.event.inputs.target}}
       REPO_BRANCH: ${{github.event.inputs.branch}}
  
-
     steps:
-    - name: Setup variables
+    - name: Set time zone
       run: |
         sudo timedatectl set-timezone 'Asia/Shanghai'
         git config --global user.name 'actions'
         git config --global user.email 'action@github.com'
-        echo build_dir="/builder" >> "$GITHUB_ENV"
-      
+        echo WORKDIR="/builder" >> "$GITHUB_ENV"
+    - name: Show system info
+      uses: sirpdboy/actions@show-system
+
     - name: Free disk space
       uses: sirpdboy/actions@free-disk
       with:
@@ -87,24 +88,28 @@ jobs:
 
     - name: Build System Setup
       uses: sirpdboy/actions@build-setup
-
+      
+    - name: Install LLVM
+      shell: bash
+      run: |
+        sudo apt-get update
+        # Ubuntu 24.04 官方仓库中的 LLVM 版本
+        sudo apt-get -y install llvm clang libclang-dev
     #- name: Install LLVM
     #  uses: sirpdboy/actions@install-llvm
-    
-    - name: Install LLVM
-      uses: KyleMayes/install-llvm-action@v2
-      with:
-        version: "20"
-        
+      
+    - name: Checkout
+      uses: actions/checkout@main
+
     - uses: actions/setup-go@v6
       with: 
          go-version: '1.23'
-         
+        
     - name: Restore Cached
       uses: actions/cache/restore@v5
       with:
         path: /builder/.ccache
-        key: ${{env.REPO_BRANCH}}
+        key: ${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}
         
     - name: Clone source code
       working-directory: /builder
