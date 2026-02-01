@@ -1,0 +1,202 @@
+name: ISO
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - '.github/workflows/ISO.yml'
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      alpine_version:
+        description: 'Alpine版本'
+        required: true
+        default: '3.20'
+env:
+  ALPINE_VERSION: ${{ github.event.inputs.alpine_version || '3.20' }}
+
+jobs:
+  build-iso:
+    runs-on: ubuntu-latest
+    
+    steps:
+      
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          grub2-common \
+          grub-pc-bin \
+          grub-efi-amd64-bin \
+          xorriso \
+          mtools \
+          dosfstools \
+          curl \
+          cpio
+        
+    - name: Prepare workspace
+      run: |
+        mkdir -p iso/boot/grub
+        mkdir -p iso/kernel
+        mkdir -p iso/rootfs
+        mkdir -p scripts
+        
+    - name: Download minimal kernel
+      run: |
+        # 从Ubuntu仓库下载最小化内核（约5MB）
+        cd iso/kernel
+        curl -L -o vmlinuz-minimal "https://cloud-images.ubuntu.com/minimal/releases/jammy/release/unpacked/ubuntu-22.04-minimal-cloudimg-amd64-vmlinuz-generic"
+        curl -L -o initrd-minimal "https://cloud-images.ubuntu.com/minimal/releases/jammy/release/unpacked/ubuntu-22.04-minimal-cloudimg-amd64-initrd-generic"
+        # 重命名为标准名称
+        mv vmlinuz-minimal vmlinuz
+        mv initrd-minimal initrd.img
+        
+    - name: Create minimal rootfs
+      run: |
+        cat > scripts/create-rootfs.sh << 'EOF'
+        #!/bin/bash
+        ROOTFS_DIR="../iso/rootfs"
+        
+        # 创建最简根目录结构
+        mkdir -p $ROOTFS_DIR/{bin,dev,etc,lib,lib64,proc,sys,tmp,usr/bin}
+        
+        # 创建自定义init脚本（直接启动bash）
+        cat > $ROOTFS_DIR/init << 'INITEOF'
+        #!/bin/sh
+        echo "=== Minimal Live ISO ==="
+        echo "Successfully booted! Starting shell..."
+        
+        # 挂载必要的文件系统
+        mount -t proc proc /proc
+        mount -t sysfs sysfs /sys
+        mount -t devtmpfs devtmpfs /dev
+        
+        # 设置PATH
+        export PATH=/bin:/usr/bin
+        
+        # 如果/dev/console不存在，创建它
+        [ -c /dev/console ] || mknod /dev/console c 5 1
+        
+        # 启动交互式shell
+        exec /bin/sh
+        INITEOF
+        
+        chmod +x $ROOTFS_DIR/init
+        
+        # 从host系统复制最小的busybox静态二进制文件
+        if command -v busybox >/dev/null 2>&1; then
+          cp $(which busybox) $ROOTFS_DIR/bin/
+          chmod +x $ROOTFS_DIR/bin/busybox
+          # 创建符号链接
+          cd $ROOTFS_DIR/bin
+          for cmd in sh ls cat echo mount ps; do
+            ln -s busybox $cmd
+          done
+        else
+          # 备用方案：下载静态busybox
+          cd $ROOTFS_DIR/bin
+          curl -L -o busybox "https://www.busybox.net/downloads/binaries/1.35.0-x86_64-linux-musl/busybox"
+          chmod +x busybox
+          for cmd in sh ls cat echo mount ps; do
+            ./busybox --install -s .
+          done
+        fi
+        EOF
+        
+        chmod +x scripts/create-rootfs.sh
+        ./scripts/create-rootfs.sh
+        
+    - name: Create GRUB configuration
+      run: |
+        cat > iso/boot/grub/grub.cfg << 'EOF'
+        set timeout=5
+        set default=0
+        
+        menuentry "Minimal Live Shell" {
+          echo "Loading kernel..."
+          # 加载内核，指定initrd和根文件系统在内存中(ramdisk)
+          linux /kernel/vmlinuz console=ttyS0 console=tty0 quiet
+          # 加载initrd，指定自定义init脚本
+          initrd /kernel/initrd.img
+          # 注意：实际initrd会解压到内存，然后执行我们的自定义init
+        }
+        
+        menuentry "Boot from hard disk" {
+          set root=(hd1)
+          chainloader +1
+        }
+        EOF
+        
+    - name: Create UEFI boot image
+      run: |
+        cat > scripts/create-efi-image.sh << 'EOF'
+        #!/bin/bash
+        # 创建EFI引导镜像
+        dd if=/dev/zero of=../iso/boot/efi.img bs=1M count=10
+        mkfs.vfat ../iso/boot/efi.img
+        
+        # 挂载并复制EFI引导器
+        mkdir -p efi_mount
+        sudo mount -o loop ../iso/boot/efi.img efi_mount
+        sudo mkdir -p efi_mount/EFI/BOOT
+        
+        # 复制GRUB EFI文件
+        if [ -f /usr/lib/grub/x86_64-efi/grub.efi ]; then
+          sudo cp /usr/lib/grub/x86_64-efi/grub.efi efi_mount/EFI/BOOT/BOOTX64.EFI
+        elif [ -f /usr/lib/grub/x86_64-efi-signed/grubnetx64.efi.signed ]; then
+          sudo cp /usr/lib/grub/x86_64-efi-signed/grubnetx64.efi.signed efi_mount/EFI/BOOT/BOOTX64.EFI
+        fi
+        
+        sudo umount efi_mount
+        rmdir efi_mount
+        EOF
+        
+        chmod +x scripts/create-efi-image.sh
+        ./scripts/create-efi-image.sh
+        
+    - name: Build ISO with xorriso
+      run: |
+        cat > scripts/build-iso.sh << 'EOF'
+        #!/bin/bash
+        ISO_NAME="minimal-live-shell-$(date +%Y%m%d-%H%M).iso"
+        
+        xorriso -as mkisofs \
+          -r -V "MINIMAL_LIVE" \
+          -o "$ISO_NAME" \
+          -iso-level 3 \
+          -J \
+          \
+          # BIOS引导
+          -eltorito-boot boot/grub/boot.img \
+          -no-emul-boot \
+          -boot-load-size 4 \
+          -boot-info-table \
+          \
+          # UEFI引导
+          --eltorito-alt-boot \
+          -e boot/efi.img \
+          -no-emul-boot \
+          \
+          # 包含所有文件
+          iso/
+        
+        echo "ISO built: $ISO_NAME"
+        ls -lh *.iso
+        EOF
+        
+        chmod +x scripts/build-iso.sh
+        ./scripts/build-iso.sh
+        
+    - name: Upload ISO artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: minimal-live-iso
+        path: "*.iso"
+        
+    - name: Display ISO info
+      run: |
+        echo "=== Build Successful ==="
+        echo "ISO file: $(ls *.iso)"
+        echo "Size: $(du -h *.iso | cut -f1)"
+        echo "========================="
