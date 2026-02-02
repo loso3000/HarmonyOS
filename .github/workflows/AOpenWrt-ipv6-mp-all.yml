@@ -128,9 +128,9 @@ jobs:
            cp -Rf ./.github/tmp/* ./  || true
            #cp -Rf ./.github/tmp/* /builder
           cd openwrt
-          sed -i '/helloworld/d'  ./feeds.conf.default
-          sed -i '/openwrt-23/d'  ./feeds.conf.default
-          sed -i '/openwrt-24/s/^#//'  ./feeds.conf.default
+          # sed -i '/helloworld/d'  ./feeds.conf.default
+          # sed -i '/openwrt-23/d'  ./feeds.conf.default
+          # sed -i '/openwrt-24/s/^#//'  ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
     - name: Update package
