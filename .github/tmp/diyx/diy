@@ -405,8 +405,8 @@ sed -i 's/processes = 3/processes = 4/g' feeds/packages/net/uwsgi/files-luci-sup
 sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
 
 # UPnP
-rm -rf ./package/add/up/upnpfw4
-# rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
+# rm -rf ./package/add/up/upnpfw4
+rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 # git clone https://$gitea/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
 # git clone https://$gitea/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
 
@@ -490,13 +490,16 @@ git clone https://github.com/xuanranran/openwrt-rtp2httpd package/rtp2httpd
 # sed -i '/cgroupfs-mount/d' feeds/packages/utils/dockerd/Config.in
 # sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 
-# rm -rf feeds/luci/applications/luci-app-dockerman
-# git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
-# git clone https://github.com/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
-# git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
-# git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-# git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-# git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
+# Add luci-app-dockerman
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+#  git clone https://$github/sirpdboy/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
+ rm -rf feeds/packages/utils/dockerd
+git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
 
 rm -rf ./feeds/luci/collections/luci-app-pptp-server
 rm -rf ./feeds/luci/collections/luci-app-ipsec-server
