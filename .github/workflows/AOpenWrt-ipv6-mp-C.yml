@@ -66,15 +66,21 @@ jobs:
       TARGET_DEVICE: ${{github.event.inputs.target}}
       REPO_BRANCH: ${{github.event.inputs.branch}}
  
-
     steps:
-    - name: Setup variables
+    - name: Set time zone
       run: |
         sudo timedatectl set-timezone 'Asia/Shanghai'
         git config --global user.name 'actions'
         git config --global user.email 'action@github.com'
-        echo build_dir="/builder" >> "$GITHUB_ENV"
-    
+        echo WORKDIR="/builder" >> "$GITHUB_ENV"
+        if [[ "${{env.TARGET_DEVICE}}" == nanopi-* ]]; then
+          echo ccache_target=nanopi >> "$GITHUB_ENV"
+        else
+          echo ccache_target=${{env.TARGET_DEVICE}} >> "$GITHUB_ENV"
+        fi
+    - name: Show system info
+      uses: sirpdboy/actions@show-system
+
     - name: Free disk space
       uses: sirpdboy/actions@free-disk
       with:
