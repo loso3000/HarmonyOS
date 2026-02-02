@@ -113,10 +113,13 @@ jobs:
     
     - name: Update feeds
       run: | 
-         mv -f ./.github/tmp/* ./
+         #mv -f ./.github/tmp/* ./
+           cp -Rf ./.github/tmp/* ./  || true
+           ls -l 
          cd openwrt
          echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
          echo "OPENWRTROOT=$PWD" >> $GITHUB_OUTPUT
+         ls -l
          sed -i '/helloworld/d'  ./feeds.conf.default
          # sed -i '/23\.05/d'  ./feeds.conf.default
          # sed -i '/openwrt-24\.10/s/^#//'  ./feeds.conf.default
