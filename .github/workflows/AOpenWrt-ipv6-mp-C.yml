@@ -82,52 +82,62 @@ jobs:
 
     - name: Build System Setup
       uses: sirpdboy/actions@build-setup
-
+      
     - name: Install LLVM
-      uses: sirpdboy/actions@install-llvm
+      shell: bash
+      run: |
+        sudo apt-get update
+        # Ubuntu 24.04 官方仓库中的 LLVM 版本
+        sudo apt-get -y install llvm clang libclang-dev
+    #- name: Install LLVM
+    #  uses: sirpdboy/actions@install-llvm
+      
+    - name: Checkout
+      uses: actions/checkout@main
 
     - uses: actions/setup-go@v6
       with: 
          go-version: '1.23'
-         
+        
     - name: Restore Cached
       uses: actions/cache/restore@v5
       with:
         path: /builder/.ccache
-        key: ${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}
+        key: ${{env.REPO_BRANCH}}-${{ env.ccache_target }}
+
     - name: Clone source code
       working-directory: /builder
       run: |
         df -hT $PWD
-        if [[ $REPO_BRANCH == 'master' ]]; then
-          git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH openwrt
+        if [[ $REPO_BRANCH == 'stable' ]]; then
+          git clone --depth 1 https://github.com/DHDAXCW/lede-rockchip -b $REPO_BRANCH openwrt
         else 
-          git clone --depth 1 https://github.com/immortalwrt/immortalwrt -b $REPO_BRANCH  openwrt
+          git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
         fi
+        ls -la   || true
+        # cp -Rf ./.github/tmp/* /builder
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
-        if [[ $DATE_S == 'default' ]]; then
-          echo "DATA=`date +%Y%m%d_%H -d +"12"hour`" >> $GITHUB_ENV
-        else 
-          echo "DATA=$DATE_S" >>$GITHUB_ENV
-        fi
-    
+
     - name: Update feeds
       run: | 
-         #mv -f ./.github/tmp/* ./
+      
+          ls -la   || true
+          # mv -f ./.github/tmp/* ./
            cp -Rf ./.github/tmp/* ./  || true
-           ls -l 
-         cd openwrt
-         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
-         echo "OPENWRTROOT=$PWD" >> $GITHUB_OUTPUT
-         ls -l
-         sed -i '/helloworld/d'  ./feeds.conf.default
-         # sed -i '/23\.05/d'  ./feeds.conf.default
-         # sed -i '/openwrt-24\.10/s/^#//'  ./feeds.conf.default
-         ./scripts/feeds update -a && ./scripts/feeds install -a
+           #cp -Rf ./.github/tmp/* /builder
+          cd openwrt
+          # sed -i '/helloworld/d'  ./feeds.conf.default
+          # sed -i '/openwrt-23/d'  ./feeds.conf.default
+          # sed -i '/openwrt-24/s/^#//'  ./feeds.conf.default
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
     - name: Update package
       run: |
-         chmod +x ${DIY_P1_SH}
+         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
          cd openwrt
+         chmod +x $GITHUB_WORKSPACE/$DIY_P1_SH
+         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
+         echo "OPENWRTROOT=$PWD"   >> $GITHUB_OUTPUT
          $GITHUB_WORKSPACE/$DIY_P1_SH
          chmod -R 755 .
     - name:  defconfig
