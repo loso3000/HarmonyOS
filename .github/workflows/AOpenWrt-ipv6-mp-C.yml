@@ -10,7 +10,7 @@ on:
         default: 'master'
         required: true
         type: choice
-        options: [ master, stable, openwrt-21.02, openwrt-23.05 ]
+        options: [ master, openwrt-24.10, openwrt-25.12 ]
       config_s:
         description: '配置文件'
         default: 'Vip_Custom'
@@ -38,8 +38,8 @@ on:
         default: 'default'
         required: false
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  # REPO_URL: https://github.com/DHDAXCW/lede-rockchip
+  REPO_LEDE: https://github.com/coolsnowwolf/lede
+  REPO_IM: https://github.com/immortalwrt/immortalwrt
   #REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diyx/diy
@@ -111,13 +111,12 @@ jobs:
       working-directory: /builder
       run: |
         df -hT $PWD
-        if [[ $REPO_BRANCH == 'stable' ]]; then
-          git clone --depth 1 https://github.com/DHDAXCW/lede-rockchip -b $REPO_BRANCH openwrt
-        else 
+        if [[ $REPO_BRANCH == 'master' ]]; then
           git clone --depth 1 https://github.com/coolsnowwolf/lede -b $REPO_BRANCH  openwrt
+        else 
+          git clone --depth 1 https://github.com/immortalwrt/immortalwrt -b $REPO_BRANCH openwrt
         fi
         ls -la   || true
-        # cp -Rf ./.github/tmp/* /builder
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Update feeds
