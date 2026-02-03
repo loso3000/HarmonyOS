@@ -37,7 +37,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diyx/diyv
   APT: apt
-  UPLOAD_BIN_DIR: true
+  UPLOAD_BIN_DIR: flase
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: flase
   TZ: Asia/Shanghai
@@ -225,7 +225,7 @@ jobs:
          mkdir -p /builder/assets
          gzip -dc EzOpWrt*.gz > "/builder/assets/ezopwrt.img"
     - name: Build ISO
-      uses: sirpdboy/openwrt-installer-iso@main
+      uses: sirpdboy/openwrt-installer-iso@v2
       with:
         INPUT_IMG: "/builder/assets/ezopwrt.img"
         OUTPUT_DIR: "${{ env.FIRMWARE }}"
