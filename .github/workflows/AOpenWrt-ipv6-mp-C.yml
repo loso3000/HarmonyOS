@@ -216,13 +216,13 @@ jobs:
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       with:
-        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-Firmware
+        name: EzOpWrt-Ipv6-${{env.CONFIG_S}}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-Firmware
         path: ${{ env.FIRMWARE }}
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
       with:
-        name: ${{ env.DATA }}-EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-${{env.TARGET_DEVICE}}-ipk
+        name: EzOpWrt-Ipv6-${{ env.CONFIG_S }}-${{env.TARGET_DEVICE}}-${{env.REPO_BRANCH}}-ipk
         path: ./openwrt/bin/packages/
    
     - name: Upload firmware to release
