@@ -73,11 +73,7 @@ jobs:
         git config --global user.name 'actions'
         git config --global user.email 'action@github.com'
         echo WORKDIR="/builder" >> "$GITHUB_ENV"
-        if [[ "${{env.TARGET_DEVICE}}" == nanopi-* ]]; then
-          echo ccache_target=nanopi >> "$GITHUB_ENV"
-        else
-          echo ccache_target=${{env.TARGET_DEVICE}} >> "$GITHUB_ENV"
-        fi
+
     - name: Show system info
       uses: sirpdboy/actions@show-system
 
@@ -89,14 +85,14 @@ jobs:
     - name: Build System Setup
       uses: sirpdboy/actions@build-setup
       
-    - name: Install LLVM
-      shell: bash
-      run: |
-        sudo apt-get update
-        # Ubuntu 24.04 官方仓库中的 LLVM 版本
-        sudo apt-get -y install llvm clang libclang-dev
     #- name: Install LLVM
-    #  uses: sirpdboy/actions@install-llvm
+    #  shell: bash
+    #  run: |
+     #   sudo apt-get update
+        # Ubuntu 24.04 官方仓库中的 LLVM 版本
+     #   sudo apt-get -y install llvm clang libclang-dev
+    - name: Install LLVM
+      uses: sirpdboy/actions@install-llvm
       
     - name: Checkout
       uses: actions/checkout@main
