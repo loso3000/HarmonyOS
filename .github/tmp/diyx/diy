@@ -481,7 +481,7 @@ git clone https://github.com/xuanranran/openwrt-rtp2httpd package/rtp2httpd
 # Add luci-app-dockerman
 # rm -rf feeds/luci/applications/luci-app-dockerman
 # Docker
-# rm -rf feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/luci/applications/luci-app-dockerman
 # git clone https://$gitea/sbwml/luci-app-dockerman -b nft feeds/luci/applications/luci-app-dockerman
 # rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 # git clone https://$gitea/sbwml/packages_utils_docker feeds/packages/utils/docker
