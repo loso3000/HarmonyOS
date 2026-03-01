@@ -205,8 +205,8 @@ rm -rf  ./feeds/packages/webui-aria2
 
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
-rm -rf ./feeds/packages/net/mwan3
-mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
+# rm -rf ./feeds/packages/net/mwan3
+# mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
 # 在 X86 架构下移除 Shadowsocks-rust
 # sed -i '/Rust:/d' package/passwall/luci-app-passwall/Makefile
