@@ -118,7 +118,9 @@ jobs:
         fi
         ls -la   || true
         git clone ${{ secrets.IOURL }} lede
-        cp -Rf ./lede/* openwrt
+        # cp -Rf ./lede/* openwrt
+        cp -Rf ./lede/* ./
+        cp -Rf $GITHUB_WORKSPACE/.github/tmp/*  ./ 
         # cp -Rf ./.github/tmp/* /builder
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
 
