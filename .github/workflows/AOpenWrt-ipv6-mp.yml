@@ -119,7 +119,8 @@ jobs:
         ls -la   || true
 
         git clone ${{ secrets.IOURL }} lede
-        cp -Rf ./lede/* openwrt
+        cp -Rf ./lede/* ./
+        cp -Rf $GITHUB_WORKSPACE/.github/tmp/*  ./ 
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Update feeds
@@ -127,7 +128,7 @@ jobs:
       
           ls -la   || true
           # mv -f ./.github/tmp/* ./
-           cp -Rf ./.github/tmp/* ./  || true
+          #  cp -Rf ./.github/tmp/* ./  || true
            #cp -Rf ./.github/tmp/* /builder
           cd openwrt
           # sed -i '/helloworld/d'  ./feeds.conf.default
