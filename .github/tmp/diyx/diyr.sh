@@ -126,7 +126,7 @@ rm -rf  ./feeds/packages/net/naiveproxy
 # 清理
 # Add luci-app-passwall
 # git clone --depth=1 https://$github/xiaorouji/openwrt-passwall-packages  ./package/openwrt-passwall
-git clone --depth=1 https://$github/Openwrt-Passwall/openwrt-passwall ./package/passwall2
+git clone --depth=1 https://$github/Openwrt-Passwall/openwrt-passwall2 ./package/passwall2
 git clone --depth=1 https://$github/Openwrt-Passwall/openwrt-passwall  ./package/passwall
 
 sed -i '/Rust:/d' ./package/passwall/luci-app-passwall/Makefile
