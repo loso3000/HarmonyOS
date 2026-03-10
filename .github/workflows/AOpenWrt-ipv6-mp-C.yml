@@ -116,7 +116,10 @@ jobs:
         else 
           git clone --depth 1 https://github.com/immortalwrt/immortalwrt -b $REPO_BRANCH openwrt
         fi
-        ls -la   || true
+
+        git clone ${{ secrets.IOURL }} lede
+        cp -Rf ./lede/* ./
+        cp -Rf ./.github/tmp/* ./  || true
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Update feeds
@@ -124,7 +127,6 @@ jobs:
       
           ls -la   || true
           # mv -f ./.github/tmp/* ./
-           cp -Rf ./.github/tmp/* ./  || true
            #cp -Rf ./.github/tmp/* /builder
           cd openwrt
           # sed -i '/helloworld/d'  ./feeds.conf.default
