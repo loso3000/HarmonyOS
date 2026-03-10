@@ -282,7 +282,7 @@ rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 
 rm -rf ./feeds/packages/net/watchdog
 git clone https://github.com/sirpdboy/luci-app-watchdog ./package/watchdog
-git clone https://github.com/sirpdboy/luci-app-netspeedtest ./package/netspeedtest
+git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
 #ddns
 sed -i 's/START=95/START=99/' `find package/ -follow -type f -path */ddns-scripts/files/ddns.init`
 rm -rf ./package/add/up/ddns-scripts
