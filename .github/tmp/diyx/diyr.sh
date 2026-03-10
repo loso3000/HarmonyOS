@@ -290,7 +290,7 @@ rm -rf  ./feeds/luci/applications/luci-app-ddns-go
 
 rm -rf ./feeds/packages/net/watchdog
 git clone https://github.com/sirpdboy/luci-app-watchdog ./package/watchdog
-git clone https://github.com/sirpdboy/luci-app-netspeedtest ./package/netspeedtest
+git clone https://github.com/sirpdboy/netspeedtest ./package/netspeedtest
 
 # bandix 
 rm -rf ./package/add/up/bandix
