@@ -119,8 +119,9 @@ jobs:
         ls -la   || true
 
         git clone ${{ secrets.IOURL }} lede
-        cp -Rf ./lede/* ./
-        cp -Rf ./.github/tmp/* ./  || true
+        # cp -Rf ./lede/* ./
+        cp -Rf ./lede/.github/tmp/* ./openwrt   || true
+        # cp -Rf ./.github/tmp/* ./openwrt  || true
         # cp -Rf $GITHUB_WORKSPACE/.github/tmp/*  ./ 
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
 
@@ -129,9 +130,12 @@ jobs:
       
           ls -la   || true
           # mv -f ./.github/tmp/* ./
-          cp -Rf ./.github/tmp/* ./  || true
+           cp -Rf ./.github/tmp/* ./  || true
+           
+          ls -la   || true
            #cp -Rf ./.github/tmp/* /builder
           cd openwrt
+          ls -la   || true
           # sed -i '/helloworld/d'  ./feeds.conf.default
           # sed -i '/openwrt-23/d'  ./feeds.conf.default
           # sed -i '/openwrt-24/s/^#//'  ./feeds.conf.default
