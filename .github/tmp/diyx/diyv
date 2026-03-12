@@ -142,20 +142,20 @@ rm -rf ./package/ssr/luci-app-passwall2
 # sed -i '/_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks/d' ./package/ssr/luci-app-passwall/Makefile
 
 rm -rf ./package/ssr/mosdns
-rm -rf ./package/ssr/trojan-plus
+# rm -rf ./package/ssr/trojan-plus
 # rm -rf ./package/ssr/xray-plugin
 # rm -rf ./package/ssr/naiveproxy
-rm -rf ./package/ssr/v2ray-plugin
+# rm -rf ./package/ssr/v2ray-plugin
 # rm -rf ./package/ssr/v2ray-core
 # rm -rf ./package/ssr/pdnsd
 # rm -rf ./package/ssr/lua-neturl
 # rm -rf ./package/ssr/redsocks2
 # rm -rf ./package/ssr/shadow-tls
 # rm -rf ./package/ssr/chinadns-ng
+# rm -rf ./package/ssr/xray-core
 
 rm -rf ./feeds/packages/net/shadowsocks-libev
 
-rm -rf ./package/ssr/xray-core
 rm -rf ./feeds/packages/net/xray-core
 # rm -rf ./feeds/packages/net/trojan-plus
 rm -rf ./feeds/packages/net/sing-box
@@ -206,7 +206,6 @@ rm -rf  ./feeds/packages/webui-aria2
 # rm -rf ./package/add/luci-app-mwan3 ./package/add/mwan3
 # rm -rf ./feeds/luci/applications/luci-app-mwan3
 # rm -rf ./feeds/packages/net/mwan3 
-rm -rf ./package/add/up/tool/mwan3
 # mv ./package/add/up/tool/mwan3 ./feeds/packages/net/mwan3
 
 # 在 X86 架构下移除 Shadowsocks-rust
