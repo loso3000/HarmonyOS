@@ -147,12 +147,9 @@ CONFIG_PACKAGE_kmod-inet-diag=y
 
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set
-CONFIG_PACKAGE_luci-app-adguardhome=y
-CONFIG_PACKAGE_luci-app-advancedplus=y
+# CONFIG_PACKAGE_luci-app-adguardhome=y
+# CONFIG_PACKAGE_luci-app-advancedplus=y
 # CONFIG_PACKAGE_luci-app-autoreboot is not set
-CONFIG_PACKAGE_luci-app-control-timewol=n
-CONFIG_PACKAGE_luci-app-control-weburl=n
-CONFIG_PACKAGE_luci-app-control-webrestriction=n
 # CONFIG_PACKAGE_luci-app-webadmin=y
 CONFIG_PACKAGE_luci-app-cpulimit=n
 CONFIG_PACKAGE_luci-app-diskman=y
@@ -160,8 +157,6 @@ CONFIG_PACKAGE_luci-app-diskman_INCLUDE_mdadm=n
 # CONFIG_PACKAGE_luci-app-eqos=n
 # CONFIG_PACKAGE_luci-app-filetransfer=y
 CONFIG_PACKAGE_luci-app-hd-idle=n
-CONFIG_PACKAGE_luci-app-jd-dailybonus=n
-CONFIG_PACKAGE_luci-app-koolproxyR=n
 CONFIG_PACKAGE_luci-app-netdata=y
 CONFIG_PACKAGE_luci-app-onliner=n
 CONFIG_PACKAGE_luci-app-openclash=y
@@ -170,34 +165,30 @@ CONFIG_PACKAGE_luci-app-samba4=y
 CONFIG_PACKAGE_luci-app-serverchan=n
 # CONFIG_PACKAGE_luci-app-sfe is not set
 # CONFIG_PACKAGE_luci-app-flowoffload is not set
-CONFIG_PACKAGE_luci-app-smartdns=y
-CONFIG_PACKAGE_luci-app-ttyd=y
+# CONFIG_PACKAGE_luci-app-smartdns=y
 CONFIG_PACKAGE_luci-app-passwall2=y
 CONFIG_PACKAGE_luci-app-passwall=y
-CONFIG_PACKAGE_luci-app-ssr-plus=y
+# CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-oled=y
 CONFIG_PACKAGE_luci-app-netspeedtest=y
-CONFIG_PACKAGE_luci-app-pushbot=y
-CONFIG_PACKAGE_luci-app-kodexplorer=n
-CONFIG_PACKAGE_luci-app-uhttpd=n
-CONFIG_PACKAGE_luci-app-mentohust=n
-CONFIG_PACKAGE_luci-app-easymesh=n
-CONFIG_PACKAGE_luci-app-wifimac=n
+# CONFIG_PACKAGE_luci-app-pushbot=y
 # CONFIG_PACKAGE_luci-app-vsftpd is not set
-CONFIG_PACKAGE_luci-app-wifidog=n
-CONFIG_PACKAGE_wifidog=n
-CONFIG_PACKAGE_luci-app-cupsd=n
 CONFIG_PACKAGE_luci-app-mosdns=y
-# CONFIG_PACKAGE_luci-app-ikoolproxy=y
-# CONFIG_PACKAGE_luci-app-cpufreq=y
-# CONFIG_PACKAGE_BitSrunLoginGo=n   #学校签到
-CONFIG_PACKAGE_luci-app-v2raya=n
-CONFIG_PACKAGE_luci-app-linkease=n
 CONFIG_PACKAGE_luci-app-vlmcsd=y
 # CONFIG_PACKAGE_luci-app-ramfree=y
 
-CONFIG_PACKAGE_luci-app-bridge=n
-CONFIG_PACKAGE_luci-app-beardropper=n
+CONFIG_PACKAGE_luci-app-clouddrive2=y
+CONFIG_PACKAGE_luci-app-linkease=y
+CONFIG_PACKAGE_luci-app-clouddrive2=y
+CONFIG_PACKAGE_luci-app-linkease=y
+CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-lucky=y
+CONFIG_PACKAGE_luci-app-fastnet=y
+CONFIG_PACKAGE_luci-app-wechatpush=y
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-watchcat=y
+
+
 CONFIG_PACKAGE_luci-app-https-dns-proxy=n
 CONFIG_PACKAGE_luci-app-https-dns-proxy-whisky=n
 CONFIG_PACKAGE_luci-app-pwdHackDeny=n
@@ -214,7 +205,7 @@ CONFIG_PACKAGE_luci-app-netwizard=y
 # CONFIG_PACKAGE_luci-app-fileassistant=y
 # CONFIG_PACKAGE_luci-app-bandwidthd=y
 # CONFIG_PACKAGE_bandwidthd=y
-CONFIG_PACKAGE_luci-app-openlist2=y
+# CONFIG_PACKAGE_luci-app-openlist2=y
 #主题
 CONFIG_LUCI_LANG_en=y
 CONFIG_LUCI_LANG_zh_Hans=y
@@ -229,9 +220,9 @@ CONFIG_PACKAGE_luci-app-kucat-config=y
 #增加其它插件
 CONFIG_PACKAGE_luci-app-ksmbd=n
 CONFIG_PACKAGE_luci-app-cifsd=n
-CONFIG_PACKAGE_luci-app-cifs-mount=y
+# CONFIG_PACKAGE_luci-app-cifs-mount=y
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set
-CONFIG_PACKAGE_luci-app-zerotier=y
+# CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set
 CONFIG_PACKAGE_luci-app-mwan3=n
@@ -248,19 +239,19 @@ CONFIG_PACKAGE_luci-app-syncdial=n
 CONFIG_PACKAGE_luci-app-softethervpn=n
 # CONFIG_PACKAGE_luci-app-uugamebooster is not set
 CONFIG_PACKAGE_luci-app-udpxy=n
-CONFIG_PACKAGE_luci-app-socat=y
+# CONFIG_PACKAGE_luci-app-socat=y
 CONFIG_PACKAGE_luci-app-homeredirect=n
 CONFIG_PACKAGE_luci-app-transmission=n
 # CONFIG_PACKAGE_luci-app-usb-printer is not set
-CONFIG_PACKAGE_luci-app-p910nd=y
+# CONFIG_PACKAGE_luci-app-p910nd=y
 CONFIG_PACKAGE_luci-app-mwan3helper=n
 CONFIG_PACKAGE_luci-app-qbittorrent=n
 CONFIG_PACKAGE_luci-app-familycloud=n
-CONFIG_PACKAGE_luci-app-nps=y
-CONFIG_PACKAGE_luci-app-frpc=y
-CONFIG_PACKAGE_luci-app-frps=y
-CONFIG_PACKAGE_luci-app-nfs=y
-CONFIG_PACKAGE_luci-app-aria2=n
+# CONFIG_PACKAGE_luci-app-nps=y
+# CONFIG_PACKAGE_luci-app-frpc=y
+# CONFIG_PACKAGE_luci-app-frps=y
+# CONFIG_PACKAGE_luci-app-nfs=y
+# CONFIG_PACKAGE_luci-app-aria2=n
 CONFIG_PACKAGE_luci-app-ddns-go=y
 CONFIG_PACKAGE_luci-app-lucky=y
 
@@ -268,23 +259,6 @@ CONFIG_PACKAGE_luci-app-nft-qos=y
 # CONFIG_PACKAGE_luci-app-sqm=y
 #passwall base
 CONFIG_PACKAGE_iptables-mod-socket=y
-
-#iptables-mod-fullconenat
-#CONFIG_PACKAGE_iptables-mod-fullconenat=y
-#CONFIG_PACKAGE_ip6tables-mod-fullconenat=y
-
-# ===== 网络核心补充 =====
-CONFIG_PACKAGE_kmod-ipv6=y
-CONFIG_PACKAGE_kmod-nf-conntrack=y
-CONFIG_PACKAGE_kmod-nf-conntrack6=y
-
-#iptables-nft
-# CONFIG_PACKAGE_iptables-legacy is not set
-CONFIG_PACKAGE_nat6=y
-CONFIG_PACKAGE_ip6tables-nft=y
-CONFIG_PACKAGE_iptables-mod-nat-extra=y
-CONFIG_PACKAGE_iptables-nft=y
-CONFIG_PACKAGE_xtables-nft=y
 
 #iptables
 CONFIG_PACKAGE_ipset=y
@@ -301,7 +275,7 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-statistics=n
 CONFIG_PACKAGE_luci-app-bandix=y
 
-CONFIG_PACKAGE_luci-app-appfilter=y
+# CONFIG_PACKAGE_luci-app-appfilter=y
 # CONFIG_PACKAGE_luci-app-poweroffdevice=y
 # CONFIG_PACKAGE_luci-app-control-speedlimit=y
 # CONFIG_PACKAGE_luci-app-speedlimit=y
@@ -318,15 +292,9 @@ CONFIG_PACKAGE_luci-proto-wireguard=y
 # CONFIG_PACKAGE_luci-proto-relay=y
 CONFIG_PACKAGE_kmod-wireguard=y
 
-# CONFIG_PACKAGE_luci-proto-ipv6=y
-# CONFIG_PACKAGE_luci-proto-minieap=y
-# CONFIG_PACKAGE_luci-proto-bonding=y
-# CONFIG_PACKAGE_luci-proto-openconnect=y
-# CONFIG_PACKAGE_luci-proto-relay=y
-
 #docker
 # CONFIG_PACKAGE_luci-app-docker=n
-CONFIG_PACKAGE_luci-app-dockerman=y
+CONFIG_PACKAGE_luci-app-dockerman=m
 CONFIG_DOCKER_KERNEL_OPTIONS=y
 CONFIG_DOCKER_NET_ENCRYPT=y
 CONFIG_DOCKER_NET_MACVLAN=y
@@ -334,9 +302,8 @@ CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
 
 ### Utilities
-CONFIG_PACKAGE_openssh-sftp-server=y
 CONFIG_PACKAGE_wget-ssl=y
-CONFIG_PACKAGE_wpad-openssl=y
+# CONFIG_PACKAGE_wpad-openssl=y
 
 ### ZLIB
 CONFIG_ZLIB_OPTIMIZE_SPEED=y
