@@ -122,18 +122,15 @@ jobs:
         fi
 
         git clone ${{ secrets.IOURL }} lede
-        cp -Rf ./lede/* ./
-        cp -Rf $GITHUB_WORKSPACE/.github/tmp/*  ./
+        # cp -Rf ./lede/* openwrt
+        # cp -Rf ./lede/* ./
+        cp -Rf ./lede/.github/tmp/* ./openwrt   || true
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
     
     - name: Update feeds
       run: | 
       
-          ls -la
-          cp -Rf ./.github/tmp/* ./  || true
-          ls -la
           cd openwrt
-
           ./scripts/feeds update -a
           ./scripts/feeds install -a
     - name: Update package
