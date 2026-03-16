@@ -132,19 +132,20 @@ jobs:
         else 
           git clone --depth 1 -b $REPO_BRANCH  $REPO_IM  openwrt
         fi
-        ls
-        # cp -Rf $GITHUB_WORKSPACE/.github/tmp/*  ./ || true
+        git clone ${{ secrets.IOURL }} lede
+        # cp -Rf ./lede/* openwrt
+        # cp -Rf ./lede/* ./
+        cp -Rf ./lede/.github/tmp/* ./openwrt   || true
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
     
     - name: Update feeds
       run: | 
           ls -la
-          cp -Rf ./.github/tmp/* ./  || true
-          ls -la
+          # cp -Rf ./.github/tmp/* ./  || true
           cd openwrt
-          sed -i '/helloworld/d'  ./feeds.conf.default
-          sed -i '/23\.05/d'  ./feeds.conf.default
-          sed -i '/openwrt-24\.10/s/^#//'  ./feeds.conf.default
+          # sed -i '/helloworld/d'  ./feeds.conf.default
+          # sed -i '/23\.05/d'  ./feeds.conf.default
+          # sed -i '/openwrt-24\.10/s/^#//'  ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
     - name: Update package
