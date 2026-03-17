@@ -130,6 +130,7 @@ jobs:
     - name: Update feeds
       run: | 
       
+          cp -Rf ./.github/tmp/* ./  || true
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
