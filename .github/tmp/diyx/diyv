@@ -247,6 +247,10 @@ rm -rf package/add/up/pass/trojan-plus
 rm -rf  package/emortal/automount
 rm -rf ./package/lean/automount
 
+rm -rf package/add/up/tool/curl
+rm -rf package/add/tool/curl
+rm -rf package/tool/curl
+
 rm -rf ./package/lean/default-settings
 rm -rf  package/emortal/default-settings
 
@@ -286,7 +290,6 @@ git clone https://github.com/sirpdboy/luci-app-watchdog ./package/watchdog
 
 
 # bandix 
-rm -rf ./package/add/up/bandix
 git clone https://github.com/timsaya/openwrt-bandix ./package/openwrt-bandix
 git clone https://github.com/timsaya/luci-app-bandix ./package/bandix
 sed -i 's/Bandix 流量监控/流量监控/g' ./package/bandix/luci-app-bandix/po/zh_Hans/bandix.po
