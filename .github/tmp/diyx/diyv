@@ -326,6 +326,7 @@ git clone https://github.com/destan19/OpenAppFilter.git ./package/OpenAppFilter
 rm -rf ./feeds/packages/utils/docker-compose
 mv -f  ./package/add/up/diy/docker-compose ./feeds/packages/utils/
 
+rm -rf ./package/add/up/fullcone2410
 
 #qbittorrent
 rm -rf ./feeds/packages/net/qbittorrent
