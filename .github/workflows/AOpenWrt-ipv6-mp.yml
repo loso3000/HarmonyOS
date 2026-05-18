@@ -120,7 +120,7 @@ jobs:
 
         git clone ${{ secrets.IOURL }} lede
         # cp -Rf ./lede/* ./
-        cp -Rf ./lede/.github/tmp/* ./openwrt   || true
+        cp -Rf ./lede/.github/tmp/add/* ./openwrt/package   || true
         # cp -Rf ./.github/tmp/* ./openwrt  || true
         # cp -Rf $GITHUB_WORKSPACE/.github/tmp/*  ./ 
         ln -sf /builder/openwrt $GITHUB_WORKSPACE/openwrt
