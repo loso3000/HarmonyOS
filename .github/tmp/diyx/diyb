@@ -164,7 +164,9 @@ rm -rf ./package/openwrt-passwall/xray-plugin
 rm -rf ./package/openwrt-passwall/mosdns
 rm -rf ./package/openwrt-passwall/naiveproxy
 
-git clone https://$github/loso3000/oth ./package/add
+git clone https://$github/loso3000/io ./add
+mv ./add/.github/tmp/package/add/up   ./package/add
+rm  -rf ./add
 
 #rm -rf ./feeds/packages/net/trojan-plus
 rm -rf package/add/up/pass/trojan-plus
