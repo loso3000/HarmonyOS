@@ -205,36 +205,19 @@ CONFIG_PACKAGE_containerd=y
 CONFIG_PACKAGE_dockerd=y
 CONFIG_PACKAGE_docker-compose=y
 
-### Display & Extra Drivers
-CONFIG_PACKAGE_kmod-backlight-pwm=y
-CONFIG_PACKAGE_kmod-backlight=y
-CONFIG_PACKAGE_kmod-drm-amdgpu=y
-CONFIG_PACKAGE_kmod-drm-kms-helper=y
-CONFIG_PACKAGE_kmod-drm-radeon=y
-CONFIG_PACKAGE_kmod-drm-ttm=y
-CONFIG_PACKAGE_kmod-drm=y
-CONFIG_PACKAGE_kmod-fb-cfb-copyarea=y
-CONFIG_PACKAGE_kmod-fb-cfb-fillrect=y
-CONFIG_PACKAGE_kmod-fb-cfb-imgblt=y
-CONFIG_PACKAGE_kmod-fb-sys-fops=y
-CONFIG_PACKAGE_kmod-fb-sys-ram=y
-CONFIG_PACKAGE_kmod-fb=y
-CONFIG_PACKAGE_kmod-sound-hda-codec-realtek=y
-CONFIG_PACKAGE_kmod-sound-hda-intel=y
-
 #VMware-tools
-CONFIG_PACKAGE_open-vm-tools=y
+# CONFIG_PACKAGE_open-vm-tools=y
 CONFIG_PACKAGE_kmod-vmxnet3=y       # VMware 虚拟网卡驱动（推荐）
 # ===== 核心显示框架 =====
-CONFIG_PACKAGE_kmod-drm=y
-CONFIG_PACKAGE_kmod-drm-kms-helper=y
+# CONFIG_PACKAGE_kmod-drm=y
+# CONFIG_PACKAGE_kmod-drm-kms-helper=y
 
 # ===== Intel 核显驱动 =====
-CONFIG_PACKAGE_kmod-drm-i915=y
-CONFIG_PACKAGE_i915-firmware=y
-CONFIG_PACKAGE_intel-microcode=y
-CONFIG_PACKAGE_intel-media-driver=y   # 推荐（支持最新编解码）
-CONFIG_PACKAGE_mesa-vulkan-intel=y      # Vulkan 支持
+# CONFIG_PACKAGE_kmod-drm-i915=y
+# CONFIG_PACKAGE_i915-firmware=y
+# CONFIG_PACKAGE_intel-microcode=y
+# CONFIG_PACKAGE_intel-media-driver=y   # 推荐（支持最新编解码）
+# CONFIG_PACKAGE_mesa-vulkan-intel=y      # Vulkan 支持
 
 # ===== AMD 显卡驱动 =====
 # CONFIG_PACKAGE_kmod-drm-amdgpu=y        # 确认有 AMD 显卡再启用
@@ -242,27 +225,27 @@ CONFIG_PACKAGE_mesa-vulkan-intel=y      # Vulkan 支持
 # CONFIG_PACKAGE_mesa-vulkan-radeon=y
 
 # ===== 通用图形库 =====
-CONFIG_PACKAGE_mesa=y
-CONFIG_PACKAGE_mesa-vaapi=y
+# CONFIG_PACKAGE_mesa=y
+# CONFIG_PACKAGE_mesa-vaapi=y
 
 # ===== 其他硬件支持 =====
-CONFIG_PACKAGE_kmod-backlight=y           # 背光控制（仅需一次）
-CONFIG_PACKAGE_kmod-sound-hda-intel=y     # Intel 音频
-CONFIG_PACKAGE_kmod-sound-hda-codec-realtek=y  # Realtek 音频
+# CONFIG_PACKAGE_kmod-backlight=y           # 背光控制（仅需一次）
+# CONFIG_PACKAGE_kmod-sound-hda-intel=y     # Intel 音频
+# CONFIG_PACKAGE_kmod-sound-hda-codec-realtek=y  # Realtek 音频
 
 # === 其他必要固件 ===
-CONFIG_PACKAGE_bnx2-firmware=y        # 博通网卡固件（如硬件需要）
-CONFIG_PACKAGE_bnx2x-firmware=y
+# CONFIG_PACKAGE_bnx2-firmware=y        # 博通网卡固件（如硬件需要）
+# CONFIG_PACKAGE_bnx2x-firmware=y
 
-# 固件
-CONFIG_PACKAGE_linux-firmware-amd=y
-CONFIG_PACKAGE_amdgpu-firmware=y
-CONFIG_PACKAGE_amd64-microcode=y
+# # 固件
+# CONFIG_PACKAGE_linux-firmware-amd=y
+# CONFIG_PACKAGE_amdgpu-firmware=y
+# CONFIG_PACKAGE_amd64-microcode=y
 
 # === Intel 核显 ===
-CONFIG_PACKAGE_kmod-drm-i915=y
-CONFIG_PACKAGE_i915-firmware=y
-CONFIG_PACKAGE_intel-microcode=y
+# CONFIG_PACKAGE_kmod-drm-i915=y
+# CONFIG_PACKAGE_i915-firmware=y
+# CONFIG_PACKAGE_intel-microcode=y
 
 # === 视频加速 ===
 # CONFIG_PACKAGE_intel-media-driver=y
@@ -277,9 +260,9 @@ CONFIG_PACKAGE_intel-microcode=y
 # CONFIG_PACKAGE_jellyfin-server=y
 
 #VMware-tools
-CONFIG_PACKAGE_open-vm-tools=y
+# CONFIG_PACKAGE_open-vm-tools=y
 CONFIG_PACKAGE_kmod-vmxnet3=y       # VMware 虚拟网卡驱动（推荐）
-CONFIG_PACKAGE_kmod-vmw-pvscsi=y    # VMware 虚拟 SCSI 控制器（可选）
+# CONFIG_PACKAGE_kmod-vmw-pvscsi=y    # VMware 虚拟 SCSI 控制器（可选）
 # 启用Intel网卡驱动（例如ixgbe或i40e）
 CONFIG_PACKAGE_kmod-ixgbe=y
 CONFIG_PACKAGE_kmod-i40e=y
@@ -354,10 +337,10 @@ CONFIG_PACKAGE_kmod-r8126=y
 CONFIG_PACKAGE_kmod-r8127=y
 CONFIG_PACKAGE_kmod-txgbe=y
 ### Kernel Modules - USB WiFi Adapter
-CONFIG_PACKAGE_kmod-mt7921u=y
-CONFIG_PACKAGE_kmod-rtw88-8812au=y
-CONFIG_PACKAGE_kmod-rtw88-8821au=y
-CONFIG_PACKAGE_kmod-rtw88-8822bu=y
+# CONFIG_PACKAGE_kmod-mt7921u=y
+# CONFIG_PACKAGE_kmod-rtw88-8812au=y
+# CONFIG_PACKAGE_kmod-rtw88-8821au=y
+# CONFIG_PACKAGE_kmod-rtw88-8822bu=y
 # CONFIG_PACKAGE_kmod-rtl8812au-ct is not set
 ### Kernel Modules - out-of-tree driver
 CONFIG_DEFAULT_kmod-usb-net-rtl8150=y
