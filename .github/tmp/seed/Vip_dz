@@ -57,7 +57,7 @@ CONFIG_PACKAGE_e2fsprogs=y
 #passwlall
 # CONFIG_PACKAGE_iptables-mod-socket=y
 ### USB Audio 
-CONFIG_PACKAGE_kmod-usb-audio=y
+CONFIG_PACKAGE_kmod-usb-audio=n
 
 CONFIG_LUCI_LANG_en=y
 #CONFIG_LUCI_LANG_zh-cn=y
@@ -71,22 +71,22 @@ CONFIG_PACKAGE_autosamba=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-kucat=y
 CONFIG_PACKAGE_luci-theme-argon=y
-CONFIG_PACKAGE_luci-theme-design=y
-CONFIG_PACKAGE_luci-theme-material=y
-CONFIG_PACKAGE_luci-theme-edge=y
+CONFIG_PACKAGE_luci-theme-design=n
+CONFIG_PACKAGE_luci-theme-material=n
+CONFIG_PACKAGE_luci-theme-edge=n
 ### APPS
 CONFIG_PACKAGE_luci-app-advancedplus=y
-CONFIG_PACKAGE_luci-app-eqosplus=y
+CONFIG_PACKAGE_luci-app-eqosplus=n
 CONFIG_PACKAGE_luci-app-poweroffdevice=y
 CONFIG_PACKAGE_luci-app-chatgpt=n
 CONFIG_PACKAGE_luci-app-chatgpt-web=n
-CONFIG_PACKAGE_luci-app-netwizard=y
+CONFIG_PACKAGE_luci-app-netwizard=n
 # CONFIG_PACKAGE_luci-app-autotimeset=n
-CONFIG_PACKAGE_luci-app-taskplan=y
+CONFIG_PACKAGE_luci-app-taskplan=n
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
-# CONFIG_PACKAGE_luci-app-partexp=y
+# CONFIG_PACKAGE_luci-app-partexp=n
 CONFIG_PACKAGE_luci-app-store=m
-CONFIG_PACKAGE_luci-app-netspeedtest=y
+CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-control-parentcontrol=n
 CONFIG_PACKAGE_luci-app-parentcontrol=n
 CONFIG_PACKAGE_luci-app-ddns-go=y
@@ -95,30 +95,30 @@ CONFIG_PACKAGE_luci-app-appfilter=y
 CONFIG_PACKAGE_luci-app-timecontrol=y
 CONFIG_PACKAGE_luci-app-transmission=n
 CONFIG_PACKAGE_luci-app-qbittorrent=n
-CONFIG_PACKAGE_luci-app-turboacc=y
+CONFIG_PACKAGE_luci-app-turboacc=n
 
-CONFIG_PACKAGE_luci-app-arpbind=y
-CONFIG_PACKAGE_luci-app-lucky=y
+CONFIG_PACKAGE_luci-app-arpbind=n
+CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-app-frpc=n
-CONFIG_PACKAGE_luci-app-wolplus=y
-CONFIG_PACKAGE_luci-app-ota=y
-CONFIG_PACKAGE_luci-app-vlmcsd=y
+CONFIG_PACKAGE_luci-app-wolplus=n
+CONFIG_PACKAGE_luci-app-ota=n
+CONFIG_PACKAGE_luci-app-vlmcsd=n
 
-CONFIG_PACKAGE_luci-app-alist=y
+CONFIG_PACKAGE_luci-app-alist=n
 CONFIG_PACKAGE_luci-app-ddns=y
-CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-mosdns=n
 CONFIG_PACKAGE_luci-app-fileassistant=n
 CONFIG_PACKAGE_luci-app-package-manager=y
 
 CONFIG_PACKAGE_luci-app-ttyd=y
-CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-app-upnp=n
 
-CONFIG_PACKAGE_luci-app-adguardhome=y
+CONFIG_PACKAGE_luci-app-adguardhome=n
 # CONFIG_PACKAGE_luci-app-netdata=y  #no find
 # CONFIG_PACKAGE_luci-app-nlbwmon=y
 # CONFIG_PACKAGE_luci-app-ramfree=y
 # CONFIG_PACKAGE_luci-app-samba4=y
-CONFIG_PACKAGE_luci-app-socat=y
+CONFIG_PACKAGE_luci-app-socat=n
 CONFIG_PACKAGE_luci-app-sqm=n
 # CONFIG_PACKAGE_luci-app-watchcat=y
 # CONFIG_PACKAGE_luci-app-smartdns=y
@@ -140,14 +140,8 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
 # CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy is not set
 CONFIG_PACKAGE_luci-app-passwall_Iptables_Transparent_Proxy=y
 
-CONFIG_PACKAGE_luci-app-zerotier=y
 
 CONFIG_PACKAGE_luci-app-openclash=y
-# CONFIG_PACKAGE_luci-app-cloudreve=y
-CONFIG_PACKAGE_kmod-fs-cifs=y
-# CONFIG_PACKAGE_luci-app-easytier=y
-# CONFIG_PACKAGE_luci-app-vnstat2=y
-# CONFIG_PACKAGE_luci-app-nft-qos=y
 
 CONFIG_PACKAGE_ddns-scripts=y
 CONFIG_PACKAGE_ddns-scripts-cloudflare=y
@@ -162,22 +156,6 @@ CONFIG_PACKAGE_ddns-scripts_freedns_42_pl=y
 CONFIG_PACKAGE_ddns-scripts_godaddy.com-v1=y
 CONFIG_PACKAGE_ddns-scripts_no-ip_com=y 
 
-CONFIG_PACKAGE_luci-proto-3g=y
-CONFIG_PACKAGE_luci-proto-bonding=y
-CONFIG_PACKAGE_luci-proto-openconnect=y
-CONFIG_PACKAGE_luci-proto-qmi=y
-
-
-### L2TP
-CONFIG_PACKAGE_luci-proto-wireguard=y
-CONFIG_PACKAGE_luci-proto-bonding=y
-CONFIG_PACKAGE_luci-proto-relay=y
-CONFIG_PACKAGE_kmod-wireguard=y
-# CONFIG_PACKAGE_kmod-pptp=y
-# CONFIG_PACKAGE_xl2tpd=y
-# CONFIG_PACKAGE_ppp-mod-pppol2tp=y
-# CONFIG_PACKAGE_kmod-pppol2tp=y
-# CONFIG_PACKAGE_ppp-mod-pptp=y
 
 #组件调整
 CONFIG_PACKAGE_openssh-sftp-client=y
@@ -208,13 +186,6 @@ CONFIG_PACKAGE_lsblk=y
 CONFIG_PACKAGE_blkid=y
 CONFIG_PACKAGE_fdisk=y
 
-# CONFIG_PACKAGE_parted=y
-# CONFIG_PACKAGE_btrfs-progs=y
-# CONFIG_PACKAGE_losetup=y
-# CONFIG_PACKAGE_resize2fs=y
-# CONFIG_PACKAGE_e2fsprogs=y
-# CONFIG_PACKAGE_f2fs-tools=y
-# CONFIG_PACKAGE_kmod-loop=y
 CONFIG_PACKAGE_luci-lib-ipkg=y
 
 ### Kernel driver
@@ -228,90 +199,7 @@ CONFIG_PACKAGE_kmod-igbvf=y
 CONFIG_PACKAGE_kmod-igc=y
 CONFIG_PACKAGE_kmod-ixgbe=y
 CONFIG_PACKAGE_kmod-ixgbevf=y
-CONFIG_PACKAGE_kmod-iavf=y
-CONFIG_PACKAGE_kmod-forcedeth=y
-CONFIG_PACKAGE_kmod-e1000=y
-CONFIG_PACKAGE_kmod-e1000e=y
-CONFIG_PACKAGE_kmod-dwmac-intel=y
-CONFIG_PACKAGE_kmod-bnx2=y
-CONFIG_PACKAGE_kmod-bnx2x=y
-CONFIG_PACKAGE_kmod-atlantic=y
-# CONFIG_PACKAGE_kmod-8139cp=y
-CONFIG_PACKAGE_kmod-8139too=y
-CONFIG_PACKAGE_kmod-amazon-ena=y
-CONFIG_PACKAGE_kmod-amd-xgbe=y
-CONFIG_PACKAGE_kmod-r8126=y
-CONFIG_PACKAGE_kmod-r8168=y
-CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-r8101=y
-CONFIG_PACKAGE_kmod-mii=y
-CONFIG_PACKAGE_kmod-mlxfw=y
-CONFIG_PACKAGE_kmod-net-selftests=y
-CONFIG_PACKAGE_kmod-pcnet32=y
-CONFIG_PACKAGE_kmod-pcs-xpcs=y
-CONFIG_PACKAGE_kmod-tg3=y
 CONFIG_PACKAGE_kmod-vmxnet3=y 
-CONFIG_PACKAGE_kmod-igb=y
-CONFIG_PACKAGE_kmod-igc=y
-CONFIG_PACKAGE_kmod-ngbe=y
-CONFIG_PACKAGE_kmod-r8101=y
-CONFIG_PACKAGE_kmod-r8125=y
-CONFIG_PACKAGE_kmod-r8126=y
-CONFIG_PACKAGE_kmod-r8168=y
 CONFIG_PACKAGE_kmod-txgbe=y
-# CONFIG_PACKAGE_kmod-r8169 is not set
-CONFIG_PACKAGE_kmod-nvme=y
-CONFIG_DEFAULT_kmod-vmxnet3=y
+CONFIG_PACKAGE_kmod-ice=y
 
-#docker
-# CONFIG_PACKAGE_luci-app-docker=m
-CONFIG_PACKAGE_luci-app-dockerman=y
-CONFIG_DOCKER_KERNEL_OPTIONS=y
-CONFIG_DOCKER_NET_ENCRYPT=y
-CONFIG_DOCKER_NET_MACVLAN=y
-CONFIG_DOCKER_NET_OVERLAY=y
-CONFIG_DOCKER_NET_TFTP=y
-CONFIG_PACKAGE_containerd=y
-CONFIG_PACKAGE_dockerd=y
-
-### Display & Extra Drivers
-CONFIG_PACKAGE_kmod-backlight-pwm=y
-CONFIG_PACKAGE_kmod-backlight=y
-CONFIG_PACKAGE_kmod-drm-amdgpu=y
-CONFIG_PACKAGE_kmod-drm-kms-helper=y
-CONFIG_PACKAGE_kmod-drm-radeon=y
-CONFIG_PACKAGE_kmod-drm-ttm=y
-CONFIG_PACKAGE_kmod-drm=y
-CONFIG_PACKAGE_kmod-fb-cfb-copyarea=y
-CONFIG_PACKAGE_kmod-fb-cfb-fillrect=y
-CONFIG_PACKAGE_kmod-fb-cfb-imgblt=y
-CONFIG_PACKAGE_kmod-fb-sys-fops=y
-CONFIG_PACKAGE_kmod-fb-sys-ram=y
-CONFIG_PACKAGE_kmod-fb=y
-CONFIG_PACKAGE_kmod-sound-hda-codec-realtek=y
-CONFIG_PACKAGE_kmod-sound-hda-intel=y
-
-#VMware-tools
-CONFIG_PACKAGE_open-vm-tools=y
-CONFIG_PACKAGE_kmod-vmxnet3=y       # VMware 虚拟网卡驱动（推荐）
-CONFIG_PACKAGE_kmod-vmw-pvscsi=y    # VMware 虚拟 SCSI 控制器（可选）
-
-# 启用Intel网卡驱动（例如ixgbe或i40e）
-CONFIG_PACKAGE_kmod-ixgbe=y
-CONFIG_PACKAGE_kmod-i40e=y
-
-# 启用Mellanox网卡驱动（如果需要）
-CONFIG_PACKAGE_kmod-mlx4-core=y
-CONFIG_PACKAGE_kmod-mlx4-en=y
-
-#读卡器
-CONFIG_PACKAGE_kmod-usb-storage=y #USB 存储设备基础驱动
-CONFIG_PACKAGE_kmod-usb-storage-extras=y  #更多 USB 存储设备
-CONFIG_PACKAGE_kmod-sdhci=y  #（SD/TF 卡支持）
-CONFIG_PACKAGE_kmod-mmc=y  #MMC/SD 卡核心驱动
-CONFIG_PACKAGE_kmod-ums-realtek=y  # 旧款 Realtek USB 2.0 读卡器
-CONFIG_PACKAGE_kmod-fs-vfat=y      # FAT32 支持
-CONFIG_PACKAGE_kmod-fs-exfat=y     # exFAT 支持（可选）
-CONFIG_PACKAGE_kmod-fs-ntfs=y     # ntfs 支持（可选）
-CONFIG_PACKAGE_kmod-usb-storage-uas=y  #高速读卡器
-# CONFIG_PACKAGE_kmod-rtsx_usb=y   #新款 Realtek USB 3.0 读卡器
