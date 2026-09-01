@@ -213,7 +213,7 @@ rm -rf  ./feeds/packages/webui-aria2
 cat ./package/add/patch/sysctl.conf > ./package/base-files/files/etc/sysctl.conf
 cat ./package/add/patch/banner > ./package/base-files/files/etc/banner
 cat ./package/add/patch/profile > ./package/base-files/files/etc/profile
-
+cat ./package/add/patch/profiles > ./package/base-files/files/etc/profiles
 rm -rf ./feeds/luci/applications/luci-app-udpxy
 rm -rf ./feeds/luci/applications/luci-app-msd_lite
 rm -rf  ./feeds/packages/net/msd_lite
