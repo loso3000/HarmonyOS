@@ -367,8 +367,8 @@ sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view
 # sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
 
 # luci-app-filemanager
-# rm -rf feeds/luci/applications/luci-app-filemanager
-# git clone https://$github/sbwml/luci-app-filemanager package/new/luci-app-filemanager
+rm -rf feeds/luci/applications/luci-app-filemanager
+git clone https://$github/sbwml/luci-app-filemanager package/new/luci-app-filemanager
 
 # TTYD
 # sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
