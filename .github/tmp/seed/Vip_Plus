@@ -339,12 +339,12 @@ CONFIG_PACKAGE_kmod-crypto-crc32c=y
 CONFIG_PACKAGE_kmod-lib-crc32c=y
 CONFIG_PACKAGE_kmod-nft-core=y
 
-CONFIG_PACKAGE_shadowsocksr-libev-ssr-redir=y
-CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=y
-CONFIG_PACKAGE_shadowsocksr-libev-ss-local=y
-CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
-CONFIG_PACKAGE_shadowsocks-libev-ss-server=y
-CONFIG_PACKAGE_shadowsocks-rust-sslocal=y
+# CONFIG_PACKAGE_shadowsocksr-libev-ssr-redir=y
+# CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=y
+# CONFIG_PACKAGE_shadowsocksr-libev-ss-local=y
+# CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
+# CONFIG_PACKAGE_shadowsocks-libev-ss-server=y
+# CONFIG_PACKAGE_shadowsocks-rust-sslocal=y
 
 
 # store
@@ -352,17 +352,14 @@ CONFIG_PACKAGE_kmod-fuse=y
 
 # CONFIG_PACKAGE_iperf3-ssl=y
 # CONFIG_PACKAGE_naiveproxy=y
-
 # CONFIG_PACKAGE_luci-proto-ipv6=y
 # CONFIG_PACKAGE_luci-proto-minieap=y
-
 # Other Appliciations
 #CONFIG_PACKAGE_luci-proto-3g=y
 #CONFIG_PACKAGE_luci-proto-qmi=y
-
 # CONFIG_PACKAGE_luci-proto-relay=y
 # CONFIG_PACKAGE_luci-proto-openconnect=y
-### L2TP
+
 ### L2TP
 CONFIG_PACKAGE_luci-proto-wireguard=y
 CONFIG_PACKAGE_luci-proto-bonding=y
@@ -377,7 +374,6 @@ CONFIG_PACKAGE_kmod-wireguard=y
 # CONFIG_PACKAGE_xl2tpd=y
 # CONFIG_PACKAGE_ppp-mod-pppol2tp=y
 # CONFIG_PACKAGE_kmod-pppol2tp=y
-
 
 #istore 
 # CONFIG_PACKAGE_luci-lib-ipkg=y  #istore
@@ -432,19 +428,18 @@ CONFIG_DOCKER_NET_OVERLAY=y
 CONFIG_DOCKER_NET_TFTP=y
 CONFIG_PACKAGE_containerd=y
 # CONFIG_PACKAGE_dockerd=y
-
 CONFIG_PACKAGE_kmod-nvme=y
 
 # ===== 核心显示框架 =====
-CONFIG_PACKAGE_kmod-drm=y
-CONFIG_PACKAGE_kmod-drm-kms-helper=y
+# CONFIG_PACKAGE_kmod-drm=y
+# CONFIG_PACKAGE_kmod-drm-kms-helper=y
 
 # ===== Intel 核显驱动 =====
-CONFIG_PACKAGE_kmod-drm-i915=y
-CONFIG_PACKAGE_i915-firmware=y
-CONFIG_PACKAGE_intel-microcode=y
-CONFIG_PACKAGE_intel-media-driver=y   # 推荐（支持最新编解码）
-CONFIG_PACKAGE_mesa-vulkan-intel=y      # Vulkan 支持
+# CONFIG_PACKAGE_kmod-drm-i915=y
+# CONFIG_PACKAGE_i915-firmware=y
+# CONFIG_PACKAGE_intel-microcode=y
+# CONFIG_PACKAGE_intel-media-driver=y   # 推荐（支持最新编解码）
+# CONFIG_PACKAGE_mesa-vulkan-intel=y      # Vulkan 支持
 
 # ===== AMD 显卡驱动 =====
 # CONFIG_PACKAGE_kmod-drm-amdgpu=y        # 确认有 AMD 显卡再启用
@@ -452,39 +447,13 @@ CONFIG_PACKAGE_mesa-vulkan-intel=y      # Vulkan 支持
 # CONFIG_PACKAGE_mesa-vulkan-radeon=y
 
 # ===== 通用图形库 =====
-CONFIG_PACKAGE_mesa=y
-CONFIG_PACKAGE_mesa-vaapi=y
-
-# ===== 其他硬件支持 =====
-# CONFIG_PACKAGE_kmod-backlight=y           # 背光控制（仅需一次）
-# CONFIG_PACKAGE_kmod-sound-hda-intel=y     # Intel 音频
-# CONFIG_PACKAGE_kmod-sound-hda-codec-realtek=y  # Realtek 音频
-
-# === 其他必要固件 ===
-# CONFIG_PACKAGE_bnx2-firmware=y        # 博通网卡固件（如硬件需要）
-# CONFIG_PACKAGE_bnx2x-firmware=y
-
-# 固件
-CONFIG_PACKAGE_linux-firmware-amd=y
-CONFIG_PACKAGE_amdgpu-firmware=y
-CONFIG_PACKAGE_amd64-microcode=y
-
-# === Intel 核显 ===
-CONFIG_PACKAGE_kmod-drm-i915=y
-CONFIG_PACKAGE_i915-firmware=y
-CONFIG_PACKAGE_intel-microcode=y
-
-# === 视频加速 ===
-# CONFIG_PACKAGE_intel-media-driver=y
+# CONFIG_PACKAGE_mesa=y
 # CONFIG_PACKAGE_mesa-vaapi=y
-# CONFIG_PACKAGE_libva-utils=y
 
-# === FFmpeg ===
-# CONFIG_PACKAGE_ffmpeg-full=y
-# CONFIG_FFMPEG_ENABLE_VAAPI=y
-
-# === Jellyfin ===
-# CONFIG_PACKAGE_jellyfin-server=y
+ === Intel 核显 ===
+# CONFIG_PACKAGE_kmod-drm-i915=y
+# CONFIG_PACKAGE_i915-firmware=y
+# CONFIG_PACKAGE_intel-microcode=y
 
 #VMware-tools
 # CONFIG_PACKAGE_open-vm-tools=y
@@ -493,19 +462,3 @@ CONFIG_PACKAGE_intel-microcode=y
 # 启用Intel网卡驱动（例如ixgbe或i40e）
 CONFIG_PACKAGE_kmod-ixgbe=y
 CONFIG_PACKAGE_kmod-i40e=y
-
-# 启用Mellanox网卡驱动（如果需要）
-CONFIG_PACKAGE_kmod-mlx4-core=y
-CONFIG_PACKAGE_kmod-mlx4-en=y
-
-#读卡器
-CONFIG_PACKAGE_kmod-usb-storage=y #USB 存储设备基础驱动
-CONFIG_PACKAGE_kmod-usb-storage-extras=y  #更多 USB 存储设备
-CONFIG_PACKAGE_kmod-sdhci=y  #（SD/TF 卡支持）
-CONFIG_PACKAGE_kmod-mmc=y  #MMC/SD 卡核心驱动
-CONFIG_PACKAGE_kmod-ums-realtek=y  # 旧款 Realtek USB 2.0 读卡器
-CONFIG_PACKAGE_kmod-fs-vfat=y      # FAT32 支持
-CONFIG_PACKAGE_kmod-fs-exfat=y     # exFAT 支持（可选）
-CONFIG_PACKAGE_kmod-fs-ntfs=y     # ntfs 支持（可选）
-CONFIG_PACKAGE_kmod-usb-storage-uas=y  #高速读卡器
-# CONFIG_PACKAGE_kmod-rtsx_usb=y   #新款 Realtek USB 3.0 读卡器
