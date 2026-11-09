@@ -37,6 +37,9 @@ CONFIG_PACKAGE_firewall4=y
 ### USB Audio 
 CONFIG_PACKAGE_kmod-usb-audio=y
 
+# compat js rpc error 
+CONFIG_PACKAGE_luci-compat=y
+
 CONFIG_LUCI_LANG_en=y
 #CONFIG_LUCI_LANG_zh-cn=y
 CONFIG_LUCI_LANG_zh_Hans=y
